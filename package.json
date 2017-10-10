@@ -1,0 +1,41 @@
+{
+	"name": "SyroLingo",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"test": "jest",
+		"start:ios": "yarn build && concurrently -r 'yarn watch' 'react-native run-ios'",
+		"start:android": "yarn build && concurrently -r 'yarn watch' 'react-native run-android'",
+		"tsc": "node_modules/.bin/tsc",
+		"clean": "rimraf artifacts",
+		"build": "yarn clean && yarn tsc --",
+		"lint": "tslint -c ./tslint.json 'src/**/*.{ts,tsx}' --fix",
+		"watch": "yarn build -- -w"
+	},
+	"dependencies": {
+		"@types/jest": "^21.1.0",
+		"@types/react": "^16.0.9",
+		"@types/react-native": "^0.48.10",
+		"@types/react-navigation": "^1.0.20",
+		"concurrently": "^3.5.0",
+		"react": "^16.0.0",
+		"react-native": "^0.48.4",
+		"react-native-i18n": "^2.0.6",
+		"react-navigation": "^1.0.0-beta.13",
+		"rimraf": "^2.6.2",
+		"tslint": "^5.7.0",
+		"tslint-config-airbnb": "^5.3.0",
+		"typescript": "^2.5.2",
+		"yarn": "^1.1.0"
+	},
+	"devDependencies": {
+		"babel-jest": "21.0.2",
+		"babel-preset-react-native": "4.0.0",
+		"jest": "21.1.0",
+		"react-test-renderer": "16.0.0-alpha.12"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
+}
