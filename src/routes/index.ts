@@ -11,6 +11,6 @@ export default StackNavigator({
 	Modules: { screen: Modules },
 	Lessons: { screen: Lessons },
 	Questions: { screen: Questions },
-});
+}, { mode: 'card' });
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { I18nManager } from 'react-native';
 import Routes from '../routes';
 import I18n from '../i18n';
+import { Container } from 'native-base';
 
 I18nManager.forceRTL(true);
 
@@ -16,7 +17,9 @@ export default class App extends React.Component<Props, State> {
 
 	render () {
 		return (
-			<Routes />
+			<Container style={{ flex: 1 }}>
+				<Routes />
+			</Container>
 		);
 	}
 }

@@ -24,7 +24,7 @@ export default {
 		letters1: 'الأحرف ١',
 		letters2: 'الأحرف ٢',
 		vowels: 'التشكيل',
-		parent1: 'المضارع ١',
+		present1: 'المضارع ١',
 		body_parts: 'أعضاء الجسم',
 		colors: 'الألوان',
 		numbers: 'الأرقام',
@@ -34,6 +34,10 @@ export default {
 		plural: 'الجمع',
 		genders: 'الأجناس',
 		religion: 'دين',
-
+		shopping: 'تسوق',
+		places: 'أماكن'
+	},
+	questions: {
+		submit: 'أرسل الاجابة',
 	}
 };

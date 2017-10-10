@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import I18n from '../../i18n';
+import { Container, Text } from 'native-base';
 
 export interface Props { }
 export interface State { }
@@ -16,12 +17,7 @@ const styles: any = StyleSheet.create({
 		fontSize: 20,
 		textAlign: 'center',
 		margin: 10,
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
-	},
+	}
 });
 
 export default class Splash extends React.Component<any, State> {
@@ -34,17 +30,17 @@ export default class Splash extends React.Component<any, State> {
 	componentDidMount () {
 		const { navigate } = this.props.navigation;
 		setTimeout(() => {
-			navigate('Intro');
+			navigate('Modules');
 		}, 500)
 	}
 
 	render () {
 		return (
-			<View style={styles.container}>
+			<Container style={styles.container}>
 				<Text style={styles.welcome}>
 					{I18n.t('greeting')}
 				</Text>
-			</View>
+			</Container>
 		);
 	}
 }

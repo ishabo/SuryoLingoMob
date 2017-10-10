@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Container, Button, Text } from 'native-base';
+
 import I18n from '../../i18n';
 import { BackHandler } from 'react-native';
 
@@ -37,11 +39,14 @@ export default class Intro extends React.Component<any, State> {
 
     render () {
         return (
-            <View style={styles.container}>
-                <Text onPress={this.goToModules}>
-                    Start
-                </Text>
-            </View>
+            <Container style={styles.container}>
+                <Button>
+                    <Text onPress={this.goToModules}>
+                        Start
+                    </Text>
+                </Button>
+
+            </Container>
         );
     }
 }

@@ -1,8 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import I18n from '../../i18n';
+import { Container } from 'native-base';
+import { ScrollView } from 'react-native';
+import modules, { IModule } from '../../data/modules';
+import Module from './Module';
 
-export interface State { }
+interface State { }
 
 export default class Modules extends React.Component<any, State> {
 
@@ -16,13 +19,18 @@ export default class Modules extends React.Component<any, State> {
 		navigate('Lessons');
 	}
 
+	private renderModules () {
+		return modules.map((module: IModule, _: number) =>
+			<Module key={_} moduleData={module} onModuleClick={this.goToLessons} />);
+	}
+
 	render () {
 		return (
-			<View >
-				<Text onPress={this.goToLessons}>
-					Lessons
-				</Text>
-			</View>
+			<Container>
+				<ScrollView>
+					{this.renderModules()}
+				</ScrollView>
+			</Container>
 		);
 	}
 }
