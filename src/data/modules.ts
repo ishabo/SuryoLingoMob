@@ -1,44 +1,51 @@
-type TQuestionType = string | 'TRANSLATION' | 'WORD_SELECTION' | 'MULTI_CHOICE' | 'PICTURE_SELETION' | 'DICTATION';
+const questions: IQuestion[] = [
 
-interface IQuestion {
-	questionType: TQuestionType;
-	sound: string;
-	main: string;
-	meaning: string[];
-}
-
-type ILesson = IQuestion[];
-
-export interface IModule {
-	id: number;
-	level: number;
-	unit: number;
-	name: string;
-	lessons: ILesson[];
-	icons: {
-		inactive: string;
-		active: string;
-		completed: string;
-	},
-};
-
-const lesson = [
-	{
-		questionType: 'TRANSLATION',
-		sound: '1000_1_1',
-		main: 'ܒܪܝܟ ܨܦܪܟ ܐܚܝ',
-		meaning: ['طاب صباحك يا أخي', 'صباح الخير يا أخي', 'مبارك صباحك يا أخي'],
-	},
 	{
 		questionType: 'WORD_SELECTION',
-		sound: '1000_1_1',
-		main: 'ܡܢܐ ܥܒܕܬܘܢ',
-		meaning: ['ماذا تفعلون؟', 'ما الذي تفعلون؟', 'ما الذي تفعلونه؟'],
-	}
+		studyPhrase: {
+			text: 'ܡܢܐ ܥܒܕܬܘܢ',
+			soundFile: '1000_1_1'
+		},
+		targetLang: 'ar',
+		correctAnswers: ['ماذا تفعلون؟'],
+		possibleAnswers: ['ماذا', 'تأكلون', 'تفعلون']
+	},
 
-];
+	{
+		questionType: 'DICTATION',
+		studyPhrase: {
+			text: 'ܡܢܐ ܥܒܕܬܘܢ',
+			soundFile: '1000_1_1'
+		},
+		targetLang: 'ar',
+		correctAnswers: ['ܡܢܐ ܥܒܕܬܘܢ'],
+		possibleAnswers: ['']
+	},
+	{
+		questionType: 'TRANSLATION',
+		studyPhrase: {
+			text: 'ܒܪܝܟ ܨܦܪܟ ܐܚܝ',
+			soundFile: '1000_1_1'
+		},
+		targetLang: 'ar',
+		correctAnswers: ['طاب صباحك يا أخي', 'صباح الخير يا أخي', 'مبارك صباحك يا أخي'],
+		possibleAnswers: []
+	},
+]
 
-const lessons = [lesson, lesson];
+const lesson1: ILesson = {
+	lessonId: 1,
+	questions,
+	newWords: ['ܐܪܝܐ', 'ܨܦܪܟ', 'ܐܚܘܢ', 'ܛܘܒ', 'ܡܢܐ']
+}
+
+const lesson2: ILesson = {
+	lessonId: 2,
+	questions,
+	newWords: ['ܥܒܕ', 'ܫܠܝܡ', 'ܐܝܬ', 'ܒܝܬܐ', 'ܠܚܡܐ']
+}
+
+const lessons = [lesson1, lesson2];
 const modules: IModule[] = [
 	{
 		id: 10000,

@@ -1,34 +1,74 @@
 import React from 'react';
-import { Container, Text, CardItem, Card } from 'native-base';
+import { Container, Text, View } from 'native-base';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-
-interface ILesson {
-    words: string | string[];
-    lessonId: number;
-}
+import I18n from '../../i18n';
 
 export interface State {
     lessons: ILesson[];
 }
 
+export default class Lessons extends React.Component<any, State> {
+
+    private carousal;
+    static navigationOptions = {
+        title: I18n.t('lessons.title')
+    };
+
+    goToQuestions = (lesson: ILesson) => {
+        const { navigate } = this.props.navigation;
+        navigate('Questions', { questions: lesson.questions, currentQuestionIndex: 0 });
+    }
+
+    renderCards ({ item: lesson, _ }) {
+        return <View style={styles.card}>
+            <TouchableOpacity style={styles.navArea} onPress={() => { this.goToQuestions(lesson) }}>
+                <Text style={styles.lessonTitle}>{I18n.t('lessons.lesson.title', { lessonId: lesson.lessonId, totalLessons: 3 })}</Text>
+
+                <Text style={styles.lessonNewWords}>{lesson.newWords.join(', ')}</Text>
+            </TouchableOpacity>
+        </View >
+    }
+
+    render () {
+        const module: IModule = this.props.navigation.state.params.module
+        return (
+            <Container style={styles.container}>
+                <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>
+                    <Text>{I18n.t('lessons.instruction')}</Text>
+                </View>
+                <View style={{ flex: 2, marginBottom: 30, alignSelf: 'center', justifyContent: 'center' }}>
+                    <Carousel
+                        ref={(c) => { this.carousal = c }}
+                        data={module.lessons}
+                        renderItem={this.renderCards.bind(this)}
+                        sliderWidth={380}
+                        itemWidth={300}
+                        style={{ marginTop: 300 }}
+                    />
+                </View>
+            </Container>
+        )
+    }
+}
+
 const styles: any = StyleSheet.create({
-    card: {
-        width: 300,
-        alignItems: 'center',
-        height: 500,
-        shadowOffset: { width: 0, height: 400 },
-        shadowColor: 'black',
-        shadowOpacity: 1.0,
-        elevation: 1,
-        shadowRadius: 2
-    },
 
     container: {
-        flex: 1,
         alignItems: 'center',
-        height: 600,
         alignSelf: 'stretch',
+        justifyContent: 'space-between',
+    },
+
+    card: {
+        alignItems: 'center',
+        height: 300,
+        shadowOffset: { width: 4, height: 4, },
+        shadowColor: 'black',
+        shadowOpacity: 0.2,
+        elevation: 1,
+        shadowRadius: 2,
+        backgroundColor: 'white'
     },
 
     navArea: {
@@ -37,62 +77,15 @@ const styles: any = StyleSheet.create({
         justifyContent: 'center',
         height: 400,
         width: 300
+    },
+
+    lessonTitle: {
+        alignSelf: 'center',
+        fontSize: 20,
+        marginBottom: 10
+    },
+
+    lessonNewWords: {
+        alignSelf: 'center'
     }
-})
-
-export default class Lessons extends React.Component<any, State> {
-
-    private carousel: any;
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            lessons: [
-                {
-                    words: 'ܐܢܐ, ܐܢܬ, ܐܢܬܘܢ, ܗܘ, ܗܝ',
-                    lessonId: 1,
-                },
-                {
-                    words: 'ܐܝܟܐ, ܐܝܟܢܐ, ܟܡܐ, ܡܐ',
-                    lessonId: 2,
-                },
-                {
-                    words: 'ܙܒܢܐ, ܚܙܘܪܐ, ܬܢܐ, ܐܝܠܢܐ',
-                    lessonId: 3
-                }
-            ]
-        }
-    }
-
-    static navigationOptions = {
-        title: 'Lessons'
-    };
-
-    goToQuestions = (lessonId: number) => {
-        const { navigate } = this.props.navigation;
-        navigate('Questions', { lessonId });
-    }
-
-    renderCards ({ item, _ }) {
-        return <Card style={styles.card}>
-            <CardItem style={{ width: 300, height: 400 }}>
-                <TouchableOpacity style={styles.navArea} onPress={() => { this.goToQuestions(item.lessonId) }}>
-                    <Text style={{ alignSelf: 'center' }}>{item.words}</Text>
-                </TouchableOpacity>
-            </CardItem>
-        </Card >
-    }
-
-    render () {
-        return (
-            <Container style={styles.container}>
-                <Carousel
-                    ref={(c) => { this.carousel = c; }}
-                    data={this.state.lessons}
-                    renderItem={this.renderCards.bind(this)}
-                    sliderWidth={390}
-                    itemWidth={300}
-                />
-            </Container>
-        )
-    }
-}
+});

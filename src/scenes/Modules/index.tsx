@@ -2,7 +2,7 @@ import React from 'react';
 import I18n from '../../i18n';
 import { Container } from 'native-base';
 import { ScrollView } from 'react-native';
-import modules, { IModule } from '../../data/modules';
+import modules from '../../data/modules';
 import Module from './Module';
 
 interface State { }
@@ -14,14 +14,14 @@ export default class Modules extends React.Component<any, State> {
 		headerRight: null
 	};
 
-	private goToLessons = () => {
+	private goToLessons = (module: IModule) => {
 		const { navigate } = this.props.navigation;
-		navigate('Lessons');
+		navigate('Lessons', { module });
 	}
 
 	private renderModules () {
 		return modules.map((module: IModule, _: number) =>
-			<Module key={_} moduleData={module} onModuleClick={this.goToLessons} />);
+			<Module key={_} moduleData={module} onModuleClick={() => this.goToLessons(module)} />);
 	}
 
 	render () {

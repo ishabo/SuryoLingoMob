@@ -1,7 +1,6 @@
 import React from 'react';
 import I18n from '../../../i18n';
 import { Button, Text } from 'native-base';
-import { IModule } from '../../../data/modules';
 
 export interface Props {
     onModuleClick: () => void,

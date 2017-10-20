@@ -39,5 +39,19 @@ export default {
 	},
 	questions: {
 		submit: 'أرسل الاجابة',
+		translateTo: {
+			ar: 'ترجم إلى العربية',
+			sy: 'ترجم إلى السريانية'
+		},
+		dictionation: 'اكتب بالسريانية كما تسمع',
+		multiChoice: 'اختر الاجابات الصحيحة',
+		singleChoice: 'اختر الاجابة الصحيحة'
+	},
+	lessons: {
+		lesson: {
+			title: 'الدرس {{lessonId}} من {{totalLessons}}'
+		},
+		title: 'االدروس',
+		instruction: 'اسحب يميناً وشمالاً للتنقل بين الدروس'
 	}
 };
