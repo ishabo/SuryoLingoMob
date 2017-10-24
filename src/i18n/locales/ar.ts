@@ -35,7 +35,8 @@ export default {
 		genders: 'الأجناس',
 		religion: 'دين',
 		shopping: 'تسوق',
-		places: 'أماكن'
+		places: 'أماكن',
+		adjective1: 'الظروف ١'
 	},
 	questions: {
 		submit: 'أرسل الاجابة',

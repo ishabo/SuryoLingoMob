@@ -226,6 +226,18 @@ const modules: IModule[] = [
 			active: '',
 			completed: '',
 		},
+	},
+	{
+		id: 10014,
+		level: 2,
+		unit: 3,
+		name: 'adjective1',
+		lessons,
+		icons: {
+			inactive: '',
+			active: '',
+			completed: '',
+		},
 	}
 ]
 

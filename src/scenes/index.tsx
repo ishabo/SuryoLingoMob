@@ -1,26 +1,22 @@
+import '../config/reactotron';
 import React from 'react';
+import { I18nManager, View } from 'react-native';
+import { Provider } from 'react-redux';
 import Routes from '../routes';
-import I18n from '../i18n';
-import { Container } from 'native-base';
-import { I18nManager } from 'react-native';
+import Store from '../services/store';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
 I18nManager.forceRTL(true);
 
-export interface Props { }
-export interface State { }
+const ReduxStore = new Store();
+const store = ReduxStore.getStore();
+const persistor = ReduxStore.persistStore();
 
-export default class App extends React.Component<Props, State> {
-
-	static navigationOptions = {
-		title: I18n.t('moduleList'),
-	};
-
-	render () {
-		return (
-			<Container style={{ flex: 1 }}>
-				<Routes />
-			</Container>
-		);
-	}
-}
-
+export default () =>
+	<Provider store={store}>
+		<PersistGate persistor={persistor}
+			loading={<View />}
+		>
+			<Routes />
+		</PersistGate>
+	</Provider>

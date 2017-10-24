@@ -2,12 +2,12 @@ import React from 'react';
 import I18n from '../../i18n';
 import { Container } from 'native-base';
 import { ScrollView } from 'react-native';
-import modules from '../../data/modules';
 import Module from './Module';
+import { connect } from 'react-redux';
 
 interface State { }
 
-export default class Modules extends React.Component<any, State> {
+class Modules extends React.Component<any, State> {
 
 	static navigationOptions = {
 		title: I18n.t('modulesList'),
@@ -20,7 +20,7 @@ export default class Modules extends React.Component<any, State> {
 	}
 
 	private renderModules () {
-		return modules.map((module: IModule, _: number) =>
+		return this.props.modules.map((module: IModule, _: number) =>
 			<Module key={_} moduleData={module} onModuleClick={() => this.goToLessons(module)} />);
 	}
 
@@ -34,3 +34,9 @@ export default class Modules extends React.Component<any, State> {
 		);
 	}
 }
+
+const mapStateToProps = (state: any) => ({
+	modules: state.modules
+});
+
+export default connect(mapStateToProps)(Modules)

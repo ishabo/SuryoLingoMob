@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle, Platform } from 'react-native';
 import {
     Container,
     Input,
@@ -16,6 +16,7 @@ interface IProps {
 export default class Translation extends React.Component<IProps> {
 
     render () {
+        const rtl = Platform.OS === 'ios' ? { writingDirection: 'rtl' } : {}
         return (
             <Container style={styles.container}>
                 <Content style={styles.translationBox}>
@@ -24,7 +25,7 @@ export default class Translation extends React.Component<IProps> {
                             placeholder={this.props.placeholder}
                             multiline
                             numberOfLines={5}
-                            style={[styles.textArea, this.props.style || {}]}
+                            style={[rtl, styles.textArea, this.props.style || {}]}
                             onChangeText={this.props.captureInput}
                         />
                     </Item>
@@ -43,7 +44,6 @@ const styles = StyleSheet.create({
     },
     textArea: {
         height: 200,
-        writingDirection: 'rtl',
-        textAlign: 'right'
+        textAlign: 'right',
     }
 });

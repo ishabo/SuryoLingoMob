@@ -45,7 +45,6 @@ export default class Intro extends React.Component<any, State> {
                         Start
                     </Text>
                 </Button>
-
             </Container>
         );
     }
