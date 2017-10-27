@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Keyboard, Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { Bar as ProgressBar } from 'react-native-progress';
 import {
@@ -10,7 +10,6 @@ import {
     Text,
     Button
 } from 'native-base';
-
 import Colors from '../../styles/colors';
 import I18n from '../../i18n';
 import MultiChoice from './MultiChoice';
@@ -20,10 +19,14 @@ import WordSelection from './WordSelection';
 import StudyPhrase from '../../components/StudyPhrase';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
+import EvaluationBanner from '../../components/EvaluationBanner';
+import { evalAgainstAllAnswers } from '../../helpers/evaluation';
+import config from '../../config';
 
 export interface IState {
     answer: TAnswer;
     progress: number;
+    answerCorrect: boolean;
 }
 
 export interface IAnswerProps {
@@ -39,7 +42,8 @@ export default class Questions extends React.Component<IProps, IState> {
 
     public state = {
         answer: null,
-        progress: 0
+        progress: 0,
+        answerCorrect: null
     };
 
     static navigationOptions = {
@@ -47,7 +51,10 @@ export default class Questions extends React.Component<IProps, IState> {
     };
 
     collectAnswer = (answer: TAnswer) => {
-        this.setState({ answer });
+        Keyboard.dismiss;
+        if (this.state.answerCorrect === null) {
+            this.setState({ answer });
+        }
     }
 
     submitAllowed = () => isEmpty(this.state.answer)
@@ -60,7 +67,7 @@ export default class Questions extends React.Component<IProps, IState> {
     componentWillMount () {
         const { questions, currentQuestionIndex } = this.props.navigation.state.params;
         const progress = currentQuestionIndex / questions.length;
-        this.setState({ progress })
+        this.setState({ progress });
     }
 
     determineQuestionType = () => {
@@ -86,15 +93,36 @@ export default class Questions extends React.Component<IProps, IState> {
         return <QuestionComponent {...question } collectAnswer={this.collectAnswer} />
     }
 
+    evaluateOrNext = () => {
+        if (this.state.answerCorrect === null) {
+            this.evaluate();
+        } else {
+            this.nextQuestion();
+        }
+    }
+
+    evaluate = () => {
+        if (typeof evalAgainstAllAnswers === 'function') {
+            const answerCorrect = evalAgainstAllAnswers(
+                this.state.answer,
+                this.getCurrentQuestion().correctAnswers,
+                config.arabicLetters.concat(config.syriacLetters)
+            )
+            this.setState({ answerCorrect });
+        } else {
+            alert(typeof evalAgainstAllAnswers);
+        }
+    }
+
     nextQuestion = () => {
         const { navigate, state } = this.props.navigation;
         const { questions, currentQuestionIndex, failedQuestions } = state.params;
-        const nextQuestionIndex = currentQuestionIndex + 1
-        if (questions[nextQuestionIndex]) {
-            navigate('Questions', { questions, currentQuestionIndex: nextQuestionIndex })
+        const evaluateOrNextIndex = currentQuestionIndex + 1
+        if (questions[evaluateOrNextIndex]) {
+            navigate('Questions', { questions, currentQuestionIndex: evaluateOrNextIndex })
         } else {
             if (failedQuestions && failedQuestions[0]) {
-                navigate('Questions', { questions, currentQuestionIndex: nextQuestionIndex })
+                navigate('Questions', { questions, currentQuestionIndex: evaluateOrNextIndex })
             } else {
                 navigate('Completion')
             }
@@ -102,19 +130,41 @@ export default class Questions extends React.Component<IProps, IState> {
     }
 
     existQuestions = () => {
+        Alert.alert(
+            I18n.t('questions.exist.areYouSure'),
+            I18n.t('questions.exist.caviat'),
+            [
+                { text: I18n.t('questions.exist.cancel'), onPress: () => { console.log('Cancelled exist') }, style: 'cancel' },
+                { text: I18n.t('questions.exist.ok'), onPress: this.backToModules },
+            ],
+            { cancelable: false }
+        )
+    }
+
+    backToModules = () => {
         const resetAction = NavigationActions.reset({
             index: 0,
             actions: [
                 NavigationActions.navigate({ routeName: 'Modules' })
             ]
         })
-        return () => this.props.navigation.dispatch(resetAction)
+        this.props.navigation.dispatch(resetAction)
+    }
+
+    renderEvaluationBanner () {
+        const { correctAnswers } = this.getCurrentQuestion();
+        return this.state.answerCorrect !== null
+            && <EvaluationBanner
+                passed={this.state.answerCorrect}
+                answer={this.state.answer}
+                correctAnswer={correctAnswers[0]} />
     }
 
     render () {
         const question = this.getCurrentQuestion();
         return (
-            <Container >
+            <Container>
+                {this.renderEvaluationBanner()}
                 <View style={styles.header}>
                     <View style={styles.progress}>
                         <ProgressBar
@@ -126,7 +176,7 @@ export default class Questions extends React.Component<IProps, IState> {
                             animated style={{ height: 5 }}
                         />
                     </View>
-                    <Icon name='close' style={styles.close} onPress={this.existQuestions()} />
+                    <Icon name='close' style={styles.close} onPress={this.existQuestions} />
                 </View>
                 <Body style={styles.body}>
                     <StudyPhrase
@@ -143,7 +193,7 @@ export default class Questions extends React.Component<IProps, IState> {
                         block
                         disabled={this.submitAllowed()}
                         style={{ width: 300, alignSelf: 'center' }}
-                        onPress={this.nextQuestion}
+                        onPress={this.evaluateOrNext}
                     >
                         <Text style={{ alignSelf: 'center' }}>
                             {I18n.t('questions.submit')}

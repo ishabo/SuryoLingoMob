@@ -3,6 +3,8 @@ package com.syrolingo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
+import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.facebook.react.ReactNativeHost;
@@ -26,6 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSensitiveInfoPackage(),
+            new RNAudioPlayer(),
             new RNSoundPackage(),
             new RNI18nPackage()
       );

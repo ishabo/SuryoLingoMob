@@ -2,6 +2,10 @@ export default {
 	greeting: 'تعلم لغة اجدادك السوريين',
 	modulesList: 'لائحة الوحدات',
 	chooseYourWay: 'اختر طريقك',
+	alert: {
+		cancel: 'إلغاء',
+		ok: 'حسناً',
+	},
 	levels: {
 		1: 'المرحلة الأولى',
 		2: 'المرحلة الثانية',
@@ -40,13 +44,27 @@ export default {
 	},
 	questions: {
 		submit: 'أرسل الاجابة',
+		exist: {
+			areYouSure: 'هل حقاً تريد الخروج؟',
+			caviat: 'بخروجك سوف تخسر تقدمك الذي حققته في هذا الدرس حتى الآن!',
+			ok: 'اخرج',
+			cancel: 'تابع الدرس'
+		},
+
 		translateTo: {
 			ar: 'ترجم إلى العربية',
 			sy: 'ترجم إلى السريانية'
 		},
 		dictionation: 'اكتب بالسريانية كما تسمع',
 		multiChoice: 'اختر الاجابات الصحيحة',
-		singleChoice: 'اختر الاجابة الصحيحة'
+		singleChoice: 'اختر الاجابة الصحيحة',
+
+		evaluation: {
+			passed: 'الإجابة صحيحة',
+			failed: 'الإجابة خاطئة',
+			correctAnswer: 'الإجابة الصحيحة:',
+			youAnswered: 'إجابتك كانت:'
+		}
 	},
 	lessons: {
 		lesson: {

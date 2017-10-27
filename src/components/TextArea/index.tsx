@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ViewStyle, Platform } from 'react-native';
+import { StyleSheet, ViewStyle, Platform, Keyboard } from 'react-native';
 import {
     Container,
     Input,
@@ -27,6 +27,7 @@ export default class Translation extends React.Component<IProps> {
                             numberOfLines={5}
                             style={[rtl, styles.textArea, this.props.style || {}]}
                             onChangeText={this.props.captureInput}
+                            onSubmitEditing={Keyboard.dismiss}
                         />
                     </Item>
                 </Content>
