@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import I18n from '../../i18n';
+import { StyleSheet, Image } from 'react-native';
 import { Container, Text } from 'native-base';
 import modules from '../../data/modules';
 import { connect } from 'react-redux';
 import { saveModules } from '../../services/modules/actions';
+import Images from '../../assets/images';
 
 export interface Props { }
 export interface State { }
@@ -14,7 +14,7 @@ const styles: any = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
+		backgroundColor: 'white',
 	},
 	welcome: {
 		fontSize: 20,
@@ -26,8 +26,7 @@ const styles: any = StyleSheet.create({
 class Splash extends React.Component<any, State> {
 
 	static navigationOptions = {
-		title: null,
-		goBack: false
+		header: null
 	};
 
 	componentWillMount () {
@@ -38,14 +37,14 @@ class Splash extends React.Component<any, State> {
 		const { navigate } = this.props.navigation;
 		setTimeout(() => {
 			navigate('Modules');
-		}, 500)
+		}, 1000)
 	}
 
 	render () {
 		return (
 			<Container style={styles.container}>
 				<Text style={styles.welcome}>
-					{I18n.t('greeting')}
+					<Image style={{ height: 230, width: 230 }} source={Images.logo.splash} />
 				</Text>
 			</Container>
 		);

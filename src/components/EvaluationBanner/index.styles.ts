@@ -4,7 +4,6 @@ const height = 140;
 
 export const GSBannerHeader = glamor.text({
     color: Colors.white,
-    writingDirection: 'rtl',
     alignSelf: 'flex-start',
     marginBottom: 10,
     fontSize: 30,
@@ -14,15 +13,14 @@ export const GSBannerHeader = glamor.text({
 export const GSBanner = glamor.view({
     flexDirection: 'row',
     position: 'absolute',
-    right: 0,
+    left: 0,
     bottom: 100,
     height,
 })
 export const GSBannerText = glamor.text({
     color: Colors.white,
-    writingDirection: 'rtl',
     alignSelf: 'flex-start',
-    fontSize: 18,
+    fontSize: 16,
 });
 
 export const GSBoldText = glamor(GSBannerText)({
@@ -31,18 +29,17 @@ export const GSBoldText = glamor(GSBannerText)({
 
 export const GSBannerTail = glamor.view({
     width: 100,
+    marginLeft: -25
 })
 
 export const GSMessageBox = glamor.view({
-    width: 250,
-    marginLeft: - 25,
-    padding: 20,
+    width: 270,
+    padding: 15,
     height,
     alignContent: 'flex-start',
 });
 
 export const GSMessageText = glamor.view({
-    marginLeft: -40
 });
 
 export const GSTriangle = glamor.view({

@@ -21,11 +21,6 @@ const bgColor = (passed: boolean) => passed ? Colors.lightGreen : Colors.lightRe
 const passTitle = (passed: boolean) => I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`)
 const EvaluationBanner = ({ passed, answer, correctAnswer }: IProps) =>
     <GSBanner>
-        <GSBannerTail>
-            <GSTriangle color={bgColor(passed)} upsideDown />
-            <GSTriangle color={bgColor(passed)} />
-        </GSBannerTail>
-
         <GSMessageBox style={{ backgroundColor: bgColor(passed) }}>
             <GSMessageText>
                 <GSBannerHeader>
@@ -39,7 +34,11 @@ const EvaluationBanner = ({ passed, answer, correctAnswer }: IProps) =>
                 </GSBannerText>}
             </GSMessageText>
         </GSMessageBox>
-    </GSBanner>
 
+        <GSBannerTail>
+            <GSTriangle color={bgColor(passed)} upsideDown />
+            <GSTriangle color={bgColor(passed)} />
+        </GSBannerTail>
+    </GSBanner>
 
 export default EvaluationBanner;

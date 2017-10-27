@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     textArea: {
-        height: 200,
+        height: 150,
         textAlign: 'right',
+        textAlignVertical: 'top'
     }
 });

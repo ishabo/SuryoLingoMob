@@ -4,7 +4,7 @@ const questions: IQuestion[] = [
 		questionType: 'WORD_SELECTION',
 		studyPhrase: {
 			text: 'ܡܢܐ ܥܒܕܬܘܢ',
-			soundFile: '1000_1_1'
+			soundFile: 'audio_1000_1_2'
 		},
 		targetLang: 'ar',
 		correctAnswers: ['ماذا تفعلون؟'],
@@ -15,7 +15,7 @@ const questions: IQuestion[] = [
 		questionType: 'DICTATION',
 		studyPhrase: {
 			text: 'ܡܢܐ ܥܒܕܬܘܢ',
-			soundFile: '1000_1_1'
+			soundFile: 'audio_1000_1_2'
 		},
 		targetLang: 'ar',
 		correctAnswers: ['ܡܢܐ ܥܒܕܬܘܢ'],
@@ -25,7 +25,7 @@ const questions: IQuestion[] = [
 		questionType: 'TRANSLATION',
 		studyPhrase: {
 			text: 'ܒܪܝܟ ܨܦܪܟ ܐܚܝ',
-			soundFile: '1000_1_1'
+			soundFile: 'audio_1000_1_1'
 		},
 		targetLang: 'ar',
 		correctAnswers: ['طاب صباحك يا أخي', 'صباح الخير يا أخي', 'مبارك صباحك يا أخي'],
@@ -73,7 +73,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10002,
-		level: 1,
+		level: 2,
 		unit: 2,
 		name: 'vowels',
 		lessons,
@@ -85,7 +85,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 1,
-		level: 1,
+		level: 2,
 		unit: 2,
 		name: 'basics',
 		lessons,
@@ -97,7 +97,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10003,
-		level: 1,
+		level: 3,
 		unit: 2,
 		name: 'phrases',
 		lessons,
@@ -109,7 +109,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10004,
-		level: 1,
+		level: 3,
 		unit: 3,
 		name: 'genders',
 		lessons,
@@ -121,7 +121,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10005,
-		level: 1,
+		level: 4,
 		unit: 3,
 		name: 'numbers',
 		lessons,
@@ -133,7 +133,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10006,
-		level: 1,
+		level: 4,
 		unit: 3,
 		name: 'plural',
 		lessons,
@@ -145,7 +145,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10007,
-		level: 1,
+		level: 5,
 		unit: 4,
 		name: 'body_parts',
 		lessons,
@@ -157,7 +157,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10008,
-		level: 2,
+		level: 5,
 		unit: 1,
 		name: 'animals',
 		lessons,
@@ -169,7 +169,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10009,
-		level: 2,
+		level: 5,
 		unit: 1,
 		name: 'present1',
 		lessons,
@@ -181,7 +181,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10010,
-		level: 2,
+		level: 6,
 		unit: 2,
 		name: 'colors',
 		lessons,
@@ -193,7 +193,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10011,
-		level: 2,
+		level: 6,
 		unit: 2,
 		name: 'shopping',
 		lessons,
@@ -205,7 +205,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10012,
-		level: 2,
+		level: 7,
 		unit: 3,
 		name: 'places',
 		lessons,
@@ -217,7 +217,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10013,
-		level: 2,
+		level: 7,
 		unit: 3,
 		name: 'religion',
 		lessons,
@@ -229,7 +229,7 @@ const modules: IModule[] = [
 	},
 	{
 		id: 10014,
-		level: 2,
+		level: 8,
 		unit: 3,
 		name: 'adjective1',
 		lessons,

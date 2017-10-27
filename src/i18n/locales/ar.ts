@@ -44,6 +44,7 @@ export default {
 	},
 	questions: {
 		submit: 'أرسل الاجابة',
+		continue: 'أكمل',
 		exist: {
 			areYouSure: 'هل حقاً تريد الخروج؟',
 			caviat: 'بخروجك سوف تخسر تقدمك الذي حققته في هذا الدرس حتى الآن!',

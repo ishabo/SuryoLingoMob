@@ -3,6 +3,7 @@ package com.syrolingo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
 import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
 import com.zmxv.RNSound.RNSoundPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new LinearGradientPackage(),
             new RNSensitiveInfoPackage(),
             new RNAudioPlayer(),
             new RNSoundPackage(),

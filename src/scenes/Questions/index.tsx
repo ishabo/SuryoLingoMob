@@ -50,7 +50,6 @@ export default class Questions extends React.Component<IProps, IState> {
     };
 
     collectAnswer = (answer: TAnswer) => {
-        Keyboard.dismiss;
         if (this.state.answerCorrect === null) {
             this.setState({ answer });
         }
@@ -93,6 +92,7 @@ export default class Questions extends React.Component<IProps, IState> {
     }
 
     evaluateOrNext = () => {
+        Keyboard.dismiss();
         if (this.state.answerCorrect === null) {
             this.evaluate();
         } else {
@@ -191,7 +191,7 @@ export default class Questions extends React.Component<IProps, IState> {
                         onPress={this.evaluateOrNext}
                     >
                         <Text style={{ alignSelf: 'center' }}>
-                            {I18n.t('questions.submit')}
+                            {this.state.answerCorrect === null ? I18n.t('questions.submit') : I18n.t('questions.continue')}
                         </Text>
                     </Button>
                 </View>
