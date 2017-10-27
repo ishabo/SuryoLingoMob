@@ -50,7 +50,6 @@ export default {
 			ok: 'اخرج',
 			cancel: 'تابع الدرس'
 		},
-
 		translateTo: {
 			ar: 'ترجم إلى العربية',
 			sy: 'ترجم إلى السريانية'
@@ -58,13 +57,14 @@ export default {
 		dictionation: 'اكتب بالسريانية كما تسمع',
 		multiChoice: 'اختر الاجابات الصحيحة',
 		singleChoice: 'اختر الاجابة الصحيحة',
-
 		evaluation: {
 			passed: 'الإجابة صحيحة',
 			failed: 'الإجابة خاطئة',
 			correctAnswer: 'الإجابة الصحيحة:',
 			youAnswered: 'إجابتك كانت:'
-		}
+		},
+		congratulations: 'أحسنت! لقد اجتزت الدرس رقم {{lessonId}} بنجاح',
+		xpGain: 'لقد اكتسبت {{xp}} من نقاط الخبرة'
 	},
 	lessons: {
 		lesson: {

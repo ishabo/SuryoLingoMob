@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Keyboard, Alert } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import { Bar as ProgressBar } from 'react-native-progress';
 import {
     Container,
@@ -22,6 +21,7 @@ import { NavigationScreenProp } from 'react-navigation';
 import EvaluationBanner from '../../components/EvaluationBanner';
 import { evalAgainstAllAnswers } from '../../helpers/evaluation';
 import config from '../../config';
+import { backToModules } from '../../helpers/navigation'
 
 export interface IState {
     answer: TAnswer;
@@ -34,7 +34,6 @@ export interface IAnswerProps {
 }
 
 interface IProps {
-    question: IQuestion;
     navigation: NavigationScreenProp<any, any>
 }
 
@@ -116,15 +115,21 @@ export default class Questions extends React.Component<IProps, IState> {
 
     nextQuestion = () => {
         const { navigate, state } = this.props.navigation;
-        const { questions, currentQuestionIndex, failedQuestions } = state.params;
+        const { questions, currentQuestionIndex, failedQuestions, lessonId } = state.params;
         const evaluateOrNextIndex = currentQuestionIndex + 1
+        const navToNextQuestion = () => navigate('Questions', {
+            lessonId,
+            questions,
+            currentQuestionIndex: evaluateOrNextIndex
+        })
+
         if (questions[evaluateOrNextIndex]) {
-            navigate('Questions', { questions, currentQuestionIndex: evaluateOrNextIndex })
+            navToNextQuestion()
         } else {
             if (failedQuestions && failedQuestions[0]) {
-                navigate('Questions', { questions, currentQuestionIndex: evaluateOrNextIndex })
+                navToNextQuestion()
             } else {
-                navigate('Completion')
+                navigate('Completion', { lessonId })
             }
         }
     }
@@ -135,20 +140,10 @@ export default class Questions extends React.Component<IProps, IState> {
             I18n.t('questions.exist.caviat'),
             [
                 { text: I18n.t('questions.exist.cancel'), onPress: () => { console.log('Cancelled exist') }, style: 'cancel' },
-                { text: I18n.t('questions.exist.ok'), onPress: this.backToModules },
+                { text: I18n.t('questions.exist.ok'), onPress: () => { backToModules(this.props.navigation) } },
             ],
             { cancelable: false }
         )
-    }
-
-    backToModules = () => {
-        const resetAction = NavigationActions.reset({
-            index: 0,
-            actions: [
-                NavigationActions.navigate({ routeName: 'Modules' })
-            ]
-        })
-        this.props.navigation.dispatch(resetAction)
     }
 
     renderEvaluationBanner () {

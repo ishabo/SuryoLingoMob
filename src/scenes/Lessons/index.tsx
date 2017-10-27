@@ -18,13 +18,15 @@ export default class Lessons extends React.Component<any, State> {
     goToQuestions = (lesson: ILesson) => {
         const { navigate } = this.props.navigation;
         console.tron.log(lesson)
-        navigate('Questions', { questions: lesson.questions, currentQuestionIndex: 0 });
+        navigate('Questions', { lessonId: lesson.lessonId, questions: lesson.questions, currentQuestionIndex: 0 });
     }
 
     renderCards ({ item: lesson, _ }) {
+        const { lessons } = this.props.navigation.state.params.module
+
         return <View style={styles.card}>
             <TouchableOpacity style={styles.navArea} onPress={() => { this.goToQuestions(lesson) }}>
-                <Text style={styles.lessonTitle}>{I18n.t('lessons.lesson.title', { lessonId: lesson.lessonId, totalLessons: 3 })}</Text>
+                <Text style={styles.lessonTitle}>{I18n.t('lessons.lesson.title', { lessonId: lesson.lessonId, totalLessons: lessons.length })}</Text>
                 <Text style={styles.lessonNewWords}>{lesson.newWords.join(', ')}</Text>
             </TouchableOpacity>
         </View >
