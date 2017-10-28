@@ -4,6 +4,7 @@ import { TouchableHighlight } from 'react-native';
 import glamor from 'glamorous-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '../../../styles/colors';
+import { IModule } from '../../../services/modules/reducers';
 
 export interface Props {
     onModuleClick: () => void,

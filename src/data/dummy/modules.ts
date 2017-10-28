@@ -1,54 +1,62 @@
-const questions: IQuestion[] = [
-
+const questions = [
 	{
+		id: '111',
+		lessonId: '11',
 		questionType: 'WORD_SELECTION',
 		studyPhrase: {
 			text: 'ܡܢܐ ܥܒܕܬܘܢ',
 			soundFile: 'audio_1000_1_2'
 		},
-		targetLang: 'ar',
+		translateTo: 'targetLanguage',
 		correctAnswers: ['ماذا تفعلون؟'],
 		possibleAnswers: ['ماذا', 'تأكلون', 'تفعلون']
 	},
 
 	{
+		id: '112',
+		lessonId: '11',
 		questionType: 'DICTATION',
 		studyPhrase: {
 			text: 'ܡܢܐ ܥܒܕܬܘܢ',
 			soundFile: 'audio_1000_1_2'
 		},
-		targetLang: 'ar',
+		translateTo: 'targetLanguage',
 		correctAnswers: ['ܡܢܐ ܥܒܕܬܘܢ'],
 		possibleAnswers: ['']
 	},
 	{
+		id: '112',
+		lessonId: '11',
 		questionType: 'TRANSLATION',
 		studyPhrase: {
 			text: 'ܒܪܝܟ ܨܦܪܟ ܐܚܝ',
 			soundFile: 'audio_1000_1_1'
 		},
-		targetLang: 'ar',
+		translateTo: 'targetLanguage',
 		correctAnswers: ['طاب صباحك يا أخي', 'صباح الخير يا أخي', 'مبارك صباحك يا أخي'],
 		possibleAnswers: []
 	},
 ]
 
-const lesson1: ILesson = {
-	lessonId: 1,
-	questions,
-	newWords: ['ܐܪܝܐ', 'ܨܦܪܟ', 'ܐܚܘܢ', 'ܛܘܒ', 'ܡܢܐ']
-}
-
-const lesson2: ILesson = {
-	lessonId: 2,
-	questions,
-	newWords: ['ܥܒܕ', 'ܫܠܝܡ', 'ܐܝܬ', 'ܒܝܬܐ', 'ܠܚܡܐ']
-}
-
-const lessons = [lesson1, lesson2];
-const modules: IModule[] = [
+const lessons = [
 	{
-		id: 10000,
+		id: '11',
+		moduleId: '1',
+		newWords: ['ܐܪܝܐ', 'ܨܦܪܟ', 'ܐܚܘܢ', 'ܛܘܒ', 'ܡܢܐ'],
+		questions
+	},
+	{
+		id: '12',
+		moduleId: '1',
+		newWords: ['ܥܒܕ', 'ܫܠܝܡ', 'ܐܝܬ', 'ܒܝܬܐ', 'ܠܚܡܐ'],
+		questions
+	}
+];
+
+export const modules = [
+	{
+		id: '1',
+		courseId: 'arc-syc',
 		level: 1,
 		unit: 1,
 		name: 'letters1',
@@ -60,7 +68,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10001,
+		id: '2',
+		courseId: 'arc-syc',
 		level: 1,
 		unit: 1,
 		name: 'letters2',
@@ -72,7 +81,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10002,
+		id: '3',
+		courseId: 'arc-syc',
 		level: 2,
 		unit: 2,
 		name: 'vowels',
@@ -84,7 +94,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 1,
+		id: '3',
+		courseId: 'arc-syc',
 		level: 2,
 		unit: 2,
 		name: 'basics',
@@ -96,7 +107,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10003,
+		id: '5',
+		courseId: 'arc-syc',
 		level: 3,
 		unit: 2,
 		name: 'phrases',
@@ -108,7 +120,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10004,
+		id: '6',
+		courseId: 'arc-syc',
 		level: 3,
 		unit: 3,
 		name: 'genders',
@@ -120,7 +133,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10005,
+		id: '7',
+		courseId: 'arc-syc',
 		level: 4,
 		unit: 3,
 		name: 'numbers',
@@ -132,7 +146,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10006,
+		id: '8',
+		courseId: 'arc-syc',
 		level: 4,
 		unit: 3,
 		name: 'plural',
@@ -144,7 +159,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10007,
+		id: '9',
+		courseId: 'arc-syc',
 		level: 5,
 		unit: 4,
 		name: 'body_parts',
@@ -156,7 +172,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10008,
+		id: '10',
+		courseId: 'arc-syc',
 		level: 5,
 		unit: 1,
 		name: 'animals',
@@ -168,7 +185,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10009,
+		id: '11',
+		courseId: 'arc-syc',
 		level: 5,
 		unit: 1,
 		name: 'present1',
@@ -180,7 +198,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10010,
+		id: '12',
+		courseId: 'arc-syc',
 		level: 6,
 		unit: 2,
 		name: 'colors',
@@ -192,7 +211,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10011,
+		id: '13',
+		courseId: 'arc-syc',
 		level: 6,
 		unit: 2,
 		name: 'shopping',
@@ -204,7 +224,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10012,
+		id: '14',
+		courseId: 'arc-syc',
 		level: 7,
 		unit: 3,
 		name: 'places',
@@ -216,7 +237,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10013,
+		id: '15',
+		courseId: 'arc-syc',
 		level: 7,
 		unit: 3,
 		name: 'religion',
@@ -228,7 +250,8 @@ const modules: IModule[] = [
 		},
 	},
 	{
-		id: 10014,
+		id: '16',
+		courseId: 'arc-syc',
 		level: 8,
 		unit: 3,
 		name: 'adjective1',

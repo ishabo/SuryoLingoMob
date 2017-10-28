@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import { Container, Text } from 'native-base';
-import modules from '../../data/modules';
+import modules from '../../data/dummy/modules';
 import { connect } from 'react-redux';
 import { saveModules } from '../../services/modules/actions';
 import Images from '../../assets/images';
+import { IModule } from '../../services/modules/reducers';
 
 export interface Props { }
 export interface State { }

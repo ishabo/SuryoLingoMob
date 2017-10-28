@@ -22,6 +22,7 @@ import EvaluationBanner from '../../components/EvaluationBanner';
 import { evalAgainstAllAnswers } from '../../helpers/evaluation';
 import config from '../../config';
 import { backToModules } from '../../helpers/navigation'
+export type TAnswer = string | string[];
 
 export interface IState {
     answer: TAnswer;
@@ -47,6 +48,11 @@ export default class Questions extends React.Component<IProps, IState> {
 
     static navigationOptions = {
         header: null,
+        cardStack: {
+            transition: (previousRoute: any) => { // configure the animation here 
+                alert(previousRoute)
+            }
+        },
     };
 
     collectAnswer = (answer: TAnswer) => {
@@ -88,7 +94,8 @@ export default class Questions extends React.Component<IProps, IState> {
             default:
                 throw new Error('Unknown Type');
         }
-        return <QuestionComponent {...question } collectAnswer={this.collectAnswer} />
+        const course = this.props.navigation.state.params.course;
+        return <QuestionComponent {...question } course={course} collectAnswer={this.collectAnswer} />
     }
 
     evaluateOrNext = () => {
@@ -115,10 +122,11 @@ export default class Questions extends React.Component<IProps, IState> {
 
     nextQuestion = () => {
         const { navigate, state } = this.props.navigation;
-        const { questions, currentQuestionIndex, failedQuestions, lessonId } = state.params;
-        const evaluateOrNextIndex = currentQuestionIndex + 1
+        const { questions, currentQuestionIndex, failedQuestions, course } = state.params;
+        const evaluateOrNextIndex = currentQuestionIndex + 1;
+        const { lessonId } = this.getCurrentQuestion();
         const navToNextQuestion = () => navigate('Questions', {
-            lessonId,
+            course,
             questions,
             currentQuestionIndex: evaluateOrNextIndex
         })

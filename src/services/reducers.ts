@@ -1,14 +1,23 @@
 import { combineReducers } from 'redux';
 
-import ModuleReducers, { initialState as moduleInitialState } from '../services/modules/reducers';
+import moduleReducers, { initialState as moduleInitialState, IModule } from '../services/modules/reducers';
+import courseReducers, { initialState as courseInitialState, ICourse } from '../services/courses/reducers';
+import progressReducers, { initialState as progressInitialState, IProgress } from '../services/progress/reducers';
 
 interface IInitialState {
-    modules: IModule[]
+    modules: IModule[];
+    courses: ICourse[];
+    progress: IProgress;
 }
+
 export const initialState: IInitialState = {
-    modules: moduleInitialState
+    courses: courseInitialState,
+    modules: moduleInitialState,
+    progress: progressInitialState
 }
 
 export default combineReducers({
-    modules: ModuleReducers
+    courses: courseReducers,
+    modules: moduleReducers,
+    progress: progressReducers
 });

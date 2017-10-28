@@ -5,6 +5,8 @@ import { ScrollView, View } from 'react-native';
 import Module from './Module';
 import { connect } from 'react-redux';
 import { mapValues, groupBy } from 'lodash';
+import { IModule } from '../../services/modules/reducers';
+import { ICourse } from '../../services/courses/reducers';
 
 interface State { }
 
@@ -15,11 +17,17 @@ class Modules extends React.Component<any, State> {
 		headerRight: null,
 		headerLeft: null,
 		goBack: false,
+		cardStack: {
+			transition: (previousRoute: any) => { // configure the animation here 
+				alert(previousRoute)
+			}
+		},
 	};
 
 	private goToLessons = (module: IModule) => {
 		const { navigate } = this.props.navigation;
-		navigate('Lessons', { module });
+		const course = this.props.courses.find((course: ICourse) => module.courseId === course.id);
+		navigate('Lessons', { module, course });
 	}
 
 	private renderLevels () {
@@ -56,7 +64,9 @@ class Modules extends React.Component<any, State> {
 }
 
 const mapStateToProps = (state: any) => ({
-	modules: state.modules
+	modules: state.modules,
+	courses: state.courses,
+	progress: state.progress
 });
 
 export default connect(mapStateToProps)(Modules)
