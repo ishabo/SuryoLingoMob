@@ -16,7 +16,7 @@ if (__DEV__) {
             // host: '10.0.3.2', // default is localhost (on android don't forget to `adb reverse tcp:9090 tcp:9090`)
             // port: 3334,
             // enabled: true,
-            name: 'SyroLingo'
+            name: 'SuryoLingo'
         })
 
         .use(errorPlugin({

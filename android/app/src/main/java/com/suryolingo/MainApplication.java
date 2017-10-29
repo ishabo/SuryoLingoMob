@@ -1,4 +1,4 @@
-package com.SuryoLingo;
+package com.suryolingo;
 
 import android.app.Application;
 

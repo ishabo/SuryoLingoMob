@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "SyroLingo-tvOS.app"
-               BlueprintName = "SyroLingo-tvOS"
-               ReferencedContainer = "container:SyroLingo.xcodeproj">
+               BuildableName = "SuryoLingo-tvOS.app"
+               BlueprintName = "SuryoLingo-tvOS"
+               ReferencedContainer = "container:SuryoLingo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "SyroLingo-tvOSTests.xctest"
-               BlueprintName = "SyroLingo-tvOSTests"
-               ReferencedContainer = "container:SyroLingo.xcodeproj">
+               BuildableName = "SuryoLingo-tvOSTests.xctest"
+               BlueprintName = "SuryoLingo-tvOSTests"
+               ReferencedContainer = "container:SuryoLingo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -62,9 +62,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "SyroLingo-tvOSTests.xctest"
-               BlueprintName = "SyroLingo-tvOSTests"
-               ReferencedContainer = "container:SyroLingo.xcodeproj">
+               BuildableName = "SuryoLingo-tvOSTests.xctest"
+               BlueprintName = "SuryoLingo-tvOSTests"
+               ReferencedContainer = "container:SuryoLingo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "SyroLingo-tvOS.app"
-            BlueprintName = "SyroLingo-tvOS"
-            ReferencedContainer = "container:SyroLingo.xcodeproj">
+            BuildableName = "SuryoLingo-tvOS.app"
+            BlueprintName = "SuryoLingo-tvOS"
+            ReferencedContainer = "container:SuryoLingo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "SyroLingo-tvOS.app"
-            BlueprintName = "SyroLingo-tvOS"
-            ReferencedContainer = "container:SyroLingo.xcodeproj">
+            BuildableName = "SuryoLingo-tvOS.app"
+            BlueprintName = "SuryoLingo-tvOS"
+            ReferencedContainer = "container:SuryoLingo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -115,9 +115,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "SyroLingo-tvOS.app"
-            BlueprintName = "SyroLingo-tvOS"
-            ReferencedContainer = "container:SyroLingo.xcodeproj">
+            BuildableName = "SuryoLingo-tvOS.app"
+            BlueprintName = "SuryoLingo-tvOS"
+            ReferencedContainer = "container:SuryoLingo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

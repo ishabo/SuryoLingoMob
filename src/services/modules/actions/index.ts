@@ -1,8 +1,8 @@
 import { IModule } from '../reducers';
 
 export const types = {
-    SAVE_MODULES: 'SyroLingo/Modules/SAVE_MODULES',
-    FETCH_MODULES: 'SyroLingo/Modules/FETCH_MODULES',
+    SAVE_MODULES: 'SuryoLingo/Modules/SAVE_MODULES',
+    FETCH_MODULES: 'SuryoLingo/Modules/FETCH_MODULES',
 }
 
 export const saveModules = (payload: IModule[]) => ({

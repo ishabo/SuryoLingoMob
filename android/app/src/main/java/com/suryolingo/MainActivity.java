@@ -1,4 +1,4 @@
-package com.SuryoLingo;
+package com.suryolingo;
 
 import com.facebook.react.ReactActivity;
 
