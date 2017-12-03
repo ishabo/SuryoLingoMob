@@ -40,7 +40,8 @@ export default {
 		religion: 'دين',
 		shopping: 'تسوق',
 		places: 'أماكن',
-		adjective1: 'الظروف ١'
+		adjective1: 'الظروف ١',
+		level: 'المستوى رقم: {{level}}'
 	},
 	questions: {
 		submit: 'أرسل الاجابة',

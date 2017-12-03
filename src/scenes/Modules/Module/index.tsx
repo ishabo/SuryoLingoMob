@@ -1,9 +1,8 @@
 import React from 'react';
 import I18n from '../../../i18n';
-import { TouchableHighlight } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import glamor from 'glamorous-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Colors from '../../../styles/colors';
+// import Colors from '../../../styles/colors';
 import { IModule } from '../../../services/modules/reducers';
 
 export interface Props {
@@ -18,27 +17,22 @@ export default class Module extends React.Component<Props, State> {
         const { name } = this.props.moduleData;
         return (
             <GSModule>
-                <TouchableHighlight onPress={this.props.onModuleClick}>
-                    <GSPicture>
-                        <LinearGradient
-                            colors={[Colors.lightGreen, Colors.green, Colors.darkGreen]}
-                            style={{
-                                flex: 1,
-                                width: 100,
-                                height: 100,
-                                borderRadius: 100 / 2,
-                            }}
-                        />
-                    </GSPicture>
-                </TouchableHighlight>
+                <TouchableOpacity onPress={this.props.onModuleClick}>
+                    <View>
+                        <GSCircle>
+                            <GSCircle style={{ top: 5, left: 5, width: 70, height: 70, borderColor: 'gray', borderWidth: 0.5 }} />
+                        </GSCircle>
+                        <GSTriangle style={{ alignSelf: 'center', top: -14, zIndex: 100 }}>
+                        </GSTriangle>
+                    </View>
+                </TouchableOpacity>
 
-                <TouchableHighlight onPress={this.props.onModuleClick}>
+                <TouchableOpacity onPress={this.props.onModuleClick}>
                     <GSModuleTitle>
                         {I18n.t(`modules.${name}`)}
                     </GSModuleTitle>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </GSModule>
-
         );
     }
 }
@@ -53,8 +47,23 @@ const GSModuleTitle = glamor.text({
     alignSelf: 'center',
     marginTop: 10
 })
-const GSPicture = glamor.view({
-    width: 100,
-    height: 100,
-    borderRadius: 100 / 2,
+const GSCircle = glamor.view({
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    backgroundColor: 'white',
 });
+
+const GSTriangle = glamor.view({
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderLeftWidth: 31.,
+    borderRightWidth: 31.2,
+    borderBottomWidth: 30,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: 'white',
+    transform: [{ rotate: '180deg' }]
+})

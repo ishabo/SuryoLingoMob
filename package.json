@@ -23,6 +23,7 @@
 		"@types/react-navigation": "^1.0.21",
 		"apisauce": "^0.14.1",
 		"babel-core": "^6.26.0",
+		"change-object-case": "^0.1.1",
 		"concurrently": "^3.5.0",
 		"glamorous-native": "^1.2.0",
 		"lodash": "^4.17.4",
