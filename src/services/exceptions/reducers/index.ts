@@ -5,7 +5,7 @@ const initialState: ReadonlyArray<IException> = [];
 
 let exceptionId = 0;
 
-export default (
+export const exceptionsReducer = (
   state: ReadonlyArray<IException> = initialState,
   action: IAction,
 ) => {

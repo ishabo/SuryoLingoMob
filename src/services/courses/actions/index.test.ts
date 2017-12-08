@@ -6,16 +6,15 @@ describe('courses actions', () => {
       const payload = [{
         id: 'arc-syc',
         name: 'Arabic -> Syriac',
-        target_language: {
+        targetLanguage: {
           id: 'CL-Syr',
           codeName: 'Classical Syriac',
         },
-        learner_language: {
+        learnersLanguage: {
           id: 'CL-Ara',
           codeName: 'Classical Arabic',
         },
       }];
-
 
       expect(saveCourses(payload)).toEqual({
         payload,

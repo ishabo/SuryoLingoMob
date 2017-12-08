@@ -4,8 +4,8 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import I18n from '../../i18n';
 import * as Animatable from 'react-native-animatable';
-import { IModule, ILesson } from '../../services/modules/reducers';
-import { ICourse } from '../../services/courses/reducers';
+import { ISkill, ILesson } from '../../services/skills/reducers';
+// import { ICourse } from '../../services/courses/reducers';
 
 export interface State {
   lessons: ILesson[];
@@ -16,30 +16,30 @@ export default class Lessons extends React.Component<any, State> {
   private carousal: any;
   private cards: any;
   static navigationOptions = {
-    title: I18n.t('lessons.title')
+    title: I18n.t('lessons.title'),
   };
 
   componentDidMount () {
     this.cards.fadeInUp();
   }
 
-  goToQuestions = (lesson: ILesson) => {
-    const { navigate } = this.props.navigation;
-    const course: ICourse = this.props.navigation.state.params.course;
-    const { questions } = lesson;
+  // goToQuestions = (lesson: ILesson) => {
+  //   const { navigate } = this.props.navigation;
+  //   const course: ICourse = this.props.navigation.state.params.course;
+  //   const { questions } = lesson;
 
-    navigate('Questions', {
-      course,
-      questions,
-      currentQuestionIndex: 0,
-    });
-  }
+  //   navigate('Questions', {
+  //     course,
+  //     questions,
+  //     currentQuestionIndex: 0,
+  //   });
+  // }
 
   renderCards ({ item: lesson, _ }) {
-    const { lessons } = this.props.navigation.state.params.module;
+    const { lessons } = this.props.navigation.state.params.skill;
 
     return <View style={styles.card}>
-      <TouchableOpacity style={styles.navArea} onPress={() => { this.goToQuestions(lesson) }}>
+      <TouchableOpacity style={styles.navArea} onPress={() => { }}>
         <Text style={styles.lessonTitle}>
           {I18n.t('lessons.lesson.title', { lessonId: lesson.id, totalLessons: lessons.length })}
         </Text>
@@ -49,7 +49,7 @@ export default class Lessons extends React.Component<any, State> {
   }
 
   render () {
-    const module: IModule = this.props.navigation.state.params.module;
+    const skill: ISkill = this.props.navigation.state.params.skill;
     return (
       <Container style={styles.container}>
         <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>
@@ -60,7 +60,7 @@ export default class Lessons extends React.Component<any, State> {
           style={{ flex: 2, marginBottom: 30, alignSelf: 'center', justifyContent: 'center' }} >
           <Carousel
             ref={(c: Lessons) => this.carousal = c}
-            data={module.lessons}
+            data={skill.lessons}
             renderItem={this.renderCards.bind(this)}
             sliderWidth={380}
             itemWidth={300}

@@ -9,7 +9,7 @@ import shortid from 'shortid';
 import Colors from '../../../styles/colors';
 import { shuffle, remove } from 'lodash';
 import { IAnswerProps } from '../'
-import { IQuestion } from '../../../services/modules/reducers';
+import { IQuestion } from '../../../services/skills/reducers';
 
 const shadowColor = 'gray';
 

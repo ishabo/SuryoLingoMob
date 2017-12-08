@@ -32,16 +32,16 @@ export default class Intro extends React.Component<any, State> {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  private goToModules = () => {
+  private goToSkills = () => {
     const { navigate } = this.props.navigation;
-    navigate('Modules');
+    navigate('Skills');
   }
 
   render () {
     return (
       <Container style={styles.container}>
         <Button>
-          <Text onPress={this.goToModules}>
+          <Text onPress={this.goToSkills}>
             Start
                     </Text>
         </Button>

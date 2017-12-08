@@ -1,9 +1,9 @@
 import { types } from '../actions';
 
-export interface IModuleAction {
+export interface ISkillsAction {
   type: string;
   courseId?: string;
-  moduleId?: string;
+  skillId?: string;
   lessonId?: string;
   xp?: number;
 }
@@ -11,18 +11,18 @@ export interface IModuleAction {
 export interface IProgress {
   enrolledCourses: string[];
   activeCourse: string;
-  finishedModules: string[];
+  finishedSkills: string[];
   finishedLessons: string[];
 }
 
 export const initialState: IProgress = {
   activeCourse: '',
   enrolledCourses: [],
-  finishedModules: [],
+  finishedSkills: [],
   finishedLessons: [],
 };
 
-export default function (state: IProgress = initialState, action: IModuleAction) {
+export default function (state: IProgress = initialState, action: ISkillsAction) {
   switch (action.type) {
     case types.SET_LESSON_DONE:
       const { lessonId } = action;

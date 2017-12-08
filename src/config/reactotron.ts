@@ -21,7 +21,7 @@ if (__DEV__) {
 
         .use(errorPlugin({
             // ignore all error frames from react-native (for example)
-            veto: frame => frame.fileName.indexOf('/node_modules/react-native/') >= 0
+            veto: frame => frame.fileName.indexOf('/node_skills/react-native/') >= 0
         }))
         //.use(reactotronRedux())
         .use(apisaucePlugin())

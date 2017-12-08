@@ -6,7 +6,7 @@ export const types = {
   ENROLE_COURSE: `${namespace}/ENROLE_COURSE`,
   SET_ACTIVE_COUTSE: `${namespace}/SET_ACTIVE_COUTSE`,
   SET_LESSON_DONE: `${namespace}/SET_LESSON_DONE`,
-  SET_MODULE_DONE: `${namespace}/SET_MODULE_DONE`,
+  SET_SKILL_DONE: `${namespace}/SET_SKILL_DONE`,
   ADD_XP: `${namespace}/ADD_XP`,
 };
 
@@ -30,9 +30,9 @@ export const setLessonDone = (lessonId: string) => ({
   type: types.SET_LESSON_DONE,
 });
 
-export const setModuleDone = (moduleId: string) => ({
-  moduleId,
-  type: types.SET_MODULE_DONE,
+export const setSkillDone = (skillId: string) => ({
+  skillId,
+  type: types.SET_SKILL_DONE,
 });
 
 export const addXP = (xp: number) => ({

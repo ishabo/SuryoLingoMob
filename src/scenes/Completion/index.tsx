@@ -4,7 +4,7 @@ import { Container } from 'native-base';
 import glamor from 'glamorous-native';
 import I18n from '../../i18n';
 import { connect } from 'react-redux';
-import { backToModules } from '../../helpers/navigation';
+import { backToSkills } from '../../helpers/navigation';
 import { setLessonDone } from '../../services/progress/actions';
 
 interface IProps {
@@ -23,7 +23,7 @@ class Completion extends React.Component<IProps> {
 
     this.props.setLessonDone(lessonId);
     setTimeout(() => {
-      backToModules(this.props.navigation);
+      backToSkills(this.props.navigation);
     }, 2000);
   }
 

@@ -17,37 +17,33 @@ export interface IQuestion {
 
 export interface ILesson {
   id: string;
-  moduleId: string;
+  skillId: string;
   newWords: string[];
-  questions: IQuestion[];
 }
 
-export interface IModule {
+export interface ISkill {
   id: string;
   courseId: string;
-  level: number;
   unit: number;
   name: string;
   lessons: ILesson[];
-  icons: {
-    inactive: string;
-    active: string;
-    completed: string;
-  };
+  icon: string;
 }
 
-export interface IModuleAction {
+export interface ISkillsAction {
   type: string;
-  payload: IModule[];
+  courseId?: string;
+  payload?: ISkill[];
 }
 
-export const initialState: IModule[] = [];
+export const initialState: ISkill[] = [];
 
-export default function (state: IModule[] = initialState, action: IModuleAction) {
+export const skillReducer = (state: ISkill[] = initialState, action: ISkillsAction) => {
   switch (action.type) {
-    case types.SAVE_MODULES:
+    case types.SAVE_SKILLS:
       return action.payload;
     default:
       return state;
   }
-}
+};
+

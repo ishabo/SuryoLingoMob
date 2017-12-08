@@ -9,20 +9,20 @@ import { Platform } from 'react-native';
 import storage from 'redux-persist/es/storage';
 
 const config = {
-    key: 'root',
-    storage,
-}
+  key: 'root',
+  storage,
+  blacklist: ['nav'],
+};
 
-const reducer = persistReducer(config, rootReducer)
-
+const reducer = persistReducer(config, rootReducer);
 
 interface IContainsDevtools {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: () => void;
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: () => void;
 }
 
 const hasDevTools = (item: IContainsDevtools | Window): item is IContainsDevtools => {
-    return (<IContainsDevtools>item).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== undefined;
-}
+  return (<IContainsDevtools>item).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== undefined;
+};
 /**
  * Redux/Sagas Store configuration
  *
@@ -32,43 +32,43 @@ const hasDevTools = (item: IContainsDevtools | Window): item is IContainsDevtool
 
 export default class Store {
 
-    private store: any;
-    private sagaMiddleware = createSagaMiddleware();
+  private store: any;
+  private sagaMiddleware = createSagaMiddleware();
 
-    constructor() {
-        this.configure();
+  constructor() {
+    this.configure();
+  }
+
+  public getStore () {
+    this.sagaMiddleware.run(rootSagas);
+    return this.store;
+  }
+
+  public persistStore () {
+    return persistStore(this.store);
+  }
+
+  private configure () {
+
+    const middlewares = applyMiddleware(
+      this.sagaMiddleware,
+      reduxImmutableStateInvariant(),
+    );
+
+    let composeEnhancers = compose;
+
+    if (__DEV__) {
+      composeEnhancers = hasDevTools(window) && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
+        composeWithDevTools({
+          name: Platform.OS,
+          ...require('../../package.json').remotedev,
+        });
     }
 
-    public getStore () {
-        this.sagaMiddleware.run(rootSagas);
-        return this.store;
-    }
+    const enhancer = composeEnhancers(
+      middlewares,
+    );
 
-    public persistStore () {
-        return persistStore(this.store)
-    }
-
-    private configure () {
-
-        const middlewares = applyMiddleware(
-            this.sagaMiddleware,
-            reduxImmutableStateInvariant(),
-        );
-
-        let composeEnhancers = compose;
-
-        if (__DEV__) {
-            composeEnhancers = hasDevTools(window) && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
-                composeWithDevTools({
-                    name: Platform.OS,
-                    ...require('../../package.json').remotedev,
-                });
-        }
-
-        const enhancer = composeEnhancers(
-            middlewares,
-        );
-
-        this.store = createStore(reducer, enhancer);
-    }
+    this.store = createStore(reducer, enhancer);
+  }
 }

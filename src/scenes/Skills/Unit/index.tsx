@@ -5,11 +5,11 @@ export interface State { }
 
 export default class Unit extends React.Component<any, State> {
 
-    render () {
-        return (
-            <Container>
+  render () {
+    return (
+      <Container>
 
-            </Container>
-        );
-    }
+      </Container>
+    );
+  }
 }

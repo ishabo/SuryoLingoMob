@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { Container, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { fetchCourses } from '../../services/courses/actions';
 import images from '../../assets/images';
-
 export interface IStateToProps {
   userHasCuorse: boolean;
 }
@@ -13,7 +13,10 @@ export interface IDispatchToProps {
   fetchCourses: () => void;
 }
 
-export interface IProps extends IStateToProps, IDispatchToProps { }
+export interface IProps extends IStateToProps, IDispatchToProps {
+  navigation: NavigationScreenProp<any, any>;
+}
+
 export interface IState { }
 
 const styles: any = StyleSheet.create({
@@ -30,19 +33,18 @@ const styles: any = StyleSheet.create({
   },
 });
 
-class Splash extends React.Component<any, IState> {
+class Splash extends React.Component<IProps, IState> {
 
   static navigationOptions = {
     header: null,
   };
 
-  componentWillMount () {
-    this.props.fetchCourses();
-  }
-
   componentDidMount () {
-    const { navigate } = this.props.navigation;
-    setTimeout(() => { navigate('Courses'); }, 1000);
+    if (!this.props.userHasCuorse) {
+      this.props.fetchCourses();
+    } else {
+      this.props.navigation.navigate('Skills');
+    }
   }
 
   render () {
@@ -58,7 +60,6 @@ class Splash extends React.Component<any, IState> {
 
 const mapDispatchToProps = (dispatch: any) => ({
   fetchCourses: () => dispatch(fetchCourses()),
-  // saveModules: (modules: IModule[]) => dispatch(saveModules(modules)),
 });
 
 const matchStateToProps = (state: any) => ({

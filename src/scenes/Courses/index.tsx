@@ -23,13 +23,8 @@ class Courses extends React.Component<any, IState> {
     headerRight: null,
   };
 
-  private goToModules = () => {
-    const { navigate } = this.props.navigation;
-    navigate('Modules');
-  }
-
   private renderCourseCard = (course: ICourse) =>
-    <TouchableOpacity onPress={this.goToModules}>
+    <TouchableOpacity key={course.id} onPress={() => this.props.switchCourse(course.id)}>
       <Text style={styles.courseTitle}>
         {course.targetLanguage.name}
       </Text>

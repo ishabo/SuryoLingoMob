@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Container } from 'native-base';
 import I18n from '../../../i18n';
 import TextArea from '../../../components/TextArea';
-import { IQuestion } from '../../../services/modules/reducers';
+import { IQuestion } from '../../../services/skills/reducers';
 import { ICourse } from '../../../services/courses/reducers';
 
 import { IAnswerProps } from '../'

@@ -6,28 +6,33 @@ export interface IProfile {
   name?: string;
   email?: string;
   currentCourse: ICourse['id'];
-  modulesInProgress: string[];
-  modulesFinished: string[];
+  skillsInProgress: string[];
+  skillsFinished: string[];
   userXP: number;
 }
 
-export interface IModuleAction {
+export interface IProfileAction {
   type: string;
-  payload: IProfile[];
+  payload?: IProfile[];
+  courseId: ICourse['id'];
 }
 
 export const initialState: IProfile = {
   currentCourse: null,
-  modulesInProgress: [],
-  modulesFinished: [],
+  skillsInProgress: [],
+  skillsFinished: [],
   userXP: 0,
 };
 
-export default function (state: IProfile = initialState, action: IModuleAction) {
+export const profileReducer = (state: IProfile = initialState, action: IProfileAction) => {
   switch (action.type) {
     case types.SAVE_PROFILE:
-      return action.payload;
+      return { ...state, ...action.payload };
+    case types.SWITCH_COURSE:
+      const newState = { ...state };
+      newState.currentCourse = action.courseId;
+      return newState;
     default:
       return state;
   }
-}
+};

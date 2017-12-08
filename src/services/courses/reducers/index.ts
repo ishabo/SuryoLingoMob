@@ -15,18 +15,19 @@ interface ILanguage<T> {
   codeName: T;
 }
 
-export interface IModuleAction {
+export interface ISkillsAction {
   type: string;
   payload: ICourse[];
 }
 
 export const initialState: ICourse[] = [];
 
-export default function (state: ICourse[] = initialState, action: IModuleAction) {
+export const courseReducer = (state: ICourse[] = initialState, action: ISkillsAction) => {
   switch (action.type) {
     case types.SAVE_COURSES:
       return action.payload;
     default:
       return state;
   }
-}
+};
+

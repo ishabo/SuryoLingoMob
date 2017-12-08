@@ -21,7 +21,7 @@ import { NavigationScreenProp } from 'react-navigation';
 import EvaluationBanner from '../../components/EvaluationBanner';
 import { evalAgainstAllAnswers } from '../../helpers/evaluation';
 import config from '../../config';
-import { backToModules } from '../../helpers/navigation'
+import { backToSkills } from '../../helpers/navigation'
 export type TAnswer = string | string[];
 
 export interface IState {
@@ -155,7 +155,7 @@ export default class Questions extends React.Component<IProps, IState> {
         },
         {
           text: I18n.t('questions.exist.ok'), onPress: () => {
-            backToModules(this.props.navigation);
+            backToSkills(this.props.navigation);
           },
         },
       ],

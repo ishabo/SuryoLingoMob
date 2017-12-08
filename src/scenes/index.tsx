@@ -2,7 +2,7 @@ import '../config/reactotron';
 import React from 'react';
 import { I18nManager, View } from 'react-native';
 import { Provider } from 'react-redux';
-import Routes from '../routes';
+import Navigation from './Navigation';
 import Store from '../services/store';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { setApiOrigin } from '../services/api';
@@ -25,14 +25,13 @@ const store = reduxStore.getStore();
 const persistor = reduxStore.persistStore();
 
 export default class extends React.Component {
-
   render () {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}
           loading={<View />}
         >
-          <Routes />
+          <Navigation />
         </PersistGate>
       </Provider>
     );
