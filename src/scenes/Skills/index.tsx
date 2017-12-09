@@ -66,8 +66,11 @@ class Skills extends React.Component<any, State> {
 
   private renderSkills (skills: ISkill[]) {
     return skills.map((skill: ISkill) =>
-      <Skill key={`skill_${skill.id}`}
-        skillData={skill}
+      <Skill
+        key={`skill_${skill.id}`}
+        name={skill.name}
+        progress={1}
+        unlocked={true}
         onSkillsClick={() => this.goToLessons(skill)} />);
   }
 

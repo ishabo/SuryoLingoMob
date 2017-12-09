@@ -7,7 +7,6 @@ const Images = {
   },
   skills: {
     bg: {
-      active: require('../../../src/assets/images/skills/bg/active.png'),
       locked: require('../../../src/assets/images/skills/bg/locked.png'),
       unlocked: require('../../../src/assets/images/skills/bg/unlocked.png'),
     },

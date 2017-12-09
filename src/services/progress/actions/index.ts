@@ -2,22 +2,16 @@ import { IProgress } from '../reducers';
 
 const namespace = 'SuryoLingo/progress';
 export const types = {
-  SET_PROGRESS: `${namespace}/SET_PROGRESS`,
-  ENROLE_COURSE: `${namespace}/ENROLE_COURSE`,
+  SWITCH_COURSE: `${namespace}/SWITCH_COURSE`,
   SET_ACTIVE_COUTSE: `${namespace}/SET_ACTIVE_COUTSE`,
   SET_LESSON_DONE: `${namespace}/SET_LESSON_DONE`,
-  SET_SKILL_DONE: `${namespace}/SET_SKILL_DONE`,
+  SET_SKILL_IN_ROGRESS: `${namespace}/SET_SKILL_IN_ROGRESS`,
   ADD_XP: `${namespace}/ADD_XP`,
 };
 
-export const setProgress = (payload: IProgress) => ({
-  payload,
-  type: types.SET_PROGRESS,
-});
-
-export const enroleCourse = (courseId: string) => ({
+export const switchCourse = (courseId: string) => ({
   courseId,
-  type: types.ENROLE_COURSE,
+  type: types.SWITCH_COURSE,
 });
 
 export const setActiveCourse = (courseId: string) => ({
@@ -25,14 +19,16 @@ export const setActiveCourse = (courseId: string) => ({
   type: types.SET_ACTIVE_COUTSE,
 });
 
-export const setLessonDone = (lessonId: string) => ({
+export const setLessonDone = (skillId: string, lessonId: string, lessonXP: number) => ({
   lessonId,
+  skillId,
+  lessonXP,
   type: types.SET_LESSON_DONE,
 });
 
-export const setSkillDone = (skillId: string) => ({
+export const setSkillInProgress = (skillId: string) => ({
   skillId,
-  type: types.SET_SKILL_DONE,
+  type: types.SET_SKILL_IN_ROGRESS,
 });
 
 export const addXP = (xp: number) => ({

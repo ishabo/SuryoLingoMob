@@ -13,7 +13,8 @@
 		"lint": "tslint -c ./tslint.json 'src/**/*.{ts,tsx}' --fix",
 		"watch": "yarn build -- -w",
 		"remotedev": "remotedev-debugger --injectserver",
-		"postinstall": "yarn remotedev-debugger && rndebugger-open"
+		"postinstall": "yarn remotedev-debugger && rndebugger-open",
+		"prepush": "yarn test"
 	},
 	"dependencies": {
 		"@types/jest": "^21.1.5",
@@ -26,7 +27,10 @@
 		"change-object-case": "^0.1.1",
 		"concurrently": "^3.5.0",
 		"glamorous-native": "^1.2.0",
+		"husky": "^0.14.3",
 		"lodash": "^4.17.4",
+		"mockdate": "^2.0.2",
+		"moment": "^2.19.3",
 		"native-base": "^2.3.3",
 		"react": "16.0.0",
 		"react-native": "^0.49",
