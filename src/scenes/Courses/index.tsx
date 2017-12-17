@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text } from 'native-base';
 import { ICourse } from '../../services/courses/reducers';
 import { connect } from 'react-redux';
-import { switchCourse } from '../../services/profile/actions';
+import { switchCourse } from '../../services/progress/actions';
 export interface IState { }
 
 const styles = StyleSheet.create({

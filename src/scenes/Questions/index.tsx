@@ -1,49 +1,30 @@
 import React from 'react';
-import { StyleSheet, Keyboard, Alert } from 'react-native';
+import { Keyboard, Alert } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
-import {
-  Container,
-  View,
-  Icon,
-  Body,
-  Text,
-  Button,
-} from 'native-base';
-import Colors from '../../styles/colors';
-import I18n from '../../i18n';
-import MultiChoice from './MultiChoice';
-import Translation from './Translation';
-import Dictation from './Dictation';
-import WordSelection from './WordSelection';
-import StudyPhrase from '../../components/StudyPhrase';
+import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
-import { NavigationScreenProp } from 'react-navigation';
-import EvaluationBanner from '../../components/EvaluationBanner';
-import { evalAgainstAllAnswers } from '../../helpers/evaluation';
+import { evalAgainstAllAnswers, backToSkills, isReverseQuestion } from '../../helpers';
+import { connect } from 'react-redux';
+import { nextQuestionOrFinish, TQuestionType } from '../../services/questions/actions';
+import {
+  getActiveCourse,
+  calcProress,
+  getCurrentQuestion,
+  allCorrectAnswers,
+} from '../../services/selectors';
+import Colors from '../../styles/colors';
 import config from '../../config';
-import { backToSkills } from '../../helpers/navigation'
-export type TAnswer = string | string[];
+import I18n from '../../i18n';
+import { NextButton, QuestionBody, EvaluationBanner } from './components';
+import { GSBody, GSFooter, GSHeader, GSIcon, GSProgress } from './index.styles';
+import { IProps, IState, TAnswer } from './index.types';
 
-export interface IState {
-  answer: TAnswer;
-  progress: number;
-  answerCorrect: boolean;
-}
-
-export interface IAnswerProps {
-  collectAnswer: (answer: TAnswer) => void;
-}
-
-interface IProps {
-  navigation: NavigationScreenProp<any, any>
-}
-
-export default class Questions extends React.Component<IProps, IState> {
+class Questions extends React.Component<IProps, IState> {
 
   public state = {
     answer: null,
     progress: 0,
-    answerCorrect: null
+    answerCorrect: null,
   };
 
   static navigationOptions = {
@@ -61,86 +42,40 @@ export default class Questions extends React.Component<IProps, IState> {
     }
   }
 
-  submitAllowed = () => isEmpty(this.state.answer);
+  submitAllowed = () => isEmpty(this.state.answer)
+    && this.actionNeeded()
 
-  getCurrentQuestion = () => {
-    const { questions, currentQuestionIndex } = this.props.navigation.state.params;
-    return questions[currentQuestionIndex];
-  }
+  actionNeeded = () => this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE';
+  needsEvaluation = () => this.actionNeeded() && this.state.answerCorrect === null;
 
   componentWillMount () {
-    const { questions, currentQuestionIndex } = this.props.navigation.state.params;
-    const progress = currentQuestionIndex / questions.length;
-    this.setState({ progress });
-  }
-
-  determineQuestionType = () => {
-    let QuestionComponent;
-    const question = this.getCurrentQuestion();
-
-    switch (question.questionType) {
-      case 'TRANSLATION':
-        QuestionComponent = Translation;
-        break;
-      case 'WORD_SELECTION':
-        QuestionComponent = WordSelection;
-        break;
-      case 'DICTATION':
-        QuestionComponent = Dictation;
-        break;
-      case 'MULTI_CHOICE':
-        QuestionComponent = MultiChoice;
-        break;
-      default:
-        throw new Error('Unknown Type');
-    }
-    const course = this.props.navigation.state.params.course;
-    return <QuestionComponent {...question } course={course} collectAnswer={this.collectAnswer} />;
+    this.setState({ progress: this.props.calcProress });
   }
 
   evaluateOrNext = () => {
     Keyboard.dismiss();
-    if (this.state.answerCorrect === null) {
+
+    if (this.needsEvaluation()) {
       this.evaluate();
     } else {
-      this.nextQuestion();
+      this.nextQuestionOrComplete();
     }
   }
 
   evaluate = () => {
-    if (typeof evalAgainstAllAnswers === 'function') {
-      const answerCorrect = evalAgainstAllAnswers(
-        this.state.answer,
-        this.getCurrentQuestion().correctAnswers,
-        config.arabicLetters.concat(config.syriacLetters),
-      );
+    const answer = this.state.answer;
+    const answerCorrect = evalAgainstAllAnswers(
+      typeof answer === 'string' ? [answer] : answer,
+      this.props.allCorrectAnswers(this.props.currentQuestion.id),
+      config.arabicLetters.concat(config.syriacLetters),
+    );
 
-      this.setState({ answerCorrect });
-    } else {
-      alert(typeof evalAgainstAllAnswers);
-    }
+    this.setState({ answerCorrect });
   }
 
-  nextQuestion = () => {
-    const { navigate, state } = this.props.navigation;
-    const { questions, currentQuestionIndex, failedQuestions, course } = state.params;
-    const evaluateOrNextIndex = currentQuestionIndex + 1;
-    const { lessonId } = this.getCurrentQuestion();
-    const navToNextQuestion = () => navigate('Questions', {
-      course,
-      questions,
-      currentQuestionIndex: evaluateOrNextIndex,
-    });
-
-    if (questions[evaluateOrNextIndex]) {
-      navToNextQuestion();
-    } else {
-      if (failedQuestions && failedQuestions[0]) {
-        navToNextQuestion();
-      } else {
-        navigate('Completion', { lessonId });
-      }
-    }
+  nextQuestionOrComplete = () => {
+    const status = this.state.answerCorrect === true || !this.actionNeeded() ? 'passed' : 'failed';
+    this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
   }
 
   existQuestions = () => {
@@ -164,21 +99,21 @@ export default class Questions extends React.Component<IProps, IState> {
   }
 
   renderEvaluationBanner () {
-    const { correctAnswers } = this.getCurrentQuestion();
+    const { questionType, phrase, translation } = this.props.currentQuestion;
     return this.state.answerCorrect !== null
       && <EvaluationBanner
         passed={this.state.answerCorrect}
         answer={this.state.answer}
-        correctAnswer={correctAnswers[0]} />;
+        correctAnswer={isReverseQuestion(questionType) ? phrase : translation} />;
   }
 
   render () {
-    const question = this.getCurrentQuestion();
-    return (
+    const question = this.props.currentQuestion;
+    return question && (
       <Container>
         {this.renderEvaluationBanner()}
-        <View style={styles.header}>
-          <View style={styles.progress}>
+        <GSHeader>
+          <GSProgress>
             <ProgressBar
               progress={this.state.progress}
               width={270}
@@ -187,68 +122,40 @@ export default class Questions extends React.Component<IProps, IState> {
               unfilledColor="#d3d3d3"
               animated style={{ height: 5 }}
             />
-          </View>
-          <Icon name="close" style={styles.close} onPress={this.existQuestions} />
-        </View>
-        <Body style={styles.body}>
-          <StudyPhrase
-            sentence={question.studyPhrase.text}
-            sound={{ soundTrack: question.studyPhrase.soundFile }}
-            showSentence={question.questionType !== 'DICTATION'}
+          </GSProgress>
+          <GSIcon name="close" onPress={this.existQuestions} />
+        </GSHeader>
+        <GSBody>
+          <QuestionBody
+            course={this.props.course}
+            question={this.props.currentQuestion}
+            collectAnswer={this.collectAnswer}
           />
-          {this.determineQuestionType()}
-        </Body>
-        <View style={styles.footer}>
-          <Button
-            primary
-            rounded
-            block
-            disabled={this.submitAllowed()}
-            style={{ width: 300, alignSelf: 'center' }}
-            onPress={this.evaluateOrNext}
-          >
-            <Text style={{ alignSelf: 'center' }}>
-              {this.state.answerCorrect === null
-                ? I18n.t('questions.submit')
-                : I18n.t('questions.continue')
-              }
-            </Text>
-          </Button>
-        </View>
+        </GSBody>
+        <GSFooter>
+          <NextButton onPress={this.evaluateOrNext} disabled={this.submitAllowed()} text={
+            this.needsEvaluation()
+              ? I18n.t('questions.submit')
+              : I18n.t('questions.continue')
+          } />
+        </GSFooter>
       </Container>
-    );
+    ) || <Container />;
   }
 }
 
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: 'transparent',
-    borderBottomWidth: 0,
-    height: 60,
-  },
-  body: {
-    marginTop: 40,
-    flex: 1,
-    alignContent: 'stretch',
-    width: 340,
-  },
-  footer: {
-    backgroundColor: 'transparent',
-    borderTopWidth: 0,
-    marginBottom: 10,
-  },
-  progress: {
-    flexDirection: 'row',
-    alignContent: 'center',
-    alignSelf: 'center',
-    paddingTop: 40,
-    borderWidth: 0,
-  },
-  close: {
-    position: 'absolute',
-    left: 15,
-    top: 22,
-    fontSize: 40,
-    color: 'gray',
-  },
+const mapDispatchToProps = (dispatch: any) => ({
+  nextQuestionOrFinish: (questionId: string, status: TQuestionType) =>
+    dispatch(nextQuestionOrFinish(questionId, status)),
 });
+
+const mapStateToProps = (state: any) => ({
+  questions: state.questions.items,
+  pendingQuestions: state.questions.pendingQuestions,
+  course: getActiveCourse(state),
+  calcProress: calcProress(state),
+  currentQuestion: getCurrentQuestion(state),
+  allCorrectAnswers: (questionId: string) => allCorrectAnswers(state, questionId),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);

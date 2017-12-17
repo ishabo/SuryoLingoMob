@@ -9,9 +9,9 @@ import { setApiOrigin } from '../services/api';
 import {
   setCustomText,
 } from 'react-native-global-props';
+import config from '../config';
 
-setApiOrigin('http://localhost:3000/v1');
-
+setApiOrigin(config.apiHost);
 setCustomText({
   style: {
     fontFamily: 'FontAwesome',
@@ -36,4 +36,4 @@ export default class extends React.Component {
       </Provider>
     );
   }
-}	
+}

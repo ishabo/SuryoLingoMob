@@ -31,10 +31,11 @@ describe('courses actions', () => {
       const skillId = 'skill-id';
       const lessonId = 'lesson-id';
       const lessonXP = 400;
-      expect(setLessonDone(skillId, lessonId, lessonXP)).toEqual({
+
+      expect(setLessonDone({ skillId, lessonId, lessonXP })).toEqual({
         skillId,
-        lessonXP,
         lessonId,
+        lessonXP,
         type: types.SET_LESSON_DONE,
       });
     });

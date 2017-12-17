@@ -6,31 +6,34 @@ import I18n from '../../i18n';
 import Skill from './Skill';
 import { mapValues, groupBy } from 'lodash';
 import { ISkill } from '../../services/skills/reducers';
-import { ICourse } from '../../services/courses/reducers';
-// import Colors from '../../styles/colors';
-// import glamor from 'glamorous-native';
+import { getActiveCourse, getTargetLanguage } from '../../services/selectors';
 import shortid from 'shortid';
+import { IInitialState } from '../../services/reducers';
 
 interface State { }
 
 class Skills extends React.Component<any, State> {
 
-  static navigationOptions = {
-    title: I18n.t('skillsList'),
+  componentDidMount () {
+    const { navigation: { setParams }, title } = this.props;
+    setParams({ title });
+  }
+
+  static navigationOptions: ({ activeCourse }) => ({
+    title: I18n.t,
     headerRight: null,
     headerLeft: null,
     goBack: false,
     cardStack: {
       transition: (previousRoute: any) => { // configure the animation here 
-        alert(previousRoute);
+        alert (previousRoute);
       },
     },
-  };
+  });
 
   private goToLessons = (skill: ISkill) => {
     const { navigate } = this.props.navigation;
-    const course = this.props.courses.find((course: ICourse) => skill.courseId === course.id);
-    navigate('Lessons', { skill, course });
+    navigate('Lessons', { skill, course: this.props.activeCourse });
   }
 
   // private renderLevel = (level: number) => {
@@ -69,7 +72,7 @@ class Skills extends React.Component<any, State> {
       <Skill
         key={`skill_${skill.id}`}
         name={skill.name}
-        progress={1}
+        progress={0}
         unlocked={true}
         onSkillsClick={() => this.goToLessons(skill)} />);
   }
@@ -85,19 +88,11 @@ class Skills extends React.Component<any, State> {
   }
 }
 
-// const GSLevel = glamor.view({
-//   alignItems: 'center',
-//   marginHorizontal: 50,
-//   marginVertical: 20,
-//   borderRadius: 5,
-//   backgroundColor: Colors.lightGray,
-//   padding: 10,
-// });
-
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IInitialState) => ({
   skills: state.skills,
-  courses: state.courses,
   profile: state.profile,
+  activeCourse: getActiveCourse(state),
+  targetLanguage: getTargetLanguage(state),
 });
 
 export default connect(mapStateToProps)(Skills);

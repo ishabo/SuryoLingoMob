@@ -1,16 +1,16 @@
 import { call, put } from 'redux-saga/effects';
 import { saveSkills } from '../actions';
 import { ISkillsAction } from '../reducers';
-import { NavigationActions } from 'react-navigation';
 import { getSkills } from '../api';
+import { NavigationActions } from 'react-navigation';
 
-export default function* fetchSkills(action: ISkillsAction): IterableIterator<any> {
+export function* fetchSkills(action: ISkillsAction): IterableIterator<any> {
   try {
     const response = yield call(getSkills, action.courseId);
     yield put(saveSkills(response));
-    yield put(NavigationActions.navigate({ routeName: 'Skills' }));
-  } catch (e) {
-
+  } catch (error) {
+    console.warn(error);
   }
 
+  yield put(NavigationActions.navigate({ routeName: 'Skills' }));
 }

@@ -3,9 +3,8 @@ import { getCourses } from '../api';
 import { saveCourses } from '../actions';
 import { NavigationActions } from 'react-navigation';
 
-export default function* fetchCourses (): IterableIterator<any> {
+export function* fetchCourses(): IterableIterator<any> {
   try {
-    debugger;
     const response = yield call(getCourses);
     yield put(saveCourses(response));
   } catch (e) {

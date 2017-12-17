@@ -1,15 +1,19 @@
 import React from 'react';
 import { NavigationScreenProp } from 'react-navigation';
-import { Container } from 'native-base';
-import glamor from 'glamorous-native';
 import I18n from '../../i18n';
+import config from '../../config';
 import { connect } from 'react-redux';
 import { backToSkills } from '../../helpers/navigation';
-import { setLessonDone } from '../../services/progress/actions';
+import { finishLesson } from '../../services/progress/actions';
+import { ILesson } from '../../services/skills/reducers';
+import { GSContainer, GSCongratMessage, GSXPGain } from './index.styles';
+import { IInitialState } from '../../services/reducers';
+import { getLessonInProgress } from '../../services/selectors';
 
 interface IProps {
   navigation: NavigationScreenProp<any, any>;
-  setLessonDone: (lessonId: string) => {};
+  finishLesson: (lessonXP: number) => void;
+  lessonInProgress: ILesson;
 }
 
 class Completion extends React.Component<IProps> {
@@ -19,21 +23,19 @@ class Completion extends React.Component<IProps> {
   };
 
   componentDidMount () {
-    const { lessonId } = this.props.navigation.state.params;
+    this.props.finishLesson(config.lessonXP);
 
-    this.props.setLessonDone(lessonId);
     setTimeout(() => {
       backToSkills(this.props.navigation);
     }, 2000);
   }
 
   render () {
-    const { lessonId } = this.props.navigation.state.params;
-
+    const { order } = this.props.lessonInProgress;
     return (
       <GSContainer>
         <GSCongratMessage>
-          {I18n.t('questions.congratulations', { lessonId })}
+          {I18n.t('questions.congratulations', { order })}
         </GSCongratMessage>
         <GSXPGain>
           {I18n.t('questions.xpGain', { xp: '10' })}
@@ -43,25 +45,13 @@ class Completion extends React.Component<IProps> {
   }
 }
 
-const GSContainer = glamor(Container)({
-  alignSelf: 'center',
-  justifyContent: 'center',
-});
-
-const GSCongratMessage = glamor.text({
-  padding: 50,
-  fontSize: 30,
-  textAlign: 'center',
-});
-
-const GSXPGain = glamor.text({
-  padding: 20,
-  fontSize: 20,
-  textAlign: 'center',
-});
-
 const mapDispatchToProps = (dispatch: any) => ({
-  setLessonDone: (lessonId: string) => dispatch(setLessonDone(lessonId))
+  finishLesson: (lessonXP: number) =>
+    dispatch(finishLesson(lessonXP)),
 });
 
-export default connect(null, mapDispatchToProps)(Completion);
+const mapStateToDispatch = (state: IInitialState) => ({
+  lessonInProgress: getLessonInProgress(state),
+});
+
+export default connect(mapStateToDispatch, mapDispatchToProps)(Completion);

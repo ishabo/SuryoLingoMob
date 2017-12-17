@@ -22,7 +22,7 @@ export interface ISkillsAction {
 
 export const initialState: ICourse[] = [];
 
-export const courseReducer = (state: ICourse[] = initialState, action: ISkillsAction) => {
+export const reducer = (state: ICourse[] = initialState, action: ISkillsAction) => {
   switch (action.type) {
     case types.SAVE_COURSES:
       return action.payload;

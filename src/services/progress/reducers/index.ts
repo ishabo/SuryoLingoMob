@@ -1,5 +1,6 @@
 import { types } from '../actions';
 import moment, { Moment } from 'moment';
+import cloneDeep from 'clone-deep';
 
 export interface IProgressAction {
   type: string;
@@ -27,7 +28,7 @@ interface ILessonsDone {
 interface ISkillProgress {
   finished: boolean;
   totalSkillXP: number;
-  lessonsDone?: ILessonsDone;
+  lessonsDone: ILessonsDone;
 }
 
 interface ISkillsProgress {
@@ -38,6 +39,7 @@ export interface IProgress {
   activeCourse: string;
   enrolledCourses: string[];
   skillsProgress: ISkillsProgress;
+  lessonInProgress: string;
   totalUserXP: number;
 }
 
@@ -45,16 +47,19 @@ export const initialState: IProgress = {
   activeCourse: null,
   skillsProgress: {},
   enrolledCourses: [],
+  lessonInProgress: null,
   totalUserXP: 0,
 };
 
 const calcTotalSkillXP = (totalXP: number = 0, lesson: ILessonDone) =>
   totalXP + lesson.totalLessonXp;
 
-export default function (state: IProgress = initialState, action: IProgressAction) {
+export const reducer = (
+  state: IProgress = initialState,
+  action: IProgressAction,
+): IProgress => {
   const { courseId, skillId, lessonId, lessonXP } = action;
-  const initialSkillProgress = { finished: false, totalSkillXP: 0 };
-
+  const initialSkillProgress = { finished: false, totalSkillXP: 0, lessonsDone: {} };
   switch (action.type) {
 
     /* ******* Set skill in progress *******
@@ -70,7 +75,8 @@ export default function (state: IProgress = initialState, action: IProgressActio
       }
       return {
         ...state, skillsProgress: {
-          ...state.skillsProgress, [skillId]: initialSkillProgress,
+          ...state.skillsProgress,
+          [skillId]: initialSkillProgress,
         },
       };
 
@@ -79,7 +85,7 @@ export default function (state: IProgress = initialState, action: IProgressActio
      * if the user hasn't enrolled before.
      ***************************************/
     case types.SET_ACTIVE_COUTSE:
-      const { enrolledCourses } = state;
+      const enrolledCourses = [...state.enrolledCourses];
       if (enrolledCourses.indexOf(courseId) === -1) {
         enrolledCourses.push(courseId);
       }
@@ -89,17 +95,20 @@ export default function (state: IProgress = initialState, action: IProgressActio
      * This is to mark a lesson under a certain skill as done
      * but also records everytime the user passes the lesson
      * again, and calculates the total XP for lesson and total
-     * XO for the skill under which the lesson exists.
+     * XP for the skill under which the lesson exists.
      ***************************************/
     case types.SET_LESSON_DONE:
-      const newState = { ...state };
+      const newState = cloneDeep(state);
+
+      if (!skillId) {
+        console.error('skillId is not set!');
+      }
 
       if (!newState.skillsProgress[skillId]) {
         newState.skillsProgress[skillId] = initialSkillProgress;
       }
 
       const existingLesson = newState.skillsProgress[skillId].lessonsDone[lessonId];
-      const newAccomplishment = { timestamp: moment(), thisLessonXP: lessonXP };
 
       if (!existingLesson) {
         newState.skillsProgress[skillId].lessonsDone[lessonId] = {
@@ -108,15 +117,20 @@ export default function (state: IProgress = initialState, action: IProgressActio
         };
       }
 
+      const newAccomplishment = { timestamp: moment(), thisLessonXP: lessonXP };
       newState.skillsProgress[skillId].lessonsDone[lessonId].totalLessonXp += lessonXP;
       newState.skillsProgress[skillId].lessonsDone[lessonId].history.push(newAccomplishment);
+
       const lessons = newState.skillsProgress[skillId].lessonsDone;
       const totalSkillXP = (<any>Object).values(lessons).reduce(calcTotalSkillXP, 0);
 
       newState.skillsProgress[skillId].totalSkillXP = totalSkillXP;
       return newState;
 
+    case types.SET_LESSON_IN_PROGRESS:
+      return { ...state, lessonInProgress: action.lessonId };
+
     default:
       return state;
   }
-}
+};

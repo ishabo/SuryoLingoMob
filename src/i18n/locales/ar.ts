@@ -41,7 +41,7 @@ export default {
     shopping: 'تسوق',
     places: 'أماكن',
     adjective1: 'الظروف ١',
-    level: 'المستوى رقم: {{level}}'
+    level: 'المستوى رقم: {{level}}',
   },
   questions: {
     submit: 'أرسل الاجابة',
@@ -50,11 +50,12 @@ export default {
       areYouSure: 'هل حقاً تريد الخروج؟',
       caviat: 'بخروجك سوف تخسر تقدمك الذي حققته في هذا الدرس حتى الآن!',
       ok: 'اخرج',
-      cancel: 'تابع الدرس'
+      cancel: 'تابع الدرس',
     },
+    phraseMeaning: 'المعنى',
     translateTo: {
-      arc: 'ترجم إلى العربية',
-      syc: 'ترجم إلى السريانية'
+      'cl-ara': 'ترجم إلى العربية',
+      'cl-syr': 'ترجم إلى السريانية',
     },
     dictionation: 'اكتب بالسريانية كما تسمع',
     multiChoice: 'اختر الاجابات الصحيحة',
@@ -63,16 +64,16 @@ export default {
       passed: 'الإجابة صحيحة',
       failed: 'الإجابة خاطئة',
       correctAnswer: 'الإجابة الصحيحة:',
-      youAnswered: 'إجابتك كانت:'
+      youAnswered: 'إجابتك كانت:',
     },
-    congratulations: 'أحسنت! لقد اجتزت الدرس رقم {{lessonId}} بنجاح',
-    xpGain: 'لقد اكتسبت {{xp}} من نقاط الخبرة'
+    congratulations: 'أحسنت! لقد اجتزت الدرس رقم {{order}} بنجاح',
+    xpGain: 'لقد اكتسبت {{xp}} من نقاط الخبرة',
   },
   lessons: {
     lesson: {
-      title: 'الدرس {{lessonId}} من {{totalLessons}}'
+      title: 'الدرس {{lessonOrder}} من {{totalLessons}}',
     },
     title: 'االدروس',
-    instruction: 'اسحب يميناً وشمالاً للتنقل بين الدروس'
-  }
+    instruction: 'اسحب يميناً وشمالاً للتنقل بين الدروس',
+  },
 };

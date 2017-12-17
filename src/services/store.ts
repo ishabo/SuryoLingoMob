@@ -9,8 +9,9 @@ import { Platform } from 'react-native';
 import storage from 'redux-persist/es/storage';
 
 const config = {
-  key: 'root',
   storage,
+  key: 'root',
+  stateReconciler: true,
   blacklist: ['nav'],
 };
 

@@ -1,4 +1,4 @@
-import progressReducer from './index';
+import { reducer as progressReducer } from './index';
 import { types } from '../actions';
 import moment from 'moment';
 import MockDate from 'mockdate';
@@ -10,6 +10,7 @@ describe('progress reducer', () => {
     'skill-id1': {
       finished: false,
       totalSkillXP: 400,
+      lessonInProgress: null,
       lessonsDone: {
         'lesson-id1': {
           totalLessonXp: 400,
@@ -33,6 +34,7 @@ describe('progress reducer', () => {
     const initialState = {
       activeCourse: null,
       skillsProgress: {},
+      lessonInProgress: null,
       enrolledCourses: [],
       totalUserXP: 0,
     };
@@ -46,6 +48,7 @@ describe('progress reducer', () => {
     expect(newState).toEqual({
       activeCourse: 'course-id',
       skillsProgress: {},
+      lessonInProgress: null,
       enrolledCourses: ['course-id'],
       totalUserXP: 0,
     });
@@ -56,6 +59,7 @@ describe('progress reducer', () => {
     const initialState = {
       activeCourse: 'course-id1',
       skillsProgress: {},
+      lessonInProgress: null,
       enrolledCourses: ['course-id1'],
       totalUserXP: 0,
     };
@@ -70,6 +74,7 @@ describe('progress reducer', () => {
     expect(newState).toEqual({
       activeCourse: 'course-id2',
       skillsProgress: {},
+      lessonInProgress: null,
       enrolledCourses: ['course-id1', 'course-id2'],
       totalUserXP: 0,
     });
@@ -79,6 +84,7 @@ describe('progress reducer', () => {
 
     const initialState = {
       skillsProgress,
+      lessonInProgress: null,
       activeCourse: 'course-id1',
       enrolledCourses: ['course-id1'],
       totalUserXP: 0,
@@ -93,6 +99,7 @@ describe('progress reducer', () => {
 
     expect(newState).toEqual({
       activeCourse: 'course-id1',
+      lessonInProgress: null,
       skillsProgress: {
         ...skillsProgress,
         'skill-id2': {
@@ -112,6 +119,7 @@ describe('progress reducer', () => {
     const initialState = {
       skillsProgress,
       activeCourse: 'course-id1',
+      lessonInProgress: null,
       enrolledCourses: ['course-id1'],
       totalUserXP: 0,
     };
@@ -119,8 +127,10 @@ describe('progress reducer', () => {
     const actions = {
       type: types.SET_LESSON_DONE,
       skillId: 'skill-id1',
-      lessonId: 'lesson-id2',
-      lessonXP: 200,
+      lessonDone: {
+        lessonId: 'lesson-id2',
+        lessonXP: 200,
+      },
     };
 
     const newState = progressReducer(initialState, actions);
@@ -141,6 +151,7 @@ describe('progress reducer', () => {
     expect(newState).toEqual({
       activeCourse: 'course-id1',
       skillsProgress: updatedSkill,
+      lessonInProgress: null,
       enrolledCourses: ['course-id1'],
       totalUserXP: 0,
     });

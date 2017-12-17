@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
-import Routes from '../routes';
-
-export const AppNavigator = StackNavigator(Routes, { mode: 'card' });
+import { addNavigationHelpers, NavigationActions } from 'react-navigation';
+import { AppNavigator } from '../services/nav';
 
 const mapStateToProps = (state: any) => ({
   nav: state.nav,

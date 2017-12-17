@@ -1,44 +1,35 @@
 import { combineReducers } from 'redux';
 
-import {
-  skillReducer,
-  initialState as skillsInitialState,
-  ISkill,
-} from '../services/skills/reducers';
-import {
-  courseReducer,
-  initialState as courseInitialState,
-  ICourse,
-} from '../services/courses/reducers';
+import * as skill from './skills/reducers';
+import * as course from './courses/reducers';
+import * as profile from './profile/reducers';
+import * as progress from './progress/reducers';
+import * as navigation from './nav/reducers';
+import * as questions from './questions/reducers';
 
-import {
-  profileReducer,
-  initialState as profileInitialState,
-  IProfile,
-} from '../services/profile/reducers';
-
-import {
-  navigationReducer,
-  navigationInitialState,
-} from './navigation/reducers';
-
-interface IInitialState {
-  skills: ISkill[];
-  courses: ICourse[];
-  profile: IProfile;
+export interface IInitialState {
+  skills: skill.ISkill[];
+  courses: course.ICourse[];
+  profile: profile.IProfile;
+  progress: progress.IProgress;
+  questions: questions.IQuestions;
   nav: any;
 }
 
 export const initialState: IInitialState = {
-  courses: courseInitialState,
-  skills: skillsInitialState,
-  profile: profileInitialState,
-  nav: navigationInitialState,
+  courses: course.initialState,
+  skills: skill.initialState,
+  profile: profile.initialState,
+  progress: progress.initialState,
+  questions: questions.initialState,
+  nav: navigation.initialState,
 };
 
 export default combineReducers({
-  courses: courseReducer,
-  skills: skillReducer,
-  profile: profileReducer,
-  nav: navigationReducer,
+  courses: course.reducer,
+  skills: skill.reducer,
+  profile: profile.reducer,
+  progress: progress.reducer,
+  questions: questions.reducer,
+  nav: navigation.reducer,
 });

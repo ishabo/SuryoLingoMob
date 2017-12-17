@@ -1,20 +1,22 @@
 import React from 'react';
 import { Container, Text, View } from 'native-base';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import I18n from '../../i18n';
 import * as Animatable from 'react-native-animatable';
 import { ISkill, ILesson } from '../../services/skills/reducers';
-// import { ICourse } from '../../services/courses/reducers';
+import { enterLesson } from '../../services/progress/actions';
 
 export interface State {
   lessons: ILesson[];
 }
 
-export default class Lessons extends React.Component<any, State> {
+class Lessons extends React.Component<any, State> {
 
   private carousal: any;
   private cards: any;
+
   static navigationOptions = {
     title: I18n.t('lessons.title'),
   };
@@ -23,27 +25,19 @@ export default class Lessons extends React.Component<any, State> {
     this.cards.fadeInUp();
   }
 
-  // goToQuestions = (lesson: ILesson) => {
-  //   const { navigate } = this.props.navigation;
-  //   const course: ICourse = this.props.navigation.state.params.course;
-  //   const { questions } = lesson;
-
-  //   navigate('Questions', {
-  //     course,
-  //     questions,
-  //     currentQuestionIndex: 0,
-  //   });
-  // }
-
   renderCards ({ item: lesson, _ }) {
     const { lessons } = this.props.navigation.state.params.skill;
 
     return <View style={styles.card}>
-      <TouchableOpacity style={styles.navArea} onPress={() => { }}>
+      <TouchableOpacity style={styles.navArea} onPress={() => this.props.enterLesson(lesson.id)}>
         <Text style={styles.lessonTitle}>
-          {I18n.t('lessons.lesson.title', { lessonId: lesson.id, totalLessons: lessons.length })}
+          {
+            I18n.t('lessons.lesson.title', {
+              lessonOrder: lesson.order, totalLessons: lessons.length,
+            })
+          }
         </Text>
-        <Text style={styles.lessonNewWords}>{lesson.newWords.join(', ')}</Text>
+        <Text style={styles.lessonNewWords}>{lesson.newWords}</Text>
       </TouchableOpacity>
     </View>;
   }
@@ -109,3 +103,13 @@ const styles: any = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+const mapStateToProps = (state: any) => ({
+  courses: state.courses,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  enterLesson: (lessonId: string) => dispatch(enterLesson(lessonId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lessons);

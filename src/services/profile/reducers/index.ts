@@ -15,7 +15,7 @@ export interface IProfileAction {
 
 export const initialState: IProfile = {};
 
-export const profileReducer = (state: IProfile = initialState, action: IProfileAction) => {
+export const reducer = (state: IProfile = initialState, action: IProfileAction) => {
   switch (action.type) {
     case types.SAVE_PROFILE:
       return { ...state, ...action.payload };
