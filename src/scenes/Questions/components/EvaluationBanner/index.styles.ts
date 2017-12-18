@@ -26,13 +26,13 @@ export const GSBannerText = glamor.text({
 });
 
 export const GSBoldText = glamor(GSBannerText)({
-  fontWeight: '900'
+  fontWeight: '900',
 });
 
 export const GSBannerTail = glamor.view({
   width: 100,
-  marginLeft: -25
-})
+  marginLeft: -25,
+});
 
 export const GSMessageBox = glamor.view({
   height,

@@ -11,38 +11,46 @@ const lessons = [
   },
 ];
 
+const icons = {
+  hdpi: { locked: '', unlocked: '' },
+  mdpi: { locked: '', unlocked: '' },
+  xhdpi: { locked: '', unlocked: '' },
+  xxhdpi: { locked: '', unlocked: '' },
+  xxxhdpi: { locked: '', unlocked: '' },
+};
+
 export const skills = [
   {
+    icons,
+    lessons,
     id: '1',
     unit: 1,
-    lessons,
     description: '',
     name: 'letters1',
-    icon: 'numbers',
   },
   {
-    id: '2',
+    icons,
     lessons,
+    id: '2',
     unit: 1,
     description: '',
     name: 'letters2',
-    icon: 'numbers',
   },
   {
+    icons,
+    lessons,
     id: '3',
     unit: 2,
-    lessons,
     description: '',
     name: 'vowels',
-    icon: 'numbers',
   },
   {
+    icons,
+    lessons,
     id: '4',
     unit: 2,
-    lessons,
     description: '',
     name: 'basics',
-    icon: 'numbers',
   },
 ];
 

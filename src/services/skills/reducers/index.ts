@@ -6,13 +6,20 @@ export interface ILesson {
   newWords: string[];
 }
 
+type TImageSizes = string | 'hdpi' | 'mdpi' | 'xhdpi' | 'xxhdpi' | 'xxxhdpi';
+
 export interface ISkill {
   id: string;
   unit: number;
   name: string;
   lessons: ILesson[];
   description: string;
-  icon: string;
+  icons: {
+    [key in TImageSizes]: {
+      locked: string;
+      unlocked: string;
+    }
+  };
 }
 
 export interface ISkillsAction {

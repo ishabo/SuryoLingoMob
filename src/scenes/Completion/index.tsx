@@ -12,7 +12,7 @@ import { getLessonInProgress } from '../../services/selectors';
 
 interface IProps {
   navigation: NavigationScreenProp<any, any>;
-  finishLesson: (lessonXP: number) => void;
+  finishLesson (lessonXP: number): void;
   lessonInProgress: ILesson;
 }
 

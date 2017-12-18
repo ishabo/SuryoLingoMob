@@ -72,6 +72,7 @@ class Skills extends React.Component<any, State> {
       <Skill
         key={`skill_${skill.id}`}
         name={skill.name}
+        icon={skill.icons.xhdpi.unlocked}
         progress={0}
         unlocked={true}
         onSkillsClick={() => this.goToLessons(skill)} />);

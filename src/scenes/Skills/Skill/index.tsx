@@ -7,6 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 export interface Props {
   onSkillsClick: () => void;
   name: string;
+  icon: string;
   progress: number;
   unlocked: boolean;
 }
@@ -15,7 +16,7 @@ export interface State { }
 
 export default class skill extends React.Component<Props, State> {
   render () {
-    const { name, unlocked, progress } = this.props;
+    const { name, unlocked, progress, icon } = this.props;
     const filling = unlocked ? 1 - progress : 1;
     const LinearGradientProps = {
       colors: ['#E8B926', 'transparent'],
@@ -27,12 +28,11 @@ export default class skill extends React.Component<Props, State> {
     return (
       <GSSkills>
         <TouchableOpacity onPress={this.props.onSkillsClick}>
-          <Image style={{ height: 120, width: 120 }} source={images.skills.bg[image]} />
+          <GSBackground source={images.skills.bg[image]} />
           <GSCircle {...LinearGradientProps} >
+            <GSIcon source={{ uri: 'data:image/png;base64,' + icon }} />
           </GSCircle>
-
         </TouchableOpacity>
-
         <TouchableOpacity onPress={this.props.onSkillsClick}>
           <GSSkillsTitle>
             {name}
@@ -42,6 +42,17 @@ export default class skill extends React.Component<Props, State> {
     );
   }
 }
+
+const GSBackground = glamor(Image)({
+  height: 120,
+  width: 120,
+});
+
+const GSIcon = glamor(Image)({
+  height: 100,
+  width: 100,
+  alignSelf: 'center',
+});
 
 const GSSkills = glamor.view({
   flexDirection: 'column',

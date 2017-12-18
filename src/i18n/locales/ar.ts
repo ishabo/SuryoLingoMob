@@ -1,5 +1,4 @@
 export default {
-  greeting: 'تعلم لغة اجدادك السوريين',
   skillsList: 'المهارات اللغة {{lang}}',
   chooseYourWay: 'اختر طريقك',
   alert: {
@@ -75,5 +74,19 @@ export default {
     },
     title: 'االدروس',
     instruction: 'اسحب يميناً وشمالاً للتنقل بين الدروس',
+  },
+  courses: {
+    learnLanguage: 'تعلم {{lang}}',
+    forSpeakersOfLanguage: 'لمتحدثي {{lang}}',
+    languages: {
+      long: {
+        'cl-ara': 'العربية الفصيحة',
+        'cl-syr': 'اللغة السريانية الآرامية الفصيحة',
+      },
+      short: {
+        'cl-ara': 'العربية',
+        'cl-syr': 'السريانية',
+      },
+    },
   },
 };
