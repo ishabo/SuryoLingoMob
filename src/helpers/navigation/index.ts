@@ -1,11 +1,9 @@
-import { NavigationScreenProp, NavigationActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
+import { ICourse } from '../../services/courses/reducers';
 
-export const backToSkills = (navigation: NavigationScreenProp<any, any>) => {
-    const resetAction = NavigationActions.reset({
-        index: 0,
-        actions: [
-            NavigationActions.navigate({ routeName: 'Skills' })
-        ]
-    })
-    navigation.dispatch(resetAction)
-}
+export const navToSkills = (course: ICourse) =>
+  NavigationActions.navigate({
+    routeName: 'Skills', params: {
+      title: course.targetLanguage.name,
+    },
+  });

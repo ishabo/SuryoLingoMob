@@ -1,13 +1,13 @@
 import glamor from 'glamorous-native';
-import { View, Icon, Body } from 'native-base';
+import { Icon, Body } from 'native-base';
 
-export const GSHeader = glamor(View)({
+export const GSHeader = glamor.view({
   backgroundColor: 'transparent',
   borderBottomWidth: 0,
   height: 60,
 });
 
-export const GSProgress = glamor(View)({
+export const GSProgress = glamor.view({
   flexDirection: 'row',
   alignContent: 'center',
   alignSelf: 'center',
@@ -22,9 +22,10 @@ export const GSBody = glamor(Body)({
   width: 340,
 });
 
-export const GSFooter = glamor(View)({
+export const GSFooter = glamor.view({
   backgroundColor: 'transparent',
-  borderTopWidth: 0,
+
+  justifyContent: 'flex-end',
   marginBottom: 10,
 });
 

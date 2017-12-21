@@ -1,8 +1,9 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { saveSkills } from '../actions';
 import { ISkillsAction } from '../reducers';
 import { getSkills } from '../api';
-import { NavigationActions } from 'react-navigation';
+import { getActiveCourse } from '../../selectors';
+import { navToSkills } from '../../../helpers';
 
 export function* fetchSkills(action: ISkillsAction): IterableIterator<any> {
   try {
@@ -12,5 +13,7 @@ export function* fetchSkills(action: ISkillsAction): IterableIterator<any> {
     console.warn(error);
   }
 
-  yield put(NavigationActions.navigate({ routeName: 'Skills' }));
+  const course = yield select(getActiveCourse);
+  yield put(navToSkills(course));
 }
+

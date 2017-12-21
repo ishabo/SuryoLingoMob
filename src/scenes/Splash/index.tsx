@@ -4,7 +4,7 @@ import { NavigationScreenProp } from 'react-navigation';
 import { Container, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { fetchCourses } from '../../services/courses/actions';
-import { fetchSkills } from '../../services/skills/actions';
+import { getActiveCourse } from '../../services/selectors';
 
 import images from '../../assets/images';
 export interface IStateToProps {
@@ -13,7 +13,6 @@ export interface IStateToProps {
 
 export interface IDispatchToProps {
   fetchCourses: () => void;
-  fetchSkills: (courseId: string) => void;
 }
 
 export interface IProps extends IStateToProps, IDispatchToProps {
@@ -46,8 +45,6 @@ class Splash extends React.Component<IProps, IState> {
     const { activeCourse } = this.props;
     if (!activeCourse) {
       this.props.fetchCourses();
-    } else {
-      this.props.fetchSkills(activeCourse);
     }
   }
 
@@ -64,11 +61,10 @@ class Splash extends React.Component<IProps, IState> {
 
 const mapDispatchToProps = (dispatch: any) => ({
   fetchCourses: () => dispatch(fetchCourses()),
-  fetchSkills: (courseId: string) => dispatch(fetchSkills(courseId)),
 });
 
 const matchStateToProps = (state: any) => ({
-  activeCourse: state.progress.activeCourse,
+  activeCourse: getActiveCourse(state),
 });
 
 export default connect(matchStateToProps, mapDispatchToProps)(Splash);

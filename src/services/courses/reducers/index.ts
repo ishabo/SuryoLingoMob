@@ -1,31 +1,51 @@
 import { types } from '../actions';
+import cloneDeep from 'clone-deep';
 
-type TTargetLangs = string | 'CL-Syc' | 'Tor-Syr';
-type TLearnerLangs = string | 'CL-Ara' | 'Eng';
+export type TTargetLangs = string | 'cl-syc' | 'tor-syr';
+export type TLearnerLangs = string | 'cl-ara' | 'eng';
 
 export interface ICourse {
   id: string;
   name?: string;
-  targetLanguage: ILanguage<TTargetLangs> | any;
-  learnersLanguage: ILanguage<TLearnerLangs> | any;
+  enrolled?: boolean;
+  active?: boolean;
+  targetLanguage: ILanguage<TTargetLangs>;
+  learnersLanguage: ILanguage<TLearnerLangs>;
 }
 
-interface ILanguage<T> {
+export interface ILanguage<T> {
   id: string;
-  codeName: T;
+  shortName: T;
+  name: string;
+  fullName: string;
 }
 
-export interface ISkillsAction {
+export interface ICourseAction {
   type: string;
-  payload: ICourse[];
+  courseId?: string;
+  courses?: ICourse[];
 }
 
 export const initialState: ICourse[] = [];
 
-export const reducer = (state: ICourse[] = initialState, action: ISkillsAction) => {
+export const reducer = (state: ICourse[] = initialState, action: ICourseAction) => {
   switch (action.type) {
     case types.SAVE_COURSES:
-      return action.payload;
+      return action.courses;
+
+    case types.ENROLL_IN_COURSE:
+      return cloneDeep(state).map((course: ICourse) => {
+        if (course.id === action.courseId) {
+          course.enrolled = true;
+        }
+        return course;
+      });
+
+    case types.SET_COURSE_ACTIVE:
+      return cloneDeep(state).map((course: ICourse) => {
+        course.active = (course.id === action.courseId);
+        return course;
+      });
     default:
       return state;
   }

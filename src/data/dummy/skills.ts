@@ -1,13 +1,15 @@
-const lessons = [
+import { ISkill, ILesson } from '../../services/skills/reducers';
+
+const lessons: ILesson[] = [
   {
     id: '11',
     order: 1,
-    newWords: ['ܐܪܝܐ', 'ܨܦܪܟ', 'ܐܚܘܢ', 'ܛܘܒ', 'ܡܢܐ'],
+    newWords: ['ܐܪܝܐ', 'ܨܦܪܟ', 'ܐܚܘܢ', 'ܛܘܒ', 'ܡܢܐ'].join('|'),
   },
   {
     id: '12',
     order: 2,
-    newWords: ['ܥܒܕ', 'ܫܠܝܡ', 'ܐܝܬ', 'ܒܝܬܐ', 'ܠܚܡܐ'],
+    newWords: ['ܥܒܕ', 'ܫܠܝܡ', 'ܐܝܬ', 'ܒܝܬܐ', 'ܠܚܡܐ'].join('|'),
   },
 ];
 
@@ -19,7 +21,7 @@ const icons = {
   xxxhdpi: { locked: '', unlocked: '' },
 };
 
-export const skills = [
+export const skills: ISkill[] = [
   {
     icons,
     lessons,

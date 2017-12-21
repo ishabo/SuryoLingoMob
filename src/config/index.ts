@@ -19,7 +19,7 @@ export default {
     tanweenKasr: 'ٍ', // Tanween kasr
   },
   garshoni: {
-    ar2sy: {
+    'cl-ara-to-cl-syr': {
       ا: 'ܐ',
       إ: 'ܐ',
       أ: 'ܐ',
@@ -57,7 +57,7 @@ export default {
       ء: 'ܐ',
       ة: 'ܗ̈',
     },
-    sy2ar: {
+    'cl-syr-to-cl-ara': {
       ܐ: 'ا',
       ܐ̱: null,
       ܒ: 'ب',

@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Container } from 'native-base';
 import I18n from '../../../../../i18n';
-import TextArea from '../../../../../components/TextArea';
+import TextArea from '../../TextArea';
 import { IAnswerProps } from '../../../index.types';
 
-interface IProps extends IAnswerProps { }
+interface IProps extends IAnswerProps {
+  reverse: boolean;
+}
 
 export default class Dictation extends React.Component<IProps> {
   render () {
@@ -14,6 +16,7 @@ export default class Dictation extends React.Component<IProps> {
         <TextArea
           placeholder={I18n.t(`questions.dictionation`)}
           captureInput={this.props.collectAnswer}
+          showSyriacKeyboard={this.props.reverse && !this.props.userHasAnswered}
         />
       </Container>
     );

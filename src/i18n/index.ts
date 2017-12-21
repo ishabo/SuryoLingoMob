@@ -6,7 +6,7 @@ import Config from '../config';
 I18n.fallbacks = false;
 
 I18n.translations = {
-	ar, en
+  ar, en,
 };
 
 I18n.locale = Config.locale;

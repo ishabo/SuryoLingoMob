@@ -1,19 +1,7 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { View, Text } from 'native-base';
+import { View } from 'native-base';
 import Speaker from '../Speaker';
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    width: 330,
-    alignContent: 'center',
-  },
-  sentence: {
-    alignSelf: 'center',
-    marginLeft: 10,
-  },
-});
+import glamor from 'glamorous-native';
 
 interface IProps {
   sound: { soundTrack: string; location?: string; };
@@ -21,12 +9,32 @@ interface IProps {
   showSentence?: boolean;
 }
 
-const StudyPhrase = ({ sound, sentence, showSentence }: IProps) =>
-  <View style={[styles.container, { justifyContent: showSentence ? 'flex-start' : 'center' }]}>
-    <View>
-      <Speaker {...sound} size={showSentence ? { small: true } : { large: true }} />
-    </View>
-    {showSentence && <Text style={styles.sentence}>{sentence}</Text>}
-  </View>;
+export default (props: IProps) => {
+  const { showSentence, sentence, sound } = props;
+  return (
+    <GSContainer showSentence={showSentence} >
+      <View>
+        <Speaker {...sound} size={showSentence ? { small: true } : { large: true }} />
+      </View>
+      {showSentence && <GSSentence>{sentence}</GSSentence>}
+    </GSContainer>
+  );
+};
 
-export default StudyPhrase;
+const GSContainer = glamor.view<{ showSentence: boolean }>(
+  {
+    width: 330,
+    flexDirection: 'row',
+    alignContent: 'center',
+  },
+  (props) => {
+    return {
+      justifyContent: props.showSentence ? 'flex-start' : 'center',
+    };
+  },
+);
+
+const GSSentence = glamor.text({
+  alignSelf: 'center',
+  marginLeft: 10,
+});

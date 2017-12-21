@@ -5,6 +5,7 @@ export interface IProfile {
   id?: string;
   name?: string;
   email?: string;
+  userXP?: number;
 }
 
 export interface IProfileAction {

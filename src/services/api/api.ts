@@ -51,7 +51,7 @@ export const createApi = (options: IApiOptions) => {
 
   const problems: IDictionary<string> = {
     TIMEOUT_ERROR: 'There has been a timeout, no response from server!',
-    NETWORK_ERROR: 'Oops! Seems like you are not connected to the internet.',
+    NETWORK_ERROR: 'Oops! Seems like you are not connected to the internet.' + getApiOrigin(),
     CONNECTION_ERROR: 'Server not available!',
   };
 

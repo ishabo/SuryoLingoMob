@@ -1,9 +1,11 @@
 import { call, put } from 'redux-saga/effects';
 import { getCourses } from '../api';
-import { saveCourses } from '../actions';
+import { saveCourses, setActiveCourse } from '../actions';
 import { NavigationActions } from 'react-navigation';
+import { ICourseAction } from '../reducers';
+import { fetchSkills } from '../../skills/actions';
 
-export function* fetchCourses(): IterableIterator<any> {
+export function* fetchCourses (): IterableIterator<any> {
   try {
     const response = yield call(getCourses);
     yield put(saveCourses(response));
@@ -14,4 +16,9 @@ export function* fetchCourses(): IterableIterator<any> {
   }
 
   yield put(NavigationActions.navigate({ routeName: 'Courses' }));
+}
+
+export function* switchCourse (action: ICourseAction): IterableIterator<any> {
+  yield put(setActiveCourse(action.courseId));
+  yield put(fetchSkills(action.courseId));
 }

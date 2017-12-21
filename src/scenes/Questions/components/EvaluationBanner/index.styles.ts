@@ -1,12 +1,11 @@
 import glamor from 'glamorous-native';
 import Colors from '../../../../styles/colors';
 
-const height = 140;
+const height = 120;
 
 export const GSBannerHeader = glamor.text({
   color: Colors.white,
   alignSelf: 'flex-start',
-  marginBottom: 10,
   fontSize: 30,
   fontWeight: '800',
 });
@@ -17,6 +16,7 @@ export const GSBanner = glamor.view({
   bottom: 100,
   flexDirection: 'row',
   position: 'absolute',
+  zIndex: 100,
 });
 
 export const GSBannerText = glamor.text({
@@ -44,20 +44,23 @@ export const GSMessageBox = glamor.view({
 export const GSMessageText = glamor.view({
 });
 
-export const GSTriangle = glamor.view({
-  position: 'absolute',
-  left: 0,
-  top: 0,
-  width: 0,
-  height: 0,
-  backgroundColor: 'transparent',
-  borderStyle: 'solid',
-  borderLeftWidth: 50,
-  borderRightWidth: 50,
-  borderBottomWidth: height,
-  borderLeftColor: 'transparent',
-  borderRightColor: 'transparent',
-},                                    (props: { color: string, upsideDown?: boolean }) => ({
-  borderBottomColor: props.color,
-  transform: [{ rotate: props.upsideDown ? '180deg' : '0deg' }],
-}));
+export const GSTriangle = glamor.view<{ color: string, upsideDown?: boolean }>(
+  {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderLeftWidth: 50,
+    borderRightWidth: 50,
+    borderBottomWidth: height,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+  },
+  props => ({
+    borderBottomColor: props.color,
+    transform: [{ rotate: props.upsideDown ? '180deg' : '0deg' }],
+  }),
+);

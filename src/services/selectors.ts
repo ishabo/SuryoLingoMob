@@ -1,17 +1,19 @@
 import { IInitialState } from './reducers';
 import { ICourse } from './courses/reducers';
 import { ISkill, ILesson } from './skills/reducers';
+import cloneDeep from 'clone-deep';
 
-import * as course from './courses/selectors';
 import * as questions from './questions/selectors';
 
 export const getActiveCourse = (state: IInitialState): ICourse =>
-  course.getActiveCourse(state.courses, state.progress.activeCourse);
+  state.courses.find((course: ICourse) => course.active);
 
 export const getTargetLanguage = (state: IInitialState) => {
-  const activeCourse = course.getActiveCourse(state.courses, state.progress.activeCourse);
+  const activeCourse = getActiveCourse(state);
   if (activeCourse) {
     return activeCourse.targetLanguage.name;
+  } else {
+    throw new Error('No active course selected!');
   }
 };
 
@@ -36,11 +38,33 @@ const selectLesson = (skills: ISkill[], lessonId: string) =>
 export const getLessonInProgress = (state: IInitialState): ILesson =>
   selectLesson(state.skills, state.progress.lessonInProgress);
 
-export const getSkillInProgres = (state: IInitialState): string => {
+export const getSkillsByUnit = (unit: number) => (state: IInitialState): ISkill[] =>
+  state.skills.filter((skill: ISkill) => skill.unit === unit);
+
+export const getSkillInProgress = (state: IInitialState): ISkill => {
   const lessonId = state.progress.lessonInProgress;
-  const skillInProgress = state.skills.filter((skill: ISkill) =>
-    skill.lessons.find((skillLesson: ILesson) => skillLesson.id === lessonId) !== null,
+
+  const skillInProgress = state.skills.find((skill: ISkill) =>
+    skill.lessons.find((skillLesson: ILesson) => skillLesson.id === lessonId) !== void (0),
   );
 
-  return skillInProgress[0].id;
+  if (!skillInProgress) {
+    console.error('No skill found for ' + lessonId);
+  }
+
+  return skillInProgress;
 };
+
+export const getSkillProgress = (state: IInitialState): ISkill[] => {
+  const skills = cloneDeep(state.skills).map((skill: ISkill) => {
+    const totalLessons = skill.lessons.length;
+    const numOfLessonsDone = skill.lessons.filter((lesson: ILesson) => lesson.finished).length;
+    skill.progress = numOfLessonsDone / totalLessons;
+    return skill;
+  });
+
+  return skills;
+};
+
+export const getSkillLessons = (skillId: string) => (state: IInitialState): ILesson[] =>
+  state.skills.find((skill: ISkill) => skill.id === skillId).lessons;

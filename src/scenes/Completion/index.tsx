@@ -3,7 +3,6 @@ import { NavigationScreenProp } from 'react-navigation';
 import I18n from '../../i18n';
 import config from '../../config';
 import { connect } from 'react-redux';
-import { backToSkills } from '../../helpers/navigation';
 import { finishLesson } from '../../services/progress/actions';
 import { ILesson } from '../../services/skills/reducers';
 import { GSContainer, GSCongratMessage, GSXPGain } from './index.styles';
@@ -12,7 +11,7 @@ import { getLessonInProgress } from '../../services/selectors';
 
 interface IProps {
   navigation: NavigationScreenProp<any, any>;
-  finishLesson (lessonXP: number): void;
+  finishLesson?: (lessonXP: number) => void;
   lessonInProgress: ILesson;
 }
 
@@ -23,11 +22,7 @@ class Completion extends React.Component<IProps> {
   };
 
   componentDidMount () {
-    this.props.finishLesson(config.lessonXP);
-
-    setTimeout(() => {
-      backToSkills(this.props.navigation);
-    }, 2000);
+    setTimeout(() => this.props.finishLesson(config.lessonXP), 200);
   }
 
   render () {

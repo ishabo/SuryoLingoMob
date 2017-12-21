@@ -1,111 +1,119 @@
 import React from 'react';
-import { Container, Text, View } from 'native-base';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Container, Text } from 'native-base';
 import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import I18n from '../../i18n';
 import * as Animatable from 'react-native-animatable';
 import { ISkill, ILesson } from '../../services/skills/reducers';
 import { enterLesson } from '../../services/progress/actions';
+import { IInitialState } from '../../services/reducers';
+import { getSkillLessons } from '../../services/selectors';
+import Lesson from './components/Lesson';
+import { SkillIcon } from '../Skills/components';
+import glamor from 'glamorous-native';
 
-export interface State {
-  lessons: ILesson[];
-}
-
-class Lessons extends React.Component<any, State> {
+class Lessons extends React.Component<any, any> {
 
   private carousal: any;
   private cards: any;
 
-  static navigationOptions = {
-    title: I18n.t('lessons.title'),
-  };
+  static navigationOptions = ({ navigation }) => ({
+    title: I18n.t('lessons.title', { skill: navigation.state.params.skill.name }),
+  })
+
+  private getNumOfActiveLessons = (): number => {
+    return this.props.getLessons(this.getSkill().id).filter((lesson: ILesson) =>
+      lesson.finished).length;
+  }
+
+  private getSkill = () => this.props.navigation.state.params.skill;
+  private totalLessons = () => this.getSkill().lessons.length;
 
   componentDidMount () {
     this.cards.fadeInUp();
+    console.log('Completion');
+    setInterval(this.snapToActive, 500);
   }
 
-  renderCards ({ item: lesson, _ }) {
-    const { lessons } = this.props.navigation.state.params.skill;
+  private snapToActive = () => {
+    if (this.carousal && this.carousal.currentIndex === 0) {
+      const itemIndex = this.getNumOfActiveLessons() === this.totalLessons()
+        ? this.totalLessons() - 1
+        : this.getNumOfActiveLessons();
+      this.carousal.snapToItem(itemIndex);
+    }
+  }
 
-    return <View style={styles.card}>
-      <TouchableOpacity style={styles.navArea} onPress={() => this.props.enterLesson(lesson.id)}>
-        <Text style={styles.lessonTitle}>
-          {
-            I18n.t('lessons.lesson.title', {
-              lessonOrder: lesson.order, totalLessons: lessons.length,
-            })
-          }
-        </Text>
-        <Text style={styles.lessonNewWords}>{lesson.newWords}</Text>
-      </TouchableOpacity>
-    </View>;
+  private isLessonActive = (index: number): boolean => {
+    return index <= this.getNumOfActiveLessons();
+  }
+
+  renderCards ({ item: lesson, index }) {
+    return <Lesson
+      skill={this.props.navigation.state.params.skill}
+      lesson={lesson}
+      active={this.isLessonActive(index)}
+      enterLesson={this.props.enterLesson}
+    />;
   }
 
   render () {
     const skill: ISkill = this.props.navigation.state.params.skill;
     return (
-      <Container style={styles.container}>
-        <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>
+      <GSContainer>
+        <GSLessonIcon>
+          <SkillIcon
+            icon={this.props.navigation.state.params.skill.icons.xxxhdpi.locked}
+            size={150} />
+        </GSLessonIcon>
+        <GSLessonInstruction>
           <Text>{I18n.t('lessons.instruction')}</Text>
-        </View>
-        <Animatable.View
-          ref={(c: Lessons) => this.cards = c}
-          style={{ flex: 2, marginBottom: 30, alignSelf: 'center', justifyContent: 'center' }} >
+        </GSLessonInstruction>
+        <GSAnimatable
+          innerRef={(c: Lessons) => this.cards = c} >
           <Carousel
             ref={(c: Lessons) => this.carousal = c}
-            data={skill.lessons}
+            data={this.props.getLessons(skill.id)}
             renderItem={this.renderCards.bind(this)}
             sliderWidth={380}
             itemWidth={300}
-            style={{ marginTop: 300 }}
+            style={{ marginTop: 200 }}
+            lockScrollWhileSnapping
           />
-        </Animatable.View>
-      </Container>
+        </GSAnimatable>
+      </GSContainer>
     );
   }
 }
 
-const styles: any = StyleSheet.create({
-
-  container: {
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    justifyContent: 'space-between',
-  },
-
-  card: {
-    alignItems: 'center',
-    height: 300,
-    shadowOffset: { width: 4, height: 4 },
-    shadowColor: 'black',
-    shadowOpacity: 0.2,
-    elevation: 1,
-    shadowRadius: 2,
-    backgroundColor: 'white',
-  },
-
-  navArea: {
-    flex: 1,
-    alignContent: 'stretch',
-    justifyContent: 'center',
-    height: 400,
-    width: 300,
-  },
-
-  lessonTitle: {
-    alignSelf: 'center',
-    fontSize: 20,
-    marginBottom: 10,
-  },
-
-  lessonNewWords: {
-    alignSelf: 'center',
-  },
+const GSContainer = glamor(Container)({
+  alignItems: 'center',
+  alignSelf: 'stretch',
+  justifyContent: 'space-between',
 });
 
-const mapStateToProps = (state: any) => ({
+const GSLessonIcon = glamor.view({
+  position: 'absolute',
+  top: 10,
+  width: 150,
+});
+
+const GSLessonInstruction = glamor.view({
+  justifyContent: 'center',
+  alignSelf: 'center',
+  marginTop: 150,
+  marginBottom: 20,
+});
+
+const GSAnimatable = glamor(Animatable.View)({
+  flex: 2,
+  alignSelf: 'center',
+  justifyContent: 'center',
+});
+
+const mapStateToProps = (state: IInitialState) => ({
   courses: state.courses,
+  getLessons: (skillId: string) => getSkillLessons(skillId)(state),
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

@@ -7,3 +7,7 @@ interface IDictionary<T extends number | string> {
 interface IIndex<T extends number | string> {
   [k: number]: T;
 }
+
+declare interface ObjectConstructor {
+  values (target: any, ...sources: any[]): any;
+}

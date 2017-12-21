@@ -24,25 +24,12 @@ export default {
     16: 'المرحلة السادسة عشر',
   },
   skills: {
-    letters1: 'الأحرف ١',
-    letters2: 'الأحرف ٢',
-    vowels: 'التشكيل',
-    present1: 'المضارع ١',
-    body_parts: 'أعضاء الجسم',
-    colors: 'الألوان',
-    numbers: 'الأرقام',
-    animals: 'الحيوانات',
-    basics: 'أساسيات',
-    phrases: 'عبارات',
-    plural: 'الجمع',
-    genders: 'الأجناس',
-    religion: 'دين',
-    shopping: 'تسوق',
-    places: 'أماكن',
-    adjective1: 'الظروف ١',
+    title: 'المهارات',
     level: 'المستوى رقم: {{level}}',
+    skillInactive: 'هذه المهارة غير فعالة. عليك اجتياز المهارات الفعالة أولاً.',
   },
   questions: {
+    garshoni: 'جرشوني',
     submit: 'أرسل الاجابة',
     continue: 'أكمل',
     exist: {
@@ -72,10 +59,12 @@ export default {
     lesson: {
       title: 'الدرس {{lessonOrder}} من {{totalLessons}}',
     },
-    title: 'االدروس',
+    title: 'دروس - {{skill}}',
     instruction: 'اسحب يميناً وشمالاً للتنقل بين الدروس',
   },
   courses: {
+    title: 'الدورات الدراسية',
+    shortTitle: 'الدورات',
     learnLanguage: 'تعلم {{lang}}',
     forSpeakersOfLanguage: 'لمتحدثي {{lang}}',
     languages: {

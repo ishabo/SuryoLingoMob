@@ -14,23 +14,19 @@ import {
 
 interface IProps {
   passed: boolean;
-  answer?: string;
   correctAnswer?: string;
 }
 
 const bgColor = (passed: boolean) => passed ? Colors.lightGreen : Colors.lightRed;
 const passTitle = (passed: boolean) =>
   I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`);
-const EvaluationBanner = ({ passed, answer, correctAnswer }: IProps) =>
+const EvaluationBanner = ({ passed, correctAnswer }: IProps) =>
   <GSBanner>
     <GSMessageBox style={{ backgroundColor: bgColor(passed) }}>
       <GSMessageText>
         <GSBannerHeader>
           {passTitle(passed)}
         </GSBannerHeader>
-        {passed || answer && <GSBannerText>
-          <GSBoldText>{I18n.t('questions.evaluation.youAnswered')}</GSBoldText> {answer}
-        </GSBannerText>}
         {passed || correctAnswer && <GSBannerText>
           <GSBoldText>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
         </GSBannerText>}

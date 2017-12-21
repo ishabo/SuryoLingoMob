@@ -1,3 +1,3 @@
 export default {
-	greeting: 'ܠܦ ܓܫܢܐ ܕܣܘܪܝܝܐ ܪܒܐ',
+  greeting: 'ܠܦ ܓܫܢܐ ܕܣܘܪܝܝܐ ܪܒܐ',
 };

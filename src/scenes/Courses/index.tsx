@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { Container } from 'native-base';
 import { ICourse } from '../../services/courses/reducers';
 import { connect } from 'react-redux';
-import { switchCourse } from '../../services/progress/actions';
+import { switchCourse } from '../../services/courses/actions';
 import glamor from 'glamorous-native';
 import I18n from '../../i18n';
 import Colors from '../../styles/colors';
@@ -20,6 +20,7 @@ const GSCourseTitle = glamor.text({
   alignSelf: 'center',
   textAlign: 'center',
 });
+
 const GSCourseSubTitle = glamor.text({
   fontSize: 20,
   alignSelf: 'center',
@@ -39,7 +40,7 @@ const GSCourseButton = glamor(TouchableOpacity)({
 class Courses extends React.Component<any, IState> {
 
   static navigationOptions = {
-    title: 'Courses',
+    title: I18n.t('courses.title'),
     headerLeft: null,
     headerRight: null,
   };

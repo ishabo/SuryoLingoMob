@@ -1,10 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 import glamor from 'glamorous-native';
-import images from '../../../assets/images';
+import images from '../../../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
+import SkillIcon from '../SkillIcon';
+import Colors from '../../../../styles/colors';
 
-export interface Props {
+export interface IProps {
   onSkillsClick: () => void;
   name: string;
   icon: string;
@@ -12,14 +14,12 @@ export interface Props {
   unlocked: boolean;
 }
 
-export interface State { }
-
-export default class skill extends React.Component<Props, State> {
+export default class skill extends React.Component<IProps> {
   render () {
     const { name, unlocked, progress, icon } = this.props;
     const filling = unlocked ? 1 - progress : 1;
     const LinearGradientProps = {
-      colors: ['#E8B926', 'transparent'],
+      colors: [Colors.yellow, 'transparent'],
       start: { x: 0, y: filling },
       end: { x: 0, y: 0 },
       locations: [0, 0],
@@ -30,7 +30,7 @@ export default class skill extends React.Component<Props, State> {
         <TouchableOpacity onPress={this.props.onSkillsClick}>
           <GSBackground source={images.skills.bg[image]} />
           <GSCircle {...LinearGradientProps} >
-            <GSIcon source={{ uri: 'data:image/png;base64,' + icon }} />
+            <SkillIcon icon={icon} />
           </GSCircle>
         </TouchableOpacity>
         <TouchableOpacity onPress={this.props.onSkillsClick}>
@@ -46,12 +46,6 @@ export default class skill extends React.Component<Props, State> {
 const GSBackground = glamor(Image)({
   height: 120,
   width: 120,
-});
-
-const GSIcon = glamor(Image)({
-  height: 100,
-  width: 100,
-  alignSelf: 'center',
 });
 
 const GSSkills = glamor.view({

@@ -5,6 +5,12 @@ import Skills from '../scenes/Skills';
 import Lessons from '../scenes/Lessons';
 import Questions from '../scenes/Questions';
 import Completion from '../scenes/Completion';
+import { StackNavigator } from 'react-navigation';
+
+const QuestionsNav = StackNavigator({
+  Questions: { screen: Questions },
+  Completion: { screen: Completion },
+});
 
 export default
   {
@@ -13,6 +19,5 @@ export default
     Courses: { screen: Courses },
     Skills: { screen: Skills },
     Lessons: { screen: Lessons },
-    Questions: { screen: Questions },
-    Completion: { screen: Completion },
+    Lesson: { screen: QuestionsNav },
   };

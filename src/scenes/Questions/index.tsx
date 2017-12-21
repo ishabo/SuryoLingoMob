@@ -1,9 +1,9 @@
 import React from 'react';
-import { Keyboard, Alert } from 'react-native';
+import { Keyboard, Alert, View, KeyboardAvoidingView } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
-import { evalAgainstAllAnswers, backToSkills, isReverseQuestion } from '../../helpers';
+import { navToSkills, evalAgainstAllAnswers, isReverseQuestion } from '../../helpers';
 import { connect } from 'react-redux';
 import { nextQuestionOrFinish, TQuestionType } from '../../services/questions/actions';
 import {
@@ -18,6 +18,7 @@ import I18n from '../../i18n';
 import { NextButton, QuestionBody, EvaluationBanner } from './components';
 import { GSBody, GSFooter, GSHeader, GSIcon, GSProgress } from './index.styles';
 import { IProps, IState, TAnswer } from './index.types';
+import { NavigationActions } from 'react-navigation';
 
 class Questions extends React.Component<IProps, IState> {
 
@@ -26,6 +27,9 @@ class Questions extends React.Component<IProps, IState> {
     progress: 0,
     answerCorrect: null,
   };
+
+  private userHasAnswered = () =>
+    this.state.answerCorrect !== null
 
   static navigationOptions = {
     header: null,
@@ -37,7 +41,7 @@ class Questions extends React.Component<IProps, IState> {
   };
 
   collectAnswer = (answer: TAnswer) => {
-    if (this.state.answerCorrect === null) {
+    if (!this.userHasAnswered()) {
       this.setState({ answer });
     }
   }
@@ -46,7 +50,7 @@ class Questions extends React.Component<IProps, IState> {
     && this.actionNeeded()
 
   actionNeeded = () => this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE';
-  needsEvaluation = () => this.actionNeeded() && this.state.answerCorrect === null;
+  needsEvaluation = () => this.actionNeeded() && !this.userHasAnswered();
 
   componentWillMount () {
     this.setState({ progress: this.props.calcProress });
@@ -78,6 +82,15 @@ class Questions extends React.Component<IProps, IState> {
     this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
   }
 
+  private backToSkills = () => {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      key: null,
+      actions: [navToSkills(this.props.course)],
+    });
+    this.props.navigation.dispatch(resetAction);
+  }
+
   existQuestions = () => {
     Alert.alert(
       I18n.t('questions.exist.areYouSure'),
@@ -90,7 +103,7 @@ class Questions extends React.Component<IProps, IState> {
         },
         {
           text: I18n.t('questions.exist.ok'), onPress: () => {
-            backToSkills(this.props.navigation);
+            this.backToSkills();
           },
         },
       ],
@@ -100,10 +113,9 @@ class Questions extends React.Component<IProps, IState> {
 
   renderEvaluationBanner () {
     const { questionType, phrase, translation } = this.props.currentQuestion;
-    return this.state.answerCorrect !== null
+    return this.userHasAnswered()
       && <EvaluationBanner
         passed={this.state.answerCorrect}
-        answer={this.state.answer}
         correctAnswer={isReverseQuestion(questionType) ? phrase : translation} />;
   }
 
@@ -111,36 +123,40 @@ class Questions extends React.Component<IProps, IState> {
     const question = this.props.currentQuestion;
     return question && (
       <Container>
-        {this.renderEvaluationBanner()}
         <GSHeader>
           <GSProgress>
             <ProgressBar
               progress={this.state.progress}
-              width={270}
+              width={300}
+              height={8}
               borderColor={Colors.lightGray}
-              color={Colors.green}
+              color={Colors.darkGreen}
               unfilledColor="#d3d3d3"
-              animated style={{ height: 5 }}
+              animated style={{ marginLeft: 10 }}
             />
           </GSProgress>
           <GSIcon name="close" onPress={this.existQuestions} />
         </GSHeader>
-        <GSBody>
-          <QuestionBody
-            course={this.props.course}
-            question={this.props.currentQuestion}
-            collectAnswer={this.collectAnswer}
-          />
-        </GSBody>
-        <GSFooter>
-          <NextButton onPress={this.evaluateOrNext} disabled={this.submitAllowed()} text={
-            this.needsEvaluation()
-              ? I18n.t('questions.submit')
-              : I18n.t('questions.continue')
-          } />
-        </GSFooter>
-      </Container>
-    ) || <Container />;
+        <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+          {this.renderEvaluationBanner()}
+          <GSBody>
+            <QuestionBody
+              course={this.props.course}
+              question={this.props.currentQuestion}
+              collectAnswer={this.collectAnswer}
+              userHasAnswered={this.userHasAnswered()}
+            />
+          </GSBody>
+          <GSFooter>
+            <NextButton onPress={this.evaluateOrNext} disabled={this.submitAllowed()} text={
+              this.needsEvaluation()
+                ? I18n.t('questions.submit')
+                : I18n.t('questions.continue')
+            } />
+          </GSFooter>
+        </KeyboardAvoidingView>
+      </Container >
+    ) || <View />;
   }
 }
 

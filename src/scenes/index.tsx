@@ -24,16 +24,11 @@ const reduxStore = new Store();
 const store = reduxStore.getStore();
 const persistor = reduxStore.persistStore();
 
-export default class extends React.Component {
-  render () {
-    return (
-      <Provider store={store}>
-        <PersistGate persistor={persistor}
-          loading={<View />}
-        >
-          <Navigation />
-        </PersistGate>
-      </Provider>
-    );
-  }
-}
+export default () =>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}
+      loading={<View />}
+    >
+      <Navigation />
+    </PersistGate>
+  </Provider>;

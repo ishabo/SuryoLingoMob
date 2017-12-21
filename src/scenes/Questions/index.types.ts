@@ -12,6 +12,7 @@ export interface IState {
 
 export interface IAnswerProps {
   collectAnswer: (answer: TAnswer) => void;
+  userHasAnswered: boolean;
 }
 
 export interface IProps {
