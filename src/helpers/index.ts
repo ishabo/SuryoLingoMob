@@ -7,7 +7,7 @@ import { TQuestionType } from '../services/questions/actions/index';
 import { TTargetLangs, TLearnerLangs } from '../services/courses/reducers';
 
 export const isReverseQuestion = (questionType: TQuestionType) =>
-  /_REVERSE$/.test(questionType);
+  /_REVERSE$/.test(questionType) || questionType === 'DICTATION';
 
 interface IProps {
   sentence: string;

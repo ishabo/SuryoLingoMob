@@ -127,7 +127,7 @@ class Questions extends React.Component<IProps, IState> {
           <GSProgress>
             <ProgressBar
               progress={this.state.progress}
-              width={300}
+              width={280}
               height={8}
               borderColor={Colors.lightGray}
               color={Colors.darkGreen}

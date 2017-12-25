@@ -28,6 +28,8 @@ export const evalAgainstAllAnswers = (
   answers: string[], correctAnswers: string[], filterLetters,
 ): boolean => {
 
+  console.log(`Evaluating ${answers.join(', ')} against ${correctAnswers.join(', ')} `);
+
   let correctAnswer: string;
   let answer: string;
 

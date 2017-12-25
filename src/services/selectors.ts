@@ -2,8 +2,13 @@ import { IInitialState } from './reducers';
 import { ICourse } from './courses/reducers';
 import { ISkill, ILesson } from './skills/reducers';
 import cloneDeep from 'clone-deep';
-
 import * as questions from './questions/selectors';
+
+const allLessons = (skills: ISkill[]) =>
+  [].concat.apply([], skills.map((skill: ISkill) => skill.lessons));
+
+const selectLesson = (skills: ISkill[], lessonId: string) =>
+  allLessons(skills).find((lesson: ILesson) => lesson.id === lessonId);
 
 export const getActiveCourse = (state: IInitialState): ICourse =>
   state.courses.find((course: ICourse) => course.active);
@@ -29,12 +34,6 @@ export const getCurrentQuestion = (state: IInitialState) =>
 export const allCorrectAnswers = (state: IInitialState, questionId: string) =>
   questions.allCorrectAnswers(state.questions, questionId);
 
-const allLessons = (skills: ISkill[]) =>
-  [].concat.apply([], skills.map((skill: ISkill) => skill.lessons));
-
-const selectLesson = (skills: ISkill[], lessonId: string) =>
-  allLessons(skills).find((lesson: ILesson) => lesson.id === lessonId);
-
 export const getLessonInProgress = (state: IInitialState): ILesson =>
   selectLesson(state.skills, state.progress.lessonInProgress);
 
@@ -44,15 +43,9 @@ export const getSkillsByUnit = (unit: number) => (state: IInitialState): ISkill[
 export const getSkillInProgress = (state: IInitialState): ISkill => {
   const lessonId = state.progress.lessonInProgress;
 
-  const skillInProgress = state.skills.find((skill: ISkill) =>
+  return state.skills.find((skill: ISkill) =>
     skill.lessons.find((skillLesson: ILesson) => skillLesson.id === lessonId) !== void (0),
   );
-
-  if (!skillInProgress) {
-    console.error('No skill found for ' + lessonId);
-  }
-
-  return skillInProgress;
 };
 
 export const getSkillProgress = (state: IInitialState): ISkill[] => {

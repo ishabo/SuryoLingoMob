@@ -23,7 +23,7 @@ export interface IState {
 export interface IProps extends IAnswerProps {
   phrase: string;
   translation: string;
-  otherCorrectAnswers: string[];
+  incorrectChoices: string[];
   reverse: boolean;
 }
 
@@ -40,9 +40,9 @@ export default class WordSelection extends React.Component<IProps, IState> {
 
   constructor(props: IProps) {
     super(props);
-    const { reverse, phrase, translation, otherCorrectAnswers } = this.props;
+    const { reverse, phrase, translation, incorrectChoices } = this.props;
     const answerWords = (reverse ? phrase : translation).split(' ');
-    const wordsToShuffle = answerWords.concat(otherCorrectAnswers);
+    const wordsToShuffle = answerWords.concat(incorrectChoices);
     console.log(wordsToShuffle);
     const shuffledSentenceArray = ensureShuffeled(wordsToShuffle);
     const shuffledWords = shuffledSentenceArray.map((word: string) =>
