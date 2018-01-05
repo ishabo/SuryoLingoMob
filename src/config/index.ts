@@ -108,5 +108,9 @@ export default {
   apiHost: `${HOST}/v${API_VERSION}`,
   lessonXP: 100,
   repeatedLessonXP: 50,
+  sInfoOptions: {
+    keychainService: 'SuryoLingoKeyChain',
+    sharedPreferencesName: 'SuryoLingoKeyPrefs',
+  },
 };
 

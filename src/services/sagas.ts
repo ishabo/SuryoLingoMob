@@ -45,5 +45,9 @@ export default function* rootSagas(): IterableIterator<any> {
       profile.actions.types.CREATE_PROFILE,
       profile.sagas.createProfile,
     ),
+    takeLatest(
+      profile.actions.types.SAVE_PROFILE_AND_ACCESS_TOKEN,
+      profile.sagas.saveProfileAndAccessToken,
+    ),
   ]);
 }

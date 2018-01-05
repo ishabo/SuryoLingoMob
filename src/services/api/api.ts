@@ -3,13 +3,14 @@ import * as Exceptions from '../exceptions';
 import { isEmpty } from 'lodash';
 import { THeaders, TErrors, TMethod } from './index';
 import changeCase from 'change-object-case';
+import { getTokenFromKeychain } from './access';
 
 let userToken: string = null;
 let origin: string = null;
 
-export const getUserToken = () => {
+export const getUserToken = async () => {
   if (!userToken) {
-    throw new Error('No token found');
+    setUserToken(await getTokenFromKeychain());
   }
   return userToken;
 };
@@ -88,8 +89,17 @@ export const createApi = (options: IApiOptions) => {
           message: problems[response.problem] || '',
           report: false,
         });
-      case 400:
+      case 401:
+        throw Exceptions.create({
+          response,
+          action,
+          name: 'INVALID_TOKEN',
+          message: statusErrors[response.status] || '',
+          report: false,
+        });
       case 404:
+      case 400:
+      case 409:
       default:
         throw Exceptions.create({
           response,
@@ -122,8 +132,10 @@ export const createApi = (options: IApiOptions) => {
 
       const action = async () => {
         let args = [url];
+
         if (!isEmpty(rest)) {
-          args = (<any>Object).values(rest).filter((arg: any) => arg !== null);
+          const filteredRest = (<any>Object).values(rest).filter((arg: any) => arg !== null);
+          args = args.concat(filteredRest);
         }
 
         console.log(

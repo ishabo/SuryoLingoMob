@@ -6,7 +6,7 @@ export const initialState: IProfile = {};
 export const reducer = (state: IProfile = initialState, action: IProfileAction) => {
   switch (action.type) {
     case types.SAVE_PROFILE:
-      return { ...state, ...action.payload };
+      return action.data;
     default:
       return state;
   }

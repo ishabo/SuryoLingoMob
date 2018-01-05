@@ -1,10 +1,9 @@
 export {
   setApiOrigin,
-  getApiOrigin,
+  setUserToken,
 } from './api';
 
-import { createApi } from './api';
-import { getUserToken } from './access';
+import { createApi, getUserToken } from './api';
 
 export type TErrors = IIndex<string>;
 export type THeaders = IDictionary<string>;
@@ -28,7 +27,7 @@ export const create = (headers?: THeaders, errors?: TErrors): IApiInstance => {
     let response;
     try {
       const authorizationHeader = {
-        Authorization: `Token token=${getUserToken()}`,
+        Authorization: `Token token=${await getUserToken()}`,
       };
       response = await api.call(method, url, authorizationHeader, ...args);
       response = response ? response.data : null;

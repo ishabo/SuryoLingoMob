@@ -14,14 +14,33 @@ export interface IProfile {
 
 export interface IProfileAction {
   type: string;
-  payload?: IProfilePayload;
+  payload?: IFetchedProfileData;
+  data?: IProfile;
   courseId: ICourse['id'];
+}
+
+export interface IDeviceInfo {
+  deviceId: string;
+  deviceName: string;
+  appVersion: string;
+  phoneModel: string;
+  deviceLocale: string;
+  deviceCountry: string;
+  timeZone: string;
+  apiLevel?: number;
+  firstInstallTime: number;
+  lastUpdateTime: number;
 }
 
 export interface IProfilePayload {
   name?: string;
   email?: string;
   password?: string;
+  deviceInfo?: IDeviceInfo;
+}
+
+export interface IFetchedProfileData extends IProfile {
+  apiKey?: string;
 }
 
 export {

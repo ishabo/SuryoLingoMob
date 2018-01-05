@@ -5,10 +5,12 @@ import * as dictionaries from 'services/dictionaries';
 import * as exceptions from 'services/exceptions';
 import { NavigationActions } from 'react-navigation';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
+import * as profile from 'services/profile';
 
 export function* fetchCourses(): IterableIterator<any> {
   yield put(setLoadingOn());
   try {
+    yield put(profile.actions.createProfile());
     const response = yield call(courses.api.getCourses);
     yield put(courses.actions.saveCourses(response));
     yield put(NavigationActions.navigate({ routeName: 'Courses' }));

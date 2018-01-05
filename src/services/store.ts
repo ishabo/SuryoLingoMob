@@ -12,7 +12,7 @@ const config = {
   storage,
   key: 'root',
   stateReconciler: true,
-  blacklist: ['nav', 'exceptions'],
+  blacklist: ['api', 'nav', 'exceptions'],
 };
 
 const reducer = persistReducer(config, rootReducer);

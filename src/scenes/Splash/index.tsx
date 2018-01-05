@@ -46,7 +46,7 @@ class Splash extends React.Component<IProps, IState> {
     if (!activeCourse) {
       setTimeout(() => {
         this.props.fetchCourses();
-      }, 2000);
+      },         2000);
     } else {
       navigation.navigate('Skills');
     }

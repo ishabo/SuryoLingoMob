@@ -75,7 +75,6 @@ class Lessons extends React.Component<IProps, IState> {
   }
 
   private renderCards ({ item: lesson, _ }) {
-    // console.warn(`${lesson.newWords} - ${index}`);
     return <Lesson
       skill={this.props.navigation.state.params.skill}
       lesson={lesson}
