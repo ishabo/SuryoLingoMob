@@ -7,11 +7,6 @@ export const types = {
   FINISH_LESSON: `${namespace}/FINISH_LESSON`,
 };
 
-export interface ILessonDoneParams {
-  lessonId: string;
-  lessonXP: number;
-}
-
 export const syncProgress = () => ({
   type: types.SYNC_PROGRESS,
 });

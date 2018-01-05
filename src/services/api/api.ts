@@ -59,6 +59,9 @@ export const createApi = (options: IApiOptions) => {
     baseURL: getApiOrigin(),
     timeout: 60000,
     headers: {
+      agentOptions: {
+        rejectUnauthorized: false,
+      },
       Accept: 'application/json',
       'Content-Type': 'application/json',
       ...headers,

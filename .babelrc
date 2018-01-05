@@ -2,5 +2,16 @@
   "presets": [
     "react-native",
     "react-native-dotenv"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./artifacts"
+        ],
+        "cwd": "babelrc"
+      }
+    ]
   ]
 }

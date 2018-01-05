@@ -1,4 +1,4 @@
-import { IQuestion } from '../reducers';
+import { IQuestion } from '../';
 
 const namespace = 'SuryoLingo/Questions';
 export type TQuestionType = string | 'passed' | 'failed';

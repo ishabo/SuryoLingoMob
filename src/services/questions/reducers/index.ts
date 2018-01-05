@@ -1,36 +1,5 @@
 import { types, TQuestionType } from '../actions';
-
-export type TQuestionType = string | 'NEW_WORD_OR_PHRASE'
-  | 'TRANSLATION' | 'TRANSLATION_REVERSE'
-  | 'WORD_SELECTION' | 'WORD_SELECTION_REVERSE'
-  | 'MULTI_CHOICE' | 'MULTI_CHOICE_REVERSE'
-  | 'PICTURE_SELECTION' | 'DICTATION';
-
-export interface IQuestion {
-  id: string;
-  lessonId: string;
-  questionType: TQuestionType;
-  phrase: string;
-  soundFiles: string[];
-  translation: string;
-  otherCorrectAnswers?: string[];
-  incorrectChoices?: string[];
-}
-
-export interface IQuestionsAction {
-  type: string;
-  questionId?: string;
-  lessonId?: string;
-  status?: TQuestionType;
-  payload?: IQuestion[];
-}
-
-export interface IQuestions {
-  items: IQuestion[];
-  pendingQuestions: string[];
-  passedQuestions: string[];
-  failedQuestions: string[];
-}
+import { IQuestions, IQuestion, IQuestionsAction } from '../';
 
 export const initialState: IQuestions = {
   items: [],

@@ -1,6 +1,6 @@
 import { reducer as courseReducer } from './index';
 import { types } from '../actions';
-import courses from '../../../data/dummy/courses';
+import courses from 'data/dummy/courses';
 
 describe('course reducer', () => {
 

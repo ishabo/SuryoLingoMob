@@ -1,5 +1,10 @@
 const colors = {
+  // white
   white: '#ffffff',
+  darkWhite: '#919191',
+
+  // black
+  lightBlack: '#1C1C1C',
   black: '#000000',
 
   // red

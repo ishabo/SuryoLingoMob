@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Container } from 'native-base';
-import I18n from '../../../../../i18n';
+import I18n from 'I18n';
 import TextArea from '../../TextArea';
-import { ICourse } from '../../../../../services/courses/reducers';
+import { ICourse } from 'services/courses';
 import { IAnswerProps } from '../../../index.types';
+import glamor from 'glamorous-native';
 
 interface IProps extends IAnswerProps {
   course: ICourse;
@@ -17,19 +17,17 @@ export default class Translation extends React.Component<IProps> {
     const translateTo: string = reverse ? 'targetLanguage' : 'learnersLanguage';
     const placeholder = I18n.t(`questions.translateTo.${course[translateTo].shortName}`);
     return (
-      <Container style={styles.container}>
+      <GSContainer>
         <TextArea
           placeholder={placeholder}
           captureInput={collectAnswer}
           showSyriacKeyboard={reverse && !userHasAnswered}
         />
-      </Container>
+      </GSContainer>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'stretch',
-  },
+const GSContainer = glamor(Container)({
+  alignSelf: 'stretch',
 });

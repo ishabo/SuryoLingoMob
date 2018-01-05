@@ -1,4 +1,4 @@
-import { ICourse } from '../reducers';
+import { ICourse } from '../';
 
 const namespace = 'SuryoLingo/courses';
 

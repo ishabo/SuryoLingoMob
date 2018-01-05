@@ -1,14 +1,9 @@
 import React from 'react';
 import { Platform, Keyboard } from 'react-native';
-import {
-  Container,
-  Input,
-} from 'native-base';
 
-import glamor from 'glamorous-native';
-import Colors from '../../../../styles/colors';
 import CustomKeyboard from '../CustomKeyboard';
-import Config from '../../../../config';
+import Config from 'config/';
+import { GSContainer, GSContent, GSTextArea, GSTextAreaContainer } from './index.styles';
 
 interface IProps {
   placeholder: string;
@@ -105,34 +100,3 @@ export default class TextArea extends React.Component<IProps, IState> {
     );
   }
 }
-
-const GSContainer = glamor(Container)({
-  alignSelf: 'stretch',
-});
-
-const GSContent = glamor.view({
-  marginTop: 10,
-  justifyContent: 'flex-start',
-  flex: 1,
-});
-
-const GSTextAreaContainer = glamor.view({
-  height: 140,
-  marginBottom: 10,
-  borderWidth: 1,
-  borderColor: Colors.gray,
-  padding: 5,
-});
-
-const GSTextArea = glamor(Input)<{ rtl: boolean }>(
-  {
-    textAlign: 'right',
-    backgroundColor: Colors.lightGray,
-    textAlignVertical: 'top',
-  },
-  (props) => {
-    return (props.rtl) ? {
-      writingDirection: 'rtl',
-    } : {};
-  },
-);

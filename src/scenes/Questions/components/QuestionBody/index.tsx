@@ -1,40 +1,111 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Button } from 'native-base';
-import { IQuestion } from '../../../../services/questions/reducers/index';
+import { KeyboardAvoidingView, Text, WebView } from 'react-native';
+import { Button, Icon } from 'native-base';
+import { IQuestion } from 'services/questions';
+import * as skill from 'services/skills';
+import * as course from 'services/courses';
 import { StudyPhrase } from '../';
-import { isReverseQuestion, toGarshoni } from '../../../../helpers';
+import { isReverseQuestion, toGarshoni, hintify } from 'helpers';
+import I18n from 'I18n';
+import glamor from 'glamorous-native';
+import { TAnswer } from '../../index.types';
+import { HOST } from 'react-native-dotenv';
 import MultiChoice from './MultiChoice';
 import Translation from './Translation';
 import Dictation from './Dictation';
 import WordSelection from './WordSelection';
 import NewWordOrPhrase from './NewWordOrPhrase';
-import { ICourse } from '../../../../services/courses/reducers/index';
-import { TAnswer } from '../../index.types';
-import { HOST } from 'react-native-dotenv';
-import I18n from '../../../../i18n';
-import glamor from 'glamorous-native';
+import { isEmpty } from 'lodash';
+import Modal from 'react-native-modal';
+import shortid from 'shortid';
+import Colors from 'styles/colors';
+import { IDictionary } from 'services/dictionaries';
 
 interface IProps {
   question: IQuestion;
-  course: ICourse;
+  course: course.ICourse;
+  skill: skill.ISkill;
   collectAnswer (answer: TAnswer): void;
   userHasAnswered: boolean;
+  hints: IDictionary[];
 }
 
 interface IState {
   garshoniToggle: boolean;
+  modalOn: boolean;
 }
 
-export default class extends React.Component<IProps, IState> {
+const SwitchOption = (props: {
+  onPress: () => void;
+  success?: boolean;
+  bordered?: boolean;
+  light?: boolean;
+  text: string;
+}) =>
+  <GSSwitch
+    rounded
+    {...props}
+  >
+    <Text>{props.text}</Text>
+  </GSSwitch>;
+
+class QuestionBody extends React.Component<IProps, IState> {
 
   state = {
     garshoniToggle: false,
+    modalOn: false,
   };
 
   private switchGarshoni = () => {
     this.setState({ garshoniToggle: !this.state.garshoniToggle });
   }
+
+  private renderGarshoniSwitch = () => {
+
+    if (isReverseQuestion(this.props.question.questionType)) {
+      return null;
+    }
+
+    const buttonProps = this.state.garshoniToggle ?
+      { success: true } : { light: true };
+
+    return <SwitchOption
+      key={shortid.generate()}
+      onPress={() => { this.switchGarshoni(); }}
+      text={I18n.t('questions.garshoni')}
+      {...buttonProps}
+    />;
+  }
+
+  private renderDescriptionSwitch = () => {
+    if (isEmpty(this.props.skill.description)) {
+      return null;
+    }
+    return <SwitchOption
+      key={shortid.generate()}
+      onPress={() => { this.toggleSkillDescription(true); }}
+      text={this.props.skill.name}
+      light
+    />;
+  }
+
+  private listOptions = () =>
+    [
+      this.renderDescriptionSwitch(),
+      this.renderGarshoniSwitch(),
+    ].filter(n => n)
+
+  private toggleSkillDescription = (modalOn: boolean) =>
+    this.setState({ modalOn })
+
+  private renderModal = () =>
+    <Modal isVisible={this.state.modalOn} style={{ borderRadius: 30 }}>
+      <GSIcon name="close" onPress={() => this.toggleSkillDescription(false)} />
+      <WebView
+        source={{ html: this.props.skill.description }}
+        scalesPageToFit
+      />
+    </Modal>
 
   render () {
     const { question, course, collectAnswer, userHasAnswered } = this.props;
@@ -71,28 +142,27 @@ export default class extends React.Component<IProps, IState> {
 
     const sentence = this.state.garshoniToggle ? toGarshoni({
       sentence: question.phrase,
-      targetLang: 'cl-ara',
-      sentenceLang: 'cl-syr',
-    }) : question.phrase;
+      targetLang: course.learnersLanguage.shortName,
+      sentenceLang: course.targetLanguage.shortName,
+    }) : hintify(question.phrase, this.props.hints);
 
-    const buttonProps = this.state.garshoniToggle ?
-      { success: true } : { bordered: true };
-    return <View>
-      <GSOptions>
-        {reverse || <GSSwitch
-          onPress={this.switchGarshoni}
-          rounded
-          {...buttonProps}
-        >
-          <Text>{I18n.t('questions.garshoni')}</Text>
-        </GSSwitch>}
-      </GSOptions>
+    const options = this.listOptions();
+
+    return <KeyboardAvoidingView
+      style={{ flex: 1, justifyContent: 'flex-start' }}>
+      {options.length > 0 &&
+        <GSOptions>
+          {options}
+        </GSOptions>
+      }
 
       <StudyPhrase
         sentence={reverse ? question.translation : sentence}
         sound={{ soundTrack: `${HOST}/sound/${question.soundFiles[0]}.mp3` }}
         showSentence={showPhraseInHeader}
+        lang={course[reverse ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs}
       />
+
       <QuestionComponent {...question}
         phrase={sentence}
         collectAnswer={collectAnswer}
@@ -100,19 +170,34 @@ export default class extends React.Component<IProps, IState> {
         course={course}
         reverse={reverse}
       />
-    </View>;
+
+      {this.renderModal()}
+    </KeyboardAvoidingView>;
   }
 }
 
 const GSSwitch = glamor(Button)({
   paddingVertical: 0,
-  alignItems: 'center',
+  marginHorizontal: 5,
   paddingHorizontal: 10,
   height: 30,
 });
 
 const GSOptions = glamor.view({
-  position: 'absolute',
-  right: 0,
-  top: -30,
+  flexDirection: 'row',
+  justifyContent: 'flex-end',
+  alignSelf: 'stretch',
+  marginBottom: 10,
+  alignItems: 'center',
 });
+
+export const GSIcon = glamor(Icon)({
+  position: 'absolute',
+  right: 15,
+  top: 10,
+  fontSize: 40,
+  color: Colors.black,
+  zIndex: 100,
+});
+
+export default QuestionBody;

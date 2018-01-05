@@ -1,22 +1,49 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { fetchCourses, switchCourse } from './courses/sagas';
-import { fetchSkills } from './skills/sagas';
-import { enterLesson, finishLesson } from './progress/sagas';
-import { fetchQuestions, nextQuestionOrFinish } from './questions/sagas';
 
-import { types as courseTypes } from './courses/actions';
-import { types as skillTypes } from './skills/actions';
-import { types as questionTypes } from './questions/actions';
-import { types as progressTypes } from './progress/actions';
+import * as skills from './skills';
+import * as progress from './progress';
+import * as profile from './profile';
+import * as courses from './courses';
+import * as dictionaries from './dictionaries';
+import * as questions from './questions';
 
 export default function* rootSagas(): IterableIterator<any> {
   yield all([
-    takeLatest(courseTypes.FETCH_COURSES, fetchCourses),
-    takeLatest(courseTypes.SWITCH_COURSE, switchCourse),
-    takeLatest(progressTypes.ENTER_LESSON, enterLesson),
-    takeLatest(progressTypes.FINISH_LESSON, finishLesson),
-    takeLatest(skillTypes.FETCH_SKILLS, fetchSkills),
-    takeLatest(questionTypes.FETCH_QUESTIONS, fetchQuestions),
-    takeLatest(questionTypes.NEXT_QUESTION_OR_FINISH, nextQuestionOrFinish),
+    takeLatest(
+      courses.actions.types.FETCH_COURSES,
+      courses.sagas.fetchCourses,
+    ),
+    takeLatest(
+      courses.actions.types.SWITCH_COURSE,
+      courses.sagas.switchCourse,
+    ),
+    takeLatest(
+      progress.actions.types.ENTER_LESSON,
+      progress.sagas.enterLesson,
+    ),
+    takeLatest(
+      progress.actions.types.FINISH_LESSON,
+      progress.sagas.finishLesson,
+    ),
+    takeLatest(
+      skills.actions.types.FETCH_SKILLS,
+      skills.sagas.fetchSkills,
+    ),
+    takeLatest(
+      dictionaries.actions.types.FETCH_DICTIONARIES,
+      dictionaries.sagas.fetchDictionaries,
+    ),
+    takeLatest(
+      questions.actions.types.FETCH_QUESTIONS,
+      questions.sagas.fetchQuestions,
+    ),
+    takeLatest(
+      questions.actions.types.NEXT_QUESTION_OR_FINISH,
+      questions.sagas.nextQuestionOrFinish,
+    ),
+    takeLatest(
+      profile.actions.types.CREATE_PROFILE,
+      profile.sagas.createProfile,
+    ),
   ]);
 }

@@ -1,11 +1,11 @@
 import { IException, IAction } from '../';
 import { types } from '../actions';
 
-const initialState: ReadonlyArray<IException> = [];
+export const initialState: IException[] = [];
 
 let exceptionId = 0;
 
-export const exceptionsReducer = (
+export const reducer = (
   state: ReadonlyArray<IException> = initialState,
   action: IAction,
 ) => {

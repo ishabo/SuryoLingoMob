@@ -1,5 +1,5 @@
 import glamor from 'glamorous-native';
-import Colors from '../../../../styles/colors';
+import Colors from 'styles/colors';
 
 const height = 120;
 

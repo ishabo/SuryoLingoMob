@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Container } from 'native-base';
-import I18n from '../../../../../i18n';
-import TextArea from '../../TextArea';
+import { TextArea } from '../../';
 import { IAnswerProps } from '../../../index.types';
+import I18n from 'I18n';
 
 interface IProps extends IAnswerProps {
   reverse: boolean;

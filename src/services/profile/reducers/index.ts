@@ -1,18 +1,5 @@
 import { types } from '../actions';
-import { ICourse } from '../../courses/reducers';
-
-export interface IProfile {
-  id?: string;
-  name?: string;
-  email?: string;
-  userXP?: number;
-}
-
-export interface IProfileAction {
-  type: string;
-  payload?: IProfile[];
-  courseId: ICourse['id'];
-}
+import { IProfile, IProfileAction } from '../';
 
 export const initialState: IProfile = {};
 

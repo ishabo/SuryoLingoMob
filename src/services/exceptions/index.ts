@@ -1,5 +1,5 @@
 import { Store, Action } from 'redux';
-import reducer from './reducers';
+import * as reducers from './reducers';
 import * as actions from './actions';
 
 export { getApplicationExceptions, getInvalidExceptions, getLatestException } from './reducers';
@@ -55,5 +55,5 @@ export const create = (payload: IExceptionPayload): IExceptionPayload => {
 
 export {
   actions,
-  reducer,
+  reducers,
 };

@@ -1,49 +1,34 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { Container } from 'native-base';
-import { ICourse } from '../../services/courses/reducers';
+import { ScrollView } from 'react-native';
+import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
-import { switchCourse } from '../../services/courses/actions';
-import glamor from 'glamorous-native';
-import I18n from '../../i18n';
-import Colors from '../../styles/colors';
+import { switchCourse } from 'services/courses/actions';
+
+import {
+  GSContainer,
+  GSCourse,
+  GSCourseSubTitle,
+  GSCourseTitle,
+  GSAnimatable,
+} from './index.styles';
+
+import I18n from 'I18n';
 
 export interface IState { }
 
-const GSContainer = glamor(Container)({
-  padding: 20,
-  display: 'flex',
-});
-
-const GSCourseTitle = glamor.text({
-  fontSize: 30,
-  alignSelf: 'center',
-  textAlign: 'center',
-});
-
-const GSCourseSubTitle = glamor.text({
-  fontSize: 20,
-  alignSelf: 'center',
-  textAlign: 'center',
-});
-
-const GSCourseButton = glamor(TouchableOpacity)({
-  borderWidth: 0.3,
-  borderRadius: 10,
-  padding: 20,
-  shadowOffset: { width: 4, height: 4 },
-  shadowColor: 'black',
-  shadowOpacity: 0.2,
-  backgroundColor: Colors.lightBlue,
-});
-
 class Courses extends React.Component<any, IState> {
+
+  private cards: any;
 
   static navigationOptions = {
     title: I18n.t('courses.title'),
     headerLeft: null,
     headerRight: null,
   };
+
+  componentDidMount () {
+    this.cards.fadeInUp();
+  }
 
   private targetLanguage = (course: ICourse) =>
     I18n.t(`courses.languages.long.${course.targetLanguage.shortName}`)
@@ -52,30 +37,39 @@ class Courses extends React.Component<any, IState> {
   private learningLanguage = (course: ICourse) =>
     I18n.t(`courses.languages.long.${course.learnersLanguage.shortName}`)
 
-  private renderCourseCard = (course: ICourse) =>
-    <GSCourseButton key={course.id} onPress={() => this.props.switchCourse(course.id)}>
-      <GSCourseTitle>
+  private renderCourseCard = (course: ICourse) => {
+    const targetLang = course.targetLanguage.shortName as TLangs;
+    const learnersLang = course.learnersLanguage.shortName as TLangs;
+    return <GSCourse
+      key={course.id} onPress={() => this.props.switchCourse(course.id)}>
+      <GSCourseTitle lang={targetLang}>
         {course.targetLanguage.name}
       </GSCourseTitle>
-      <GSCourseSubTitle>
+      <GSCourseSubTitle lang={learnersLang}>
         {I18n.t('courses.learnLanguage', {
           lang: this.targetLanguage(course),
         })}
       </GSCourseSubTitle>
-      <GSCourseSubTitle>
+      <GSCourseSubTitle lang={learnersLang}>
         {I18n.t('courses.forSpeakersOfLanguage', {
           lang: this.learningLanguage(course),
         })}
       </GSCourseSubTitle>
-    </GSCourseButton>
+    </GSCourse>;
+  }
 
   private renderCourses = () =>
-    this.props.courses.map((course: ICourse) => this.renderCourseCard(course))
+    this.props.courses.map((course: ICourse) =>
+      this.renderCourseCard(course))
 
   render () {
     return (
       <GSContainer>
-        {this.renderCourses()}
+        <ScrollView>
+          <GSAnimatable innerRef={(c: Courses) => this.cards = c} >
+            {this.renderCourses()}
+          </GSAnimatable>
+        </ScrollView>
       </GSContainer>
     );
   }

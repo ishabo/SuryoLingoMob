@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
-import Config from '../../../../config';
-import { TTargetLangs, TLearnerLangs } from '../../../../services/courses/reducers';
-import { IInitialState } from '../../../../services/reducers';
-import { getActiveCourse } from '../../../../services/selectors';
+import Config from 'config/';
+import { TTargetLangs, TLearnerLangs } from 'services/courses';
+import { IInitialState } from 'services/reducers';
+import { getActiveCourse } from 'services/selectors';
 
 interface IProps {
   sentence: string;

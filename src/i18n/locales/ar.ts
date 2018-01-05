@@ -1,9 +1,12 @@
 export default {
   skillsList: 'المهارات اللغة {{lang}}',
+  loading: 'الرجاء انتظر قليلاً',
   chooseYourWay: 'اختر طريقك',
   alert: {
-    cancel: 'إلغاء',
-    ok: 'حسناً',
+    NETWORK_ERROR: {
+      title: 'حصل خطأ في الشبكة',
+      message: 'تأكد من ان جهازك متصل في الشبكة.',
+    },
   },
   levels: {
     1: 'المرحلة الأولى',
@@ -30,6 +33,8 @@ export default {
   },
   questions: {
     garshoni: 'جرشوني',
+    help: 'مساعدة',
+
     submit: 'أرسل الاجابة',
     continue: 'أكمل',
     exist: {
@@ -42,6 +47,7 @@ export default {
     translateTo: {
       'cl-ara': 'ترجم إلى العربية',
       'cl-syr': 'ترجم إلى السريانية',
+      'tor-syr': 'ترجم إلى الطورانية',
     },
     dictionation: 'اكتب بالسريانية كما تسمع',
     multiChoice: 'اختر الاجابات الصحيحة',
@@ -61,6 +67,8 @@ export default {
     },
     title: 'دروس - {{skill}}',
     instruction: 'اسحب يميناً وشمالاً للتنقل بين الدروس',
+    enterLesson: 'ادخل الى الدرس',
+    locked: 'الدرس مقفل',
   },
   courses: {
     title: 'الدورات الدراسية',
@@ -71,10 +79,13 @@ export default {
       long: {
         'cl-ara': 'العربية الفصيحة',
         'cl-syr': 'اللغة السريانية الآرامية الفصيحة',
+        'tor-syr': 'اللغة السريانية الآرامية باللهجة الطورانية',
+
       },
       short: {
         'cl-ara': 'العربية',
         'cl-syr': 'السريانية',
+        'tor-syr': 'الطورانية',
       },
     },
   },

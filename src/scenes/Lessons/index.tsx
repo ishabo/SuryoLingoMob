@@ -2,17 +2,32 @@ import React from 'react';
 import { Container, Text } from 'native-base';
 import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
-import I18n from '../../i18n';
+import I18n from 'I18n';
 import * as Animatable from 'react-native-animatable';
-import { ISkill, ILesson } from '../../services/skills/reducers';
-import { enterLesson } from '../../services/progress/actions';
-import { IInitialState } from '../../services/reducers';
-import { getSkillLessons } from '../../services/selectors';
+import { ISkill, ILesson } from 'services/skills';
+import { enterLesson } from 'services/progress/actions';
+import { IInitialState } from 'services/reducers';
+import { getSkillLessons } from 'services/selectors';
 import Lesson from './components/Lesson';
 import { SkillIcon } from '../Skills/components';
 import glamor from 'glamorous-native';
+import { NavigationScreenProp } from 'react-navigation';
 
-class Lessons extends React.Component<any, any> {
+interface IProps {
+  getLessons (skillId: string): ILesson[];
+  enterLesson (): void;
+  navigation: NavigationScreenProp<any, any>;
+}
+
+interface IState {
+  snapped: boolean;
+}
+
+class Lessons extends React.Component<IProps, IState> {
+
+  state = {
+    snapped: false,
+  };
 
   private carousal: any;
   private cards: any;
@@ -21,38 +36,50 @@ class Lessons extends React.Component<any, any> {
     title: I18n.t('lessons.title', { skill: navigation.state.params.skill.name }),
   })
 
-  private getNumOfActiveLessons = (): number => {
-    return this.props.getLessons(this.getSkill().id).filter((lesson: ILesson) =>
-      lesson.finished).length;
-  }
+  private getNumOfActiveLessons = (): number => this.getFinishedLesson().length;
+
+  private getFinishedLesson = (): ILesson[] =>
+    this.props.getLessons(this.getSkill().id).filter((lesson: ILesson) =>
+      lesson.finished)
 
   private getSkill = () => this.props.navigation.state.params.skill;
   private totalLessons = () => this.getSkill().lessons.length;
 
   componentDidMount () {
-    this.cards.fadeInUp();
-    console.log('Completion');
-    setInterval(this.snapToActive, 500);
-  }
-
-  private snapToActive = () => {
-    if (this.carousal && this.carousal.currentIndex === 0) {
-      const itemIndex = this.getNumOfActiveLessons() === this.totalLessons()
-        ? this.totalLessons() - 1
-        : this.getNumOfActiveLessons();
-      this.carousal.snapToItem(itemIndex);
+    if (this.state.snapped === false) {
+      this.cards.fadeInUp();
+      setTimeout(this.snapToItem, 1000);
     }
   }
 
-  private isLessonActive = (index: number): boolean => {
-    return index <= this.getNumOfActiveLessons();
+  private snapToItem = () => {
+    if (this.carousal) {
+      this.setState({ snapped: true }, () => {
+        const itemIndex = this.getNumOfActiveLessons() === this.totalLessons()
+          ? this.totalLessons() - 1
+          : this.getNumOfActiveLessons();
+
+        this.carousal.snapToItem(itemIndex);
+      });
+    }
   }
 
-  renderCards ({ item: lesson, index }) {
+  private isLessonActive = (lesson: ILesson): boolean => {
+    if (lesson.finished || lesson.order === 1) {
+      return true;
+    } else {
+      const previousOrder = this.getFinishedLesson().find(
+        (l: ILesson) => l.order === (lesson.order - 1));
+      return previousOrder && previousOrder.finished;
+    }
+  }
+
+  private renderCards ({ item: lesson, _ }) {
+    // console.warn(`${lesson.newWords} - ${index}`);
     return <Lesson
       skill={this.props.navigation.state.params.skill}
       lesson={lesson}
-      active={this.isLessonActive(index)}
+      active={this.isLessonActive(lesson)}
       enterLesson={this.props.enterLesson}
     />;
   }
@@ -70,7 +97,7 @@ class Lessons extends React.Component<any, any> {
           <Text>{I18n.t('lessons.instruction')}</Text>
         </GSLessonInstruction>
         <GSAnimatable
-          innerRef={(c: Lessons) => this.cards = c} >
+          innerRef={(c: Lessons) => this.cards = c}>
           <Carousel
             ref={(c: Lessons) => this.carousal = c}
             data={this.props.getLessons(skill.id)}
@@ -106,7 +133,6 @@ const GSLessonInstruction = glamor.view({
 });
 
 const GSAnimatable = glamor(Animatable.View)({
-  flex: 2,
   alignSelf: 'center',
   justifyContent: 'center',
 });

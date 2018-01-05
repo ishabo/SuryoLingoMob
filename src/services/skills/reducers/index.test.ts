@@ -1,6 +1,6 @@
 import { reducer as skillReducer } from './index';
 import { types } from '../actions';
-import { skills } from '../../../data/dummy/skills';
+import { skills } from 'data/dummy/skills';
 import cloneDeep from 'clone-deep';
 
 import moment from 'moment';

@@ -1,5 +1,6 @@
 import glamor from 'glamorous-native';
-import Colors from '../../../../styles/colors';
+import Colors from 'styles/colors';
+import { View } from 'react-native';
 
 import {
   Container,
@@ -24,7 +25,7 @@ export const GSKeyText = glamor.text({
   color: Colors.white,
 });
 
-export const GSContent = glamor.view({
+export const GSContent = glamor(View, { displayName: 'GSContent' })({
   flexDirection: 'row',
   flexWrap: 'wrap',
   alignItems: 'flex-start',

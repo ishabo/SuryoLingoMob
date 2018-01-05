@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavigationScreenProp } from 'react-navigation';
-import I18n from '../../i18n';
-import config from '../../config';
+import I18n from 'I18n';
+import config from 'config/';
 import { connect } from 'react-redux';
-import { finishLesson } from '../../services/progress/actions';
-import { ILesson } from '../../services/skills/reducers';
+import { finishLesson } from 'services/progress/actions';
+import { ILesson } from 'services/skills';
 import { GSContainer, GSCongratMessage, GSXPGain } from './index.styles';
-import { IInitialState } from '../../services/reducers';
-import { getLessonInProgress } from '../../services/selectors';
+import { IInitialState } from 'services/reducers';
+import { getLessonInProgress } from 'services/selectors';
 
 interface IProps {
   navigation: NavigationScreenProp<any, any>;

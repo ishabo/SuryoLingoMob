@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Content, ListItem, Body, Text, CheckBox } from 'native-base';
 import { IAnswerProps } from '../../../index.types';
-import I18n from '../../../../../i18n';
+import I18n from 'I18n';
 import shortid from 'shortid';
 
 interface IProps extends IAnswerProps {

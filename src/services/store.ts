@@ -12,7 +12,7 @@ const config = {
   storage,
   key: 'root',
   stateReconciler: true,
-  blacklist: ['nav'],
+  blacklist: ['nav', 'exceptions'],
 };
 
 const reducer = persistReducer(config, rootReducer);
@@ -24,12 +24,12 @@ interface IContainsDevtools {
 const hasDevTools = (item: IContainsDevtools | Window): item is IContainsDevtools => {
   return (<IContainsDevtools>item).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== undefined;
 };
+
 /**
  * Redux/Sagas Store configuration
  *
  * @class Store
  */
-
 
 export default class Store {
 

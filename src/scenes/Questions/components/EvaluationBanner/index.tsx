@@ -1,6 +1,6 @@
 import React from 'react';
-import Colors from '../../../../styles/colors';
-import I18n from '../../../../i18n';
+import Colors from 'styles/colors';
+import I18n from 'I18n';
 import {
   GSBanner,
   GSBannerTail,
@@ -20,6 +20,7 @@ interface IProps {
 const bgColor = (passed: boolean) => passed ? Colors.lightGreen : Colors.lightRed;
 const passTitle = (passed: boolean) =>
   I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`);
+
 const EvaluationBanner = ({ passed, correctAnswer }: IProps) =>
   <GSBanner>
     <GSMessageBox style={{ backgroundColor: bgColor(passed) }}>

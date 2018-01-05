@@ -1,9 +1,7 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, BackHandler } from 'react-native';
 import { Container, Button, Text } from 'native-base';
-
-import I18n from '../../i18n';
-import { BackHandler } from 'react-native';
+import I18n from 'I18n';
 
 export interface State { }
 const styles = StyleSheet.create({
@@ -11,6 +9,7 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
 });
+
 export default class Intro extends React.Component<any, State> {
 
   static navigationOptions = {

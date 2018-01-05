@@ -1,20 +1,21 @@
 import React from 'react';
-import { Keyboard, Alert, View, KeyboardAvoidingView } from 'react-native';
+import { Keyboard, Alert, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
-import { navToSkills, evalAgainstAllAnswers, isReverseQuestion } from '../../helpers';
+import { navToSkills, evalAgainstAllAnswers, isReverseQuestion, cleanAnswer } from 'helpers';
 import { connect } from 'react-redux';
-import { nextQuestionOrFinish, TQuestionType } from '../../services/questions/actions';
+import { nextQuestionOrFinish, TQuestionType } from 'services/questions/actions';
 import {
   getActiveCourse,
   calcProress,
   getCurrentQuestion,
   allCorrectAnswers,
-} from '../../services/selectors';
-import Colors from '../../styles/colors';
-import config from '../../config';
-import I18n from '../../i18n';
+  getSkillInProgress,
+} from 'services/selectors';
+import Colors from 'styles/colors';
+import config from 'config/';
+import I18n from 'I18n';
 import { NextButton, QuestionBody, EvaluationBanner } from './components';
 import { GSBody, GSFooter, GSHeader, GSIcon, GSProgress } from './index.styles';
 import { IProps, IState, TAnswer } from './index.types';
@@ -26,6 +27,8 @@ class Questions extends React.Component<IProps, IState> {
     answer: null,
     progress: 0,
     answerCorrect: null,
+    modalOn: false,
+    layoutWidth: 0,
   };
 
   private userHasAnswered = () =>
@@ -41,8 +44,16 @@ class Questions extends React.Component<IProps, IState> {
   };
 
   collectAnswer = (answer: TAnswer) => {
-    if (!this.userHasAnswered()) {
-      this.setState({ answer });
+    let cleannedAnswer = answer;
+    let length = 0;
+
+    if (typeof answer === 'string') {
+      cleannedAnswer = cleanAnswer(answer);
+      length = 1;
+    }
+
+    if (!this.userHasAnswered() && cleannedAnswer.length > length) {
+      this.setState({ answer: cleannedAnswer });
     }
   }
 
@@ -119,42 +130,64 @@ class Questions extends React.Component<IProps, IState> {
         correctAnswer={isReverseQuestion(questionType) ? phrase : translation} />;
   }
 
+  renderProgressBar = () =>
+    <GSHeader onLayout={(event) => {
+      const { width } = event.nativeEvent.layout;
+      this.setState({ layoutWidth: width });
+    }}>
+      <GSIcon name="close" onPress={this.existQuestions} />
+      <GSProgress>
+        <ProgressBar
+          progress={this.state.progress}
+          height={8}
+          width={this.state.layoutWidth - 50}
+          borderColor={Colors.lightGray}
+          color={Colors.darkGreen}
+          unfilledColor="#d3d3d3"
+          animated style={{ marginLeft: 20 }}
+        />
+      </GSProgress>
+    </GSHeader>
+
+  renderQuestionBody = () =>
+    <QuestionBody
+      course={this.props.course}
+      skill={this.props.skillInProgress}
+      question={this.props.currentQuestion}
+      collectAnswer={this.collectAnswer}
+      userHasAnswered={this.userHasAnswered()}
+      hints={this.props.dictionaries}
+    />
+
+  renderNextQuestion = () =>
+    <NextButton onPress={this.evaluateOrNext}
+      disabled={this.submitAllowed()}
+      text={
+        this.needsEvaluation()
+          ? I18n.t('questions.submit')
+          : I18n.t('questions.continue')
+      } />
+
+  renderBodyAndFooter () {
+    const ViewWrapper = Platform.OS === 'android' ? View : KeyboardAvoidingView;
+    return <ViewWrapper style={{
+      flex: 1,
+    }}>
+      <GSBody>
+        {this.renderQuestionBody()}
+      </GSBody>
+      <GSFooter>
+        {this.renderNextQuestion()}
+      </GSFooter>
+    </ViewWrapper>;
+  }
+
   render () {
-    const question = this.props.currentQuestion;
-    return question && (
+    return this.props.currentQuestion && (
       <Container>
-        <GSHeader>
-          <GSProgress>
-            <ProgressBar
-              progress={this.state.progress}
-              width={280}
-              height={8}
-              borderColor={Colors.lightGray}
-              color={Colors.darkGreen}
-              unfilledColor="#d3d3d3"
-              animated style={{ marginLeft: 10 }}
-            />
-          </GSProgress>
-          <GSIcon name="close" onPress={this.existQuestions} />
-        </GSHeader>
-        <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-          {this.renderEvaluationBanner()}
-          <GSBody>
-            <QuestionBody
-              course={this.props.course}
-              question={this.props.currentQuestion}
-              collectAnswer={this.collectAnswer}
-              userHasAnswered={this.userHasAnswered()}
-            />
-          </GSBody>
-          <GSFooter>
-            <NextButton onPress={this.evaluateOrNext} disabled={this.submitAllowed()} text={
-              this.needsEvaluation()
-                ? I18n.t('questions.submit')
-                : I18n.t('questions.continue')
-            } />
-          </GSFooter>
-        </KeyboardAvoidingView>
+        {this.renderProgressBar()}
+        {this.renderBodyAndFooter()}
+        {this.renderEvaluationBanner()}
       </Container >
     ) || <View />;
   }
@@ -171,6 +204,8 @@ const mapStateToProps = (state: any) => ({
   course: getActiveCourse(state),
   calcProress: calcProress(state),
   currentQuestion: getCurrentQuestion(state),
+  skillInProgress: getSkillInProgress(state),
+  dictionaries: state.dictionaries,
   allCorrectAnswers: (questionId: string) => allCorrectAnswers(state, questionId),
 });
 

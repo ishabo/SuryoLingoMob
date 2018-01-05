@@ -1,4 +1,4 @@
-import { ICourse } from '../../services/courses/reducers';
+import { ICourse } from 'services/courses';
 
 const courses: ICourse[] = [
   {

@@ -13,8 +13,18 @@
     "sourceMap": true,
     "noImplicitReturns": true,
     "noUnusedParameters": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "baseUrl": ".",
+    "importHelpers": true,
+    "paths": {
+      "*": [
+        "src/*"
+      ]
+    }
   },
+  "include": [
+    "./src/**/*"
+  ],
   "filesGlob": [
     "typings/index.d.ts",
     "src/**/*.ts",

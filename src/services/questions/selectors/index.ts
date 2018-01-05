@@ -1,5 +1,5 @@
-import { IQuestions, IQuestion } from '../reducers';
-import { isReverseQuestion } from '../../../helpers';
+import { IQuestions, IQuestion } from '../';
+import { isReverseQuestion } from 'helpers';
 
 export const getPendingQuestions = (state: IQuestions) => state.pendingQuestions;
 

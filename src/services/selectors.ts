@@ -1,26 +1,21 @@
 import { IInitialState } from './reducers';
-import { ICourse } from './courses/reducers';
-import { ISkill, ILesson } from './skills/reducers';
+import * as courses from './courses';
+import * as skills from './skills';
 import cloneDeep from 'clone-deep';
 import * as questions from './questions/selectors';
+import { Platform } from 'react-native';
 
-const allLessons = (skills: ISkill[]) =>
-  [].concat.apply([], skills.map((skill: ISkill) => skill.lessons));
+const allLessons = (skills: skills.ISkill[]) =>
+  [].concat.apply([], skills.map((skill: skills.ISkill) => skill.lessons));
 
-const selectLesson = (skills: ISkill[], lessonId: string) =>
-  allLessons(skills).find((lesson: ILesson) => lesson.id === lessonId);
+const selectLesson = (skills: skills.ISkill[], lessonId: string) =>
+  allLessons(skills).find((lesson: skills.ILesson) => lesson.id === lessonId);
 
-export const getActiveCourse = (state: IInitialState): ICourse =>
-  state.courses.find((course: ICourse) => course.active);
+export const getActiveCourse = (state: IInitialState): courses.ICourse =>
+  courses.selectors.getActiveCourse(state.courses);
 
-export const getTargetLanguage = (state: IInitialState) => {
-  const activeCourse = getActiveCourse(state);
-  if (activeCourse) {
-    return activeCourse.targetLanguage.name;
-  } else {
-    throw new Error('No active course selected!');
-  }
-};
+export const getTargetLanguage = (state: IInitialState) =>
+  courses.selectors.getTargetLanguage(state.courses);
 
 export const getPendingQuestions = (state: IInitialState) =>
   questions.getPendingQuestions(state.questions);
@@ -34,24 +29,25 @@ export const getCurrentQuestion = (state: IInitialState) =>
 export const allCorrectAnswers = (state: IInitialState, questionId: string) =>
   questions.allCorrectAnswers(state.questions, questionId);
 
-export const getLessonInProgress = (state: IInitialState): ILesson =>
+export const getLessonInProgress = (state: IInitialState): skills.ILesson =>
   selectLesson(state.skills, state.progress.lessonInProgress);
 
-export const getSkillsByUnit = (unit: number) => (state: IInitialState): ISkill[] =>
-  state.skills.filter((skill: ISkill) => skill.unit === unit);
+export const getSkillsByUnit = (unit: number) => (state: IInitialState): skills.ISkill[] =>
+  skills.selectors.getSkillsByUnit(unit)(state.skills);
 
-export const getSkillInProgress = (state: IInitialState): ISkill => {
+export const getSkillInProgress = (state: IInitialState): skills.ISkill => {
   const lessonId = state.progress.lessonInProgress;
 
-  return state.skills.find((skill: ISkill) =>
-    skill.lessons.find((skillLesson: ILesson) => skillLesson.id === lessonId) !== void (0),
+  return state.skills.find((skill: skills.ISkill) =>
+    skill.lessons.find((skillLesson: skills.ILesson) => skillLesson.id === lessonId) !== void (0),
   );
 };
 
-export const getSkillProgress = (state: IInitialState): ISkill[] => {
-  const skills = cloneDeep(state.skills).map((skill: ISkill) => {
+export const getSkillProgress = (state: IInitialState): skills.ISkill[] => {
+  const skills = cloneDeep(state.skills).map((skill: skills.ISkill) => {
     const totalLessons = skill.lessons.length;
-    const numOfLessonsDone = skill.lessons.filter((lesson: ILesson) => lesson.finished).length;
+    const filterByFinished = (lesson: skills.ILesson) => lesson.finished;
+    const numOfLessonsDone = skill.lessons.filter(filterByFinished).length;
     skill.progress = numOfLessonsDone / totalLessons;
     return skill;
   });
@@ -59,5 +55,24 @@ export const getSkillProgress = (state: IInitialState): ISkill[] => {
   return skills;
 };
 
-export const getSkillLessons = (skillId: string) => (state: IInitialState): ILesson[] =>
-  state.skills.find((skill: ISkill) => skill.id === skillId).lessons;
+const orderLessonsByOrder = (lessons: skills.ILesson[]) => {
+  const compare = (a: skills.ILesson, b: skills.ILesson) => {
+    if (a.order < b.order)
+      return -1;
+    if (a.order > b.order)
+      return 1;
+    return 0;
+  };
+  const filteredLessons = cloneDeep(lessons).sort(compare);
+
+  if (Platform.OS === 'android') {
+    return filteredLessons.reverse();
+  } else {
+    return filteredLessons;
+  }
+};
+
+export const getSkillLessons = (skillId: string) => (state: IInitialState): skills.ILesson[] =>
+  orderLessonsByOrder(
+    state.skills.find((skill: skills.ISkill) => skill.id === skillId).lessons,
+  );

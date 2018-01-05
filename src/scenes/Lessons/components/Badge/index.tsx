@@ -1,15 +1,15 @@
 import React from 'react';
 import glamor from 'glamorous-native';
-import Colors from '../../../../styles/colors';
+import Colors from 'styles/colors';
 
-export default (props: any) => <GSBadge style={props.style}>
-
-  <GSBadgeRubbonNeg140 />
-  <GSBadgeRibbon140 />
-  <GSBadgeRibbonCircle >
-    {props.children}
-  </GSBadgeRibbonCircle>
-</GSBadge>;
+export default (props: any) =>
+  <GSBadge style={props.style}>
+    <GSBadgeRubbonNeg140 />
+    <GSBadgeRibbon140 />
+    <GSBadgeRibbonCircle >
+      {props.children}
+    </GSBadgeRibbonCircle>
+  </GSBadge>;
 
 const GSBadge = glamor.view({
   width: 100,

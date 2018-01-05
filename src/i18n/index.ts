@@ -1,7 +1,7 @@
 import I18n from 'react-native-i18n';
 import ar from './locales/ar';
 import en from './locales/en';
-import Config from '../config';
+import Config from 'config/';
 
 I18n.fallbacks = false;
 

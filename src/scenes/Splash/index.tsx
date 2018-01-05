@@ -3,10 +3,10 @@ import { StyleSheet, Image } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { Container, Text } from 'native-base';
 import { connect } from 'react-redux';
-import { fetchCourses } from '../../services/courses/actions';
-import { getActiveCourse } from '../../services/selectors';
+import { fetchCourses } from 'services/courses/actions';
+import { getActiveCourse } from 'services/selectors';
 
-import images from '../../assets/images';
+import images from 'assets/images';
 export interface IStateToProps {
   activeCourse: string;
 }
@@ -42,9 +42,13 @@ class Splash extends React.Component<IProps, IState> {
   };
 
   componentDidMount () {
-    const { activeCourse } = this.props;
+    const { activeCourse, navigation } = this.props;
     if (!activeCourse) {
-      this.props.fetchCourses();
+      setTimeout(() => {
+        this.props.fetchCourses();
+      }, 2000);
+    } else {
+      navigation.navigate('Skills');
     }
   }
 
@@ -52,7 +56,7 @@ class Splash extends React.Component<IProps, IState> {
     return (
       <Container style={styles.container}>
         <Text style={styles.welcome}>
-          <Image style={{ height: 230, width: 230 }} source={images.logo.splash} />
+          <Image style={{ width: 300, height: 295 }} source={images.logo.splash} />
         </Text>
       </Container>
     );

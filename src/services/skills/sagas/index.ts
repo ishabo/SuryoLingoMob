@@ -1,19 +1,21 @@
 import { call, put, select } from 'redux-saga/effects';
-import { saveSkills } from '../actions';
-import { ISkillsAction } from '../reducers';
-import { getSkills } from '../api';
-import { getActiveCourse } from '../../selectors';
-import { navToSkills } from '../../../helpers';
+import * as skill from 'services/skills';
+import { getActiveCourse } from 'services/selectors';
+import { navToSkills } from 'helpers';
+import { setLoadingOn, setLoadingOff } from 'services/api/actions';
+import * as exceptions from 'services/exceptions';
 
-export function* fetchSkills(action: ISkillsAction): IterableIterator<any> {
+export function* fetchSkills (action: skill.ISkillsAction): IterableIterator<any> {
+  yield put(setLoadingOn());
   try {
-    const response = yield call(getSkills, action.courseId);
-    yield put(saveSkills(response));
+    const response = yield call(skill.api.getSkills, action.courseId);
+    yield put(skill.actions.saveSkills(response));
+    const course = yield select(getActiveCourse);
+    yield put(navToSkills(course));
   } catch (error) {
-    console.warn(error);
+    yield put(exceptions.actions.add(error));
   }
 
-  const course = yield select(getActiveCourse);
-  yield put(navToSkills(course));
+  yield put(setLoadingOff());
 }
 

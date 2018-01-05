@@ -1,12 +1,12 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Container, Text } from 'native-base';
-import { GSAnswerBox, GSSelectionBox, GSWordBox, GSWordText } from './index.styles';
+import { Container } from 'native-base';
+import {
+  GSAnswerBox, GSSelectionBox, GSWordBox, GSWordText,
+} from './index.styles';
 import { shuffle, remove } from 'lodash';
 import { IAnswerProps } from '../../../index.types';
 import shortid from 'shortid';
-
-const shadowColor = 'gray';
 
 export interface IWord {
   id: string;
@@ -59,10 +59,6 @@ export default class WordSelection extends React.Component<IProps, IState> {
     };
   }
 
-  componentDidMount () {
-
-  }
-
   updateShuffledWords = (updatedRecord: IWord) => {
     const shuffledWords = this.state.shuffledWords;
     const newShuffledWords = shuffledWords.map((word: IWord) =>
@@ -110,27 +106,18 @@ export default class WordSelection extends React.Component<IProps, IState> {
     });
   }
 
-  renderAnswerWords = () => {
-    return this.state.answer.map((word: IWord, _: number) => {
-      return <GSWordBox key={`answer_${word.id}`}>
-        {this.renderWord(word)}
-      </GSWordBox>;
-    });
-  }
+  renderAnswerWords = () => this.state.answer.map((word: IWord, _: number) =>
+    <GSWordBox key={shortid.generate()}>
+      {this.renderWord(word)}
+    </GSWordBox>)
 
-  renderShuffledWords = () => {
-    return this.state.shuffledWords.map((word: IWord, _: number) => {
-      return <GSWordBox
-        key={`shuffle_${word.id}`}
-        style={{ backgroundColor: shadowColor }}
-      >
-        {word.selected
-          ? <Text style={{ color: shadowColor, padding: 10 }}>{word.word}</Text>
-          : this.renderWord(word)
-        }
-      </GSWordBox>;
-    });
-  }
+  renderShuffledWords = () => this.state.shuffledWords.map((word: IWord, _: number) =>
+    <GSWordBox key={shortid.generate()} >
+      {word.selected
+        ? <GSWordText shadowed>{word.word}</GSWordText>
+        : this.renderWord(word)
+      }
+    </GSWordBox>)
 
   renderWord = (word: IWord) => {
     const handleWord = (word: IWord) => this.answerHasWord(word)

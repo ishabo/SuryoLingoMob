@@ -4,12 +4,12 @@ import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Skill } from './components';
 import { isEmpty, mapValues, groupBy } from 'lodash';
-import { ISkill } from '../../services/skills/reducers';
-import { getActiveCourse, getTargetLanguage } from '../../services/selectors';
-import { IInitialState } from '../../services/reducers';
-import I18n from '../../i18n';
+import { ISkill } from 'services/skills';
+import { getActiveCourse, getTargetLanguage } from 'services/selectors';
+import { IInitialState } from 'services/reducers';
+import I18n from 'I18n';
 import glamor from 'glamorous-native';
-import Colors from '../../styles/colors';
+import Colors from 'styles/colors';
 import shortid from 'shortid';
 
 interface State { }

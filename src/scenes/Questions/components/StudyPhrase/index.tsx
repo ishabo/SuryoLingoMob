@@ -1,29 +1,26 @@
 import React from 'react';
-import { View } from 'native-base';
-import Speaker from '../Speaker';
+import Phrase, { IProps as IPhraseProps } from './components/Phrase';
+import SoundButton from './components/SoundButton';
 import glamor from 'glamorous-native';
 
-interface IProps {
+interface IProps extends IPhraseProps {
   sound: { soundTrack: string; location?: string; };
-  sentence: string;
-  showSentence?: boolean;
+  showSentence: boolean;
 }
 
 export default (props: IProps) => {
-  const { showSentence, sentence, sound } = props;
+  const { showSentence, sentence, sound, lang } = props;
+
   return (
     <GSContainer showSentence={showSentence} >
-      <View>
-        <Speaker {...sound} size={showSentence ? { small: true } : { large: true }} />
-      </View>
-      {showSentence && <GSSentence>{sentence}</GSSentence>}
+      <SoundButton {...sound} size={showSentence ? { small: true } : { large: true }} />
+      {showSentence && <Phrase sentence={sentence} lang={lang} />}
     </GSContainer>
   );
 };
 
 const GSContainer = glamor.view<{ showSentence: boolean }>(
   {
-    width: 330,
     flexDirection: 'row',
     alignContent: 'center',
   },
@@ -34,7 +31,3 @@ const GSContainer = glamor.view<{ showSentence: boolean }>(
   },
 );
 
-const GSSentence = glamor.text({
-  alignSelf: 'center',
-  marginLeft: 10,
-});

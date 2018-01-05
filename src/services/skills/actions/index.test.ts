@@ -1,5 +1,5 @@
 import * as skill from '../actions';
-import { skills as payload } from '../../../data/dummy/skills';
+import { skills as payload } from 'data/dummy/skills';
 
 describe('courses actions', () => {
   const { types } = skill;

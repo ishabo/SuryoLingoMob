@@ -1,18 +1,5 @@
 import { types } from '../actions';
-
-export interface IProgressAction {
-  type: string;
-  skillId?: string;
-  lessonId?: string;
-  lessonXP?: number;
-  userXP?: number;
-}
-
-export interface IProgress {
-  activeCourse: string;
-  lessonInProgress: string;
-  totalUserXP: number;
-}
+import { IProgress, IProgressAction } from '../';
 
 export const initialState: IProgress = {
   activeCourse: null,
@@ -28,7 +15,6 @@ export const reducer = (
 
     case types.SET_LESSON_IN_PROGRESS:
       return { ...state, lessonInProgress: action.lessonId };
-
 
     default:
       return state;

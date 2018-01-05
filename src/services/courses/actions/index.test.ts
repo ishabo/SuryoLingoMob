@@ -1,5 +1,5 @@
 import * as course from '../actions';
-import courses from '../../../data/dummy/courses';
+import courses from 'data/dummy/courses';
 
 describe('courses actions', () => {
   const { types } = course;

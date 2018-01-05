@@ -1,4 +1,4 @@
-import { ISkill } from '../reducers';
+import { ISkill } from 'services/skills';
 
 const namespace = 'SuryoLingo/Skills';
 

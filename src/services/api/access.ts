@@ -1,3 +1,3 @@
-export const getUserToken = () => {
-  return 'shcyfwMS9QgHfcMXrSCHZwtt';
-};
+import { TOKEN } from 'react-native-dotenv';
+
+export const getUserToken = () => TOKEN;

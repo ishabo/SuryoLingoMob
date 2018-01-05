@@ -1,37 +1,40 @@
 import glamor from 'glamorous-native';
 import { Icon, Body } from 'native-base';
+import { Platform } from 'react-native';
 
 export const GSHeader = glamor.view({
   backgroundColor: 'transparent',
   borderBottomWidth: 0,
-  height: 60,
+  height: 50,
+  justifyContent: 'center',
+  alignContent: 'stretch',
+  flexDirection: 'row',
+  marginTop: Platform.OS === 'ios' ? 30 : 0,
 });
 
 export const GSProgress = glamor.view({
   flexDirection: 'row',
   alignContent: 'center',
   alignSelf: 'center',
-  paddingTop: 40,
-  borderWidth: 0,
 });
 
 export const GSBody = glamor(Body)({
-  marginTop: 40,
-  flex: 1,
-  alignContent: 'stretch',
-  width: 340,
+  paddingHorizontal: 10,
+  alignSelf: 'stretch',
+  alignItems: 'stretch',
+  justifyContent: 'center',
 });
 
 export const GSFooter = glamor.view({
   backgroundColor: 'transparent',
   justifyContent: 'flex-end',
-  marginBottom: 10,
+  marginBottom: 12,
 });
 
 export const GSIcon = glamor(Icon)({
   position: 'absolute',
-  left: 15,
-  top: 22,
-  fontSize: 40,
+  top: 10,
+  left: 10,
+  fontSize: 30,
   color: 'gray',
 });

@@ -25,7 +25,7 @@ export default ({ letters, vowels, onKeyPress, onBackSpacePress, onSpacePress }:
     keys.map((key: string) =>
       <GSKey key={shortid.generate()} primary onPress={() => onKeyPress(key)}>
         <GSKeyText style={{ ...style }}>{key}</GSKeyText>
-      </GSKey >);
+      </GSKey>);
 
   return <GSContainer>
     <GSContent>
@@ -36,5 +36,5 @@ export default ({ letters, vowels, onKeyPress, onBackSpacePress, onSpacePress }:
       {listKeys(vowels, { fontSize: 40, paddingTop: 0 })}
       <GSSpaceKey primary onPress={() => onSpacePress()}><Text>{'Space'}</Text></GSSpaceKey>
     </GSContent>
-  </GSContainer >;
+  </GSContainer>;
 };

@@ -1,5 +1,5 @@
 import { saveQuestions, types } from '../actions';
-import payload from '../../../data/dummy/questions';
+import payload from 'data/dummy/questions';
 
 describe('questions actions', () => {
   describe('saveQuestions', () => {
