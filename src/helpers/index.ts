@@ -2,6 +2,7 @@ export * from './evaluation';
 export * from './navigation';
 export * from './audio';
 import Config from 'config/';
+import changeObjectCase from 'change-object-case';
 
 import { TQuestionType } from 'services/questions/actions/index';
 import { TTargetLangs, TLearnerLangs } from 'services/courses';
@@ -45,4 +46,10 @@ export const cleanAnswer = (answer: string) => {
   let cleanned = answer.trim();
   cleanned = cleanned.replace(/[!؟.,؟.܀,\?\.]g/, '');
   return cleanned;
+};
+
+export const changeCase = (data: object, direction: 'snake' | 'camel') => {
+  const caseFunction = Array.isArray(data) ? `Array` : `Keys`;
+  const options = { recursive: true, arrayRecursive: true };
+  return changeObjectCase[`${direction}${caseFunction}`](data, options);
 };

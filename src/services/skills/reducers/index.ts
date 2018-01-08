@@ -1,7 +1,6 @@
 import * as skill from 'services/skills';
 import { types } from '../actions';
 import cloneDeep from 'clone-deep';
-import moment from 'moment';
 
 export const initialState: skill.ISkill[] = [];
 
@@ -29,7 +28,7 @@ export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISki
       });
 
     case types.MARK_LESSON_FINISHED:
-      const { lessonXP: thisLessonXP, lessonId } = action;
+      const { lessonXP: thisLessonXP, lessonId, timestamp } = action;
       const newState = cloneDeep(state);
       newState.map((skill: skill.ISkill) => {
 
@@ -45,7 +44,7 @@ export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISki
 
             const accomplishment: skill.ILessonHistory = {
               thisLessonXP,
-              timestamp: moment(),
+              timestamp,
             };
 
             lesson.lessonHistory.push(accomplishment);

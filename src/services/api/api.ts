@@ -2,7 +2,7 @@ import * as ApiSauce from 'apisauce';
 import * as Exceptions from '../exceptions';
 import { isEmpty } from 'lodash';
 import { THeaders, TErrors, TMethod } from './index';
-import changeCase from 'change-object-case';
+import { changeCase } from 'helpers';
 import { getTokenFromKeychain } from './access';
 
 let userToken: string = null;
@@ -74,7 +74,6 @@ export const createApi = (options: IApiOptions) => {
       ...res,
       ...{ data: res.data || {} },
     };
-
     switch (response.status) {
       case 200:
         console.log(
@@ -97,6 +96,14 @@ export const createApi = (options: IApiOptions) => {
           message: statusErrors[response.status] || '',
           report: false,
         });
+      case 500:
+        throw Exceptions.create({
+          response,
+          action,
+          name: 'INTERNAL_SERVER_ERROR',
+          message: response.data.exception,
+          report: true,
+        });
       case 404:
       case 400:
       case 409:
@@ -111,8 +118,7 @@ export const createApi = (options: IApiOptions) => {
     }
 
     const { data } = response;
-    const caseFunction = Array.isArray(data) ? 'camelArray' : 'camelKeys';
-    response.data = changeCase[caseFunction](data, { recursive: true, arrayRecursive: true });
+    response.data = changeCase(data, 'camel');
 
     return response;
   };

@@ -29,9 +29,8 @@ class Alert extends React.Component<IProps> {
         title: I18n.t(`alert.${exception.name}.title`),
         message: I18n.t(`alert.${exception.name}.message`),
         alertType: 'error',
-        durationToHide: 10000,
+        durationToHide: 20000,
       });
-
     }
   }
 

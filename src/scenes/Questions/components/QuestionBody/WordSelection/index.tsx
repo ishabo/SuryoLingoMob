@@ -7,6 +7,7 @@ import {
 import { shuffle, remove } from 'lodash';
 import { IAnswerProps } from '../../../index.types';
 import shortid from 'shortid';
+import { IWordHint } from 'helpers';
 
 export interface IWord {
   id: string;
@@ -21,7 +22,7 @@ export interface IState {
 }
 
 export interface IProps extends IAnswerProps {
-  phrase: string;
+  phrase: IWordHint[];
   translation: string;
   incorrectChoices: string[];
   reverse: boolean;
@@ -40,18 +41,7 @@ export default class WordSelection extends React.Component<IProps, IState> {
 
   constructor(props: IProps) {
     super(props);
-    const { reverse, phrase, translation, incorrectChoices } = this.props;
-    const answerWords = (reverse ? phrase : translation).split(' ');
-    const wordsToShuffle = answerWords.concat(incorrectChoices);
-    console.log(wordsToShuffle);
-    const shuffledSentenceArray = ensureShuffeled(wordsToShuffle);
-    const shuffledWords = shuffledSentenceArray.map((word: string) =>
-      ({
-        word,
-        id: shortid.generate(),
-        selected: false,
-      }),
-    );
+    const shuffledWords = this.getSuffledWords();
 
     this.state = {
       shuffledWords,
@@ -59,7 +49,27 @@ export default class WordSelection extends React.Component<IProps, IState> {
     };
   }
 
-  updateShuffledWords = (updatedRecord: IWord) => {
+  private determineAnswerWords = () => {
+    const { reverse, translation, incorrectChoices } = this.props;
+    return (reverse ? this.mapPhrase() : translation.split(' '))
+      .concat(incorrectChoices);
+  }
+
+  private getSuffledWords = () => {
+    const wordsToShuffle = this.determineAnswerWords();
+    return ensureShuffeled(wordsToShuffle).map((word: string) =>
+      ({
+        word,
+        id: shortid.generate(),
+        selected: false,
+      }),
+    );
+  }
+
+  private mapPhrase = () =>
+    this.props.phrase.map((word: IWordHint) => word.word)
+
+  private updateShuffledWords = (updatedRecord: IWord) => {
     const shuffledWords = this.state.shuffledWords;
     const newShuffledWords = shuffledWords.map((word: IWord) =>
       word.id !== updatedRecord.id

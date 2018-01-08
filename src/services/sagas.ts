@@ -7,7 +7,7 @@ import * as courses from './courses';
 import * as dictionaries from './dictionaries';
 import * as questions from './questions';
 
-export default function* rootSagas(): IterableIterator<any> {
+export default function* rootSagas (): IterableIterator<any> {
   yield all([
     takeLatest(
       courses.actions.types.FETCH_COURSES,
@@ -24,6 +24,10 @@ export default function* rootSagas(): IterableIterator<any> {
     takeLatest(
       progress.actions.types.FINISH_LESSON,
       progress.sagas.finishLesson,
+    ),
+    takeLatest(
+      progress.actions.types.SYNC_FINISHED_LESSONS,
+      progress.sagas.syncFinishedLessons,
     ),
     takeLatest(
       skills.actions.types.FETCH_SKILLS,

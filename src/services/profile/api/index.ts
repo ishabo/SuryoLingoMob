@@ -28,5 +28,5 @@ export const updateProfile = (payload: IProfilePayload = {}) =>
 const createOrUpdate = (method: TMethod, payload: IProfilePayload = {}) => {
   payload.deviceInfo = deviceDetails();
   const api = create();
-  return api.call(method, '/users', JSON.stringify(payload));
+  return api.call(method, '/users', payload);
 };

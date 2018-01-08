@@ -2,6 +2,7 @@ import * as reducers from './reducers';
 import * as api from './api';
 import * as actions from './actions';
 import * as sagas from './sagas';
+import { Moment } from 'moment';
 
 export interface ILessonDoneParams {
   lessonId: string;
@@ -14,12 +15,20 @@ export interface IProgressAction {
   lessonId?: string;
   lessonXP?: number;
   userXP?: number;
+  lessonToSync?: ILessonToSync;
+}
+
+export interface ILessonToSync {
+  lessonId: string;
+  skillId: string;
+  courseId: string;
+  createdAt: Moment;
+  lessonXP: number;
 }
 
 export interface IProgress {
-  activeCourse: string;
   lessonInProgress: string;
-  totalUserXP: number;
+  lessonsToSync: ILessonToSync[];
 }
 
 export {

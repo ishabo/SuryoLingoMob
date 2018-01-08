@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
-import { NavigationScreenProp } from 'react-navigation';
 import { Container, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { fetchCourses } from 'services/courses/actions';
+import { fetchSkills } from 'services/skills/actions';
+import { setLoadingOff } from 'services/api/actions';
 import { getActiveCourse } from 'services/selectors';
+import { syncFinishedLessons } from 'services/progress/actions';
 
 import images from 'assets/images';
 export interface IStateToProps {
@@ -13,11 +15,12 @@ export interface IStateToProps {
 
 export interface IDispatchToProps {
   fetchCourses: () => void;
+  setLoadingOff: () => void;
+  syncFinishedLessons: () => void;
+  fetchSkills: () => void;
 }
 
-export interface IProps extends IStateToProps, IDispatchToProps {
-  navigation: NavigationScreenProp<any, any>;
-}
+export interface IProps extends IStateToProps, IDispatchToProps { }
 
 export interface IState { }
 
@@ -42,13 +45,16 @@ class Splash extends React.Component<IProps, IState> {
   };
 
   componentDidMount () {
-    const { activeCourse, navigation } = this.props;
+    this.props.setLoadingOff();
+    const { activeCourse } = this.props;
+    // Consider moving all this balaga to sagas
+    this.props.syncFinishedLessons();
     if (!activeCourse) {
       setTimeout(() => {
         this.props.fetchCourses();
-      },         2000);
+      }, 2000);
     } else {
-      navigation.navigate('Skills');
+      this.props.fetchSkills();
     }
   }
 
@@ -65,6 +71,9 @@ class Splash extends React.Component<IProps, IState> {
 
 const mapDispatchToProps = (dispatch: any) => ({
   fetchCourses: () => dispatch(fetchCourses()),
+  fetchSkills: () => dispatch(fetchSkills()),
+  setLoadingOff: () => dispatch(setLoadingOff()),
+  syncFinishedLessons: () => dispatch(syncFinishedLessons()),
 });
 
 const matchStateToProps = (state: any) => ({

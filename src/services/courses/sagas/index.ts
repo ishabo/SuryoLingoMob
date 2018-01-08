@@ -23,5 +23,5 @@ export function* fetchCourses(): IterableIterator<any> {
 export function* switchCourse(action: courses.ICourseAction): IterableIterator<any> {
   yield put(courses.actions.setActiveCourse(action.courseId));
   yield put(dictionaries.actions.fetchDictionaries(action.courseId));
-  yield put(skill.actions.fetchSkills(action.courseId));
+  yield put(skill.actions.fetchSkills());
 }

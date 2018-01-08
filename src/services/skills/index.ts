@@ -3,7 +3,6 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
-
 import { Moment } from 'moment';
 
 export interface ILessonHistory {
@@ -46,6 +45,7 @@ export interface ISkillsAction {
   courseId?: string;
   lessonXP?: number;
   payload?: ISkill[];
+  timestamp?: Moment;
 }
 
 export {

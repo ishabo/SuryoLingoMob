@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import Navigation from './Navigation';
 import Loading from './Loading';
 import Store from 'services/store';
+
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { setApiOrigin } from 'services/api';
 import { setCustomText } from 'react-native-global-props';

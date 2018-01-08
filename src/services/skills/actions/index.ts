@@ -1,4 +1,5 @@
 import { ISkill } from 'services/skills';
+import { Moment } from 'moment';
 
 const namespace = 'SuryoLingo/Skills';
 
@@ -15,8 +16,7 @@ export const saveSkills = (payload: ISkill[]) => ({
   type: types.SAVE_SKILLS,
 });
 
-export const fetchSkills = (courseId: string) => ({
-  courseId,
+export const fetchSkills = () => ({
   type: types.FETCH_SKILLS,
 });
 
@@ -25,8 +25,9 @@ export const activateUnit = (unit: number) => ({
   type: types.ACTIVATE_UNIT,
 });
 
-export const markLessonFinished = (lessonId: string, lessonXP: number) => ({
+export const markLessonFinished = (lessonId: string, lessonXP: number, timestamp: Moment) => ({
   lessonId,
   lessonXP,
+  timestamp,
   type: types.MARK_LESSON_FINISHED,
 });

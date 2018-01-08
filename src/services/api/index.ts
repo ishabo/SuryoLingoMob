@@ -2,8 +2,8 @@ export {
   setApiOrigin,
   setUserToken,
 } from './api';
-
 import { createApi, getUserToken } from './api';
+import { changeCase } from 'helpers';
 
 export type TErrors = IIndex<string>;
 export type THeaders = IDictionary<string>;
@@ -40,6 +40,10 @@ export const create = (headers?: THeaders, errors?: TErrors): IApiInstance => {
   return {
     api,
     call (method, url, ...args) {
+      if (method !== 'get' && args[0]) {
+        args[0] = changeCase(args[0], 'snake');
+      }
+
       return new Promise(async (resolve, reject) => {
         try {
           const response = await makeRequest(method, url, ...args);

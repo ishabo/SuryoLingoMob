@@ -41,16 +41,17 @@ describe('course reducer', () => {
 
   it('mark lesson finished unit', () => {
     MockDate.set('06/06/2015');
-
+    const timestamp1 = moment('2015-01-01 11:11:00');
+    const timestamp2 = moment();
     const action = {
       lessonXP: 100,
       lessonId: '11',
+      timestamp: timestamp2,
       type: types.MARK_LESSON_FINISHED,
     };
 
     const state = cloneDeep(skills);
-    const timestamp1 = moment('2015-01-01 11:11:00');
-    const timestamp2 = moment();
+
     state[0].lessons[0].finished = false;
     state[0].lessons[0].totalLessonXP = 50;
     state[0].lessons[0].lessonHistory = [{

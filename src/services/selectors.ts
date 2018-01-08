@@ -4,6 +4,7 @@ import * as skills from './skills';
 import cloneDeep from 'clone-deep';
 import * as questions from './questions/selectors';
 import { Platform } from 'react-native';
+import { ILessonToSync } from 'services/progress';
 
 const allLessons = (skills: skills.ISkill[]) =>
   [].concat.apply([], skills.map((skill: skills.ISkill) => skill.lessons));
@@ -76,3 +77,6 @@ export const getSkillLessons = (skillId: string) => (state: IInitialState): skil
   orderLessonsByOrder(
     state.skills.find((skill: skills.ISkill) => skill.id === skillId).lessons,
   );
+
+export const getLessonsToSync = (state: IInitialState): ILessonToSync[] =>
+  state.progress.lessonsToSync;

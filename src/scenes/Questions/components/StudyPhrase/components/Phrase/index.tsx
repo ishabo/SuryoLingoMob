@@ -31,7 +31,7 @@ export default class Phrase extends React.Component<IProps, IState> {
         if (this.state.selectedWord === selectedWord) {
           this.setState({ selectedWord: '' });
         }
-      }, 2000);
+      },         2000);
     });
   }
 
@@ -66,6 +66,7 @@ export default class Phrase extends React.Component<IProps, IState> {
           const actions = splitTranslations(word.translations);
           if (actions.length > 0) {
             return <PopoverContainer
+              containerStyle={{ padding: 1 }}
               key={shortid.generate()}>
               <Popover
                 placement={'top'}
@@ -89,13 +90,16 @@ export default class Phrase extends React.Component<IProps, IState> {
 
 const GSHints = glamor.view({
   backgroundColor: Colors.lightBlack,
-  alignItems: 'stretch',
   paddingVertical: 5,
+  justifyContent: 'center',
   borderRadius: 5,
+  width: 150,
 });
 
 const GSHintBlock = glamor.view<{ last: boolean }>(
   {
+    justifyContent: 'center',
+    borderWidth: 1,
     paddingHorizontal: 20,
     borderColor: Colors.lightBlack,
   },
@@ -106,6 +110,8 @@ const GSHintBlock = glamor.view<{ last: boolean }>(
 
 const GSHintText = glamor.text({
   color: Colors.white,
+  textAlign: 'center',
+  alignSelf: 'stretch',
 });
 
 const GSHintedSentence = glamor.view({
@@ -115,8 +121,8 @@ const GSHintedSentence = glamor.view({
 
 const GSSentence = glamor(CustomText)<{ underline: boolean }>(
   {
-    borderWidth: 1,
     padding: 0,
+    margin: 0,
     marginHorizontal: 4,
     fontSize: 20,
     alignSelf: 'center',
