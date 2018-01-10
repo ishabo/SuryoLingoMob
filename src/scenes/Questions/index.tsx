@@ -14,12 +14,13 @@ import {
   getSkillInProgress,
 } from 'services/selectors';
 import Colors from 'styles/colors';
-import config from 'config/';
+import Language from 'config/language';
 import I18n from 'I18n';
-import { NextButton, QuestionBody, EvaluationBanner } from './components';
+import { QuestionBody, EvaluationBanner } from './components';
 import { GSBody, GSFooter, GSHeader, GSIcon, GSProgress } from './index.styles';
 import { IProps, IState, TAnswer } from './index.types';
 import { NavigationActions } from 'react-navigation';
+import NextButton from 'components/NextButton';
 
 class Questions extends React.Component<IProps, IState> {
 
@@ -82,7 +83,7 @@ class Questions extends React.Component<IProps, IState> {
     const answerCorrect = evalAgainstAllAnswers(
       typeof answer === 'string' ? [answer] : answer,
       this.props.allCorrectAnswers(this.props.currentQuestion.id),
-      config.arabicLetters.concat(config.syriacLetters),
+      Language.arabicLetters.concat(Language.syriacLetters),
     );
 
     this.setState({ answerCorrect });

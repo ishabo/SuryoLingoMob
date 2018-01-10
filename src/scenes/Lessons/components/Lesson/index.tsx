@@ -29,8 +29,10 @@ export default ({ lesson, skill, enterLesson, active }: IProps) => {
       </GSSkillIcon>
     </Badge>
   </GSBadgePosition>;
+
   const buttonProps = { rounded: true };
   buttonProps[active ? 'primary' : 'light'] = true;
+
   return <GSLesson>
     <GSCard active>
       <GSLessonTitle>{lessonTitle}</GSLessonTitle>
@@ -46,7 +48,7 @@ export default ({ lesson, skill, enterLesson, active }: IProps) => {
 };
 
 const GSLesson = glamor.view({
-  height: 300,
+  height: 400,
 });
 
 const GSButton = glamor(Button)({
@@ -54,11 +56,13 @@ const GSButton = glamor(Button)({
   alignSelf: 'center',
   padding: 10,
   paddingHorizontal: 30,
+  position: 'absolute',
+  bottom: 30,
 });
 
 const GSCard = glamor.view<{ active: boolean }>(
   {
-    height: 200,
+    height: 300,
     shadowOffset: { width: 4, height: 4 },
     shadowColor: 'black',
     shadowOpacity: 0.2,
@@ -75,12 +79,14 @@ const GSCard = glamor.view<{ active: boolean }>(
 
 const GSLessonTitle = glamor.text({
   alignSelf: 'center',
-  fontSize: 20,
-  marginBottom: 10,
+  fontSize: 24,
+  position: 'absolute',
+  top: 50,
 });
 
 const GSLessonNewWords = glamor.text({
   alignSelf: 'center',
+  fontSize: 20,
 });
 
 const GSSkillIcon = glamor.view({

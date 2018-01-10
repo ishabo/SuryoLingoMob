@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform, Keyboard } from 'react-native';
 
 import CustomKeyboard from '../CustomKeyboard';
-import Config from 'config/';
+import Language from 'config/language';
 import { GSContainer, GSContent, GSTextArea, GSTextAreaContainer } from './index.styles';
 
 interface IProps {
@@ -89,8 +89,8 @@ export default class TextArea extends React.Component<IProps, IState> {
           </GSTextAreaContainer>
 
           {this.showCustomKeyboard() && <CustomKeyboard
-            letters={Config.syriacLetters}
-            vowels={Object.values(Config.syriacVowels)}
+            letters={Language.syriacLetters}
+            vowels={Object.values(Language.syriacVowels)}
             onKeyPress={this.updateValue}
             onBackSpacePress={() => this.deleteBack()}
             onSpacePress={() => this.updateValue(' ')}

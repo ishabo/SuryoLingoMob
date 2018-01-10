@@ -17,7 +17,7 @@ interface IState {
   selectedWord: string;
 }
 const splitTranslations = (translations: string) =>
-  translations.split('|');
+  (translations ? translations : '').split('|');
 
 export default class Phrase extends React.Component<IProps, IState> {
 
@@ -31,7 +31,7 @@ export default class Phrase extends React.Component<IProps, IState> {
         if (this.state.selectedWord === selectedWord) {
           this.setState({ selectedWord: '' });
         }
-      },         2000);
+      }, 2000);
     });
   }
 

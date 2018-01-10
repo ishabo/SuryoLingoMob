@@ -66,8 +66,13 @@ export default {
       correctAnswer: 'الإجابة الصحيحة:',
       youAnswered: 'إجابتك كانت:',
     },
+
+  },
+  completion: {
     congratulations: 'أحسنت! لقد اجتزت الدرس رقم {{order}} بنجاح',
     xpGain: 'لقد اكتسبت {{xp}} من نقاط الخبرة',
+    backToLessons: 'تابع الدروس',
+    willAllowToGoInSeconds: 'المتابعة متاحة خلال {{seconds}} ثانية',
   },
   lessons: {
     lesson: {

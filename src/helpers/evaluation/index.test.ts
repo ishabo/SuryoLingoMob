@@ -10,10 +10,12 @@ describe('evaluation', () => {
     });
 
     it('returns true if string passed matches the correct ' +
-      'answer after filtering out allowed characters', () => {
+      'answer after filtering out allowed characters',
+       () => {
         const answer = 'this$ i%s the answer-';
         const correctAnswer = 'this is the answer';
-        expect(h.evaluateAnswer(answer, correctAnswer, filterLetters)).toEqual(true);
+        expect(h.evaluateAnswer(answer, correctAnswer, filterLetters))
+          .toEqual(true);
       }
     );
 

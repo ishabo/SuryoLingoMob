@@ -1,3 +1,5 @@
+import { playAudio } from 'helpers';
+
 const stringToCharArray = (str: string, filterLetters: string[]): string[] => {
   try {
     const stringArr = str.split('');
@@ -15,11 +17,14 @@ export const evaluateAnswer = (answer: string, correctAnswer: string, filterLett
   const correctAnswerArr = stringToCharArray(correctAnswer, filterLetters);
 
   let i;
+
   for (i in correctAnswerArr) {
     if (answerArr[i] !== correctAnswerArr[i]) {
       return false;
     }
   }
+
+  playAudio(require('../../../src/assets/audio/saggishappi.mp4'), '');
 
   return true;
 };

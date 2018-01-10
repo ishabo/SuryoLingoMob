@@ -5,7 +5,7 @@ import * as sagas from './sagas';
 export interface IDictionary {
   id: string;
   word: string;
-  translatinos: string;
+  translations: string;
 }
 
 export interface IDictionaryAction {

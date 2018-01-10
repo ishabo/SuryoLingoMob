@@ -2,30 +2,35 @@ import Sound from 'react-native-sound';
 import RNFS from 'react-native-fs';
 import parseUrl from 'url-parse';
 
-type TSoundLocations = string | 'CACHES' | 'MAIN_BUNDLE';
+type TSoundLocations = string | 'CACHES' | 'MAIN_BUNDLE' | 'DOCUMENT' | 'LIBRARY';
 
 const RNFSDir = (location: TSoundLocations) => {
   switch (location) {
     case 'MAIN_BUNDLE':
-      return RNFS.MainBundlePath;
+      return Sound.MAIN_BUNDLE;
     case 'CACHES':
-      return RNFS.CachesDirectoryPath;
+      return Sound.CACHES;
     case 'DOCUMENT':
-      return RNFS.DocumentDirectoryPath;
+      return Sound.DOCUMENT;
     case 'LIBRARY':
-      return RNFS.LibraryDirectoryPath;
+      return Sound.LIBRARY;
     default:
-      throw new Error(`${location} isn't a valid sound location`);
+      return '';
   }
 };
 
-export const downloadAndPlayAudio = async (soundTrack) => {
+const defaultLocation = 'CACHES';
+
+export const downloadFile = async (
+  soundTrack,
+  location: TSoundLocations = defaultLocation,
+) => {
   console.log('Playing sound track', soundTrack);
   let filename: string;
   const url = parseUrl(soundTrack);
 
   filename = url.pathname.split('/').pop();
-  const localSoundTrackPath = `${RNFSDir('CACHES')}/${filename}`;
+  const localSoundTrackPath = `${RNFSDir(location)}/${filename}`;
   const fileExists = await RNFS.exists(localSoundTrackPath);
   console.log(`Looking for file ${localSoundTrackPath}`);
 
@@ -36,35 +41,29 @@ export const downloadAndPlayAudio = async (soundTrack) => {
     console.log(`Found file ${localSoundTrackPath}`);
   }
 
-  playAudio(filename, 'CACHES');
+  return filename;
 };
 
-export const playAudio = async (soundTrack, location: string = 'CACHES') => {
+export const downloadAndPlayAudio = async (
+  soundTrack,
+  location: TSoundLocations = defaultLocation,
+) => {
+  const filename = await downloadFile(soundTrack, location);
+  playAudio(filename, location);
+};
 
+export const playAudio = (soundTrack, location: TSoundLocations = defaultLocation) => {
   const audio = new Sound(soundTrack, RNFSDir(location), (error) => {
-    if (error) {
-      console.log('failed to load the sound');
-      console.warn(JSON.stringify(error));
-      return;
-    }
     // loaded successfully
-    console.log('duration in seconds: '
-      + audio.getDuration()
-      + ' and number of channels: '
-      + audio.getNumberOfChannels());
+    console.warn(RNFSDir(location) + '/' + soundTrack);
+    console.warn('failed to load the sound');
+    console.warn(error);
   });
 
   setTimeout(() => {
     audio.play(() => {
-      // if (success) {
-      //   console.log('successfully finished playing');
-      // } else {
-      //   console.log('playback failed due to audio decoding errors');
-      //   // reset the player to its uninitialized state (android only)
-      //   // this is the only option to recover after an error occured and use the player again
-      //   audio.reset();
-      // }
+      console.log('played');
     });
-  },         200);
+  }, 600);
 };
 

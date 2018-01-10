@@ -11,17 +11,14 @@ import {
 import { setLessonInProgress } from '../actions';
 import * as skills from 'services/skills';
 // import * as exceptions from 'services/exceptions';
-import { NavigationActions } from 'react-navigation';
-import { ICourse } from 'services/courses';
-import { navToSkills } from 'helpers';
 import moment from 'moment';
 
-export function* enterLesson(action: progress.IProgressAction): IterableIterator<any> {
+export function* enterLesson (action: progress.IProgressAction): IterableIterator<any> {
   yield put(setLessonInProgress(action.lessonId));
   yield put(questions.actions.fetchQuestionsForLesson(action.lessonId));
 }
 
-export function* finishLesson(action: progress.IProgressAction): IterableIterator<any> {
+export function* finishLesson (action: progress.IProgressAction): IterableIterator<any> {
   const { lessonXP } = action;
   const { id: lessonId } = yield select(getLessonInProgress);
   const course = yield select(getActiveCourse);
@@ -42,11 +39,10 @@ export function* finishLesson(action: progress.IProgressAction): IterableIterato
   }
 
   yield delay(1000);
-  yield put(NavigationActions.reset(resetAction(course, skillInProgress)));
   yield put(progress.actions.syncFinishedLessons());
 }
 
-export function* syncFinishedLessons(): IterableIterator<any> {
+export function* syncFinishedLessons (): IterableIterator<any> {
   const lessonsToSync = yield select(getLessonsToSync);
   try {
     yield call(progress.api.syncFinishedLessons, lessonsToSync);
@@ -56,18 +52,6 @@ export function* syncFinishedLessons(): IterableIterator<any> {
     console.warn(error);
   }
 }
-
-const resetAction = (course: ICourse, skill: skills.ISkill) => NavigationActions.reset({
-  index: 1,
-  key: null,
-  actions: [
-    navToSkills(course),
-    NavigationActions.navigate({
-      routeName: 'Lessons',
-      params: { skill },
-    }),
-  ],
-});
 
 const isUnitFinished = (skills: skills.ISkill[]): boolean => {
   let skill: skills.ISkill;
