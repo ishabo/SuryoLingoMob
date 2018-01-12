@@ -4,6 +4,7 @@ import * as sagas from './sagas';
 import * as api from './api';
 
 import { ICourse } from 'services/courses';
+export type TSignon = string | 'signup' | 'signin';
 
 export interface IProfile {
   id?: string;
@@ -12,11 +13,20 @@ export interface IProfile {
   userXP?: number;
 }
 
+export interface ISignonFormData {
+  name?: string;
+  email: string;
+  password: string;
+}
+
 export interface IProfileAction {
   type: string;
-  payload?: IFetchedProfileData;
+  profileData?: IFetchedProfileData;
+  payload?: IProfileSignonPayload;
   data?: IProfile;
   courseId: ICourse['id'];
+  signon?: TSignon;
+  formData?: ISignonFormData;
 }
 
 export interface IDeviceInfo {
@@ -37,6 +47,11 @@ export interface IProfilePayload {
   email?: string;
   password?: string;
   deviceInfo?: IDeviceInfo;
+}
+
+export interface IProfileSignonPayload extends IProfilePayload {
+  email: string;
+  password: string;
 }
 
 export interface IFetchedProfileData extends IProfile {

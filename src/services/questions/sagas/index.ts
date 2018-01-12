@@ -1,18 +1,17 @@
 import { call, put, select } from 'redux-saga/effects';
-import { saveQuestions, updateQuestionStatus } from '../actions';
-import { IQuestionsAction } from '../';
-import { getQuestions } from '../api';
+import * as questions from '../';
 import { NavigationActions } from 'react-navigation';
 import { getPendingQuestions } from '../../selectors';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as exceptions from 'services/exceptions';
+import { ISagasFunctions } from 'services/sagas';
 
-export function* fetchQuestions (action: IQuestionsAction): IterableIterator<any> {
+export function* fetchQuestions(action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(setLoadingOn());
 
   try {
-    const response = yield call(getQuestions, action.lessonId);
-    yield put(saveQuestions(response));
+    const response = yield call(questions.api.getQuestions, action.lessonId);
+    yield put(questions.actions.saveQuestions(response));
     yield put(NavigationActions.navigate({ routeName: 'Questions' }));
   } catch (error) {
     yield put(exceptions.actions.add(error));
@@ -21,8 +20,8 @@ export function* fetchQuestions (action: IQuestionsAction): IterableIterator<any
   yield put(setLoadingOff());
 }
 
-export function* nextQuestionOrFinish (action: IQuestionsAction): IterableIterator<any> {
-  yield put(updateQuestionStatus(action.questionId, action.status));
+export function* nextQuestionOrFinish(action: questions.IQuestionsAction): IterableIterator<any> {
+  yield put(questions.actions.updateQuestionStatus(action.questionId, action.status));
   const pendingQuestions: string[] = yield select(getPendingQuestions);
   let routeName = 'Questions';
 
@@ -32,3 +31,11 @@ export function* nextQuestionOrFinish (action: IQuestionsAction): IterableIterat
 
   yield put(NavigationActions.navigate({ routeName }));
 }
+
+export const functions = (): ISagasFunctions[] => {
+  return [
+    { action: questions.actions.types.FETCH_QUESTIONS, func: fetchQuestions },
+    { action: questions.actions.types.NEXT_QUESTION_OR_FINISH, func: nextQuestionOrFinish },
+  ];
+};
+

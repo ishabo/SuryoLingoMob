@@ -12,6 +12,7 @@ import { setLessonInProgress } from '../actions';
 import * as skills from 'services/skills';
 // import * as exceptions from 'services/exceptions';
 import moment from 'moment';
+import { ISagasFunctions } from 'services/sagas';
 
 export function* enterLesson (action: progress.IProgressAction): IterableIterator<any> {
   yield put(setLessonInProgress(action.lessonId));
@@ -61,4 +62,12 @@ const isUnitFinished = (skills: skills.ISkill[]): boolean => {
     }
   }
   return true;
+};
+
+export const functions = (): ISagasFunctions[] => {
+  return [
+    { action: progress.actions.types.ENTER_LESSON, func: enterLesson },
+    { action: progress.actions.types.FINISH_LESSON, func: finishLesson },
+    { action: progress.actions.types.SYNC_FINISHED_LESSONS, func: syncFinishedLessons },
+  ];
 };

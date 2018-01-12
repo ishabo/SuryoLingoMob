@@ -1,5 +1,5 @@
 import Splash from 'scenes/Splash';
-import Intro from 'scenes/Intro';
+import Signon from 'scenes/Signon';
 import Courses from 'scenes/Courses';
 import Skills from 'scenes/Skills';
 import Lessons from 'scenes/Lessons';
@@ -15,7 +15,7 @@ const QuestionsNav = StackNavigator({
 export default
   {
     Splash: { screen: Splash },
-    Intro: { screen: Intro },
+    Signon: { screen: Signon },
     Courses: { screen: Courses },
     Skills: { screen: Skills },
     Lessons: { screen: Lessons },

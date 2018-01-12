@@ -1,17 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   NavigationActions,
   NavigationResetActionPayload,
 } from 'react-navigation';
 import I18n from 'I18n';
 import config from 'config/';
-import { connect } from 'react-redux';
 import { finishLesson } from 'services/progress/actions';
 import { ILesson, ISkill } from 'services/skills';
-import { GSContainer, GSCongratMessage, GSXPGain } from './index.styles';
+import { GSContainer, GSCongratMessage, GSXPGain, GSNextButton } from './index.styles';
 import { IInitialState } from 'services/reducers';
-import { getLessonInProgress, getActiveCourse, getSkillInProgress } from 'services/selectors';
-import { resetToLessons } from 'helpers/navigation';
+import {
+  getLessonInProgress,
+  getActiveCourse,
+  getSkillInProgress,
+  isRegistered,
+} from 'services/selectors';
+import { resetToLessons, resetToSignon } from 'helpers/navigation';
 import NextButton from 'components/NextButton';
 import { ICourse } from 'services/courses';
 
@@ -21,6 +26,7 @@ interface IProps {
   lessonInProgress: ILesson;
   activeCourse: ICourse;
   skillInProgress: ISkill;
+  isRegistered: boolean;
 }
 
 interface IState {
@@ -32,7 +38,7 @@ const decreaseIntervals = 1000;
 class Completion extends React.Component<IProps, IState> {
 
   state = {
-    timeToSkipAdd: 3000,
+    timeToSkipAdd: 0,
   };
 
   static navigationOptions = {
@@ -63,7 +69,11 @@ class Completion extends React.Component<IProps, IState> {
     navigationReset(resetToLessons(activeCourse, skillInProgress));
   }
 
-  renderNextButton = () => {
+  navToSignon = () => {
+    this.props.navigationReset(resetToSignon());
+  }
+
+  renderBackToLessonsButton = () => {
     const seconds = this.state.timeToSkipAdd / 1000;
     const buttonName = this.canSkipAdd()
       ? I18n.t('completion.backToLessons')
@@ -71,6 +81,14 @@ class Completion extends React.Component<IProps, IState> {
     return <NextButton onPress={this.navBackToLessons}
       disabled={!this.canSkipAdd()}
       text={buttonName} />;
+  }
+
+  renderSignupOrLoginButton = () => {
+    return <NextButton onPress={this.navToSignon}
+      disabled={false}
+      text={I18n.t('profile.signonToSave')}
+      restProps={{ primary: true }}
+    />;
   }
 
   render () {
@@ -83,7 +101,11 @@ class Completion extends React.Component<IProps, IState> {
         <GSXPGain>
           {I18n.t('completion.xpGain', { xp: '10' })}
         </GSXPGain>
-        {this.renderNextButton()}
+        <GSNextButton>
+          {this.renderBackToLessonsButton()}
+        </GSNextButton>
+
+        {this.props.isRegistered || this.renderSignupOrLoginButton()}
       </GSContainer>
     );
   }
@@ -100,6 +122,7 @@ const mapStateToDispatch = (state: IInitialState) => ({
   lessonInProgress: getLessonInProgress(state),
   activeCourse: getActiveCourse(state),
   skillInProgress: getSkillInProgress(state),
+  isRegistered: isRegistered(state),
 });
 
 export default connect(mapStateToDispatch, mapDispatchToProps)(Completion);

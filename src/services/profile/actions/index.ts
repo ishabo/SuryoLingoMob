@@ -1,4 +1,8 @@
-import { IProfile, IProfilePayload, IFetchedProfileData } from '../';
+import {
+  IProfile,
+  IProfilePayload,
+  IFetchedProfileData,
+} from '../';
 
 const namespace = 'SuryoLingo/profile';
 
@@ -25,7 +29,7 @@ export const updateProfile = (payload: IProfilePayload) => ({
   type: types.UPDATE_PROFILE,
 });
 
-export const saveProfileAndAccessToken = (payload: IFetchedProfileData) => ({
-  payload,
+export const saveProfileAndAccessToken = (profileData: IFetchedProfileData) => ({
+  profileData,
   type: types.SAVE_PROFILE_AND_ACCESS_TOKEN,
 });

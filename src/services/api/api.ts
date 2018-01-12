@@ -3,14 +3,13 @@ import * as Exceptions from '../exceptions';
 import { isEmpty } from 'lodash';
 import { THeaders, TErrors, TMethod } from './index';
 import { changeCase } from 'helpers';
-import { getTokenFromKeychain } from './access';
 
 let userToken: string = null;
 let origin: string = null;
 
 export const getUserToken = async () => {
   if (!userToken) {
-    setUserToken(await getTokenFromKeychain());
+    throw new Error('Token is not set');
   }
   return userToken;
 };

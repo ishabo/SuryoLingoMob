@@ -80,3 +80,8 @@ export const getSkillLessons = (skillId: string) => (state: IInitialState): skil
 
 export const getLessonsToSync = (state: IInitialState): ILessonToSync[] =>
   state.progress.lessonsToSync;
+
+export const isRegistered = (state: IInitialState): boolean =>
+  typeof state.profile.email === 'string';
+
+

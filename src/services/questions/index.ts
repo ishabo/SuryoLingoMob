@@ -2,6 +2,7 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
+import * as api from './api';
 
 export type TQuestionType = string | 'NEW_WORD_OR_PHRASE'
   | 'TRANSLATION' | 'TRANSLATION_REVERSE'
@@ -36,6 +37,7 @@ export interface IQuestions {
 }
 
 export {
+  api,
   actions,
   reducers,
   selectors,

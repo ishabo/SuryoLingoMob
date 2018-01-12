@@ -9,10 +9,12 @@ import * as questions from './questions';
 import * as dictionaries from './dictionaries';
 import * as api from './api/reducers';
 import * as exceptions from './exceptions';
+import * as signon from './signon';
 
 export interface IInitialState {
   nav: any;
   api: api.IApiStatus;
+  signon: signon.ISignonState;
   skills: skill.ISkill[];
   courses: course.ICourse[];
   profile: profile.IProfile;
@@ -25,6 +27,7 @@ export interface IInitialState {
 export const initialState: IInitialState = {
   nav: navigation.initialState,
   api: api.initialState,
+  signon: signon.reducers.initialState,
   courses: course.reducers.initialState,
   skills: skill.reducers.initialState,
   profile: profile.reducers.initialState,
@@ -37,6 +40,7 @@ export const initialState: IInitialState = {
 export default combineReducers({
   nav: navigation.reducer,
   api: api.reducer,
+  signon: signon.reducers.reducer,
   courses: course.reducers.reducer,
   skills: skill.reducers.reducer,
   profile: profile.reducers.reducer,

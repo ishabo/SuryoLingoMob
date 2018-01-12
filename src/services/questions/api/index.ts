@@ -1,4 +1,4 @@
-import { create } from '../../api';
+import { create } from 'services/api';
 
 export const getQuestions = (lessonId) => {
   const api = create();

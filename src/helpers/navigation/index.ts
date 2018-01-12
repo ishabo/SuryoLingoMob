@@ -9,6 +9,11 @@ export const navToSkills = (course: ICourse) =>
     },
   });
 
+export const navToSignon = () =>
+  NavigationActions.navigate({
+    routeName: 'Signon',
+  });
+
 export const navToLessons = (skill: ISkill) =>
   NavigationActions.navigate({
     routeName: 'Lessons',
@@ -21,5 +26,13 @@ export const resetToLessons = (course: ICourse, skill: ISkill) => NavigationActi
   actions: [
     navToSkills(course),
     navToLessons(skill),
+  ],
+});
+
+export const resetToSignon = () => NavigationActions.reset({
+  index: 0,
+  key: null,
+  actions: [
+    navToSignon(),
   ],
 });

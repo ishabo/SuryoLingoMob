@@ -7,8 +7,10 @@ import { fetchSkills } from 'services/skills/actions';
 import { setLoadingOff } from 'services/api/actions';
 import { getActiveCourse } from 'services/selectors';
 import { syncFinishedLessons } from 'services/progress/actions';
+import { NavigationScreenProp } from 'react-navigation';
 
 import images from 'assets/images';
+
 export interface IStateToProps {
   activeCourse: string;
 }
@@ -20,7 +22,9 @@ export interface IDispatchToProps {
   fetchSkills: () => void;
 }
 
-export interface IProps extends IStateToProps, IDispatchToProps { }
+export interface IProps extends IStateToProps, IDispatchToProps {
+  navigation: NavigationScreenProp<any, any>;
+}
 
 export interface IState { }
 
@@ -48,14 +52,14 @@ class Splash extends React.Component<IProps, IState> {
     this.props.setLoadingOff();
     const { activeCourse } = this.props;
     // Consider moving all this balaga to sagas
-    this.props.syncFinishedLessons();
-    if (!activeCourse) {
-      setTimeout(() => {
+    setTimeout(() => {
+      if (!activeCourse) {
         this.props.fetchCourses();
-      }, 2000);
-    } else {
-      this.props.fetchSkills();
-    }
+      } else {
+        this.props.syncFinishedLessons();
+        this.props.fetchSkills();
+      }
+    }, 2000);
   }
 
   render () {

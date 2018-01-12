@@ -12,4 +12,4 @@ declare interface ObjectConstructor {
   values (target: any, ...sources: any[]): any;
 }
 
-type TLangs = 'cl-ara' | 'cl-syr' | 'tor-syr';
+type TLangs = string | 'cl-ara' | 'cl-syr' | 'tor-syr';

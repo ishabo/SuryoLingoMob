@@ -3,9 +3,10 @@ import { getDictionaries } from '../api';
 import { saveDictionaries } from '../actions';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as exceptions from 'services/exceptions';
-import { IDictionaryAction } from 'services/dictionaries';
+import * as dictionaries from 'services/dictionaries';
+import { ISagasFunctions } from 'services/sagas';
 
-export function* fetchDictionaries(action: IDictionaryAction): IterableIterator<any> {
+export function* fetchDictionaries(action: dictionaries.IDictionaryAction): IterableIterator<any> {
   yield put(setLoadingOn());
   try {
     const response = yield call(getDictionaries, action.courseId);
@@ -15,3 +16,9 @@ export function* fetchDictionaries(action: IDictionaryAction): IterableIterator<
   }
   yield put(setLoadingOff());
 }
+
+export const functions = (): ISagasFunctions[] => {
+  return [
+    { action: dictionaries.actions.types.FETCH_DICTIONARIES, func: fetchDictionaries },
+  ];
+};

@@ -1,8 +1,6 @@
-import { create, TMethod } from '../../api';
+import { create } from 'services/api';
 import { IProfilePayload } from '../';
 import DeviceInfo from 'react-native-device-info';
-import { setUserToken } from 'services/api';
-import { TOKEN } from 'react-native-dotenv';
 
 const deviceDetails = () => ({
   deviceId: DeviceInfo.getDeviceId(),
@@ -18,15 +16,13 @@ const deviceDetails = () => ({
 });
 
 export const createProfile = (payload: IProfilePayload = {}) => {
-  setUserToken(TOKEN);
-  return createOrUpdate('post', payload);
+  // Creating Profile is the only API call that's done with a default token
+  return create().post('/users', injectDeviceInfo(payload));
 };
 
-export const updateProfile = (payload: IProfilePayload = {}) =>
-  createOrUpdate('put', payload);
-
-const createOrUpdate = (method: TMethod, payload: IProfilePayload = {}) => {
-  payload.deviceInfo = deviceDetails();
-  const api = create();
-  return api.call(method, '/users', payload);
+export const updateProfile = (id: string) => (payload: IProfilePayload = {}) => {
+  return create().put(`/users/${id}`, injectDeviceInfo(payload));
 };
+
+const injectDeviceInfo = (payload: IProfilePayload = {}) =>
+  ({ ...payload, deviceInfo: deviceDetails() });

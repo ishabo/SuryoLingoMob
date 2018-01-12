@@ -4,6 +4,7 @@ import { isEmpty } from 'lodash';
 import { IInitialState } from 'services/reducers';
 import SInfo from 'react-native-sensitive-info';
 import Config from 'config';
+import { ISagasFunctions } from 'services/sagas';
 
 export function* createProfile (action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
@@ -16,13 +17,28 @@ export function* createProfile (action: profile.IProfileAction): IterableIterato
 }
 
 export function* updateProfile (action: profile.IProfileAction): IterableIterator<any> {
-  const profileData = yield call(profile.api.updateProfile, action.payload);
+  debugger;
+  const currentProfile = yield select((state: IInitialState) => state.profile);
+  const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
+
   yield put(profile.actions.saveProfileAndAccessToken(profileData));
 }
 
-export function* saveProfileAndAccessToken (action: profile.IProfileAction) {
-  const accessToken = action.payload.apiKey;
-  delete action.payload.apiKey;
-  yield call(SInfo.setItem, 'accessToken', accessToken, Config.sInfoOptions);
-  yield put(profile.actions.saveProfile(action.payload));
+export function* saveProfileAndAccessToken (action: profile.IProfileAction): IterableIterator<any> {
+  const accessToken = action.profileData.apiKey;
+  console.log('Will save token', accessToken);
+  delete action.profileData.apiKey;
+  const token = yield call(SInfo.setItem, 'accessToken', accessToken, Config.sInfoOptions);
+  console.log('Saving ', token);
+  yield put(profile.actions.saveProfile(action.profileData));
 }
+
+export const functions = (): ISagasFunctions[] => {
+  return [
+    { action: profile.actions.types.CREATE_PROFILE, func: createProfile },
+    { action: profile.actions.types.UPDATE_PROFILE, func: updateProfile },
+    {
+      action: profile.actions.types.SAVE_PROFILE_AND_ACCESS_TOKEN,
+      func: saveProfileAndAccessToken,
+    }];
+};

@@ -1,4 +1,4 @@
-import { create } from '../../api';
+import { create } from 'services/api';
 import { ILessonToSync } from 'services/progress';
 
 export const getLesson = (lessonId: string) =>

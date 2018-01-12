@@ -17,3 +17,7 @@ export const GSXPGain = glamor.text({
   fontSize: 20,
   textAlign: 'center',
 });
+
+export const GSNextButton = glamor.view({
+  marginVertical: 10,
+});
