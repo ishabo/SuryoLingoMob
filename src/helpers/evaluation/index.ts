@@ -1,4 +1,4 @@
-import { playAudio } from 'helpers';
+// import { playAudio } from 'helpers/audio';
 
 const stringToCharArray = (str: string, filterLetters: string[]): string[] => {
   try {
@@ -24,7 +24,7 @@ export const evaluateAnswer = (answer: string, correctAnswer: string, filterLett
     }
   }
 
-  playAudio(require('../../../src/assets/audio/saggishappi.mp4'), '');
+  // playAudio(require('../../../src/assets/audio/saggishappi.mp4'), '');
 
   return true;
 };

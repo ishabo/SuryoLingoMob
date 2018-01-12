@@ -1,6 +1,6 @@
 import Sound from 'react-native-sound';
-import RNFS from 'react-native-fs';
 import parseUrl from 'url-parse';
+import RNFS from 'react-native-fs';
 
 type TSoundLocations = string | 'CACHES' | 'MAIN_BUNDLE' | 'DOCUMENT' | 'LIBRARY';
 

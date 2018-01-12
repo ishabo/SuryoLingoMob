@@ -4445,7 +4445,7 @@ react-native-snap-carousel@^3.3.3:
 
 "react-native-sound@git+https://github.com/zmxv/react-native-sound":
   version "0.10.4"
-  resolved "git+https://github.com/zmxv/react-native-sound#febaa72b4423dd5b66eaa96281ca9d69d8c00088"
+  resolved "git+https://github.com/zmxv/react-native-sound#5d363eef9ddeb4df316d4b5995e295c7e4a6da73"
 
 react-native-tab-view@^0.0.70:
   version "0.0.70"

@@ -6,12 +6,12 @@ describe('evaluation', () => {
 
   describe('evaluateAnswer', () => {
     it('returns true if string passed matches exactly the correct answer', () => {
-      expect(h.evaluateAnswer('this is the answer', correctAnswers, filterLetters)).toEqual(true)
+      expect(h.evaluateAnswer('this is the answer', correctAnswers, filterLetters)).toEqual(true);
     });
 
     it('returns true if string passed matches the correct ' +
       'answer after filtering out allowed characters',
-       () => {
+      () => {
         const answer = 'this$ i%s the answer-';
         const correctAnswer = 'this is the answer';
         expect(h.evaluateAnswer(answer, correctAnswer, filterLetters))
@@ -46,11 +46,11 @@ describe('evaluation', () => {
 
     it('returns true if string passed matches one of the ' +
       'correct answers after filtering out allowed characters'
-      ,() => {
-      const correctAnswers = ['this is some answer', 'this is an answer'];
-      expect(
+      , () => {
+        const correctAnswers = ['this is some answer', 'this is an answer'];
+        expect(
           h.evalAgainstAllAnswers(['this$ is s-ome answer'], correctAnswers, filterLetters),
         ).toEqual(true);
-    });
+      });
   });
 });
