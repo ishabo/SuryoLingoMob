@@ -73,6 +73,7 @@ export const createApi = (options: IApiOptions) => {
       ...res,
       ...{ data: res.data || {} },
     };
+
     switch (response.status) {
       case 200:
         console.log(

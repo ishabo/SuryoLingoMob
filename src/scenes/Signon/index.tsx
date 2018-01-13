@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  BackHandler, KeyboardAvoidingView,
-  Platform, View, TextInputProperties, Text,
-} from 'react-native';
+import { BackHandler, TextInputProperties, Text } from 'react-native';
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
@@ -14,7 +11,7 @@ import {
   GSForm, GSItem, GSLebel,
   GSNextButtons, GSTitle, GSDescription,
 } from './index.styles';
-import { GSHeader, GSBody, GSFooter } from 'styles/layout';
+import { GSHeader, GSBody } from 'styles/layout';
 import NextButton from 'components/NextButton';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
@@ -86,6 +83,10 @@ class Signon extends React.Component<IProps, IState> {
     this.props.submitSignon(this.state.signUpOrIn);
   }
 
+  private focusOn = (field: string) => () => {
+    this[field]._root.focus();
+  }
+
   private renderTabs = () =>
     <GSTabs>
       <GSTabButton full primary={this.isSignin()} light={this.isSignup()}
@@ -105,11 +106,11 @@ class Signon extends React.Component<IProps, IState> {
   private renderInput = (name: string, props?: TextInputProperties) =>
     <GSItem inlineLabel error={!isEmpty(this.props.signon.errors[name])}>
       <GSLebel>
-        <Text onPress={() => { this.setState({ focusOn: name }); }}>
+        <Text onPress={this.focusOn(name)}>
           {I18n.t(`profile.form.${name}`)}
         </Text>
       </GSLebel>
-      <GSInput ref={name}
+      <GSInput ref={c => this[name] = c}
         autoFocus={this.state.focusOn === name}
         {...props}
         onChangeText={this.setField(name)} />
@@ -117,9 +118,20 @@ class Signon extends React.Component<IProps, IState> {
 
   private renderForm = () =>
     <GSForm>
-      {this.isSignup() && this.renderInput('name', { defaultValue: this.props.signon.item.name })}
-      {this.renderInput('email')}
-      {this.renderInput('password', { secureTextEntry: true })}
+      {this.isSignup() && this.renderInput('name', {
+        defaultValue: this.props.signon.item.name,
+        onSubmitEditing: this.focusOn('email'),
+        returnKeyType: 'next',
+      })}
+      {this.renderInput('email', {
+        onSubmitEditing: this.focusOn('password'),
+        returnKeyType: 'next',
+      })}
+      {this.renderInput('password', {
+        secureTextEntry: true,
+        onSubmitEditing: this.submitSignon,
+        returnKeyType: 'go',
+      })}
     </GSForm>
 
   private renderSubmitButton = () =>
@@ -143,7 +155,6 @@ class Signon extends React.Component<IProps, IState> {
     </GSDescription>
 
   render () {
-    const ViewWrapper = Platform.OS === 'android' ? View : KeyboardAvoidingView;
     return (
       <GSContainer>
         <GSHeader>
@@ -151,17 +162,13 @@ class Signon extends React.Component<IProps, IState> {
           {this.renderDescription()}
           {this.renderTabs()}
         </GSHeader>
-        <ViewWrapper style={{ flex: 1 }}>
-          <GSBody>
-            {this.renderForm()}
-          </GSBody>
-          <GSFooter>
-            <GSNextButtons>
-              {this.renderSubmitButton()}
-              {this.renderSkipButton()}
-            </GSNextButtons>
-          </GSFooter>
-        </ViewWrapper>
+        <GSBody>
+          {this.renderForm()}
+          <GSNextButtons>
+            {this.renderSubmitButton()}
+            {this.renderSkipButton()}
+          </GSNextButtons>
+        </GSBody>
       </GSContainer>
     );
   }

@@ -7,6 +7,9 @@ import Colors from 'styles/colors';
 
 export const GSContainer = glamor(Container)({
   flex: 1,
+  justifyContent: 'center',
+  alignContent: 'stretch',
+  alignItems: 'stretch',
 });
 
 export const GSCourseTitle = glamor(CustomText)({
@@ -31,12 +34,14 @@ export const GSCourse = glamor(TouchableOpacity)({
   shadowOpacity: 0.2,
   elevation: 2,
   backgroundColor: Colors.white,
-  alignContent: 'center',
+  alignContent: 'stretch',
+  alignItems: 'stretch',
   justifyContent: 'center',
 });
 
 export const GSAnimatable = glamor(Animatable.View)({
-  flex: 1,
-  alignSelf: 'center',
+  alignSelf: 'stretch',
+  marginHorizontal: 10,
   justifyContent: 'space-around',
+  flex: 1,
 });

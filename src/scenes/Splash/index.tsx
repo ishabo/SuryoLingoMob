@@ -26,6 +26,8 @@ export interface IProps extends IStateToProps, IDispatchToProps {
   navigation: NavigationScreenProp<any, any>;
 }
 
+// TODO: Show a button to retry when no network is available
+
 export interface IState { }
 
 const styles: any = StyleSheet.create({

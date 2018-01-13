@@ -1,7 +1,6 @@
 import { call, put, select } from 'redux-saga/effects';
 import * as signon from 'services/signon';
 import * as profile from 'services/profile';
-import * as exceptions from 'services/exceptions';
 import { IInitialState } from 'services/reducers';
 import { isEmpty } from 'lodash';
 import { validateSigon } from '../validation';
@@ -16,21 +15,16 @@ export function* submitSignon(): IterableIterator<any> {
   const errors = validateSigon(fields);
 
   if (isEmpty(errors)) {
-    try {
-      const hasRegistered = yield select(isRegistered);
-      if (hasRegistered) {
-        yield call(signon.api.signin, fields);
-      } else {
-        yield put(profile.actions.updateProfile(fields));
-      }
-      const activeCourse = yield select(getActiveCourse);
-      const routeName = activeCourse ? 'Skills' : 'Courses';
-      yield put(NavigationActions.navigate({ routeName }));
-
-    } catch (error) {
-      console.warn(error);
-      yield put(exceptions.actions.add(error));
+    const hasRegistered = yield select(isRegistered);
+    if (hasRegistered) {
+      yield call(signon.api.signin, fields);
+    } else {
+      yield put(profile.actions.updateProfile(fields));
     }
+    const activeCourse = yield select(getActiveCourse);
+    const routeName = activeCourse ? 'Skills' : 'Courses';
+    yield put(NavigationActions.navigate({ routeName }));
+
   } else {
     yield put(signon.actions.setErrors(errors));
   }

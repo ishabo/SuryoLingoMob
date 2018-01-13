@@ -7,7 +7,7 @@ const stringToCharArray = (str: string, filterLetters: string[]): string[] => {
     const rex = new RegExp(`${filterLetters.join('|')}`);
     return stringArr.filter(rex.test.bind(rex));
   } catch (error) {
-    console.error(str);
+    console.warn(str);
   }
   return [];
 };

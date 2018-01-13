@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import Navigation from './Navigation';
 import Loading from './Loading';
 import Store from 'services/store';
+import * as exceptions from 'services/exceptions';
 
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { setApiOrigin } from 'services/api';
@@ -24,7 +25,7 @@ I18nManager.forceRTL(true);
 const reduxStore = new Store();
 const store = reduxStore.getStore();
 const persistor = reduxStore.persistStore();
-
+exceptions.setStore(store);
 
 export default class App extends React.Component {
 

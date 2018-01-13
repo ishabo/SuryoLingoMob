@@ -65,7 +65,10 @@ class Courses extends React.Component<any, IState> {
   render () {
     return (
       <GSContainer>
-        <ScrollView>
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1, alignSelf: 'stretch', alignContent: 'center',
+          }} >
           <GSAnimatable innerRef={(c: Courses) => this.cards = c} >
             {this.renderCourses()}
           </GSAnimatable>

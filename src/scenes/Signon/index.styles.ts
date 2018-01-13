@@ -1,12 +1,14 @@
 import {
-  Container, Button, Item,
+  Button, Item,
   Input, Icon, Label, Form,
 } from 'native-base';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { CustomText } from 'styles/text';
+import { KeyboardAvoidingView, Platform, View } from 'react-native';
+const ViewWrapper = Platform.OS === 'android' ? View : KeyboardAvoidingView;
 
-export const GSContainer = glamor(Container)({
+export const GSContainer = glamor(ViewWrapper)({
   flex: 1,
 });
 
@@ -44,9 +46,7 @@ export const GSItem = glamor(Item)({
 });
 
 export const GSForm = glamor(Form)({
-  flex: 1,
   padding: 10,
-  alignSelf: 'stretch',
   marginTop: 20,
 });
 
@@ -60,13 +60,12 @@ export const GSError = glamor.text({
   color: Colors.red,
 });
 
-export const GSLebel = glamor(Label)({
-
-});
+export const GSLebel = glamor(Label)({});
 
 export const GSNextButtons = glamor.view({
   justifyContent: 'space-between',
-  height: 120,
+  flex: 1,
+  marginBottom: 20,
 });
 
 export const GSTitle = glamor(CustomText)({

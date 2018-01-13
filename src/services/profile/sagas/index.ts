@@ -6,25 +6,32 @@ import SInfo from 'react-native-sensitive-info';
 import Config from 'config';
 import { ISagasFunctions } from 'services/sagas';
 
-export function* createProfile (action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
 
   if (isEmpty(profileState)) {
-    const profileData = yield call(profile.api.createProfile, action.payload);
+    try {
+      const profileData = yield call(profile.api.createProfile, action.payload);
+      yield put(profile.actions.saveProfileAndAccessToken(profileData));
+    } catch (error) {
+      console.log(error);
+    }
 
-    yield put(profile.actions.saveProfileAndAccessToken(profileData));
   }
 }
 
-export function* updateProfile (action: profile.IProfileAction): IterableIterator<any> {
-  debugger;
+export function* updateProfile(action: profile.IProfileAction): IterableIterator<any> {
   const currentProfile = yield select((state: IInitialState) => state.profile);
-  const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
+  try {
+    const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
 
-  yield put(profile.actions.saveProfileAndAccessToken(profileData));
+    yield put(profile.actions.saveProfileAndAccessToken(profileData));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export function* saveProfileAndAccessToken (action: profile.IProfileAction): IterableIterator<any> {
+export function* saveProfileAndAccessToken(action: profile.IProfileAction): IterableIterator<any> {
   const accessToken = action.profileData.apiKey;
   console.log('Will save token', accessToken);
   delete action.profileData.apiKey;
