@@ -62,6 +62,7 @@ class Skills extends React.Component<any, State> {
   }
 
   render () {
+
     return (
       <Container>
         <ScrollView style={{ flexDirection: 'column' }}>

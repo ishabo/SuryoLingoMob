@@ -3,6 +3,8 @@ package com.suryolingo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.rnfs.RNFSPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -29,16 +31,9 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNDeviceInfo(),
-            new RNFSPackage(),
-            new LinearGradientPackage(),
-            new RNSensitiveInfoPackage(),
-            new RNAudioPlayer(),
-            new RNSoundPackage(),
-            new RNI18nPackage()
-      );
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNDeviceInfo(), new RNFSPackage(),
+          new LinearGradientPackage(), new RNSensitiveInfoPackage(), new RNAudioPlayer(), new RNSoundPackage(),
+          new RNI18nPackage());
     }
 
     @Override
@@ -57,6 +52,7 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
 
+    Fabric.with(this, new Crashlytics());
     I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
     sharedI18nUtilInstance.allowRTL(getApplicationContext(), true);
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Colors from 'styles/colors';
 import I18n from 'I18n';
+import { Text } from 'react-native';
 import {
   GSBanner,
   GSBannerTail,
@@ -35,8 +36,8 @@ const EvaluationBanner = ({ passed, correctAnswer }: IProps) =>
     </GSMessageBox>
 
     <GSBannerTail>
-      <GSTriangle color={bgColor(passed)} upsideDown />
-      <GSTriangle color={bgColor(passed)} />
+      <GSTriangle color={bgColor(passed)} upsideDown ><Text></Text></GSTriangle>
+      <GSTriangle color={bgColor(passed)} ><Text></Text></GSTriangle>
     </GSBannerTail>
   </GSBanner>;
 

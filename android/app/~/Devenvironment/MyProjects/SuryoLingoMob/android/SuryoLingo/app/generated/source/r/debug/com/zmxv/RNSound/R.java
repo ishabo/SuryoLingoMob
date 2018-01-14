@@ -634,7 +634,7 @@ public final class R {
         public static final int catalyst_remotedbg_message = 0x7f0c0026;
         public static final int catalyst_settings = 0x7f0c0028;
         public static final int catalyst_settings_title = 0x7f0c0029;
-        public static final int status_bar_notification_info_overflow = 0x7f0c003b;
+        public static final int status_bar_notification_info_overflow = 0x7f0c003c;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat = 0x7f0d0000;

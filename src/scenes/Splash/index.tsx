@@ -8,6 +8,8 @@ import { setLoadingOff } from 'services/api/actions';
 import { getActiveCourse } from 'services/selectors';
 import { syncFinishedLessons } from 'services/progress/actions';
 import { NavigationScreenProp } from 'react-navigation';
+// import SInfo from 'react-native-sensitive-info';
+// import Config from 'config';
 
 import images from 'assets/images';
 
@@ -51,6 +53,7 @@ class Splash extends React.Component<IProps, IState> {
   };
 
   componentDidMount () {
+
     this.props.setLoadingOff();
     const { activeCourse } = this.props;
     // Consider moving all this balaga to sagas

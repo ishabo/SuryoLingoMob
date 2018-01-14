@@ -15,7 +15,9 @@
 		"remotedev": "remotedev-debugger --injectserver",
 		"postinstall": "yarn remotedev-debugger && rndebugger-open",
 		"prepush": "yarn test",
-		"clear": "rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-*"
+		"clear": "rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-*",
+		"bundle:prod": "yarn build && react-native bundle --platform android --dev false --entry-file artifacts/index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+		"release:prod": "yarn bundle:prod && cd android && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && cd -"
 	},
 	"dependencies": {
 		"@types/jest": "^21.1.5",
