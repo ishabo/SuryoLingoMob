@@ -13,8 +13,11 @@ export default (props: IProps) => {
 
   return (
     <GSContainer showSentence={showSentence} >
-      <SoundButton {...sound} size={showSentence ? { small: true } : { large: true }} />
-      {showSentence && <Phrase sentence={sentence} lang={lang} />}
+      {
+        sound.soundTrack &&
+        <SoundButton {...sound} size={showSentence ? { small: true } : { large: true }} />
+      }
+      {(showSentence || sound.soundTrack === null) && <Phrase sentence={sentence} lang={lang} />}
     </GSContainer>
   );
 };

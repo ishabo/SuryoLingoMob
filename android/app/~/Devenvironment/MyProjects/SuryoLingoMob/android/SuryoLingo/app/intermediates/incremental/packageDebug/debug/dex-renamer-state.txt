@@ -1,4 +1,4 @@
-#Sat Jan 13 20:18:21 GMT 2018
-base.0=/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/transforms/dexMerger/debug/18
+#Mon Jan 15 19:33:23 GMT 2018
+base.0=/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

@@ -164,6 +164,7 @@ class Questions extends React.Component<IProps, IState> {
   renderNextQuestion = () =>
     <NextButton onPress={this.evaluateOrNext}
       disabled={this.submitAllowed()}
+      wide
       text={
         this.needsEvaluation()
           ? I18n.t('questions.submit')

@@ -20,6 +20,7 @@ import Modal from 'react-native-modal';
 import shortid from 'shortid';
 import Colors from 'styles/colors';
 import { IDictionary } from 'services/dictionaries';
+import { downloadAndPlayAudio } from 'helpers/audio';
 
 interface IProps {
   question: IQuestion;
@@ -55,6 +56,13 @@ class QuestionBody extends React.Component<IProps, IState> {
     garshoniToggle: false,
     modalOn: false,
   };
+
+  componentDidMount () {
+    const soundTrack = this.pathToSoundTrack();
+    if (soundTrack) {
+      downloadAndPlayAudio(soundTrack);
+    }
+  }
 
   private switchGarshoni = () => {
     this.setState({ garshoniToggle: !this.state.garshoniToggle });
@@ -107,6 +115,13 @@ class QuestionBody extends React.Component<IProps, IState> {
       />
     </Modal>
 
+  private pathToSoundTrack = (): string => {
+    if (this.props.question.soundFiles[0]) {
+      return `${HOST}/sound/${this.props.question.soundFiles[0]}.mp4`;
+    }
+    return null;
+  }
+
   render () {
     const { question, course, collectAnswer, userHasAnswered } = this.props;
     let QuestionComponent;
@@ -158,7 +173,7 @@ class QuestionBody extends React.Component<IProps, IState> {
 
       <StudyPhrase
         sentence={reverse ? question.translation : sentence}
-        sound={{ soundTrack: `${HOST}/sound/${question.soundFiles[0]}.mp4` }}
+        sound={{ soundTrack: this.pathToSoundTrack() }}
         showSentence={showPhraseInHeader}
         lang={course[reverse ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs}
       />

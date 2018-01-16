@@ -4,28 +4,38 @@ import glamor from 'glamorous-native';
 
 interface IProps {
   disabled?: boolean;
+  wide?: boolean;
+  restProps?: any;
   onPress: () => void;
   text: string;
-  restProps?: any;
 }
 
 export default (
   { disabled = false,
+    wide = true,
     onPress,
     text,
     restProps = { success: true } }: IProps,
-) => <GSButton
-  rounded
-  block
-  disabled={disabled}
-  onPress={onPress}
-  {...restProps}
->
+) => {
+  console.log(wide);
+  return <GSButton
+    rounded
+    block
+    buttonWidth
+    disabled={disabled}
+    onPress={onPress}
+    {...restProps}
+  >
     <Text style={{ alignSelf: 'center' }}>
       {text}
     </Text>
   </GSButton>;
+};
 
-const GSButton = glamor(Button)({
-  width: 300, alignSelf: 'center',
-});
+const GSButton = glamor(Button)<{ wide: boolean }>(
+  {},
+  ({ wide }) => ({
+    width: wide ? 280 : 140,
+    alignSelf: wide ? 'center' : 'stretch',
+  }),
+);

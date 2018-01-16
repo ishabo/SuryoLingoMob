@@ -23,14 +23,14 @@ export default class TextArea extends React.Component<IProps, IState> {
     keyboardOn: false,
   };
 
-  private keyboardWillShowListener;
-  private keyboardWillHideListener;
+  private keyboardDidShowListener;
+  private keyboardDidHideListener;
 
-  private keyboardWillShow = () => {
+  private keyboardDidShow = () => {
     this.setState({ keyboardOn: true });
   }
 
-  private keyboardWillHide = () => {
+  private keyboardDidHide = () => {
     this.setState({ keyboardOn: false });
   }
 
@@ -55,13 +55,13 @@ export default class TextArea extends React.Component<IProps, IState> {
   }
 
   componentDidMount () {
-    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
   }
 
   componentWillUnmount () {
-    this.keyboardWillShowListener.remove();
-    this.keyboardWillHideListener.remove();
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
   }
 
   private textArea;

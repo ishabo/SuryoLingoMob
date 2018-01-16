@@ -5,16 +5,16 @@ import {
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { CustomText } from 'styles/text';
-import { KeyboardAvoidingView, Platform, View } from 'react-native';
-const ViewWrapper = Platform.OS === 'android' ? View : KeyboardAvoidingView;
+import { KeyboardAvoidingView } from 'react-native';
 
-export const GSContainer = glamor(ViewWrapper)({
+export const GSContainer = glamor(KeyboardAvoidingView)({
   flex: 1,
+  justifyContent: 'space-between',
 });
 
 export const GSTabs = glamor.view({
   flexDirection: 'row',
-  marginTop: 20,
+  height: 80,
 });
 
 export const GSTabButton = glamor(Button)({
@@ -42,12 +42,11 @@ export const GSIcon = glamor(Icon)({
 });
 
 export const GSItem = glamor(Item)({
-  marginVertical: 10,
+  marginVertical: 5,
 });
 
 export const GSForm = glamor(Form)({
-  padding: 10,
-  marginTop: 20,
+  justifyContent: 'flex-start',
 });
 
 export const GSFooter = glamor.view({
@@ -63,12 +62,16 @@ export const GSError = glamor.text({
 export const GSLebel = glamor(Label)({});
 
 export const GSNextButtons = glamor.view({
-  justifyContent: 'space-between',
-  flex: 1,
-  marginBottom: 20,
+  alignItems: 'stretch',
+  alignSelf: 'stretch',
+  alignContent: 'center',
+  justifyContent: 'space-around',
+  marginTop: 20,
+  flexDirection: 'row',
 });
 
 export const GSTitle = glamor(CustomText)({
+  padding: 10,
   fontSize: 30,
 });
 

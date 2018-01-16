@@ -3,19 +3,22 @@ import { Text } from 'react-native';
 import { Button } from 'native-base';
 import SkillIcon from 'scenes/Skills/components/SkillIcon';
 import { ILesson, ISkill } from 'services/skills';
+
 import I18n from 'I18n';
 import Colors from 'styles/colors';
 import Badge from '../Badge';
 import glamor from 'glamorous-native';
+import { CustomText } from 'styles/text';
 
 interface IProps {
   lesson: ILesson;
   skill: ISkill;
   active: boolean;
+  lang: TLangs;
   enterLesson (lessonId: string): void;
 }
 
-export default ({ lesson, skill, enterLesson, active }: IProps) => {
+export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
   const { lessons } = skill;
   const icon = skill.icons.xhdpi.unlocked;
   const lessonTitle = I18n.t('lessons.lesson.title', {
@@ -36,7 +39,7 @@ export default ({ lesson, skill, enterLesson, active }: IProps) => {
   return <GSLesson>
     <GSCard active>
       <GSLessonTitle>{lessonTitle}</GSLessonTitle>
-      <GSLessonNewWords>{lesson.newWords.split('|').join(', ')}</GSLessonNewWords>
+      <GSLessonNewWords lang={lang}>{lesson.newWords.split('|').join(', ')}</GSLessonNewWords>
       <GSButton onPress={() => active && enterLesson(lesson.id)} {...buttonProps}>
         <Text style={{ color: active ? Colors.white : Colors.gray }}>
           {I18n.t(`lessons.${active ? 'enterLesson' : 'locked'}`)}
@@ -84,7 +87,7 @@ const GSLessonTitle = glamor.text({
   top: 50,
 });
 
-const GSLessonNewWords = glamor.text({
+const GSLessonNewWords = glamor(CustomText)({
   alignSelf: 'center',
   fontSize: 20,
 });

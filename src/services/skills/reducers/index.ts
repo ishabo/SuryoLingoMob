@@ -35,6 +35,7 @@ export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISki
         let totalSkillXP: number = 0;
         let totalFinishedLessons: number = 0;
         skill.lessons = skill.lessons.map((lesson: skill.ILesson) => {
+
           if (lesson.id === lessonId) {
             lesson.finished = true;
 

@@ -6,8 +6,7 @@ export const GSHeader = glamor.view({
   borderBottomWidth: 0,
   justifyContent: 'center',
   alignItems: 'center',
-  alignContent: 'stretch',
-  marginTop: 30,
+  marginTop: 10,
 });
 
 export const GSBody = glamor(Body)({

@@ -7,16 +7,18 @@ import * as Animatable from 'react-native-animatable';
 import { ISkill, ILesson } from 'services/skills';
 import { enterLesson } from 'services/progress/actions';
 import { IInitialState } from 'services/reducers';
-import { getSkillLessons } from 'services/selectors';
+import { getSkillLessons, getActiveCourse } from 'services/selectors';
 import Lesson from './components/Lesson';
 import { SkillIcon } from '../Skills/components';
 import glamor from 'glamorous-native';
 import { NavigationScreenProp } from 'react-navigation';
+import { ICourse } from 'services/courses';
 
 interface IProps {
   getLessons (skillId: string): ILesson[];
   enterLesson (): void;
   navigation: NavigationScreenProp<any, any>;
+  activeCourse: ICourse;
 }
 
 interface IState {
@@ -34,6 +36,7 @@ class Lessons extends React.Component<IProps, IState> {
 
   static navigationOptions = ({ navigation }) => ({
     title: I18n.t('lessons.title', { skill: navigation.state.params.skill.name }),
+    headerBackTitle: '',
   })
 
   private getNumOfActiveLessons = (): number => this.getFinishedLesson().length;
@@ -80,6 +83,7 @@ class Lessons extends React.Component<IProps, IState> {
       lesson={lesson}
       active={this.isLessonActive(lesson)}
       enterLesson={this.props.enterLesson}
+      lang={this.props.activeCourse.targetLanguage.shortName}
     />;
   }
 
@@ -137,7 +141,7 @@ const GSAnimatable = glamor(Animatable.View)({
 });
 
 const mapStateToProps = (state: IInitialState) => ({
-  courses: state.courses,
+  activeCourse: getActiveCourse(state),
   getLessons: (skillId: string) => getSkillLessons(skillId)(state),
 });
 

@@ -3,7 +3,7 @@ import { Container, Text } from 'native-base';
 import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Skill } from './components';
-import { isEmpty, mapValues, groupBy } from 'lodash';
+import { mapValues, groupBy } from 'lodash';
 import { ISkill } from 'services/skills';
 import { getActiveCourse, getTargetLanguage } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
@@ -17,8 +17,7 @@ interface State { }
 class Skills extends React.Component<any, State> {
 
   static navigationOptions = ({ navigation: { navigate, state: { params } } }) => ({
-    title: isEmpty(params) ? '' : params['title'],
-    headerLeft: null,
+    title: I18n.t(`courses.languages.short.${params['title']}`),
     headerRight: <HeaderRight
       title={I18n.t('courses.shortTitle')}
       navigate={() => navigate('Courses')} />,
@@ -36,7 +35,6 @@ class Skills extends React.Component<any, State> {
     const mappedUnits: any[] = [];
 
     units.forEach((unit: string | number) => {
-
       mappedUnits.push(<View key={shortid.generate()}
         style={{ justifyContent: 'space-around', flexDirection: 'row' }}>
         {this.renderSkills(skills[unit])}
@@ -62,7 +60,6 @@ class Skills extends React.Component<any, State> {
   }
 
   render () {
-
     return (
       <Container>
         <ScrollView style={{ flexDirection: 'column' }}>
@@ -83,7 +80,7 @@ const GSTouchable = glamor(TouchableOpacity)({
 
 interface ITitleProps {
   title?: string;
-  navigate (): boolean;
+  navigate?(): boolean;
 }
 
 const HeaderRight = ({ title, navigate }: ITitleProps) =>

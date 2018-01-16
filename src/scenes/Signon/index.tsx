@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BackHandler, TextInputProperties, Text } from 'react-native';
+import { BackHandler, TextInputProperties, Text, Keyboard } from 'react-native';
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
@@ -11,7 +11,7 @@ import {
   GSForm, GSItem, GSLebel,
   GSNextButtons, GSTitle, GSDescription,
 } from './index.styles';
-import { GSHeader, GSBody } from 'styles/layout';
+import { GSHeader } from 'styles/layout';
 import NextButton from 'components/NextButton';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
@@ -21,6 +21,7 @@ import { ICourse } from 'services/courses';
 interface IState {
   signUpOrIn: signon.TSignon;
   focusOn: string | 'name' | 'email' | 'password';
+  keyboardOn: boolean;
 }
 
 interface IProps {
@@ -33,9 +34,13 @@ interface IProps {
 
 class Signon extends React.Component<IProps, IState> {
 
+  private keyboardDidShowListener;
+  private keyboardDidHideListener;
+
   state = {
     signUpOrIn: 'signin',
     focusOn: null,
+    keyboardOn: false,
   };
 
   static navigationOptions = {
@@ -47,12 +52,23 @@ class Signon extends React.Component<IProps, IState> {
     return false;
   }
 
-  componentDidMount () {
+  private keyboardDidHide = () => {
+    this.setState({ keyboardOn: false });
+  }
 
+  private keyboardDidShow = () => {
+    this.setState({ keyboardOn: true });
+  }
+
+  componentDidMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
   componentWillUnmount () {
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
@@ -123,25 +139,35 @@ class Signon extends React.Component<IProps, IState> {
         onSubmitEditing: this.focusOn('email'),
         returnKeyType: 'next',
       })}
+
       {this.renderInput('email', {
         onSubmitEditing: this.focusOn('password'),
         returnKeyType: 'next',
       })}
+
       {this.renderInput('password', {
         secureTextEntry: true,
         onSubmitEditing: this.submitSignon,
         returnKeyType: 'go',
       })}
+
+      {this.state.keyboardOn || <GSNextButtons>
+        {this.renderSubmitButton()}
+        {this.renderSkipButton()}
+      </GSNextButtons>}
     </GSForm>
 
   private renderSubmitButton = () =>
     <NextButton
       onPress={this.submitSignon}
-      text={I18n.t('profile.form.submit')} />
+      wide={false}
+      text={I18n.t('profile.form.submit')}
+    />
 
   private renderSkipButton = () =>
     <NextButton
       onPress={this.skipToNext}
+      wide={false}
       text={I18n.t('profile.form.skip')} restProps={{ primry: true }} />
 
   private renderTitle = () =>
@@ -156,19 +182,13 @@ class Signon extends React.Component<IProps, IState> {
 
   render () {
     return (
-      <GSContainer>
+      <GSContainer behavior="position">
         <GSHeader>
           {this.renderTitle()}
           {this.renderDescription()}
           {this.renderTabs()}
         </GSHeader>
-        <GSBody>
-          {this.renderForm()}
-          <GSNextButtons>
-            {this.renderSubmitButton()}
-            {this.renderSkipButton()}
-          </GSNextButtons>
-        </GSBody>
+        {this.renderForm()}
       </GSContainer>
     );
   }
