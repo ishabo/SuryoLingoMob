@@ -65,7 +65,6 @@ const GSButton = glamor(Button)({
 
 const GSCard = glamor.view<{ active: boolean }>(
   {
-    height: 300,
     shadowOffset: { width: 4, height: 4 },
     shadowColor: 'black',
     shadowOpacity: 0.2,

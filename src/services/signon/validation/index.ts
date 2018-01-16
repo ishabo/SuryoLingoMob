@@ -8,8 +8,10 @@ const validateField = (
   fieldName: string,
   errors: IDictionary<string> = {},
 ) => {
-  if (isEmpty(fields[fieldName])) errors[fieldName] = `${fieldName}_required`;
-  else if (!func(fields[fieldName])) errors[fieldName] = `${fieldName}_invalid`;
+  if (Object.keys(fields).indexOf(fieldName) !== -1) {
+    if (isEmpty(fields[fieldName])) errors[fieldName] = `${fieldName}_required`;
+    else if (!func(fields[fieldName])) errors[fieldName] = `${fieldName}_invalid`;
+  }
 };
 
 export const validateSigon = (fields: ISignonFormData) => {

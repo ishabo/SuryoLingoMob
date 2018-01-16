@@ -7,20 +7,34 @@ import { validateSigon } from '../validation';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import { ISagasFunctions } from 'services/sagas';
 import { NavigationActions } from 'react-navigation';
-import { getActiveCourse, isRegistered } from 'services/selectors';
+import { getActiveCourse } from 'services/selectors';
 
-export function* submitSignon(): IterableIterator<any> {
+export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   const fields = { ...yield select((state: IInitialState) => state.signon.item) };
+  if (action.signon === 'signin') {
+    delete fields['name'];
+  }
   const errors = validateSigon(fields);
 
   if (isEmpty(errors)) {
-    const hasRegistered = yield select(isRegistered);
-    if (hasRegistered) {
-      yield call(signon.api.signin, fields);
-    } else {
-      yield put(profile.actions.updateProfile(fields));
+
+    const currentProfile = yield select((state: IInitialState) => state.profile);
+
+    try {
+      let profileData;
+
+      if (action.signon === 'signin') {
+        profileData = yield call(signon.api.signin, fields);
+      } else {
+        profileData = yield call(profile.api.updateProfile(currentProfile.id), fields);
+      }
+
+      yield put(profile.actions.saveProfileAndAccessToken(profileData));
+    } catch (error) {
+      console.log(error);
     }
+
     const activeCourse = yield select(getActiveCourse);
     const routeName = activeCourse ? 'Skills' : 'Courses';
     yield put(NavigationActions.navigate({ routeName }));

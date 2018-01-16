@@ -24,12 +24,12 @@
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-mdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-mdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
@@ -116,12 +116,12 @@
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xhdpi-v4/abc_list_focused_holo.9.png"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/685c0ab6fba73abf6801f39a7da981da/res/drawable-xxhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
-    },
-    {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-v23_abc_control_background_material.xml.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/685c0ab6fba73abf6801f39a7da981da/res/drawable-xxhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
@@ -200,24 +200,24 @@
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/layout/abc_action_mode_close_item_material.xml"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/anim_catalyst_slide_up.xml.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/react-native-0.51.0.aar/c411a2b558a735612de53636a7c19d70/res/anim/catalyst_slide_up.xml"
-    },
-    {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-hdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/anim_catalyst_slide_up.xml.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/react-native-0.51.0.aar/c411a2b558a735612de53636a7c19d70/res/anim/catalyst_slide_up.xml"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/layout_redbox_view.xml.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/react-native-0.51.0.aar/c411a2b558a735612de53636a7c19d70/res/layout/redbox_view.xml"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_star_half_black_36dp.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png"
-    },
-    {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xhdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_star_half_black_36dp.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/layout_abc_action_bar_view_list_nav_layout.xml.flat",
@@ -396,24 +396,24 @@
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable/abc_text_cursor_material.xml"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_list_focused_holo.9.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xxhdpi-v4/abc_list_focused_holo.9.png"
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-mdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-mdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-mdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-mdpi-v4/abc_list_pressed_holo_dark.9.png"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-mdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-mdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/685c0ab6fba73abf6801f39a7da981da/res/drawable-mdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_list_focused_holo.9.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xxhdpi-v4/abc_list_focused_holo.9.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable_abc_item_background_holo_dark.xml.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/685c0ab6fba73abf6801f39a7da981da/res/drawable-mdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable_abc_btn_check_material.xml.flat",
@@ -628,12 +628,12 @@
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xhdpi_node_modules_reactnavigation_src_views_assets_backicon.png.flat",
-        "source": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/src/main/res/drawable-xhdpi/node_modules_reactnavigation_src_views_assets_backicon.png"
-    },
-    {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/anim_abc_slide_out_top.xml.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xhdpi_node_modules_reactnavigation_src_views_assets_backicon.png.flat",
+        "source": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/src/main/res/drawable-xhdpi/node_modules_reactnavigation_src_views_assets_backicon.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
@@ -660,12 +660,12 @@
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/685c0ab6fba73abf6801f39a7da981da/res/drawable-xhdpi-v4/googleg_standard_color_18.png"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_ab_back_mtrl_am_alpha.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xxxhdpi-v4/abc_ic_ab_back_mtrl_am_alpha.png"
-    },
-    {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_light.xml.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/685c0ab6fba73abf6801f39a7da981da/res/drawable/common_google_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_ab_back_mtrl_am_alpha.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xxxhdpi-v4/abc_ic_ab_back_mtrl_am_alpha.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-hdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
@@ -704,12 +704,12 @@
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xxhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xxhdpi-v4/abc_ic_star_half_black_16dp.png"
-    },
-    {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/layout_abc_search_dropdown_item_icons_2line.xml.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xxhdpi-v4/abc_ic_star_half_black_16dp.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/layout_abc_action_menu_layout.xml.flat",
@@ -740,12 +740,12 @@
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/color/abc_secondary_text_material_dark.xml"
     },
     {
-        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
-        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-hdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
         "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-xxxhdpi-v4/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
+        "source": "/Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/faa3da024e3018904638c3acc7d71ef5/res/drawable-hdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
     },
     {
         "merged": "/Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/app/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",

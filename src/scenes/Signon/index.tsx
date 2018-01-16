@@ -100,7 +100,11 @@ class Signon extends React.Component<IProps, IState> {
   }
 
   private focusOn = (field: string) => () => {
-    this[field]._root.focus();
+    try {
+      this[field]._root.focus();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   private renderTabs = () =>
@@ -182,7 +186,7 @@ class Signon extends React.Component<IProps, IState> {
 
   render () {
     return (
-      <GSContainer behavior="position">
+      <GSContainer>
         <GSHeader>
           {this.renderTitle()}
           {this.renderDescription()}

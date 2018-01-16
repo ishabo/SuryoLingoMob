@@ -8,7 +8,6 @@ import { CustomText } from 'styles/text';
 import { KeyboardAvoidingView } from 'react-native';
 
 export const GSContainer = glamor(KeyboardAvoidingView)({
-  flex: 1,
   justifyContent: 'space-between',
 });
 
