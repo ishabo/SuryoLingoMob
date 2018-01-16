@@ -12,37 +12,37 @@ export default (props: any) =>
   </GSBadge>;
 
 const GSBadge = glamor.view({
-  width: 100,
+  width: 80,
 });
 
 const GSBadgeRibbonCircle = glamor.view({
-  width: 100,
-  height: 100,
+  width: 80,
+  height: 80,
   backgroundColor: Colors.green,
   borderRadius: 50,
 });
 
 const GSBadgeRibbon = glamor.view({
   backgroundColor: 'transparent',
-  borderBottomWidth: 70,
+  borderBottomWidth: 60,
   borderBottomColor: Colors.green,
-  borderLeftWidth: 40,
+  borderLeftWidth: 30,
   borderLeftColor: 'transparent',
-  borderRightWidth: 40,
+  borderRightWidth: 30,
   borderRightColor: 'transparent',
   position: 'absolute',
-  top: 70,
+  top: 57,
 });
 
 const GSBadgeRibbon140 = glamor(GSBadgeRibbon)({
-  left: -10,
+  left: -7,
   transform: [
     { rotate: '140deg' },
   ],
 });
 
 const GSBadgeRubbonNeg140 = glamor(GSBadgeRibbon)({
-  right: -10,
+  right: -7,
   transform: [
     { rotate: '-140deg' },
   ],

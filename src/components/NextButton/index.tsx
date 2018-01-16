@@ -21,6 +21,7 @@ export default (
   return <GSButton
     rounded
     block
+    wide
     buttonWidth
     disabled={disabled}
     onPress={onPress}
@@ -33,7 +34,9 @@ export default (
 };
 
 const GSButton = glamor(Button)<{ wide: boolean }>(
-  {},
+  {
+    alignSelf: 'center',
+  },
   ({ wide }) => ({
     width: wide ? 280 : 140,
     alignSelf: wide ? 'center' : 'stretch',

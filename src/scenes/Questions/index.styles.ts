@@ -4,7 +4,7 @@ import { Icon } from 'native-base';
 export const GSProgress = glamor.view({
   alignSelf: 'center',
   marginBottom: 20,
-  marginTop: 5,
+  marginTop: 25,
 });
 
 export const GSIcon = glamor(Icon)({

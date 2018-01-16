@@ -28,7 +28,7 @@ export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
   const renderBadge = () => <GSBadgePosition>
     <Badge>
       <GSSkillIcon>
-        <SkillIcon icon={icon} />
+        <SkillIcon size={80} icon={icon} />
       </GSSkillIcon>
     </Badge>
   </GSBadgePosition>;
@@ -51,7 +51,7 @@ export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
 };
 
 const GSLesson = glamor.view({
-  height: 400,
+  height: 300,
 });
 
 const GSButton = glamor(Button)({
@@ -70,9 +70,11 @@ const GSCard = glamor.view<{ active: boolean }>(
     shadowOpacity: 0.2,
     shadowRadius: 2,
     alignContent: 'stretch',
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
     width: 300,
+    height: 250,
+
   },
   props => ({
     backgroundColor: props.active === true ? Colors.white : Colors.lightGray,
@@ -93,15 +95,16 @@ const GSLessonNewWords = glamor(CustomText)({
 
 const GSSkillIcon = glamor.view({
   backgroundColor: Colors.lightYellow,
-  borderRadius: 50, width: 80,
-  height: 80,
   position: 'absolute',
-  top: 10,
-  right: 10,
+  borderRadius: 50,
+  height: 65,
+  width: 65,
+  right: 8,
+  top: 8,
 });
 
 const GSBadgePosition = glamor.view({
   position: 'absolute',
-  bottom: 70,
-  right: 10,
+  bottom: 50,
+  right: -10,
 });

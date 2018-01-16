@@ -19,4 +19,5 @@ export const GSFooter = glamor.view({
   backgroundColor: 'transparent',
   justifyContent: 'flex-end',
   marginBottom: 12,
+
 });
