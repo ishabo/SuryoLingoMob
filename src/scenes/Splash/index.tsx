@@ -1,50 +1,27 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
-import { Container, Text } from 'native-base';
+import { NetInfo } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchCourses } from 'services/courses/actions';
-import { fetchSkills } from 'services/skills/actions';
-import { setLoadingOff } from 'services/api/actions';
-import { getActiveCourse } from 'services/selectors';
-import { syncFinishedLessons } from 'services/progress/actions';
+import { getLatestException, hasNetworkError } from 'services/selectors';
 import { NavigationScreenProp } from 'react-navigation';
-// import SInfo from 'react-native-sensitive-info';
-// import Config from 'config';
-
 import images from 'assets/images';
+import * as exceptions from 'services/exceptions';
+import { GSContainer, GSLogo } from './index.styles';
+import { exitApp, alertConnection } from 'helpers';
+import * as starter from 'services/starter';
 
-export interface IStateToProps {
-  activeCourse: string;
-}
-
-export interface IDispatchToProps {
-  fetchCourses: () => void;
-  setLoadingOff: () => void;
-  syncFinishedLessons: () => void;
-  fetchSkills: () => void;
-}
-
-export interface IProps extends IStateToProps, IDispatchToProps {
+export interface IProps {
+  lastException: exceptions.IException;
   navigation: NavigationScreenProp<any, any>;
+  firstFetch: () => void;
+  addException: (payload: exceptions.IExceptionPayload) => void;
+  hasNetworkError: () => boolean;
 }
 
-// TODO: Show a button to retry when no network is available
+interface IState {
+  hasAlert: boolean;
+}
 
-export interface IState { }
-
-const styles: any = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
+const alertDelayTime = 1000;
 
 class Splash extends React.Component<IProps, IState> {
 
@@ -52,41 +29,83 @@ class Splash extends React.Component<IProps, IState> {
     header: null,
   };
 
-  componentDidMount () {
+  state = {
+    hasAlert: false,
+  };
 
-    this.props.setLoadingOff();
-    const { activeCourse } = this.props;
-    // Consider moving all this balaga to sagas
+  private handleFirstConnectivityChange = (isConnected) => {
+    if (!isConnected) {
+      this.props.addException({
+        name: 'NETWORK_ERROR',
+        message: 'Not connected to the internet',
+        report: false,
+      });
+    } else if (isConnected) {
+      this.props.firstFetch();
+    }
+
+    NetInfo.isConnected.removeEventListener(
+      'connectionChange',
+      this.handleFirstConnectivityChange,
+    );
+  }
+
+  setAlertDismissed = () => {
+    this.setState({ hasAlert: false });
+  }
+
+  alertConnection = () => {
+
+    console.warn(this.state.hasAlert);
+
+    if (this.state.hasAlert) {
+      return;
+    }
+
     setTimeout(() => {
-      if (!activeCourse) {
-        this.props.fetchCourses();
-      } else {
-        this.props.syncFinishedLessons();
-        this.props.fetchSkills();
-      }
-    }, 2000);
+      this.setState({ hasAlert: true }, () => {
+        alertConnection(this.props.firstFetch, exitApp, this.setAlertDismissed);
+      });
+    },         alertDelayTime);
+  }
+
+  componentDidMount () {
+    this.props.firstFetch();
+    setTimeout(this.checkConnection, alertDelayTime);
+  }
+
+  checkConnection = () => {
+    NetInfo.isConnected.addEventListener(
+      'connectionChange',
+      this.handleFirstConnectivityChange,
+    );
+  }
+
+
+  componentWillReceiveProps () {
+    if (this.props.hasNetworkError) {
+      this.alertConnection();
+    }
   }
 
   render () {
     return (
-      <Container style={styles.container}>
-        <Text style={styles.welcome}>
-          <Image style={{ width: 300, height: 295 }} source={images.logo.splash} />
-        </Text>
-      </Container>
+      <GSContainer>
+        <GSLogo source={images.logo.splash} />
+      </GSContainer>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  fetchCourses: () => dispatch(fetchCourses()),
-  fetchSkills: () => dispatch(fetchSkills()),
-  setLoadingOff: () => dispatch(setLoadingOff()),
-  syncFinishedLessons: () => dispatch(syncFinishedLessons()),
+  firstFetch: () => dispatch(starter.actions.firstFetch()),
+  addException: (payload: exceptions.IExceptionPayload) =>
+    dispatch(exceptions.actions.add(payload)),
 });
 
 const matchStateToProps = (state: any) => ({
-  activeCourse: getActiveCourse(state),
+  lastException: getLatestException(state),
+  hasNetworkError: hasNetworkError(state),
 });
 
 export default connect(matchStateToProps, mapDispatchToProps)(Splash);

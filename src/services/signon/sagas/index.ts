@@ -31,13 +31,16 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
       }
 
       yield put(profile.actions.saveProfileAndAccessToken(profileData));
+
+      const activeCourse = yield select(getActiveCourse);
+      const routeName = activeCourse ? 'Skills' : 'Courses';
+      yield put(NavigationActions.navigate({ routeName }));
+
     } catch (error) {
       console.log(error);
     }
 
-    const activeCourse = yield select(getActiveCourse);
-    const routeName = activeCourse ? 'Skills' : 'Courses';
-    yield put(NavigationActions.navigate({ routeName }));
+
 
   } else {
     yield put(signon.actions.setErrors(errors));

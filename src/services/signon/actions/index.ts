@@ -10,7 +10,6 @@ export const types = {
   CAPTURE_SIGNON: `${namespace}/CAPTURE_SIGNON`,
   SET_ERRORS: `${namespace}/SET_ERRORS`,
   RESET_SIGNON: `${namespace}/RESET_SIGNON`,
-
 };
 
 export const submitSignon = (signon: TSignon) => ({

@@ -1,14 +1,13 @@
 import { Store, Action } from 'redux';
 import * as reducers from './reducers';
 import * as actions from './actions';
-
-export { getApplicationExceptions, getInvalidExceptions, getLatestException } from './reducers';
+import * as selectors from './selectors';
 
 export interface IExceptionPayload {
   name: string;
   message: string;
   report: boolean;
-  response: { [key: string]: any };
+  response?: { [key: string]: any };
   action?: () => any;
 }
 
@@ -56,4 +55,5 @@ export const create = (payload: IExceptionPayload): IExceptionPayload => {
 export {
   actions,
   reducers,
+  selectors,
 };

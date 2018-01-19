@@ -4,3 +4,4 @@ export * from './audio';
 export * from './questions';
 export * from './common';
 export * from './language';
+export * from './alerts';

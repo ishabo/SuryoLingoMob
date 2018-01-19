@@ -1,9 +1,8 @@
 import React from 'react';
 import { IWordHint } from 'helpers';
 import { Popover, PopoverContainer } from 'react-native-simple-popover';
-import { CustomText } from 'styles/text';
-import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
+import { GSHintBlock, GSHintedSentence, GSHints, GSHintText, GSSentence } from './index.styles';
 import shortid from 'shortid';
 
 type TSentence = string | IWordHint[];
@@ -66,13 +65,13 @@ export default class Phrase extends React.Component<IProps, IState> {
           const actions = splitTranslations(word.translations);
           if (actions.length > 0) {
             return <PopoverContainer
-              containerStyle={{ padding: 1 }}
+              containerStyle={{ padding: 1, zIndex: 1000 }}
               key={shortid.generate()}>
               <Popover
-                placement={'top'}
+                placement={'bottom'}
                 arrowColor={Colors.lightBlack}
                 arrowWidth={16}
-                arrowHeight={8}
+                arrowHeight={10}
                 isVisible={this.state.selectedWord === word.word}
                 component={() => this.renderHint(word.translations)}
               >
@@ -87,48 +86,3 @@ export default class Phrase extends React.Component<IProps, IState> {
     </GSHintedSentence>;
   }
 }
-
-const GSHints = glamor.view({
-  backgroundColor: Colors.lightBlack,
-  paddingVertical: 5,
-  justifyContent: 'center',
-  borderRadius: 5,
-  width: 150,
-});
-
-const GSHintBlock = glamor.view<{ last: boolean }>(
-  {
-    justifyContent: 'center',
-    borderWidth: 1,
-    paddingHorizontal: 20,
-    borderColor: Colors.lightBlack,
-  },
-  props => !props.last ? ({
-    borderBottomColor: Colors.darkWhite,
-  }) : null,
-);
-
-const GSHintText = glamor.text({
-  color: Colors.white,
-  textAlign: 'center',
-  alignSelf: 'stretch',
-});
-
-const GSHintedSentence = glamor.view({
-  flexDirection: 'row',
-  justifyContent: 'center',
-});
-
-const GSSentence = glamor(CustomText)<{ underline: boolean }>(
-  {
-    padding: 0,
-    margin: 0,
-    marginHorizontal: 4,
-    fontSize: 20,
-    alignSelf: 'center',
-  },
-  props => props.underline ? ({
-    textDecorationLine: 'underline',
-    textDecorationStyle: 'dotted',
-  }) : null,
-);

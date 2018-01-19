@@ -2,6 +2,16 @@ export default {
   skillsList: 'المهارات اللغة {{lang}}',
   loading: 'الرجاء انتظر قليلاً',
   chooseYourWay: 'اختر طريقك',
+  general: {
+    close: 'أغلق',
+    retry: {
+      title: 'حصل مشكلة في الاتصال!',
+      reason: 'فشل البرنامج بالاتصال مع مخدم سوريولينجو. ' +
+        'الرجاء التأكد من اتصال الجهاز بشكبة الانترنت.',
+      reconnect: 'حاول الاتصال',
+      cancelAndExist: 'اخرج من البرنامج',
+    },
+  },
   alert: {
     NETWORK_ERROR: {
       title: 'حصل خطأ في الشبكة',

@@ -1,4 +1,5 @@
 import changeObjectCase from 'change-object-case';
+import { BackHandler } from 'react-native';
 
 export const changeCase = (data: object, direction: 'snake' | 'camel') => {
   const caseFunction = Array.isArray(data) ? `Array` : `Keys`;
@@ -15,4 +16,8 @@ export const replaceCharsByPatterns = (sentence: string, patterns: object) => {
   }
 
   return modifiedSentence;
+};
+
+export const exitApp = () => {
+  BackHandler.exitApp();
 };

@@ -57,7 +57,7 @@ export const createApi = (options: IApiOptions) => {
 
   const request: ApiSauce.ApisauceInstance = ApiSauce.create({
     baseURL: getApiOrigin(),
-    timeout: 60000,
+    timeout: 1000,
     headers: {
       agentOptions: {
         rejectUnauthorized: false,

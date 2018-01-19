@@ -58,7 +58,7 @@ class Completion extends React.Component<IProps, IState> {
           this.countDown();
         }
       });
-    }, decreaseIntervals);
+    },         decreaseIntervals);
   }
 
   canSkipAdd = () =>
@@ -78,6 +78,7 @@ class Completion extends React.Component<IProps, IState> {
     const buttonName = this.canSkipAdd()
       ? I18n.t('completion.backToLessons')
       : I18n.t('completion.willAllowToGoInSeconds', { seconds });
+
     return <NextButton onPress={this.navBackToLessons}
       disabled={!this.canSkipAdd()}
       text={buttonName} />;
@@ -87,7 +88,7 @@ class Completion extends React.Component<IProps, IState> {
     return <NextButton onPress={this.navToSignon}
       disabled={false}
       text={I18n.t('profile.signonToSave')}
-      restProps={{ primary: true }}
+      restProps={{ primary: true, wide: true }}
     />;
   }
 

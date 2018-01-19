@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import Loading from './Loading';
 import Store from 'services/store';
 import * as exceptions from 'services/exceptions';
+// import { Crashlytics } from 'react-native-fabric';
 
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { setApiOrigin } from 'services/api';
@@ -26,6 +27,7 @@ const reduxStore = new Store();
 const store = reduxStore.getStore();
 const persistor = reduxStore.persistStore();
 exceptions.setStore(store);
+// exceptions.setCrashReporter(Crashlytics);
 
 export default class App extends React.Component {
 

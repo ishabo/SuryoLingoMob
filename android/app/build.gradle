@@ -95,7 +95,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.suryolingo"
@@ -169,6 +169,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-audioplayer')
     implementation project(':react-native-device-info')
     implementation project(':react-native-fs')
     implementation project(':react-native-linear-gradient')

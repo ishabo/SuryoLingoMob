@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BackHandler, TextInputProperties, Text, Keyboard } from 'react-native';
+import { BackHandler, TextInputProperties, Text, Keyboard, Alert } from 'react-native';
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
@@ -9,7 +9,8 @@ import {
   GSTabs, GSTabButton,
   GSButtonText, GSInput,
   GSForm, GSItem, GSLebel,
-  GSNextButtons, GSTitle, GSDescription,
+  GSNextButtons, GSTitle,
+  GSIcon,
 } from './index.styles';
 import { GSHeader } from 'styles/layout';
 import NextButton from 'components/NextButton';
@@ -17,6 +18,7 @@ import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
 import { ICourse } from 'services/courses';
+import { exitApp } from 'helpers';
 
 interface IState {
   signUpOrIn: signon.TSignon;
@@ -48,7 +50,7 @@ class Signon extends React.Component<IProps, IState> {
   };
 
   handleBackPress () {
-    BackHandler.exitApp();
+    exitApp();
     return false;
   }
 
@@ -70,6 +72,15 @@ class Signon extends React.Component<IProps, IState> {
     this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove();
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  private alert () {
+    Alert.alert(
+      I18n.t('profile.title'),
+      I18n.t('profile.description'),
+      [{ text: I18n.t('general.close'), onPress: () => { } }],
+      { cancelable: false },
+    );
   }
 
   private setSignin = () => {
@@ -155,7 +166,7 @@ class Signon extends React.Component<IProps, IState> {
         returnKeyType: 'go',
       })}
 
-      {this.state.keyboardOn || <GSNextButtons>
+      {<GSNextButtons>
         {this.renderSubmitButton()}
         {this.renderSkipButton()}
       </GSNextButtons>}
@@ -164,32 +175,26 @@ class Signon extends React.Component<IProps, IState> {
   private renderSubmitButton = () =>
     <NextButton
       onPress={this.submitSignon}
-      wide={false}
       text={I18n.t('profile.form.submit')}
+      restProps={{ success: true, narrow: true }}
     />
 
   private renderSkipButton = () =>
     <NextButton
       onPress={this.skipToNext}
-      wide={false}
-      text={I18n.t('profile.form.skip')} restProps={{ primry: true }} />
+      text={I18n.t('profile.form.skip')}
+      restProps={{ primry: true, narrow: true }} />
 
   private renderTitle = () =>
     <GSTitle lang={'cl-ara'}>
-      {I18n.t('profile.title')}
+      {I18n.t('profile.title')} <GSIcon name="bulb" onPress={this.alert} />
     </GSTitle>
-
-  private renderDescription = () =>
-    <GSDescription>
-      {I18n.t('profile.description')}
-    </GSDescription>
 
   render () {
     return (
-      <GSContainer>
+      <GSContainer behavior="position">
         <GSHeader>
           {this.renderTitle()}
-          {this.renderDescription()}
           {this.renderTabs()}
         </GSHeader>
         {this.renderForm()}

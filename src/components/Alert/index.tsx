@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
 import { IException } from 'services/exceptions';
 import I18n from 'I18n';
+import { getLatestException } from 'services/selectors';
 
 interface IProps {
-  exceptions: IException[];
+  lastException: IException;
 }
 
 class Alert extends React.Component<IProps> {
@@ -22,8 +23,8 @@ class Alert extends React.Component<IProps> {
   }
 
   componentWillReceiveProps (nextProps: Partial<IProps>) {
-    if (nextProps.exceptions.length > this.props.exceptions.length) {
-      const exception = nextProps.exceptions.splice(-1)[0];
+    if (nextProps.lastException) {
+      const exception = nextProps.lastException;
 
       MessageBarManager.showAlert({
         title: I18n.t(`alert.${exception.name}.title`),
@@ -40,7 +41,7 @@ class Alert extends React.Component<IProps> {
 }
 
 const mapStateToProps = (state: IInitialState) => ({
-  exceptions: state.exceptions,
+  lastException: getLatestException(state),
 });
 
 export default connect(mapStateToProps)(Alert);

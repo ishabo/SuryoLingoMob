@@ -7,6 +7,7 @@ describe('validation', () => {
       expect(validation.validateSigon({
         password: 'password1!',
         name: 'name',
+        email: '',
       })).toEqual({
         email: 'email_required',
       });
@@ -16,6 +17,7 @@ describe('validation', () => {
       expect(validation.validateSigon({
         password: 'password1!',
         email: 'email@bla.com',
+        name: '',
       })).toEqual({
         name: 'name_required',
       });
@@ -25,13 +27,14 @@ describe('validation', () => {
       expect(validation.validateSigon({
         name: 'name',
         email: 'email@bla.com',
+        password: '',
       })).toEqual({
         password: 'password_required',
       });
     });
 
     it('requires all', () => {
-      expect(validation.validateSigon({})).toEqual({
+      expect(validation.validateSigon({ email: '', password: null, name: undefined })).toEqual({
         name: 'name_required',
         email: 'email_required',
         password: 'password_required',

@@ -1,8 +1,11 @@
 import { IInitialState } from './reducers';
+import cloneDeep from 'clone-deep';
+import { isEmpty } from 'lodash';
 import * as courses from './courses';
 import * as skills from './skills';
-import cloneDeep from 'clone-deep';
-import * as questions from './questions/selectors';
+import * as questions from './questions';
+import * as exceptions from './exceptions';
+
 import { Platform } from 'react-native';
 import { ILessonToSync } from 'services/progress';
 
@@ -19,16 +22,16 @@ export const getTargetLanguage = (state: IInitialState) =>
   courses.selectors.getTargetLanguage(state.courses);
 
 export const getPendingQuestions = (state: IInitialState) =>
-  questions.getPendingQuestions(state.questions);
+  questions.selectors.getPendingQuestions(state.questions);
 
 export const calcProress = (state: IInitialState) =>
-  questions.calcProress(state.questions);
+  questions.selectors.calcProress(state.questions);
 
 export const getCurrentQuestion = (state: IInitialState) =>
-  questions.getCurrentQuestion(state.questions);
+  questions.selectors.getCurrentQuestion(state.questions);
 
 export const allCorrectAnswers = (state: IInitialState, questionId: string) =>
-  questions.allCorrectAnswers(state.questions, questionId);
+  questions.selectors.allCorrectAnswers(state.questions, questionId);
 
 export const getLessonInProgress = (state: IInitialState): skills.ILesson =>
   selectLesson(state.skills, state.progress.lessonInProgress);
@@ -84,4 +87,13 @@ export const getLessonsToSync = (state: IInitialState): ILessonToSync[] =>
 export const isRegistered = (state: IInitialState): boolean =>
   typeof state.profile.email === 'string';
 
+export const isLoading = (state: IInitialState): boolean => state.api.loading;
 
+export const getLatestException = (state: IInitialState): exceptions.IException =>
+  exceptions.selectors.getLatestException(state.exceptions);
+
+export const hasFetchedSkills = (state: IInitialState): boolean =>
+  !isEmpty(state.courses) && !isEmpty(state.skills) && !isEmpty(state.profile);
+
+export const hasNetworkError = (state: IInitialState): boolean =>
+  exceptions.selectors.hasNetworkError(state.exceptions);

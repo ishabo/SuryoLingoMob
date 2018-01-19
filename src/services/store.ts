@@ -11,7 +11,7 @@ import storage from 'redux-persist/es/storage';
 const config = {
   storage,
   key: 'root',
-  //  stateReconciler: true,
+  // stateReconciler: true,
   blacklist: ['api', 'nav', 'exceptions', 'signon'],
 };
 

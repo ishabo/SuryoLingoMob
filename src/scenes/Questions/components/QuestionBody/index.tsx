@@ -151,7 +151,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         showPhraseInHeader = false;
         break;
       default:
-        console.warn(`Unknown Type ${question.questionType} for ${question}`);
+        console.warn(`Unknown Type ${question.questionType} for ${JSON.stringify(question)}`);
         return null;
     }
 

@@ -37,7 +37,12 @@ export const GSInput = glamor(Input)({
 });
 
 export const GSIcon = glamor(Icon)({
-
+  position: 'absolute',
+  right: 15,
+  top: 10,
+  fontSize: 20,
+  color: Colors.black,
+  zIndex: 100,
 });
 
 export const GSItem = glamor(Item)({

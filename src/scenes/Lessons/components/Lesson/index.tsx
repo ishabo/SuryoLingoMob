@@ -52,6 +52,7 @@ export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
 
 const GSLesson = glamor.view({
   height: 300,
+  width: 300,
 });
 
 const GSButton = glamor(Button)({
@@ -72,9 +73,9 @@ const GSCard = glamor.view<{ active: boolean }>(
     alignContent: 'stretch',
     alignItems: 'stretch',
     justifyContent: 'center',
-    width: 300,
-    height: 250,
-
+    width: 280,
+    height: 220,
+    marginLeft: 10,
   },
   props => ({
     backgroundColor: props.active === true ? Colors.white : Colors.lightGray,
@@ -105,6 +106,6 @@ const GSSkillIcon = glamor.view({
 
 const GSBadgePosition = glamor.view({
   position: 'absolute',
-  bottom: 50,
-  right: -10,
+  bottom: 80,
+  right: 0,
 });

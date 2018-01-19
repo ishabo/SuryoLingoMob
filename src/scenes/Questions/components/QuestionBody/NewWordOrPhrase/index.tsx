@@ -19,7 +19,7 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
 
   render () {
     const { phrase, translation, course } = this.props;
-    const targetLang = course.learnersLanguage.shortName as TLangs;
+    const targetLang = course.targetLanguage.shortName as TLangs;
     const learnersLang = course.learnersLanguage.shortName as TLangs;
     return (
       <GSContainer>
