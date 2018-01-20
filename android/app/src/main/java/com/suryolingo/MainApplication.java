@@ -3,6 +3,7 @@ package com.suryolingo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -31,7 +32,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNDeviceInfo(), new RNFSPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new ReactNativeRestartPackage(), new RNDeviceInfo(), new RNFSPackage(),
           new LinearGradientPackage(), new RNSensitiveInfoPackage(), new RNAudioPlayer(), new RNSoundPackage(),
           new RNI18nPackage());
     }

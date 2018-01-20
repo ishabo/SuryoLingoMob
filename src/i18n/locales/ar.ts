@@ -120,11 +120,28 @@ export default {
     signOut: 'تسجيل الخروج',
     signUp: 'تسجيل حساب جديد',
     form: {
-      email: 'البريد الالكتروني',
-      name: 'الاسم',
-      password: 'كلمة السر',
+      fields: {
+        email: 'الإيميل',
+        name: 'الاسم',
+        password: 'كلمة السر',
+      },
+      hints: {
+        name: '',
+        email: '',
+        password: '',
+      },
+      errors: {
+        name_required: 'الاسم مطلوب',
+        email_required: 'البريد الالكتروني مطلوب',
+        password_required: 'كلمة السر مطلوبة',
+        name_invalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو انكليزية',
+        email_invalid: 'الإيميل غير صحيح',
+        password_invalid: 'كلمة السر غير صالحة',
+      },
       submit: 'أرسل',
       skip: 'سجل لاحقاً',
     },
   },
+
+
 };

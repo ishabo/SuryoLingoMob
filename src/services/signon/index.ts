@@ -7,13 +7,19 @@ export type TSignon = string | 'signup' | 'signin';
 
 export interface ISignonFormData {
   name?: string;
+  email: string;
+  password: string;
+}
+
+export interface ISignonFormErrors {
+  name?: string;
   email?: string;
   password?: string;
 }
 
 export interface ISignonState {
   item: ISignonFormData;
-  errors: ISignonFormData;
+  errors: ISignonFormErrors;
 }
 
 export interface ISignonFormAction {

@@ -40,8 +40,6 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
       console.log(error);
     }
 
-
-
   } else {
     yield put(signon.actions.setErrors(errors));
   }

@@ -7,6 +7,7 @@ import Loading from './Loading';
 import Store from 'services/store';
 import * as exceptions from 'services/exceptions';
 // import { Crashlytics } from 'react-native-fabric';
+import RNRestart from 'react-native-restart';
 
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { setApiOrigin } from 'services/api';
@@ -32,7 +33,10 @@ exceptions.setStore(store);
 export default class App extends React.Component {
 
   componentWillMount () {
-    I18nManager.forceRTL(true);
+    if (!I18nManager.isRTL) {
+      I18nManager.forceRTL(true);
+      RNRestart.Restart();
+    }
   }
 
   render () {

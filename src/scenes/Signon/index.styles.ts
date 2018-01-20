@@ -36,6 +36,15 @@ export const GSInput = glamor(Input)({
   textAlign: 'right',
 });
 
+export const GSErrorText = glamor.text<{ visible?: boolean }>(
+  {
+    color: Colors.red,
+  },
+  props => ({
+    fontSize: props.visible ? 15 : 0,
+  }),
+);
+
 export const GSIcon = glamor(Icon)({
   position: 'absolute',
   right: 15,
@@ -51,6 +60,7 @@ export const GSItem = glamor(Item)({
 
 export const GSForm = glamor(Form)({
   justifyContent: 'flex-start',
+  paddingLeft: 10,
 });
 
 export const GSFooter = glamor.view({

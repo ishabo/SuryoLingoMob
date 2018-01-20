@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BackHandler, TextInputProperties, Text, Keyboard, Alert } from 'react-native';
+import {
+  BackHandler, TextInputProperties,
+  Text, Keyboard, Alert, View,
+} from 'react-native';
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
@@ -10,7 +13,7 @@ import {
   GSButtonText, GSInput,
   GSForm, GSItem, GSLebel,
   GSNextButtons, GSTitle,
-  GSIcon,
+  GSIcon, GSErrorText,
 } from './index.styles';
 import { GSHeader } from 'styles/layout';
 import NextButton from 'components/NextButton';
@@ -134,18 +137,30 @@ class Signon extends React.Component<IProps, IState> {
       </GSTabButton>
     </GSTabs>
 
-  private renderInput = (name: string, props?: TextInputProperties) =>
-    <GSItem inlineLabel error={!isEmpty(this.props.signon.errors[name])}>
-      <GSLebel>
-        <Text onPress={this.focusOn(name)}>
-          {I18n.t(`profile.form.${name}`)}
-        </Text>
-      </GSLebel>
-      <GSInput ref={c => this[name] = c}
-        autoFocus={this.state.focusOn === name}
-        {...props}
-        onChangeText={this.setField(name)} />
-    </GSItem>
+  private hasError = (name: string): boolean => !isEmpty(this.props.signon.errors[name]);
+
+  private renderInput = (name: string, props?: TextInputProperties) => {
+    const error = this.props.signon.errors[name];
+    return <View>
+      <GSItem inlineLabel error={this.hasError(name)}>
+        <GSLebel>
+          <Text onPress={this.focusOn(name)}>
+            {I18n.t(`profile.form.fields.${name}`)}
+          </Text>
+        </GSLebel>
+        <GSInput ref={c => this[name] = c}
+          autoFocus={this.state.focusOn === name}
+          {...props}
+          onChangeText={this.setField(name)} />
+      </GSItem>
+      <GSErrorText visible={this.hasError(name)}>
+        {error === `${name}_invalid`
+          && I18n.t(`profile.form.hints.${name}`)
+          || I18n.t(`profile.form.errors.${error}`)}
+      </GSErrorText>
+    </View>;
+  }
+
 
   private renderForm = () =>
     <GSForm>

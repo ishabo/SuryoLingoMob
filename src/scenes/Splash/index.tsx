@@ -66,7 +66,7 @@ class Splash extends React.Component<IProps, IState> {
       this.setState({ hasAlert: true }, () => {
         alertConnection(this.props.firstFetch, exitApp, this.setAlertDismissed);
       });
-    },         alertDelayTime);
+    }, alertDelayTime);
   }
 
   componentDidMount () {
@@ -80,7 +80,6 @@ class Splash extends React.Component<IProps, IState> {
       this.handleFirstConnectivityChange,
     );
   }
-
 
   componentWillReceiveProps () {
     if (this.props.hasNetworkError) {

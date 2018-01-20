@@ -9,7 +9,6 @@ import { isReverseQuestion, toGarshoni, hintify } from 'helpers';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
 import { TAnswer } from '../../index.types';
-import { HOST } from 'react-native-dotenv';
 import MultiChoice from './MultiChoice';
 import Translation from './Translation';
 import Dictation from './Dictation';
@@ -115,12 +114,8 @@ class QuestionBody extends React.Component<IProps, IState> {
       />
     </Modal>
 
-  private pathToSoundTrack = (): string => {
-    if (this.props.question.soundFiles[0]) {
-      return `${HOST}/sound/${this.props.question.soundFiles[0]}.mp4`;
-    }
-    return null;
-  }
+  private pathToSoundTrack = (): string =>
+    this.props.question.soundFiles.length > 0 && this.props.question.soundFiles[0] || null
 
   render () {
     const { question, course, collectAnswer, userHasAnswered } = this.props;

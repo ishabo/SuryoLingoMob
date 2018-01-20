@@ -4,6 +4,7 @@ ADDED from /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app
 INJECTED from /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/src/main/AndroidManifest.xml:1:1-40:12
 INJECTED from /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/src/main/AndroidManifest.xml:1:1-40:12
 INJECTED from /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/src/main/AndroidManifest.xml:1:1-40:12
+MERGED from [:react-native-restart] /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/node_modules/react-native-restart/android/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/react-native-restart/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-audioplayer] /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/node_modules/react-native-audioplayer/android/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/react-native-audioplayer/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-13:12
 MERGED from [com.crashlytics.sdk.android:crashlytics:2.8.0] /Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/crashlytics-2.8.0.aar/97969810c5213d257e8c8d015e902ed0/AndroidManifest.xml:2:1-19:12
 MERGED from [:react-native-device-info] /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/node_modules/react-native-device-info/android/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/react-native-device-info/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
@@ -97,6 +98,8 @@ uses-sdk
 ADDED from /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/src/main/AndroidManifest.xml:12:5-14:41
 INJECTED from /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/src/main/AndroidManifest.xml:12:5-14:41
 INJECTED from /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/android/app/src/main/AndroidManifest.xml:12:5-14:41
+MERGED from [:react-native-restart] /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/node_modules/react-native-restart/android/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/react-native-restart/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-restart] /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/node_modules/react-native-restart/android/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/react-native-restart/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-audioplayer] /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/node_modules/react-native-audioplayer/android/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/react-native-audioplayer/intermediates/manifests/full/debug/AndroidManifest.xml:9:5-11:41
 MERGED from [:react-native-audioplayer] /Users/issa.shabo/Devenvironment/MyProjects/SuryoLingoMob/node_modules/react-native-audioplayer/android/~/Devenvironment/MyProjects/SuryoLingoMob/android/SuryoLingo/react-native-audioplayer/intermediates/manifests/full/debug/AndroidManifest.xml:9:5-11:41
 MERGED from [com.crashlytics.sdk.android:crashlytics:2.8.0] /Users/issa.shabo/.gradle/caches/transforms-1/files-1.1/crashlytics-2.8.0.aar/97969810c5213d257e8c8d015e902ed0/AndroidManifest.xml:7:5-43

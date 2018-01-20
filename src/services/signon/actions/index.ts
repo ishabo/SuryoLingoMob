@@ -1,6 +1,7 @@
 import {
   ISignonFormData,
   TSignon,
+  ISignonFormErrors,
 } from '../';
 
 const namespace = 'SuryoLingo/signon';
@@ -22,7 +23,7 @@ export const captureSignon = (data: ISignonFormData) => ({
   type: types.CAPTURE_SIGNON,
 });
 
-export const setErrors = (errors: ISignonFormData) => ({
+export const setErrors = (errors: ISignonFormErrors) => ({
   errors,
   type: types.SET_ERRORS,
 });

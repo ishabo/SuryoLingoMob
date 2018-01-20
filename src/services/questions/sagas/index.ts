@@ -5,12 +5,19 @@ import { getPendingQuestions } from '../../selectors';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
+import { downloadFile } from 'helpers';
 
-export function* fetchQuestions(action: questions.IQuestionsAction): IterableIterator<any> {
+export function* fetchQuestions (action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(setLoadingOn());
 
   try {
     const response = yield call(questions.api.getQuestions, action.lessonId);
+    let question: questions.IQuestion;
+    for (question of response) {
+      if (question.soundFiles.length) {
+        downloadFile(question.soundFiles[0]);
+      }
+    }
     yield put(questions.actions.saveQuestions(response));
     yield put(NavigationActions.navigate({ routeName: 'Questions' }));
   } catch (error) {
@@ -20,7 +27,7 @@ export function* fetchQuestions(action: questions.IQuestionsAction): IterableIte
   yield put(setLoadingOff());
 }
 
-export function* nextQuestionOrFinish(action: questions.IQuestionsAction): IterableIterator<any> {
+export function* nextQuestionOrFinish (action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(questions.actions.updateQuestionStatus(action.questionId, action.status));
   const pendingQuestions: string[] = yield select(getPendingQuestions);
   let routeName = 'Questions';

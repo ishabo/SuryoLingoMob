@@ -3,6 +3,9 @@ import parseUrl from 'url-parse';
 import RNFS from 'react-native-fs';
 import { Platform } from 'react-native';
 
+let audio;
+let currentlyPlaying: string;
+
 type TSoundLocations = string | 'CACHES' | 'TEMPERORY';
 
 const RNFSDir = (location: TSoundLocations) => {
@@ -23,7 +26,6 @@ export const downloadFile = async (
   soundTrack,
   location: TSoundLocations = defaultLocation,
 ) => {
-  console.log('Playing sound track', soundTrack);
   let filename: string;
   const url = parseUrl(soundTrack);
 
@@ -51,19 +53,29 @@ export const downloadAndPlayAudio = async (
 };
 
 export const playAudio = (soundTrack, location: TSoundLocations = defaultLocation) => {
-  const audio = new Sound(soundTrack, RNFSDir(location), (error) => {
-    // loaded successfully
-    if (error) {
-      console.warn(RNFSDir(location) + '/' + soundTrack);
-      console.warn('failed to load the sound');
-      console.warn(error);
-    }
-  });
+  if (currentlyPlaying !== soundTrack) {
+    audio = new Sound(soundTrack, RNFSDir(location), (error) => {
+      console.log('Attempting to play sound track', soundTrack);
+
+      // loaded successfully
+      if (error) {
+        console.warn(RNFSDir(location) + '/' + soundTrack);
+        console.warn('failed to load the sound');
+        console.warn(error);
+      }
+    });
+    currentlyPlaying = soundTrack;
+  }
 
   setTimeout(() => {
-    audio.play(() => {
-      console.warn('played');
+    audio.stop(() => {
+      audio.play(() => {
+        console.log('Played sound track', soundTrack);
+      });
     });
-  }, 600);
+
+  }, 200);
+
 };
+
 

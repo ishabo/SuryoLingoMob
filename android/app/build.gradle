@@ -169,6 +169,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-restart')
     compile project(':react-native-audioplayer')
     implementation project(':react-native-device-info')
     implementation project(':react-native-fs')
