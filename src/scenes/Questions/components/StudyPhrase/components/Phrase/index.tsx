@@ -1,8 +1,9 @@
 import React from 'react';
 import { IWordHint } from 'helpers';
-import { Popover, PopoverContainer } from 'react-native-simple-popover';
-import Colors from 'styles/colors';
-import { GSHintBlock, GSHintedSentence, GSHints, GSHintText, GSSentence } from './index.styles';
+import PopoverTooltip from 'react-native-popover-tooltip';
+import {
+  GSHintedSentence, GSSentence,
+} from './index.styles';
 import shortid from 'shortid';
 
 type TSentence = string | IWordHint[];
@@ -12,45 +13,34 @@ export interface IProps {
   lang: TLangs;
 }
 
+interface IHint {
+  label: string;
+  onPress: () => void;
+}
+
 interface IState {
-  selectedWord: string;
+  selectedWordIndex: number;
 }
 const splitTranslations = (translations: string) =>
   (translations ? translations : '').split('|');
 
 export default class Phrase extends React.Component<IProps, IState> {
 
-  state = {
-    selectedWord: '',
-  };
-
-  private setSelectedWord = (selectedWord: string) => {
-    this.setState({ selectedWord }, () => {
-      setTimeout(() => {
-        if (this.state.selectedWord === selectedWord) {
-          this.setState({ selectedWord: '' });
-        }
-      }, 2000);
-    });
-  }
-
-  private renderText = (text: string, underline: boolean = false) =>
+  private renderText = (
+    text: string,
+    underline: boolean = false,
+    onPress: () => void = () => { },
+  ) =>
     <GSSentence
-      onPress={() => { this.setSelectedWord(text); }}
+      key={shortid.generate()}
+      onPress={onPress}
       underline={underline}
       lang={this.props.lang}>{text}</GSSentence>
 
-  private renderHint = (translations: string) => {
-    const split = splitTranslations(translations);
-    return <GSHints>
-      {split.map((text: string, index: number) =>
-        <GSHintBlock
-          key={shortid.generate()}
-          last={index === (split.length - 1)}>
-          <GSHintText>{text}</GSHintText>
-        </GSHintBlock>)}
-    </GSHints>;
-  }
+  private renderHint = (translations: string): IHint[] =>
+    splitTranslations(translations).map((label: string) => ({
+      label, onPress: () => { },
+    }))
 
   render () {
     const { sentence } = this.props;
@@ -61,23 +51,17 @@ export default class Phrase extends React.Component<IProps, IState> {
 
     return <GSHintedSentence>
       {
-        sentence.map((word: IWordHint) => {
-          const actions = splitTranslations(word.translations);
-          if (actions.length > 0) {
-            return <PopoverContainer
-              containerStyle={{ padding: 1, zIndex: 1000 }}
-              key={shortid.generate()}>
-              <Popover
-                placement={'bottom'}
-                arrowColor={Colors.lightBlack}
-                arrowWidth={16}
-                arrowHeight={10}
-                isVisible={this.state.selectedWord === word.word}
-                component={() => this.renderHint(word.translations)}
-              >
-                {this.renderText(word.word, true)}
-              </Popover>
-            </PopoverContainer>;
+        sentence.map((word: IWordHint, index: number) => {
+          if (word.translations && word.translations.length > 0) {
+            const onPress = () => { this[`tooltip${index}`].toggle(); };
+            const buttonCompoent = this.renderText(word.word, true, onPress);
+            return <PopoverTooltip
+              ref={(c: Phrase) => this[`tooltip${index}`] = c}
+              key={shortid.generate()}
+              buttonComponent={buttonCompoent}
+              items={this.renderHint(word.translations)}
+              animationType="timing"
+            />;
           } else {
             return this.renderText(word.word, false);
           }

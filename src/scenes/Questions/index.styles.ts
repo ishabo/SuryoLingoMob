@@ -1,16 +1,17 @@
 import glamor from 'glamorous-native';
 import { Icon } from 'native-base';
-
+import { Platform } from 'react-native';
 export const GSProgress = glamor.view({
-  alignSelf: 'center',
+  alignSelf: 'stretch',
+  alignItems: 'center',
   marginBottom: 20,
-  marginTop: 25,
+  marginTop: Platform.OS === 'android' ? 15 : 25,
 });
 
 export const GSIcon = glamor(Icon)({
   position: 'absolute',
-  top: -13,
-  left: -10,
+  top: 0,
+  left: 10,
   fontSize: 40,
   color: 'gray',
 });

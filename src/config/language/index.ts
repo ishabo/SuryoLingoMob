@@ -71,4 +71,15 @@ language.garshoni[syr2ara][V_7BOSO_] = language.arabicVowels.tanweenKasr;
 language.garshoni[syr2ara][V_MBATLONO] = V_MBATLONO;
 language.garshoni[syr2ara][V_NUQTAIN] = null;
 
+// Set shortnames
+language['cl-syr'] = language['tor-syr'] = {
+  letters: language.syriacLetters,
+  vowels: language.syriacVowels,
+};
+
+language['cl-ara'] = {
+  letters: language.arabicLetters,
+  vowels: language.arabicVowels,
+};
+
 export default language;

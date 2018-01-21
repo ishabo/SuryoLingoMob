@@ -8,6 +8,7 @@ import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import { ISagasFunctions } from 'services/sagas';
 import { NavigationActions } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
+import { navToSkills } from 'helpers';
 
 export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
@@ -33,8 +34,12 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
       yield put(profile.actions.saveProfileAndAccessToken(profileData));
 
       const activeCourse = yield select(getActiveCourse);
-      const routeName = activeCourse ? 'Skills' : 'Courses';
-      yield put(NavigationActions.navigate({ routeName }));
+
+      if (activeCourse) {
+        yield put(navToSkills(activeCourse));
+      } else {
+        yield put(NavigationActions.navigate({ routeName: 'Courses' }));
+      }
 
     } catch (error) {
       console.log(error);

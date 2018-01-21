@@ -30,7 +30,6 @@ class Questions extends React.Component<IProps, IState> {
     progress: 0,
     answerCorrect: null,
     modalOn: false,
-    layoutWidth: 0,
   };
 
   private userHasAnswered = () =>
@@ -133,16 +132,13 @@ class Questions extends React.Component<IProps, IState> {
   }
 
   renderProgressBar = () =>
-    <GSHeader onLayout={(event) => {
-      const { width } = event.nativeEvent.layout;
-      this.setState({ layoutWidth: width });
-    }}>
+    <GSHeader>
+      <GSIcon name="close" onPress={this.existQuestions} />
       <GSProgress>
-        <GSIcon name="close" onPress={this.existQuestions} />
         <ProgressBar
           progress={this.state.progress}
           height={8}
-          width={this.state.layoutWidth - 80}
+          width={250}
           borderColor={Colors.lightGray}
           color={Colors.darkGreen}
           unfilledColor="#d3d3d3"

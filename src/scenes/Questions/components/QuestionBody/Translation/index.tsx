@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'native-base';
 import I18n from 'I18n';
-import TextArea from '../../TextArea';
+import { TextArea } from 'components';
 import { ICourse } from 'services/courses';
 import { IAnswerProps } from '../../../index.types';
 import glamor from 'glamorous-native';
@@ -21,7 +21,8 @@ export default class Translation extends React.Component<IProps> {
         <TextArea
           placeholder={placeholder}
           captureInput={collectAnswer}
-          showSyriacKeyboard={reverse && !userHasAnswered}
+          showCustomKeyboard={reverse && !userHasAnswered}
+          targetLanguage={course.targetLanguage.shortName}
         />
       </GSContainer>
     );

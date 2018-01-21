@@ -74,8 +74,7 @@ export const playAudio = (soundTrack, location: TSoundLocations = defaultLocatio
       });
     });
 
-  }, 200);
-
+  },         200);
 };
 
 

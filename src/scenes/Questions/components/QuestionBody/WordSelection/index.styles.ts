@@ -3,6 +3,7 @@ import Colors from 'styles/colors';
 
 interface IWordProps {
   shadowed?: boolean;
+  selected?: boolean;
 }
 
 export const GSWordBox = glamor.view({
@@ -14,12 +15,13 @@ export const GSWordBox = glamor.view({
 export const GSWordText = glamor.text<IWordProps>(
   {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
     padding: 10,
   },
   props => ({
     color: props.shadowed ? Colors.darkGray : Colors.black,
-    backgroundColor: props.shadowed ? Colors.darkGray : Colors.white,
+    backgroundColor: props.shadowed
+      ? Colors.darkGray
+      : Colors[props.selected ? 'lightGray' : 'white'],
   }),
 );
 
@@ -38,7 +40,7 @@ export const GSAnswerBox = glamor.view({
   flex: 1,
   flexDirection: 'row',
   flexWrap: 'wrap',
-  backgroundColor: Colors.lightGray,
+  backgroundColor: Colors.white,
   marginVertical: 40,
   alignContent: 'flex-start',
 });

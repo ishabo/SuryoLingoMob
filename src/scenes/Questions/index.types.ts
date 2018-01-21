@@ -11,7 +11,6 @@ export interface IState {
   progress: number;
   answerCorrect: boolean;
   modalOn: boolean;
-  layoutWidth: number;
 }
 
 export interface IAnswerProps {

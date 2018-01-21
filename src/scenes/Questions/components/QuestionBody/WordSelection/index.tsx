@@ -118,7 +118,7 @@ export default class WordSelection extends React.Component<IProps, IState> {
 
   renderAnswerWords = () => this.state.answer.map((word: IWord, _: number) =>
     <GSWordBox key={shortid.generate()}>
-      {this.renderWord(word)}
+      {this.renderWord(word, true)}
     </GSWordBox>)
 
   renderShuffledWords = () => this.state.shuffledWords.map((word: IWord, _: number) =>
@@ -129,14 +129,14 @@ export default class WordSelection extends React.Component<IProps, IState> {
       }
     </GSWordBox>)
 
-  renderWord = (word: IWord) => {
+  renderWord = (word: IWord, selected: boolean = false) => {
     const handleWord = (word: IWord) => this.answerHasWord(word)
       ? this.removeWordFromAnswer(word)
       : this.addWordToAnswer(word);
 
     return word &&
       <TouchableOpacity onPress={() => handleWord(word)}>
-        <GSWordText>
+        <GSWordText selected={selected}>
           {word.word}
         </GSWordText>
       </TouchableOpacity>;

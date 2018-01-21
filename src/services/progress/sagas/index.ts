@@ -24,9 +24,9 @@ export function* finishLesson (action: progress.IProgressAction): IterableIterat
   const { id: lessonId } = yield select(getLessonInProgress);
   const course = yield select(getActiveCourse);
   const skillInProgress = yield select(getSkillInProgress);
-  const skillsOfUnit = yield select(getSkillsByUnit(skillInProgress.unit));
   const timestamp = moment();
   yield put(skills.actions.markLessonFinished(lessonId, lessonXP, timestamp));
+
   yield put(progress.actions.setLessonToSync({
     lessonId,
     lessonXP,
@@ -35,8 +35,12 @@ export function* finishLesson (action: progress.IProgressAction): IterableIterat
     createdAt: timestamp,
   }));
 
+  yield delay(500);
+
+  const skillsOfUnit = yield select(getSkillsByUnit(skillInProgress.unit));
+
   if (isUnitFinished(skillsOfUnit)) {
-    yield put(skills.actions.activateUnit(skillInProgress.unit));
+    yield put(skills.actions.activateUnit(skillInProgress.unit + 1));
   }
 
   yield delay(1000);
