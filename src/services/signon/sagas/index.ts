@@ -8,15 +8,16 @@ import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import { ISagasFunctions } from 'services/sagas';
 import { NavigationActions } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
-import { navToSkills } from 'helpers';
+import { navToSkills, isApiResponse } from 'helpers';
 
-export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
+export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   const fields = { ...yield select((state: IInitialState) => state.signon.item) };
   if (action.signon === 'signin') {
     delete fields['name'];
   }
-  const errors = validateSigon(fields);
+
+  const errors: signon.ISignonFormErrors = validateSigon(fields);
 
   if (isEmpty(errors)) {
 
@@ -32,6 +33,7 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
       }
 
       yield put(profile.actions.saveProfileAndAccessToken(profileData));
+      yield put(signon.actions.resetSignon());
 
       const activeCourse = yield select(getActiveCourse);
 
@@ -42,7 +44,14 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
       }
 
     } catch (error) {
-      console.log(error);
+      if (isApiResponse) {
+        if (error.response.status === 400) {
+          if (error.response.data.match(/Email already exists/)) {
+            errors['email'] = 'email_already_exists';
+          }
+          yield put(signon.actions.setErrors(errors));
+        }
+      }
     }
 
   } else {

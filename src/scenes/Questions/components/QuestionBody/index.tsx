@@ -33,6 +33,7 @@ interface IProps {
 interface IState {
   garshoniToggle: boolean;
   modalOn: boolean;
+  audioHasPlayed: boolean;
 }
 
 const SwitchOption = (props: {
@@ -54,12 +55,15 @@ class QuestionBody extends React.Component<IProps, IState> {
   state = {
     garshoniToggle: false,
     modalOn: false,
+    audioHasPlayed: false,
   };
 
   componentDidMount () {
     const soundTrack = this.pathToSoundTrack();
-    if (soundTrack) {
-      downloadAndPlayAudio(soundTrack);
+    if (soundTrack && this.state.audioHasPlayed === false) {
+      this.setState({ audioHasPlayed: true }, async () => {
+        await downloadAndPlayAudio(soundTrack);
+      });
     }
   }
 

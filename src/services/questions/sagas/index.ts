@@ -7,7 +7,7 @@ import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
 import { downloadFile } from 'helpers';
 
-export function* fetchQuestions (action: questions.IQuestionsAction): IterableIterator<any> {
+export function* fetchQuestions(action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(setLoadingOn());
 
   try {
@@ -15,19 +15,20 @@ export function* fetchQuestions (action: questions.IQuestionsAction): IterableIt
     let question: questions.IQuestion;
     for (question of response) {
       if (question.soundFiles.length) {
-        downloadFile(question.soundFiles[0]);
+        yield call(downloadFile, question.soundFiles[0]);
       }
     }
     yield put(questions.actions.saveQuestions(response));
     yield put(NavigationActions.navigate({ routeName: 'Questions' }));
   } catch (error) {
+    // TODO: Remove, and add an action to copy from skills
     yield put(exceptions.actions.add(error));
   }
 
   yield put(setLoadingOff());
 }
 
-export function* nextQuestionOrFinish (action: questions.IQuestionsAction): IterableIterator<any> {
+export function* nextQuestionOrFinish(action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(questions.actions.updateQuestionStatus(action.questionId, action.status));
   const pendingQuestions: string[] = yield select(getPendingQuestions);
   let routeName = 'Questions';
@@ -39,10 +40,8 @@ export function* nextQuestionOrFinish (action: questions.IQuestionsAction): Iter
   yield put(NavigationActions.navigate({ routeName }));
 }
 
-export const functions = (): ISagasFunctions[] => {
-  return [
-    { action: questions.actions.types.FETCH_QUESTIONS, func: fetchQuestions },
-    { action: questions.actions.types.NEXT_QUESTION_OR_FINISH, func: nextQuestionOrFinish },
-  ];
-};
+export const functions = (): ISagasFunctions[] => ([
+  { action: questions.actions.types.FETCH_QUESTIONS, func: fetchQuestions },
+  { action: questions.actions.types.NEXT_QUESTION_OR_FINISH, func: nextQuestionOrFinish },
+]);
 

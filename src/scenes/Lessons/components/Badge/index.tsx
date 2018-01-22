@@ -18,14 +18,14 @@ const GSBadge = glamor.view({
 const GSBadgeRibbonCircle = glamor.view({
   width: 80,
   height: 80,
-  backgroundColor: Colors.green,
+  backgroundColor: Colors.lightGreen,
   borderRadius: 50,
 });
 
 const GSBadgeRibbon = glamor.view({
   backgroundColor: 'transparent',
   borderBottomWidth: 60,
-  borderBottomColor: Colors.green,
+  borderBottomColor: Colors.lightGreen,
   borderLeftWidth: 30,
   borderLeftColor: 'transparent',
   borderRightWidth: 30,

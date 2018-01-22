@@ -4153,20 +4153,20 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@*, prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
 prop-types@15.5.10:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
     fbjs "^0.8.9"
     loose-envify "^1.3.1"
+
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
+  version "15.6.0"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
 
 proxy-addr@~2.0.2:
   version "2.0.2"
@@ -4447,13 +4447,6 @@ react-native-restart@^0.0.6:
 react-native-sensitive-info@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-5.1.0.tgz#1655c482f99c80023a23b2d9adab1ae260b1988a"
-
-"react-native-simple-popover@git+https://github.com/ishabo/react-native-simple-popover":
-  version "2.1.0"
-  resolved "git+https://github.com/ishabo/react-native-simple-popover#1d4fbfd87d89d2d542d3aeae12e4dfa5884e54e4"
-  dependencies:
-    prop-types "*"
-    uuid "^3.1.0"
 
 react-native-snap-carousel@^3.3.3:
   version "3.3.3"

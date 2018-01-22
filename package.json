@@ -54,7 +54,6 @@
 		"react-native-i18n": "^2.0.6",
 		"react-native-keyboard-aware-scroll-view": "^0.4.1",
 		"react-native-linear-gradient": "^2.4.0",
-		"react-native-loading-spinner-overlay": "^0.5.2",
 		"react-native-message-bar": "^2.0.7",
 		"react-native-modal": "^4.1.1",
 		"react-native-popover-tooltip": "git+https://github.com/ishabo/react-native-popover-tooltip#converting_left_to_right",

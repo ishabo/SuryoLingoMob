@@ -14,12 +14,12 @@ import * as skills from 'services/skills';
 import moment from 'moment';
 import { ISagasFunctions } from 'services/sagas';
 
-export function* enterLesson (action: progress.IProgressAction): IterableIterator<any> {
+export function* enterLesson(action: progress.IProgressAction): IterableIterator<any> {
   yield put(setLessonInProgress(action.lessonId));
   yield put(questions.actions.fetchQuestionsForLesson(action.lessonId));
 }
 
-export function* finishLesson (action: progress.IProgressAction): IterableIterator<any> {
+export function* finishLesson(action: progress.IProgressAction): IterableIterator<any> {
   const { lessonXP } = action;
   const { id: lessonId } = yield select(getLessonInProgress);
   const course = yield select(getActiveCourse);
@@ -40,14 +40,15 @@ export function* finishLesson (action: progress.IProgressAction): IterableIterat
   const skillsOfUnit = yield select(getSkillsByUnit(skillInProgress.unit));
 
   if (isUnitFinished(skillsOfUnit)) {
-    yield put(skills.actions.activateUnit(skillInProgress.unit + 1));
+    const nextUnit = skillInProgress.unit + 1;
+    yield put(skills.actions.activateUnit(nextUnit));
   }
 
   yield delay(1000);
   yield put(progress.actions.syncFinishedLessons());
 }
 
-export function* syncFinishedLessons (): IterableIterator<any> {
+export function* syncFinishedLessons(): IterableIterator<any> {
   const lessonsToSync = yield select(getLessonsToSync);
   try {
     yield call(progress.api.syncFinishedLessons, lessonsToSync);

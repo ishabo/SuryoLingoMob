@@ -21,10 +21,11 @@ export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISki
 
     case types.ACTIVATE_UNIT:
       return [...state].map((skill: skill.ISkill) => {
-        if (skill.unit === action.unit) {
-          skill.active = true;
+        const updatedSkill = { ...skill };
+        if (updatedSkill.unit === action.unit) {
+          updatedSkill.active = true;
         }
-        return skill;
+        return updatedSkill;
       });
 
     case types.MARK_LESSON_FINISHED:

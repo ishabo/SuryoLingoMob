@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ActivityIndicator } from 'react-native';
 import { IInitialState } from 'services/reducers';
-import Spinner from 'react-native-loading-spinner-overlay';
-import I18n from 'I18n';
+import Modal from 'react-native-modal';
+import Colors from 'styles/colors';
 import glamor from 'glamorous-native';
 
 interface IProps {
@@ -10,17 +11,16 @@ interface IProps {
 }
 
 const Loading = ({ loading }: IProps) =>
-  loading && <GSLoading>
-    <Spinner visible={loading}
-      textContent={I18n.t('loading')}
-      textStyle={{ color: '#FFF' }} />
-  </GSLoading>;
+  <Modal isVisible={loading}>
+    <GSLoading style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator size="large" color={Colors.darkWhite} />
+    </GSLoading>
+  </Modal>;
 
 const GSLoading = glamor.view({
-  position: 'absolute',
-  top: 0,
-  left: 0,
   flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
 });
 
 const mapStateToProps = (state: IInitialState) => ({

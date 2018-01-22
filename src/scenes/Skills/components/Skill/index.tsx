@@ -19,7 +19,7 @@ export default (props: IProps) => {
   const { name, unlocked, progress, icon, onSkillsClick } = props;
   const filling = unlocked ? 1 - progress : 1;
   const LinearGradientProps = {
-    colors: ['transparent', Colors.yellow],
+    colors: ['transparent', Colors.lightGreen],
     locations: [filling, 0],
   };
 

@@ -24,5 +24,7 @@ export const updateProfile = (id: string) => (payload: IProfilePayload = {}) => 
   return create().put(`/users/${id}`, injectDeviceInfo(payload));
 };
 
+export const getUser = () => create().get('/users');
+
 const injectDeviceInfo = (payload: IProfilePayload = {}) =>
   ({ ...payload, deviceInfo: deviceDetails() });

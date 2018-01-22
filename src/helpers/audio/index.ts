@@ -36,7 +36,7 @@ export const downloadFile = async (
 
   if (!fileExists) {
     await RNFS.downloadFile({ fromUrl: soundTrack, toFile: localSoundTrackPath });
-    console.log('Donloaded file at ' + localSoundTrackPath);
+    console.log('Downloaded file at ' + localSoundTrackPath);
   } else {
     console.log(`Found file ${localSoundTrackPath}`);
   }

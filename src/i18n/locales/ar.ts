@@ -16,18 +16,31 @@ export default {
     NETWORK_ERROR: {
       title: 'حصل خطأ في الشبكة',
       message: 'تأكد من ان جهازك متصل في الشبكة.',
+      level: 'error',
     },
     UNKNOWN_ERROR: {
       title: 'حصل خطأ في الشبكة',
       message: 'تأكد من ان جهازك متصل في الشبكة.',
+      level: 'error',
+
     },
     INTERNAL_SERVER_ERROR: {
       title: 'حصل خطأ ما في السرفر',
       message: 'لقد تم ارسال تقرير عن هذا الخطأ وسيتم اصلاحه في اسرع وقت ممكن',
+      level: 'error',
+
     },
     TIMEOUT_ERROR: {
       title: 'حصل خطأ ما في السرفر',
       message: 'لقد تم ارسال تقرير عن هذا الخطأ وسيتم اصلاحه في اسرع وقت ممكن',
+    },
+    NOT_FOUND: {
+      title: 'حصل خطأ ما في السرفر',
+      message: 'لقد تم ارسال تقرير عن هذا الخطأ وسيتم اصلاحه في اسرع وقت ممكن',
+    },
+    BAD_REQUEST: {
+      title: 'حصلت مشكلة في ارسال الطلب',
+      message: '',
     },
   },
   levels: {
@@ -141,6 +154,7 @@ export default {
         name_invalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو انكليزية',
         email_invalid: 'الإيميل غير صحيح',
         password_invalid: 'كلمة السر غير صالحة',
+        email_already_exists: 'هذا الإيميل مأخوذ',
       },
       submit: 'أرسل',
       skip: 'سجل لاحقاً',

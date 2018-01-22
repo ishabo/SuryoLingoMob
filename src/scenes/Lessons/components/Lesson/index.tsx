@@ -75,7 +75,7 @@ const GSCard = glamor.view<{ active: boolean }>(
     justifyContent: 'center',
     width: 280,
     height: 220,
-    marginLeft: 10,
+    marginLeft: 5,
   },
   props => ({
     backgroundColor: props.active === true ? Colors.white : Colors.lightGray,

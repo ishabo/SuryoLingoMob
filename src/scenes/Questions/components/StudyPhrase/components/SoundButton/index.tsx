@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const SoundButton = ({ soundTrack, size }: IProps) =>
-  <TouchableOpacity onPress={() => { downloadAndPlayAudio(soundTrack); }}>
+  <TouchableOpacity onPress={async () => { await downloadAndPlayAudio(soundTrack); }}>
     <Thumbnail {...size} source={Images.icons.speaker} />
   </TouchableOpacity>;
 

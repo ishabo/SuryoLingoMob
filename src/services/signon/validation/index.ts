@@ -1,4 +1,4 @@
-import { ISignonFormData } from 'services/signon';
+import { ISignonFormData, ISignonFormErrors } from 'services/signon';
 import Config from 'config/';
 import { isEmpty } from 'lodash';
 
@@ -14,7 +14,7 @@ const validateField = (
   }
 };
 
-export const validateSigon = (fields: ISignonFormData) => {
+export const validateSigon = (fields: ISignonFormData): ISignonFormErrors => {
   const errors = {};
 
   validateField(validateName, fields, 'name', errors);

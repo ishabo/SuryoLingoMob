@@ -12,6 +12,8 @@ export const reducer = (state: ISignonState = initialState, action: ISignonFormA
       return { ...state, item: action.data };
     case types.SET_ERRORS:
       return { ...state, errors: action.errors };
+    case types.RESET_SIGNON:
+      return initialState;
     default:
       return state;
   }

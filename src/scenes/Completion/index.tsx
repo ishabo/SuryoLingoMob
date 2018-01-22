@@ -58,7 +58,7 @@ class Completion extends React.Component<IProps, IState> {
           this.countDown();
         }
       });
-    },         decreaseIntervals);
+    }, decreaseIntervals);
   }
 
   canSkipAdd = () =>
@@ -104,9 +104,10 @@ class Completion extends React.Component<IProps, IState> {
         </GSXPGain>
         <GSNextButton>
           {this.renderBackToLessonsButton()}
+          {this.props.isRegistered ||
+            this.renderSignupOrLoginButton()}
         </GSNextButton>
 
-        {this.props.isRegistered || this.renderSignupOrLoginButton()}
       </GSContainer>
     );
   }

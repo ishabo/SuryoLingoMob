@@ -2,6 +2,7 @@ export {
   setApiOrigin,
   setUserToken,
 } from './api';
+
 import { createApi, getUserToken } from './api';
 import { changeCase } from 'helpers';
 
@@ -23,7 +24,7 @@ export const create = (headers?: THeaders, errors?: TErrors): IApiInstance => {
     headers,
   });
 
-  async function makeRequest (method, url, ...args) {
+  async function makeRequest(method, url, ...args) {
     let response;
     try {
       const authorizationHeader = {

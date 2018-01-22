@@ -91,7 +91,6 @@ const HeaderRight = ({ title, navigate }: ITitleProps) =>
     </Text>
   </GSTouchable > || <Text></Text>;
 
-
 const mapStateToProps = (state: IInitialState) => ({
   profile: state.profile,
   skills: state.skills,

@@ -41,6 +41,7 @@ export const createApi = (options: IApiOptions) => {
   const { errors, headers } = options;
 
   let statusErrors: { [key: number]: string } = {
+    404: 'Resource not found',
     401: 'Invalid token',
     500: 'A server error has occured.',
   };
@@ -105,8 +106,29 @@ export const createApi = (options: IApiOptions) => {
           report: true,
         });
       case 404:
+        throw Exceptions.create({
+          response,
+          action,
+          name: 'NOT_FOUND',
+          message: response.data.error_description || statusErrors[response.status] || '',
+          report: true,
+        });
       case 400:
+        throw Exceptions.create({
+          response,
+          action,
+          name: 'BAD_REQUEST',
+          message: response.data.error_description || '',
+          report: true,
+        });
       case 409:
+        throw Exceptions.create({
+          response,
+          action,
+          name: 'CONFLICT',
+          message: response.data.error_description || statusErrors[response.status] || '',
+          report: true,
+        });
       default:
         throw Exceptions.create({
           response,
