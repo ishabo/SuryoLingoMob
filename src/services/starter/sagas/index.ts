@@ -7,7 +7,7 @@ import { fetchSkills } from 'services/skills/actions';
 import { ISagasFunctions } from 'services/sagas';
 import * as starter from '../';
 
-export function* firstFetch (): IterableIterator<any> {
+export function* firstFetch(): IterableIterator<any> {
   const activeCourse = yield select(getActiveCourse);
   yield put(setLoadingOff());
 
@@ -15,7 +15,6 @@ export function* firstFetch (): IterableIterator<any> {
     yield put(fetchCourses());
   } else {
     yield put(syncFinishedLessons());
-
     yield put(fetchSkills());
   }
 }

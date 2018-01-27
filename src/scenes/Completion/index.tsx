@@ -58,7 +58,7 @@ class Completion extends React.Component<IProps, IState> {
           this.countDown();
         }
       });
-    }, decreaseIntervals);
+    },         decreaseIntervals);
   }
 
   canSkipAdd = () =>
@@ -100,7 +100,7 @@ class Completion extends React.Component<IProps, IState> {
           {I18n.t('completion.congratulations', { order })}
         </GSCongratMessage>
         <GSXPGain>
-          {I18n.t('completion.xpGain', { xp: '10' })}
+          {I18n.t('completion.xpGain', { xp: config.lessonXP })}
         </GSXPGain>
         <GSNextButton>
           {this.renderBackToLessonsButton()}

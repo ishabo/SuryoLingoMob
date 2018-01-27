@@ -19,7 +19,7 @@ export interface ILesson {
   lessonHistory?: ILessonHistory[];
 }
 
-type TImageSizes = string | 'hdpi' | 'mdpi' | 'xhdpi' | 'xxhdpi' | 'xxxhdpi';
+type TImageSizes = 'hdpi' | 'mdpi' | 'xhdpi' | 'xxhdpi' | 'xxxhdpi';
 
 export interface ISkill {
   id: string;

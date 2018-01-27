@@ -3,6 +3,15 @@ package com.suryolingo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.zmxv.RNSound.RNSoundPackage;
+import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import com.rnfs.RNFSPackage;
+import com.github.wumke.RNExitApp.RNExitAppPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
+import com.smixx.fabric.FabricPackage;
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
@@ -10,9 +19,6 @@ import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.rnfs.RNFSPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
-import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
-import com.zmxv.RNSound.RNSoundPackage;
-import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -32,10 +38,9 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new ReactNativeRestartPackage(), new RNDeviceInfo(), new RNFSPackage(),
-          new LinearGradientPackage(), new RNSensitiveInfoPackage(), new RNAudioPlayer(), new RNSoundPackage(),
-          new RNI18nPackage());
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNSoundPackage(), new RNSensitiveInfoPackage(),
+          new ReactNativeRestartPackage(), new LinearGradientPackage(), new RNI18nPackage(), new RNFSPackage(),
+          new RNExitAppPackage(), new RNDeviceInfo(), new RNAudioPlayer(), new FabricPackage());
     }
 
     @Override

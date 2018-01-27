@@ -72,6 +72,10 @@ export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISki
         return skill;
       });
       return newState;
+
+    case types.RESET_SKILLS:
+      return initialState;
+
     default:
       return state;
   }

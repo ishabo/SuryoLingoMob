@@ -11,6 +11,7 @@ export const types = {
   CAPTURE_SIGNON: `${namespace}/CAPTURE_SIGNON`,
   SET_ERRORS: `${namespace}/SET_ERRORS`,
   RESET_SIGNON: `${namespace}/RESET_SIGNON`,
+  SIGNOUT: `${namespace}/SIGNOUT`,
 };
 
 export const submitSignon = (signon: TSignon) => ({
@@ -30,4 +31,9 @@ export const setErrors = (errors: ISignonFormErrors) => ({
 
 export const resetSignon = () => ({
   type: types.RESET_SIGNON,
+});
+
+
+export const signout = () => ({
+  type: types.SIGNOUT,
 });

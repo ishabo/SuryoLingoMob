@@ -66,8 +66,14 @@ export default class WordSelection extends React.Component<IProps, IState> {
     );
   }
 
-  private mapPhrase = () =>
-    this.props.phrase.map((word: IWordHint) => word.word)
+  private mapPhrase = () => {
+    try {
+      return this.props.phrase.map((word: IWordHint) => word.word);
+    } catch (error) {
+      console.warn(error);
+      return [];
+    }
+  }
 
   private updateShuffledWords = (updatedRecord: IWord) => {
     const shuffledWords = this.state.shuffledWords;

@@ -9,8 +9,8 @@ export const types = {
   ENTER_LESSON: `${namespace}/ENTER_LESSON`,
   SET_LESSON_IN_PROGRESS: `${namespace}/SET_LESSON_IN_PROGRESS`,
   FINISH_LESSON: `${namespace}/FINISH_LESSON`,
+  RESET_PROGRESS: `${namespace}/RESET_PROGRESS`,
 };
-
 
 export const enterLesson = (lessonId: string) => ({
   lessonId,
@@ -38,4 +38,8 @@ export const setLessonToSync = (lessonToSync: ILessonToSync) => ({
 
 export const resetLessonsToSync = () => ({
   type: types.RESET_LESSONS_TO_SYNC,
+});
+
+export const resetProgress = () => ({
+  type: types.RESET_PROGRESS,
 });

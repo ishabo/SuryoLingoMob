@@ -23,6 +23,9 @@ export const reducer = (
     case types.RESET_LESSONS_TO_SYNC:
       return { ...state, lessonsToSync: [] };
 
+    case types.RESET_PROGRESS:
+      return initialState;
+
     default:
       return state;
   }

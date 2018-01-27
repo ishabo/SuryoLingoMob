@@ -14,4 +14,27 @@ export default {
     namePatterns: [/^[\u0600-\u06FF\s]{3,20}$/i, /^[A-Z\s]{3,20}$/i],
     passwordPatterns: [/^(?=.*[\D])(?=.*\d)(?=.*[$@$!%*#?&])[\D\d$@$!%*#?&]{6,18}$/i],
   },
+  alerts: {
+    NETWORK_ERROR: {
+      alertType: 'error',
+    },
+    UNKNOWN_ERROR: {
+      alertType: 'error',
+    },
+    INTERNAL_SERVER_ERROR: {
+      alertType: 'error',
+    },
+    TIMEOUT_ERROR: {
+      alertType: 'error',
+    },
+    NOT_FOUND: {
+      alertType: 'error',
+    },
+    BAD_REQUEST: {
+      alertType: 'warning',
+    },
+    INVALID_TOKEN: {
+      alertType: 'warning',
+    },
+  },
 };

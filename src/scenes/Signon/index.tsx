@@ -25,7 +25,7 @@ import { exitApp } from 'helpers';
 
 interface IState {
   signUpOrIn: signon.TSignon;
-  focusOn: string | 'name' | 'email' | 'password';
+  focusOn: 'name' | 'email' | 'password';
   keyboardOn: boolean;
 }
 

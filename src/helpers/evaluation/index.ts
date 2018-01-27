@@ -1,4 +1,5 @@
 import { playAudio } from 'helpers/audio';
+import audioFiles from 'assets/audio';
 
 const stringToCharArray = (str: string, filterLetters: string[]): string[] => {
   try {
@@ -24,7 +25,7 @@ export const evaluateAnswer = (answer: string, correctAnswer: string, filterLett
     }
   }
 
-  playAudio(require('../../../src/assets/audio/saggishappi.mp4'), '');
+  playAudio(audioFiles.questionPassSound);
 
   return true;
 };

@@ -11,6 +11,7 @@ type TSentence = string | IWordHint[];
 export interface IProps {
   sentence: TSentence;
   lang: TLangs;
+  obscureText?: boolean;
 }
 
 interface IHint {
@@ -21,10 +22,24 @@ interface IHint {
 interface IState {
   selectedWordIndex: number;
 }
+
 const splitTranslations = (translations: string) =>
   (translations ? translations : '').split('|');
 
 export default class Phrase extends React.Component<IProps, IState> {
+
+  private obscureText = (text: string) => {
+    if (this.props.obscureText) {
+      let newWord = '';
+      let char: string;
+      for (char in Array(text.length).keys) {
+        newWord += text[char] === ' ' ? ' ' : '-';
+      }
+      return newWord;
+    } else {
+      return text;
+    }
+  }
 
   private renderText = (
     text: string,
@@ -35,7 +50,7 @@ export default class Phrase extends React.Component<IProps, IState> {
       key={shortid.generate()}
       onPress={onPress}
       underline={underline}
-      lang={this.props.lang}>{text}</GSSentence>
+      lang={this.props.lang}>{this.obscureText(text)}</GSSentence>
 
   private renderHint = (translations: string): IHint[] =>
     splitTranslations(translations).map((label: string) => ({

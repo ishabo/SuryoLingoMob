@@ -44,7 +44,7 @@ export const GSSentence = glamor(CustomText)<{ underline: boolean }>(
     alignSelf: 'center',
   },
   props => props.underline ? ({
-    textDecorationLine: 'underline',
+    borderBottomWidth: 1,
     textDecorationStyle: 'dotted',
   }) : null,
 );

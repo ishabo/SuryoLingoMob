@@ -19,5 +19,7 @@ export const GSXPGain = glamor.text({
 });
 
 export const GSNextButton = glamor.view({
+  height: 100,
+  justifyContent: 'space-between',
   marginVertical: 5,
 });

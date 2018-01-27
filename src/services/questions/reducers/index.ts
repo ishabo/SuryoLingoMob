@@ -2,10 +2,11 @@ import { types, TQuestionType } from '../actions';
 import { IQuestions, IQuestion, IQuestionsAction } from '../';
 
 export const initialState: IQuestions = {
-  items: [],
-  pendingQuestions: [],
-  passedQuestions: [],
-  failedQuestions: [],
+  all: [],
+  onGoing: [],
+  pending: [],
+  passed: [],
+  failed: [],
 };
 
 const filterOut = (array: string[], element: string) =>
@@ -14,20 +15,20 @@ const filterOut = (array: string[], element: string) =>
 const updateQuestionStatusState = (
   state: IQuestions, status: TQuestionType, questionId: string,
 ) => {
-  const pendingQuestions = filterOut(state.pendingQuestions, questionId);
-  const failedQuestions = filterOut(state.failedQuestions, questionId);
-  const passedQuestions = [...state.passedQuestions];
+  const pending = filterOut(state.pending, questionId);
+  const failed = filterOut(state.failed, questionId);
+  const passed = [...state.passed];
   switch (status) {
     case 'passed':
-      passedQuestions.push(questionId);
+      passed.push(questionId);
       break;
     case 'failed':
-      failedQuestions.push(questionId);
-      pendingQuestions.push(questionId);
+      failed.push(questionId);
+      pending.push(questionId);
       break;
   }
 
-  const newState = { ...state, passedQuestions, pendingQuestions, failedQuestions };
+  const newState = { ...state, passed, pending, failed };
   return newState;
 };
 
@@ -50,8 +51,8 @@ export const reducer = (state: IQuestions = initialState, action: IQuestionsActi
         return question;
       });
 
-      freshState.items = payload;
-      freshState.pendingQuestions = payload.map((question: IQuestion) => question.id);
+      freshState.onGoing = payload;
+      freshState.pending = payload.map((question: IQuestion) => question.id);
       return freshState;
     case types.UPDATE_QUESTION_STATUS:
       return updateQuestionStatusState({ ...state }, action.status, action.questionId);

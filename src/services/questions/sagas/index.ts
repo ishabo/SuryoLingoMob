@@ -1,13 +1,13 @@
 import { call, put, select } from 'redux-saga/effects';
 import * as questions from '../';
 import { NavigationActions } from 'react-navigation';
-import { getPendingQuestions } from '../../selectors';
+import { getpending } from '../../selectors';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
 import { downloadFile } from 'helpers';
 
-export function* fetchQuestions(action: questions.IQuestionsAction): IterableIterator<any> {
+export function* fetchQuestions (action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(setLoadingOn());
 
   try {
@@ -28,12 +28,12 @@ export function* fetchQuestions(action: questions.IQuestionsAction): IterableIte
   yield put(setLoadingOff());
 }
 
-export function* nextQuestionOrFinish(action: questions.IQuestionsAction): IterableIterator<any> {
+export function* nextQuestionOrFinish (action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(questions.actions.updateQuestionStatus(action.questionId, action.status));
-  const pendingQuestions: string[] = yield select(getPendingQuestions);
+  const pending: string[] = yield select(getpending);
   let routeName = 'Questions';
 
-  if (pendingQuestions.length === 0) {
+  if (pending.length === 0) {
     routeName = 'Completion';
   }
 

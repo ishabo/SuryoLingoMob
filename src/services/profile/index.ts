@@ -11,6 +11,7 @@ export interface IProfile {
   name?: string;
   email?: string;
   userXP?: number;
+  deviceId?: string;
 }
 
 export interface ISignonFormData {

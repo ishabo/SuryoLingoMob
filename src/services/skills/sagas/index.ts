@@ -6,15 +6,17 @@ import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
 
-export function* fetchSkills(): IterableIterator<any> {
+export function* fetchSkills (): IterableIterator<any> {
   yield put(setLoadingOn());
-  try {
-    const course = yield select(getActiveCourse);
-    const response = yield call(skills.api.getSkills, course.id);
-    yield put(skills.actions.saveSkills(response));
+  const course = yield select(getActiveCourse);
+  if (course) {
+    try {
+      const response = yield call(skills.api.getSkills, course.id);
+      yield put(skills.actions.saveSkills(response));
+    } catch (error) {
+      yield put(exceptions.actions.add(error));
+    }
     yield put(navToSkills(course));
-  } catch (error) {
-    yield put(exceptions.actions.add(error));
   }
 
   yield put(setLoadingOff());

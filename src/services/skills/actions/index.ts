@@ -8,7 +8,7 @@ export const types = {
   FETCH_SKILLS: `${namespace}/FETCH_SKILLS`,
   ACTIVATE_UNIT: `${namespace}/ACTIVATE_UNIT`,
   MARK_LESSON_FINISHED: `${namespace}/MARK_LESSON_FINISHED`,
-
+  RESET_SKILLS: `${namespace}/RESET_SKILLS`,
 };
 
 export const saveSkills = (payload: ISkill[]) => ({
@@ -30,4 +30,8 @@ export const markLessonFinished = (lessonId: string, lessonXP: number, timestamp
   lessonXP,
   timestamp,
   type: types.MARK_LESSON_FINISHED,
+});
+
+export const resetSkills = () => ({
+  type: types.RESET_SKILLS,
 });

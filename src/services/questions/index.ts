@@ -25,15 +25,17 @@ export interface IQuestionsAction {
   type: string;
   questionId?: string;
   lessonId?: string;
+  skillId?: string;
   status?: TQuestionType;
   payload?: IQuestion[];
 }
 
 export interface IQuestions {
-  items: IQuestion[];
-  pendingQuestions: string[];
-  passedQuestions: string[];
-  failedQuestions: string[];
+  all: IQuestion[];
+  onGoing: IQuestion[];
+  pending: string[];
+  passed: string[];
+  failed: string[];
 }
 
 export {

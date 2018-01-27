@@ -6,30 +6,32 @@ import glamor from 'glamorous-native';
 interface IProps extends IPhraseProps {
   sound: { soundTrack: string; location?: string; };
   showSentence: boolean;
+  centralize?: boolean;
 }
 
 export default (props: IProps) => {
-  const { showSentence, sentence, sound, lang } = props;
+  const { showSentence, sentence, sound, lang, centralize } = props;
+  const setnenceToshow = showSentence && sentence || '----- ------ ----------';
 
   return (
-    <GSContainer showSentence={showSentence} >
+    <GSContainer centralize={centralize} >
       {
         sound.soundTrack &&
-        <SoundButton {...sound} size={showSentence ? { small: true } : { large: true }} />
+        <SoundButton {...sound} size={centralize ? { large: true } : { small: true }} />
       }
-      {showSentence && <Phrase sentence={sentence} lang={lang} />}
+      {centralize || <Phrase obscureText={!showSentence} sentence={setnenceToshow} lang={lang} />}
     </GSContainer>
   );
 };
 
-const GSContainer = glamor.view<{ showSentence: boolean }>(
+const GSContainer = glamor.view<{ centralize: boolean }>(
   {
     flexDirection: 'row',
     alignContent: 'center',
   },
   (props) => {
     return {
-      justifyContent: props.showSentence ? 'flex-start' : 'center',
+      justifyContent: props.centralize ? 'center' : 'flex-start',
     };
   },
 );

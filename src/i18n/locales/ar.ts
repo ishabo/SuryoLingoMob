@@ -16,19 +16,14 @@ export default {
     NETWORK_ERROR: {
       title: 'حصل خطأ في الشبكة',
       message: 'تأكد من ان جهازك متصل في الشبكة.',
-      level: 'error',
     },
     UNKNOWN_ERROR: {
       title: 'حصل خطأ في الشبكة',
       message: 'تأكد من ان جهازك متصل في الشبكة.',
-      level: 'error',
-
     },
     INTERNAL_SERVER_ERROR: {
       title: 'حصل خطأ ما في السرفر',
       message: 'لقد تم ارسال تقرير عن هذا الخطأ وسيتم اصلاحه في اسرع وقت ممكن',
-      level: 'error',
-
     },
     TIMEOUT_ERROR: {
       title: 'حصل خطأ ما في السرفر',
@@ -41,6 +36,10 @@ export default {
     BAD_REQUEST: {
       title: 'حصلت مشكلة في ارسال الطلب',
       message: '',
+    },
+    INVALID_TOKEN: {
+      title: 'لم يستطع البرنامج التحقق من هويتك',
+      message: 'يحتاج البرنامج لاعادة التحقق من معلوماتك الشخصية',
     },
   },
   levels: {

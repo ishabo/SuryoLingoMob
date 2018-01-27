@@ -39,7 +39,7 @@ class Questions extends React.Component<IProps, IState> {
     header: null,
     cardStack: {
       transition: (previousRoute: any) => { // configure the animation here 
-        alert(previousRoute);
+        console.warn(previousRoute);
       },
     },
   };
@@ -197,8 +197,8 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 const mapStateToProps = (state: any) => ({
-  questions: state.questions.items,
-  pendingQuestions: state.questions.pendingQuestions,
+  questions: state.questions.onGoing,
+  pending: state.questions.pending,
   course: getActiveCourse(state),
   calcProress: calcProress(state),
   currentQuestion: getCurrentQuestion(state),

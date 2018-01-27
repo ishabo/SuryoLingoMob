@@ -18,6 +18,7 @@ class Skills extends React.Component<any, State> {
 
   static navigationOptions = ({ navigation: { navigate, state: { params } } }) => ({
     title: I18n.t(`courses.languages.short.${params['title']}`),
+    headerLeft: null,
     headerRight: <HeaderRight
       title={I18n.t('courses.shortTitle')}
       navigate={() => navigate('Courses')} />,

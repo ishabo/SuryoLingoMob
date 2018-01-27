@@ -1,6 +1,9 @@
 import { call, put, select } from 'redux-saga/effects';
 import * as signon from 'services/signon';
 import * as profile from 'services/profile';
+import * as progress from 'services/progress';
+import * as skills from 'services/skills';
+
 import { IInitialState } from 'services/reducers';
 import { isEmpty } from 'lodash';
 import { validateSigon } from '../validation';
@@ -9,8 +12,10 @@ import { ISagasFunctions } from 'services/sagas';
 import { NavigationActions } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
 import { navToSkills, isApiResponse } from 'helpers';
+import RNRestart from 'react-native-restart';
+import { deleteAccessToken } from 'services/api/access';
 
-export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
+export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   const fields = { ...yield select((state: IInitialState) => state.signon.item) };
   if (action.signon === 'signin') {
@@ -61,9 +66,18 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
   yield put(setLoadingOff());
 }
 
+export function* signout (): IterableIterator<any> {
+  yield put(profile.actions.resetProfile());
+  yield put(progress.actions.resetProgress());
+  yield put(skills.actions.resetSkills());
+  yield call(deleteAccessToken);
+  yield call(RNRestart.Restart);
+}
+
 export const functions = (): ISagasFunctions[] => {
   return [
     { action: signon.actions.types.SUBMIT_SIGNON, func: submitSignon },
+    { action: signon.actions.types.SIGNOUT, func: signout },
   ];
 };
 

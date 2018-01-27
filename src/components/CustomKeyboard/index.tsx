@@ -17,7 +17,7 @@ interface IProps {
   onSpacePress: () => void;
 }
 
-const VIBRATE_DURATION = 100;
+const VIBRATE_DURATION = 50;
 
 export default class extends React.Component<IProps> {
 

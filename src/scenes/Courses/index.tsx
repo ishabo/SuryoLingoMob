@@ -21,6 +21,7 @@ class Courses extends React.Component<any, IState> {
   private cards: any;
 
   static navigationOptions = {
+    tabBarLabel: 'Home',
     title: I18n.t('courses.title'),
     headerLeft: null,
     headerRight: null,

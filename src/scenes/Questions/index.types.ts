@@ -19,7 +19,7 @@ export interface IAnswerProps {
 }
 
 export interface IProps {
-  pendingQuestions: string[];
+  pending: string[];
   navigation: NavigationScreenProp<any, any>;
   questions: IQuestion[];
   course: ICourse;

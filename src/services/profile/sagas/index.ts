@@ -2,11 +2,10 @@ import { call, put, select } from 'redux-saga/effects';
 import * as profile from 'services/profile';
 import { isEmpty } from 'lodash';
 import { IInitialState } from 'services/reducers';
-import SInfo from 'react-native-sensitive-info';
-import Config from 'config';
 import { ISagasFunctions } from 'services/sagas';
+import { setAccessToken } from 'services/api/access';
 
-export function* createProfile (action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
 
   if (isEmpty(profileState)) {
@@ -19,7 +18,7 @@ export function* createProfile (action: profile.IProfileAction): IterableIterato
   }
 }
 
-export function* updateProfile (action: profile.IProfileAction): IterableIterator<any> {
+export function* updateProfile(action: profile.IProfileAction): IterableIterator<any> {
   const currentProfile = yield select((state: IInitialState) => state.profile);
   try {
     const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
@@ -30,11 +29,11 @@ export function* updateProfile (action: profile.IProfileAction): IterableIterato
   }
 }
 
-export function* saveProfileAndAccessToken (action: profile.IProfileAction): IterableIterator<any> {
+export function* saveProfileAndAccessToken(action: profile.IProfileAction): IterableIterator<any> {
   const accessToken = action.profileData.apiKey;
   console.log('Will save token', accessToken);
   delete action.profileData.apiKey;
-  const token = yield call(SInfo.setItem, 'accessToken', accessToken, Config.sInfoOptions);
+  const token = yield call(setAccessToken, accessToken);
   console.log('Saving ', token);
   yield put(profile.actions.saveProfile(action.profileData));
 }

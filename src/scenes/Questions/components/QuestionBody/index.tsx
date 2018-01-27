@@ -126,6 +126,7 @@ class QuestionBody extends React.Component<IProps, IState> {
     let QuestionComponent;
     let showPhraseInHeader = true;
     let reverse = isReverseQuestion(question.questionType);
+    let centralizeAudio = false;
 
     switch (question.questionType) {
       case 'TRANSLATION':
@@ -148,6 +149,7 @@ class QuestionBody extends React.Component<IProps, IState> {
       case 'NEW_WORD_OR_PHRASE':
         QuestionComponent = NewWordOrPhrase;
         showPhraseInHeader = false;
+        centralizeAudio = true;
         break;
       default:
         console.warn(`Unknown Type ${question.questionType} for ${JSON.stringify(question)}`);
@@ -175,6 +177,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         sound={{ soundTrack: this.pathToSoundTrack() }}
         showSentence={showPhraseInHeader}
         lang={course[reverse ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs}
+        centralize={centralizeAudio}
       />
 
       <QuestionComponent {...question}

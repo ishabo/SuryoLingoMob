@@ -6,11 +6,11 @@ import * as dictionaries from 'services/dictionaries';
 import { NavigationActions } from 'react-navigation';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as profile from 'services/profile';
+import * as signon from 'services/signon';
 import { isRegistered } from 'services/selectors';
 import { ISagasFunctions } from 'services/sagas';
-// import RNRestart from 'react-native-restart';
 
-export function* fetchCourses (): IterableIterator<any> {
+export function* fetchCourses(): IterableIterator<any> {
   yield put(setLoadingOn());
   yield put(profile.actions.createProfile());
   const hasRegistered = yield select(isRegistered);
@@ -20,12 +20,11 @@ export function* fetchCourses (): IterableIterator<any> {
     const routeName = hasRegistered ? 'Courses' : 'Signon';
     yield put(NavigationActions.navigate({ routeName }));
   } catch (error) {
+    yield put(setLoadingOff());
     if (hasRegistered && typeof error === 'object' && error.response) {
       const { status } = error.response;
       if (status === 401 || status === 402) {
-        yield put(profile.actions.resetProfile());
-        // delay(100);
-        // RNRestart.Restart();
+        yield put(signon.actions.signout());
       }
     }
     console.log(error);
@@ -34,7 +33,7 @@ export function* fetchCourses (): IterableIterator<any> {
   yield put(setLoadingOff());
 }
 
-export function* switchCourse (action: courses.ICourseAction): IterableIterator<any> {
+export function* switchCourse(action: courses.ICourseAction): IterableIterator<any> {
   yield put(courses.actions.setActiveCourse(action.courseId));
   yield put(dictionaries.actions.fetchDictionaries(action.courseId));
   yield put(skill.actions.fetchSkills());

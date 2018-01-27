@@ -1,6 +1,6 @@
 import { all, call, takeLatest, select, put } from 'redux-saga/effects';
 import { TOKEN as defaultToken } from 'react-native-dotenv';
-import { getTokenFromKeychain } from 'services/api/access';
+import { getAccessToken } from 'services/api/access';
 
 import * as skills from './skills';
 import * as starter from './starter';
@@ -31,7 +31,7 @@ const withToken = (saga) => {
       console.log('No current member found');
       setUserToken(defaultToken);
     } else {
-      const token = yield call(getTokenFromKeychain);
+      const token = yield call(getAccessToken);
       console.log(`An existing member was found, and here's the token ${token}`);
       setUserToken(token);
     }
@@ -56,7 +56,7 @@ const sagasFunctions: ISagasFunctions[] = [
   ...starter.sagas.functions(),
 ];
 
-export default function* rootSagas(): IterableIterator<any> {
+export default function* rootSagas (): IterableIterator<any> {
   yield all(sagasFunctions.map((sagasFunction: ISagasFunctions) => {
     return takeLatest(sagasFunction.action, preSagas(withToken(sagasFunction.func)));
   }));

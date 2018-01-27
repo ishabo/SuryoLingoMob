@@ -6,7 +6,7 @@ import { Platform } from 'react-native';
 let audio;
 let currentlyPlaying: string;
 
-type TSoundLocations = string | 'CACHES' | 'TEMPERORY';
+type TSoundLocations = 'CACHES' | 'TEMPERORY';
 
 const RNFSDir = (location: TSoundLocations) => {
 
@@ -53,28 +53,36 @@ export const downloadAndPlayAudio = async (
 };
 
 export const playAudio = (soundTrack, location: TSoundLocations = defaultLocation) => {
-  if (currentlyPlaying !== soundTrack) {
-    audio = new Sound(soundTrack, RNFSDir(location), (error) => {
-      console.log('Attempting to play sound track', soundTrack);
+  try {
+    if (currentlyPlaying !== soundTrack) {
+      audio = new Sound(soundTrack, RNFSDir(location), (error) => {
+        console.log('Attempting to play sound track', soundTrack);
 
-      // loaded successfully
-      if (error) {
-        console.warn(RNFSDir(location) + '/' + soundTrack);
-        console.warn('failed to load the sound');
-        console.warn(error);
-      }
-    });
-    currentlyPlaying = soundTrack;
+        // loaded successfully
+        if (error) {
+          console.warn(RNFSDir(location) + '/' + soundTrack);
+          console.warn('failed to load the sound');
+          console.warn(error);
+        }
+      });
+      currentlyPlaying = soundTrack;
+    }
+  } catch (error) {
+    console.warn(error);
   }
 
-  setTimeout(() => {
+  setTimeout(stopAndPlayAudio, 200);
+};
+
+const stopAndPlayAudio = () => {
+  if (typeof audio === 'object') {
     audio.stop(() => {
       audio.play(() => {
-        console.log('Played sound track', soundTrack);
+        console.log('Played sound track', currentlyPlaying);
       });
     });
-
-  },         200);
+  }
 };
+
 
 
