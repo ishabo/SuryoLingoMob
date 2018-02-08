@@ -53,24 +53,24 @@ describe('course reducer', () => {
     const state = cloneDeep(skills);
 
     state[0].lessons[0].finished = false;
-    state[0].lessons[0].totalLessonXP = 50;
+    state[0].lessons[0].totalLessonXp = 50;
     state[0].lessons[0].lessonHistory = [{
       timestamp: timestamp1,
-      thisLessonXP: 50,
+      thisLessonXp: 50,
     }];
     state[0].progress = 0.5;
-    state[0].totalSkillXP = 0;
+    state[0].totalSkillXp = 0;
 
     const newState = cloneDeep(state);
     newState[0].lessons[0].finished = true;
-    newState[0].lessons[0].totalLessonXP = 150;
+    newState[0].lessons[0].totalLessonXp = 150;
     newState[0].lessons[0].lessonHistory.push({
       timestamp: timestamp2,
-      thisLessonXP: 100,
+      thisLessonXp: 100,
     });
     newState[0].progress = 0.5;
 
-    newState[0].totalSkillXP = 150;
+    newState[0].totalSkillXp = 150;
 
     const updatedState = skillReducer(state, action);
     expect(updatedState[0]).toEqual(newState[0]);

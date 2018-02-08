@@ -1,11 +1,11 @@
 import { NavigationActions } from 'react-navigation';
-import { ICourse } from 'services/courses';
 import { ISkill } from 'services/skills';
+import { IProfile } from 'services/profile';
 
-export const navToSkills = (course: ICourse) =>
+export const navToSkills = (profile: IProfile) =>
   NavigationActions.navigate({
     routeName: 'Skills', params: {
-      title: course.targetLanguage.shortName,
+      userXp: profile.userXp,
     },
   });
 
@@ -20,11 +20,11 @@ export const navToLessons = (skill: ISkill) =>
     params: { skill },
   });
 
-export const resetToLessons = (course: ICourse, skill: ISkill) => NavigationActions.reset({
+export const resetToLessons = (profile: IProfile, skill: ISkill) => NavigationActions.reset({
   index: 1,
   key: null,
   actions: [
-    navToSkills(course),
+    navToSkills(profile),
     navToLessons(skill),
   ],
 });

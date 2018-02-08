@@ -1,16 +1,16 @@
 import React from 'react';
 import { NetInfo } from 'react-native';
 import { connect } from 'react-redux';
-import { getLatestException, hasNetworkError } from 'services/selectors';
+import { hasNetworkError } from 'services/selectors';
 import { NavigationScreenProp } from 'react-navigation';
 import images from 'assets/images';
 import * as exceptions from 'services/exceptions';
-import { GSContainer, GSLogo } from './index.styles';
+import { GSContainer, GSLogo, GSVersion } from './index.styles';
 import { exitApp, alertConnection } from 'helpers';
 import * as starter from 'services/starter';
+import VersionNumber from 'react-native-version-number';
 
 export interface IProps {
-  lastException: exceptions.IException;
   navigation: NavigationScreenProp<any, any>;
   firstFetch: () => void;
   addException: (payload: exceptions.IExceptionPayload) => void;
@@ -22,7 +22,7 @@ interface IState {
 }
 
 const alertDelayTime = 1000;
-
+const fetchDelayTime = 1000;
 class Splash extends React.Component<IProps, IState> {
 
   static navigationOptions = {
@@ -66,11 +66,11 @@ class Splash extends React.Component<IProps, IState> {
       this.setState({ hasAlert: true }, () => {
         alertConnection(this.props.firstFetch, exitApp, this.setAlertDismissed);
       });
-    }, alertDelayTime);
+    },         alertDelayTime);
   }
 
   componentDidMount () {
-    this.props.firstFetch();
+    setTimeout(this.props.firstFetch, fetchDelayTime);
     setTimeout(this.checkConnection, alertDelayTime);
   }
 
@@ -91,6 +91,7 @@ class Splash extends React.Component<IProps, IState> {
     return (
       <GSContainer>
         <GSLogo source={images.logo.splash} />
+        <GSVersion>v{VersionNumber.appVersion}</GSVersion>
       </GSContainer>
     );
   }
@@ -102,9 +103,8 @@ const mapDispatchToProps = (dispatch: any) => ({
     dispatch(exceptions.actions.add(payload)),
 });
 
-const matchStateToProps = (state: any) => ({
-  lastException: getLatestException(state),
+const mapStateToProps = (state: any) => ({
   hasNetworkError: hasNetworkError(state),
 });
 
-export default connect(matchStateToProps, mapDispatchToProps)(Splash);
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);

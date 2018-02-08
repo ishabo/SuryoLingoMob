@@ -8,6 +8,7 @@ export const getTargetLanguage = (state: ICourse[]) => {
   if (activeCourse) {
     return activeCourse.targetLanguage.name;
   } else {
-    throw new Error('No active course selected!');
+    // throw new Error('No active course selected!');
+    return 'Syric';
   }
 };

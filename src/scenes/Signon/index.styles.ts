@@ -1,14 +1,20 @@
 import {
-  Button, Item,
-  Input, Icon, Label, Form,
+  Button, Icon,
 } from 'native-base';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { CustomText } from 'styles/text';
-import { KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+export * from 'styles/forms';
+export * from 'styles/text';
 
 export const GSContainer = glamor(KeyboardAvoidingView)({
   justifyContent: 'space-between',
+});
+
+export const GSForgotPassword = glamor(TouchableOpacity)({
+  alignSelf: 'center',
+  marginTop: 10,
+  padding: 10,
 });
 
 export const GSTabs = glamor.view({
@@ -31,20 +37,6 @@ export const GSButtonText = glamor.text<{ color: string; }>(
   }),
 );
 
-export const GSInput = glamor(Input)({
-  writingDirection: 'rtl',
-  textAlign: 'right',
-});
-
-export const GSErrorText = glamor.text<{ visible?: boolean }>(
-  {
-    color: Colors.red,
-  },
-  props => ({
-    fontSize: props.visible ? 15 : 0,
-  }),
-);
-
 export const GSIcon = glamor(Icon)({
   position: 'absolute',
   right: 15,
@@ -52,15 +44,6 @@ export const GSIcon = glamor(Icon)({
   fontSize: 20,
   color: Colors.black,
   zIndex: 100,
-});
-
-export const GSItem = glamor(Item)({
-  marginVertical: 5,
-});
-
-export const GSForm = glamor(Form)({
-  justifyContent: 'flex-start',
-  paddingLeft: 10,
 });
 
 export const GSFooter = glamor.view({
@@ -71,22 +54,6 @@ export const GSFooter = glamor.view({
 
 export const GSError = glamor.text({
   color: Colors.red,
-});
-
-export const GSLebel = glamor(Label)({});
-
-export const GSNextButtons = glamor.view({
-  alignItems: 'stretch',
-  alignSelf: 'stretch',
-  alignContent: 'center',
-  justifyContent: 'space-around',
-  marginTop: 20,
-  flexDirection: 'row',
-});
-
-export const GSTitle = glamor(CustomText)({
-  padding: 10,
-  fontSize: 30,
 });
 
 export const GSDescription = glamor.text({

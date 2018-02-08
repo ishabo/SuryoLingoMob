@@ -7,7 +7,7 @@ import { Moment } from 'moment';
 
 export interface ILessonHistory {
   timestamp: Moment;
-  thisLessonXP: number;
+  thisLessonXp: number;
 }
 
 export interface ILesson {
@@ -15,7 +15,7 @@ export interface ILesson {
   order: number;
   newWords: string;
   finished?: boolean;
-  totalLessonXP?: number;
+  totalLessonXp?: number;
   lessonHistory?: ILessonHistory[];
 }
 
@@ -29,7 +29,7 @@ export interface ISkill {
   name: string;
   lessons: ILesson[];
   description: string;
-  totalSkillXP?: number;
+  totalSkillXp?: number;
   icons: {
     [key in TImageSizes]: {
       locked: string;

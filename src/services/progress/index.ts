@@ -14,7 +14,7 @@ export interface IProgressAction {
   skillId?: string;
   lessonId?: string;
   lessonXP?: number;
-  userXP?: number;
+  userXp?: number;
   lessonToSync?: ILessonToSync;
 }
 

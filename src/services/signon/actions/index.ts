@@ -12,6 +12,7 @@ export const types = {
   SET_ERRORS: `${namespace}/SET_ERRORS`,
   RESET_SIGNON: `${namespace}/RESET_SIGNON`,
   SIGNOUT: `${namespace}/SIGNOUT`,
+  RECOVER_PASSWORD: `${namespace}/RECOVER_PASSWORD`,
 };
 
 export const submitSignon = (signon: TSignon) => ({
@@ -33,7 +34,11 @@ export const resetSignon = () => ({
   type: types.RESET_SIGNON,
 });
 
-
 export const signout = () => ({
   type: types.SIGNOUT,
+});
+
+export const recoverPassword = (email: string) => ({
+  email,
+  type: types.RECOVER_PASSWORD,
 });

@@ -1,4 +1,4 @@
-import { AppNavigator } from '../index';
+import { AppNavigator } from 'routes/index';
 
 export const initialState = AppNavigator ? AppNavigator.router.getStateForAction(
   AppNavigator.router.getActionForPathAndParams('Splash'),

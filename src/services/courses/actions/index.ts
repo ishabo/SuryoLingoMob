@@ -8,6 +8,7 @@ export const types = {
   ENROLL_IN_COURSE: `${namespace}/ENROLL_IN_COURSE`,
   SWITCH_COURSE: `${namespace}/SWITCH_COURSE`,
   SET_COURSE_ACTIVE: `${namespace}/SET_COURSE_ACTIVE`,
+  RESET_COURSES: `${namespace}/RESET_COURSES`,
 };
 
 export const saveCourses = (courses: ICourse[]) => ({
@@ -34,3 +35,6 @@ export const setActiveCourse = (courseId: string) => ({
   type: types.SET_COURSE_ACTIVE,
 });
 
+export const resetCourses = () => ({
+  type: types.RESET_COURSES,
+});

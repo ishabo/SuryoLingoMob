@@ -3,6 +3,7 @@ package com.suryolingo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.apsl.versionnumber.RNVersionNumberPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -38,7 +39,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNSoundPackage(), new RNSensitiveInfoPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new RNVersionNumberPackage(), new RNSoundPackage(), new RNSensitiveInfoPackage(),
           new ReactNativeRestartPackage(), new LinearGradientPackage(), new RNI18nPackage(), new RNFSPackage(),
           new RNExitAppPackage(), new RNDeviceInfo(), new RNAudioPlayer(), new FabricPackage());
     }

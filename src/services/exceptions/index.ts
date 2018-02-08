@@ -7,6 +7,7 @@ export interface IExceptionPayload {
   name: string;
   message: string;
   report: boolean;
+  silent?: boolean;
   response?: { [key: string]: any };
   action?: () => any;
 }

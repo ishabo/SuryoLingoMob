@@ -3,7 +3,7 @@ import { Container } from 'native-base';
 import { IAnswerProps } from '../../../index.types';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
-import { CustomText } from 'styles/text';
+import { GSCustomText } from 'styles/text';
 import { ICourse } from 'services/courses';
 import Phrase, {
   IProps as IPhraseProps,
@@ -37,12 +37,12 @@ export const GSContainer = glamor(Container)({
   paddingVertical: 50,
 });
 
-export const GSMeaning = glamor(CustomText)({
+export const GSMeaning = glamor(GSCustomText)({
   alignSelf: 'center',
   marginVertical: 30,
 });
 
-export const GSPhrase = glamor(CustomText)({
+export const GSPhrase = glamor(GSCustomText)({
   alignSelf: 'center',
   textAlign: 'center',
   fontSize: 30,

@@ -1,4 +1,4 @@
-import { CustomText } from 'styles/text';
+import { GSCustomText } from 'styles/text';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 
@@ -35,7 +35,7 @@ export const GSHintedSentence = glamor.view({
   justifyContent: 'center',
 });
 
-export const GSSentence = glamor(CustomText)<{ underline: boolean }>(
+export const GSSentence = glamor(GSCustomText)<{ underline: boolean }>(
   {
     padding: 0,
     margin: 0,

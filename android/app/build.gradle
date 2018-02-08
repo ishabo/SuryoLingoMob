@@ -103,7 +103,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -172,6 +172,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-version-number')
     implementation project(':react-native-exit-app')
     implementation project(':react-native-restart')
     implementation project(':react-native-audioplayer')

@@ -18,7 +18,7 @@ import Language from 'config/language';
 import I18n from 'I18n';
 import { QuestionBody, EvaluationBanner } from './components';
 import { GSIcon, GSProgress } from './index.styles';
-import { GSHeader, GSBody, GSFooter } from 'styles/layout';
+import { GSHeader, GSBody, GSFooter } from 'styles/layouts';
 import { IProps, IState, TAnswer } from './index.types';
 import { NavigationActions } from 'react-navigation';
 import NextButton from 'components/NextButton';
@@ -37,6 +37,7 @@ class Questions extends React.Component<IProps, IState> {
 
   static navigationOptions = {
     header: null,
+
     cardStack: {
       transition: (previousRoute: any) => { // configure the animation here 
         console.warn(previousRoute);
@@ -98,7 +99,7 @@ class Questions extends React.Component<IProps, IState> {
     const resetAction = NavigationActions.reset({
       index: 0,
       key: null,
-      actions: [navToSkills(this.props.course)],
+      actions: [navToSkills(this.props.profile)],
     });
     this.props.navigation.dispatch(resetAction);
   }
@@ -197,6 +198,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 const mapStateToProps = (state: any) => ({
+  profile: state.profile,
   questions: state.questions.onGoing,
   pending: state.questions.pending,
   course: getActiveCourse(state),
