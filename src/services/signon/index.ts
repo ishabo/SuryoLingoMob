@@ -27,6 +27,7 @@ export interface ISignonFormAction {
   signon?: TSignon;
   data?: ISignonFormData;
   errors?: ISignonFormData;
+  email?: string;
 }
 
 export {

@@ -1,13 +1,17 @@
 import { call, put, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import * as signon from 'services/signon';
 import * as profile from 'services/profile';
 import * as progress from 'services/progress';
 import * as skills from 'services/skills';
-
+import * as exceptions from 'services/exceptions';
+import * as courses from 'services/courses';
 import { IInitialState } from 'services/reducers';
 import { isEmpty } from 'lodash';
 import { validateSigon } from '../validation';
-import { setLoadingOn, setLoadingOff } from 'services/api/actions';
+import {
+  setLoadingOn, setLoadingOff, setFailureMessage, setSuccessMessage,
+} from 'services/api/actions';
 import { ISagasFunctions } from 'services/sagas';
 import { NavigationActions } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
@@ -15,7 +19,7 @@ import { navToSkills, isApiResponse } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 
-export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
+export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   const fields = { ...yield select((state: IInitialState) => state.signon.item) };
   if (action.signon === 'signin') {
@@ -41,20 +45,24 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
       yield put(signon.actions.resetSignon());
 
       const activeCourse = yield select(getActiveCourse);
+      yield delay(100);
+      const savedProfile = yield select((state: IInitialState) => state.profile);
 
       if (activeCourse) {
-        yield put(navToSkills(activeCourse));
+        yield put(navToSkills(savedProfile));
       } else {
         yield put(NavigationActions.navigate({ routeName: 'Courses' }));
       }
 
     } catch (error) {
-      if (isApiResponse) {
+      if (isApiResponse(error)) {
         if (error.response.status === 400) {
           if (error.response.data.match(/Email already exists/)) {
             errors['email'] = 'email_already_exists';
           }
           yield put(signon.actions.setErrors(errors));
+        } else {
+          yield put(exceptions.actions.add(error));
         }
       }
     }
@@ -66,18 +74,41 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
   yield put(setLoadingOff());
 }
 
-export function* signout (): IterableIterator<any> {
+export function* signout(): IterableIterator<any> {
   yield put(profile.actions.resetProfile());
   yield put(progress.actions.resetProgress());
   yield put(skills.actions.resetSkills());
+  yield put(courses.actions.resetCourses());
+
   yield call(deleteAccessToken);
   yield call(RNRestart.Restart);
+}
+
+export function* recoverPassword(action: signon.ISignonFormAction): IterableIterator<any> {
+  yield put(setLoadingOn());
+  try {
+    yield call(signon.api.recoverPassword, action.email);
+    yield put(setSuccessMessage('passwordRecoverySuccess', true));
+  } catch (error) {
+    console.warn(JSON.stringify(error));
+
+    if (isApiResponse(error)) {
+      if (error.response.status === 422) {
+        yield put(setFailureMessage('passwordRecoveryFailure', true));
+      } else {
+        yield put(exceptions.actions.add(error));
+      }
+    }
+  }
+
+  yield put(setLoadingOff());
 }
 
 export const functions = (): ISagasFunctions[] => {
   return [
     { action: signon.actions.types.SUBMIT_SIGNON, func: submitSignon },
     { action: signon.actions.types.SIGNOUT, func: signout },
+    { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
   ];
 };
 

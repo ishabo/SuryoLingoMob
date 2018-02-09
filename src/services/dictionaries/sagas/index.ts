@@ -6,7 +6,7 @@ import * as exceptions from 'services/exceptions';
 import * as dictionaries from 'services/dictionaries';
 import { ISagasFunctions } from 'services/sagas';
 
-export function* fetchDictionaries(action: dictionaries.IDictionaryAction): IterableIterator<any> {
+export function* fetchDictionaries (action: dictionaries.IDictionaryAction): IterableIterator<any> {
   yield put(setLoadingOn());
   try {
     const response = yield call(getDictionaries, action.courseId);

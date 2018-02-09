@@ -7,16 +7,19 @@ import {
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
+import * as profile from 'services/profile';
 import {
-  GSContainer,
-  GSTabs, GSTabButton,
+  GSContainer, GSTabs, GSTabButton,
+  GSForgotPassword,
   GSButtonText, GSInput,
   GSForm, GSItem, GSLebel,
   GSNextButtons, GSTitle,
   GSIcon, GSErrorText,
 } from './index.styles';
-import { GSHeader } from 'styles/layout';
-import NextButton from 'components/NextButton';
+import { GSCustomText } from 'styles/text';
+
+import { GSHeader } from 'styles/layouts';
+import { NextButton } from 'components';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
@@ -30,6 +33,7 @@ interface IState {
 }
 
 interface IProps {
+  profile: profile.IProfile;
   signon: signon.ISignonState;
   submitSignon: (signUpOrIn: signon.TSignon) => void;
   captureSignon: (data: signon.ISignonFormData) => void;
@@ -79,8 +83,8 @@ class Signon extends React.Component<IProps, IState> {
 
   private alert () {
     Alert.alert(
-      I18n.t('profile.title'),
-      I18n.t('profile.description'),
+      I18n.t('profile.form.title'),
+      I18n.t('profile.form.description'),
       [{ text: I18n.t('general.close'), onPress: () => { } }],
       { cancelable: false },
     );
@@ -104,9 +108,9 @@ class Signon extends React.Component<IProps, IState> {
   }
 
   private skipToNext = () => {
-    const { activeCourse, navigation } = this.props;
+    const { activeCourse, navigation, profile } = this.props;
     const routeName = activeCourse ? 'Skills' : 'Courses';
-    navigation.navigate(routeName);
+    navigation.navigate(routeName, profile);
   }
 
   private submitSignon = () => {
@@ -126,20 +130,20 @@ class Signon extends React.Component<IProps, IState> {
       <GSTabButton full primary={this.isSignin()} light={this.isSignup()}
         onPress={this.setSignin}>
         <GSButtonText color={this.isSignin() ? 'white' : 'black'}>
-          {I18n.t('profile.signIn')}
+          {I18n.t('profile.form.signIn')}
         </GSButtonText>
       </GSTabButton>
       <GSTabButton full primary={this.isSignup()} light={this.isSignin()}
         onPress={this.setSignup}>
         <GSButtonText color={this.isSignup() ? 'white' : 'black'}>
-          {I18n.t('profile.signUp')}
+          {I18n.t('profile.form.signUp')}
         </GSButtonText>
       </GSTabButton>
     </GSTabs>
 
   private hasError = (name: string): boolean => !isEmpty(this.props.signon.errors[name]);
 
-  private renderInput = (name: string, props?: TextInputProperties) => {
+  private renderInput = (name: string, props?: TextInputProperties, afterInput = null) => {
     const error = this.props.signon.errors[name];
     return <View>
       <GSItem inlineLabel error={this.hasError(name)}>
@@ -149,9 +153,12 @@ class Signon extends React.Component<IProps, IState> {
           </Text>
         </GSLebel>
         <GSInput ref={c => this[name] = c}
+          autoCapitalize="none"
+          dir="ltr"
           autoFocus={this.state.focusOn === name}
           {...props}
           onChangeText={this.setField(name)} />
+        {afterInput}
       </GSItem>
       <GSErrorText visible={this.hasError(name)}>
         {error === `${name}_invalid`
@@ -161,7 +168,6 @@ class Signon extends React.Component<IProps, IState> {
     </View>;
   }
 
-
   private renderForm = () =>
     <GSForm>
       {this.isSignup() && this.renderInput('name', {
@@ -170,22 +176,35 @@ class Signon extends React.Component<IProps, IState> {
         returnKeyType: 'next',
       })}
 
-      {this.renderInput('email', {
-        onSubmitEditing: this.focusOn('password'),
-        returnKeyType: 'next',
-      })}
+      {this.renderInput(
+        'email',
+        { onSubmitEditing: this.focusOn('password'), returnKeyType: 'next' },
+      )}
 
-      {this.renderInput('password', {
-        secureTextEntry: true,
-        onSubmitEditing: this.submitSignon,
-        returnKeyType: 'go',
-      })}
+      {this.renderInput(
+        'password',
+        {
+          secureTextEntry: true,
+          onSubmitEditing: this.submitSignon,
+          returnKeyType: 'go',
+        })}
 
       {<GSNextButtons>
         {this.renderSubmitButton()}
         {this.renderSkipButton()}
       </GSNextButtons>}
+
+      {this.renderRecoverPasswordLink()}
+
     </GSForm>
+
+  private renderRecoverPasswordLink = () =>
+    this.isSignin() &&
+    <GSForgotPassword onPress={() => this.props.navigation.navigate('PasswordRecovery')}>
+      <GSCustomText>
+        {I18n.t(`passwordRecovery.links.recoverPassword`)}
+      </GSCustomText>
+    </GSForgotPassword>
 
   private renderSubmitButton = () =>
     <NextButton
@@ -202,7 +221,7 @@ class Signon extends React.Component<IProps, IState> {
 
   private renderTitle = () =>
     <GSTitle lang={'cl-ara'}>
-      {I18n.t('profile.title')} <GSIcon name="bulb" onPress={this.alert} />
+      {I18n.t('profile.form.title')} <GSIcon name="bulb" onPress={this.alert} />
     </GSTitle>
 
   render () {
@@ -225,8 +244,9 @@ const mapDispatchToProps = (dispatch: any) => ({
     dispatch(signon.actions.captureSignon(data)),
 });
 
-const mapStateToDispatch = (state: IInitialState) => ({
+const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
   signon: state.signon,
+  profile: state.profile,
   activeCourse: getActiveCourse(state),
 });
 

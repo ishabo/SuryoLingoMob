@@ -1,6 +1,6 @@
 import { TouchableOpacity } from 'react-native';
 import { Container } from 'native-base';
-import { CustomText } from 'styles/text';
+import { GSCustomText } from 'styles/text';
 import * as Animatable from 'react-native-animatable';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
@@ -12,13 +12,13 @@ export const GSContainer = glamor(Container)({
   alignItems: 'stretch',
 });
 
-export const GSCourseTitle = glamor(CustomText)({
+export const GSCourseTitle = glamor(GSCustomText)({
   fontSize: 30,
   alignSelf: 'center',
   textAlign: 'center',
 });
 
-export const GSCourseSubTitle = glamor(CustomText)({
+export const GSCourseSubTitle = glamor(GSCustomText)({
   fontSize: 20,
   alignSelf: 'center',
   textAlign: 'center',

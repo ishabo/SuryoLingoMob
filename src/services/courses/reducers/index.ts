@@ -22,6 +22,8 @@ export const reducer = (state: ICourse[] = initialState, action: ICourseAction) 
         course.active = (course.id === action.courseId);
         return course;
       });
+    case types.RESET_COURSES:
+      return initialState;
     default:
       return state;
   }

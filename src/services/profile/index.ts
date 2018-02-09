@@ -10,7 +10,7 @@ export interface IProfile {
   id?: string;
   name?: string;
   email?: string;
-  userXP?: number;
+  userXp?: number;
   deviceId?: string;
 }
 

@@ -3,6 +3,7 @@ import { ISkill } from 'services/skills';
 import { IQuestion, TQuestionType } from 'services/questions';
 import { NavigationScreenProp } from 'react-navigation';
 import { IDictionary } from 'services/dictionaries';
+import { IProfile } from 'services/profile';
 
 export type TAnswer = string | string[];
 
@@ -19,10 +20,11 @@ export interface IAnswerProps {
 }
 
 export interface IProps {
+  profile: IProfile;
+  course: ICourse;
   pending: string[];
   navigation: NavigationScreenProp<any, any>;
   questions: IQuestion[];
-  course: ICourse;
   dictionaries: IDictionary[];
   calcProress: number;
   currentQuestion: IQuestion;

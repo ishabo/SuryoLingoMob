@@ -29,11 +29,11 @@ export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISki
       });
 
     case types.MARK_LESSON_FINISHED:
-      const { lessonXP: thisLessonXP, lessonId, timestamp } = action;
+      const { lessonXP: thisLessonXp, lessonId, timestamp } = action;
       const newState = cloneDeep(state);
       newState.map((skill: skill.ISkill) => {
 
-        let totalSkillXP: number = 0;
+        let totalSkillXp: number = 0;
         let totalFinishedLessons: number = 0;
         skill.lessons = skill.lessons.map((lesson: skill.ILesson) => {
 
@@ -45,20 +45,20 @@ export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISki
             }
 
             const accomplishment: skill.ILessonHistory = {
-              thisLessonXP,
+              thisLessonXp,
               timestamp,
             };
 
             lesson.lessonHistory.push(accomplishment);
-            lesson.totalLessonXP = lesson.lessonHistory.reduce(
-              (totalLessonXP: number, history: skill.ILessonHistory) =>
-                totalLessonXP + history.thisLessonXP,
+            lesson.totalLessonXp = lesson.lessonHistory.reduce(
+              (totalLessonXp: number, history: skill.ILessonHistory) =>
+                totalLessonXp + history.thisLessonXp,
               0,
             );
           }
 
-          if (Number.isInteger(lesson.totalLessonXP)) {
-            totalSkillXP += lesson.totalLessonXP;
+          if (Number.isInteger(lesson.totalLessonXp)) {
+            totalSkillXp += lesson.totalLessonXp;
           }
 
           if (lesson.finished) {
@@ -67,7 +67,7 @@ export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISki
           return lesson;
         });
 
-        skill.totalSkillXP = totalSkillXP;
+        skill.totalSkillXp = totalSkillXp;
         skill.progress = totalFinishedLessons / skill.lessons.length;
         return skill;
       });

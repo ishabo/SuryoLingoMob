@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
 import { switchCourse } from 'services/courses/actions';
-
+import I18n from 'I18n';
 import {
   GSContainer,
   GSCourse,
@@ -11,8 +11,7 @@ import {
   GSCourseTitle,
   GSAnimatable,
 } from './index.styles';
-
-import I18n from 'I18n';
+import { Icon } from 'native-base';
 
 export interface IState { }
 
@@ -21,10 +20,13 @@ class Courses extends React.Component<any, IState> {
   private cards: any;
 
   static navigationOptions = {
-    tabBarLabel: 'Home',
+    tabBarLabel: I18n.t('courses.title'),
     title: I18n.t('courses.title'),
+    tabBarHidden: true,
     headerLeft: null,
     headerRight: null,
+    tabBarVisible: false,
+    tabBarIcon: <Icon name="switch" />,
   };
 
   componentDidMount () {

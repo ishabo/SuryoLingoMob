@@ -8,11 +8,19 @@ import { getLatestException } from 'services/selectors';
 import config from 'config';
 import { Dispatch } from 'redux';
 import * as signon from 'services/signon';
+import * as api from 'services/api/reducers';
 
 interface IProps {
   lastException: IException;
+  apiStatus: api.IApiStatus;
   signout: () => void;
 }
+
+const durationToHide = 2000;
+let doAlert: boolean = true;
+let title: string;
+let message: string;
+let alertType: string = 'warning';
 
 class Alert extends React.Component<IProps> {
 
@@ -29,20 +37,26 @@ class Alert extends React.Component<IProps> {
   componentWillReceiveProps (nextProps: Partial<IProps>) {
     if (nextProps.lastException) {
       const exception = nextProps.lastException;
-      const alertType = config.alerts[exception.name]
+      alertType = config.alerts[exception.name]
         ? config.alerts[exception.name].alertType : 'error';
-
-      MessageBarManager.showAlert({
-        alertType,
-        title: I18n.t(`alert.${exception.name}.title`),
-        message: I18n.t(`alert.${exception.name}.message`),
-        durationToHide: 20000,
-      });
+      title = I18n.t(`alert.${exception.name}.title`);
+      message = I18n.t(`alert.${exception.name}.message`);
+      doAlert = !exception.silent;
 
       if (exception.name === 'INVALID_TOKEN') {
         this.props.signout();
       }
+    } else if (nextProps.apiStatus !== this.props.apiStatus) {
+      doAlert = nextProps.apiStatus.alert && nextProps.apiStatus.message !== null;
+      alertType = nextProps.apiStatus.success ? 'success' : 'warning';
+      title = I18n.t(`alert.GENERAL_API.title`);
+      message = I18n.t(`alert.GENERAL_API.messages.${nextProps.apiStatus.message}`);
     }
+
+    if (doAlert) {
+      MessageBarManager.showAlert({ alertType, title, message, durationToHide });
+    }
+
   }
 
   render () {
@@ -56,6 +70,7 @@ const mapStateToDispatch = (dispatch: Dispatch<any>): Partial<IProps> => ({
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   lastException: getLatestException(state),
+  apiStatus: state.api,
 });
 
 export default connect(mapStateToProps, mapStateToDispatch)(Alert);

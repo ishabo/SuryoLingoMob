@@ -28,7 +28,7 @@ const withToken = (saga) => {
     const currentProfile = yield select((state: IInitialState) => state.profile);
 
     if (!currentProfile.id) {
-      console.log('No current member found');
+      console.log(`No current member found. Pulling default token: ${defaultToken}`);
       setUserToken(defaultToken);
     } else {
       const token = yield call(getAccessToken);

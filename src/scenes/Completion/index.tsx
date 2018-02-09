@@ -12,19 +12,18 @@ import { GSContainer, GSCongratMessage, GSXPGain, GSNextButton } from './index.s
 import { IInitialState } from 'services/reducers';
 import {
   getLessonInProgress,
-  getActiveCourse,
   getSkillInProgress,
   isRegistered,
 } from 'services/selectors';
-import { resetToLessons, resetToSignon } from 'helpers/navigation';
-import NextButton from 'components/NextButton';
-import { ICourse } from 'services/courses';
+import { resetToLessons } from 'helpers/navigation';
+import { NextButton, SignonButton } from 'components/';
+import { IProfile } from 'services/profile';
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void;
   finishLesson?: (lessonXP: number) => void;
   lessonInProgress: ILesson;
-  activeCourse: ICourse;
+  profile: IProfile;
   skillInProgress: ISkill;
   isRegistered: boolean;
 }
@@ -58,19 +57,15 @@ class Completion extends React.Component<IProps, IState> {
           this.countDown();
         }
       });
-    },         decreaseIntervals);
+    }, decreaseIntervals);
   }
 
   canSkipAdd = () =>
     this.state.timeToSkipAdd <= 0
 
   navBackToLessons = () => {
-    const { navigationReset, activeCourse, skillInProgress } = this.props;
-    navigationReset(resetToLessons(activeCourse, skillInProgress));
-  }
-
-  navToSignon = () => {
-    this.props.navigationReset(resetToSignon());
+    const { navigationReset, skillInProgress, profile } = this.props;
+    navigationReset(resetToLessons(profile, skillInProgress));
   }
 
   renderBackToLessonsButton = () => {
@@ -84,13 +79,6 @@ class Completion extends React.Component<IProps, IState> {
       text={buttonName} />;
   }
 
-  renderSignupOrLoginButton = () => {
-    return <NextButton onPress={this.navToSignon}
-      disabled={false}
-      text={I18n.t('profile.signonToSave')}
-      restProps={{ primary: true, wide: true }}
-    />;
-  }
 
   render () {
     const { order } = this.props.lessonInProgress;
@@ -105,7 +93,7 @@ class Completion extends React.Component<IProps, IState> {
         <GSNextButton>
           {this.renderBackToLessonsButton()}
           {this.props.isRegistered ||
-            this.renderSignupOrLoginButton()}
+            <SignonButton />}
         </GSNextButton>
 
       </GSContainer>
@@ -121,8 +109,8 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 const mapStateToDispatch = (state: IInitialState) => ({
+  profile: state.profile,
   lessonInProgress: getLessonInProgress(state),
-  activeCourse: getActiveCourse(state),
   skillInProgress: getSkillInProgress(state),
   isRegistered: isRegistered(state),
 });

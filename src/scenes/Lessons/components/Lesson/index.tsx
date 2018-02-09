@@ -8,7 +8,7 @@ import I18n from 'I18n';
 import Colors from 'styles/colors';
 import Badge from '../Badge';
 import glamor from 'glamorous-native';
-import { CustomText } from 'styles/text';
+import { GSCustomText } from 'styles/text';
 
 interface IProps {
   lesson: ILesson;
@@ -89,7 +89,7 @@ const GSLessonTitle = glamor.text({
   top: 50,
 });
 
-const GSLessonNewWords = glamor(CustomText)({
+const GSLessonNewWords = glamor(GSCustomText)({
   alignSelf: 'center',
   fontSize: 20,
 });

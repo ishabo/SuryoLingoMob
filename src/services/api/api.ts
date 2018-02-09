@@ -43,7 +43,9 @@ export const createApi = (options: IApiOptions) => {
   let statusErrors: { [key: number]: string } = {
     404: 'Resource not found',
     401: 'Invalid token',
+    402: 'Failed to login',
     500: 'A server error has occured.',
+    422: 'Your request contains invalid data',
   };
 
   if (errors) {
@@ -51,14 +53,14 @@ export const createApi = (options: IApiOptions) => {
   }
 
   const problems: IDictionary<string> = {
-    TIMEOUT_ERROR: 'There has been a timeout, no response from server!',
-    NETWORK_ERROR: 'Oops! Seems like you are not connected to the internet.' + getApiOrigin(),
+    TIMEOUT_ERROR: `There has been a timeout, no response from server ${getApiOrigin()}!`,
+    NETWORK_ERROR: `Oops! Seems like you are not connected to the internet. ${getApiOrigin()}`,
     CONNECTION_ERROR: 'Server not available!',
   };
 
   const request: ApiSauce.ApisauceInstance = ApiSauce.create({
     baseURL: getApiOrigin(),
-    timeout: 1000,
+    timeout: 60000,
     headers: {
       agentOptions: {
         rejectUnauthorized: false,
@@ -75,68 +77,69 @@ export const createApi = (options: IApiOptions) => {
       ...{ data: res.data || {} },
     };
 
-    switch (response.status) {
-      case 200:
-        console.log(
-          `API Success | ${JSON.stringify(response.data)}`,
-        );
-        break;
-      case null:
-        throw Exceptions.create({
-          response,
-          action,
-          name: response.problem || 'NETWORK_PROBLEM',
-          message: problems[response.problem] || '',
-          report: false,
-        });
-      case 401:
-        throw Exceptions.create({
-          response,
-          action,
-          name: 'INVALID_TOKEN',
-          message: statusErrors[response.status] || '',
-          report: false,
-        });
-      case 500:
-        throw Exceptions.create({
-          response,
-          action,
-          name: 'INTERNAL_SERVER_ERROR',
-          message: response.data.exception,
-          report: true,
-        });
-      case 404:
-        throw Exceptions.create({
-          response,
-          action,
-          name: 'NOT_FOUND',
-          message: response.data.error_description || statusErrors[response.status] || '',
-          report: true,
-        });
-      case 400:
-        throw Exceptions.create({
-          response,
-          action,
-          name: 'BAD_REQUEST',
-          message: response.data.error_description || '',
-          report: true,
-        });
-      case 409:
-        throw Exceptions.create({
-          response,
-          action,
-          name: 'CONFLICT',
-          message: response.data.error_description || statusErrors[response.status] || '',
-          report: true,
-        });
-      default:
-        throw Exceptions.create({
-          response,
-          action,
-          name: response.data.error || 'UNKNOWN_ERROR',
-          message: response.data.error_description || statusErrors[response.status] || '',
-          report: response.status !== 404,
-        });
+    if (response.status === 200) {
+      console.log(
+        `API Success | ${JSON.stringify(response.data)}`,
+      );
+    } else {
+      let exceptionPayload = {};
+      switch (response.status) {
+        case null:
+          exceptionPayload = {
+            name: response.problem || 'NETWORK_PROBLEM',
+            message: problems[response.problem] || '',
+          }; break;
+        case 401:
+        case 402:
+          exceptionPayload = {
+            name: response.status === 401 ? 'INVALID_TOKEN' : 'INVALID_AUTH',
+            message: statusErrors[response.status] || '',
+            report: response.status === 401,
+          }; break;
+        case 500:
+          exceptionPayload = {
+            name: 'INTERNAL_SERVER_ERROR',
+            message: response.data.exception,
+            report: true,
+          }; break;
+        case 404:
+          exceptionPayload = {
+            name: 'NOT_FOUND',
+            message: response.data.error_description || statusErrors[response.status] || '',
+            report: true,
+          }; break;
+        case 400:
+          exceptionPayload = {
+            name: 'BAD_REQUEST',
+            message: response.data.error_description || '',
+            report: true,
+          }; break;
+        case 409:
+          exceptionPayload = {
+            name: 'CONFLICT',
+            report: true,
+            silent: true,
+          }; break;
+        case 422:
+          exceptionPayload = {
+            name: 'INVALID_APPLICATION',
+            message: statusErrors[response.status],
+            silent: true,
+          }; break;
+        default:
+          exceptionPayload = {
+            name: response.data.error || 'UNKNOWN_ERROR',
+            message: response.data.error_description || statusErrors[response.status] || '',
+            report: true,
+          };
+      }
+
+      throw Exceptions.create({
+        response, action, report: false, silent: false,
+        message: response.data.error_description || statusErrors[response.status] || '',
+        name: response.data.error,
+        ...exceptionPayload,
+      });
     }
 
     const { data } = response;

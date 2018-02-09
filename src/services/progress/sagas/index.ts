@@ -6,6 +6,7 @@ import {
   getLessonInProgress, getSkillsByUnit,
   getSkillInProgress, getActiveCourse,
   getLessonsToSync,
+  calcTotaluserXp,
 } from 'services/selectors';
 
 import { setLessonInProgress } from '../actions';
@@ -13,13 +14,15 @@ import * as skills from 'services/skills';
 // import * as exceptions from 'services/exceptions';
 import moment from 'moment';
 import { ISagasFunctions } from 'services/sagas';
+import { saveProfile } from 'services/profile/actions';
+import { IInitialState } from 'services/reducers';
 
-export function* enterLesson(action: progress.IProgressAction): IterableIterator<any> {
+export function* enterLesson (action: progress.IProgressAction): IterableIterator<any> {
   yield put(setLessonInProgress(action.lessonId));
   yield put(questions.actions.fetchQuestionsForLesson(action.lessonId));
 }
 
-export function* finishLesson(action: progress.IProgressAction): IterableIterator<any> {
+export function* finishLesson (action: progress.IProgressAction): IterableIterator<any> {
   const { lessonXP } = action;
   const { id: lessonId } = yield select(getLessonInProgress);
   const course = yield select(getActiveCourse);
@@ -38,23 +41,25 @@ export function* finishLesson(action: progress.IProgressAction): IterableIterato
   yield delay(500);
 
   const skillsOfUnit = yield select(getSkillsByUnit(skillInProgress.unit));
+  const userXp = yield select(calcTotaluserXp);
+  const profile = yield select((state: IInitialState) => state.profile);
+  yield put(saveProfile({ ...profile, userXp }));
 
   if (isUnitFinished(skillsOfUnit)) {
     const nextUnit = skillInProgress.unit + 1;
     yield put(skills.actions.activateUnit(nextUnit));
   }
 
-  yield delay(1000);
+  yield delay(500);
   yield put(progress.actions.syncFinishedLessons());
 }
 
-export function* syncFinishedLessons(): IterableIterator<any> {
+export function* syncFinishedLessons (): IterableIterator<any> {
   const lessonsToSync = yield select(getLessonsToSync);
   try {
     yield call(progress.api.syncFinishedLessons, lessonsToSync);
     yield put(progress.actions.resetLessonsToSync());
   } catch (error) {
-    // yield put(exceptions.actions.add(error));
     console.warn(error);
   }
 }

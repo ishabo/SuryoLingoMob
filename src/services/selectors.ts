@@ -85,7 +85,7 @@ export const getLessonsToSync = (state: IInitialState): ILessonToSync[] =>
   state.progress.lessonsToSync;
 
 export const isRegistered = (state: IInitialState): boolean =>
-  typeof state.profile.email === 'string';
+  typeof state.profile.email === 'string' && state.profile.email.length > 3;
 
 export const isLoading = (state: IInitialState): boolean => state.api.loading;
 
@@ -97,3 +97,11 @@ export const hasFetchedSkills = (state: IInitialState): boolean =>
 
 export const hasNetworkError = (state: IInitialState): boolean =>
   exceptions.selectors.hasNetworkError(state.exceptions);
+
+export const calcTotaluserXp = (state: IInitialState): number =>
+  state.skills.reduce((total: number, skill: skills.ISkill): number =>
+    total + skill.totalSkillXp, 0,
+  );
+
+
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Text } from 'native-base';
+import { Container, Text, Icon } from 'native-base';
 import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Skill } from './components';
@@ -17,11 +17,15 @@ interface State { }
 class Skills extends React.Component<any, State> {
 
   static navigationOptions = ({ navigation: { navigate, state: { params } } }) => ({
-    title: I18n.t(`courses.languages.short.${params['title']}`),
+    title: I18n.t(`skills.title`),
     headerLeft: null,
+    tabBarIcon: <Icon name="keypad" />,
+    labelStyle: {
+      fontSize: 16,
+    },
     headerRight: <HeaderRight
-      title={I18n.t('courses.shortTitle')}
-      navigate={() => navigate('Courses')} />,
+      title={I18n.t('profile.userXp', { userXp: params['userXp'] ? params['userXp'] : 0 })}
+      navigate={() => navigate('Profile')} />,
   })
 
   private goToLessons = (skill: ISkill) => {
