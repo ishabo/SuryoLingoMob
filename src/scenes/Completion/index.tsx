@@ -57,7 +57,7 @@ class Completion extends React.Component<IProps, IState> {
           this.countDown();
         }
       });
-    }, decreaseIntervals);
+    },         decreaseIntervals);
   }
 
   canSkipAdd = () =>
@@ -78,7 +78,6 @@ class Completion extends React.Component<IProps, IState> {
       disabled={!this.canSkipAdd()}
       text={buttonName} />;
   }
-
 
   render () {
     const { order } = this.props.lessonInProgress;

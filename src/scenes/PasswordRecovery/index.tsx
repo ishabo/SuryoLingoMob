@@ -1,4 +1,5 @@
 import React from 'react';
+import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { GSContainer } from './index.styles';
 import { Dispatch } from 'redux';
@@ -10,9 +11,12 @@ import { GSTitle, GSAlert, GSCustomText } from 'styles/text';
 import { IInitialState } from 'services/reducers';
 import { IApiStatus } from 'services/api/reducers';
 import { Item } from 'native-base';
+import { NavigationScreenProp } from 'react-navigation';
+
 export interface IProps {
   recoverPassword: (email: string) => void;
   apiStatus: IApiStatus;
+  navigation: NavigationScreenProp<any, any>;
 }
 
 export interface IState {
@@ -28,6 +32,19 @@ class PasswordRecovery extends React.Component<IProps, IState> {
   static navigationOptions = {
     title: null,
   };
+
+  componentDidMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    this.props.navigation.goBack();
+    return true;
+  }
 
   componentWillReceiveProps (nextProps: Partial<IProps>) {
     if (nextProps.apiStatus !== this.props.apiStatus) {

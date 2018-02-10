@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard, Alert, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { BackHandler, Keyboard, Alert, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
@@ -67,6 +67,19 @@ class Questions extends React.Component<IProps, IState> {
 
   componentWillMount () {
     this.setState({ progress: this.props.calcProress });
+  }
+
+  componentDidMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    this.existQuestions();
+    return true;
   }
 
   evaluateOrNext = () => {

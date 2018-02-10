@@ -6,6 +6,7 @@ export const initialState = AppNavigator ? AppNavigator.router.getStateForAction
 ) : null;
 
 export const reducer = (state = initialState, action) => {
+
   const nextState = AppNavigator
     ? AppNavigator.router.getStateForAction(action, state)
     : null;
