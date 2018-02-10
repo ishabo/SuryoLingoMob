@@ -172,7 +172,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':react-native-version-number')
+    implementation project(':react-native-version-number')
     implementation project(':react-native-exit-app')
     implementation project(':react-native-restart')
     implementation project(':react-native-audioplayer')

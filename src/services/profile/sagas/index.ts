@@ -5,7 +5,7 @@ import { IInitialState } from 'services/reducers';
 import { ISagasFunctions } from 'services/sagas';
 import { setAccessToken } from 'services/api/access';
 
-export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfile (action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
 
   if (isEmpty(profileState)) {
@@ -18,7 +18,7 @@ export function* createProfile(action: profile.IProfileAction): IterableIterator
   }
 }
 
-export function* updateProfile(action: profile.IProfileAction): IterableIterator<any> {
+export function* updateProfile (action: profile.IProfileAction): IterableIterator<any> {
   const currentProfile = yield select((state: IInitialState) => state.profile);
   try {
     const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
@@ -29,12 +29,12 @@ export function* updateProfile(action: profile.IProfileAction): IterableIterator
   }
 }
 
-export function* saveProfileAndAccessToken(action: profile.IProfileAction): IterableIterator<any> {
+export function* saveProfileAndAccessToken (action: profile.IProfileAction): IterableIterator<any> {
   const accessToken = action.profileData.apiKey;
   console.log('Will save token', accessToken);
   delete action.profileData.apiKey;
   const token = yield call(setAccessToken, accessToken);
-  console.log('Saving ', token);
+  console.log('Saving Token ', token);
   yield put(profile.actions.saveProfile(action.profileData));
 }
 

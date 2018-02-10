@@ -166,6 +166,7 @@ class QuestionBody extends React.Component<IProps, IState> {
 
     return <KeyboardAvoidingView
       style={{ flex: 1, justifyContent: 'flex-start' }}>
+
       {options.length > 0 &&
         <GSOptions>
           {options}
@@ -181,7 +182,7 @@ class QuestionBody extends React.Component<IProps, IState> {
       />
 
       <QuestionComponent {...question}
-        phrase={sentence}
+        phrase={reverse ? question.phrase : sentence}
         collectAnswer={collectAnswer}
         userHasAnswered={userHasAnswered}
         course={course}

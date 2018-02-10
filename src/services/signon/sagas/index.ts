@@ -4,7 +4,6 @@ import * as signon from 'services/signon';
 import * as profile from 'services/profile';
 import * as progress from 'services/progress';
 import * as skills from 'services/skills';
-import * as exceptions from 'services/exceptions';
 import * as courses from 'services/courses';
 import { IInitialState } from 'services/reducers';
 import { isEmpty } from 'lodash';
@@ -19,7 +18,7 @@ import { navToSkills, isApiResponse } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 
-export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
+export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   const fields = { ...yield select((state: IInitialState) => state.signon.item) };
   if (action.signon === 'signin') {
@@ -61,8 +60,6 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
             errors['email'] = 'email_already_exists';
           }
           yield put(signon.actions.setErrors(errors));
-        } else {
-          yield put(exceptions.actions.add(error));
         }
       }
     }
@@ -74,7 +71,8 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
   yield put(setLoadingOff());
 }
 
-export function* signout(): IterableIterator<any> {
+export function* signout (): IterableIterator<any> {
+  debugger;
   yield put(profile.actions.resetProfile());
   yield put(progress.actions.resetProgress());
   yield put(skills.actions.resetSkills());
@@ -84,7 +82,7 @@ export function* signout(): IterableIterator<any> {
   yield call(RNRestart.Restart);
 }
 
-export function* recoverPassword(action: signon.ISignonFormAction): IterableIterator<any> {
+export function* recoverPassword (action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   try {
     yield call(signon.api.recoverPassword, action.email);
@@ -95,8 +93,6 @@ export function* recoverPassword(action: signon.ISignonFormAction): IterableIter
     if (isApiResponse(error)) {
       if (error.response.status === 422) {
         yield put(setFailureMessage('passwordRecoveryFailure', true));
-      } else {
-        yield put(exceptions.actions.add(error));
       }
     }
   }
@@ -111,5 +107,3 @@ export const functions = (): ISagasFunctions[] => {
     { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
   ];
 };
-
-
