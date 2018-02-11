@@ -6,7 +6,7 @@ import { Platform } from 'react-native';
 let audio;
 let currentlyPlaying: string;
 
-type TSoundLocations = 'CACHES' | 'TEMPERORY';
+type TSoundLocations = 'CACHES' | 'TEMPERORY' | '';
 
 const RNFSDir = (location: TSoundLocations) => {
 
@@ -53,26 +53,33 @@ export const downloadAndPlayAudio = async (
 };
 
 export const playAudio = (soundTrack, location: TSoundLocations = defaultLocation) => {
+  const soundPath = RNFSDir(location);
+
+  const errorCallback = (error) => {
+    console.log('Attempting to play sound track', soundTrack);
+
+    if (error) {
+      console.warn(soundPath + '/' + soundTrack);
+
+      console.warn('failed to load the sound');
+      console.warn(error);
+    }
+  };
+
   try {
     if (currentlyPlaying !== soundTrack) {
-      audio = new Sound(soundTrack, RNFSDir(location), (error) => {
-        console.log('Attempting to play sound track', soundTrack);
-
-        // loaded successfully
-        if (error) {
-          console.warn(RNFSDir(location) + '/' + soundTrack);
-          console.warn('failed to load the sound');
-          console.warn(error);
-        }
-      });
+      audio = new Sound(soundTrack, soundPath, errorCallback);
       currentlyPlaying = soundTrack;
     }
+
+    setTimeout(stopAndPlayAudio, 200);
+
   } catch (error) {
     console.warn(error);
   }
 
-  setTimeout(stopAndPlayAudio, 200);
 };
+
 
 const stopAndPlayAudio = () => {
   if (typeof audio === 'object') {

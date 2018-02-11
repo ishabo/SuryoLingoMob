@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Text, Icon } from 'native-base';
-import { ScrollView, View, TouchableOpacity } from 'react-native';
+import { ScrollView, View, TouchableOpacity, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { Skill } from './components';
 import { mapValues, groupBy } from 'lodash';
@@ -11,6 +11,7 @@ import I18n from 'I18n';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import shortid from 'shortid';
+import { exitApp } from 'helpers';
 
 interface State { }
 
@@ -27,6 +28,19 @@ class Skills extends React.Component<any, State> {
       title={I18n.t('profile.userXp', { userXp: params['userXp'] ? params['userXp'] : 0 })}
       navigate={() => navigate('Profile')} />,
   })
+
+  componentDidMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    exitApp();
+    return false;
+  }
 
   private goToLessons = (skill: ISkill) => {
     const { navigate } = this.props.navigation;

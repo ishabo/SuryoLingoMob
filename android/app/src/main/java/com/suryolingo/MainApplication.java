@@ -1,18 +1,10 @@
 package com.suryolingo;
 
 import android.app.Application;
-
 import com.facebook.react.ReactApplication;
-import com.apsl.versionnumber.RNVersionNumberPackage;
-import com.zmxv.RNSound.RNSoundPackage;
-import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
-import com.rnfs.RNFSPackage;
-import com.github.wumke.RNExitApp.RNExitAppPackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
 import com.smixx.fabric.FabricPackage;
+import com.apsl.versionnumber.RNVersionNumberPackage;
+import com.github.wumke.RNExitApp.RNExitAppPackage;
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
@@ -25,6 +17,9 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
+import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import com.zmxv.RNSound.RNSoundPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,10 +34,10 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new RNVersionNumberPackage(), new RNSoundPackage(), new RNSensitiveInfoPackage(),
-          new ReactNativeRestartPackage(), new LinearGradientPackage(), new RNI18nPackage(), new RNFSPackage(),
-          new RNExitAppPackage(), new RNDeviceInfo(), new RNAudioPlayer(), new FabricPackage());
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNVersionNumberPackage(), new RNSoundPackage(),
+          new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(), new LinearGradientPackage(),
+          new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(), new RNDeviceInfo(), new RNAudioPlayer(),
+          new FabricPackage());
     }
 
     @Override

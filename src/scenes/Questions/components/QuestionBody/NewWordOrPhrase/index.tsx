@@ -18,12 +18,12 @@ interface IProps extends IAnswerProps, IPhraseProps {
 export default class NewWordOrPhrase extends React.Component<IProps> {
 
   render () {
-    const { phrase, translation, course } = this.props;
+    const { sentence, translation, course } = this.props;
     const targetLang = course.targetLanguage.shortName as TLangs;
     const learnersLang = course.learnersLanguage.shortName as TLangs;
     return (
       <GSContainer>
-        <Phrase lang={targetLang} sentence={phrase} />
+        <Phrase lang={targetLang} sentence={sentence} />
         <GSMeaning lang={learnersLang}>
           {I18n.t(`questions.phraseMeaning`)}
         </GSMeaning>

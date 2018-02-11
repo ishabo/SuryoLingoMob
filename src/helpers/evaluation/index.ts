@@ -1,11 +1,11 @@
-// import { playAudio } from 'helpers/audio';
-// import audioFiles from 'assets/audio';
+import { playAudio } from 'helpers/audio';
+import audioFiles from 'assets/audio';
 
-const stringToCharArray = (str: string, filterLetters: string[]): string[] => {
+const stringToCharArray = (str: string, allowedLetters: string[]): string[] => {
   try {
     const stringArr = str.split('');
 
-    const rex = new RegExp(`${filterLetters.join('|')}`);
+    const rex = new RegExp(`${allowedLetters.join('|')}`);
     return stringArr.filter(rex.test.bind(rex));
   } catch (error) {
     console.warn(str);
@@ -13,25 +13,14 @@ const stringToCharArray = (str: string, filterLetters: string[]): string[] => {
   return [];
 };
 
-export const evaluateAnswer = (answer: string, correctAnswer: string, filterLetters): boolean => {
-  const answerArr = stringToCharArray(answer, filterLetters);
-  const correctAnswerArr = stringToCharArray(correctAnswer, filterLetters);
-
-  let i;
-
-  for (i in correctAnswerArr) {
-    if (answerArr[i] !== correctAnswerArr[i]) {
-      return false;
-    }
-  }
-
-  // playAudio(audioFiles.questionPassSound);
-
-  return true;
-};
-
+interface IEvalOptions {
+  allowedLetters: string[];
+  overlookLetters?: IDictionary<string>;
+}
 export const evalAgainstAllAnswers = (
-  answers: string[], correctAnswers: string[], filterLetters,
+  answers: string[],
+  correctAnswers: string[],
+  options: IEvalOptions,
 ): boolean => {
 
   console.log(`Evaluating ${answers.join(', ')} against ${correctAnswers.join(', ')} `);
@@ -41,11 +30,38 @@ export const evalAgainstAllAnswers = (
 
   for (correctAnswer of correctAnswers) {
     for (answer of answers) {
-      if (evaluateAnswer(answer, correctAnswer, filterLetters)) {
+      if (evaluateAnswer(answer, correctAnswer, options)) {
         return true;
       }
     }
   }
 
   return false;
+};
+
+export const overlook = (letter, letters: IDictionary<string> = {}) =>
+  letters[letter] ? letters[letter] : letter;
+
+export const evaluateAnswer = (
+  answer: string,
+  correctAnswer: string,
+  options: IEvalOptions,
+): boolean => {
+
+  const { allowedLetters, overlookLetters } = options;
+  const answerArr = stringToCharArray(answer, allowedLetters);
+  const correctAnswerArr = stringToCharArray(correctAnswer, allowedLetters);
+
+  let i;
+
+  for (i in correctAnswerArr) {
+    if (overlook(answerArr[i], overlookLetters)
+      !== overlook(correctAnswerArr[i], overlookLetters)) {
+      return false;
+    }
+  }
+
+  playAudio(audioFiles.questionPassSound, null);
+
+  return true;
 };

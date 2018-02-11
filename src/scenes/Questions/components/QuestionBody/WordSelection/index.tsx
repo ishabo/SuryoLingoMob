@@ -1,13 +1,10 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Container } from 'native-base';
-import {
-  GSAnswerBox, GSSelectionBox, GSWordBox, GSWordText,
-} from './index.styles';
+import { GSAnswerBox, GSSelectionBox, GSWordBox, GSWordText } from './index.styles';
 import { shuffle, remove } from 'lodash';
 import { IAnswerProps } from '../../../index.types';
 import shortid from 'shortid';
-import { IWordHint } from 'helpers';
 
 export interface IWord {
   id: string;
@@ -22,7 +19,7 @@ export interface IState {
 }
 
 export interface IProps extends IAnswerProps {
-  phrase: IWordHint[];
+  phrase: string;
   translation: string;
   incorrectChoices: string[];
   reverse: boolean;
@@ -50,8 +47,8 @@ export default class WordSelection extends React.Component<IProps, IState> {
   }
 
   private determineAnswerWords = () => {
-    const { reverse, translation, incorrectChoices } = this.props;
-    return (reverse ? this.mapPhrase() : translation.split(' '))
+    const { reverse, phrase, translation, incorrectChoices } = this.props;
+    return (reverse ? phrase : translation).split(' ')
       .concat(incorrectChoices);
   }
 
@@ -64,15 +61,6 @@ export default class WordSelection extends React.Component<IProps, IState> {
         selected: false,
       }),
     );
-  }
-
-  private mapPhrase = () => {
-    try {
-      return this.props.phrase.map((word: IWordHint) => word.word);
-    } catch (error) {
-      console.warn(error);
-      return [];
-    }
   }
 
   private updateShuffledWords = (updatedRecord: IWord) => {

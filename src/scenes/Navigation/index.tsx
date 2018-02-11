@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { AppNavigator } from 'routes';
+import { BackHandler } from 'react-native';
 
 const mapStateToProps = (state: any) => ({
   nav: state.nav,
@@ -13,6 +14,18 @@ class Navigation extends React.Component<any> {
     NavigationActions.reset(
       { index: 0, actions: [NavigationActions.navigate({ routeName: 'Splash' })] },
     );
+  }
+
+  componentDidMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    return true;
   }
 
   render () {

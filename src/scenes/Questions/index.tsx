@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard, Alert, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { BackHandler, Keyboard, Alert, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
@@ -14,7 +14,7 @@ import {
   getSkillInProgress,
 } from 'services/selectors';
 import Colors from 'styles/colors';
-import Language from 'config/language';
+import { getLangConfig } from 'config/language';
 import I18n from 'I18n';
 import { QuestionBody, EvaluationBanner } from './components';
 import { GSIcon, GSProgress } from './index.styles';
@@ -69,6 +69,19 @@ class Questions extends React.Component<IProps, IState> {
     this.setState({ progress: this.props.calcProress });
   }
 
+  componentDidMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    this.existQuestions();
+    return true;
+  }
+
   evaluateOrNext = () => {
     Keyboard.dismiss();
 
@@ -80,11 +93,18 @@ class Questions extends React.Component<IProps, IState> {
   }
 
   evaluate = () => {
+    const targetLanguage = getLangConfig(this.props.course.targetLanguage.shortName);
+    const learnersLanguage = getLangConfig(this.props.course.learnersLanguage.shortName);
+
+    const evaluationOptions = {
+      allowedLetters: targetLanguage.letters.concat(learnersLanguage.letters),
+      overlookLetters: { ...targetLanguage.overlookLetters, ...learnersLanguage.overlookLetters },
+    };
     const answer = this.state.answer;
     const answerCorrect = evalAgainstAllAnswers(
       typeof answer === 'string' ? [answer] : answer,
       this.props.allCorrectAnswers(this.props.currentQuestion.id),
-      Language.arabicLetters.concat(Language.syriacLetters),
+      evaluationOptions,
     );
 
     this.setState({ answerCorrect });

@@ -1,9 +1,7 @@
 import React from 'react';
 import { IWordHint } from 'helpers';
+import { GSHintedSentence, GSSentence } from './index.styles';
 import PopoverTooltip from 'react-native-popover-tooltip';
-import {
-  GSHintedSentence, GSSentence,
-} from './index.styles';
 import shortid from 'shortid';
 
 type TSentence = string | IWordHint[];

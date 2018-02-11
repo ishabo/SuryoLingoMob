@@ -14,7 +14,7 @@ export default (props: IProps) => {
   const setnenceToshow = showSentence && sentence || '----- ------ ----------';
 
   return (
-    <GSContainer centralize={centralize} >
+    <GSContainer centralize={centralize}>
       {
         sound.soundTrack &&
         <SoundButton {...sound} size={centralize ? { large: true } : { small: true }} />

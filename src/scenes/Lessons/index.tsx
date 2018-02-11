@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Text } from 'native-base';
+import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import I18n from 'I18n';
@@ -53,6 +54,16 @@ class Lessons extends React.Component<IProps, IState> {
       this.cards.fadeInUp();
       setTimeout(this.snapToItem, 1000);
     }
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    this.props.navigation.goBack();
+    return true;
   }
 
   private snapToItem = () => {
