@@ -72,7 +72,6 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
 }
 
 export function* signout (): IterableIterator<any> {
-  debugger;
   yield put(profile.actions.resetProfile());
   yield put(progress.actions.resetProgress());
   yield put(skills.actions.resetSkills());

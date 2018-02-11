@@ -182,7 +182,7 @@ class QuestionBody extends React.Component<IProps, IState> {
       />
 
       <QuestionComponent {...question}
-        phrase={reverse ? question.phrase : sentence}
+        sentence={sentence}
         collectAnswer={collectAnswer}
         userHasAnswered={userHasAnswered}
         course={course}
