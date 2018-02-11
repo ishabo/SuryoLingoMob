@@ -14,7 +14,7 @@ import {
   getSkillInProgress,
 } from 'services/selectors';
 import Colors from 'styles/colors';
-import Language from 'config/language';
+import { getLangConfig } from 'config/language';
 import I18n from 'I18n';
 import { QuestionBody, EvaluationBanner } from './components';
 import { GSIcon, GSProgress } from './index.styles';
@@ -93,11 +93,18 @@ class Questions extends React.Component<IProps, IState> {
   }
 
   evaluate = () => {
+    const targetLanguage = getLangConfig(this.props.course.targetLanguage.shortName);
+    const learnersLanguage = getLangConfig(this.props.course.learnersLanguage.shortName);
+
+    const evaluationOptions = {
+      allowedLetters: targetLanguage.letters.concat(learnersLanguage.letters),
+      overlookLetters: { ...targetLanguage.overlookLetters, ...learnersLanguage.overlookLetters },
+    };
     const answer = this.state.answer;
     const answerCorrect = evalAgainstAllAnswers(
       typeof answer === 'string' ? [answer] : answer,
       this.props.allCorrectAnswers(this.props.currentQuestion.id),
-      Language.arabicLetters.concat(Language.syriacLetters),
+      evaluationOptions,
     );
 
     this.setState({ answerCorrect });

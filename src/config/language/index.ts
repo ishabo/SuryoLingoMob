@@ -18,6 +18,10 @@ const language = {
     'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م',
     'ن', 'ه', 'و', 'ي', 'ى‎', 'ؤ‎', 'ئ‎', 'ء‎', 'ة',
   ],
+  arabicLettersToOverlook: {
+    أ: 'ا', إ: 'ا', آ: 'ا', ة: 'ه',
+  },
+  syriacLettersToOverlook: {},
   garshoni: {
     'cl-ara-to-cl-syr': {
       ا: 'ܐ', إ: 'ܐ', أ: 'ܐ', آ: 'ܐ', ب: 'ܒ', ت: 'ܬ', ث: 'ܬ̥',
@@ -72,14 +76,25 @@ language.garshoni[syr2ara][V_MBATLONO] = V_MBATLONO;
 language.garshoni[syr2ara][V_NUQTAIN] = null;
 
 // Set shortnames
+
+interface ILangConfig {
+  letters: string[];
+  vowels: string[];
+  overlookLetters: IDictionary<string>;
+}
+
 language['cl-syr'] = language['tor-syr'] = {
   letters: language.syriacLetters,
   vowels: language.syriacVowels,
+  overlookLetters: language.arabicLettersToOverlook,
 };
 
 language['cl-ara'] = {
   letters: language.arabicLetters,
   vowels: language.arabicVowels,
+  overlookLetters: language.syriacLettersToOverlook,
 };
+
+export const getLangConfig = (lang: TLangs): ILangConfig => language[lang];
 
 export default language;
