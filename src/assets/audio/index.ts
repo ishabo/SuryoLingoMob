@@ -1,3 +1,3 @@
 export default {
-  questionPassSound: require('../../../src/assets/audio/saggishappi.mp4'),
+  questionPassSound: require('../../../src/assets/audio/questionPass.mp4'),
 };

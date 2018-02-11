@@ -1,5 +1,5 @@
-// import { playAudio } from 'helpers/audio';
-// import audioFiles from 'assets/audio';
+import { playAudio } from 'helpers/audio';
+import audioFiles from 'assets/audio';
 
 const stringToCharArray = (str: string, filterLetters: string[]): string[] => {
   try {
@@ -25,7 +25,7 @@ export const evaluateAnswer = (answer: string, correctAnswer: string, filterLett
     }
   }
 
-  // playAudio(audioFiles.questionPassSound);
+  playAudio(audioFiles.questionPassSound, null);
 
   return true;
 };
