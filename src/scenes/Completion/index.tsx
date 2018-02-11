@@ -15,7 +15,7 @@ import {
   getSkillInProgress,
   isRegistered,
 } from 'services/selectors';
-import { resetToLessons } from 'helpers/navigation';
+import { resetToLessons, resetToSkills } from 'helpers/navigation';
 import { NextButton, SignonButton } from 'components/';
 import { IProfile } from 'services/profile';
 
@@ -65,7 +65,10 @@ class Completion extends React.Component<IProps, IState> {
 
   navBackToLessons = () => {
     const { navigationReset, skillInProgress, profile } = this.props;
-    navigationReset(resetToLessons(profile, skillInProgress));
+    navigationReset(skillInProgress.progress === 1
+      ? resetToSkills(profile)
+      : resetToLessons(profile, skillInProgress),
+    );
   }
 
   renderBackToLessonsButton = () => {

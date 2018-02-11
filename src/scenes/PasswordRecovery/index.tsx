@@ -46,6 +46,10 @@ class PasswordRecovery extends React.Component<IProps, IState> {
     return true;
   }
 
+  setEmail = (email: string) => {
+    this.setState({ email: email.trim().toLocaleLowerCase() });
+  }
+
   componentWillReceiveProps (nextProps: Partial<IProps>) {
     if (nextProps.apiStatus !== this.props.apiStatus) {
       if (nextProps.apiStatus.success) {
@@ -66,7 +70,7 @@ class PasswordRecovery extends React.Component<IProps, IState> {
             autoFocus={true}
             returnKeyType="go"
             value={this.state.email}
-            onChangeText={(email: string) => this.setState({ email })} />
+            onChangeText={this.setEmail} />
         </Item>
         <GSNextButtons>
           <NextButton

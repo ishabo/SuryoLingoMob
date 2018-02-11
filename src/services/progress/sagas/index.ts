@@ -11,18 +11,17 @@ import {
 
 import { setLessonInProgress } from '../actions';
 import * as skills from 'services/skills';
-// import * as exceptions from 'services/exceptions';
 import moment from 'moment';
 import { ISagasFunctions } from 'services/sagas';
 import { saveProfile } from 'services/profile/actions';
 import { IInitialState } from 'services/reducers';
 
-export function* enterLesson (action: progress.IProgressAction): IterableIterator<any> {
+export function* enterLesson(action: progress.IProgressAction): IterableIterator<any> {
   yield put(setLessonInProgress(action.lessonId));
   yield put(questions.actions.fetchQuestionsForLesson(action.lessonId));
 }
 
-export function* finishLesson (action: progress.IProgressAction): IterableIterator<any> {
+export function* finishLesson(action: progress.IProgressAction): IterableIterator<any> {
   const { lessonXP } = action;
   const { id: lessonId } = yield select(getLessonInProgress);
   const course = yield select(getActiveCourse);
@@ -54,7 +53,7 @@ export function* finishLesson (action: progress.IProgressAction): IterableIterat
   yield put(progress.actions.syncFinishedLessons());
 }
 
-export function* syncFinishedLessons (): IterableIterator<any> {
+export function* syncFinishedLessons(): IterableIterator<any> {
   const lessonsToSync = yield select(getLessonsToSync);
   try {
     yield call(progress.api.syncFinishedLessons, lessonsToSync);

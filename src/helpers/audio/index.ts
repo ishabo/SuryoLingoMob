@@ -77,15 +77,14 @@ export const playAudio = (soundTrack, location: TSoundLocations = defaultLocatio
   } catch (error) {
     console.warn(error);
   }
-
 };
-
 
 const stopAndPlayAudio = () => {
   if (typeof audio === 'object') {
     audio.stop(() => {
       audio.play(() => {
-        console.log('Played sound track', currentlyPlaying);
+        audio.release();
+        // console.warn(`Played sound track ${currentlyPlaying}`, JSON.stringify(audio));
       });
     });
   }

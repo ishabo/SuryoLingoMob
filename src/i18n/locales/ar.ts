@@ -168,8 +168,11 @@ export default {
         email_required: 'البريد الالكتروني مطلوب',
         password_required: 'كلمة السر مطلوبة',
         name_invalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو انكليزية',
-        email_invalid: 'الإيميل غير صحيح',
-        password_invalid: 'كلمة السر غير صالحة',
+        email_invalid: 'هذا الإيميل لا يبدو صالحاً',
+        password_invalid: 'كلمة السر ضعيفة. ' +
+          'يجب ان تحتوي على الأقل على ٦ أحرف ' +
+          'a-z ورقم واحد ' +
+          'وحرف خاص من $ @ $ ! % * # ? &',
         email_already_exists: 'هذا الإيميل مأخوذ',
       },
       submit: 'أرسل',

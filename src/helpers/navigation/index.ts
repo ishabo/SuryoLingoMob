@@ -36,3 +36,12 @@ export const resetToSignon = () => NavigationActions.reset({
     navToSignon(),
   ],
 });
+
+export const resetToSkills = (profile: IProfile) => NavigationActions.reset({
+  index: 0,
+  key: null,
+  actions: [
+    navToSkills(profile),
+  ],
+});
+

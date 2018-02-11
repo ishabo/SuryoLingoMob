@@ -8,9 +8,11 @@ import { Dispatch } from 'redux';
 import I18n from 'I18n';
 import * as profile from 'services/profile';
 import * as signon from 'services/signon';
+import * as api from 'services/api/reducers';
 import { Icon } from 'native-base';
 
 export interface IProps {
+  apiStatus: api.IApiStatus;
   profile: profile.IProfile;
   signout: () => void;
   isRegistered: boolean;
@@ -30,10 +32,14 @@ class Profile extends React.Component<IProps> {
     return <SignoutButton />;
   }
 
+  renderSignonButton = () => {
+    return this.props.apiStatus.loading || <SignonButton />;
+  }
+
   render () {
     return (
       <GSContainer>
-        {this.props.isRegistered && this.renderProfile() || <SignonButton />}
+        {this.props.isRegistered && this.renderProfile() || this.renderSignonButton()}
       </GSContainer>
     );
   }
@@ -44,6 +50,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
+  apiStatus: state.api,
   profile: state.profile,
   isRegistered: isRegistered(state),
 });
