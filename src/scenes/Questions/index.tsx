@@ -59,10 +59,11 @@ class Questions extends React.Component<IProps, IState> {
     }
   }
 
-  submitAllowed = () => isEmpty(this.state.answer)
+  submitDisallowed = () => isEmpty(this.state.answer)
     && this.actionNeeded()
 
   actionNeeded = () => this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE';
+
   needsEvaluation = () => this.actionNeeded() && !this.userHasAnswered();
 
   componentWillMount () {
@@ -110,8 +111,13 @@ class Questions extends React.Component<IProps, IState> {
     this.setState({ answerCorrect });
   }
 
+  answeredCorrectly = () => !isEmpty(this.state.answer) && this.state.answerCorrect === true;
+
   nextQuestionOrComplete = () => {
-    const status = this.state.answerCorrect === true || !this.actionNeeded() ? 'passed' : 'failed';
+    let status = this.answeredCorrectly() ? 'passed' : 'failed';
+    if (!this.actionNeeded()) {
+      status = 'passed';
+    }
     this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
   }
 
@@ -180,7 +186,7 @@ class Questions extends React.Component<IProps, IState> {
 
   renderNextQuestion = () =>
     <NextButton onPress={this.evaluateOrNext}
-      disabled={this.submitAllowed()}
+      disabled={this.submitDisallowed()}
       text={
         this.needsEvaluation()
           ? I18n.t('questions.submit')

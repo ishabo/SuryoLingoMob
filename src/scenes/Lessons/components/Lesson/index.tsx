@@ -21,6 +21,7 @@ interface IProps {
 export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
   const { lessons } = skill;
   const icon = skill.icons.xhdpi.unlocked;
+
   const lessonTitle = I18n.t('lessons.lesson.title', {
     lessonOrder: lesson.order, totalLessons: lessons.length,
   });
@@ -86,7 +87,9 @@ const GSLessonTitle = glamor.text({
   alignSelf: 'center',
   fontSize: 24,
   position: 'absolute',
+  width: 200,
   top: 50,
+  textAlign: 'center',
 });
 
 const GSLessonNewWords = glamor(GSCustomText)({

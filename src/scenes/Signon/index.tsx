@@ -103,7 +103,7 @@ class Signon extends React.Component<IProps, IState> {
 
   private setField = (field: string) => (value: string) => {
     const data = { ...this.props.signon.item };
-    data[field] = value;
+    data[field] = value.toLowerCase().trim();
     this.props.captureSignon(data);
   }
 
@@ -157,7 +157,8 @@ class Signon extends React.Component<IProps, IState> {
           dir="ltr"
           autoFocus={this.state.focusOn === name}
           {...props}
-          onChangeText={this.setField(name)} />
+          onChangeText={this.setField(name)}
+          value={this.props.signon.item[name]} />
         {afterInput}
       </GSItem>
       <GSErrorText visible={this.hasError(name)}>

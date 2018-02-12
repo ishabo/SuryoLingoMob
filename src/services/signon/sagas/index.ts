@@ -18,7 +18,7 @@ import { navToSkills, isApiResponse } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 
-export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
+export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   const fields = { ...yield select((state: IInitialState) => state.signon.item) };
   if (action.signon === 'signin') {
@@ -71,17 +71,7 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
   yield put(setLoadingOff());
 }
 
-export function* signout (): IterableIterator<any> {
-  yield put(profile.actions.resetProfile());
-  yield put(progress.actions.resetProgress());
-  yield put(skills.actions.resetSkills());
-  yield put(courses.actions.resetCourses());
-
-  yield call(deleteAccessToken);
-  yield call(RNRestart.Restart);
-}
-
-export function* recoverPassword (action: signon.ISignonFormAction): IterableIterator<any> {
+export function* recoverPassword(action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   try {
     yield call(signon.api.recoverPassword, action.email);
@@ -97,6 +87,19 @@ export function* recoverPassword (action: signon.ISignonFormAction): IterableIte
   }
 
   yield put(setLoadingOff());
+}
+
+export function* signout(): IterableIterator<any> {
+  yield put(setLoadingOn());
+  yield put(profile.actions.resetProfile());
+  yield put(progress.actions.resetProgress());
+  yield put(skills.actions.resetSkills());
+  yield put(courses.actions.resetCourses());
+  yield call(deleteAccessToken);
+  yield delay(500);
+  yield put(setLoadingOff());
+
+  yield call(RNRestart.Restart);
 }
 
 export const functions = (): ISagasFunctions[] => {
