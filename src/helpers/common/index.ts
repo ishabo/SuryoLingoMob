@@ -21,3 +21,9 @@ export const replaceCharsByPatterns = (sentence: string, patterns: object) => {
 export const exitApp = () => {
   BackHandler.exitApp();
 };
+
+export const dashify = (text: string) =>
+  text.split('').map((char: string) =>
+    char === ' ' ? ' ' : '-',
+  ).join('');
+

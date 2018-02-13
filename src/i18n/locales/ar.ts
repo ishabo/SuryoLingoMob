@@ -144,7 +144,7 @@ export default {
     },
   },
   profile: {
-    title: 'عني',
+    title: 'حسابي',
     userXp: 'النقاط: {{userXp}}',
     form: {
       signup_title: 'سجل حساب على سوريولينجو',

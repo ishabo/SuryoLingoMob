@@ -8,6 +8,8 @@ import {
 } from 'native-base';
 
 export const GSContainer = glamor(Container, { displayName: 'CustomKeyboard' })({
+  alignContent: 'center',
+  alignSelf: 'center',
   zIndex: 100,
 });
 
@@ -26,21 +28,22 @@ export const GSKeyText = glamor.text({
 });
 
 export const GSContent = glamor(View, { displayName: 'GSContent' })({
+  maxWidth: 310,
   flexDirection: 'row',
   flexWrap: 'wrap',
   alignItems: 'flex-start',
   alignSelf: 'flex-start',
-  justifyContent: 'space-around',
+  justifyContent: 'center',
 });
 
 export const GSSpaceKey = glamor(Button)({
-  flex: 1,
-  height: 40,
+  width: 269,
+  height: 38,
   margin: 4,
 });
 
 export const GSBackSpaceKey = glamor(Button)({
-  width: 88,
-  height: 40,
+  width: 85,
+  height: 38,
   margin: 4,
 });

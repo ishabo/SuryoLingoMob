@@ -127,6 +127,7 @@ class QuestionBody extends React.Component<IProps, IState> {
     let showPhraseInHeader = true;
     let reverse = isReverseQuestion(question.questionType);
     let centralizeAudio = false;
+    const showSound = !reverse || question.questionType === 'DICTATION';
 
     switch (question.questionType) {
       case 'TRANSLATION':
@@ -175,7 +176,7 @@ class QuestionBody extends React.Component<IProps, IState> {
 
       <StudyPhrase
         sentence={reverse ? question.translation : sentence}
-        sound={{ soundTrack: !reverse ? this.pathToSoundTrack() : null }}
+        sound={{ soundTrack: showSound ? this.pathToSoundTrack() : null }}
         showSentence={showPhraseInHeader}
         lang={course[reverse ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs}
         centralize={centralizeAudio}
@@ -205,7 +206,6 @@ const GSOptions = glamor.view({
   flexDirection: 'row',
   justifyContent: 'flex-end',
   alignSelf: 'stretch',
-  marginBottom: 10,
   alignItems: 'center',
 });
 

@@ -41,12 +41,13 @@ export const GSAnswerBox = glamor.view({
   flexDirection: 'row',
   flexWrap: 'wrap',
   backgroundColor: Colors.white,
-  marginTop: 5,
-  marginBottom: 40,
+  marginVertical: 5,
   alignContent: 'flex-start',
 });
 
 export const GSTitle = glamor(GSCustomText)({
+  alignSelf: 'center',
   fontSize: 20,
+  marginVertical: 20,
   textAlign: 'left',
 });

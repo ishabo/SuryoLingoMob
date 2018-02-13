@@ -1,5 +1,5 @@
 import React from 'react';
-import { IWordHint } from 'helpers';
+import { IWordHint, dashify } from 'helpers';
 import { GSHintedSentence, GSSentence } from './index.styles';
 import PopoverTooltip from 'react-native-popover-tooltip';
 import shortid from 'shortid';
@@ -26,18 +26,7 @@ const splitTranslations = (translations: string) =>
 
 export default class Phrase extends React.Component<IProps, IState> {
 
-  private obscureText = (text: string) => {
-    if (this.props.obscureText) {
-      let newWord = '';
-      let char: string;
-      for (char in Array(text.length).keys) {
-        newWord += text[char] === ' ' ? ' ' : '-';
-      }
-      return newWord;
-    } else {
-      return text;
-    }
-  }
+  private obscureText = (text: string) => this.props.obscureText ? dashify(text) : text;
 
   private renderText = (
     text: string,

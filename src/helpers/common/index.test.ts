@@ -32,4 +32,12 @@ describe('common', () => {
       expect(h.changeCase(array, 'camel')).toEqual(changedArray);
     });
   });
+
+  describe('dashify', () => {
+    it('puts dashes instead of chars and ignores spaces', () => {
+      expect(h.dashify('this is a test')).toEqual('---- -- - ----');
+      expect(h.dashify('هذه مجرد تجربة')).toEqual('--- ---- -----');
+      expect(h.dashify('هَذه مًجَرَّي تَجْرِبَة')).toEqual('---- -------- ---------');
+    });
+  });
 });

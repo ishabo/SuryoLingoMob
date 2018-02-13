@@ -5,4 +5,5 @@ export * from './questions';
 export * from './common';
 export * from './language';
 export * from './alerts';
+export * from './layout';
 export * from './api';

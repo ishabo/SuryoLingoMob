@@ -1,12 +1,13 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
+import { isNarrowDevice } from 'helpers';
 
 const height = 120;
 
 export const GSBannerHeader = glamor.text({
   color: Colors.white,
   alignSelf: 'flex-start',
-  fontSize: 30,
+  fontSize: 26,
   fontWeight: '800',
 });
 
@@ -36,7 +37,7 @@ export const GSBannerTail = glamor.view({
 
 export const GSMessageBox = glamor.view({
   height,
-  width: 270,
+  width: isNarrowDevice() ? 230 : 270,
   padding: 15,
   alignContent: 'flex-start',
 });

@@ -5,6 +5,7 @@ import {
 
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
+import { isShortDevice } from 'helpers';
 
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch',
@@ -17,11 +18,11 @@ export const GSContent = glamor.view({
 });
 
 export const GSTextAreaContainer = glamor.view({
-  height: 115,
-  marginBottom: 10,
+  height: isShortDevice() ? 80 : 115,
+  marginBottom: 5,
   borderWidth: 1,
   borderColor: Colors.white,
-  padding: 5,
+  padding: 3,
 });
 
 export const GSTextArea = glamor(Input)<{ rtl: boolean }>(
