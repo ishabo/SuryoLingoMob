@@ -28,12 +28,13 @@ export const GSTabButton = glamor(Button)({
   alignSelf: 'center',
 });
 
-export const GSButtonText = glamor.text<{ color: string; }>(
+export const GSButtonText = glamor.text<{ color: string; large: boolean; }>(
   {
     alignSelf: 'center',
   },
   props => ({
     color: props.color,
+    fontSize: props.large ? 18 : 12,
   }),
 );
 

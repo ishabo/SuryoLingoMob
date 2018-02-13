@@ -75,7 +75,7 @@ export const playAudio = (soundTrack, location: TSoundLocations = defaultLocatio
     setTimeout(stopAndPlayAudio, 200);
 
   } catch (error) {
-    console.warn(error);
+    console.log(error);
   }
 };
 
@@ -84,7 +84,7 @@ const stopAndPlayAudio = () => {
     audio.stop(() => {
       audio.play(() => {
         audio.release();
-        // console.warn(`Played sound track ${currentlyPlaying}`, JSON.stringify(audio));
+        console.log(`Played sound track ${currentlyPlaying}`, JSON.stringify(audio));
       });
     });
   }

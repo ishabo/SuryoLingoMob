@@ -27,8 +27,7 @@ export const GSCourseSubTitle = glamor(GSCustomText)({
 export const GSCourse = glamor(TouchableOpacity)({
   borderWidth: 0.3,
   padding: 40,
-  borderRadius: 5,
-  marginVertical: 5,
+  borderRadius: 1,
   shadowOffset: { width: 4, height: 4 },
   shadowColor: 'black',
   shadowOpacity: 0.2,

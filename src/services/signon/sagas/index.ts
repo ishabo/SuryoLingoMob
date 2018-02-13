@@ -18,7 +18,7 @@ import { navToSkills, isApiResponse } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 
-export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
+export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   const fields = { ...yield select((state: IInitialState) => state.signon.item) };
   if (action.signon === 'signin') {
@@ -57,7 +57,7 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
       if (isApiResponse(error)) {
         if (error.response.status === 400) {
           if (error.response.data.match(/Email already exists/)) {
-            errors['email'] = 'email_already_exists';
+            errors['email'] = 'emailSlreadyExists';
           }
           yield put(signon.actions.setErrors(errors));
         }
@@ -71,7 +71,7 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
   yield put(setLoadingOff());
 }
 
-export function* recoverPassword(action: signon.ISignonFormAction): IterableIterator<any> {
+export function* recoverPassword (action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   try {
     yield call(signon.api.recoverPassword, action.email);
@@ -89,7 +89,7 @@ export function* recoverPassword(action: signon.ISignonFormAction): IterableIter
   yield put(setLoadingOff());
 }
 
-export function* signout(): IterableIterator<any> {
+export function* signout (): IterableIterator<any> {
   yield put(setLoadingOn());
   yield put(profile.actions.resetProfile());
   yield put(progress.actions.resetProgress());

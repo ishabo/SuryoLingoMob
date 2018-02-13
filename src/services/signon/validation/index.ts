@@ -9,8 +9,8 @@ const validateField = (
   errors: IDictionary<string> = {},
 ) => {
   if (Object.keys(fields).indexOf(fieldName) !== -1) {
-    if (isEmpty(fields[fieldName])) errors[fieldName] = `${fieldName}_required`;
-    else if (!func(fields[fieldName])) errors[fieldName] = `${fieldName}_invalid`;
+    if (isEmpty(fields[fieldName])) errors[fieldName] = `${fieldName}Required`;
+    else if (!func(fields[fieldName])) errors[fieldName] = `${fieldName}Invalid`;
   }
 };
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Container } from 'native-base';
-import { GSAnswerBox, GSSelectionBox, GSWordBox, GSWordText } from './index.styles';
+import { GSAnswerBox, GSSelectionBox, GSWordBox, GSWordText, GSTitle } from './index.styles';
 import { shuffle, remove } from 'lodash';
 import { IAnswerProps } from '../../../index.types';
 import shortid from 'shortid';
+import I18n from 'I18n';
 
 export interface IWord {
   id: string;
@@ -139,9 +140,12 @@ export default class WordSelection extends React.Component<IProps, IState> {
   render () {
     return (
       <Container>
+
         <GSAnswerBox>
           {this.renderAnswerWords()}
         </GSAnswerBox>
+
+        <GSTitle>{I18n.t('questions.wordSelection')}</GSTitle>
 
         <GSSelectionBox>
           {this.renderShuffledWords()}

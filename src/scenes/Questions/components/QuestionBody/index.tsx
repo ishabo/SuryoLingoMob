@@ -175,7 +175,7 @@ class QuestionBody extends React.Component<IProps, IState> {
 
       <StudyPhrase
         sentence={reverse ? question.translation : sentence}
-        sound={{ soundTrack: this.pathToSoundTrack() }}
+        sound={{ soundTrack: !reverse ? this.pathToSoundTrack() : null }}
         showSentence={showPhraseInHeader}
         lang={course[reverse ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs}
         centralize={centralizeAudio}

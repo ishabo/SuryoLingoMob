@@ -9,11 +9,10 @@ interface ICustomText {
 }
 
 export const GSCustomText = glamor.text<ICustomText>(
-  {
-    fontSize: 18,
-  },
+  {},
   ({ lang, fontType }) => ({
     fontFamily: Platform.OS === 'ios' ? 'FontAwesome' : getFont(lang || 'cl-ara', fontType),
+    fontSize: lang === 'cl-ara' ? 20 : 18,
   }),
 );
 
