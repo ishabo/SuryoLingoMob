@@ -8,6 +8,7 @@ import glamor from 'glamorous-native';
 export const GSLebel = glamor(Label)({
   color: 'black',
 });
+
 export const GSInput = glamor(Input)<{ dir?: 'rtl' | 'ltr' }>(
   {},
   ({ dir }) => ({
@@ -22,7 +23,7 @@ export const GSItem = glamor(Item)({
 
 export const GSForm = glamor(Form)({
   justifyContent: 'flex-start',
-  paddingHorizontal: 20,
+  paddingHorizontal: 10,
 });
 
 export const GSErrorText = glamor.text<{ visible?: boolean }>(

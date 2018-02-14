@@ -11,7 +11,6 @@ interface IProps extends IPhraseProps {
 
 export default (props: IProps) => {
   const { showSentence, sentence, sound, lang, centralize } = props;
-  const setnenceToshow = showSentence && sentence || '----- ------ ----------';
 
   return (
     <GSContainer centralize={centralize}>
@@ -19,7 +18,7 @@ export default (props: IProps) => {
         sound.soundTrack &&
         <SoundButton {...sound} size={centralize ? { large: true } : { small: true }} />
       }
-      {centralize || <Phrase obscureText={!showSentence} sentence={setnenceToshow} lang={lang} />}
+      {centralize || <Phrase obscureText={!showSentence} sentence={sentence} lang={lang} />}
     </GSContainer>
   );
 };
@@ -31,6 +30,8 @@ const GSContainer = glamor.view<{ centralize: boolean }>(
   },
   (props) => {
     return {
+      marginTop: props.centralize ? 20 : 0,
+
       justifyContent: props.centralize ? 'center' : 'flex-start',
     };
   },

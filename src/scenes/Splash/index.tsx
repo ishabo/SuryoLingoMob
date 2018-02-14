@@ -66,7 +66,7 @@ class Splash extends React.Component<IProps, IState> {
       this.setState({ hasAlert: true }, () => {
         alertConnection(this.props.firstFetch, exitApp, this.setAlertDismissed);
       });
-    },         alertDelayTime);
+    }, alertDelayTime);
   }
 
   componentDidMount () {

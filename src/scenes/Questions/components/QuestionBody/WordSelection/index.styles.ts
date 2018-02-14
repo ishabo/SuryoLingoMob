@@ -1,5 +1,6 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
+import { GSCustomText } from 'styles/text';
 
 interface IWordProps {
   shadowed?: boolean;
@@ -36,11 +37,17 @@ export const GSSelectionBox = glamor.view({
 
 export const GSAnswerBox = glamor.view({
   padding: 10,
-  height: 120,
-  flex: 1,
+  minHeight: 120,
   flexDirection: 'row',
   flexWrap: 'wrap',
   backgroundColor: Colors.white,
-  marginVertical: 40,
+  marginVertical: 5,
   alignContent: 'flex-start',
+});
+
+export const GSTitle = glamor(GSCustomText)({
+  alignSelf: 'center',
+  fontSize: 20,
+  marginVertical: 20,
+  textAlign: 'left',
 });

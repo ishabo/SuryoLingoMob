@@ -40,11 +40,11 @@ export const GSSentence = glamor(GSCustomText)<{ underline: boolean }>(
     padding: 0,
     margin: 0,
     marginHorizontal: 4,
-    fontSize: 20,
     alignSelf: 'center',
   },
   props => props.underline ? ({
     borderBottomWidth: 1,
     textDecorationStyle: 'dotted',
+    fontSize: props.lang === 'cl-ara' ? 24 : 20,
   }) : null,
 );

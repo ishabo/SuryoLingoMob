@@ -9,7 +9,7 @@ describe('validation', () => {
         name: 'name',
         email: '',
       })).toEqual({
-        email: 'email_required',
+        email: 'emailRequired',
       });
     });
 
@@ -19,7 +19,7 @@ describe('validation', () => {
         email: 'email@bla.com',
         name: '',
       })).toEqual({
-        name: 'name_required',
+        name: 'nameRequired',
       });
     });
 
@@ -29,15 +29,15 @@ describe('validation', () => {
         email: 'email@bla.com',
         password: '',
       })).toEqual({
-        password: 'password_required',
+        password: 'passwordRequired',
       });
     });
 
     it('requires all', () => {
       expect(validation.validateSigon({ email: '', password: null, name: undefined })).toEqual({
-        name: 'name_required',
-        email: 'email_required',
-        password: 'password_required',
+        name: 'nameRequired',
+        email: 'emailRequired',
+        password: 'passwordRequired',
       });
     });
   });

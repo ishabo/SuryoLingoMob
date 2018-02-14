@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Content, ListItem, Body, Text, CheckBox } from 'native-base';
+import { Container, Content, ListItem, Body, CheckBox } from 'native-base';
 import { IAnswerProps } from '../../../index.types';
 import I18n from 'I18n';
 import shortid from 'shortid';
+import glamor from 'glamorous-native';
+import { GSCustomText } from 'styles/text';
 
 interface IProps extends IAnswerProps {
   phrase: string;
@@ -57,7 +58,7 @@ export default class MultiChoice extends React.Component<IProps, IState> {
           checked={this.isChoiceSelected(choice)}
         />
         <Body>
-          <Text style={styles.text}>{choice}</Text>
+          <GSText>{choice}</GSText>
         </Body>
       </ListItem>,
     );
@@ -65,24 +66,30 @@ export default class MultiChoice extends React.Component<IProps, IState> {
 
   render () {
     return (
-      <Container style={styles.container}>
-        <Content padder style={styles.content}>
-          <Text style={styles.text}>{I18n.t('questions.multiChoice')}</Text>
+      <GSContainer>
+        <GSContent>
+          <GSTitle>{I18n.t('questions.multiChoice')}</GSTitle>
           {this.renderChoices()}
-        </Content>
-      </Container>
+        </GSContent>
+      </GSContainer>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'stretch',
-  },
-  content: {
-    marginTop: 20,
-  },
-  text: {
-    textAlign: 'left',
-  },
+export const GSContainer = glamor(Container)({
+  alignSelf: 'stretch',
+});
+
+export const GSTitle = glamor(GSCustomText)({
+  paddingHorizontal: 20,
+  fontSize: 22,
+});
+
+export const GSText = glamor(GSCustomText)({
+  paddingHorizontal: 20,
+  fontSize: 18,
+});
+
+export const GSContent = glamor(Content)({
+  marginTop: 20,
 });

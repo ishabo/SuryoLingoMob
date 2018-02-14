@@ -83,7 +83,7 @@ class Signon extends React.Component<IProps, IState> {
 
   private alert () {
     Alert.alert(
-      I18n.t('profile.form.title'),
+      I18n.t('profile.form.signup_title'),
       I18n.t('profile.form.description'),
       [{ text: I18n.t('general.close'), onPress: () => { } }],
       { cancelable: false },
@@ -103,7 +103,7 @@ class Signon extends React.Component<IProps, IState> {
 
   private setField = (field: string) => (value: string) => {
     const data = { ...this.props.signon.item };
-    data[field] = value.toLowerCase().trim();
+    data[field] = field === 'email' ? value.trim() : value;
     this.props.captureSignon(data);
   }
 
@@ -129,13 +129,13 @@ class Signon extends React.Component<IProps, IState> {
     <GSTabs>
       <GSTabButton full primary={this.isSignin()} light={this.isSignup()}
         onPress={this.setSignin}>
-        <GSButtonText color={this.isSignin() ? 'white' : 'black'}>
+        <GSButtonText large={this.isSignin()} color={this.isSignin() ? 'white' : 'gray'}>
           {I18n.t('profile.form.signIn')}
         </GSButtonText>
       </GSTabButton>
       <GSTabButton full primary={this.isSignup()} light={this.isSignin()}
         onPress={this.setSignup}>
-        <GSButtonText color={this.isSignup() ? 'white' : 'black'}>
+        <GSButtonText large={this.isSignup()} color={this.isSignup() ? 'white' : 'gray'}>
           {I18n.t('profile.form.signUp')}
         </GSButtonText>
       </GSTabButton>
@@ -153,16 +153,15 @@ class Signon extends React.Component<IProps, IState> {
           </Text>
         </GSLebel>
         <GSInput ref={c => this[name] = c}
-          autoCapitalize="none"
+          autoCapitalize={name === 'name' ? 'words' : 'none'}
           dir="ltr"
           autoFocus={this.state.focusOn === name}
           {...props}
-          onChangeText={this.setField(name)}
-          value={this.props.signon.item[name]} />
+          onChangeText={this.setField(name)} />
         {afterInput}
       </GSItem>
       <GSErrorText visible={this.hasError(name)}>
-        {error === `${name}_invalid`
+        {error === `${name}Invalid`
           && I18n.t(`profile.form.hints.${name}`)
           || I18n.t(`profile.form.errors.${error}`)}
       </GSErrorText>
@@ -210,7 +209,7 @@ class Signon extends React.Component<IProps, IState> {
   private renderSubmitButton = () =>
     <NextButton
       onPress={this.submitSignon}
-      text={I18n.t('profile.form.submit')}
+      text={I18n.t(`profile.form.submit.${this.isSignin() ? 'signin' : 'signup'}`)}
       restProps={{ success: true, narrow: true }}
     />
 
@@ -222,7 +221,9 @@ class Signon extends React.Component<IProps, IState> {
 
   private renderTitle = () =>
     <GSTitle lang={'cl-ara'}>
-      {I18n.t('profile.form.title')} <GSIcon name="bulb" onPress={this.alert} />
+      {I18n.t(`profile.form.${this.isSignin() ? 'signin_title' : 'signup_title'}`)}
+      {' '}
+      {this.isSignup() && <GSIcon name="bulb" onPress={this.alert} />}
     </GSTitle>
 
   render () {

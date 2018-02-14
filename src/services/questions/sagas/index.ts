@@ -29,7 +29,6 @@ export function* fetchQuestions (action: questions.IQuestionsAction): IterableIt
 }
 
 export function* nextQuestionOrFinish (action: questions.IQuestionsAction): IterableIterator<any> {
-  console.warn(action.questionId, action.status);
   yield put(questions.actions.updateQuestionStatus(action.questionId, action.status));
   const pending: string[] = yield select(getpending);
   let routeName = 'Questions';

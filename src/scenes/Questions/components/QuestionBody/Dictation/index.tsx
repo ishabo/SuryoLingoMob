@@ -16,7 +16,7 @@ export default class Dictation extends React.Component<IProps> {
     return (
       <Container style={styles.container}>
         <TextArea
-          placeholder={I18n.t(`questions.dictionation`)}
+          placeholder={I18n.t(`questions.dictation`)}
           captureInput={this.props.collectAnswer}
           showCustomKeyboard={this.props.reverse && !this.props.userHasAnswered}
           targetLanguage={this.props.course.targetLanguage.shortName}

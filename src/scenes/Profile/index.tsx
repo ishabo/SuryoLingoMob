@@ -28,13 +28,11 @@ class Profile extends React.Component<IProps> {
     tabBarIcon: <Icon name="person" />,
   };
 
-  renderProfile = () => {
-    return <SignoutButton />;
-  }
+  renderProfile = () =>
+    <SignoutButton />
 
-  renderSignonButton = () => {
-    return this.props.apiStatus.loading || <SignonButton />;
-  }
+  renderSignonButton = () =>
+    this.props.apiStatus.loading || <SignonButton />
 
   render () {
     return (

@@ -83,7 +83,6 @@ export default {
   questions: {
     garshoni: 'جرشوني',
     help: 'مساعدة',
-
     submit: 'أرسل الاجابة',
     continue: 'أكمل',
     exist: {
@@ -98,7 +97,8 @@ export default {
       'cl-syr': 'ترجم إلى السريانية',
       'tor-syr': 'ترجم إلى الطورانية',
     },
-    dictionation: 'اكتب بالسريانية كما تسمع',
+    dictation: 'اكتب بالسريانية كما تسمع',
+    wordSelection: 'اختر الكلمات الصحيحة',
     multiChoice: 'اختر الاجابات الصحيحة',
     singleChoice: 'اختر الاجابة الصحيحة',
     evaluation: {
@@ -144,10 +144,11 @@ export default {
     },
   },
   profile: {
-    title: 'عني',
+    title: 'حسابي',
     userXp: 'النقاط: {{userXp}}',
     form: {
-      title: 'سجل حساب على سوريولينجو',
+      signup_title: 'سجل حساب على سوريولينجو',
+      signin_title: 'تسجيل دخول إلى سوريولينجو',
       description: 'لكي تحفظ تقدمك في الدراسة من الضياع\nيُفضّل ان تقوم بتسجيل حساب خاص.',
       signonToSave: 'سجل حسابك لحفظ تقدمك',
       signIn: 'تسجيل الدخول',
@@ -164,18 +165,20 @@ export default {
         password: '',
       },
       errors: {
-        name_required: 'الاسم مطلوب',
-        email_required: 'البريد الالكتروني مطلوب',
-        password_required: 'كلمة السر مطلوبة',
-        name_invalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو انكليزية',
-        email_invalid: 'هذا الإيميل لا يبدو صالحاً',
-        password_invalid: 'كلمة السر ضعيفة. ' +
+        nameRequired: 'الاسم مطلوب',
+        emailRequired: 'البريد الالكتروني مطلوب',
+        passwordRequired: 'كلمة السر مطلوبة',
+        nameInvalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو انكليزية',
+        emailInvalid: 'هذا الإيميل لا يبدو صالحاً',
+        passwordInvalid: 'كلمة السر ضعيفة. ' +
           'يجب ان تحتوي على الأقل على ٦ أحرف ' +
-          'a-z ورقم واحد ' +
-          'وحرف خاص من $ @ $ ! % * # ? &',
-        email_already_exists: 'هذا الإيميل مأخوذ',
+          'a-z ورقم واحد ',
+        emailSlreadyExists: 'هذا الإيميل مأخوذ',
       },
-      submit: 'أرسل',
+      submit: {
+        signin: 'دخول',
+        signup: 'تسجيل',
+      },
       skip: 'سجل لاحقاً',
     },
   },

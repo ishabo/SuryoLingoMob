@@ -3,7 +3,10 @@ import { BackHandler, Keyboard, Alert, View, KeyboardAvoidingView, Platform } fr
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
-import { navToSkills, evalAgainstAllAnswers, isReverseQuestion, cleanAnswer } from 'helpers';
+import {
+  navToSkills, evalAgainstAllAnswers, isReverseQuestion,
+  cleanAnswer, getWindowWidth,
+} from 'helpers';
 import { connect } from 'react-redux';
 import { nextQuestionOrFinish, TQuestionType } from 'services/questions/actions';
 import {
@@ -165,11 +168,11 @@ class Questions extends React.Component<IProps, IState> {
         <ProgressBar
           progress={this.state.progress}
           height={8}
-          width={250}
+          width={getWindowWidth() - 70}
           borderColor={Colors.lightGray}
           color={Colors.darkGreen}
           unfilledColor="#d3d3d3"
-          animated style={{ marginLeft: 20 }}
+          animated style={{ marginLeft: 10 }}
         />
       </GSProgress>
     </GSHeader>
