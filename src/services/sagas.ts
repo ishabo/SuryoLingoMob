@@ -11,6 +11,7 @@ import * as dictionaries from './dictionaries';
 import * as questions from './questions';
 import * as signon from './signon';
 import * as exceptions from './exceptions';
+import * as assets from './assets';
 
 import { IInitialState } from 'services/reducers';
 import { setUserToken } from 'services/api';
@@ -54,9 +55,11 @@ const sagasFunctions: ISagasFunctions[] = [
   ...questions.sagas.functions(),
   ...progress.sagas.functions(),
   ...starter.sagas.functions(),
+  ...assets.sagas.functions(),
+
 ];
 
-export default function* rootSagas (): IterableIterator<any> {
+export default function* rootSagas(): IterableIterator<any> {
   yield all(sagasFunctions.map((sagasFunction: ISagasFunctions) => {
     return takeLatest(sagasFunction.action, preSagas(withToken(sagasFunction.func)));
   }));

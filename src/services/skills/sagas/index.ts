@@ -6,6 +6,7 @@ import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
 import { IInitialState } from 'services/reducers';
+import * as assets from 'services/assets';
 
 export function* fetchSkills (): IterableIterator<any> {
   yield put(setLoadingOn());
@@ -15,6 +16,7 @@ export function* fetchSkills (): IterableIterator<any> {
     try {
       const response = yield call(skills.api.getSkills, course.id);
       yield put(skills.actions.saveSkills(response));
+      yield put(assets.actions.fetchSkillIcons());
     } catch (error) {
       yield put(exceptions.actions.add(error));
     }

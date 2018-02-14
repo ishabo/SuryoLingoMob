@@ -10,12 +10,14 @@ import * as dictionaries from './dictionaries';
 import * as api from './api/reducers';
 import * as exceptions from './exceptions';
 import * as signon from './signon';
+import * as assets from './assets';
 
 export interface IInitialState {
   nav: any;
   api: api.IApiStatus;
   signon: signon.ISignonState;
   skills: skill.ISkill[];
+  assets: assets.IAssets;
   courses: course.ICourse[];
   profile: profile.IProfile;
   progress: progress.IProgress;
@@ -30,6 +32,7 @@ export const initialState: IInitialState = {
   signon: signon.reducers.initialState,
   courses: course.reducers.initialState,
   skills: skill.reducers.initialState,
+  assets: assets.reducers.initialState,
   profile: profile.reducers.initialState,
   progress: progress.reducers.initialState,
   questions: questions.reducers.initialState,
@@ -43,6 +46,7 @@ export default combineReducers({
   signon: signon.reducers.reducer,
   courses: course.reducers.reducer,
   skills: skill.reducers.reducer,
+  assets: assets.reducers.reducer,
   profile: profile.reducers.reducer,
   progress: progress.reducers.reducer,
   questions: questions.reducers.reducer,

@@ -5,6 +5,7 @@ import * as courses from './courses';
 import * as skills from './skills';
 import * as questions from './questions';
 import * as exceptions from './exceptions';
+import * as assets from './assets';
 
 import { Platform } from 'react-native';
 import { ILessonToSync } from 'services/progress';
@@ -103,5 +104,8 @@ export const calcTotaluserXp = (state: IInitialState): number =>
     total + skill.totalSkillXp, 0,
   );
 
-
+export const getSkillIcon = (state: IInitialState) => (
+  icon: string, size: assets.TImageSizes,
+): assets.ISkillIcon =>
+  assets.selectors.getSkillIcon(icon, size)(state.assets);
 

@@ -1,6 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Image } from 'react-native';
 import glamor from 'glamorous-native';
+import { getSkillIcon } from 'services/selectors';
+import { IInitialState } from 'services/reducers';
+import { TImageSizes } from 'services/assets';
 
 const GSIcon = glamor(Image)<{ size: number }>(
   {
@@ -12,6 +16,26 @@ const GSIcon = glamor(Image)<{ size: number }>(
   }),
 );
 
-export default ({ icon, size }: { icon: string; size?: number; }) =>
-  <GSIcon source={{ uri: 'data:image/png;base64,' + icon }} size={size} />;
+interface ISkillIconProps {
+  icon: string;
+  size?: TImageSizes;
+  state?: 'locked' | 'unlocked';
+  getSkillIcon: (icon: string, size: TImageSizes) => void;
+}
 
+const mapStateToProps = (state: IInitialState) => ({
+  getSkillIcon: getSkillIcon(state),
+});
+
+const sizes = {
+  hdpi: 50,
+  xhdpi: 80,
+  xxhdpi: 100,
+  xxxhdpi: 130,
+};
+
+export default connect(mapStateToProps)(
+  ({ icon, size = 'xhdpi', getSkillIcon, state = 'unlocked' }: ISkillIconProps) =>
+    <GSIcon source={{ uri: 'data:image/png;base64,' + getSkillIcon(icon, size)[state] }}
+      size={sizes[size]} />,
+);
