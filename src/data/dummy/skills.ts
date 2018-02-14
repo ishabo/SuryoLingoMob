@@ -13,14 +13,6 @@ const lessons: ILesson[] = [
   },
 ];
 
-// const icons = {
-//   hdpi: { locked: '', unlocked: '' },
-//   mdpi: { locked: '', unlocked: '' },
-//   xhdpi: { locked: '', unlocked: '' },
-//   xxhdpi: { locked: '', unlocked: '' },
-//   xxxhdpi: { locked: '', unlocked: '' },
-// };
-
 export const skills: ISkill[] = [
   {
     lessons,

@@ -29,7 +29,7 @@ const mapStateToProps = (state: IInitialState) => ({
 
 const sizes = {
   hdpi: 50,
-  xhdpi: 80,
+  xhdpi: 88,
   xxhdpi: 100,
   xxxhdpi: 130,
 };
