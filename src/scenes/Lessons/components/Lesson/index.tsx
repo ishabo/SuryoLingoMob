@@ -3,7 +3,6 @@ import { Text } from 'react-native';
 import { Button } from 'native-base';
 import SkillIcon from 'scenes/Skills/components/SkillIcon';
 import { ILesson, ISkill } from 'services/skills';
-
 import I18n from 'I18n';
 import Colors from 'styles/colors';
 import Badge from '../Badge';
@@ -20,7 +19,6 @@ interface IProps {
 
 export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
   const { lessons } = skill;
-  const icon = skill.icons.xhdpi.unlocked;
 
   const lessonTitle = I18n.t('lessons.lesson.title', {
     lessonOrder: lesson.order, totalLessons: lessons.length,
@@ -29,7 +27,7 @@ export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
   const renderBadge = () => <GSBadgePosition>
     <Badge>
       <GSSkillIcon>
-        <SkillIcon size={80} icon={icon} />
+        <SkillIcon size="xhdpi" icon={skill.icon} />
       </GSSkillIcon>
     </Badge>
   </GSBadgePosition>;

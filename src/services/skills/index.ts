@@ -19,8 +19,6 @@ export interface ILesson {
   lessonHistory?: ILessonHistory[];
 }
 
-type TImageSizes = 'hdpi' | 'mdpi' | 'xhdpi' | 'xxhdpi' | 'xxxhdpi';
-
 export interface ISkill {
   id: string;
   unit: number;
@@ -30,12 +28,7 @@ export interface ISkill {
   lessons: ILesson[];
   description: string;
   totalSkillXp?: number;
-  icons: {
-    [key in TImageSizes]: {
-      locked: string;
-      unlocked: string;
-    }
-  };
+  icon: string;
 }
 
 export interface ISkillsAction {

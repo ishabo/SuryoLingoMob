@@ -104,8 +104,9 @@ class Lessons extends React.Component<IProps, IState> {
       <GSContainer>
         <GSLessonIcon>
           <SkillIcon
-            icon={this.props.navigation.state.params.skill.icons.xxxhdpi.locked}
-            size={130} />
+            icon={this.props.navigation.state.params.skill.icon}
+            state="locked"
+            size="xxxhdpi" />
         </GSLessonIcon>
         <GSLessonInstruction>
           <Text>{I18n.t('lessons.instruction')}</Text>
