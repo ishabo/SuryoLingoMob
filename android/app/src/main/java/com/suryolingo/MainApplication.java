@@ -2,6 +2,7 @@ package com.suryolingo;
 
 import android.app.Application;
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.smixx.fabric.FabricPackage;
 import com.apsl.versionnumber.RNVersionNumberPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
@@ -34,7 +35,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNVersionNumberPackage(), new RNSoundPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new RNFetchBlobPackage(), new RNVersionNumberPackage(), new RNSoundPackage(),
           new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(), new LinearGradientPackage(),
           new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(), new RNDeviceInfo(), new RNAudioPlayer(),
           new FabricPackage());

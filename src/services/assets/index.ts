@@ -19,10 +19,12 @@ export interface ISkillIcons {
 
 export interface IAssets {
   skillIcons: ISkillIcons;
+  courseImages: IDictionary<string>;
 }
 
 export interface IAssetsAction {
-  skillIcons: ISkillIcons;
+  skillIcons: IAssets['skillIcons'];
+  courseImages: IAssets['courseImages'];
   type: string;
 }
 

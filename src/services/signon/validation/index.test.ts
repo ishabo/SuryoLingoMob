@@ -56,7 +56,7 @@ describe('validation', () => {
             name: 'name',
             password: 'password1!',
           })).toEqual({
-            email: 'email_invalid',
+            email: 'emailInvalid',
           });
         });
       });
@@ -98,7 +98,7 @@ describe('validation', () => {
           email: 'correct@correct.com',
           name: 'name',
         })).toEqual({
-          password: 'password_invalid',
+          password: 'passwordInvalid',
         });
       });
     });
@@ -141,7 +141,7 @@ describe('validation', () => {
           email: 'correct@correct.com',
           password: 'password1!',
         })).toEqual({
-          name: 'name_invalid',
+          name: 'nameInvalid',
         });
       });
     });

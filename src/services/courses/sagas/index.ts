@@ -7,16 +7,18 @@ import { NavigationActions } from 'react-navigation';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as profile from 'services/profile';
 import * as signon from 'services/signon';
+import * as assets from 'services/assets';
 import { isRegistered } from 'services/selectors';
 import { ISagasFunctions } from 'services/sagas';
 
-export function* fetchCourses(): IterableIterator<any> {
+export function* fetchCourses (): IterableIterator<any> {
   yield put(setLoadingOn());
   yield put(profile.actions.createProfile());
   const hasRegistered = yield select(isRegistered);
   try {
     const response = yield call(courses.api.getCourses);
     yield put(courses.actions.saveCourses(response));
+    yield put(assets.actions.fetchCourseImages());
     const routeName = hasRegistered ? 'Courses' : 'Signon';
     yield put(NavigationActions.navigate({ routeName }));
   } catch (error) {
@@ -33,7 +35,7 @@ export function* fetchCourses(): IterableIterator<any> {
   yield put(setLoadingOff());
 }
 
-export function* switchCourse(action: courses.ICourseAction): IterableIterator<any> {
+export function* switchCourse (action: courses.ICourseAction): IterableIterator<any> {
   yield put(courses.actions.setActiveCourse(action.courseId));
   yield put(dictionaries.actions.fetchDictionaries(action.courseId));
   yield put(skill.actions.fetchSkills());

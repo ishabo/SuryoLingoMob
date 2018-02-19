@@ -19,7 +19,7 @@ const GSIcon = glamor(Image)<{ size: number }>(
 interface ISkillIconProps {
   icon: string;
   size?: TImageSizes;
-  state?: 'locked' | 'unlocked';
+  state?: 'unlocked' | 'locked';
   getSkillIcon: (icon: string, size: TImageSizes) => void;
 }
 

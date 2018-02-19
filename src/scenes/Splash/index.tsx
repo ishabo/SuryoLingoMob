@@ -1,7 +1,7 @@
 import React from 'react';
 import { NetInfo } from 'react-native';
 import { connect } from 'react-redux';
-import { hasNetworkError } from 'services/selectors';
+import { hasNetworkError, getActiveCourse } from 'services/selectors';
 import { NavigationScreenProp } from 'react-navigation';
 import images from 'assets/images';
 import * as exceptions from 'services/exceptions';
@@ -15,6 +15,7 @@ export interface IProps {
   firstFetch: () => void;
   addException: (payload: exceptions.IExceptionPayload) => void;
   hasNetworkError: () => boolean;
+  activeCourse: () => boolean;
 }
 
 interface IState {
@@ -56,8 +57,6 @@ class Splash extends React.Component<IProps, IState> {
 
   alertConnection = () => {
 
-    console.warn(this.state.hasAlert);
-
     if (this.state.hasAlert) {
       return;
     }
@@ -82,7 +81,7 @@ class Splash extends React.Component<IProps, IState> {
   }
 
   componentWillReceiveProps () {
-    if (this.props.hasNetworkError) {
+    if (this.props.hasNetworkError && !this.props.activeCourse()) {
       this.alertConnection();
     }
   }
@@ -105,6 +104,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 
 const mapStateToProps = (state: any) => ({
   hasNetworkError: hasNetworkError(state),
+  activeCourse: getActiveCourse(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Splash);
