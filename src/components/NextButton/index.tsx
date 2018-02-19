@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Button } from 'native-base';
 import glamor from 'glamorous-native';
+import { calcWindowWidth } from 'helpers';
 
 interface IProps {
   disabled?: boolean;
@@ -37,7 +38,7 @@ const GSButton = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
     let width;
     let alignSelf;
     if (wide) {
-      width = 280;
+      width = calcWindowWidth(10);
       alignSelf = 'center';
     } else if (narrow) {
       width = 140;

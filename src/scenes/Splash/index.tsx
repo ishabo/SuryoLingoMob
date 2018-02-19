@@ -81,7 +81,7 @@ class Splash extends React.Component<IProps, IState> {
   }
 
   componentWillReceiveProps () {
-    if (this.props.hasNetworkError && !this.props.activeCourse()) {
+    if (this.props.hasNetworkError && !this.props.activeCourse) {
       this.alertConnection();
     }
   }

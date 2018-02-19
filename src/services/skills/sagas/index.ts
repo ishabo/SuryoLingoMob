@@ -8,13 +8,13 @@ import { ISagasFunctions } from 'services/sagas';
 import { IInitialState } from 'services/reducers';
 import * as assets from 'services/assets';
 
-export function* fetchSkills (): IterableIterator<any> {
+export function* fetchSkills(): IterableIterator<any> {
   yield put(setLoadingOn());
-  const course = yield select(getActiveCourse);
+  const activeCourse = yield select(getActiveCourse);
 
-  if (course) {
+  if (activeCourse) {
     try {
-      const response = yield call(skills.api.getSkills, course.id);
+      const response = yield call(skills.api.getSkills, activeCourse.id);
       yield put(skills.actions.saveSkills(response));
       yield put(assets.actions.fetchSkillIcons());
     } catch (error) {
