@@ -7,6 +7,9 @@ export const changeCase = (data: object, direction: 'snake' | 'camel') => {
   return changeObjectCase[`${direction}${caseFunction}`](data, options);
 };
 
+export const snakeToCamel = (str: string) =>
+  str.replace(/([\-_]\w)/g, (m: string) => m[1].toUpperCase());
+
 export const replaceCharsByPatterns = (sentence: string, patterns: object) => {
   let str: string;
   let modifiedSentence = sentence;

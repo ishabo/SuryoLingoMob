@@ -19,20 +19,13 @@ export const GSCourseTitle = glamor(GSCustomText)({
 });
 
 export const GSCourseSubTitle = glamor(GSCustomText)({
-  fontSize: 20,
+  fontSize: 28,
   alignSelf: 'center',
   textAlign: 'center',
+  color: Colors['white'],
 });
 
 export const GSCourse = glamor(TouchableOpacity)({
-  borderWidth: 0.3,
-  padding: 40,
-  borderRadius: 1,
-  shadowOffset: { width: 4, height: 4 },
-  shadowColor: 'black',
-  shadowOpacity: 0.2,
-  elevation: 2,
-  backgroundColor: Colors.white,
   alignContent: 'stretch',
   alignItems: 'stretch',
   justifyContent: 'center',

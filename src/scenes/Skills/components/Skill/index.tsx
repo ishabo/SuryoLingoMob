@@ -23,13 +23,14 @@ export default (props: IProps) => {
     locations: [filling, 0],
   };
 
-  const image = unlocked ? 'unlocked' : 'locked';
+  const imageState = unlocked ? 'unlocked' : 'locked';
+
   return (
     <GSSkills>
       <TouchableOpacity onPress={onSkillsClick}>
-        <GSBackground source={images.skills.bg[image]} />
+        <GSBackground source={images.skills.bg[imageState]} />
         <GSCircle {...LinearGradientProps} >
-          <SkillIcon icon={icon} />
+          <SkillIcon icon={icon} state={imageState} />
         </GSCircle>
       </TouchableOpacity>
       <TouchableOpacity onPress={onSkillsClick}>
@@ -62,6 +63,6 @@ const GSCircle = glamor(LinearGradient)({
   height: 85,
   borderRadius: 50,
   position: 'absolute',
-  bottom: 26.2,
+  bottom: 22,
   left: 15.6,
 });

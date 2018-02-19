@@ -14,6 +14,7 @@ export interface ICourse {
   active?: boolean;
   targetLanguage: ILanguage<TTargetLangs>;
   learnersLanguage: ILanguage<TLearnerLangs>;
+  comingSoon?: boolean;
 }
 
 export interface ILanguage<T> {

@@ -1,6 +1,6 @@
 {
 	"name": "SuryoLingo",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
@@ -45,6 +45,7 @@
 		"react-native": "^0.51.0",
 		"react-native-animatable": "^1.2.4",
 		"react-native-audioplayer": "^0.2.0",
+		"react-native-cached-image": "^1.4.3",
 		"react-native-checkbox-field": "^1.1.2",
 		"react-native-debugger-open": "^0.3.15",
 		"react-native-device-info": "^0.13.0",
