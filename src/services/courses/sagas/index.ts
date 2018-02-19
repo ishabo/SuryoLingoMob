@@ -8,19 +8,28 @@ import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as profile from 'services/profile';
 import * as signon from 'services/signon';
 import * as assets from 'services/assets';
-import { isRegistered } from 'services/selectors';
+import { isRegistered, getActiveCourse } from 'services/selectors';
 import { ISagasFunctions } from 'services/sagas';
+import { navToSkills } from 'helpers';
+import { IInitialState } from 'services/reducers';
 
 export function* fetchCourses (): IterableIterator<any> {
   yield put(setLoadingOn());
   yield put(profile.actions.createProfile());
   const hasRegistered = yield select(isRegistered);
+  const activeCourse = yield select(getActiveCourse);
+  const currentProfile = yield select((state: IInitialState) => state.profile);
+
   try {
     const response = yield call(courses.api.getCourses);
     yield put(courses.actions.saveCourses(response));
     yield put(assets.actions.fetchCourseImages());
-    const routeName = hasRegistered ? 'Courses' : 'Signon';
-    yield put(NavigationActions.navigate({ routeName }));
+    if (activeCourse) {
+      navToSkills(currentProfile);
+    } else {
+      const routeName = hasRegistered ? 'Courses' : 'Signon';
+      yield put(NavigationActions.navigate({ routeName }));
+    }
   } catch (error) {
     yield put(setLoadingOff());
     if (hasRegistered && typeof error === 'object' && error.response) {

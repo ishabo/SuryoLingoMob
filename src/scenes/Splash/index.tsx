@@ -55,6 +55,11 @@ class Splash extends React.Component<IProps, IState> {
     this.setState({ hasAlert: false });
   }
 
+  firstFetch = () => {
+    this.setAlertDismissed();
+    this.props.firstFetch();
+  }
+
   alertConnection = () => {
 
     if (this.state.hasAlert) {
@@ -63,7 +68,7 @@ class Splash extends React.Component<IProps, IState> {
 
     setTimeout(() => {
       this.setState({ hasAlert: true }, () => {
-        alertConnection(this.props.firstFetch, exitApp, this.setAlertDismissed);
+        alertConnection(this.firstFetch, exitApp, this.setAlertDismissed);
       });
     }, alertDelayTime);
   }
@@ -80,8 +85,8 @@ class Splash extends React.Component<IProps, IState> {
     );
   }
 
-  componentWillReceiveProps () {
-    if (this.props.hasNetworkError && !this.props.activeCourse()) {
+  componentWillReceiveProps (newProps: Partial<IProps>) {
+    if (newProps.hasNetworkError && !this.props.activeCourse) {
       this.alertConnection();
     }
   }

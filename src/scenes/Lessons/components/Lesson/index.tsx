@@ -27,7 +27,7 @@ export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
   const renderBadge = () => <GSBadgePosition>
     <Badge>
       <GSSkillIcon>
-        <SkillIcon size="xhdpi" icon={skill.icon} />
+        <SkillIcon size="xhdpi" icon={skill.icon} state="unlocked" />
       </GSSkillIcon>
     </Badge>
   </GSBadgePosition>;
