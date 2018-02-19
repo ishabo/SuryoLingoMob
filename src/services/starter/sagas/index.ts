@@ -6,9 +6,11 @@ import { syncFinishedLessons } from 'services/progress/actions';
 import { fetchSkills } from 'services/skills/actions';
 import { ISagasFunctions } from 'services/sagas';
 import * as starter from '../';
+import * as exceptions from 'services/exceptions';
 
 export function* firstFetch (): IterableIterator<any> {
   const activeCourse = yield select(getActiveCourse);
+  yield put(exceptions.actions.removeAll());
   yield put(setLoadingOff());
   yield put(fetchCourses());
 
