@@ -1,6 +1,6 @@
 {
 	"name": "SuryoLingo",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
@@ -17,8 +17,9 @@
 		"prepush": "yarn test",
 		"clear": "yarn cache clean --force && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-*",
 		"bundle:android:prod": "yarn build && react-native bundle --platform android --dev false --entry-file artifacts/index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
-		"release:android:prod": "yarn bundle:android:prod && cd android && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && cd -",
-		"postversion": "react-native-version --never-amend"
+		"release:android:prod": "yarn preStart:prod && yarn bundle:android:prod && cd android && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && cd -",
+		"postversion": "react-native-version --never-amend",
+		"preStart:prod": "./preStart.sh prod"
 	},
 	"dependencies": {
 		"@types/jest": "^21.1.5",

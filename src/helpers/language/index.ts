@@ -2,6 +2,7 @@ import Language from 'config/language';
 import { replaceCharsByPatterns } from 'helpers/common';
 
 import { TTargetLangs, TLearnerLangs } from 'services/courses';
+
 interface IGarshoniProps {
   sentence: string;
   sentenceLang: TLearnerLangs & TTargetLangs;
@@ -9,10 +10,11 @@ interface IGarshoniProps {
   advanced?: boolean;
 }
 
+// TODO: Extract into an independent package
 export const toGarshoni = ({ sentence, targetLang, sentenceLang, advanced }: IGarshoniProps) => {
   const langToLang = `${sentenceLang}-to-${targetLang}`.toLowerCase();
 
-  let transliteration = sentence;
+  let transliteration = replaceChars(sentence, Language.garshoni[`${langToLang}-cleanup`]);
 
   if (advanced) {
     transliteration = replaceCharsByPatterns(
@@ -21,20 +23,21 @@ export const toGarshoni = ({ sentence, targetLang, sentenceLang, advanced }: IGa
     );
   }
 
-  const sentenceArr = transliteration.split('');
-  const letters = Language.garshoni[langToLang];
+  return replaceChars(transliteration, Language.garshoni[langToLang]);
+};
 
-  transliteration = sentenceArr.map((char: string) => {
+const replaceChars = (chars: string, letters: IDictionary<string> = {}) =>
+  chars.split('').map((char: string) => {
     let newChar;
-
-    if (letters[char] !== undefined) {
-      newChar = char === ' ' ? ' ' : letters[char];
-    } else {
-      newChar = char;
+    try {
+      if (letters[char]) {
+        newChar = letters[char];
+      } else {
+        newChar = char;
+      }
+    } catch (error) {
+      console.warn(error);
+      newChar = '';
     }
-
     return newChar;
   }).join('');
-
-  return transliteration;
-};
