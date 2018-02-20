@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Alert, View, Animated } from 'react-native';
+import { ScrollView, Alert, Animated } from 'react-native';
 import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
 import { switchCourse } from 'services/courses/actions';
@@ -7,7 +7,6 @@ import I18n from 'I18n';
 import {
   GSContainer,
   GSCourse,
-  GSCourseSubTitle,
   GSAnimatable,
 } from './index.styles';
 import { Icon } from 'native-base';
@@ -40,13 +39,6 @@ class Courses extends React.Component<any, IState> {
     this.cards.fadeInUp();
   }
 
-  private targetLanguage = (course: ICourse) =>
-    I18n.t(`courses.languages.long.${course.targetLanguage.shortName}`)
-
-
-  private learningLanguage = (course: ICourse) =>
-    I18n.t(`courses.languages.long.${course.learnersLanguage.shortName}`)
-
   private switchCourse = (course: ICourse) => {
     if (!course.comingSoon) {
       this.props.switchCourse(course.id);
@@ -62,7 +54,6 @@ class Courses extends React.Component<any, IState> {
   }
   private renderCourseCard = (course: ICourse) => {
     // const targetLang = course.targetLanguage.shortName as TLangs;
-    const learnersLang = course.learnersLanguage.shortName as TLangs;
     const imageName = snakeToCamel(course.targetLanguage.shortName + '_' +
       course.learnersLanguage.shortName);
 
@@ -77,20 +68,6 @@ class Courses extends React.Component<any, IState> {
           uri: this.props.courseImages[imageName],
         }}
       />
-      <View style={{
-        alignSelf: 'center', position: 'absolute', bottom: 15,
-      }}>
-        <GSCourseSubTitle lang={learnersLang}>
-          {I18n.t('courses.learnLanguage', {
-            lang: this.targetLanguage(course),
-          })}
-        </GSCourseSubTitle>
-        <GSCourseSubTitle lang={learnersLang}>
-          {I18n.t('courses.forSpeakersOfLanguage', {
-            lang: this.learningLanguage(course),
-          })}
-        </GSCourseSubTitle>
-      </View>
     </GSCourse >;
   }
 
