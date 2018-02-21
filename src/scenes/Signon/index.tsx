@@ -211,13 +211,16 @@ class Signon extends React.Component<IProps, IState> {
       onPress={this.submitSignon}
       text={I18n.t(`profile.form.submit.${this.isSignin() ? 'signin' : 'signup'}`)}
       restProps={{ success: true, narrow: true }}
+      lang={'cl-ara'}
     />
 
   private renderSkipButton = () =>
     <NextButton
       onPress={this.skipToNext}
       text={I18n.t('profile.form.skip')}
-      restProps={{ primry: true, narrow: true }} />
+      restProps={{ primry: true, narrow: true }}
+      lang={'cl-ara'}
+    />
 
   private renderTitle = () =>
     <GSTitle lang={'cl-ara'}>

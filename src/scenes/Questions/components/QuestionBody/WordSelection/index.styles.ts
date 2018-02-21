@@ -13,7 +13,7 @@ export const GSWordBox = glamor.view({
   marginBottom: 10,
 });
 
-export const GSWordText = glamor.text<IWordProps>(
+export const GSWordText = glamor(GSCustomText)<IWordProps>(
   {
     alignSelf: 'stretch',
     padding: 10,

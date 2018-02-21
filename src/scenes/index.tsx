@@ -18,7 +18,7 @@ const { Crashlytics } = Fabric;
 setApiOrigin(config.apiHost);
 setCustomText({
   style: {
-    fontFamily: 'FontAwesome',
+    fontFamily: 'AljazeeraRegular',
   },
 });
 

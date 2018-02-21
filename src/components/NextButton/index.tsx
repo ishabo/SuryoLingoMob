@@ -1,13 +1,16 @@
 import React from 'react';
-import { Text, Button } from 'native-base';
+import { Button } from 'native-base';
 import glamor from 'glamorous-native';
 import { calcWindowWidth } from 'helpers';
+import { GSCustomText } from 'styles/text';
+import Colors from 'styles/colors';
 
 interface IProps {
   disabled?: boolean;
   restProps?: any;
   onPress: () => void;
   text: string;
+  lang: TLangs;
 }
 
 export default (
@@ -15,6 +18,7 @@ export default (
     disabled = false,
     onPress,
     text,
+    lang,
     restProps = { success: true, wide: true } }: IProps,
 ) => {
   return <GSButton
@@ -24,9 +28,9 @@ export default (
     onPress={onPress}
     disabled={disabled}
   >
-    <Text style={{ alignSelf: 'center' }}>
+    <GSCustomText lang={lang} style={{ alignSelf: 'center', color: Colors.white }}>
       {text}
-    </Text>
+    </GSCustomText>
   </GSButton>;
 };
 

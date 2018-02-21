@@ -53,7 +53,6 @@ class Courses extends React.Component<any, IState> {
     }
   }
   private renderCourseCard = (course: ICourse) => {
-    // const targetLang = course.targetLanguage.shortName as TLangs;
     const imageName = snakeToCamel(course.targetLanguage.shortName + '_' +
       course.learnersLanguage.shortName);
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Skill } from './components';
 import { mapValues, groupBy } from 'lodash';
 import { ISkill } from 'services/skills';
-import { getActiveCourse, getTargetLanguage } from 'services/selectors';
+import { getActiveCourse } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
@@ -114,7 +114,6 @@ const mapStateToProps = (state: IInitialState) => ({
   profile: state.profile,
   skills: state.skills,
   activeCourse: getActiveCourse(state),
-  targetLanguage: getTargetLanguage(state),
 });
 
 export default connect(mapStateToProps)(Skills);

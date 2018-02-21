@@ -35,11 +35,10 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new RNFetchBlobPackage(), new RNVersionNumberPackage(), new RNSoundPackage(),
-          new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(), new LinearGradientPackage(),
-          new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(), new RNDeviceInfo(), new RNAudioPlayer(),
-          new FabricPackage());
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFetchBlobPackage(), new RNVersionNumberPackage(),
+          new RNSoundPackage(), new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(),
+          new LinearGradientPackage(), new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(),
+          new RNDeviceInfo(), new RNAudioPlayer(), new FabricPackage());
     }
 
     @Override

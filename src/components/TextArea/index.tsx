@@ -64,10 +64,12 @@ export default class TextArea extends React.Component<IProps, IState> {
               onSubmitEditing={Keyboard.dismiss}
               rtl={Platform.OS === 'ios'}
               innerRef={(c: TextArea) => this.textArea = c}
+              lang={this.props.targetLanguage}
             />
           </GSTextAreaContainer>
 
           {this.showCustomKeyboard() && <CustomKeyboard
+            lang={this.props.targetLanguage}
             letters={Language[this.props.targetLanguage].letters}
             onKeyPress={this.updateValue}
             onBackSpacePress={() => this.deleteBack()}

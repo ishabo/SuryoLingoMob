@@ -8,8 +8,8 @@ const fonts = {
     regular: 'SertoRegular',
   },
   'cl-ara': {
-    bold: 'RasheeqBold',
-    regular: 'RasheeqRegular',
+    bold: 'AljazeeraBold',
+    regular: 'AljazeeraRegular',
   },
 };
 

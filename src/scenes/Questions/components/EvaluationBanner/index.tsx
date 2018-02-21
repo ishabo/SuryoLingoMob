@@ -15,22 +15,23 @@ import {
 
 interface IProps {
   passed: boolean;
-  correctAnswer?: string;
+  correctAnswer?: string | JSX.Element;
+  lang: TLangs;
 }
 
 const bgColor = (passed: boolean) => passed ? Colors.lightGreen : Colors.lightRed;
 const passTitle = (passed: boolean) =>
   I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`);
 
-const EvaluationBanner = ({ passed, correctAnswer }: IProps) =>
+const EvaluationBanner = ({ passed, correctAnswer, lang }: IProps) =>
   <GSBanner>
     <GSMessageBox style={{ backgroundColor: bgColor(passed) }}>
       <GSMessageText>
-        <GSBannerHeader>
+        <GSBannerHeader lang={lang}>
           {passTitle(passed)}
         </GSBannerHeader>
-        {passed || correctAnswer && <GSBannerText>
-          <GSBoldText>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
+        {passed || correctAnswer && <GSBannerText lang={lang}>
+          <GSBoldText lang={lang}>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
         </GSBannerText>}
       </GSMessageText>
     </GSMessageBox>

@@ -6,6 +6,7 @@ import {
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { isShortDevice } from 'helpers';
+import { getFont } from 'assets/fonts';
 
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch',
@@ -25,7 +26,7 @@ export const GSTextAreaContainer = glamor.view({
   padding: 3,
 });
 
-export const GSTextArea = glamor(Input)<{ rtl: boolean }>(
+export const GSTextArea = glamor(Input)<{ rtl: boolean; lang: TLangs; }>(
   {
     textAlign: 'right',
     backgroundColor: Colors.lightGray,
@@ -33,6 +34,7 @@ export const GSTextArea = glamor(Input)<{ rtl: boolean }>(
   },
   (props) => {
     return (props.rtl) ? {
+      fontFamily: getFont(props.lang, 'regular'),
       writingDirection: 'rtl',
     } : {};
   },

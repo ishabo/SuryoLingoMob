@@ -18,8 +18,8 @@ interface IProps extends IAnswerProps, IPhraseProps {
 export default class NewWordOrPhrase extends React.Component<IProps> {
 
   render () {
-    const { sentence, translation, course } = this.props;
-    const targetLang = course.targetLanguage.shortName as TLangs;
+    const { sentence, translation, course, lang: targetLang } = this.props;
+    // const targetLang = course.targetLanguage.shortName as TLangs;
     const learnersLang = course.learnersLanguage.shortName as TLangs;
     return (
       <GSContainer>

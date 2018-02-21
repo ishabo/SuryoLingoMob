@@ -1,10 +1,11 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { isNarrowDevice } from 'helpers';
+import { GSCustomText } from 'styles/text';
 
 const height = 120;
 
-export const GSBannerHeader = glamor.text({
+export const GSBannerHeader = glamor(GSCustomText)({
   color: Colors.white,
   alignSelf: 'flex-start',
   fontSize: 26,
@@ -20,7 +21,7 @@ export const GSBanner = glamor.view({
   zIndex: 100,
 });
 
-export const GSBannerText = glamor.text({
+export const GSBannerText = glamor(GSCustomText)({
   color: Colors.white,
   alignSelf: 'flex-start',
   fontSize: 16,

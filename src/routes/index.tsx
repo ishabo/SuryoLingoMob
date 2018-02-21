@@ -28,12 +28,6 @@ const LessonStack = StackNavigator({
   Completion: { screen: Completion },
 });
 
-// const style = StyleSheet.create({
-//   headerStyle: {
-//     borderBottomWidth: 0,
-//   },
-// });
-
 export const AppNavigator = StackNavigator(
   {
     Splash: { screen: Splash },

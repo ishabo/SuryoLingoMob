@@ -14,7 +14,7 @@ import {
 import { ISagasFunctions } from 'services/sagas';
 import { NavigationActions } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
-import { navToSkills, isApiResponse } from 'helpers';
+import { isApiResponse } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 
@@ -45,10 +45,9 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
 
       const activeCourse = yield select(getActiveCourse);
       yield delay(100);
-      const savedProfile = yield select((state: IInitialState) => state.profile);
 
       if (activeCourse) {
-        yield put(navToSkills(savedProfile));
+        yield put(skills.actions.fetchSkills());
       } else {
         yield put(NavigationActions.navigate({ routeName: 'Courses' }));
       }

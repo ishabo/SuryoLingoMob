@@ -6,6 +6,7 @@ import {
   Container,
   Button,
 } from 'native-base';
+import { GSCustomText } from 'styles/text';
 
 export const GSContainer = glamor(Container, { displayName: 'CustomKeyboard' })({
   alignContent: 'center',
@@ -19,7 +20,7 @@ export const GSKey = glamor(Button)({
   margin: 4,
 });
 
-export const GSKeyText = glamor.text({
+export const GSKeyText = glamor(GSCustomText)({
   textAlign: 'center',
   width: 10,
   flex: 1,
