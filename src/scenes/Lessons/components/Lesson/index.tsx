@@ -61,7 +61,7 @@ const GSButton = glamor(Button)({
   padding: 10,
   paddingHorizontal: 30,
   position: 'absolute',
-  bottom: 30,
+  bottom: 20,
 });
 
 const GSCard = glamor.view<{ active: boolean }>(
@@ -70,6 +70,7 @@ const GSCard = glamor.view<{ active: boolean }>(
     shadowColor: 'black',
     shadowOpacity: 0.2,
     shadowRadius: 2,
+    elevation: 2,
     alignContent: 'stretch',
     alignItems: 'stretch',
     justifyContent: 'center',
@@ -87,13 +88,13 @@ const GSLessonTitle = glamor(GSCustomText)({
   fontSize: 24,
   position: 'absolute',
   width: 200,
-  top: 50,
+  top: 30,
   textAlign: 'center',
 });
 
 const GSLessonNewWords = glamor(GSCustomText)({
   alignSelf: 'center',
-  fontSize: 20,
+  fontSize: 16,
   textAlign: 'center',
   marginHorizontal: 10,
 });
