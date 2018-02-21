@@ -10,6 +10,7 @@ export interface IProps {
   sentence: TSentence;
   lang: TLangs;
   obscureText?: boolean;
+  style?: object;
 }
 
 interface IHint {
@@ -37,6 +38,7 @@ export default class Phrase extends React.Component<IProps, IState> {
       key={shortid.generate()}
       onPress={onPress}
       underline={underline}
+      style={this.props.style || {}}
       lang={this.props.lang}>{this.obscureText(text)}</GSSentence>
 
   private renderHint = (translations: string): IHint[] =>

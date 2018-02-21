@@ -33,9 +33,14 @@ export const GSTextArea = glamor(Input)<{ rtl: boolean; lang: TLangs; }>(
     textAlignVertical: 'top',
   },
   (props) => {
-    return (props.rtl) ? {
+    const styles = {
       fontFamily: getFont(props.lang, 'regular'),
-      writingDirection: 'rtl',
-    } : {};
+    };
+
+    if (props.rtl !== null) {
+      styles['writingDirection'] = 'rtl';
+    }
+
+    return styles;
   },
 );

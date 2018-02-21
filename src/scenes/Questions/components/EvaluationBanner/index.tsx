@@ -23,15 +23,15 @@ const bgColor = (passed: boolean) => passed ? Colors.lightGreen : Colors.lightRe
 const passTitle = (passed: boolean) =>
   I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`);
 
-const EvaluationBanner = ({ passed, correctAnswer, lang }: IProps) =>
+const EvaluationBanner = ({ passed, correctAnswer }: IProps) =>
   <GSBanner>
     <GSMessageBox style={{ backgroundColor: bgColor(passed) }}>
       <GSMessageText>
-        <GSBannerHeader lang={lang}>
+        <GSBannerHeader fontType='bold' lang={'cl-ara'}>
           {passTitle(passed)}
         </GSBannerHeader>
-        {passed || correctAnswer && <GSBannerText lang={lang}>
-          <GSBoldText lang={lang}>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
+        {passed || correctAnswer && <GSBannerText lang={'cl-ara'}>
+          <GSBoldText fontType='bold' lang='cl-ara'>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
         </GSBannerText>}
       </GSMessageText>
     </GSMessageBox>

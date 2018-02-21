@@ -28,7 +28,7 @@ export default (
     onPress={onPress}
     disabled={disabled}
   >
-    <GSCustomText lang={lang} style={{ alignSelf: 'center', color: Colors.white }}>
+    <GSCustomText lang={lang} style={{ alignSelf: 'center', color: restProps.light ? Colors.lightBlack : Colors.white }}>
       {text}
     </GSCustomText>
   </GSButton>;

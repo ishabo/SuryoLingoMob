@@ -23,7 +23,7 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
     const learnersLang = course.learnersLanguage.shortName as TLangs;
     return (
       <GSContainer>
-        <Phrase lang={targetLang} sentence={sentence} />
+        <Phrase lang={targetLang} sentence={sentence} style={{ fontSize: 30 }} />
         <GSMeaning lang={learnersLang}>
           {I18n.t(`questions.phraseMeaning`)}
         </GSMeaning>

@@ -12,13 +12,14 @@ import { setApiOrigin } from 'services/api';
 import { setCustomText } from 'react-native-global-props';
 import config from 'config/';
 import { Alert, Loading } from 'components';
+import { getFont } from 'assets/fonts';
 
 const { Crashlytics } = Fabric;
 
 setApiOrigin(config.apiHost);
 setCustomText({
   style: {
-    fontFamily: 'AljazeeraRegular',
+    fontFamily: getFont('cl-ara', 'regular'),
   },
 });
 

@@ -8,7 +8,7 @@ interface IProps {
   placeholder: string;
   captureInput: (input: string) => void;
   showCustomKeyboard: boolean;
-  targetLanguage: TLangs;
+  inputLanguage: TLangs;
 }
 
 interface IState {
@@ -64,13 +64,13 @@ export default class TextArea extends React.Component<IProps, IState> {
               onSubmitEditing={Keyboard.dismiss}
               rtl={Platform.OS === 'ios'}
               innerRef={(c: TextArea) => this.textArea = c}
-              lang={this.props.targetLanguage}
+              lang={this.props.inputLanguage}
             />
           </GSTextAreaContainer>
 
           {this.showCustomKeyboard() && <CustomKeyboard
-            lang={this.props.targetLanguage}
-            letters={Language[this.props.targetLanguage].letters}
+            lang={this.props.inputLanguage}
+            letters={Language[this.props.inputLanguage].letters}
             onKeyPress={this.updateValue}
             onBackSpacePress={() => this.deleteBack()}
             onSpacePress={() => this.updateValue(' ')}

@@ -19,5 +19,5 @@ export const getFont = (lang: TLangs, fontType?: 'bold' | 'regular') => {
   } catch (_) {
     console.warn(lang);
   }
-  return 'SertoRegular';
+  return 'AjazeeraRegular';
 };

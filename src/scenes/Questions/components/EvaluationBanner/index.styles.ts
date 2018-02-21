@@ -9,7 +9,6 @@ export const GSBannerHeader = glamor(GSCustomText)({
   color: Colors.white,
   alignSelf: 'flex-start',
   fontSize: 26,
-  fontWeight: '800',
 });
 
 export const GSBanner = glamor.view({
@@ -28,7 +27,6 @@ export const GSBannerText = glamor(GSCustomText)({
 });
 
 export const GSBoldText = glamor(GSBannerText)({
-  fontWeight: '900',
 });
 
 export const GSBannerTail = glamor.view({

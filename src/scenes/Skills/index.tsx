@@ -12,6 +12,7 @@ import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import shortid from 'shortid';
 import { exitApp } from 'helpers';
+import { GSCustomText } from 'styles/text';
 
 interface State { }
 
@@ -21,9 +22,6 @@ class Skills extends React.Component<any, State> {
     title: I18n.t(`skills.title`),
     headerLeft: null,
     tabBarIcon: <Icon name="keypad" />,
-    labelStyle: {
-      fontSize: 16,
-    },
     headerRight: <HeaderRight
       title={I18n.t('profile.userXp', { userXp: params['userXp'] ? params['userXp'] : 0 })}
       navigate={() => navigate('Profile')} />,
@@ -105,9 +103,9 @@ interface ITitleProps {
 const HeaderRight = ({ title, navigate }: ITitleProps) =>
   title && <GSTouchable
     onPress={() => navigate()}>
-    <Text style={{ color: Colors.blue }}>
+    <GSCustomText lang={'cl-ara'} style={{ color: Colors.blue, fontSize: 14, }}>
       {title}
-    </Text>
+    </GSCustomText>
   </GSTouchable > || <Text></Text>;
 
 const mapStateToProps = (state: IInitialState) => ({

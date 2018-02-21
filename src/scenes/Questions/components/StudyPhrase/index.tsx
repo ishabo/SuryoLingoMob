@@ -18,7 +18,7 @@ export default (props: IProps) => {
         sound.soundTrack &&
         <SoundButton {...sound} size={centralize ? { large: true } : { small: true }} />
       }
-      {centralize || <Phrase obscureText={!showSentence} sentence={sentence} lang={lang} />}
+      {centralize || <Phrase obscureText={!showSentence} sentence={sentence} style={{ marginLeft: 5 }} lang={lang} />}
     </GSContainer>
   );
 };

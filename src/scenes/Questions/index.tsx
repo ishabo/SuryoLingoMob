@@ -158,7 +158,8 @@ class Questions extends React.Component<IProps, IState> {
 
   renderEvaluationBanner () {
     const { questionType, phrase, translation } = this.props.currentQuestion;
-    const correctAnswer = <GSCustomText lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.learnersLanguage}>
+    const correctAnswer = <GSCustomText style={{ fontSize: 16 }}
+      lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.learnersLanguage}>
       {isReverseQuestion(questionType) ? phrase : translation}
     </GSCustomText>
     return this.userHasAnswered()
