@@ -13,7 +13,7 @@ export const GSWordBox = glamor.view({
   marginBottom: 10,
 });
 
-export const GSWordText = glamor.text<IWordProps>(
+export const GSWordText = glamor(GSCustomText)<IWordProps>(
   {
     alignSelf: 'stretch',
     padding: 10,
@@ -25,7 +25,6 @@ export const GSWordText = glamor.text<IWordProps>(
       : Colors[props.selected ? 'lightGray' : 'white'],
   }),
 );
-
 
 export const GSSelectionBox = glamor.view({
   alignContent: 'center',
@@ -47,7 +46,7 @@ export const GSAnswerBox = glamor.view({
 
 export const GSTitle = glamor(GSCustomText)({
   alignSelf: 'center',
-  fontSize: 20,
+  fontSize: 18,
   marginVertical: 20,
   textAlign: 'left',
 });

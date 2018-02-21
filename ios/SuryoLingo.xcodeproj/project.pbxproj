@@ -69,6 +69,8 @@
 		935F4640FD8D43C681C3EBCC /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A331AF76789248CD829F990E /* libRNExitApp.a */; };
 		E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */; };
 		A70BEE1E9D4C425183748E5A /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A13932CC344B0386299CB3 /* libRNFetchBlob.a */; };
+		45C41F4BD9A049279781D5D0 /* AljazeeraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E67E6F638C1459EB2475172 /* AljazeeraBold.ttf */; };
+		86853F062DCC49D9B6F1ACB0 /* AljazeeraRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEE1226BF5114057866A5BF4 /* AljazeeraRegular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -521,6 +523,8 @@
 		2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */ = {isa = PBXFileReference; name = "libRNVersionNumber.a"; path = "libRNVersionNumber.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		1F56010ACA204500A205E6A5 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		F0A13932CC344B0386299CB3 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		7E67E6F638C1459EB2475172 /* AljazeeraBold.ttf */ = {isa = PBXFileReference; name = "AljazeeraBold.ttf"; path = "../src/assets/fonts/AljazeeraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AEE1226BF5114057866A5BF4 /* AljazeeraRegular.ttf */ = {isa = PBXFileReference; name = "AljazeeraRegular.ttf"; path = "../src/assets/fonts/AljazeeraRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -670,6 +674,8 @@
 				0D2089CCAF314FA0925EB790 /* Zocial.ttf */,
 				E5490DAF0A5A4A5D85E5076A /* SertoRegular.ttf */,
 				E5F80CB7AA814B3CB58D4964 /* SertoRegular.ttf */,
+				7E67E6F638C1459EB2475172 /* AljazeeraBold.ttf */,
+				AEE1226BF5114057866A5BF4 /* AljazeeraRegular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1532,6 +1538,8 @@
 				D0A9CF5622F94EFFAA4752BF /* Zocial.ttf in Resources */,
 				2B3A31892CFB4D569A3468A9 /* SertoRegular.ttf in Resources */,
 				4AD25D39E7964FF09EF496E2 /* SertoRegular.ttf in Resources */,
+				45C41F4BD9A049279781D5D0 /* AljazeeraBold.ttf in Resources */,
+				86853F062DCC49D9B6F1ACB0 /* AljazeeraRegular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1731,7 +1739,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1769,7 +1777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

@@ -6,6 +6,7 @@ import { shuffle, remove } from 'lodash';
 import { IAnswerProps } from '../../../index.types';
 import shortid from 'shortid';
 import I18n from 'I18n';
+import { ICourse } from 'services/courses';
 
 export interface IWord {
   id: string;
@@ -24,6 +25,7 @@ export interface IProps extends IAnswerProps {
   translation: string;
   incorrectChoices: string[];
   reverse: boolean;
+  course: ICourse;
 }
 
 const ensureShuffeled = (words: string[]) => {
@@ -95,6 +97,11 @@ export default class WordSelection extends React.Component<IProps, IState> {
     });
   }
 
+  getWordTextLang = () => {
+    const { reverse, course } = this.props;
+    return reverse ? course.targetLanguage.shortName : course.learnersLanguage.shortName;
+  }
+
   mapAnswerToString = () => {
     return this.state.answer.map((word: IWord) => word.word).join(' ');
   }
@@ -119,7 +126,7 @@ export default class WordSelection extends React.Component<IProps, IState> {
   renderShuffledWords = () => this.state.shuffledWords.map((word: IWord, _: number) =>
     <GSWordBox key={shortid.generate()} >
       {word.selected
-        ? <GSWordText shadowed>{word.word}</GSWordText>
+        ? <GSWordText lang={this.getWordTextLang()} shadowed>{word.word}</GSWordText>
         : this.renderWord(word)
       }
     </GSWordBox>)
@@ -131,7 +138,7 @@ export default class WordSelection extends React.Component<IProps, IState> {
 
     return word &&
       <TouchableOpacity onPress={() => handleWord(word)}>
-        <GSWordText selected={selected}>
+        <GSWordText lang={this.getWordTextLang()} selected={selected}>
           {word.word}
         </GSWordText>
       </TouchableOpacity>;

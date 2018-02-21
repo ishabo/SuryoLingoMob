@@ -15,7 +15,8 @@ import {
 
 interface IProps {
   passed: boolean;
-  correctAnswer?: string;
+  correctAnswer?: string | JSX.Element;
+  lang: TLangs;
 }
 
 const bgColor = (passed: boolean) => passed ? Colors.lightGreen : Colors.lightRed;
@@ -26,11 +27,11 @@ const EvaluationBanner = ({ passed, correctAnswer }: IProps) =>
   <GSBanner>
     <GSMessageBox style={{ backgroundColor: bgColor(passed) }}>
       <GSMessageText>
-        <GSBannerHeader>
+        <GSBannerHeader fontType='bold' lang={'cl-ara'}>
           {passTitle(passed)}
         </GSBannerHeader>
-        {passed || correctAnswer && <GSBannerText>
-          <GSBoldText>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
+        {passed || correctAnswer && <GSBannerText lang={'cl-ara'}>
+          <GSBoldText fontType='bold' lang='cl-ara'>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
         </GSBannerText>}
       </GSMessageText>
     </GSMessageBox>

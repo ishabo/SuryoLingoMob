@@ -8,8 +8,8 @@ const fonts = {
     regular: 'SertoRegular',
   },
   'cl-ara': {
-    bold: 'RasheeqBold',
-    regular: 'RasheeqRegular',
+    bold: 'AljazeeraBold',
+    regular: 'AljazeeraRegular',
   },
 };
 
@@ -19,5 +19,5 @@ export const getFont = (lang: TLangs, fontType?: 'bold' | 'regular') => {
   } catch (_) {
     console.warn(lang);
   }
-  return 'SertoRegular';
+  return 'AjazeeraRegular';
 };

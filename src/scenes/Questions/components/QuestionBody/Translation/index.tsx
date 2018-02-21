@@ -22,7 +22,7 @@ export default class Translation extends React.Component<IProps> {
           placeholder={placeholder}
           captureInput={collectAnswer}
           showCustomKeyboard={reverse && !userHasAnswered}
-          targetLanguage={course.targetLanguage.shortName}
+          inputLanguage={course[translateTo].shortName}
         />
       </GSContainer>
     );

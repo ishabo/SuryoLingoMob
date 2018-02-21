@@ -15,6 +15,7 @@ interface IProps {
   onKeyPress: (key: string) => void;
   onBackSpacePress: () => void;
   onSpacePress: () => void;
+  lang: TLangs;
 }
 
 const VIBRATE_DURATION = 50;
@@ -48,7 +49,7 @@ export default class extends React.Component<IProps> {
     keys.map((key: string) =>
       <GSKey key={shortid.generate()} primary
         onPress={this.onPress(() => { this.props.onKeyPress(key); })}>
-        <GSKeyText style={{ ...style }}>{key}</GSKeyText>
+        <GSKeyText lang={this.props.lang} style={{ ...style }}>{key}</GSKeyText>
       </GSKey>)
 
   private onPress = (pressFunction: () => void) => () => {
@@ -62,7 +63,7 @@ export default class extends React.Component<IProps> {
         <GSBackSpaceKey primary onPress={this.onPress(this.props.onBackSpacePress)}>
           <Icon name="ios-arrow-forward" />
         </GSBackSpaceKey>
-        {this.listKeys(this.props.letters, { fontSize: 17, paddingTop: -20 })}
+        {this.listKeys(this.props.letters, { fontSize: 14, paddingTop: -23 })}
         <GSSpaceKey primary onPress={this.onPress(this.props.onSpacePress)}>
           <Text>{'Space'}</Text>
         </GSSpaceKey>

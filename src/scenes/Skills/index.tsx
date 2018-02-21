@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import { Skill } from './components';
 import { mapValues, groupBy } from 'lodash';
 import { ISkill } from 'services/skills';
-import { getActiveCourse, getTargetLanguage } from 'services/selectors';
+import { getActiveCourse } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import shortid from 'shortid';
 import { exitApp } from 'helpers';
+import { GSCustomText } from 'styles/text';
 
 interface State { }
 
@@ -21,9 +22,6 @@ class Skills extends React.Component<any, State> {
     title: I18n.t(`skills.title`),
     headerLeft: null,
     tabBarIcon: <Icon name="keypad" />,
-    labelStyle: {
-      fontSize: 16,
-    },
     headerRight: <HeaderRight
       title={I18n.t('profile.userXp', { userXp: params['userXp'] ? params['userXp'] : 0 })}
       navigate={() => navigate('Profile')} />,
@@ -105,16 +103,15 @@ interface ITitleProps {
 const HeaderRight = ({ title, navigate }: ITitleProps) =>
   title && <GSTouchable
     onPress={() => navigate()}>
-    <Text style={{ color: Colors.blue }}>
+    <GSCustomText lang={'cl-ara'} style={{ color: Colors.blue, fontSize: 14, }}>
       {title}
-    </Text>
+    </GSCustomText>
   </GSTouchable > || <Text></Text>;
 
 const mapStateToProps = (state: IInitialState) => ({
   profile: state.profile,
   skills: state.skills,
   activeCourse: getActiveCourse(state),
-  targetLanguage: getTargetLanguage(state),
 });
 
 export default connect(mapStateToProps)(Skills);

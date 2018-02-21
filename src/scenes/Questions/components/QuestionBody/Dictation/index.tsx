@@ -19,7 +19,7 @@ export default class Dictation extends React.Component<IProps> {
           placeholder={I18n.t(`questions.dictation`)}
           captureInput={this.props.collectAnswer}
           showCustomKeyboard={this.props.reverse && !this.props.userHasAnswered}
-          targetLanguage={this.props.course.targetLanguage.shortName}
+          inputLanguage={this.props.course.targetLanguage.shortName}
         />
       </Container>
     );

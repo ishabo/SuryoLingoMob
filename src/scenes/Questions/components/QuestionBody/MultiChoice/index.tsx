@@ -5,12 +5,14 @@ import I18n from 'I18n';
 import shortid from 'shortid';
 import glamor from 'glamorous-native';
 import { GSCustomText } from 'styles/text';
+import { ICourse } from 'services/courses';
 
 interface IProps extends IAnswerProps {
   phrase: string;
   translation: string;
   incorrectChoices: string[];
   reverse: boolean;
+  course: ICourse;
 }
 
 interface IState {
@@ -38,6 +40,11 @@ export default class MultiChoice extends React.Component<IProps, IState> {
     });
   }
 
+  getWordTextLang = () => {
+    const { reverse, course } = this.props;
+    return reverse ? course.targetLanguage.shortName : course.learnersLanguage.shortName;
+  }
+
   isChoiceSelected = (choice: string): boolean => {
     const index: number = this.state.answer.indexOf(choice);
     return index >= 0;
@@ -58,7 +65,7 @@ export default class MultiChoice extends React.Component<IProps, IState> {
           checked={this.isChoiceSelected(choice)}
         />
         <Body>
-          <GSText>{choice}</GSText>
+          <GSText lang={this.getWordTextLang()}>{choice}</GSText>
         </Body>
       </ListItem>,
     );

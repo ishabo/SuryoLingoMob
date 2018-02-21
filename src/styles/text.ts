@@ -18,7 +18,8 @@ export const GSCustomText = glamor.text<ICustomText>(
 
 export const GSTitle = glamor(GSCustomText)({
   padding: 10,
-  fontSize: 30,
+  fontSize: 28,
+  textAlign: 'center',
 });
 
 export const GSAlert = glamor(GSCustomText)<{ success: boolean }>(

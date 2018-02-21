@@ -14,6 +14,7 @@ import {
   getLessonInProgress,
   getSkillInProgress,
   isRegistered,
+  getLearnersLanguage,
 } from 'services/selectors';
 import { resetToLessons, resetToSkills } from 'helpers/navigation';
 import { NextButton, SignonButton } from 'components/';
@@ -26,6 +27,7 @@ interface IProps {
   profile: IProfile;
   skillInProgress: ISkill;
   isRegistered: boolean;
+  learnersLanguage: TLangs;
 }
 
 interface IState {
@@ -57,7 +59,7 @@ class Completion extends React.Component<IProps, IState> {
           this.countDown();
         }
       });
-    },         decreaseIntervals);
+    }, decreaseIntervals);
   }
 
   canSkipAdd = () =>
@@ -79,6 +81,7 @@ class Completion extends React.Component<IProps, IState> {
 
     return <NextButton onPress={this.navBackToLessons}
       disabled={!this.canSkipAdd()}
+      lang={this.props.learnersLanguage}
       text={buttonName} />;
   }
 
@@ -111,6 +114,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 const mapStateToDispatch = (state: IInitialState) => ({
+  learnersLanguage: getLearnersLanguage(state),
   profile: state.profile,
   lessonInProgress: getLessonInProgress(state),
   skillInProgress: getSkillInProgress(state),

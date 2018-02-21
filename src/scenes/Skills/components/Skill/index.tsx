@@ -63,6 +63,6 @@ const GSCircle = glamor(LinearGradient)({
   height: 85,
   borderRadius: 50,
   position: 'absolute',
-  bottom: 22,
+  bottom: 26.2,
   left: 15.6,
 });

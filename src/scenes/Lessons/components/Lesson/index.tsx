@@ -13,11 +13,12 @@ interface IProps {
   lesson: ILesson;
   skill: ISkill;
   active: boolean;
-  lang: TLangs;
+  targetLanguage: TLangs;
+  learnersLanguage: TLangs;
   enterLesson (lessonId: string): void;
 }
 
-export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
+export default ({ lesson, skill, enterLesson, active, targetLanguage, learnersLanguage }: IProps) => {
   const { lessons } = skill;
 
   const lessonTitle = I18n.t('lessons.lesson.title', {
@@ -37,8 +38,8 @@ export default ({ lesson, skill, enterLesson, active, lang }: IProps) => {
 
   return <GSLesson>
     <GSCard active>
-      <GSLessonTitle>{lessonTitle}</GSLessonTitle>
-      <GSLessonNewWords lang={lang}>{lesson.newWords.split('|').join(', ')}</GSLessonNewWords>
+      <GSLessonTitle lang={learnersLanguage}>{lessonTitle}</GSLessonTitle>
+      <GSLessonNewWords lang={targetLanguage}>{lesson.newWords.split('|').join(', ')}</GSLessonNewWords>
       <GSButton onPress={() => active && enterLesson(lesson.id)} {...buttonProps}>
         <Text style={{ color: active ? Colors.white : Colors.gray }}>
           {I18n.t(`lessons.${active ? 'enterLesson' : 'locked'}`)}
@@ -81,7 +82,7 @@ const GSCard = glamor.view<{ active: boolean }>(
   }),
 );
 
-const GSLessonTitle = glamor.text({
+const GSLessonTitle = glamor(GSCustomText)({
   alignSelf: 'center',
   fontSize: 24,
   position: 'absolute',
@@ -93,6 +94,8 @@ const GSLessonTitle = glamor.text({
 const GSLessonNewWords = glamor(GSCustomText)({
   alignSelf: 'center',
   fontSize: 20,
+  textAlign: 'center',
+  marginHorizontal: 10,
 });
 
 const GSSkillIcon = glamor.view({

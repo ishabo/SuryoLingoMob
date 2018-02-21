@@ -15,7 +15,10 @@ import {
   getCurrentQuestion,
   allCorrectAnswers,
   getSkillInProgress,
+  getTargetLanguage,
+  getLearnersLanguage,
 } from 'services/selectors';
+import { GSCustomText } from 'styles/text';
 import Colors from 'styles/colors';
 import { getLangConfig } from 'config/language';
 import I18n from 'I18n';
@@ -97,12 +100,12 @@ class Questions extends React.Component<IProps, IState> {
   }
 
   evaluate = () => {
-    const targetLanguage = getLangConfig(this.props.course.targetLanguage.shortName);
-    const learnersLanguage = getLangConfig(this.props.course.learnersLanguage.shortName);
+    const targetLangConfig = getLangConfig(this.props.targetLanguage);
+    const learnersLangConfig = getLangConfig(this.props.learnersLanguage);
 
     const evaluationOptions = {
-      allowedLetters: targetLanguage.letters.concat(learnersLanguage.letters),
-      overlookLetters: { ...targetLanguage.overlookLetters, ...learnersLanguage.overlookLetters },
+      allowedLetters: targetLangConfig.letters.concat(learnersLangConfig.letters),
+      overlookLetters: { ...targetLangConfig.overlookLetters, ...learnersLangConfig.overlookLetters },
     };
     const answer = this.state.answer;
     const answerCorrect = evalAgainstAllAnswers(
@@ -155,10 +158,15 @@ class Questions extends React.Component<IProps, IState> {
 
   renderEvaluationBanner () {
     const { questionType, phrase, translation } = this.props.currentQuestion;
+    const correctAnswer = <GSCustomText style={{ fontSize: 16 }}
+      lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.learnersLanguage}>
+      {isReverseQuestion(questionType) ? phrase : translation}
+    </GSCustomText>
     return this.userHasAnswered()
       && <EvaluationBanner
+        lang={this.props.learnersLanguage}
         passed={this.state.answerCorrect}
-        correctAnswer={isReverseQuestion(questionType) ? phrase : translation} />;
+        correctAnswer={correctAnswer} />;
   }
 
   renderProgressBar = () =>
@@ -190,6 +198,7 @@ class Questions extends React.Component<IProps, IState> {
   renderNextQuestion = () =>
     <NextButton onPress={this.evaluateOrNext}
       disabled={this.submitDisallowed()}
+      lang={this.props.learnersLanguage}
       text={
         this.needsEvaluation()
           ? I18n.t('questions.submit')
@@ -236,6 +245,8 @@ const mapStateToProps = (state: any) => ({
   skillInProgress: getSkillInProgress(state),
   dictionaries: state.dictionaries,
   allCorrectAnswers: (questionId: string) => allCorrectAnswers(state, questionId),
+  targetLanguage: getTargetLanguage(state),
+  learnersLanguage: getLearnersLanguage(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);

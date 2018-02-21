@@ -77,6 +77,7 @@ class PasswordRecovery extends React.Component<IProps, IState> {
             onPress={() => this.props.recoverPassword(this.state.email)}
             text={I18n.t('passwordRecovery.form.submit')}
             restProps={{ primary: true, wide: true }}
+            lang={'cl-ara'}
           />
         </GSNextButtons>
       </GSForm>

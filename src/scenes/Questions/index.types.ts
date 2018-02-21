@@ -31,4 +31,6 @@ export interface IProps {
   nextQuestionOrFinish (questionId: string, status: TQuestionType): void;
   allCorrectAnswers (questionId: string): string[];
   skillInProgress: ISkill;
+  targetLanguage: TLangs;
+  learnersLanguage: TLangs;
 }
