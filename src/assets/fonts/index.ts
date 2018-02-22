@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 const fonts = {
   'cl-syr': {
     bold: 'SertoRegular',
@@ -8,8 +10,8 @@ const fonts = {
     regular: 'SertoRegular',
   },
   'cl-ara': {
-    bold: 'AljazeeraBold',
-    regular: 'AljazeeraRegular',
+    bold: Platform.OS === 'android' ? 'AljazeeraBold' : 'FontAwesome',
+    regular: Platform.OS === 'android' ? 'AljazeeraRegular' : 'FontAwesome',
   },
 };
 

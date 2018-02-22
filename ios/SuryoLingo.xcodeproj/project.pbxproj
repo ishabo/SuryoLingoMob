@@ -40,7 +40,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* SuryoLingoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SuryoLingoTests.m */; };
 		45C41F4BD9A049279781D5D0 /* AljazeeraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E67E6F638C1459EB2475172 /* AljazeeraBold.ttf */; };
 		4A2857D6036A4AD58D0668AA /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2266CAF6BD88450687A92004 /* libRNI18n.a */; };
-		4AD25D39E7964FF09EF496E2 /* SertoRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5F80CB7AA814B3CB58D4964 /* SertoRegular.ttf */; };
 		4B499F2E54724F1DB20B06B9 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C2E8C6AD44498E9EBF2F15 /* FontAwesome.ttf */; };
 		53570F1B56D84FB997A93916 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EABD8C7070A4EFF9EA3425F /* Roboto_medium.ttf */; };
 		5B75E7A5C8A447AF8665944B /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47082B318EFB4AFCA6A6728C /* libBVLinearGradient.a */; };
@@ -68,7 +67,6 @@
 		D62F5477200A71DD0058DDC6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F5475200A71DD0058DDC6 /* Fabric.framework */; };
 		D655219F1FFFEB18007C9243 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D655219B1FFFEAE8007C9243 /* libRNDeviceInfo.a */; };
 		D6B159691FA2C9D60044EA78 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		D6C3EC731FF90F35002043FB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB61A68108700A75B9A /* Info.plist */; };
 		E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */; };
 		E45B640E079C43E2B1055E53 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C65B2527E6841469E5CF2D2 /* Foundation.ttf */; };
 		F660850E755B4AA7A990055A /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A8FDEAD917466386111274 /* libRNSound.a */; };
@@ -694,6 +692,8 @@
 		0E6E36D8B288480AB7FD8C3C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AEE1226BF5114057866A5BF4 /* AljazeeraRegular.ttf */,
+				E5490DAF0A5A4A5D85E5076A /* SertoRegular.ttf */,
 				3DF606903542420E99EC7CBC /* RasheeqBold.ttf */,
 				85DA3F8D429047128E51AB2C /* RasheeqRegular.ttf */,
 				BB257DEA90474DD09E2E6BE9 /* Entypo.ttf */,
@@ -708,10 +708,8 @@
 				E07780019D0747AEA16343ED /* rubicon-icon-font.ttf */,
 				53587E7FFEF0446B80345F8D /* SimpleLineIcons.ttf */,
 				0D2089CCAF314FA0925EB790 /* Zocial.ttf */,
-				E5490DAF0A5A4A5D85E5076A /* SertoRegular.ttf */,
 				E5F80CB7AA814B3CB58D4964 /* SertoRegular.ttf */,
 				7E67E6F638C1459EB2475172 /* AljazeeraBold.ttf */,
-				AEE1226BF5114057866A5BF4 /* AljazeeraRegular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1088,7 +1086,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = SuryoLingo;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -1645,7 +1643,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				D6C3EC731FF90F35002043FB /* Info.plist in Resources */,
 				A275028421EE4E4399201ABF /* RasheeqBold.ttf in Resources */,
 				802714D916264FF5BCA47878 /* RasheeqRegular.ttf in Resources */,
 				0741D5A4C0944DF58C34329C /* Entypo.ttf in Resources */,
@@ -1661,7 +1658,6 @@
 				B14C736B59034492ADEB5A16 /* SimpleLineIcons.ttf in Resources */,
 				D0A9CF5622F94EFFAA4752BF /* Zocial.ttf in Resources */,
 				2B3A31892CFB4D569A3468A9 /* SertoRegular.ttf in Resources */,
-				4AD25D39E7964FF09EF496E2 /* SertoRegular.ttf in Resources */,
 				45C41F4BD9A049279781D5D0 /* AljazeeraBold.ttf in Resources */,
 				86853F062DCC49D9B6F1ACB0 /* AljazeeraRegular.ttf in Resources */,
 			);

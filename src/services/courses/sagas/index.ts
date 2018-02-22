@@ -14,6 +14,7 @@ import { navToSkills } from 'helpers';
 import { IInitialState } from 'services/reducers';
 
 export function* fetchCourses (): IterableIterator<any> {
+  debugger;
   yield put(setLoadingOn());
   yield put(profile.actions.createProfile());
   const hasRegistered = yield select(isRegistered);
