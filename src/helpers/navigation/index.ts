@@ -2,7 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import { ISkill } from 'services/skills';
 import { IProfile } from 'services/profile';
 
-export const navToSkills = (profile: IProfile) =>
+export const navToSkills = (profile: IProfile = { userXp: 0 }) =>
   NavigationActions.navigate({
     routeName: 'Skills', params: {
       userXp: profile.userXp,

@@ -18,7 +18,6 @@ import {
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
 
-
 export interface IState { }
 
 class Courses extends React.Component<any, IState> {
@@ -52,11 +51,12 @@ class Courses extends React.Component<any, IState> {
       );
     }
   }
+
   private renderCourseCard = (course: ICourse) => {
     const imageName = snakeToCamel(course.targetLanguage.shortName + '_' +
       course.learnersLanguage.shortName);
 
-    const width = getWindowWidth() - 10;
+    const width = getWindowWidth() - 20;
     const height = (width * (67 / 100));
 
     return <GSCourse

@@ -6,10 +6,7 @@ import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 
 export const GSContainer = glamor(Container)({
-  flex: 1,
-  justifyContent: 'center',
-  alignContent: 'stretch',
-  alignItems: 'stretch',
+
 });
 
 export const GSCourseTitle = glamor(GSCustomText)({
