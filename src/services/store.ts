@@ -7,6 +7,9 @@ import rootReducer from './reducers';
 import { persistStore, persistReducer } from 'redux-persist';
 import { Platform } from 'react-native';
 import storage from 'redux-persist/es/storage';
+import {
+  createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
 
 const config = {
   storage,
@@ -51,9 +54,16 @@ export default class Store {
 
   private configure () {
 
+    const reactNavMiddleWare = createReactNavigationReduxMiddleware(
+      "root",
+      state => state.nav,
+    );
+
     const middlewares = applyMiddleware(
       this.sagaMiddleware,
       reduxImmutableStateInvariant(),
+      reactNavMiddleWare,
+
     );
 
     let composeEnhancers = compose;

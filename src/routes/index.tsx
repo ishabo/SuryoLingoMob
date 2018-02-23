@@ -7,19 +7,20 @@ import Questions from 'scenes/Questions';
 import Completion from 'scenes/Completion';
 import Profile from 'scenes/Profile';
 import PasswordRecovery from 'scenes/PasswordRecovery';
-// import { StyleSheet } from 'react-native';
 
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 
 const TabStack = TabNavigator(
   {
-    Skills: { screen: Skills },
     Courses: { screen: Courses },
+    Skills: { screen: Skills },
     Profile: { screen: Profile },
   },
   {
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
+    animationEnabled: false,
+    lazy: true,
   },
 );
 

@@ -23,7 +23,7 @@ class Skills extends React.Component<any, State> {
     headerLeft: null,
     tabBarIcon: <Icon name="keypad" />,
     headerRight: <HeaderRight
-      title={I18n.t('profile.userXp', { userXp: params['userXp'] ? params['userXp'] : 0 })}
+      title={I18n.t('profile.userXp', { userXp: params && params['userXp'] ? params['userXp'] : 0 })}
       navigate={() => navigate('Profile')} />,
   })
 

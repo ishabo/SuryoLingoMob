@@ -1,11 +1,13 @@
 import React from 'react';
-import { Container, Content, ListItem, Body, CheckBox } from 'native-base';
+import { Container, Content } from 'native-base';
 import { IAnswerProps } from '../../../index.types';
 import I18n from 'I18n';
 import shortid from 'shortid';
 import glamor from 'glamorous-native';
 import { GSCustomText } from 'styles/text';
 import { ICourse } from 'services/courses';
+import Colors from 'styles/colors';
+import { TouchableOpacity } from 'react-native';
 
 interface IProps extends IAnswerProps {
   phrase: string;
@@ -56,18 +58,12 @@ export default class MultiChoice extends React.Component<IProps, IState> {
     const choices = [correctChoice].concat(incorrectChoices);
 
     return choices.map((choice: string) =>
-      <ListItem
-        style={{ backgroundColor: 'transparent' }}
-        key={shortid.generate()}
-        onPress={() => this.updateAnswers(choice)}>
-        <CheckBox
-          onPress={() => this.updateAnswers(choice)}
-          checked={this.isChoiceSelected(choice)}
-        />
-        <Body>
+      <TouchableOpacity key={shortid.generate()} onPress={() => this.updateAnswers(choice)}>
+        <GSChoice checked={this.isChoiceSelected(choice)}>
+          <GSRadio checked={this.isChoiceSelected(choice)} />
           <GSText lang={this.getWordTextLang()}>{choice}</GSText>
-        </Body>
-      </ListItem>,
+        </GSChoice>
+      </TouchableOpacity>
     );
   }
 
@@ -83,18 +79,48 @@ export default class MultiChoice extends React.Component<IProps, IState> {
   }
 }
 
+export const GSChoice = glamor.view<{ checked: boolean }>(
+  {
+    borderWidth: 2,
+    borderColor: Colors.lightBlue,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    margin: 4,
+    flexDirection: 'row',
+    alignContent: 'center',
+  },
+  props => ({
+    backgroundColor: props.checked ? Colors.lightBlue : 'transparent',
+  }),
+);
+
+export const GSRadio = glamor.view<{ checked: boolean }>(
+  {
+    borderRadius: 50,
+    borderWidth: 1,
+    width: 20,
+    height: 20,
+    borderColor: Colors.lightGray,
+    alignSelf: 'center',
+  },
+  props => ({
+    backgroundColor: props.checked ? Colors.blue : 'transparent',
+  }),
+);
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch',
 });
 
 export const GSTitle = glamor(GSCustomText)({
-  paddingHorizontal: 20,
+  paddingHorizontal: 10,
   fontSize: 22,
 });
 
 export const GSText = glamor(GSCustomText)({
-  paddingHorizontal: 20,
-  fontSize: 18,
+  paddingHorizontal: 30,
+  fontSize: 20,
+  alignSelf: 'center',
 });
 
 export const GSContent = glamor(Content)({

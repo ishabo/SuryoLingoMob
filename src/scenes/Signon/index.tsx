@@ -47,7 +47,7 @@ class Signon extends React.Component<IProps, IState> {
   private keyboardDidHideListener;
 
   state = {
-    signUpOrIn: 'signin',
+    signUpOrIn: 'signup',
     focusOn: null,
     keyboardOn: false,
   };
@@ -127,16 +127,16 @@ class Signon extends React.Component<IProps, IState> {
 
   private renderTabs = () =>
     <GSTabs>
-      <GSTabButton full primary={this.isSignin()} light={this.isSignup()}
-        onPress={this.setSignin}>
-        <GSButtonText large={this.isSignin()} color={this.isSignin() ? 'white' : 'gray'}>
-          {I18n.t('profile.form.signIn')}
-        </GSButtonText>
-      </GSTabButton>
       <GSTabButton full primary={this.isSignup()} light={this.isSignin()}
         onPress={this.setSignup}>
         <GSButtonText large={this.isSignup()} color={this.isSignup() ? 'white' : 'gray'}>
           {I18n.t('profile.form.signUp')}
+        </GSButtonText>
+      </GSTabButton>
+      <GSTabButton full primary={this.isSignin()} light={this.isSignup()}
+        onPress={this.setSignin}>
+        <GSButtonText large={this.isSignin()} color={this.isSignin() ? 'white' : 'gray'}>
+          {I18n.t('profile.form.signIn')}
         </GSButtonText>
       </GSTabButton>
     </GSTabs>
@@ -160,11 +160,11 @@ class Signon extends React.Component<IProps, IState> {
           onChangeText={this.setField(name)} />
         {afterInput}
       </GSItem>
-      <GSErrorText visible={this.hasError(name)}>
+      {this.hasError(name) && <GSErrorText>
         {error === `${name}Invalid`
           && I18n.t(`profile.form.hints.${name}`)
           || I18n.t(`profile.form.errors.${error}`)}
-      </GSErrorText>
+      </GSErrorText>}
     </View>;
   }
 
