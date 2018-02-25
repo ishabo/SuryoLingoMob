@@ -30,6 +30,10 @@ const colors = {
   // yellow
   lightYellow: '#ffe7a0',
   yellow: '#edc549',
+
+  // orange 
+  orange: '#ffcc33',
+
 };
 
 export default colors;

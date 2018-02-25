@@ -28,7 +28,7 @@ export const reducer = (
       );
     }
     case types.REMOVE_ALL: {
-      return [];
+      return initialState;
     }
     default:
       return state;

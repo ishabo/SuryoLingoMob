@@ -4,13 +4,16 @@ import {
 
 import Colors from 'styles/colors';
 import glamor from 'glamorous-native';
+import { GSCustomText } from 'styles/text';
 
 export const GSLebel = glamor(Label)({
   color: 'black',
 });
 
 export const GSInput = glamor(Input)<{ dir?: 'rtl' | 'ltr' }>(
-  {},
+  {
+    paddingRight: 50,
+  },
   ({ dir }) => ({
     writingDirection: dir ? 'rtl' : dir,
     textAlign: dir === 'ltr' ? 'left' : 'right',
@@ -26,14 +29,11 @@ export const GSForm = glamor(Form)({
   paddingHorizontal: 10,
 });
 
-export const GSErrorText = glamor.text<{ visible?: boolean }>(
-  {
-    color: Colors.red,
-  },
-  props => ({
-    fontSize: props.visible ? 15 : 0,
-  }),
-);
+export const GSErrorText = glamor(GSCustomText)({
+  color: Colors.red,
+  fontSize: 14,
+  marginLeft: 20,
+});
 
 export const GSNextButtons = glamor.view({
   alignItems: 'stretch',

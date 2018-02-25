@@ -12,13 +12,21 @@ interface IProps extends IPhraseProps {
 export default (props: IProps) => {
   const { showSentence, sentence, sound, lang, centralize } = props;
 
+  const renderSound = () => <SoundButton key={sound.soundTrack} {...sound} size={centralize ? { large: true } : { small: true }} />
+  const renderPhrase = () => <Phrase key={lang + 'phrase'} obscureText={!showSentence} sentence={sentence} style={{ marginLeft: 5 }} lang={lang} />
+  const content = [];
+
+  if (sound.soundTrack) {
+    content.push(renderSound());
+  }
+
+  if (!centralize) {
+    content.push(renderPhrase());
+  }
+
   return (
     <GSContainer centralize={centralize}>
-      {
-        sound.soundTrack &&
-        <SoundButton {...sound} size={centralize ? { large: true } : { small: true }} />
-      }
-      {centralize || <Phrase obscureText={!showSentence} sentence={sentence} style={{ marginLeft: 5 }} lang={lang} />}
+      {content}
     </GSContainer>
   );
 };

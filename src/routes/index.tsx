@@ -12,8 +12,8 @@ import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 
 const TabStack = TabNavigator(
   {
-    Courses: { screen: Courses },
     Skills: { screen: Skills },
+    Courses: { screen: Courses },
     Profile: { screen: Profile },
   },
   {

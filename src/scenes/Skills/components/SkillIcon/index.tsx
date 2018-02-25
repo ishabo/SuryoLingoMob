@@ -9,6 +9,7 @@ import { TImageSizes } from 'services/assets';
 const GSIcon = glamor(Image)<{ size: number }>(
   {
     alignSelf: 'center',
+    borderWidth: 1,
   },
   props => ({
     width: props.size || 100,

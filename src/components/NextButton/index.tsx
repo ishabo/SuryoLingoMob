@@ -25,7 +25,7 @@ export default (
     {...restProps}
     rounded
     block
-    onPress={onPress}
+    onPressIn={onPress}
     disabled={disabled}
   >
     <GSCustomText lang={lang} style={{ alignSelf: 'center', color: restProps.light ? Colors.lightBlack : Colors.white }}>
