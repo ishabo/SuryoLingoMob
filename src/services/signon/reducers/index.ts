@@ -2,7 +2,7 @@ import { types } from '../actions';
 import { ISignonFormAction, ISignonState } from '../';
 
 export const initialState: ISignonState = {
-  item: { email: null, password: null },
+  item: { name: null, email: null, password: null },
   errors: {},
 };
 

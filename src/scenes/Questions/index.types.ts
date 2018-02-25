@@ -12,6 +12,7 @@ export interface IState {
   progress: number;
   answerCorrect: boolean;
   modalOn: boolean;
+  movingNext: boolean;
 }
 
 export interface IAnswerProps {

@@ -67,10 +67,8 @@ export const playAudio = (soundTrack, location: TSoundLocations = defaultLocatio
   };
 
   try {
-    if (currentlyPlaying !== soundTrack) {
-      audio = new Sound(soundTrack, soundPath, errorCallback);
-      currentlyPlaying = soundTrack;
-    }
+    audio = new Sound(soundTrack, soundPath, errorCallback);
+    currentlyPlaying = soundTrack;
 
     setTimeout(stopAndPlayAudio, 200);
 
@@ -89,6 +87,3 @@ const stopAndPlayAudio = () => {
     });
   }
 };
-
-
-

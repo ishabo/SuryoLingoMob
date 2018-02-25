@@ -23,16 +23,19 @@ const bgColor = (passed: boolean) => passed ? Colors.lightGreen : Colors.lightRe
 const passTitle = (passed: boolean) =>
   I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`);
 
-const EvaluationBanner = ({ passed, correctAnswer }: IProps) =>
-  <GSBanner>
+const EvaluationBanner = ({ passed, correctAnswer }: IProps) => {
+
+  const showCorrectAnswer = correctAnswer && <GSBannerText lang={'cl-ara'}>
+    <GSBoldText fontType='bold' lang='cl-ara'>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
+  </GSBannerText>;
+
+  return <GSBanner>
     <GSMessageBox style={{ backgroundColor: bgColor(passed) }}>
       <GSMessageText>
         <GSBannerHeader fontType='bold' lang={'cl-ara'}>
           {passTitle(passed)}
         </GSBannerHeader>
-        {passed || correctAnswer && <GSBannerText lang={'cl-ara'}>
-          <GSBoldText fontType='bold' lang='cl-ara'>{I18n.t('questions.evaluation.correctAnswer')}</GSBoldText> {correctAnswer}
-        </GSBannerText>}
+        {passed && <GSBannerText /> || showCorrectAnswer}
       </GSMessageText>
     </GSMessageBox>
 
@@ -41,5 +44,7 @@ const EvaluationBanner = ({ passed, correctAnswer }: IProps) =>
       <GSTriangle color={bgColor(passed)} ><Text></Text></GSTriangle>
     </GSBannerTail>
   </GSBanner>;
+
+}
 
 export default EvaluationBanner;

@@ -19,8 +19,10 @@ import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 
 export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
-  yield put(setLoadingOn());
+
   const fields = { ...yield select((state: IInitialState) => state.signon.item) };
+
+  // console.warn(fields);
   if (action.signon === 'signin') {
     delete fields['name'];
   }
@@ -28,6 +30,8 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
   const errors: signon.ISignonFormErrors = validateSigon(fields);
 
   if (isEmpty(errors)) {
+
+    yield put(setLoadingOn());
 
     const currentProfile = yield select((state: IInitialState) => state.profile);
 

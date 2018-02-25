@@ -3,12 +3,14 @@ import { Platform, Keyboard } from 'react-native';
 import { CustomKeyboard } from 'components';
 import Language from 'config/language';
 import { GSContainer, GSContent, GSTextArea, GSTextAreaContainer } from './index.styles';
+import Colors from 'styles/colors';
 
 interface IProps {
   placeholder: string;
   captureInput: (input: string) => void;
   showCustomKeyboard: boolean;
   inputLanguage: TLangs;
+  autoFocus?: boolean;
 }
 
 interface IState {
@@ -38,9 +40,7 @@ export default class TextArea extends React.Component<IProps, IState> {
 
   deleteBack = () => {
     const { value } = this.state;
-    this.setState({ value: value.slice(0, -1) }, () => {
-      this.props.captureInput(this.state.value);
-    });
+    this.onChange(value.slice(0, -1));
   }
 
   private textArea;
@@ -56,15 +56,17 @@ export default class TextArea extends React.Component<IProps, IState> {
           <GSTextAreaContainer>
             <GSTextArea
               placeholder={this.props.placeholder}
+              placeholderTextColor={Colors.gray}
               multiline
               numberOfLines={4}
               value={this.state.value}
+              autoFocus={this.props.autoFocus === true}
               onChangeText={this.onChange}
               keyboardAppearance="light"
               onSubmitEditing={Keyboard.dismiss}
               rtl={Platform.OS === 'ios'}
               innerRef={(c: TextArea) => this.textArea = c}
-              lang={this.props.inputLanguage}
+              lang={this.state.value.length === 0 ? 'cl-ara' : this.props.inputLanguage}
             />
           </GSTextAreaContainer>
 

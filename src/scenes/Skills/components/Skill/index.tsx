@@ -1,10 +1,9 @@
 import React from 'react';
-import { TouchableOpacity, Image } from 'react-native';
-import glamor from 'glamorous-native';
+import { TouchableOpacity } from 'react-native';
 import images from 'assets/images';
-import LinearGradient from 'react-native-linear-gradient';
 import SkillIcon from '../SkillIcon';
 import Colors from 'styles/colors';
+import { GSBackground, GSCircle, GSSkills, GSSkillsTitle } from './index.styles';
 
 export interface IProps {
   onSkillsClick: () => void;
@@ -18,8 +17,9 @@ export default (props: IProps) => {
 
   const { name, unlocked, progress, icon, onSkillsClick } = props;
   const filling = unlocked ? 1 - progress : 1;
+
   const LinearGradientProps = {
-    colors: ['transparent', Colors.lightGreen],
+    colors: ['transparent', Colors.orange],
     locations: [filling, 0],
   };
 
@@ -42,27 +42,3 @@ export default (props: IProps) => {
   );
 };
 
-const GSBackground = glamor(Image)({
-  height: 120,
-  width: 120,
-});
-
-const GSSkills = glamor.view({
-  flexDirection: 'column',
-  marginTop: 20,
-  alignContent: 'center',
-});
-
-const GSSkillsTitle = glamor.text({
-  alignSelf: 'center',
-  marginTop: 10,
-});
-
-const GSCircle = glamor(LinearGradient)({
-  width: 85.3,
-  height: 85,
-  borderRadius: 50,
-  position: 'absolute',
-  bottom: 26.2,
-  left: 15.6,
-});

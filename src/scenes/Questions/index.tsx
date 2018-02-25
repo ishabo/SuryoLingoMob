@@ -36,6 +36,7 @@ class Questions extends React.Component<IProps, IState> {
     progress: 0,
     answerCorrect: null,
     modalOn: false,
+    movingNext: false,
   };
 
   private userHasAnswered = () =>
@@ -65,8 +66,7 @@ class Questions extends React.Component<IProps, IState> {
     }
   }
 
-  submitDisallowed = () => isEmpty(this.state.answer)
-    && this.actionNeeded()
+  submitDisallowed = () => isEmpty(this.state.answer) && this.actionNeeded()
 
   actionNeeded = () => this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE';
 
@@ -90,6 +90,10 @@ class Questions extends React.Component<IProps, IState> {
   }
 
   evaluateOrNext = () => {
+    if (this.submitDisallowed() || this.state.movingNext) {
+      return;
+    }
+
     Keyboard.dismiss();
 
     if (this.needsEvaluation()) {
@@ -120,11 +124,14 @@ class Questions extends React.Component<IProps, IState> {
   answeredCorrectly = () => !isEmpty(this.state.answer) && this.state.answerCorrect === true;
 
   nextQuestionOrComplete = () => {
-    let status = this.answeredCorrectly() ? 'passed' : 'failed';
-    if (!this.actionNeeded()) {
-      status = 'passed';
-    }
-    this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
+    this.setState({ movingNext: true }, () => {
+      let status = this.answeredCorrectly() ? 'passed' : 'failed';
+
+      if (!this.actionNeeded()) {
+        status = 'passed';
+      }
+      this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
+    });
   }
 
   private backToSkills = () => {
@@ -162,6 +169,7 @@ class Questions extends React.Component<IProps, IState> {
       lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.learnersLanguage}>
       {isReverseQuestion(questionType) ? phrase : translation}
     </GSCustomText>
+
     return this.userHasAnswered()
       && <EvaluationBanner
         lang={this.props.learnersLanguage}
@@ -195,21 +203,21 @@ class Questions extends React.Component<IProps, IState> {
       hints={this.props.dictionaries}
     />
 
-  renderNextQuestion = () =>
-    <NextButton onPress={this.evaluateOrNext}
-      disabled={this.submitDisallowed()}
+  renderNextQuestion = () => {
+    let text = this.needsEvaluation()
+      ? I18n.t('questions.submit')
+      : I18n.t('questions.continue')
+
+    return <NextButton onPress={this.evaluateOrNext}
+      disabled={this.submitDisallowed() || this.state.movingNext}
       lang={this.props.learnersLanguage}
-      text={
-        this.needsEvaluation()
-          ? I18n.t('questions.submit')
-          : I18n.t('questions.continue')
-      } />
+      text={text} />
+  }
+
 
   renderBodyAndFooter () {
     const ViewWrapper = Platform.OS === 'android' ? View : KeyboardAvoidingView;
-    return <ViewWrapper style={{
-      flex: 1,
-    }}>
+    return <ViewWrapper style={{ flex: 1 }}>
       <GSBody>
         {this.renderQuestionBody()}
       </GSBody>
