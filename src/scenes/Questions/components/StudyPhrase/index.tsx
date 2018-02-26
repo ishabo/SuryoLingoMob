@@ -13,7 +13,7 @@ export default (props: IProps) => {
   const { showSentence, sentence, sound, lang, centralize } = props;
 
   const renderSound = () => <SoundButton key={sound.soundTrack} {...sound} size={centralize ? { large: true } : { small: true }} />
-  const renderPhrase = () => <Phrase key={lang + 'phrase'} obscureText={!showSentence} sentence={sentence} style={{ marginLeft: 5 }} lang={lang} />
+  const renderPhrase = () => <Phrase key={lang + 'phrase'} obscureText={!showSentence} sentence={sentence} lang={lang} />
   const content = [];
 
   if (sound.soundTrack) {
@@ -34,12 +34,13 @@ export default (props: IProps) => {
 const GSContainer = glamor.view<{ centralize: boolean }>(
   {
     flexDirection: 'row',
-    alignContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 5,
+    justifyContent: 'space-between',
   },
   (props) => {
     return {
       marginTop: props.centralize ? 20 : 0,
-
       justifyContent: props.centralize ? 'center' : 'flex-start',
     };
   },

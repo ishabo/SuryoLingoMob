@@ -232,7 +232,7 @@ class Questions extends React.Component<IProps, IState> {
       <Container>
         {this.renderProgressBar()}
         {this.renderBodyAndFooter()}
-        {this.renderEvaluationBanner()}
+        {this.state.movingNext || this.renderEvaluationBanner()}
       </Container >
     ) || <View />;
   }

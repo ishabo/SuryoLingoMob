@@ -2,7 +2,7 @@ import React from 'react';
 import { IWordHint, dashify } from 'helpers';
 import { GSHintedSentence, GSSentence } from './index.styles';
 import PopoverTooltip from 'react-native-popover-tooltip';
-import shortid from 'shortid';
+import { View } from 'react-native';
 
 type TSentence = string | IWordHint[];
 
@@ -31,15 +31,16 @@ export default class Phrase extends React.Component<IProps, IState> {
 
   private renderText = (
     text: string,
-    underline: boolean = false,
+    hasTooltip: boolean = false,
     onPress: () => void = () => { },
   ) =>
     <GSSentence
-      key={shortid.generate()}
       onPress={onPress}
-      underline={underline}
+      hasTooltip={hasTooltip}
       style={this.props.style || {}}
-      lang={this.props.lang}>{this.obscureText(text)}</GSSentence>
+      lang={this.props.lang}>
+      {this.obscureText(text)}
+    </GSSentence>
 
   private renderHint = (translations: string): IHint[] =>
     splitTranslations(translations).map((label: string) => ({
@@ -49,25 +50,24 @@ export default class Phrase extends React.Component<IProps, IState> {
   render () {
     const { sentence } = this.props;
 
-    if (typeof sentence === 'string') {
-      return this.renderText(sentence);
-    }
-
+    const style = { marginRight: 5, marginTop: 2 };
     return <GSHintedSentence>
-      {
+      {typeof sentence === 'string' ? this.renderText(sentence) :
         sentence.map((word: IWordHint, index: number) => {
           if (word.translations && word.translations.length > 0) {
-            const onPress = () => { this[`tooltip${index}`].toggle(); };
+            const tooltip = `tooltip${index}`;
+            const onPress = () => { this[tooltip].toggle(); };
             const buttonCompoent = this.renderText(word.word, true, onPress);
             return <PopoverTooltip
-              ref={(c: Phrase) => this[`tooltip${index}`] = c}
-              key={shortid.generate()}
+              ref={(c: Phrase) => this[tooltip] = c}
+              key={word.key}
               buttonComponent={buttonCompoent}
               items={this.renderHint(word.translations)}
               animationType="timing"
+              componentWrapperStyle={style}
             />;
           } else {
-            return this.renderText(word.word, false);
+            return <View key={word.key} style={style}>{this.renderText(word.word, false)}</View>;
           }
         })
       }

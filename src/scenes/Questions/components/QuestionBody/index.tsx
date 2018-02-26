@@ -213,6 +213,7 @@ const GSOptions = glamor.view({
   justifyContent: 'flex-end',
   alignSelf: 'stretch',
   alignItems: 'center',
+  marginBottom: 10,
 });
 
 export const GSIcon = glamor(Icon)({
