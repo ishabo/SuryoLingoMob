@@ -1,6 +1,7 @@
 import { GSCustomText } from 'styles/text';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
+import { scaleSize } from 'helpers';
 
 export const GSHints = glamor.view({
   flex: 1,
@@ -45,6 +46,6 @@ export const GSSentence = glamor(GSCustomText)<{ hasTooltip: boolean }>(
   },
   props => props.hasTooltip ? ({
     color: Colors.darkBlue,
-    fontSize: props.lang === 'cl-ara' ? 24 : 20,
+    fontSize: props.lang === 'cl-ara' ? scaleSize(24, 16) : scaleSize(20, 16),
   }) : null,
 );

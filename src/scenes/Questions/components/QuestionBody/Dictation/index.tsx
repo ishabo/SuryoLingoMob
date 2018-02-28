@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Container } from 'native-base';
 import { TextArea } from 'components';
 import { IAnswerProps } from '../../../index.types';
 import I18n from 'I18n';
 import { ICourse } from 'services/courses';
+import glamor from 'glamorous-native';
 
 interface IProps extends IAnswerProps {
   reverse: boolean;
@@ -14,20 +14,18 @@ interface IProps extends IAnswerProps {
 export default class Dictation extends React.Component<IProps> {
   render () {
     return (
-      <Container style={styles.container}>
+      <GSContainer>
         <TextArea
           placeholder={I18n.t(`questions.dictation`)}
           captureInput={this.props.collectAnswer}
           showCustomKeyboard={this.props.reverse && !this.props.userHasAnswered}
           inputLanguage={this.props.course.targetLanguage.shortName}
         />
-      </Container>
+      </GSContainer>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'stretch',
-  },
+export const GSContainer = glamor(Container)({
+  alignSelf: 'stretch'
 });

@@ -1,5 +1,6 @@
-import { Body } from 'native-base';
+// import { Body } from 'native-base';
 import glamor from 'glamorous-native';
+import { KeyboardAvoidingView } from 'react-native';
 
 export const GSHeader = glamor.view({
   backgroundColor: 'transparent',
@@ -9,7 +10,8 @@ export const GSHeader = glamor.view({
   marginTop: 10,
 });
 
-export const GSBody = glamor(Body)({
+export const GSBody = glamor(KeyboardAvoidingView)({
+  flex: 1,
   paddingHorizontal: 10,
   alignSelf: 'stretch',
   alignItems: 'stretch',

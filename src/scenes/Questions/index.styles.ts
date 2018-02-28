@@ -1,6 +1,7 @@
 import glamor from 'glamorous-native';
-import { Icon } from 'native-base';
+import { Icon, Container } from 'native-base';
 import { Platform } from 'react-native';
+
 export const GSProgress = glamor.view({
   alignSelf: 'stretch',
   alignItems: 'center',
@@ -14,4 +15,12 @@ export const GSIcon = glamor(Icon)({
   left: 10,
   fontSize: 40,
   color: 'gray',
+});
+
+export const GSFooterAndBody = glamor.view({
+  flex: 1, justifyContent: 'space-between',
+})
+
+export const GSContainer = glamor(Container)({
+
 });

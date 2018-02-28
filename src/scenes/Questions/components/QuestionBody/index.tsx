@@ -1,6 +1,6 @@
 import React from 'react';
-import { KeyboardAvoidingView, Text, WebView } from 'react-native';
-import { Button, Icon } from 'native-base';
+import { WebView } from 'react-native';
+import { Container, Icon } from 'native-base';
 import { IQuestion } from 'services/questions';
 import * as skill from 'services/skills';
 import * as course from 'services/courses';
@@ -20,6 +20,7 @@ import shortid from 'shortid';
 import Colors from 'styles/colors';
 import { IDictionary } from 'services/dictionaries';
 import { downloadAndPlayAudio } from 'helpers/audio';
+import { SwitchButton } from 'components';
 
 interface IProps {
   question: IQuestion;
@@ -28,6 +29,7 @@ interface IProps {
   collectAnswer (answer: TAnswer): void;
   userHasAnswered: boolean;
   hints: IDictionary[];
+  renderNextButton: React.ReactElement<any>;
 }
 
 interface IState {
@@ -35,20 +37,6 @@ interface IState {
   modalOn: boolean;
   audioHasPlayed: boolean;
 }
-
-const SwitchOption = (props: {
-  onPress: () => void;
-  success?: boolean;
-  bordered?: boolean;
-  light?: boolean;
-  text: string;
-}) =>
-  <GSSwitch
-    rounded
-    {...props}
-  >
-    <Text>{props.text}</Text>
-  </GSSwitch>;
 
 class QuestionBody extends React.Component<IProps, IState> {
 
@@ -80,11 +68,12 @@ class QuestionBody extends React.Component<IProps, IState> {
     const buttonProps = this.state.garshoniToggle ?
       { success: true } : { light: true };
 
-    return <SwitchOption
+    return <SwitchButton
       key={shortid.generate()}
       onPress={() => { this.switchGarshoni(); }}
       text={I18n.t('questions.garshoni')}
       {...buttonProps}
+      lang={this.props.course.learnersLanguage.shortName}
     />;
   }
 
@@ -92,11 +81,12 @@ class QuestionBody extends React.Component<IProps, IState> {
     if (isEmpty(this.props.skill.description)) {
       return null;
     }
-    return <SwitchOption
+    return <SwitchButton
       key={shortid.generate()}
       onPress={() => { this.toggleSkillDescription(true); }}
       text={this.props.skill.name}
       light
+      lang={this.props.course.learnersLanguage.shortName}
     />;
   }
 
@@ -170,14 +160,17 @@ class QuestionBody extends React.Component<IProps, IState> {
 
     const options = this.listOptions();
 
-    return <KeyboardAvoidingView
-      style={{ flex: 1, justifyContent: 'flex-start' }}>
+    return <GSContainer>
 
-      {options.length > 0 &&
-        <GSOptions>
-          {options}
-        </GSOptions>
-      }
+      <GSActionButtons>
+        {this.props.renderNextButton}
+
+        {options.length > 0 &&
+          <GSOptions>
+            {options}
+          </GSOptions>
+        }
+      </GSActionButtons>
 
       <StudyPhrase
         sentence={reverse ? question.translation : sentence}
@@ -197,23 +190,25 @@ class QuestionBody extends React.Component<IProps, IState> {
       />
 
       {this.renderModal()}
-    </KeyboardAvoidingView>;
+
+    </GSContainer>;
   }
 }
 
-const GSSwitch = glamor(Button)({
-  paddingVertical: 0,
-  marginHorizontal: 5,
-  paddingHorizontal: 10,
-  height: 30,
+const GSContainer = glamor(Container)({
+  flex: 1, justifyContent: 'flex-start',
+});
+
+const GSActionButtons = glamor.view({
+  justifyContent: 'space-between',
+  flexDirection: 'row',
+  marginBottom: 10,
+  alignSelf: 'stretch',
 });
 
 const GSOptions = glamor.view({
   flexDirection: 'row',
   justifyContent: 'flex-end',
-  alignSelf: 'stretch',
-  alignItems: 'center',
-  marginBottom: 10,
 });
 
 export const GSIcon = glamor(Icon)({

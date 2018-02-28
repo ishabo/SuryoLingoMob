@@ -2,6 +2,7 @@ import React from 'react';
 import Phrase, { IProps as IPhraseProps } from './components/Phrase';
 import SoundButton from './components/SoundButton';
 import glamor from 'glamorous-native';
+import { getWindowWidth } from 'helpers';
 
 interface IProps extends IPhraseProps {
   sound: { soundTrack: string; location?: string; };
@@ -34,9 +35,9 @@ export default (props: IProps) => {
 const GSContainer = glamor.view<{ centralize: boolean }>(
   {
     flexDirection: 'row',
-    alignItems: 'center',
     marginHorizontal: 5,
     justifyContent: 'space-between',
+    maxWidth: getWindowWidth() - 50,
   },
   (props) => {
     return {

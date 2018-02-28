@@ -1,11 +1,11 @@
 import React from 'react';
-import { BackHandler, Keyboard, Alert, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { BackHandler, Keyboard, Alert, View } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
 import {
   navToSkills, evalAgainstAllAnswers, isReverseQuestion,
-  cleanAnswer, getWindowWidth,
+  cleanAnswer, getWindowWidth, isNarrowDevice,
 } from 'helpers';
 import { connect } from 'react-redux';
 import { nextQuestionOrFinish, TQuestionType } from 'services/questions/actions';
@@ -23,11 +23,11 @@ import Colors from 'styles/colors';
 import { getLangConfig } from 'config/language';
 import I18n from 'I18n';
 import { QuestionBody, EvaluationBanner } from './components';
-import { GSIcon, GSProgress } from './index.styles';
+import { GSIcon, GSProgress, GSFooterAndBody, GSContainer } from './index.styles';
 import { GSHeader, GSBody, GSFooter } from 'styles/layouts';
 import { IProps, IState, TAnswer } from './index.types';
 import { NavigationActions } from 'react-navigation';
-import NextButton from 'components/NextButton';
+import { NextButton, SwitchButton } from 'components';
 
 class Questions extends React.Component<IProps, IState> {
 
@@ -37,7 +37,11 @@ class Questions extends React.Component<IProps, IState> {
     answerCorrect: null,
     modalOn: false,
     movingNext: false,
+    keyboardIsOn: false,
   };
+
+  private keyboardDidShowListener;
+  private keyboardDidHideListener;
 
   private userHasAnswered = () =>
     this.state.answerCorrect !== null
@@ -78,10 +82,22 @@ class Questions extends React.Component<IProps, IState> {
 
   componentDidMount () {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
   }
 
   componentWillUnmount () {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
+  }
+
+  private keyboardDidShow = () => {
+    this.setState({ keyboardIsOn: true });
+  }
+
+  private keyboardDidHide = () => {
+    this.setState({ keyboardIsOn: false });
   }
 
   handleBackPress = () => {
@@ -201,7 +217,21 @@ class Questions extends React.Component<IProps, IState> {
       collectAnswer={this.collectAnswer}
       userHasAnswered={this.userHasAnswered()}
       hints={this.props.dictionaries}
+      renderNextButton={this.showSmallButton() ? this.renderNextQuestionSmall() : <View />}
     />
+
+  showSmallButton = () => !this.submitDisallowed() && !this.state.movingNext && this.state.keyboardIsOn && isNarrowDevice()
+
+  renderNextQuestionSmall = () => {
+    let text = this.needsEvaluation()
+      ? I18n.t('questions.submit')
+      : I18n.t('questions.continue')
+
+    return <SwitchButton onPress={this.evaluateOrNext}
+      lang={this.props.learnersLanguage}
+      success
+      text={text} />
+  }
 
   renderNextQuestion = () => {
     let text = this.needsEvaluation()
@@ -216,25 +246,24 @@ class Questions extends React.Component<IProps, IState> {
 
 
   renderBodyAndFooter () {
-    const ViewWrapper = Platform.OS === 'android' ? View : KeyboardAvoidingView;
-    return <ViewWrapper style={{ flex: 1 }}>
+    return <GSFooterAndBody>
       <GSBody>
         {this.renderQuestionBody()}
       </GSBody>
       <GSFooter>
-        {this.renderNextQuestion()}
+        {(this.state.keyboardIsOn && isNarrowDevice()) && <View /> || this.renderNextQuestion()}
       </GSFooter>
-    </ViewWrapper>;
+    </GSFooterAndBody>;
   }
 
   render () {
     return this.props.currentQuestion && (
-      <Container>
+      <GSContainer>
         {this.renderProgressBar()}
         {this.renderBodyAndFooter()}
         {this.state.movingNext || this.renderEvaluationBanner()}
-      </Container >
-    ) || <View />;
+      </GSContainer >
+    ) || <Container />;
   }
 }
 

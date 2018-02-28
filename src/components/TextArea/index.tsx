@@ -45,10 +45,6 @@ export default class TextArea extends React.Component<IProps, IState> {
 
   private textArea;
 
-  private showCustomKeyboard = () => {
-    return this.props.showCustomKeyboard && this.state.keyboardOn === false;
-  }
-
   render () {
     return (
       <GSContainer>
@@ -70,7 +66,7 @@ export default class TextArea extends React.Component<IProps, IState> {
             />
           </GSTextAreaContainer>
 
-          {this.showCustomKeyboard() && <CustomKeyboard
+          {this.props.showCustomKeyboard && <CustomKeyboard
             lang={this.props.inputLanguage}
             letters={Language[this.props.inputLanguage].letters}
             onKeyPress={this.updateValue}

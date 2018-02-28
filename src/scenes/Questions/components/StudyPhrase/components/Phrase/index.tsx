@@ -33,11 +33,12 @@ export default class Phrase extends React.Component<IProps, IState> {
     text: string,
     hasTooltip: boolean = false,
     onPress: () => void = () => { },
+    style: object = {}
   ) =>
     <GSSentence
       onPress={onPress}
       hasTooltip={hasTooltip}
-      style={this.props.style || {}}
+      style={this.props.style || { ...style }}
       lang={this.props.lang}>
       {this.obscureText(text)}
     </GSSentence>
@@ -52,7 +53,7 @@ export default class Phrase extends React.Component<IProps, IState> {
 
     const style = { marginRight: 5, marginTop: 2 };
     return <GSHintedSentence>
-      {typeof sentence === 'string' ? this.renderText(sentence) :
+      {typeof sentence === 'string' ? this.renderText(sentence, false, () => { }, { marginRight: 10 }) :
         sentence.map((word: IWordHint, index: number) => {
           if (word.translations && word.translations.length > 0) {
             const tooltip = `tooltip${index}`;

@@ -2,6 +2,7 @@ import glamor from 'glamorous-native';
 import { getFont } from 'assets/fonts';
 import { Platform } from 'react-native';
 import colors from 'styles/colors';
+import { scaleSize } from 'helpers';
 
 interface ICustomText {
   lang?: TLangs;
@@ -12,7 +13,7 @@ export const GSCustomText = glamor.text<ICustomText>(
   {},
   ({ lang, fontType }) => ({
     fontFamily: Platform.OS === 'ios' ? 'FontAwesome' : getFont(lang || 'cl-ara', fontType),
-    fontSize: lang === 'cl-ara' ? 20 : 18,
+    fontSize: lang === 'cl-ara' ? scaleSize(20, 14) : scaleSize(18, 14),
   }),
 );
 
