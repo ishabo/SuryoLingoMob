@@ -5,3 +5,4 @@ export { default as TextArea } from './TextArea';
 export { default as CustomKeyboard } from './CustomKeyboard';
 export { default as SignonButton } from './SignonButton';
 export { default as SignoutButton } from './SignoutButton';
+export { default as SwitchButton } from './SwitchButton';

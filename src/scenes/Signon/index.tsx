@@ -188,10 +188,11 @@ class Signon extends React.Component<IProps, IState> {
 
   private renderForm = () =>
     <GSForm>
+
       {this.isSignup() && this.renderInput('name', {
         defaultValue: this.props.signon.item.name,
         onSubmitEditing: this.focusOn('email'),
-        returnKeyType: 'next',
+        returnKeyType: 'next'
       }, this.renderBulb('signupName')
       )}
 

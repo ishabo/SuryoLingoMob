@@ -1,6 +1,6 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { isNarrowDevice } from 'helpers';
+import { isNarrowDevice, scaleSize } from 'helpers';
 import { GSCustomText } from 'styles/text';
 
 const height = 120;
@@ -8,7 +8,7 @@ const height = 120;
 export const GSBannerHeader = glamor(GSCustomText)({
   color: Colors.white,
   alignSelf: 'flex-start',
-  fontSize: 26,
+  fontSize: scaleSize(26, 22),
 });
 
 export const GSBanner = glamor.view({
@@ -23,10 +23,11 @@ export const GSBanner = glamor.view({
 export const GSBannerText = glamor(GSCustomText)({
   color: Colors.white,
   alignSelf: 'flex-start',
-  fontSize: 16,
+  fontSize: scaleSize(16, 14),
 });
 
 export const GSBoldText = glamor(GSBannerText)({
+  fontSize: scaleSize(16, 14),
 });
 
 export const GSBannerTail = glamor.view({

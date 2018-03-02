@@ -2,6 +2,7 @@ import React from 'react';
 import Phrase, { IProps as IPhraseProps } from './components/Phrase';
 import SoundButton from './components/SoundButton';
 import glamor from 'glamorous-native';
+import { getWindowWidth } from 'helpers';
 
 interface IProps extends IPhraseProps {
   sound: { soundTrack: string; location?: string; };
@@ -13,7 +14,7 @@ export default (props: IProps) => {
   const { showSentence, sentence, sound, lang, centralize } = props;
 
   const renderSound = () => <SoundButton key={sound.soundTrack} {...sound} size={centralize ? { large: true } : { small: true }} />
-  const renderPhrase = () => <Phrase key={lang + 'phrase'} obscureText={!showSentence} sentence={sentence} style={{ marginLeft: 5 }} lang={lang} />
+  const renderPhrase = () => <Phrase key={lang + 'phrase'} obscureText={!showSentence} sentence={sentence} lang={lang} />
   const content = [];
 
   if (sound.soundTrack) {
@@ -34,12 +35,13 @@ export default (props: IProps) => {
 const GSContainer = glamor.view<{ centralize: boolean }>(
   {
     flexDirection: 'row',
-    alignContent: 'center',
+    marginHorizontal: 5,
+    justifyContent: 'space-between',
+    maxWidth: getWindowWidth() - 50,
   },
   (props) => {
     return {
       marginTop: props.centralize ? 20 : 0,
-
       justifyContent: props.centralize ? 'center' : 'flex-start',
     };
   },

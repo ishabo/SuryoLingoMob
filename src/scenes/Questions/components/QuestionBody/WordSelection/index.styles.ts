@@ -8,9 +8,8 @@ interface IWordProps {
 }
 
 export const GSWordBox = glamor.view({
-  height: 40,
-  marginRight: 10,
-  marginBottom: 10,
+  // height: 40,
+  margin: 5
 });
 
 export const GSWordText = glamor(GSCustomText)<IWordProps>(
@@ -47,6 +46,6 @@ export const GSAnswerBox = glamor.view({
 export const GSTitle = glamor(GSCustomText)({
   alignSelf: 'center',
   fontSize: 18,
-  marginVertical: 20,
+  marginVertical: 10,
   textAlign: 'left',
 });

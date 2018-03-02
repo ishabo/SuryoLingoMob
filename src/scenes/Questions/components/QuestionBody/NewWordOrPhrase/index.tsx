@@ -23,7 +23,7 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
     const learnersLang = course.learnersLanguage.shortName as TLangs;
     return (
       <GSContainer>
-        <Phrase lang={targetLang} sentence={sentence} style={{ fontSize: 30 }} />
+        <Phrase lang={targetLang} sentence={sentence} style={{ fontSize: 28 }} />
         <GSMeaning lang={learnersLang}>
           {I18n.t(`questions.phraseMeaning`)}
         </GSMeaning>
@@ -35,15 +35,15 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
 
 export const GSContainer = glamor(Container)({
   paddingVertical: 50,
+  alignItems: 'center',
 });
 
 export const GSMeaning = glamor(GSCustomText)({
-  alignSelf: 'center',
   marginVertical: 30,
 });
 
 export const GSPhrase = glamor(GSCustomText)({
-  alignSelf: 'center',
   textAlign: 'center',
-  fontSize: 30,
+  fontSize: 28,
+  flexWrap: 'wrap',
 });

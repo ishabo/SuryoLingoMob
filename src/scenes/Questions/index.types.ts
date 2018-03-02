@@ -13,6 +13,7 @@ export interface IState {
   answerCorrect: boolean;
   modalOn: boolean;
   movingNext: boolean;
+  keyboardIsOn: boolean;
 }
 
 export interface IAnswerProps {

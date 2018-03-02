@@ -78,7 +78,7 @@ export default class WordSelection extends React.Component<IProps, IState> {
   }
 
   answerHasWord = (word: IWord) =>
-    this.state.answer.find((w: IWord) => w.word === word.word)
+    this.state.answer.find((w: IWord) => w.id === word.id)
 
   updateAnswers = (word: IWord, action: 'add' | 'remove', saveCallback: () => void) => {
     const { answer } = this.state;
@@ -87,8 +87,8 @@ export default class WordSelection extends React.Component<IProps, IState> {
       answer.push(word);
     }
 
-    if (action === 'remove') {
-      remove(answer, (w: IWord) => w.word === word.word);
+    if (this.answerHasWord(word) && action === 'remove') {
+      remove(answer, (w: IWord) => w.id === word.id);
     }
 
     this.setState({ answer }, () => {
@@ -119,12 +119,12 @@ export default class WordSelection extends React.Component<IProps, IState> {
   }
 
   renderAnswerWords = () => this.state.answer.map((word: IWord, _: number) =>
-    <GSWordBox key={shortid.generate()}>
+    <GSWordBox key={word.id}>
       {this.renderWord(word, true)}
     </GSWordBox>)
 
   renderShuffledWords = () => this.state.shuffledWords.map((word: IWord, _: number) =>
-    <GSWordBox key={shortid.generate()} >
+    <GSWordBox key={word.id} >
       {word.selected
         ? <GSWordText lang={this.getWordTextLang()} shadowed>{word.word}</GSWordText>
         : this.renderWord(word)
@@ -147,7 +147,6 @@ export default class WordSelection extends React.Component<IProps, IState> {
   render () {
     return (
       <Container>
-
         <GSAnswerBox>
           {this.renderAnswerWords()}
         </GSAnswerBox>

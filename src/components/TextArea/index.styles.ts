@@ -13,7 +13,6 @@ export const GSContainer = glamor(Container)({
 });
 
 export const GSContent = glamor.view({
-  marginTop: 10,
   justifyContent: 'flex-start',
   flex: 1,
 });

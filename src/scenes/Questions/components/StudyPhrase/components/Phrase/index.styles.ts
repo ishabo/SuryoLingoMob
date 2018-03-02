@@ -1,6 +1,7 @@
 import { GSCustomText } from 'styles/text';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
+import { scaleSize } from 'helpers';
 
 export const GSHints = glamor.view({
   flex: 1,
@@ -32,19 +33,19 @@ export const GSHintText = glamor.text({
 
 export const GSHintedSentence = glamor.view({
   flexDirection: 'row',
-  justifyContent: 'center',
+  flexWrap: 'wrap',
+  marginBottom: 10,
+  marginLeft: 10,
+  marginTop: 0,
 });
 
-export const GSSentence = glamor(GSCustomText)<{ underline: boolean }>(
+export const GSSentence = glamor(GSCustomText)<{ hasTooltip: boolean }>(
   {
-    padding: 0,
-    margin: 0,
-    marginHorizontal: 4,
-    alignSelf: 'center',
+    paddingTop: 3,
+    flexWrap: 'wrap',
   },
-  props => props.underline ? ({
-    borderBottomWidth: 1,
-    textDecorationStyle: 'dotted',
-    fontSize: props.lang === 'cl-ara' ? 24 : 20,
+  props => props.hasTooltip ? ({
+    color: Colors.darkBlue,
+    fontSize: props.lang === 'cl-ara' ? scaleSize(24, 16) : scaleSize(20, 16),
   }) : null,
 );
