@@ -5,6 +5,7 @@ import {
 import Colors from 'styles/colors';
 import glamor from 'glamorous-native';
 import { GSCustomText } from 'styles/text';
+import { scaleSize } from 'helpers';
 
 export const GSLebel = glamor(Label)({
   color: 'black',
@@ -13,6 +14,7 @@ export const GSLebel = glamor(Label)({
 export const GSInput = glamor(Input)<{ dir?: 'rtl' | 'ltr' }>(
   {
     paddingRight: 50,
+    fontSize: scaleSize(18, 14),
   },
   ({ dir }) => ({
     writingDirection: dir ? 'rtl' : dir,

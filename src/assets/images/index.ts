@@ -1,6 +1,7 @@
 const Images = {
   icons: {
     speaker: require(`../../../src/assets/images/speaker.png`),
+    noSpeaker: require(`../../../src/assets/images/noSpeaker.png`),
   },
   logo: {
     splash: require(`../../../src/assets/images/SuryoLingo-Logo.png`),

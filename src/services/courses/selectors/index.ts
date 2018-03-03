@@ -8,7 +8,7 @@ const getLanguage = (state: ICourse[], lang: 'target' | 'learners') => {
   if (activeCourse) {
     return activeCourse[`${lang}Language`].shortName;
   } else {
-    throw new Error('No active course selected!');
+    return 'cl-ara';
   }
 };
 export const getTargetLanguage = (state: ICourse[]) => getLanguage(state, 'target');

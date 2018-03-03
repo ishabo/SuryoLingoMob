@@ -5,9 +5,8 @@ import {
   NavigationResetActionPayload,
 } from 'react-navigation';
 import I18n from 'I18n';
-import config from 'config/';
 import { finishLesson } from 'services/progress/actions';
-import { ILesson, ISkill } from 'services/skills';
+import { ILesson, ISkill, ILessonHistory } from 'services/skills';
 import { GSContainer, GSCongratMessage, GSXPGain, GSNextButton } from './index.styles';
 import { IInitialState } from 'services/reducers';
 import {
@@ -22,7 +21,7 @@ import { IProfile } from 'services/profile';
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void;
-  finishLesson?: (lessonXP: number) => void;
+  finishLesson?: () => void;
   lessonInProgress: ILesson;
   profile: IProfile;
   skillInProgress: ISkill;
@@ -47,7 +46,7 @@ class Completion extends React.Component<IProps, IState> {
   };
 
   componentDidMount () {
-    setTimeout(() => this.props.finishLesson(config.lessonXP), 200);
+    setTimeout(() => this.props.finishLesson(), 200);
     this.countDown();
   }
 
@@ -87,13 +86,14 @@ class Completion extends React.Component<IProps, IState> {
 
   render () {
     const { order } = this.props.lessonInProgress;
+    const lastAccomplishment: ILessonHistory = this.props.lessonInProgress.lessonHistory.slice(-1)[0];
     return (
       <GSContainer>
         <GSCongratMessage>
           {I18n.t('completion.congratulations', { order })}
         </GSCongratMessage>
         <GSXPGain>
-          {I18n.t('completion.xpGain', { xp: config.lessonXP })}
+          {I18n.t('completion.xpGain', { xp: lastAccomplishment.thisLessonXp })}
         </GSXPGain>
         <GSNextButton>
           {this.renderBackToLessonsButton()}

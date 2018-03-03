@@ -5,10 +5,10 @@ import * as questions from 'services/questions';
 import {
   getLessonInProgress, getSkillsByUnit,
   getSkillInProgress, getActiveCourse,
-  getLessonsToSync,
+  getLessonsToSync, numOfTimesLessonInProgressPassed,
   calcTotaluserXp,
 } from 'services/selectors';
-
+import config from 'config/';
 import { setLessonInProgress } from '../actions';
 import * as skills from 'services/skills';
 import moment from 'moment';
@@ -16,13 +16,27 @@ import { ISagasFunctions } from 'services/sagas';
 import { saveProfile } from 'services/profile/actions';
 import { IInitialState } from 'services/reducers';
 
-export function* enterLesson(action: progress.IProgressAction): IterableIterator<any> {
+export function* enterLesson (action: progress.IProgressAction): IterableIterator<any> {
   yield put(setLessonInProgress(action.lessonId));
   yield put(questions.actions.fetchQuestionsForLesson(action.lessonId));
 }
 
-export function* finishLesson(action: progress.IProgressAction): IterableIterator<any> {
-  const { lessonXP } = action;
+const calcLessonXp = (lessonXp: number, timesLessonPassed: number) => {
+  let newLessonXp = lessonXp;
+
+  switch (timesLessonPassed) {
+    case 0: newLessonXp = lessonXp; break;
+    case 1: newLessonXp = lessonXp / 2; break;
+    case 2: newLessonXp = lessonXp / 4; break;
+    default: newLessonXp = lessonXp / 10; break;
+  }
+  return Math.ceil(newLessonXp);
+}
+
+export function* finishLesson (): IterableIterator<any> {
+  let { lessonXP } = config;
+  const numOfTimesLessonPassed = yield select(numOfTimesLessonInProgressPassed);
+  lessonXP = calcLessonXp(lessonXP, numOfTimesLessonPassed);
   const { id: lessonId } = yield select(getLessonInProgress);
   const course = yield select(getActiveCourse);
   const skillInProgress = yield select(getSkillInProgress);
@@ -53,7 +67,7 @@ export function* finishLesson(action: progress.IProgressAction): IterableIterato
   yield put(progress.actions.syncFinishedLessons());
 }
 
-export function* syncFinishedLessons(): IterableIterator<any> {
+export function* syncFinishedLessons (): IterableIterator<any> {
   const lessonsToSync = yield select(getLessonsToSync);
   try {
     yield call(progress.api.syncFinishedLessons, lessonsToSync);

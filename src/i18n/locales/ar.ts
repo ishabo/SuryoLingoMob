@@ -208,6 +208,12 @@ export default {
       },
       skip: 'سجل لاحقاً',
     },
+    details: {
+      name: 'الاسم',
+      email: 'الإيميل',
+      userXp: 'نقاط الخبرة',
+      appVersion: 'نسخة البرنامج'
+    }
   },
   passwordRecovery: {
     title: 'ارسل طلب تجديد لكلمة السر',

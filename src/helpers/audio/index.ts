@@ -35,8 +35,12 @@ export const downloadFile = async (
   console.log(`Looking for file ${localSoundTrackPath}`);
 
   if (!fileExists) {
-    await RNFS.downloadFile({ fromUrl: soundTrack, toFile: localSoundTrackPath });
-    console.log('Downloaded file at ' + localSoundTrackPath);
+    try {
+      await RNFS.downloadFile({ fromUrl: soundTrack, toFile: localSoundTrackPath });
+      console.log('Downloaded file at ' + localSoundTrackPath);
+    } catch (error) {
+      console.warn('Could not download file', error);
+    }
   } else {
     console.log(`Found file ${localSoundTrackPath}`);
   }

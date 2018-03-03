@@ -18,7 +18,7 @@ const colors = {
   darkGreen: '#5F9315',
 
   // blue
-  lightBlue: '#86ACEA',
+  lightBlue: '#9fd2f2',
   blue: '#457FDE',
   darkBlue: '#1F55AD',
 

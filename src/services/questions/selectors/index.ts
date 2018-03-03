@@ -1,7 +1,7 @@
 import { IQuestions, IQuestion } from '../';
 import { isReverseQuestion } from 'helpers';
 
-export const getpending = (state: IQuestions) => state.pending;
+export const getPending = (state: IQuestions) => state.pending;
 
 export const calcProress = (state: IQuestions): number =>
   1 - (state.pending.length / state.onGoing.length);
