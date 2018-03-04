@@ -5,9 +5,7 @@ import {
   NavigationResetActionPayload,
 } from 'react-navigation';
 import I18n from 'I18n';
-import config from 'config/';
-import { finishLesson } from 'services/progress/actions';
-import { ILesson, ISkill } from 'services/skills';
+import { ILesson, ISkill, ILessonHistory } from 'services/skills';
 import { GSContainer, GSCongratMessage, GSXPGain, GSNextButton } from './index.styles';
 import { IInitialState } from 'services/reducers';
 import {
@@ -16,13 +14,13 @@ import {
   isRegistered,
   getLearnersLanguage,
 } from 'services/selectors';
+import config from 'config/';
 import { resetToLessons, resetToSkills } from 'helpers/navigation';
 import { NextButton, SignonButton } from 'components/';
 import { IProfile } from 'services/profile';
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void;
-  finishLesson?: (lessonXP: number) => void;
   lessonInProgress: ILesson;
   profile: IProfile;
   skillInProgress: ISkill;
@@ -32,6 +30,7 @@ interface IProps {
 
 interface IState {
   timeToSkipAdd: number;
+  lessonXp: number;
 }
 
 const decreaseIntervals = 1000;
@@ -40,6 +39,7 @@ class Completion extends React.Component<IProps, IState> {
 
   state = {
     timeToSkipAdd: 0,
+    lessonXp: config.lessonXP,
   };
 
   static navigationOptions = {
@@ -47,9 +47,15 @@ class Completion extends React.Component<IProps, IState> {
   };
 
   componentDidMount () {
-    setTimeout(() => this.props.finishLesson(config.lessonXP), 200);
+    const lastAccomplishment: ILessonHistory = this.props.lessonInProgress.lessonHistory.slice(-1)[0];
+
+    if (lastAccomplishment) {
+      this.setState({ lessonXp: lastAccomplishment.thisLessonXp });
+    }
+
     this.countDown();
   }
+
 
   countDown = () => {
     setTimeout(() => {
@@ -87,13 +93,14 @@ class Completion extends React.Component<IProps, IState> {
 
   render () {
     const { order } = this.props.lessonInProgress;
+
     return (
       <GSContainer>
         <GSCongratMessage>
           {I18n.t('completion.congratulations', { order })}
         </GSCongratMessage>
         <GSXPGain>
-          {I18n.t('completion.xpGain', { xp: config.lessonXP })}
+          {I18n.t('completion.xpGain', { xp: this.state.lessonXp })}
         </GSXPGain>
         <GSNextButton>
           {this.renderBackToLessonsButton()}
@@ -107,8 +114,6 @@ class Completion extends React.Component<IProps, IState> {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  finishLesson: (lessonXP: number) =>
-    dispatch(finishLesson(lessonXP)),
   navigationReset: (reset: NavigationResetActionPayload) =>
     dispatch(NavigationActions.reset(reset)),
 });

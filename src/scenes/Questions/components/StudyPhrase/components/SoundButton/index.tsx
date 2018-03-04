@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native';
 import { downloadAndPlayAudio } from 'helpers/audio';
 
 interface IProps {
-  soundTrack: string;
+  soundTrack?: string;
   size: { large?: boolean; small?: boolean; };
 }
 

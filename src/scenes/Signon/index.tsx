@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   BackHandler, TextInputProperties,
-  Text, Keyboard, Alert, View,
+  Keyboard, Alert, View,
 } from 'react-native';
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
@@ -160,9 +160,9 @@ class Signon extends React.Component<IProps, IState> {
     <View>
       <GSItem inlineLabel error={this.hasError(name)}>
         <GSLebel>
-          <Text onPress={this.focusOn(name)}>
+          <GSCustomText onPress={this.focusOn(name)}>
             {I18n.t(`profile.form.fields.${name}`)}
-          </Text>
+          </GSCustomText>
         </GSLebel>
         <GSInput ref={c => this[name] = c}
           dir="ltr"

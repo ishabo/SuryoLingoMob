@@ -159,6 +159,7 @@ class QuestionBody extends React.Component<IProps, IState> {
     }) : hintify(question.phrase, this.props.hints);
 
     const options = this.listOptions();
+    const lang = course[reverse || this.state.garshoniToggle ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs
 
     return <GSContainer>
 
@@ -176,7 +177,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         sentence={reverse ? question.translation : sentence}
         sound={{ soundTrack: this.showAndPlaySound() ? this.pathToSoundTrack() : null }}
         showSentence={showPhraseInHeader}
-        lang={course[reverse || this.state.garshoniToggle ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs}
+        lang={lang}
         centralize={centralizeAudio}
       />
 
@@ -186,7 +187,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         userHasAnswered={userHasAnswered}
         course={course}
         reverse={reverse}
-        lang={course[reverse || this.state.garshoniToggle ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs}
+        lang={lang}
       />
 
       {this.renderModal()}

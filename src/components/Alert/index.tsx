@@ -2,16 +2,17 @@ import React from 'react';
 import { MessageBar, MessageBarManager } from 'react-native-message-bar';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
-import { IException } from 'services/exceptions';
 import I18n from 'I18n';
 import { getLatestException } from 'services/selectors';
 import config from 'config';
 import { Dispatch } from 'redux';
 import * as signon from 'services/signon';
 import * as api from 'services/api/reducers';
+import * as exceptions from 'services/exceptions';
 
 interface IProps {
-  lastException: IException;
+  removeException: (id: number) => void;
+  lastException: exceptions.IException;
   apiStatus: api.IApiStatus;
   signout: () => void;
 }
@@ -35,8 +36,8 @@ class Alert extends React.Component<IProps> {
   }
 
   componentWillReceiveProps (nextProps: Partial<IProps>) {
-    if (nextProps.lastException) {
-      const exception = nextProps.lastException;
+    const exception = nextProps.lastException;
+    if (exception) {
       alertType = config.alerts[exception.name]
         ? config.alerts[exception.name].alertType : 'error';
       title = I18n.t(`alert.${exception.name}.title`);
@@ -54,7 +55,13 @@ class Alert extends React.Component<IProps> {
     }
 
     if (doAlert) {
-      MessageBarManager.showAlert({ alertType, title, message, durationToHide });
+      MessageBarManager.showAlert({
+        alertType, title, message, durationToHide, onHide: () => {
+          if (exception) {
+            this.props.removeException(exception.id);
+          }
+        }
+      });
     }
 
   }
@@ -66,6 +73,7 @@ class Alert extends React.Component<IProps> {
 
 const mapStateToDispatch = (dispatch: Dispatch<any>): Partial<IProps> => ({
   signout: () => dispatch(signon.actions.signout()),
+  removeException: (id: number) => dispatch(exceptions.actions.remove(id)),
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({

@@ -13,7 +13,7 @@ export const GSCustomText = glamor.text<ICustomText>(
   {},
   ({ lang, fontType }) => ({
     fontFamily: Platform.OS === 'ios' ? 'FontAwesome' : getFont(lang || 'cl-ara', fontType),
-    fontSize: lang === 'cl-ara' ? scaleSize(20, 14) : scaleSize(18, 14),
+    fontSize: lang === 'cl-ara' ? scaleSize(20, 16) : scaleSize(18, 14),
   }),
 );
 

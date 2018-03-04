@@ -46,6 +46,6 @@ export const GSSentence = glamor(GSCustomText)<{ hasTooltip: boolean }>(
   },
   props => props.hasTooltip ? ({
     color: Colors.darkBlue,
-    fontSize: props.lang === 'cl-ara' ? scaleSize(24, 16) : scaleSize(20, 16),
+    fontSize: props.lang === 'cl-ara' ? scaleSize(24, 20) : scaleSize(20, 16),
   }) : null,
 );

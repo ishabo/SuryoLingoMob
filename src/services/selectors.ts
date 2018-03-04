@@ -13,7 +13,7 @@ import { ILessonToSync } from 'services/progress';
 const allLessons = (skills: skills.ISkill[]) =>
   [].concat.apply([], skills.map((skill: skills.ISkill) => skill.lessons));
 
-const selectLesson = (skills: skills.ISkill[], lessonId: string) =>
+const selectLesson = (skills: skills.ISkill[], lessonId: string): skills.ILesson =>
   allLessons(skills).find((lesson: skills.ILesson) => lesson.id === lessonId);
 
 export const getActiveCourse = (state: IInitialState): courses.ICourse =>
@@ -25,8 +25,8 @@ export const getTargetLanguage = (state: IInitialState) =>
 export const getLearnersLanguage = (state: IInitialState) =>
   courses.selectors.getLearnersLanguage(state.courses);
 
-export const getpending = (state: IInitialState) =>
-  questions.selectors.getpending(state.questions);
+export const getPending = (state: IInitialState) =>
+  questions.selectors.getPending(state.questions);
 
 export const calcProress = (state: IInitialState) =>
   questions.selectors.calcProress(state.questions);
@@ -84,6 +84,14 @@ export const getSkillLessons = (skillId: string) => (state: IInitialState): skil
   orderLessonsByOrder(
     state.skills.find((skill: skills.ISkill) => skill.id === skillId).lessons,
   );
+
+export const numOfTimesLessonInProgressPassed = (state: IInitialState): number => {
+  const lesson = selectLesson(state.skills, state.progress.lessonInProgress);
+  if (lesson) {
+    return lesson.lessonHistory.length;
+  }
+  return 0;
+}
 
 export const getLessonsToSync = (state: IInitialState): ILessonToSync[] =>
   state.progress.lessonsToSync;

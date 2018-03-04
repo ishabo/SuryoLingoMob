@@ -13,7 +13,6 @@ export interface IProgressAction {
   type: string;
   skillId?: string;
   lessonId?: string;
-  lessonXP?: number;
   userXp?: number;
   lessonToSync?: ILessonToSync;
 }

@@ -12,6 +12,7 @@ export interface IProfile {
   email?: string;
   userXp?: number;
   deviceId?: string;
+  isTester?: boolean;
 }
 
 export interface ISignonFormData {

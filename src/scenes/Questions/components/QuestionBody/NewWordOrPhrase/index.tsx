@@ -8,6 +8,7 @@ import { ICourse } from 'services/courses';
 import Phrase, {
   IProps as IPhraseProps,
 } from 'scenes/Questions/components/StudyPhrase/components/Phrase';
+import { scaleSize } from 'helpers';
 
 interface IProps extends IAnswerProps, IPhraseProps {
   translation: string;
@@ -23,7 +24,7 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
     const learnersLang = course.learnersLanguage.shortName as TLangs;
     return (
       <GSContainer>
-        <Phrase lang={targetLang} sentence={sentence} style={{ fontSize: 28 }} />
+        <Phrase lang={targetLang} sentence={sentence} style={{ fontSize: scaleSize(28, 22) }} />
         <GSMeaning lang={learnersLang}>
           {I18n.t(`questions.phraseMeaning`)}
         </GSMeaning>
@@ -44,6 +45,6 @@ export const GSMeaning = glamor(GSCustomText)({
 
 export const GSPhrase = glamor(GSCustomText)({
   textAlign: 'center',
-  fontSize: 28,
+  fontSize: scaleSize(28, 22),
   flexWrap: 'wrap',
 });

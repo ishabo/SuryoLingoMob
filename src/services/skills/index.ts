@@ -4,6 +4,7 @@ import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
 import { Moment } from 'moment';
+import { IQuestion } from 'services/questions';
 
 export interface ILessonHistory {
   timestamp: Moment;
@@ -17,6 +18,7 @@ export interface ILesson {
   finished?: boolean;
   totalLessonXp?: number;
   lessonHistory?: ILessonHistory[];
+  questions?: IQuestion[];
 }
 
 export interface ISkill {

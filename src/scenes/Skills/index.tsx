@@ -62,8 +62,11 @@ class Skills extends React.Component<any, State> {
   }
 
   private enterSkill = (skill: ISkill) => {
-    skill.active ? this.goToLessons(skill) : alert(I18n.t('skills.skillInactive'));
+    this.isSkillActive(skill) ? this.goToLessons(skill) : alert(I18n.t('skills.skillInactive'));
   }
+
+  private isSkillActive = (skill: ISkill): boolean =>
+    skill.active || this.props.profile.isTester
 
   private renderSkills (skills: ISkill[]) {
     return skills.map((skill: ISkill) =>
@@ -72,7 +75,7 @@ class Skills extends React.Component<any, State> {
         name={skill.name}
         icon={skill.icon}
         progress={skill.progress ? skill.progress : 0}
-        unlocked={skill.active}
+        unlocked={this.isSkillActive(skill)}
         onSkillsClick={() => this.enterSkill(skill)} />);
   }
 
