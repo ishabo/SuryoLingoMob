@@ -17,8 +17,7 @@ export const enterLesson = (lessonId: string) => ({
   type: types.ENTER_LESSON,
 });
 
-export const finishLesson = (lessonXP: number) => ({
-  lessonXP,
+export const finishLesson = () => ({
   type: types.FINISH_LESSON,
 });
 

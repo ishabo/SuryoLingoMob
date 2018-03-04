@@ -89,5 +89,7 @@ const stopAndPlayAudio = () => {
         console.log(`Played sound track ${currentlyPlaying}`, JSON.stringify(audio));
       });
     });
+  } else {
+    console.warn('What? Audio is not an object?', currentlyPlaying);
   }
 };

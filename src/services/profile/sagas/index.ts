@@ -4,6 +4,7 @@ import { isEmpty } from 'lodash';
 import { IInitialState } from 'services/reducers';
 import { ISagasFunctions } from 'services/sagas';
 import { setAccessToken } from 'services/api/access';
+import { isRegistered } from 'services/selectors';
 
 export function* createProfile (action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
@@ -26,6 +27,18 @@ export function* updateProfile (action: profile.IProfileAction): IterableIterato
     yield put(profile.actions.saveProfileAndAccessToken(profileData));
   } catch (error) {
     console.log(error);
+  }
+}
+
+export function* fetchProfile (): IterableIterator<any> {
+  const userIsRegistered = yield select(isRegistered);
+  if (userIsRegistered) {
+    try {
+      const response = yield call(profile.api.getUser);
+      yield put(profile.actions.saveProfile(response));
+    } catch (error) {
+      console.warn(error);
+    }
   }
 }
 

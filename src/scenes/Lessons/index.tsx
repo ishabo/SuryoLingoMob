@@ -14,6 +14,7 @@ import { SkillIcon } from '../Skills/components';
 import glamor from 'glamorous-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { GSCustomText } from 'styles/text';
+import { IProfile } from 'services/profile';
 
 interface IProps {
   getLessons (skillId: string): ILesson[];
@@ -21,6 +22,7 @@ interface IProps {
   navigation: NavigationScreenProp<any, any>;
   learnersLanguage: TLangs;
   targetLanguage: TLangs;
+  profile: IProfile;
 }
 
 interface IState {
@@ -80,6 +82,9 @@ class Lessons extends React.Component<IProps, IState> {
   }
 
   private isLessonActive = (lesson: ILesson): boolean => {
+    if (this.props.profile.isTester) {
+      return true;
+    }
     if (lesson.finished || lesson.order === 1) {
       return true;
     } else {
@@ -158,6 +163,7 @@ const mapStateToProps = (state: IInitialState) => ({
   learnersLanguage: getLearnersLanguage(state),
   targetLanguage: getTargetLanguage(state),
   getLessons: (skillId: string) => getSkillLessons(skillId)(state),
+  profile: state.profile,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

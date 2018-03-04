@@ -1,4 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import * as questions from '../';
 import { NavigationActions } from 'react-navigation';
 import { getPending, getLessonInProgress } from '../../selectors';
@@ -7,6 +8,7 @@ import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
 import { downloadFile } from 'helpers';
 import cloneDeep from 'clone-deep';
+import { finishLesson } from 'services/progress/sagas';
 
 export function* fetchQuestions (action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(setLoadingOn());
@@ -68,6 +70,10 @@ export function* nextQuestionOrFinish (action: questions.IQuestionsAction): Iter
   let routeName = 'Questions';
 
   if (pending.length === 0) {
+    yield call(finishLesson);
+    yield put(setLoadingOn());
+    delay(500);
+    yield put(setLoadingOff());
     routeName = 'Completion';
   }
 
