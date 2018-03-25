@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { NextButton } from 'components';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';

@@ -5,13 +5,13 @@ import { GSCustomText } from 'styles/text';
 
 const height = 120;
 
-export const GSBannerHeader = glamor(GSCustomText)({
+export const GSBannerHeader: any = glamor(GSCustomText)({
   color: Colors.white,
   alignSelf: 'flex-start',
   fontSize: scaleSize(26, 22),
 });
 
-export const GSBanner = glamor.view({
+export const GSBanner: any = glamor.view({
   height,
   left: 0,
   bottom: 100,
@@ -20,32 +20,32 @@ export const GSBanner = glamor.view({
   zIndex: 100,
 });
 
-export const GSBannerText = glamor(GSCustomText)({
+export const GSBannerText: any = glamor(GSCustomText)({
   color: Colors.white,
   alignSelf: 'flex-start',
   fontSize: scaleSize(16, 14),
 });
 
-export const GSBoldText = glamor(GSBannerText)({
+export const GSBoldText: any = glamor(GSBannerText)({
   fontSize: scaleSize(16, 14),
 });
 
-export const GSBannerTail = glamor.view({
+export const GSBannerTail: any = glamor.view({
   width: 100,
   marginLeft: -25,
 });
 
-export const GSMessageBox = glamor.view({
+export const GSMessageBox: any = glamor.view({
   height,
   width: isNarrowDevice() ? 230 : 270,
   padding: 15,
   alignContent: 'flex-start',
 });
 
-export const GSMessageText = glamor.view({
+export const GSMessageText: any = glamor.view({
 });
 
-export const GSTriangle = glamor.view<{ color: string, upsideDown?: boolean }>(
+export const GSTriangle: any = glamor.view<{ color: string, upsideDown?: boolean }>(
   {
     position: 'absolute',
     left: 0,

@@ -1,5 +1,3 @@
-// declare module 'apisauce';
-
 interface IDictionary<T extends number | string> {
   [k: string]: T;
 }

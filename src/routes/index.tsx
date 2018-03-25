@@ -7,20 +7,45 @@ import Questions from 'scenes/Questions';
 import Completion from 'scenes/Completion';
 import Profile from 'scenes/Profile';
 import PasswordRecovery from 'scenes/PasswordRecovery';
-
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarTop } from 'react-navigation';
+import colors from 'styles/colors';
 
 const TabStack = TabNavigator(
   {
-    Skills: { screen: Skills },
     Courses: { screen: Courses },
+    Skills: { screen: Skills },
     Profile: { screen: Profile },
   },
   {
-    tabBarComponent: TabBarBottom,
+    tabBarComponent: TabBarTop,
     tabBarPosition: 'bottom',
     animationEnabled: false,
+    swipeEnabled: true,
     lazy: true,
+    tabBarOptions: {
+      activeTintColor: colors.white,
+      inactiveTintColor: colors.white,
+      inactiveBackgroundColor: colors.orange,
+      activeBackgroundColor: colors.yellow,
+      showIcon: false,
+      indicatorStyle: {
+        borderBottomColor: colors.white,
+        borderBottomWidth: 2,
+      },
+      labelStyle: {
+        fontSize: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      style: {
+        backgroundColor: colors.orange,
+      },
+      tabStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      }
+    },
+
   },
 );
 

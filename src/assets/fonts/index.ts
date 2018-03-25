@@ -1,17 +1,18 @@
-import { Platform } from 'react-native';
+const EstrangeloEdessa = 'Serto Urhoy';
+const Aljazeera = 'Al-Jazeera-Arabic-Regular';
 
 const fonts = {
   'cl-syr': {
-    bold: 'SertoRegular',
-    regular: 'SertoRegular',
+    bold: EstrangeloEdessa,
+    regular: EstrangeloEdessa,
   },
   'tor-syr': {
-    bold: 'SertoRegular',
-    regular: 'SertoRegular',
+    bold: EstrangeloEdessa,
+    regular: EstrangeloEdessa,
   },
   'cl-ara': {
-    bold: Platform.OS === 'android' ? 'AljazeeraBold' : 'FontAwesome',
-    regular: Platform.OS === 'android' ? 'AljazeeraRegular' : 'FontAwesome',
+    bold: Aljazeera,
+    regular: Aljazeera,
   },
 };
 
@@ -20,6 +21,6 @@ export const getFont = (lang: TLangs, fontType?: 'bold' | 'regular') => {
     return fonts[lang][fontType ? fontType : 'regular'];
   } catch (_) {
     console.warn(lang);
+    return fonts['cl-ara']['regular'];
   }
-  return 'AjazeeraRegular';
 };

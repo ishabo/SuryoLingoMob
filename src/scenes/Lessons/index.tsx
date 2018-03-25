@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Container } from 'native-base';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
@@ -135,26 +135,26 @@ class Lessons extends React.Component<IProps, IState> {
   }
 }
 
-const GSContainer = glamor(Container)({
+const GSContainer: any = glamor(Container)({
   alignItems: 'center',
   alignSelf: 'stretch',
   justifyContent: 'space-between',
 });
 
-const GSLessonIcon = glamor.view({
+const GSLessonIcon: any = glamor.view({
   position: 'absolute',
   top: 10,
   width: 150,
 });
 
-const GSLessonInstruction = glamor.view({
+const GSLessonInstruction: any = glamor.view({
   justifyContent: 'center',
   alignSelf: 'center',
   marginTop: 150,
   marginBottom: 20,
 });
 
-const GSAnimatable = glamor(Animatable.View)({
+const GSAnimatable: any = glamor(Animatable.View)({
   alignSelf: 'center',
   justifyContent: 'center',
 });

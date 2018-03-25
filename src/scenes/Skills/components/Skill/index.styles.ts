@@ -2,23 +2,23 @@ import { Image } from 'react-native';
 import glamor from 'glamorous-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-export const GSBackground = glamor(Image)({
+export const GSBackground: any = glamor(Image)({
     height: 120,
     width: 120,
 });
 
-export const GSSkills = glamor.view({
+export const GSSkills: any = glamor.view({
     flexDirection: 'column',
     marginTop: 20,
     alignContent: 'center',
 });
 
-export const GSSkillsTitle = glamor.text({
+export const GSSkillsTitle: any = glamor.text({
     alignSelf: 'center',
     marginTop: 10,
 });
 
-export const GSCircle = glamor(LinearGradient)({
+export const GSCircle: any = glamor(LinearGradient)({
     width: 85.3,
     height: 85,
     borderRadius: 50,

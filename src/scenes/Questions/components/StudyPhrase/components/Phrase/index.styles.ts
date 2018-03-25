@@ -3,7 +3,7 @@ import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { scaleSize } from 'helpers';
 
-export const GSHints = glamor.view({
+export const GSHints: any = glamor.view({
   flex: 1,
   backgroundColor: Colors.lightBlack,
   paddingVertical: 5,
@@ -13,7 +13,7 @@ export const GSHints = glamor.view({
   height: 200,
 });
 
-export const GSHintBlock = glamor.view<{ last: boolean }>(
+export const GSHintBlock: any = glamor.view<{ last: boolean }>(
   {
     justifyContent: 'center',
     borderWidth: 1,
@@ -25,13 +25,13 @@ export const GSHintBlock = glamor.view<{ last: boolean }>(
   }) : null,
 );
 
-export const GSHintText = glamor.text({
+export const GSHintText: any = glamor.text({
   color: Colors.white,
   textAlign: 'center',
   alignSelf: 'stretch',
 });
 
-export const GSHintedSentence = glamor.view({
+export const GSHintedSentence: any = glamor.view({
   flexDirection: 'row',
   flexWrap: 'wrap',
   marginBottom: 10,
@@ -39,7 +39,7 @@ export const GSHintedSentence = glamor.view({
   marginTop: 0,
 });
 
-export const GSSentence = glamor(GSCustomText)<{ hasTooltip: boolean }>(
+export const GSSentence: any = glamor(GSCustomText)<{ hasTooltip: boolean, lang: TLangs }>(
   {
     paddingTop: 3,
     flexWrap: 'wrap',

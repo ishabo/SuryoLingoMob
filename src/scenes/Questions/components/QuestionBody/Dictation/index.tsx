@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Container } from 'native-base';
 import { TextArea } from 'components';
 import { IAnswerProps } from '../../../index.types';
@@ -26,6 +26,6 @@ export default class Dictation extends React.Component<IProps> {
   }
 }
 
-export const GSContainer = glamor(Container)({
+export const GSContainer: any = glamor(Container)({
   alignSelf: 'stretch'
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { BackHandler, Keyboard, Alert, View } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';

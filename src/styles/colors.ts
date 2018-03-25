@@ -28,11 +28,12 @@ const colors = {
   darkGray: '#8C8C8C',
 
   // yellow
+  darkYellow: '#ffcc33',
   lightYellow: '#ffe7a0',
   yellow: '#edc549',
 
   // orange 
-  orange: '#ffcc33',
+  orange: '#D15A00',
 
 };
 

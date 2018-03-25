@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
 import images from 'assets/images';
 import SkillIcon from '../SkillIcon';
@@ -19,7 +19,7 @@ export default (props: IProps) => {
   const filling = unlocked ? 1 - progress : 1;
 
   const LinearGradientProps = {
-    colors: ['transparent', Colors.orange],
+    colors: ['transparent', Colors.darkYellow],
     locations: [filling, 0],
   };
 

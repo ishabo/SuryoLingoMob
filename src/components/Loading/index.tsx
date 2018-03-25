@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { ActivityIndicator } from 'react-native';
 import { IInitialState } from 'services/reducers';
@@ -17,7 +17,7 @@ const Loading = ({ loading }: IProps) =>
     </GSLoading>
   </Modal>;
 
-const GSLoading = glamor.view({
+const GSLoading: any = glamor.view({
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',

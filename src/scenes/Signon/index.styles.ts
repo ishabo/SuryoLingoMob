@@ -7,28 +7,28 @@ import { KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 export * from 'styles/forms';
 export * from 'styles/text';
 
-export const GSContainer = glamor(KeyboardAvoidingView)({
+export const GSContainer: any = glamor(KeyboardAvoidingView)({
   justifyContent: 'space-between',
 });
 
-export const GSForgotPassword = glamor(TouchableOpacity)({
+export const GSForgotPassword: any = glamor(TouchableOpacity)({
   alignSelf: 'center',
   marginTop: 10,
   padding: 10,
 });
 
-export const GSTabs = glamor.view({
+export const GSTabs: any = glamor.view({
   flexDirection: 'row',
   height: 80,
 });
 
-export const GSTabButton = glamor(Button)({
+export const GSTabButton: any = glamor(Button)({
   paddingHorizontal: 10,
   width: 170,
   alignSelf: 'center',
 });
 
-export const GSButtonText = glamor.text<{ color: string; large: boolean; }>(
+export const GSButtonText: any = glamor.text<{ color: string; large: boolean; }>(
   {
     alignSelf: 'center',
   },
@@ -38,7 +38,7 @@ export const GSButtonText = glamor.text<{ color: string; large: boolean; }>(
   }),
 );
 
-export const GSIcon = glamor(Icon)({
+export const GSIcon: any = glamor(Icon)({
   position: 'absolute',
   right: 15,
   top: 10,
@@ -47,17 +47,17 @@ export const GSIcon = glamor(Icon)({
   zIndex: 100,
 });
 
-export const GSFooter = glamor.view({
+export const GSFooter: any = glamor.view({
   backgroundColor: 'transparent',
   justifyContent: 'flex-end',
   marginBottom: 12,
 });
 
-export const GSError = glamor.text({
+export const GSError: any = glamor.text({
   color: Colors.red,
 });
 
-export const GSDescription = glamor.text({
+export const GSDescription: any = glamor.text({
   textAlign: 'center',
   fontSize: 18,
   paddingVertical: 10,

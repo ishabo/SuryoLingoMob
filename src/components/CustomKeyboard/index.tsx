@@ -1,9 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { Keyboard, Vibration } from 'react-native';
-import {
-  Icon,
-  Text,
-} from 'native-base';
+import { Icon } from 'native-base';
 import shortid from 'shortid';
 import {
   GSBackSpaceKey, GSContainer, GSContent,
@@ -64,9 +61,7 @@ export default class extends React.Component<IProps> {
           <Icon name="ios-arrow-forward" />
         </GSBackSpaceKey>
         {this.listKeys(this.props.letters, { fontSize: 14, paddingTop: -23 })}
-        <GSSpaceKey primary onPress={this.onPress(this.props.onSpacePress)}>
-          <Text>{'Space'}</Text>
-        </GSSpaceKey>
+        <GSSpaceKey primary onPress={this.onPress(this.props.onSpacePress)} />
       </GSContent>
     </GSContainer>;
   }

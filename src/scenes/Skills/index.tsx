@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Container, Text, Icon } from 'native-base';
 import { ScrollView, View, TouchableOpacity, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
@@ -90,7 +90,7 @@ class Skills extends React.Component<any, State> {
   }
 }
 
-const GSTouchable = glamor(TouchableOpacity)({
+const GSTouchable: any = glamor(TouchableOpacity)({
   width: 100,
   height: 40,
   flexDirection: 'row',

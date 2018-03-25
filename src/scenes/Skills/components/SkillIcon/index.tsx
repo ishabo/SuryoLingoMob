@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Image } from 'react-native';
 import glamor from 'glamorous-native';
@@ -6,10 +6,9 @@ import { getSkillIcon } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
 import { TImageSizes } from 'services/assets';
 
-const GSIcon = glamor(Image)<{ size: number }>(
+const GSIcon: any = glamor(Image)<{ size: number }>(
   {
     alignSelf: 'center',
-    borderWidth: 1,
   },
   props => ({
     width: props.size || 100,

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ScrollView, Alert, Animated } from 'react-native';
 import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
@@ -31,7 +31,7 @@ class Courses extends React.Component<any, IState> {
     headerLeft: null,
     headerRight: null,
     tabBarVisible: false,
-    tabBarIcon: <Icon name="switch" />,
+    tabBarIcon: <Icon name="th-list" type="FontAwesome" color='white' />,
   };
 
   componentDidMount () {

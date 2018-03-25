@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 
@@ -11,18 +11,18 @@ export default (props: any) =>
     </GSBadgeRibbonCircle>
   </GSBadge>;
 
-const GSBadge = glamor.view({
+const GSBadge: any = glamor.view({
   width: 80,
 });
 
-const GSBadgeRibbonCircle = glamor.view({
+const GSBadgeRibbonCircle: any = glamor.view({
   width: 80,
   height: 80,
   backgroundColor: Colors.lightGreen,
   borderRadius: 50,
 });
 
-const GSBadgeRibbon = glamor.view({
+const GSBadgeRibbon: any = glamor.view({
   backgroundColor: 'transparent',
   borderBottomWidth: 60,
   borderBottomColor: Colors.lightGreen,
@@ -34,14 +34,14 @@ const GSBadgeRibbon = glamor.view({
   top: 57,
 });
 
-const GSBadgeRibbon140 = glamor(GSBadgeRibbon)({
+const GSBadgeRibbon140: any = glamor(GSBadgeRibbon)({
   left: -7,
   transform: [
     { rotate: '140deg' },
   ],
 });
 
-const GSBadgeRubbonNeg140 = glamor(GSBadgeRibbon)({
+const GSBadgeRubbonNeg140: any = glamor(GSBadgeRibbon)({
   right: -7,
   transform: [
     { rotate: '-140deg' },

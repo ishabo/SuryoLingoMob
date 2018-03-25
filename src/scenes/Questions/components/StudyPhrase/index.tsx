@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Phrase, { IProps as IPhraseProps } from './components/Phrase';
 import SoundButton from './components/SoundButton';
 import glamor from 'glamorous-native';
@@ -31,7 +31,7 @@ export default (props: IProps) => {
   );
 };
 
-const GSContainer = glamor.view<{ centralize: boolean }>(
+const GSContainer: any = glamor.view<{ centralize: boolean }>(
   {
     flexDirection: 'row',
     marginHorizontal: 5,

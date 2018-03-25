@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import I18n from 'I18n';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -27,7 +27,7 @@ const mapStateToProps = (state: IInitialState) => ({
   learnersLanguage: getLearnersLanguage(state),
 });
 
-const GSSignout = glamor(GSCustomText)({
+const GSSignout: any = glamor(GSCustomText)({
   fontSize: 14,
   marginHorizontal: 10,
   fontWeight: '600',

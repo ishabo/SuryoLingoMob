@@ -56,6 +56,11 @@
 		<string>SertoRegular.ttf</string>
 		<string>AljazeeraBold.ttf</string>
 		<string>AljazeeraRegular.ttf</string>
+		<string>Al-Jazeera-Arabic-Regular.ttf</string>
+		<string>Estrangelo Edessa.ttf</string>
+		<string>AlJazeeraArabicRegular.ttf</string>
+		<string>EstrangeloEdessa.ttf</string>
+		<string>Serto Urhoy.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -63,11 +68,11 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

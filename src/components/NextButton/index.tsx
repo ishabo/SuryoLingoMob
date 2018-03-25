@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Button } from 'native-base';
 import glamor from 'glamorous-native';
 import { calcWindowWidth } from 'helpers';
@@ -34,7 +34,7 @@ export default (
   </GSButton>;
 };
 
-const GSButton = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
+const GSButton: any = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
   {
     alignSelf: 'center',
   },

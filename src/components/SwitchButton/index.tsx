@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Button } from 'native-base';
 import glamor from 'glamorous-native';
 import { GSCustomText } from 'styles/text';
@@ -20,7 +20,7 @@ export default (props: IProps) =>
     <GSCustomText lang={props.lang}>{props.text}</GSCustomText>
   </GSSwitchButton>;
 
-const GSSwitchButton = glamor(Button)({
+const GSSwitchButton: any = glamor(Button)({
   paddingVertical: 0,
   marginHorizontal: 5,
   paddingHorizontal: 10,

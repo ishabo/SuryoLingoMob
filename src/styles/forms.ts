@@ -7,11 +7,11 @@ import glamor from 'glamorous-native';
 import { GSCustomText } from 'styles/text';
 import { scaleSize } from 'helpers';
 
-export const GSLebel = glamor(Label)({
+export const GSLebel: any = glamor(Label)({
   color: 'black',
 });
 
-export const GSInput = glamor(Input)<{ dir?: 'rtl' | 'ltr' }>(
+export const GSInput: any = glamor(Input)<{ dir?: 'rtl' | 'ltr' }>(
   {
     paddingRight: 50,
     fontSize: scaleSize(18, 14),
@@ -22,22 +22,22 @@ export const GSInput = glamor(Input)<{ dir?: 'rtl' | 'ltr' }>(
   }),
 );
 
-export const GSItem = glamor(Item)({
+export const GSItem: any = glamor(Item)({
   marginVertical: 5,
 });
 
-export const GSForm = glamor(Form)({
+export const GSForm: any = glamor(Form)({
   justifyContent: 'flex-start',
   paddingHorizontal: 10,
 });
 
-export const GSErrorText = glamor(GSCustomText)({
+export const GSErrorText: any = glamor(GSCustomText)({
   color: Colors.red,
   fontSize: 14,
   marginLeft: 20,
 });
 
-export const GSNextButtons = glamor.view({
+export const GSNextButtons: any = glamor.view({
   alignItems: 'stretch',
   alignSelf: 'stretch',
   alignContent: 'center',
