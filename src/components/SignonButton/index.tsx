@@ -1,25 +1,34 @@
-import * as React from 'react';
+import React from 'react';
 import { NextButton } from 'components';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
 import I18n from 'I18n';
-import { NavigationActions, NavigationResetActionPayload } from 'react-navigation';
-import { resetToSignon } from 'helpers/navigation';
+import Colors from 'styles/colors';
+import { GSCustomText } from 'styles/text';
+import glamor from 'glamorous-native';
 
 interface IProps {
-  navigationReset: (reset: NavigationResetActionPayload) => void;
+  simple?: boolean;
+  learnersLanguage: TLangs;
+  onPress (): void;
 }
 
-const SignonButton = (props: IProps) =>
-  <NextButton onPress={() => props.navigationReset(resetToSignon())}
-    disabled={false}
-    text={I18n.t('profile.form.signonToSave')}
-    restProps={{ primary: true, wide: true }}
-    lang={'cl-ara'} // This needs to be stored as some default
-  />;
+export default ({ learnersLanguage, simple, onPress }: IProps) => {
 
-const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  navigationReset: (reset: any) => dispatch(NavigationActions.reset(reset)),
+  return simple &&
+    <GSSignIn onPress={onPress} lang={learnersLanguage} >
+      {I18n.t('profile.form.signonToSave')}
+    </GSSignIn> ||
+    <NextButton onPress={onPress}
+      disabled={false}
+      text={I18n.t('profile.form.signonToSave')}
+      restProps={{ primary: true, wide: true }}
+      lang={learnersLanguage}
+    />
+};
+
+const GSSignIn: any = glamor(GSCustomText)({
+  fontSize: 14,
+  marginHorizontal: 10,
+  fontWeight: '600',
+  color: Colors.darkBlue,
 });
 
-export default connect(() => ({}), mapDispatchToProps)(SignonButton);

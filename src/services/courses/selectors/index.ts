@@ -1,7 +1,7 @@
 import { ICourse } from '../';
 
 export const getActiveCourse = (state: ICourse[]): ICourse =>
-  state.find((course: ICourse) => course.active);
+  state.find((course: ICourse) => course.active && !course.comingSoon);
 
 const getLanguage = (state: ICourse[], lang: 'target' | 'learners') => {
   const activeCourse = getActiveCourse(state);
@@ -11,5 +11,6 @@ const getLanguage = (state: ICourse[], lang: 'target' | 'learners') => {
     return 'cl-ara';
   }
 };
+
 export const getTargetLanguage = (state: ICourse[]) => getLanguage(state, 'target');
 export const getLearnersLanguage = (state: ICourse[]) => getLanguage(state, 'learners');

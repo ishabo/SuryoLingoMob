@@ -1,31 +1,41 @@
 import * as React from 'react';
-import { Container, Text, Icon } from 'native-base';
-import { ScrollView, View, TouchableOpacity, BackHandler } from 'react-native';
+import { Container } from 'native-base';
+import { ScrollView, View, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { Skill } from './components';
 import { mapValues, groupBy } from 'lodash';
 import { ISkill } from 'services/skills';
 import { getActiveCourse } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
+import { NavigationScreenProp } from 'react-navigation';
+
 import I18n from 'I18n';
-import glamor from 'glamorous-native';
-import Colors from 'styles/colors';
 import shortid from 'shortid';
 import { exitApp } from 'helpers';
-import { GSCustomText } from 'styles/text';
+import { Hamburger } from 'components';
+import { ICourse } from 'services/courses';
+import { IProfile } from 'services/profile';
 
-interface State { }
+interface IProps {
+  activeCourse: ICourse;
+  navigation: NavigationScreenProp<any>;
+  skills: ISkill[];
+  profile: IProfile;
+}
 
-class Skills extends React.Component<any, State> {
+class Skills extends React.Component<IProps> {
 
-  static navigationOptions = ({ navigation: { navigate, state: { params } } }) => ({
+  static navigationOptions = ({ navigation: { navigate } }) => ({
     title: I18n.t(`skills.title`),
     headerLeft: null,
-    tabBarIcon: <Icon name="keypad" />,
-    headerRight: <HeaderRight
-      title={I18n.t('profile.userXp', { userXp: params && params['userXp'] ? params['userXp'] : 0 })}
-      navigate={() => navigate('Profile')} />,
-  })
+    headerRight: <Hamburger onPress={() => navigate('DrawerOpen')} />,
+  });
+
+  componentWillMount () {
+    if (!this.props.activeCourse) {
+      this.goToCourses();
+    }
+  }
 
   componentDidMount () {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -38,6 +48,11 @@ class Skills extends React.Component<any, State> {
   handleBackPress = () => {
     exitApp();
     return false;
+  }
+
+  goToCourses = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Courses');
   }
 
   private goToLessons = (skill: ISkill) => {
@@ -89,27 +104,6 @@ class Skills extends React.Component<any, State> {
     );
   }
 }
-
-const GSTouchable: any = glamor(TouchableOpacity)({
-  width: 100,
-  height: 40,
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-around',
-});
-
-interface ITitleProps {
-  title?: string;
-  navigate?(): boolean;
-}
-
-const HeaderRight = ({ title, navigate }: ITitleProps) =>
-  title && <GSTouchable
-    onPress={() => navigate()}>
-    <GSCustomText lang={'cl-ara'} style={{ color: Colors.blue, fontSize: 14, }}>
-      {title}
-    </GSCustomText>
-  </GSTouchable > || <Text></Text>;
 
 const mapStateToProps = (state: IInitialState) => ({
   profile: state.profile,

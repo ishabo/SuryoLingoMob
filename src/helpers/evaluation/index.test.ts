@@ -15,7 +15,7 @@ describe('evaluation', () => {
 
     it('returns true if string passed matches the correct '
       + 'answer after filtering out allowed characters',
-       () => {
+      () => {
         const answer = 'this$ 1%5 the answer-';
         const correctAnswer = 'this 15 the answer';
         expect(h.evaluateAnswer(answer, correctAnswer, options))
@@ -50,12 +50,12 @@ describe('evaluation', () => {
 
     it('returns true if string passed matches one of the ' +
       'correct answers after filtering out allowed characters'
-      ,() => {
-      const correctAnswers = ['this 15 some answer', 'this 15 an answer'];
-      expect(
+      , () => {
+        const correctAnswers = ['this 15 some answer', 'this 15 an answer'];
+        expect(
           h.evalAgainstAllAnswers(['this$ 15 s-ome answer'], correctAnswers, options),
         ).toEqual(true);
-    });
+      });
 
     it('overlooks a hash of letters to ease the match of all answers', () => {
       const correctAnswers = ['this is some answer', 'this is an answer'];

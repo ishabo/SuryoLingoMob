@@ -9,29 +9,29 @@ import {
   GSCourse,
   GSAnimatable,
 } from './index.styles';
-import { Icon } from 'native-base';
 import { snakeToCamel, getWindowWidth } from 'helpers';
 import {
   CachedImage,
   ImageCacheProvider,
 } from 'react-native-cached-image';
+import { IAssets } from 'services/assets';
+import { IInitialState } from 'services/reducers';
+import { Dispatch } from 'redux';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
 
-export interface IState { }
+interface IProps {
+  courseImages: IAssets['courseImages'];
+  courses: ICourse[];
+  switchCourse (courseId: string): void;
+}
 
-class Courses extends React.Component<any, IState> {
+class Courses extends React.Component<IProps> {
 
   private cards: any;
 
   static navigationOptions = {
-    tabBarLabel: I18n.t('courses.title'),
     title: I18n.t('courses.title'),
-    tabBarHidden: true,
-    headerLeft: null,
-    headerRight: null,
-    tabBarVisible: false,
-    tabBarIcon: <Icon name="th-list" type="FontAwesome" color='white' />,
   };
 
   componentDidMount () {
@@ -95,11 +95,11 @@ class Courses extends React.Component<any, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   switchCourse: (courseId: string) => dispatch(switchCourse(courseId)),
 });
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   courses: state.courses,
   courseImages: state.assets.courseImages,
 });

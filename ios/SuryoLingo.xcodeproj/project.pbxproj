@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -24,6 +25,7 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1A01618B143B4385913C2F20 /* libRCTRestart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE7656186D954CFDB481E5A3 /* libRCTRestart.a */; };
+		2B6B892165644A48990D3898 /* Serto Urhoy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BEAFC1403FE4939A257940C /* Serto Urhoy.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -65,7 +67,6 @@
 		E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */; };
 		E45B640E079C43E2B1055E53 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C65B2527E6841469E5CF2D2 /* Foundation.ttf */; };
 		F660850E755B4AA7A990055A /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A8FDEAD917466386111274 /* libRNSound.a */; };
-		2B6B892165644A48990D3898 /* Serto Urhoy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BEAFC1403FE4939A257940C /* Serto Urhoy.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -511,6 +512,7 @@
 		2F548936E2C34966BC65B1B5 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		33A8FDEAD917466386111274 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		3A9C098282154F03A3DD83F0 /* libSMXCrashlytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSMXCrashlytics.a; sourceTree = "<group>"; };
+		3BEAFC1403FE4939A257940C /* Serto Urhoy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Serto Urhoy.ttf"; path = "../src/assets/fonts/Serto Urhoy.ttf"; sourceTree = "<group>"; };
 		41CDEA583D7C4CBD98A17BEF /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		47082B318EFB4AFCA6A6728C /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		4EDD10ED7F554A9AA65F67F3 /* RNSensitiveInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSensitiveInfo.xcodeproj; path = "../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo.xcodeproj"; sourceTree = "<group>"; };
@@ -543,7 +545,6 @@
 		F0A13932CC344B0386299CB3 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		F6C2E8C6AD44498E9EBF2F15 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		FE7656186D954CFDB481E5A3 /* libRCTRestart.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTRestart.a; sourceTree = "<group>"; };
-		3BEAFC1403FE4939A257940C /* Serto Urhoy.ttf */ = {isa = PBXFileReference; name = "Serto Urhoy.ttf"; path = "../src/assets/fonts/Serto Urhoy.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

@@ -1,4 +1,3 @@
-// import { delay } from 'redux-saga';
 import { call, put, select } from 'redux-saga/effects';
 import * as courses from 'services/courses';
 import * as skill from 'services/skills';
@@ -11,21 +10,19 @@ import * as assets from 'services/assets';
 import { isRegistered, getActiveCourse } from 'services/selectors';
 import { ISagasFunctions } from 'services/sagas';
 import { navToSkills } from 'helpers';
-import { IInitialState } from 'services/reducers';
 
 export function* fetchCourses (): IterableIterator<any> {
   yield put(setLoadingOn());
   yield put(profile.actions.createProfile());
   const hasRegistered = yield select(isRegistered);
   const activeCourse = yield select(getActiveCourse);
-  const currentProfile = yield select((state: IInitialState) => state.profile);
 
   try {
     const response = yield call(courses.api.getCourses);
     yield put(courses.actions.saveCourses(response));
     yield put(assets.actions.fetchCourseImages());
     if (activeCourse) {
-      navToSkills(currentProfile);
+      navToSkills();
     } else {
       const routeName = hasRegistered ? 'Courses' : 'Signon';
       yield put(NavigationActions.navigate({ routeName }));

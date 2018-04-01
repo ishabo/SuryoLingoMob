@@ -15,10 +15,11 @@ import glamor from 'glamorous-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { GSCustomText } from 'styles/text';
 import { IProfile } from 'services/profile';
+import { Dispatch } from 'redux';
 
 interface IProps {
   getLessons (skillId: string): ILesson[];
-  enterLesson (): void;
+  enterLesson (lessonId: string): void;
   navigation: NavigationScreenProp<any, any>;
   learnersLanguage: TLangs;
   targetLanguage: TLangs;
@@ -159,14 +160,14 @@ const GSAnimatable: any = glamor(Animatable.View)({
   justifyContent: 'center',
 });
 
-const mapStateToProps = (state: IInitialState) => ({
+const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   learnersLanguage: getLearnersLanguage(state),
   targetLanguage: getTargetLanguage(state),
   getLessons: (skillId: string) => getSkillLessons(skillId)(state),
   profile: state.profile,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   enterLesson: (lessonId: string) => dispatch(enterLesson(lessonId)),
 });
 

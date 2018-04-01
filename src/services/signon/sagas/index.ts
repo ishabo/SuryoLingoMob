@@ -105,10 +105,8 @@ export function* signout (): IterableIterator<any> {
   yield call(RNRestart.Restart);
 }
 
-export const functions = (): ISagasFunctions[] => {
-  return [
-    { action: signon.actions.types.SUBMIT_SIGNON, func: submitSignon },
-    { action: signon.actions.types.SIGNOUT, func: signout },
-    { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
-  ];
-};
+export const functions = (): ISagasFunctions[] => ([
+  { action: signon.actions.types.SUBMIT_SIGNON, func: submitSignon },
+  { action: signon.actions.types.SIGNOUT, func: signout },
+  { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
+]);

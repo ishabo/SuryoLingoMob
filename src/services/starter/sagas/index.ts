@@ -11,7 +11,6 @@ import { fetchProfile } from 'services/profile/sagas';
 
 export function* firstFetch (): IterableIterator<any> {
   const activeCourse = yield select(getActiveCourse);
-
   yield put(exceptions.actions.removeAll());
   yield put(setLoadingOff());
   yield call(fetchProfile);
