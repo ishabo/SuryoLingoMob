@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { WebView } from 'react-native';
 import { Container, Icon } from 'native-base';
 import { IQuestion } from 'services/questions';
@@ -196,23 +196,23 @@ class QuestionBody extends React.Component<IProps, IState> {
   }
 }
 
-const GSContainer = glamor(Container)({
+const GSContainer: any = glamor(Container)({
   flex: 1, justifyContent: 'flex-start',
 });
 
-const GSActionButtons = glamor.view({
+const GSActionButtons: any = glamor.view({
   justifyContent: 'space-between',
   flexDirection: 'row',
   marginBottom: 10,
   alignSelf: 'stretch',
 });
 
-const GSOptions = glamor.view({
+const GSOptions: any = glamor.view({
   flexDirection: 'row',
   justifyContent: 'flex-end',
 });
 
-export const GSIcon = glamor(Icon)({
+export const GSIcon: any = glamor(Icon)({
   position: 'absolute',
   right: 15,
   top: 10,

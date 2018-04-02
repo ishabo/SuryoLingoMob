@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Text, Icon } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import glamor from 'glamorous-native';
@@ -8,7 +8,7 @@ interface ITitleProps {
   navigate (): boolean;
 }
 
-const GSTouchable = glamor(TouchableOpacity)({
+const GSTouchable: any = glamor(TouchableOpacity)({
   width: 100,
   height: 40,
   flexDirection: 'row',

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Container } from 'native-base';
 import { IAnswerProps } from '../../../index.types';
 import I18n from 'I18n';
@@ -34,16 +34,16 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
   }
 }
 
-export const GSContainer = glamor(Container)({
+export const GSContainer: any = glamor(Container)({
   paddingVertical: 50,
   alignItems: 'center',
 });
 
-export const GSMeaning = glamor(GSCustomText)({
+export const GSMeaning: any = glamor(GSCustomText)({
   marginVertical: 30,
 });
 
-export const GSPhrase = glamor(GSCustomText)({
+export const GSPhrase: any = glamor(GSCustomText)({
   textAlign: 'center',
   fontSize: scaleSize(28, 22),
   flexWrap: 'wrap',

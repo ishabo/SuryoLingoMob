@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import {
   NavigationActions,
@@ -16,8 +16,9 @@ import {
 } from 'services/selectors';
 import config from 'config/';
 import { resetToLessons, resetToSkills } from 'helpers/navigation';
-import { NextButton, SignonButton } from 'components/';
+import { NextButton, SignOnOrOut } from 'components/';
 import { IProfile } from 'services/profile';
+import { Dispatch } from 'redux';
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void;
@@ -72,10 +73,10 @@ class Completion extends React.Component<IProps, IState> {
     this.state.timeToSkipAdd <= 0
 
   navBackToLessons = () => {
-    const { navigationReset, skillInProgress, profile } = this.props;
+    const { navigationReset, skillInProgress } = this.props;
     navigationReset(skillInProgress.progress === 1
-      ? resetToSkills(profile)
-      : resetToLessons(profile, skillInProgress),
+      ? resetToSkills()
+      : resetToLessons(skillInProgress),
     );
   }
 
@@ -105,7 +106,7 @@ class Completion extends React.Component<IProps, IState> {
         <GSNextButton>
           {this.renderBackToLessonsButton()}
           {this.props.isRegistered ||
-            <SignonButton />}
+            <SignOnOrOut />}
         </GSNextButton>
 
       </GSContainer>
@@ -113,12 +114,12 @@ class Completion extends React.Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   navigationReset: (reset: NavigationResetActionPayload) =>
     dispatch(NavigationActions.reset(reset)),
 });
 
-const mapStateToDispatch = (state: IInitialState) => ({
+const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
   learnersLanguage: getLearnersLanguage(state),
   profile: state.profile,
   lessonInProgress: getLessonInProgress(state),

@@ -3,12 +3,12 @@ import glamor from 'glamorous-native';
 import { GSCustomText } from 'styles/text';
 import Colors from 'styles/colors';
 
-export const GSLesson = glamor.view({
+export const GSLesson: any = glamor.view({
   height: 300,
   width: 300,
 });
 
-export const GSButton = glamor(Button)({
+export const GSButton: any = glamor(Button)({
   marginTop: 10,
   alignSelf: 'center',
   padding: 10,
@@ -17,14 +17,14 @@ export const GSButton = glamor(Button)({
   bottom: 20,
 });
 
-export const GSButtonText = glamor.text<{ active: boolean }>(
+export const GSButtonText: any = glamor.text<{ active: boolean }>(
   {},
   props => ({
     color: props.active ? Colors.white : Colors.gray,
   })
 )
 
-export const GSCard = glamor.view<{ active: boolean }>(
+export const GSCard: any = glamor.view<{ active: boolean }>(
   {
     shadowOffset: { width: 4, height: 4 },
     // shadowColor: 'black',
@@ -44,7 +44,7 @@ export const GSCard = glamor.view<{ active: boolean }>(
   }),
 );
 
-export const GSLessonTitle = glamor(GSCustomText)({
+export const GSLessonTitle: any = glamor(GSCustomText)({
   alignSelf: 'center',
   fontSize: 24,
   position: 'absolute',
@@ -53,14 +53,14 @@ export const GSLessonTitle = glamor(GSCustomText)({
   textAlign: 'center',
 });
 
-export const GSLessonNewWords = glamor(GSCustomText)({
+export const GSLessonNewWords: any = glamor(GSCustomText)({
   alignSelf: 'center',
   fontSize: 16,
   textAlign: 'center',
   marginHorizontal: 10,
 });
 
-export const GSSkillIcon = glamor.view({
+export const GSSkillIcon: any = glamor.view({
   backgroundColor: Colors.lightYellow,
   position: 'absolute',
   borderRadius: 50,
@@ -70,7 +70,7 @@ export const GSSkillIcon = glamor.view({
   top: 8,
 });
 
-export const GSBadgePosition = glamor.view({
+export const GSBadgePosition: any = glamor.view({
   position: 'absolute',
   bottom: 80,
   right: 0,

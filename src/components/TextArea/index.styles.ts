@@ -8,16 +8,16 @@ import Colors from 'styles/colors';
 import { isShortDevice } from 'helpers';
 import { getFont } from 'assets/fonts';
 
-export const GSContainer = glamor(Container)({
+export const GSContainer: any = glamor(Container)({
   alignSelf: 'stretch',
 });
 
-export const GSContent = glamor.view({
+export const GSContent: any = glamor.view({
   justifyContent: 'flex-start',
   flex: 1,
 });
 
-export const GSTextAreaContainer = glamor.view({
+export const GSTextAreaContainer: any = glamor.view({
   height: isShortDevice() ? 80 : 115,
   marginBottom: 5,
   borderWidth: 1,
@@ -25,7 +25,7 @@ export const GSTextAreaContainer = glamor.view({
   padding: 3,
 });
 
-export const GSTextArea = glamor(Input)<{ rtl: boolean; lang: TLangs; }>(
+export const GSTextArea: any = glamor(Input)<{ rtl: boolean; lang: TLangs; }>(
   {
     textAlign: 'right',
     backgroundColor: Colors.lightGray,

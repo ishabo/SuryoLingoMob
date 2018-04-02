@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { BackHandler, Keyboard, Alert, View } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
@@ -28,6 +28,8 @@ import { GSHeader, GSBody, GSFooter } from 'styles/layouts';
 import { IProps, IState, TAnswer } from './index.types';
 import { NavigationActions } from 'react-navigation';
 import { NextButton, SwitchButton } from 'components';
+import { Dispatch } from 'redux';
+import { IInitialState } from 'services/reducers';
 
 class Questions extends React.Component<IProps, IState> {
 
@@ -154,7 +156,7 @@ class Questions extends React.Component<IProps, IState> {
     const resetAction = NavigationActions.reset({
       index: 0,
       key: null,
-      actions: [navToSkills(this.props.profile)],
+      actions: [navToSkills()],
     });
     this.props.navigation.dispatch(resetAction);
   }
@@ -267,12 +269,12 @@ class Questions extends React.Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   nextQuestionOrFinish: (questionId: string, status: TQuestionType) =>
     dispatch(nextQuestionOrFinish(questionId, status)),
 });
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   profile: state.profile,
   questions: state.questions.onGoing,
   pending: state.questions.pending,

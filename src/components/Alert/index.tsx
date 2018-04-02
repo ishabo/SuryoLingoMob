@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { MessageBar, MessageBarManager } from 'react-native-message-bar';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';

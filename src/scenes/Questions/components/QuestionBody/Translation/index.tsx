@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Container } from 'native-base';
 import I18n from 'I18n';
 import { TextArea } from 'components';
@@ -30,6 +30,6 @@ export default class Translation extends React.Component<IProps> {
   }
 }
 
-const GSContainer = glamor(Container)({
+const GSContainer: any = glamor(Container)({
   alignSelf: 'stretch',
 });

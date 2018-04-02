@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Container } from 'native-base';
 import { GSAnswerBox, GSSelectionBox, GSWordBox, GSWordText, GSTitle } from './index.styles';

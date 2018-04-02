@@ -7,12 +7,12 @@ interface IWordProps {
   selected?: boolean;
 }
 
-export const GSWordBox = glamor.view({
+export const GSWordBox: any = glamor.view({
   // height: 40,
   margin: 5
 });
 
-export const GSWordText = glamor(GSCustomText)<IWordProps>(
+export const GSWordText: any = glamor(GSCustomText)<IWordProps>(
   {
     alignSelf: 'stretch',
     padding: 10,
@@ -25,7 +25,7 @@ export const GSWordText = glamor(GSCustomText)<IWordProps>(
   }),
 );
 
-export const GSSelectionBox = glamor.view({
+export const GSSelectionBox: any = glamor.view({
   alignContent: 'center',
   justifyContent: 'center',
   flexDirection: 'row',
@@ -33,7 +33,7 @@ export const GSSelectionBox = glamor.view({
   height: 120,
 });
 
-export const GSAnswerBox = glamor.view({
+export const GSAnswerBox: any = glamor.view({
   padding: 10,
   minHeight: 120,
   flexDirection: 'row',
@@ -43,7 +43,7 @@ export const GSAnswerBox = glamor.view({
   alignContent: 'flex-start',
 });
 
-export const GSTitle = glamor(GSCustomText)({
+export const GSTitle: any = glamor(GSCustomText)({
   alignSelf: 'center',
   fontSize: 18,
   marginVertical: 10,

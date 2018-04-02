@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import SkillIcon from 'scenes/Skills/components/SkillIcon';
 import { ILesson, ISkill } from 'services/skills';
 import I18n from 'I18n';

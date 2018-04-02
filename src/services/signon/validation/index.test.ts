@@ -86,13 +86,11 @@ describe('validation', () => {
       'sh$r1', // too short
       'qwerty', // contains no numbers
       '123456', // contains no letters
-      'm1ssingSpecialChar', // missing a special char
       '!!!!!', // contains no numbers or letters
       'Th1$I$TooLong!!!!!!', // more than 18
     ];
     passwordsToTest.forEach((password: string) => {
       it(`throws error for invalid password '${password}'`, () => {
-
         expect(validation.validateSigon({
           password,
           email: 'correct@correct.com',

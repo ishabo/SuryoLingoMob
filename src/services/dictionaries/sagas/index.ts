@@ -17,8 +17,6 @@ export function* fetchDictionaries (action: dictionaries.IDictionaryAction): Ite
   yield put(setLoadingOff());
 }
 
-export const functions = (): ISagasFunctions[] => {
-  return [
-    { action: dictionaries.actions.types.FETCH_DICTIONARIES, func: fetchDictionaries },
-  ];
-};
+export const functions = (): ISagasFunctions[] => ([
+  { action: dictionaries.actions.types.FETCH_DICTIONARIES, func: fetchDictionaries },
+]);

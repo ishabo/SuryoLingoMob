@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Images from 'assets/images';
 import { Thumbnail } from 'native-base';
 import { TouchableOpacity } from 'react-native';

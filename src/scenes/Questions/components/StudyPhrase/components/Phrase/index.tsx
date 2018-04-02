@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { IWordHint, dashify } from 'helpers';
 import { GSHintedSentence, GSSentence } from './index.styles';
 import PopoverTooltip from 'react-native-popover-tooltip';

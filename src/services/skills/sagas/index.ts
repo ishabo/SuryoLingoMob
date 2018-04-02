@@ -5,10 +5,9 @@ import { navToSkills } from 'helpers';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
-import { IInitialState } from 'services/reducers';
 import * as assets from 'services/assets';
 
-export function* fetchSkills(): IterableIterator<any> {
+export function* fetchSkills (): IterableIterator<any> {
   yield put(setLoadingOn());
   const activeCourse = yield select(getActiveCourse);
 
@@ -20,15 +19,13 @@ export function* fetchSkills(): IterableIterator<any> {
     } catch (error) {
       yield put(exceptions.actions.add(error));
     }
-    const profile = yield select((state: IInitialState) => state.profile);
-    yield put(navToSkills(profile));
+
+    yield put(navToSkills());
   }
 
   yield put(setLoadingOff());
 }
 
-export const functions = (): ISagasFunctions[] => {
-  return [
-    { action: skills.actions.types.FETCH_SKILLS, func: fetchSkills },
-  ];
-};
+export const functions = (): ISagasFunctions[] => ([
+  { action: skills.actions.types.FETCH_SKILLS, func: fetchSkills },
+]);

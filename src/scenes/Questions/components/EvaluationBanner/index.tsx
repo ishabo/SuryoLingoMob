@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Colors from 'styles/colors';
 import I18n from 'I18n';
 import { Text } from 'react-native';

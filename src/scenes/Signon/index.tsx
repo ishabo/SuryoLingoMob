@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import {
   BackHandler, TextInputProperties,
@@ -25,6 +25,7 @@ import { NavigationScreenProp } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
 import { ICourse } from 'services/courses';
 import { exitApp } from 'helpers';
+import { Dispatch } from 'redux';
 
 type TAlertSubject = 'signupReason' | 'signupName' | 'signupEmail' | 'signinReason' | 'signinEmail' | 'signinPassword';
 
@@ -272,7 +273,7 @@ class Signon extends React.Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   submitSignon: (signUpOrIn: signon.TSignon) =>
     dispatch(signon.actions.submitSignon(signUpOrIn)),
   captureSignon: (data: signon.ISignonFormData) =>

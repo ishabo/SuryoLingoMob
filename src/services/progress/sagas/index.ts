@@ -69,11 +69,13 @@ export function* finishLesson (): IterableIterator<any> {
 
 export function* syncFinishedLessons (): IterableIterator<any> {
   const lessonsToSync = yield select(getLessonsToSync);
-  try {
-    yield call(progress.api.syncFinishedLessons, lessonsToSync);
-    yield put(progress.actions.resetLessonsToSync());
-  } catch (error) {
-    console.warn(error);
+  if (lessonsToSync.length > 0) {
+    try {
+      yield call(progress.api.syncFinishedLessons, lessonsToSync);
+      yield put(progress.actions.resetLessonsToSync());
+    } catch (error) {
+      console.warn(error);
+    }
   }
 }
 

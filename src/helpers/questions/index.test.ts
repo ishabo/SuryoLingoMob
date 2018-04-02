@@ -10,11 +10,11 @@ describe('common', () => {
       ]);
 
       expect(hintified).toEqual([
-        { word: 'This', translations: 'هذه' },
-        { word: 'sentence', translations: 'الجملة' },
-        { word: 'will', translations: null },
-        { word: 'be', translations: null },
-        { word: 'hintified', translations: 'مهنتفة' },
+        { key: hintified[0].key, word: 'This', translations: 'هذه' },
+        { key: hintified[1].key, word: 'sentence', translations: 'الجملة' },
+        { key: hintified[2].key, word: 'will', translations: null },
+        { key: hintified[3].key, word: 'be', translations: null },
+        { key: hintified[4].key, word: 'hintified', translations: 'مهنتفة' },
       ]);
     });
   });

@@ -1,3 +1,4 @@
+import React from 'react';
 import Splash from 'scenes/Splash';
 import Signon from 'scenes/Signon';
 import Courses from 'scenes/Courses';
@@ -6,38 +7,39 @@ import Lessons from 'scenes/Lessons';
 import Questions from 'scenes/Questions';
 import Completion from 'scenes/Completion';
 import Profile from 'scenes/Profile';
+import Drawer from 'scenes/Drawer';
 import PasswordRecovery from 'scenes/PasswordRecovery';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
 
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
-
-const TabStack = TabNavigator(
-  {
-    Skills: { screen: Skills },
-    Courses: { screen: Courses },
-    Profile: { screen: Profile },
-  },
-  {
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: 'bottom',
-    animationEnabled: false,
-    lazy: true,
-  },
-);
-
-const LessonStack = StackNavigator({
+const CourseStack = StackNavigator({
+  Skills: { screen: Skills },
+  Lessons: { screen: Lessons },
   Questions: { screen: Questions },
   Completion: { screen: Completion },
+}, { initialRouteName: 'Skills' });
+
+const SignonStack = StackNavigator({
+  Signon: { screen: Signon },
+  PasswordRecovery: { screen: PasswordRecovery, navigationOptions: { visible: true } },
 });
 
-export const AppNavigator = StackNavigator(
-  {
-    Splash: { screen: Splash },
-    Signon: { screen: Signon },
-    PasswordRecovery: { screen: PasswordRecovery },
-    Lessons: { screen: Lessons },
-    Lesson: { screen: LessonStack },
-    Skills: { screen: TabStack },
-  },
-  {
+const DrawerNav = DrawerNavigator({
+  Courses: { screen: Courses, navigationOptions: { visible: true } },
+  Course: { screen: CourseStack },
+  Profile: StackNavigator({ Profile: { screen: Profile, navigationOptions: { visible: true } } }),
+}, {
+    contentComponent: (props) => <Drawer {...props} />,
+    initialRouteName: 'Course',
+  }
+);
+
+export const AppNavigator = StackNavigator({
+  Splash: { screen: Splash },
+  Skills: { screen: DrawerNav },
+  Signon: { screen: SignonStack }
+}, {
     initialRouteName: 'Splash',
-  });
+    headerMode: 'none',
+  }
+);
+

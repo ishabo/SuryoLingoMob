@@ -4,19 +4,19 @@ import Colors from 'styles/colors';
 import { GSCustomText } from 'styles/text';
 import { ScrollView } from 'react-native';
 
-export const GSContainer = glamor(Container)({
+export const GSContainer: any = glamor(Container)({
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
 });
 
-export const GSProfile = glamor(ScrollView)({
+export const GSProfile: any = glamor(ScrollView)({
   flex: 1,
   alignSelf: 'stretch',
   margin: 20
 });
 
-export const GSProfileDetails = glamor.view({
+export const GSProfileDetails: any = glamor.view({
   flexDirection: 'row',
   justifyContent: 'space-between',
   marginVertical: 10,
@@ -25,11 +25,11 @@ export const GSProfileDetails = glamor.view({
   borderBottomWidth: 0.4,
 });
 
-export const GSProfileDetailsItem = glamor(GSCustomText)({
+export const GSProfileDetailsItem: any = glamor(GSCustomText)({
   fontWeight: '900'
 });
 
-export const GSProfilePictureFrame = glamor.view<{ inner?: boolean, outer?: boolean }>(
+export const GSProfilePictureFrame: any = glamor.view<{ inner?: boolean, outer?: boolean }>(
   {
     justifyContent: 'center',
     alignSelf: 'center',
@@ -58,7 +58,7 @@ export const GSProfilePictureFrame = glamor.view<{ inner?: boolean, outer?: bool
   }
 );
 
-export const GSProfilePicture = glamor.image({
+export const GSProfilePicture: any = glamor.image({
   width: 100,
   height: 100,
 });

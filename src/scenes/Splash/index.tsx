@@ -1,21 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import { NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import { hasNetworkError, getActiveCourse } from 'services/selectors';
-import { NavigationScreenProp } from 'react-navigation';
 import images from 'assets/images';
 import * as exceptions from 'services/exceptions';
 import { GSContainer, GSLogo, GSVersion } from './index.styles';
 import { exitApp, alertConnection } from 'helpers';
 import * as starter from 'services/starter';
 import VersionNumber from 'react-native-version-number';
+import { Dispatch } from 'redux';
+import { IInitialState } from 'services/reducers';
+import { ICourse } from 'services/courses';
 
 export interface IProps {
-  navigation: NavigationScreenProp<any, any>;
+  hasNetworkError: boolean;
+  activeCourse: ICourse;
   firstFetch: () => void;
   addException: (payload: exceptions.IExceptionPayload) => void;
-  hasNetworkError: () => boolean;
-  activeCourse: () => boolean;
 }
 
 interface IState {
@@ -61,7 +62,6 @@ class Splash extends React.Component<IProps, IState> {
   }
 
   alertConnection = () => {
-
     console.warn(this.state.hasAlert);
     if (this.state.hasAlert) {
       return;
@@ -102,13 +102,13 @@ class Splash extends React.Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   firstFetch: () => dispatch(starter.actions.firstFetch()),
   addException: (payload: exceptions.IExceptionPayload) =>
     dispatch(exceptions.actions.add(payload)),
 });
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   hasNetworkError: hasNetworkError(state),
   activeCourse: getActiveCourse(state),
 });

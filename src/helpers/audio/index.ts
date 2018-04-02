@@ -6,7 +6,7 @@ import { Platform } from 'react-native';
 let audio;
 let currentlyPlaying: string;
 
-type TSoundLocations = 'CACHES' | 'TEMPERORY' | '';
+type TSoundLocations = 'CACHES' | 'TEMPERORY' | 'MAIN_BUNDLE' | '';
 
 const RNFSDir = (location: TSoundLocations) => {
 
@@ -15,12 +15,14 @@ const RNFSDir = (location: TSoundLocations) => {
       return RNFS.TemporaryDirectoryPath;
     case 'CACHES':
       return RNFS.CachesDirectoryPath;
+    case 'MAIN_BUNDLE':
+      return RNFS.MainBundlePath;
     default:
       return '';
   }
 };
 
-const defaultLocation = Platform.OS === 'android' ? 'CACHES' : 'TEMPERORY';
+const defaultLocation = Platform.OS === 'android' ? 'CACHES' : 'MAIN_BUNDLE';
 
 export const downloadFile = async (
   soundTrack,
@@ -30,7 +32,7 @@ export const downloadFile = async (
   const url = parseUrl(soundTrack);
 
   filename = url.pathname.split('/').pop();
-  const localSoundTrackPath = `${RNFSDir(location)}/${filename}`;
+  const localSoundTrackPath = `${RNFSDir(location)}/${filename}`.replace(/\/\//, '/');
   const fileExists = await RNFS.exists(localSoundTrackPath);
   console.log(`Looking for file ${localSoundTrackPath}`);
 
@@ -63,9 +65,7 @@ export const playAudio = (soundTrack, location: TSoundLocations = defaultLocatio
     console.log('Attempting to play sound track', soundTrack);
 
     if (error) {
-      console.warn(soundPath + '/' + soundTrack);
-
-      console.warn('failed to load the sound');
+      console.warn('Failed to load the sound', soundPath + '/' + soundTrack);
       console.warn(error);
     }
   };
@@ -77,7 +77,7 @@ export const playAudio = (soundTrack, location: TSoundLocations = defaultLocatio
     setTimeout(stopAndPlayAudio, 200);
 
   } catch (error) {
-    console.log(error);
+    console.warn(error);
   }
 };
 

@@ -1,5 +1,4 @@
-import 'config/reactotron';
-import React from 'react';
+import * as React from 'react';
 import { I18nManager } from 'react-native';
 import { Provider } from 'react-redux';
 import Navigation from './Navigation';
