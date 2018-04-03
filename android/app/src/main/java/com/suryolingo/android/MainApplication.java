@@ -44,6 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
           new AppCenterReactNativeAnalyticsPackage(MainApplication.this,
               getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
           new AppCenterReactNativePackage(MainApplication.this), new RNFetchBlobPackage(), new RNVersionNumberPackage(),
+
           new RNSoundPackage(), new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(),
           new LinearGradientPackage(), new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(),
           new RNDeviceInfo(), new RNAudioPlayer(), new KeyboardInputPackage(this.getApplication()));
