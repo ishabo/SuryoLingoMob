@@ -4,11 +4,7 @@ import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
 import { switchCourse } from 'services/courses/actions';
 import I18n from 'I18n';
-import {
-  GSContainer,
-  GSCourse,
-  GSAnimatable,
-} from './index.styles';
+import { GSContainer, GSTitle, GSCourse, GSAnimatable } from './index.styles';
 import { snakeToCamel, getWindowWidth } from 'helpers';
 import {
   CachedImage,
@@ -77,6 +73,9 @@ class Courses extends React.Component<IProps> {
   render () {
     return (
       <GSContainer>
+        <GSTitle>
+          {I18n.t('courses.title')}
+        </GSTitle>
         <ScrollView
           contentContainerStyle={{
             flex: 1, alignSelf: 'stretch', alignContent: 'center',

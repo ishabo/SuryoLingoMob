@@ -27,10 +27,6 @@ export const GSButtonText: any = glamor.text<{ active: boolean }>(
 export const GSCard: any = glamor.view<{ active: boolean }>(
   {
     shadowOffset: { width: 4, height: 4 },
-    // shadowColor: 'black',
-    // shadowOpacity: 0.2,
-    // shadowRadius: 2,
-    // elevation: 2,
     alignContent: 'stretch',
     alignItems: 'stretch',
     justifyContent: 'center',
