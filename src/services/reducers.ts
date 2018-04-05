@@ -11,9 +11,10 @@ import * as api from './api/reducers';
 import * as exceptions from './exceptions';
 import * as signon from './signon';
 import * as assets from './assets';
+import { NavigationState } from 'react-navigation';
 
 export interface IInitialState {
-  nav: any;
+  nav: NavigationState;
   api: api.IApiStatus;
   signon: signon.ISignonState;
   skills: skill.ISkill[];

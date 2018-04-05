@@ -13,10 +13,7 @@ interface IProps {
 }
 
 export default (props: IProps) =>
-  <GSSwitchButton
-    rounded
-    {...props}
-  >
+  <GSSwitchButton rounded {...props}>
     <GSCustomText lang={props.lang}>{props.text}</GSCustomText>
   </GSSwitchButton>;
 
@@ -24,5 +21,6 @@ const GSSwitchButton = glamor(Button)({
   paddingVertical: 0,
   marginHorizontal: 5,
   paddingHorizontal: 10,
-  height: 30,
+  height: 40,
+  alignItems: 'center',
 });

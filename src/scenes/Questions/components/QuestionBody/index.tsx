@@ -196,23 +196,23 @@ class QuestionBody extends React.Component<IProps, IState> {
   }
 }
 
-const GSContainer: any = glamor(Container)({
+const GSContainer = glamor(Container)({
   flex: 1, justifyContent: 'flex-start',
 });
 
-const GSActionButtons: any = glamor.view({
+const GSActionButtons = glamor.view({
   justifyContent: 'space-between',
   flexDirection: 'row',
   marginBottom: 10,
   alignSelf: 'stretch',
 });
 
-const GSOptions: any = glamor.view({
+const GSOptions = glamor.view({
   flexDirection: 'row',
   justifyContent: 'flex-end',
 });
 
-export const GSIcon: any = glamor(Icon)({
+export const GSIcon = glamor(Icon)({
   position: 'absolute',
   right: 15,
   top: 10,

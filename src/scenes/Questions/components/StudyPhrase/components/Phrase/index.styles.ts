@@ -1,9 +1,10 @@
-import { GSCustomText } from 'styles/text';
+import { GSCustomText, ICustomText } from 'styles/text';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { scaleSize } from 'helpers';
+import { StyleProp, TextStyle } from 'react-native';
 
-export const GSHints: any = glamor.view({
+export const GSHints = glamor.view({
   flex: 1,
   backgroundColor: Colors.lightBlack,
   paddingVertical: 5,
@@ -13,7 +14,7 @@ export const GSHints: any = glamor.view({
   height: 200,
 });
 
-export const GSHintBlock: any = glamor.view<{ last: boolean }>(
+export const GSHintBlock = glamor.view<{ last: boolean }>(
   {
     justifyContent: 'center',
     borderWidth: 1,
@@ -25,13 +26,13 @@ export const GSHintBlock: any = glamor.view<{ last: boolean }>(
   }) : null,
 );
 
-export const GSHintText: any = glamor.text({
+export const GSHintText = glamor.text({
   color: Colors.white,
   textAlign: 'center',
   alignSelf: 'stretch',
 });
 
-export const GSHintedSentence: any = glamor.view({
+export const GSHintedSentence = glamor.view({
   flexDirection: 'row',
   flexWrap: 'wrap',
   marginBottom: 10,
@@ -39,7 +40,13 @@ export const GSHintedSentence: any = glamor.view({
   marginTop: 0,
 });
 
-export const GSSentence: any = glamor(GSCustomText)<{ hasTooltip: boolean, lang: TLangs }>(
+interface IGSSentence extends ICustomText {
+  hasTooltip: boolean;
+  onPress: () => void;
+  style: StyleProp<TextStyle>;
+}
+
+export const GSSentence = glamor(GSCustomText)<IGSSentence>(
   {
     paddingTop: 3,
     flexWrap: 'wrap',

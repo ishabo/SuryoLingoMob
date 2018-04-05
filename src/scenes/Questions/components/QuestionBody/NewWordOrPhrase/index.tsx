@@ -3,7 +3,7 @@ import { Container } from 'native-base';
 import { IAnswerProps } from '../../../index.types';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
-import { GSCustomText } from 'styles/text';
+import { GSCustomText, ICustomText } from 'styles/text';
 import { ICourse } from 'services/courses';
 import Phrase, {
   IProps as IPhraseProps,
@@ -34,16 +34,16 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
   }
 }
 
-export const GSContainer: any = glamor(Container)({
+export const GSContainer = glamor(Container)({
   paddingVertical: 50,
   alignItems: 'center',
 });
 
-export const GSMeaning: any = glamor(GSCustomText)({
+export const GSMeaning = glamor(GSCustomText)<ICustomText>({
   marginVertical: 30,
 });
 
-export const GSPhrase: any = glamor(GSCustomText)({
+export const GSPhrase = glamor(GSCustomText)<ICustomText>({
   textAlign: 'center',
   fontSize: scaleSize(28, 22),
   flexWrap: 'wrap',

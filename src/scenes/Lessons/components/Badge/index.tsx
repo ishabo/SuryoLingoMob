@@ -1,28 +1,33 @@
-import * as React from 'react';
+import React from 'react';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
+import { StyleProp, ViewStyle } from 'react-native';
 
-export default (props: any) =>
+interface IProps {
+  style?: StyleProp<ViewStyle>;
+  children: React.ReactChildren | React.ReactChild;
+}
+export default (props: IProps) =>
   <GSBadge style={props.style}>
     <GSBadgeRubbonNeg140 />
     <GSBadgeRibbon140 />
-    <GSBadgeRibbonCircle >
+    <GSBadgeRibbonCircle>
       {props.children}
     </GSBadgeRibbonCircle>
   </GSBadge>;
 
-const GSBadge: any = glamor.view({
+const GSBadge = glamor.view({
   width: 80,
 });
 
-const GSBadgeRibbonCircle: any = glamor.view({
+const GSBadgeRibbonCircle = glamor.view({
   width: 80,
   height: 80,
   backgroundColor: Colors.lightGreen,
   borderRadius: 50,
 });
 
-const GSBadgeRibbon: any = glamor.view({
+const GSBadgeRibbon = glamor.view({
   backgroundColor: 'transparent',
   borderBottomWidth: 60,
   borderBottomColor: Colors.lightGreen,
@@ -34,14 +39,14 @@ const GSBadgeRibbon: any = glamor.view({
   top: 57,
 });
 
-const GSBadgeRibbon140: any = glamor(GSBadgeRibbon)({
+const GSBadgeRibbon140 = glamor(GSBadgeRibbon)({
   left: -7,
   transform: [
     { rotate: '140deg' },
   ],
 });
 
-const GSBadgeRubbonNeg140: any = glamor(GSBadgeRibbon)({
+const GSBadgeRubbonNeg140 = glamor(GSBadgeRibbon)({
   right: -7,
   transform: [
     { rotate: '-140deg' },

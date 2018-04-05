@@ -4,23 +4,23 @@ import { GSCustomText } from 'styles/text';
 import * as Animatable from 'react-native-animatable';
 import glamor from 'glamorous-native';
 
-export const GSContainer: any = glamor(Container)({
+export const GSContainer = glamor(Container)({
   flex: 1,
 });
 
-export const GSTitle: any = glamor(GSCustomText)({
+export const GSTitle = glamor(GSCustomText)({
   fontSize: 30,
   alignSelf: 'center',
   textAlign: 'center',
 });
 
-export const GSCourse: any = glamor(TouchableOpacity)({
+export const GSCourse = glamor(TouchableOpacity)({
   alignContent: 'stretch',
   alignItems: 'stretch',
   justifyContent: 'center',
 });
 
-export const GSAnimatable: any = glamor(Animatable.View)({
+export const GSAnimatable = glamor(Animatable.View)({
   alignSelf: 'stretch',
   marginHorizontal: 10,
   justifyContent: 'space-around',

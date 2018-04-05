@@ -34,7 +34,7 @@ export default (
   </GSButton>;
 };
 
-const GSButton: any = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
+const GSButton = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
   {
     alignSelf: 'center',
   },
@@ -45,7 +45,7 @@ const GSButton: any = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
       width = calcWindowWidth(10);
       alignSelf = 'center';
     } else if (narrow) {
-      width = 140;
+      width = 130;
       alignSelf = 'stretch';
     }
     return { width, alignSelf };

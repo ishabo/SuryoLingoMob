@@ -57,7 +57,6 @@ class Completion extends React.Component<IProps, IState> {
     this.countDown();
   }
 
-
   countDown = () => {
     setTimeout(() => {
       const decreasedTime = this.state.timeToSkipAdd - decreaseIntervals;
@@ -108,7 +107,6 @@ class Completion extends React.Component<IProps, IState> {
           {this.props.isRegistered ||
             <SignOnOrOut />}
         </GSNextButton>
-
       </GSContainer>
     );
   }

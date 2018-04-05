@@ -13,6 +13,9 @@ import {
 import { IAssets } from 'services/assets';
 import { IInitialState } from 'services/reducers';
 import { Dispatch } from 'redux';
+import { AnimatableAnimationMethods } from 'react-native-animatable';
+import { GSHeader } from 'styles/layouts';
+import { GSDrawerLabel } from 'scenes/Drawer';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
 
@@ -24,10 +27,11 @@ interface IProps {
 
 class Courses extends React.Component<IProps> {
 
-  private cards: any;
+  private cards: AnimatableAnimationMethods;
 
   static navigationOptions = {
     title: I18n.t('courses.title'),
+    drawerLabel: <GSDrawerLabel>{I18n.t('courses.title')}</GSDrawerLabel>
   };
 
   componentDidMount () {
@@ -73,9 +77,11 @@ class Courses extends React.Component<IProps> {
   render () {
     return (
       <GSContainer>
-        <GSTitle>
-          {I18n.t('courses.title')}
-        </GSTitle>
+        <GSHeader>
+          <GSTitle>
+            {I18n.t('courses.title')}
+          </GSTitle>
+        </GSHeader>
         <ScrollView
           contentContainerStyle={{
             flex: 1, alignSelf: 'stretch', alignContent: 'center',
@@ -84,7 +90,7 @@ class Courses extends React.Component<IProps> {
             urlsToPreload={Object.values(this.props.courseImages)}
             onPreloadComplete={() => console.log(JSON.stringify(this.props.courseImages))}
           >
-            <GSAnimatable innerRef={(c: Courses) => this.cards = c} >
+            <GSAnimatable innerRef={(c: AnimatableAnimationMethods) => this.cards = c} >
               {this.renderCourses()}
             </GSAnimatable>
           </ImageCacheProvider>

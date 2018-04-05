@@ -10,6 +10,7 @@ import Profile from 'scenes/Profile';
 import Drawer from 'scenes/Drawer';
 import PasswordRecovery from 'scenes/PasswordRecovery';
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
+import { Platform } from 'react-native';
 
 const CourseStack = StackNavigator({
   Skills: { screen: Skills },
@@ -30,6 +31,7 @@ const DrawerNav = DrawerNavigator({
 }, {
     contentComponent: (props) => <Drawer {...props} />,
     initialRouteName: 'Course',
+    drawerPosition: Platform.OS === 'android' ? 'right' : 'left'
   }
 );
 

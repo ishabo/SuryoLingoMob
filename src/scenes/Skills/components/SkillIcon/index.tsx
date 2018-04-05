@@ -6,7 +6,7 @@ import { getSkillIcon } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
 import { TImageSizes } from 'services/assets';
 
-const GSIcon: any = glamor(Image)<{ size: number }>(
+const GSIcon= glamor(Image)<{ size: number }>(
   {
     alignSelf: 'center',
   },

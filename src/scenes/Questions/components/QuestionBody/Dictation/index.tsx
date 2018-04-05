@@ -26,6 +26,6 @@ export default class Dictation extends React.Component<IProps> {
   }
 }
 
-export const GSContainer: any = glamor(Container)({
+export const GSContainer = glamor(Container)({
   alignSelf: 'stretch'
 });

@@ -36,8 +36,8 @@ class Lessons extends React.Component<IProps, IState> {
     snapped: false,
   };
 
-  private carousal: any;
-  private cards: any;
+  private carousal;
+  private cards;
 
   static navigationOptions = ({ navigation }) => ({
     title: I18n.t('lessons.title', { skill: navigation.state.params.skill.name }),
@@ -136,26 +136,26 @@ class Lessons extends React.Component<IProps, IState> {
   }
 }
 
-const GSContainer: any = glamor(Container)({
+const GSContainer = glamor(Container)({
   alignItems: 'center',
   alignSelf: 'stretch',
   justifyContent: 'space-between',
 });
 
-const GSLessonIcon: any = glamor.view({
+const GSLessonIcon = glamor.view({
   position: 'absolute',
   top: 10,
   width: 150,
 });
 
-const GSLessonInstruction: any = glamor.view({
+const GSLessonInstruction = glamor.view({
   justifyContent: 'center',
   alignSelf: 'center',
   marginTop: 150,
   marginBottom: 20,
 });
 
-const GSAnimatable: any = glamor(Animatable.View)({
+const GSAnimatable = glamor(Animatable.View)({
   alignSelf: 'center',
   justifyContent: 'center',
 });

@@ -30,6 +30,6 @@ export default class Translation extends React.Component<IProps> {
   }
 }
 
-const GSContainer: any = glamor(Container)({
+const GSContainer = glamor(Container)({
   alignSelf: 'stretch',
 });

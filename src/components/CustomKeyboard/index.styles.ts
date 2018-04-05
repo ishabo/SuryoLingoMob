@@ -1,12 +1,8 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { View } from 'react-native';
-
-import {
-  Container,
-  Button,
-} from 'native-base';
-import { GSCustomText } from 'styles/text';
+import { Container, Button } from 'native-base';
+import { GSCustomText, ICustomText } from 'styles/text';
 
 export const GSContainer = glamor(Container, { displayName: 'CustomKeyboard' })({
   alignContent: 'center',
@@ -20,7 +16,7 @@ export const GSKey = glamor(Button)({
   margin: 4,
 });
 
-export const GSKeyText: any = glamor(GSCustomText)({
+export const GSKeyText = glamor(GSCustomText)<ICustomText>({
   textAlign: 'center',
   width: 10,
   flex: 1,
