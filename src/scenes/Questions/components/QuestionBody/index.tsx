@@ -5,7 +5,7 @@ import { IQuestion } from 'services/questions';
 import * as skill from 'services/skills';
 import * as course from 'services/courses';
 import { StudyPhrase } from '../';
-import { isReverseQuestion, toGarshoni, hintify } from 'helpers';
+import { isReverseQuestion, hintify, changeCase } from 'helpers';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
 import { TAnswer } from '../../index.types';
@@ -21,6 +21,7 @@ import Colors from 'styles/colors';
 import { IDictionary } from 'services/dictionaries';
 import { downloadAndPlayAudio } from 'helpers/audio';
 import { SwitchButton } from 'components';
+import garshonify from 'garshonify';
 
 interface IProps {
   question: IQuestion;
@@ -151,11 +152,11 @@ class QuestionBody extends React.Component<IProps, IState> {
         return null;
     }
 
-    const sentence = this.state.garshoniToggle ? toGarshoni({
+    const langConfig = changeCase({ source: course.learnersLanguage.shortName, target: course.targetLanguage.shortName }, 'camel')
+    const sentence = this.state.garshoniToggle ? garshonify({
       sentence: question.phrase,
-      targetLang: course.learnersLanguage.shortName,
-      sentenceLang: course.targetLanguage.shortName,
-      advanced: true,
+      langConfig,
+      byCombo: true,
     }) : hintify(question.phrase, this.props.hints);
 
     const options = this.listOptions();

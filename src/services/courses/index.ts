@@ -4,7 +4,7 @@ import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
 
-export type TTargetLangs = string | 'cl-syc' | 'tor-syr';
+export type TTargetLangs = string | 'cl-syc' | 'tur-syr';
 export type TLearnerLangs = string | 'cl-ara' | 'eng';
 
 export interface ICourse {

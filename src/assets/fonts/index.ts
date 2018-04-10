@@ -6,7 +6,7 @@ const fonts = {
     bold: EstrangeloEdessa,
     regular: EstrangeloEdessa,
   },
-  'tor-syr': {
+  'tur-syr': {
     bold: EstrangeloEdessa,
     regular: EstrangeloEdessa,
   },

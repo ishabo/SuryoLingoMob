@@ -25,7 +25,7 @@ const courses: ICourse[] = [
     targetLanguage: {
       id: 'lang-id3',
       name: 'ܛܘܪܝܐ',
-      shortName: 'tor-syr',
+      shortName: 'tur-syr',
       fullName: 'Toroyo Syriac',
     },
     learnersLanguage: {
