@@ -13,4 +13,4 @@ const getLanguage = (state: ICourse[], lang: 'target' | 'source') => {
 };
 
 export const getTargetLanguage = (state: ICourse[]) => getLanguage(state, 'target');
-export const getsourceLanguage = (state: ICourse[]) => getLanguage(state, 'source');
+export const getSourceLanguage = (state: ICourse[]) => getLanguage(state, 'source');

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
-import { isRegistered, getsourceLanguage } from 'services/selectors';
+import { isRegistered, getSourceLanguage } from 'services/selectors';
 import { NavigationActions, NavigationResetActionPayload } from 'react-navigation';
 import { Dispatch } from 'redux';
 import { resetToSignon } from 'helpers/navigation';
@@ -28,7 +28,7 @@ const SignInOrOut = ({ isLoggedIn, navigationReset, sourceLanguage, signOut, noS
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   isLoggedIn: isRegistered(state),
-  sourceLanguage: getsourceLanguage(state),
+  sourceLanguage: getSourceLanguage(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({

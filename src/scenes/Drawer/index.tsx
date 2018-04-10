@@ -16,6 +16,13 @@ interface IProps {
 
 class Drawer extends React.Component<IProps> {
 
+  static navigationOptions = {
+    header: null,
+    headerRight: null,
+    headerLeft: null,
+
+  };
+
   private filteredItems = () => {
     const { items } = this.props;
     if (!this.props.isLoggedIn) {
@@ -23,6 +30,7 @@ class Drawer extends React.Component<IProps> {
     }
     return items;
   }
+
   render () {
     const props = { ...this.props, items: this.filteredItems() };
 

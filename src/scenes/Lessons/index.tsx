@@ -8,7 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import { ISkill, ILesson } from 'services/skills';
 import { enterLesson } from 'services/progress/actions';
 import { IInitialState } from 'services/reducers';
-import { getSkillLessons, getsourceLanguage, getTargetLanguage } from 'services/selectors';
+import { getSkillLessons, getSourceLanguage, getTargetLanguage } from 'services/selectors';
 import Lesson from './components/Lesson';
 import { SkillIcon } from '../Skills/components';
 import glamor from 'glamorous-native';
@@ -161,7 +161,7 @@ const GSAnimatable = glamor(Animatable.View)({
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
-  sourceLanguage: getsourceLanguage(state),
+  sourceLanguage: getSourceLanguage(state),
   targetLanguage: getTargetLanguage(state),
   getLessons: (skillId: string) => getSkillLessons(skillId)(state),
   profile: state.profile,

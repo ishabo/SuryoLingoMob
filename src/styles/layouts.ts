@@ -20,4 +20,7 @@ export const GSFooter = glamor.view({
   backgroundColor: 'transparent',
   justifyContent: 'flex-end',
   marginBottom: 20,
+  position: 'absolute',
+  bottom: 0,
+  alignSelf: 'center'
 });

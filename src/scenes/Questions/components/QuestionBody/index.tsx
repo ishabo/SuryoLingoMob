@@ -5,7 +5,7 @@ import { IQuestion } from 'services/questions';
 import * as skill from 'services/skills';
 import * as course from 'services/courses';
 import { StudyPhrase } from '../';
-import { isReverseQuestion, hintify, changeCase } from 'helpers';
+import { isReverseQuestion, hintify } from 'helpers';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
 import { TAnswer } from '../../index.types';
@@ -14,7 +14,7 @@ import Translation from './Translation';
 import Dictation from './Dictation';
 import WordSelection from './WordSelection';
 import NewWordOrPhrase from './NewWordOrPhrase';
-import { isEmpty } from 'lodash';
+import { isEmpty, camelCase } from 'lodash';
 import Modal from 'react-native-modal';
 import shortid from 'shortid';
 import Colors from 'styles/colors';
@@ -152,7 +152,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         return null;
     }
 
-    const langConfig = changeCase({ source: course.sourceLanguage.shortName, target: course.targetLanguage.shortName }, 'camel')
+    const langConfig = { source: camelCase(course.targetLanguage.shortName), target: camelCase(course.sourceLanguage.shortName) }
     const sentence = this.state.garshoniToggle ? garshonify({
       sentence: question.phrase,
       langConfig,
@@ -163,7 +163,6 @@ class QuestionBody extends React.Component<IProps, IState> {
     const lang = course[reverse || this.state.garshoniToggle ? 'sourceLanguage' : 'targetLanguage'].shortName as TLangs
 
     return <GSContainer>
-
       <GSActionButtons>
         {this.props.renderNextButton}
 

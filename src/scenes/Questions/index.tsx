@@ -16,7 +16,7 @@ import {
   allCorrectAnswers,
   getSkillInProgress,
   getTargetLanguage,
-  getsourceLanguage,
+  getSourceLanguage,
 } from 'services/selectors';
 import { GSCustomText } from 'styles/text';
 import Colors from 'styles/colors';
@@ -246,7 +246,6 @@ class Questions extends React.Component<IProps, IState> {
       text={text} />
   }
 
-
   renderBodyAndFooter () {
     return <GSFooterAndBody>
       <GSBody>
@@ -285,7 +284,7 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   dictionaries: state.dictionaries,
   allCorrectAnswers: (questionId: string) => allCorrectAnswers(state, questionId),
   targetLanguage: getTargetLanguage(state),
-  sourceLanguage: getsourceLanguage(state),
+  sourceLanguage: getSourceLanguage(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);

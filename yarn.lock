@@ -427,12 +427,12 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.106.tgz#6093e9a02aa567ddecfe9afadca89e53e5dce4dd"
 
 "@types/node@*":
-  version "9.6.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.2.tgz#e49ac1adb458835e95ca6487bc20f916b37aff23"
+  version "9.6.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.3.tgz#f5fd440f8a9867b65ae76d442e269622a1db00b5"
 
 "@types/node@^8.9.4":
-  version "8.10.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.4.tgz#d3ca40ee884c853e2b786ee73096726ec59a5b31"
+  version "8.10.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.6.tgz#c922d975ab778435ea85c1b1ce6802ed9ff5d52f"
 
 "@types/react-native-fabric@^0.5.0":
   version "0.5.0"
@@ -445,8 +445,8 @@
     "@types/react-native" "*"
 
 "@types/react-native@*":
-  version "0.55.0"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.55.0.tgz#94013ad35f9fb21d3ca09410765a8e643f6cac5a"
+  version "0.55.1"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.55.1.tgz#dbcfbeb9294ef69b55d5531d330c1927f5d8629e"
   dependencies:
     "@types/react" "*"
 
@@ -464,8 +464,8 @@
     "@types/react-native" "*"
 
 "@types/react@*", "@types/react@^16.3.1":
-  version "16.3.6"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.6.tgz#50cec71f14cbaaf49a53167dc1d6739be1d43f12"
+  version "16.3.7"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.7.tgz#3b90fc4c8382fc55f4d18a8d487dbd314eb6ec4c"
   dependencies:
     csstype "^2.0.0"
 
@@ -2997,7 +2997,7 @@ fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
 
 "garshonify@git+https://github.com/ishabo/garshonify":
   version "1.0.0"
-  resolved "git+https://github.com/ishabo/garshonify#2aa4a1c56dd0c5316a64c7b49459aa6a99d43b2f"
+  resolved "git+https://github.com/ishabo/garshonify#e68fa2634fced8dd0beb8be670b5263b8f351d48"
 
 gauge@~1.2.5:
   version "1.2.7"

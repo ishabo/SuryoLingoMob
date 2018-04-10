@@ -3,7 +3,7 @@ import { I18nManager } from 'react-native';
 import { Provider } from 'react-redux';
 import Navigation from './Navigation';
 import Store from 'services/store';
-import * as exceptions from 'services/exceptions';
+import { setStore, setCrashReporter } from 'services/exceptions/index';
 import Fabric from 'react-native-fabric';
 import RNRestart from 'react-native-restart';
 import { PersistGate } from 'redux-persist/lib/integration/react';
@@ -27,8 +27,9 @@ I18nManager.forceRTL(true);
 const reduxStore = new Store();
 const store = reduxStore.getStore();
 const persistor = reduxStore.persistStore();
-exceptions.setStore(store);
-exceptions.setCrashReporter(Crashlytics);
+
+setStore(store);
+setCrashReporter(Crashlytics);
 
 export default class App extends React.Component {
 

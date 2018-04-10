@@ -12,7 +12,7 @@ import {
   getLessonInProgress,
   getSkillInProgress,
   isRegistered,
-  getsourceLanguage,
+  getSourceLanguage,
 } from 'services/selectors';
 import config from 'config/';
 import { resetToLessons, resetToSkills } from 'helpers/navigation';
@@ -118,7 +118,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
 });
 
 const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
-  sourceLanguage: getsourceLanguage(state),
+  sourceLanguage: getSourceLanguage(state),
   profile: state.profile,
   lessonInProgress: getLessonInProgress(state),
   skillInProgress: getSkillInProgress(state),

@@ -4,7 +4,7 @@ import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
 import { switchCourse } from 'services/courses/actions';
 import I18n from 'I18n';
-import { GSContainer, GSTitle, GSCourse, GSAnimatable } from './index.styles';
+import { GSContainer, GSCourse, GSAnimatable } from './index.styles';
 import { snakeToCamel, getWindowWidth } from 'helpers';
 import {
   CachedImage,
@@ -14,7 +14,6 @@ import { IAssets } from 'services/assets';
 import { IInitialState } from 'services/reducers';
 import { Dispatch } from 'redux';
 import { AnimatableAnimationMethods } from 'react-native-animatable';
-import { GSHeader } from 'styles/layouts';
 import { GSDrawerLabel } from 'scenes/Drawer';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
@@ -77,11 +76,6 @@ class Courses extends React.Component<IProps> {
   render () {
     return (
       <GSContainer>
-        <GSHeader>
-          <GSTitle>
-            {I18n.t('courses.title')}
-          </GSTitle>
-        </GSHeader>
         <ScrollView
           contentContainerStyle={{
             flex: 1, alignSelf: 'stretch', alignContent: 'center',

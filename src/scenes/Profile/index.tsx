@@ -34,7 +34,6 @@ class Profile extends React.Component<IProps> {
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     drawerLabel: <GSDrawerLabel>{I18n.t('profile.title')}</GSDrawerLabel>,
     headerRight: null,
-
   });
 
   componentWillMount () {

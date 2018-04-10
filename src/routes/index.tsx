@@ -12,13 +12,6 @@ import PasswordRecovery from 'scenes/PasswordRecovery';
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import { Platform } from 'react-native';
 
-const CourseStack = StackNavigator({
-  Skills: { screen: Skills },
-  Lessons: { screen: Lessons },
-  Questions: { screen: Questions },
-  Completion: { screen: Completion },
-}, { initialRouteName: 'Skills' });
-
 const SignonStack = StackNavigator({
   Signon: { screen: Signon },
   PasswordRecovery: { screen: PasswordRecovery, navigationOptions: { visible: true } },
@@ -26,22 +19,24 @@ const SignonStack = StackNavigator({
 
 const DrawerNav = DrawerNavigator({
   Courses: { screen: Courses, navigationOptions: { visible: true } },
-  Course: { screen: CourseStack },
-  Profile: StackNavigator({ Profile: { screen: Profile, navigationOptions: { visible: true } } }),
+  Course: { screen: Skills },
+  Profile: { screen: Profile },
 }, {
     contentComponent: (props) => <Drawer {...props} />,
     initialRouteName: 'Course',
-    drawerPosition: Platform.OS === 'android' ? 'right' : 'left'
+    drawerPosition: Platform.OS === 'android' ? 'right' : 'left',
   }
 );
 
 export const AppNavigator = StackNavigator({
   Splash: { screen: Splash },
   Skills: { screen: DrawerNav },
-  Signon: { screen: SignonStack }
+  Signon: { screen: SignonStack },
+  Lessons: { screen: Lessons },
+  Questions: { screen: Questions },
+  Completion: { screen: Completion },
 }, {
     initialRouteName: 'Splash',
-    headerMode: 'none',
   }
 );
 
