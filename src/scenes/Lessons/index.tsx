@@ -8,7 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import { ISkill, ILesson } from 'services/skills';
 import { enterLesson } from 'services/progress/actions';
 import { IInitialState } from 'services/reducers';
-import { getSkillLessons, getLearnersLanguage, getTargetLanguage } from 'services/selectors';
+import { getSkillLessons, getsourceLanguage, getTargetLanguage } from 'services/selectors';
 import Lesson from './components/Lesson';
 import { SkillIcon } from '../Skills/components';
 import glamor from 'glamorous-native';
@@ -21,7 +21,7 @@ interface IProps {
   getLessons (skillId: string): ILesson[];
   enterLesson (lessonId: string): void;
   navigation: NavigationScreenProp<any, any>;
-  learnersLanguage: TLangs;
+  sourceLanguage: TLangs;
   targetLanguage: TLangs;
   profile: IProfile;
 }
@@ -102,7 +102,7 @@ class Lessons extends React.Component<IProps, IState> {
       active={this.isLessonActive(lesson)}
       enterLesson={this.props.enterLesson}
       targetLanguage={this.props.targetLanguage}
-      learnersLanguage={this.props.learnersLanguage}
+      sourceLanguage={this.props.sourceLanguage}
     />;
   }
 
@@ -117,7 +117,7 @@ class Lessons extends React.Component<IProps, IState> {
             size="xxxhdpi" />
         </GSLessonIcon>
         <GSLessonInstruction>
-          <GSCustomText lang={this.props.learnersLanguage}>{I18n.t('lessons.instruction')}</GSCustomText>
+          <GSCustomText lang={this.props.sourceLanguage}>{I18n.t('lessons.instruction')}</GSCustomText>
         </GSLessonInstruction>
         <GSAnimatable
           innerRef={(c: Lessons) => this.cards = c}>
@@ -161,7 +161,7 @@ const GSAnimatable = glamor(Animatable.View)({
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
-  learnersLanguage: getLearnersLanguage(state),
+  sourceLanguage: getsourceLanguage(state),
   targetLanguage: getTargetLanguage(state),
   getLessons: (skillId: string) => getSkillLessons(skillId)(state),
   profile: state.profile,

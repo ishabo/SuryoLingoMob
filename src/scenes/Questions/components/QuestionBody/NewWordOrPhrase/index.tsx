@@ -21,14 +21,14 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
   render () {
     const { sentence, translation, course, lang: targetLang } = this.props;
     // const targetLang = course.targetLanguage.shortName as TLangs;
-    const learnersLang = course.learnersLanguage.shortName as TLangs;
+    const sourceLang = course.sourceLanguage.shortName as TLangs;
     return (
       <GSContainer>
         <Phrase lang={targetLang} sentence={sentence} style={{ fontSize: scaleSize(28, 22) }} />
-        <GSMeaning lang={learnersLang}>
+        <GSMeaning lang={sourceLang}>
           {I18n.t(`questions.phraseMeaning`)}
         </GSMeaning>
-        <GSPhrase lang={learnersLang}>{translation}</GSPhrase>
+        <GSPhrase lang={sourceLang}>{translation}</GSPhrase>
       </GSContainer>
     );
   }

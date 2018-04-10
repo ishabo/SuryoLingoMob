@@ -11,7 +11,7 @@ const courses: ICourse[] = [
       shortName: 'cl-syr',
       fullName: 'Classical Syriac',
     },
-    learnersLanguage: {
+    sourceLanguage: {
       id: 'lang-id2',
       name: 'العربية',
       shortName: 'cl-ara',
@@ -28,7 +28,7 @@ const courses: ICourse[] = [
       shortName: 'tur-syr',
       fullName: 'Toroyo Syriac',
     },
-    learnersLanguage: {
+    sourceLanguage: {
       id: 'lang-id2',
       name: 'العربية',
       shortName: 'cl-ara',

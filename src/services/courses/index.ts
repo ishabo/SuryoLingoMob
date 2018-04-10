@@ -13,7 +13,7 @@ export interface ICourse {
   enrolled?: boolean;
   active?: boolean;
   targetLanguage: ILanguage<TTargetLangs>;
-  learnersLanguage: ILanguage<TLearnerLangs>;
+  sourceLanguage: ILanguage<TLearnerLangs>;
   comingSoon?: boolean;
 }
 

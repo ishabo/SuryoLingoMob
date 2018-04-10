@@ -54,7 +54,7 @@ class Courses extends React.Component<IProps> {
 
   private renderCourseCard = (course: ICourse) => {
     const imageName = snakeToCamel(course.targetLanguage.shortName + '_' +
-      course.learnersLanguage.shortName);
+      course.sourceLanguage.shortName);
 
     const width = getWindowWidth() - 20;
     const height = (width * (67 / 100));

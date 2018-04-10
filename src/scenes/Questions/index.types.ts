@@ -34,5 +34,5 @@ export interface IProps {
   allCorrectAnswers (questionId: string): string[];
   skillInProgress: ISkill;
   targetLanguage: TLangs;
-  learnersLanguage: TLangs;
+  sourceLanguage: TLangs;
 }

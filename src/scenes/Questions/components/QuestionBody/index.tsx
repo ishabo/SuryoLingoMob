@@ -74,7 +74,7 @@ class QuestionBody extends React.Component<IProps, IState> {
       onPress={() => { this.switchGarshoni(); }}
       text={I18n.t('questions.garshoni')}
       {...buttonProps}
-      lang={this.props.course.learnersLanguage.shortName}
+      lang={this.props.course.sourceLanguage.shortName}
     />;
   }
 
@@ -87,7 +87,7 @@ class QuestionBody extends React.Component<IProps, IState> {
       onPress={() => { this.toggleSkillDescription(true); }}
       text={this.props.skill.name}
       light
-      lang={this.props.course.learnersLanguage.shortName}
+      lang={this.props.course.sourceLanguage.shortName}
     />;
   }
 
@@ -152,7 +152,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         return null;
     }
 
-    const langConfig = changeCase({ source: course.learnersLanguage.shortName, target: course.targetLanguage.shortName }, 'camel')
+    const langConfig = changeCase({ source: course.sourceLanguage.shortName, target: course.targetLanguage.shortName }, 'camel')
     const sentence = this.state.garshoniToggle ? garshonify({
       sentence: question.phrase,
       langConfig,
@@ -160,7 +160,7 @@ class QuestionBody extends React.Component<IProps, IState> {
     }) : hintify(question.phrase, this.props.hints);
 
     const options = this.listOptions();
-    const lang = course[reverse || this.state.garshoniToggle ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs
+    const lang = course[reverse || this.state.garshoniToggle ? 'sourceLanguage' : 'targetLanguage'].shortName as TLangs
 
     return <GSContainer>
 
