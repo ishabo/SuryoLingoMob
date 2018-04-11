@@ -1,14 +1,14 @@
 import { Button } from 'native-base';
 import glamor from 'glamorous-native';
-import { GSCustomText } from 'styles/text';
+import { GSCustomText, ICustomText } from 'styles/text';
 import Colors from 'styles/colors';
 
-export const GSLesson: any = glamor.view({
+export const GSLesson = glamor.view({
   height: 300,
   width: 300,
 });
 
-export const GSButton: any = glamor(Button)({
+export const GSButton = glamor(Button)({
   marginTop: 10,
   alignSelf: 'center',
   padding: 10,
@@ -17,20 +17,16 @@ export const GSButton: any = glamor(Button)({
   bottom: 20,
 });
 
-export const GSButtonText: any = glamor.text<{ active: boolean }>(
+export const GSButtonText = glamor.text<{ active: boolean }>(
   {},
   props => ({
     color: props.active ? Colors.white : Colors.gray,
   })
 )
 
-export const GSCard: any = glamor.view<{ active: boolean }>(
+export const GSCard = glamor.view<{ active: boolean }>(
   {
     shadowOffset: { width: 4, height: 4 },
-    // shadowColor: 'black',
-    // shadowOpacity: 0.2,
-    // shadowRadius: 2,
-    // elevation: 2,
     alignContent: 'stretch',
     alignItems: 'stretch',
     justifyContent: 'center',
@@ -44,7 +40,7 @@ export const GSCard: any = glamor.view<{ active: boolean }>(
   }),
 );
 
-export const GSLessonTitle: any = glamor(GSCustomText)({
+export const GSLessonTitle = glamor(GSCustomText)<ICustomText>({
   alignSelf: 'center',
   fontSize: 24,
   position: 'absolute',
@@ -53,14 +49,14 @@ export const GSLessonTitle: any = glamor(GSCustomText)({
   textAlign: 'center',
 });
 
-export const GSLessonNewWords: any = glamor(GSCustomText)({
+export const GSLessonNewWords = glamor(GSCustomText)<ICustomText>({
   alignSelf: 'center',
   fontSize: 16,
   textAlign: 'center',
   marginHorizontal: 10,
 });
 
-export const GSSkillIcon: any = glamor.view({
+export const GSSkillIcon = glamor.view({
   backgroundColor: Colors.lightYellow,
   position: 'absolute',
   borderRadius: 50,
@@ -70,7 +66,7 @@ export const GSSkillIcon: any = glamor.view({
   top: 8,
 });
 
-export const GSBadgePosition: any = glamor.view({
+export const GSBadgePosition = glamor.view({
   position: 'absolute',
   bottom: 80,
   right: 0,

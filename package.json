@@ -1,6 +1,6 @@
 {
 	"name": "SuryoLingo",
-	"version": "0.0.15",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
@@ -24,13 +24,18 @@
 	"dependencies": {
 		"@types/jest": "^21.1.5",
 		"@types/lodash": "^4.14.77",
-		"@types/react": "^16.0.40",
-		"@types/react-native": "0.52.19",
+		"@types/react": "^16.3.1",
+		"@types/react-native": "^0.52.22",
 		"@types/react-native-fabric": "^0.5.0",
 		"@types/react-native-fs": "2.8.0",
 		"@types/react-navigation": "^1.2.3",
 		"@types/url-parse": "^1.1.0",
 		"apisauce": "^0.14.3",
+		"appcenter": "^1.4.0",
+		"appcenter-analytics": "^1.4.0",
+		"appcenter-cli": "^1.0.14",
+		"appcenter-crashes": "^1.4.0",
+		"appcenter-push": "^1.4.0",
 		"babel-core": "^6.26.0",
 		"babel-plugin-module-resolver": "^3.0.0",
 		"change-object-case": "^0.1.1",
@@ -42,8 +47,8 @@
 		"mockdate": "^2.0.2",
 		"moment": "^2.19.3",
 		"native-base": "^2.3.10",
-		"react": "16.2.0",
-		"react-native": "^0.51.0",
+		"react": "^16.3.0",
+		"react-native": "^0.54.4",
 		"react-native-animatable": "^1.2.4",
 		"react-native-audioplayer": "^0.2.0",
 		"react-native-cached-image": "^1.4.3",
@@ -82,9 +87,10 @@
 		"shortid": "^2.2.8",
 		"tslint": "^5.7.0",
 		"tslint-config-airbnb": "^5.3.0",
-		"typescript": "^2.7.2",
+		"typescript": "^2.8.1",
 		"url-parse": "^1.2.0",
-		"yarn": "^1.3.2"
+		"yarn": "^1.3.2",
+		"garshonify": "git+https://github.com/ishabo/garshonify"
 	},
 	"devDependencies": {
 		"babel-jest": "^21.2.0",

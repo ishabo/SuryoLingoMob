@@ -99,7 +99,7 @@ export default class WordSelection extends React.Component<IProps, IState> {
 
   getWordTextLang = () => {
     const { reverse, course } = this.props;
-    return reverse ? course.targetLanguage.shortName : course.learnersLanguage.shortName;
+    return reverse ? course.targetLanguage.shortName : course.sourceLanguage.shortName;
   }
 
   mapAnswerToString = () => {

@@ -16,7 +16,7 @@ import {
   allCorrectAnswers,
   getSkillInProgress,
   getTargetLanguage,
-  getLearnersLanguage,
+  getSourceLanguage,
 } from 'services/selectors';
 import { GSCustomText } from 'styles/text';
 import Colors from 'styles/colors';
@@ -123,11 +123,11 @@ class Questions extends React.Component<IProps, IState> {
 
   evaluate = () => {
     const targetLangConfig = getLangConfig(this.props.targetLanguage);
-    const learnersLangConfig = getLangConfig(this.props.learnersLanguage);
+    const sourceLangConfig = getLangConfig(this.props.sourceLanguage);
 
     const evaluationOptions = {
-      allowedLetters: targetLangConfig.letters.concat(learnersLangConfig.letters),
-      overlookLetters: { ...targetLangConfig.overlookLetters, ...learnersLangConfig.overlookLetters },
+      allowedLetters: targetLangConfig.letters.concat(sourceLangConfig.letters),
+      overlookLetters: { ...targetLangConfig.overlookLetters, ...sourceLangConfig.overlookLetters },
     };
     const answer = this.state.answer;
     const answerCorrect = evalAgainstAllAnswers(
@@ -184,13 +184,13 @@ class Questions extends React.Component<IProps, IState> {
   renderEvaluationBanner () {
     const { questionType, phrase, translation } = this.props.currentQuestion;
     const correctAnswer = <GSCustomText style={{ fontSize: 16 }}
-      lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.learnersLanguage}>
+      lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.sourceLanguage}>
       {isReverseQuestion(questionType) ? phrase : translation}
     </GSCustomText>
 
     return this.userHasAnswered()
       && <EvaluationBanner
-        lang={this.props.learnersLanguage}
+        lang={this.props.sourceLanguage}
         passed={this.state.answerCorrect}
         correctAnswer={correctAnswer} />;
   }
@@ -230,7 +230,7 @@ class Questions extends React.Component<IProps, IState> {
       : I18n.t('questions.continue')
 
     return <SwitchButton onPress={this.evaluateOrNext}
-      lang={this.props.learnersLanguage}
+      lang={this.props.sourceLanguage}
       success
       text={text} />
   }
@@ -242,10 +242,9 @@ class Questions extends React.Component<IProps, IState> {
 
     return <NextButton onPress={this.evaluateOrNext}
       disabled={this.submitDisallowed() || this.state.movingNext}
-      lang={this.props.learnersLanguage}
+      lang={this.props.sourceLanguage}
       text={text} />
   }
-
 
   renderBodyAndFooter () {
     return <GSFooterAndBody>
@@ -285,7 +284,7 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   dictionaries: state.dictionaries,
   allCorrectAnswers: (questionId: string) => allCorrectAnswers(state, questionId),
   targetLanguage: getTargetLanguage(state),
-  learnersLanguage: getLearnersLanguage(state),
+  sourceLanguage: getSourceLanguage(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);

@@ -17,6 +17,7 @@ import {
   GSProfilePicture,
 } from './index.styles';
 import VersionNumber from 'react-native-version-number';
+import { GSDrawerLabel } from 'scenes/Drawer';
 
 export interface IProps {
   apiStatus: api.IApiStatus;
@@ -30,8 +31,9 @@ class Profile extends React.Component<IProps> {
 
   static navigationOptions = ({ navigation: { navigate } }) => ({
     title: I18n.t('profile.title'),
-    headerLeft: null,
-    headerRight: <Hamburger onPress={() => navigate('DrawerOpen')} />,
+    headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
+    drawerLabel: <GSDrawerLabel>{I18n.t('profile.title')}</GSDrawerLabel>,
+    headerRight: null,
   });
 
   componentWillMount () {

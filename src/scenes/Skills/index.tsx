@@ -15,6 +15,7 @@ import { exitApp } from 'helpers';
 import { Hamburger } from 'components';
 import { ICourse } from 'services/courses';
 import { IProfile } from 'services/profile';
+import { GSDrawerLabel } from 'scenes/Drawer';
 
 interface IProps {
   activeCourse: ICourse;
@@ -27,8 +28,9 @@ class Skills extends React.Component<IProps> {
 
   static navigationOptions = ({ navigation: { navigate } }) => ({
     title: I18n.t(`skills.title`),
-    headerLeft: null,
-    headerRight: <Hamburger onPress={() => navigate('DrawerOpen')} />,
+    headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
+    drawerLabel: <GSDrawerLabel>{I18n.t('skills.title')}</GSDrawerLabel>,
+    headerRight: null,
   });
 
   componentWillMount () {

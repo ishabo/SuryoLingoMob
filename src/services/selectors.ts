@@ -22,8 +22,8 @@ export const getActiveCourse = (state: IInitialState): courses.ICourse =>
 export const getTargetLanguage = (state: IInitialState) =>
   courses.selectors.getTargetLanguage(state.courses);
 
-export const getLearnersLanguage = (state: IInitialState) =>
-  courses.selectors.getLearnersLanguage(state.courses);
+export const getSourceLanguage = (state: IInitialState) =>
+  courses.selectors.getSourceLanguage(state.courses);
 
 export const getPending = (state: IInitialState) =>
   questions.selectors.getPending(state.questions);

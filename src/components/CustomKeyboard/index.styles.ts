@@ -1,26 +1,22 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { View } from 'react-native';
+import { Container, Button } from 'native-base';
+import { GSCustomText, ICustomText } from 'styles/text';
 
-import {
-  Container,
-  Button,
-} from 'native-base';
-import { GSCustomText } from 'styles/text';
-
-export const GSContainer: any = glamor(Container, { displayName: 'CustomKeyboard' })({
+export const GSContainer = glamor(Container, { displayName: 'CustomKeyboard' })({
   alignContent: 'center',
   alignSelf: 'center',
   zIndex: 100,
 });
 
-export const GSKey: any = glamor(Button)({
+export const GSKey = glamor(Button)({
   width: 38,
   height: 38,
   margin: 4,
 });
 
-export const GSKeyText: any = glamor(GSCustomText)({
+export const GSKeyText = glamor(GSCustomText)<ICustomText>({
   textAlign: 'center',
   width: 10,
   flex: 1,
@@ -28,7 +24,7 @@ export const GSKeyText: any = glamor(GSCustomText)({
   color: Colors.white,
 });
 
-export const GSContent: any = glamor(View, { displayName: 'GSContent' })({
+export const GSContent = glamor(View, { displayName: 'GSContent' })({
   maxWidth: 310,
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -37,13 +33,13 @@ export const GSContent: any = glamor(View, { displayName: 'GSContent' })({
   justifyContent: 'center',
 });
 
-export const GSSpaceKey: any = glamor(Button)({
+export const GSSpaceKey = glamor(Button)({
   width: 269,
   height: 38,
   margin: 4,
 });
 
-export const GSBackSpaceKey: any = glamor(Button)({
+export const GSBackSpaceKey = glamor(Button)({
   width: 85,
   height: 38,
   margin: 4,

@@ -17,7 +17,7 @@ const Loading = ({ loading }: IProps) =>
     </GSLoading>
   </Modal>;
 
-const GSLoading: any = glamor.view({
+const GSLoading = glamor.view({
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',

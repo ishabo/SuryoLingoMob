@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button } from 'native-base';
 import glamor from 'glamorous-native';
 import { calcWindowWidth } from 'helpers';
-import { GSCustomText } from 'styles/text';
+import { GSCustomText, ICustomText } from 'styles/text';
 import Colors from 'styles/colors';
 
 interface IProps {
@@ -28,13 +28,13 @@ export default (
     onPressIn={onPress}
     disabled={disabled}
   >
-    <GSCustomText lang={lang} style={{ alignSelf: 'center', color: restProps.light ? Colors.lightBlack : Colors.white }}>
+    <GSButtonText lang={lang} light={restProps.light}>
       {text}
-    </GSCustomText>
+    </GSButtonText>
   </GSButton>;
 };
 
-const GSButton: any = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
+const GSButton = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
   {
     alignSelf: 'center',
   },
@@ -45,9 +45,16 @@ const GSButton: any = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
       width = calcWindowWidth(10);
       alignSelf = 'center';
     } else if (narrow) {
-      width = 140;
-      alignSelf = 'stretch';
+      width = 120;
     }
     return { width, alignSelf };
   },
 );
+
+interface IButtonText extends ICustomText { light: boolean }
+
+const GSButtonText = glamor(GSCustomText)<IButtonText>({
+  alignSelf: 'center',
+}, props => ({
+  color: props.light ? Colors.lightBlack : Colors.white
+}));

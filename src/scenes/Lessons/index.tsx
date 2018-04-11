@@ -8,7 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import { ISkill, ILesson } from 'services/skills';
 import { enterLesson } from 'services/progress/actions';
 import { IInitialState } from 'services/reducers';
-import { getSkillLessons, getLearnersLanguage, getTargetLanguage } from 'services/selectors';
+import { getSkillLessons, getSourceLanguage, getTargetLanguage } from 'services/selectors';
 import Lesson from './components/Lesson';
 import { SkillIcon } from '../Skills/components';
 import glamor from 'glamorous-native';
@@ -21,7 +21,7 @@ interface IProps {
   getLessons (skillId: string): ILesson[];
   enterLesson (lessonId: string): void;
   navigation: NavigationScreenProp<any, any>;
-  learnersLanguage: TLangs;
+  sourceLanguage: TLangs;
   targetLanguage: TLangs;
   profile: IProfile;
 }
@@ -36,8 +36,8 @@ class Lessons extends React.Component<IProps, IState> {
     snapped: false,
   };
 
-  private carousal: any;
-  private cards: any;
+  private carousal;
+  private cards;
 
   static navigationOptions = ({ navigation }) => ({
     title: I18n.t('lessons.title', { skill: navigation.state.params.skill.name }),
@@ -102,7 +102,7 @@ class Lessons extends React.Component<IProps, IState> {
       active={this.isLessonActive(lesson)}
       enterLesson={this.props.enterLesson}
       targetLanguage={this.props.targetLanguage}
-      learnersLanguage={this.props.learnersLanguage}
+      sourceLanguage={this.props.sourceLanguage}
     />;
   }
 
@@ -117,7 +117,7 @@ class Lessons extends React.Component<IProps, IState> {
             size="xxxhdpi" />
         </GSLessonIcon>
         <GSLessonInstruction>
-          <GSCustomText lang={this.props.learnersLanguage}>{I18n.t('lessons.instruction')}</GSCustomText>
+          <GSCustomText lang={this.props.sourceLanguage}>{I18n.t('lessons.instruction')}</GSCustomText>
         </GSLessonInstruction>
         <GSAnimatable
           innerRef={(c: Lessons) => this.cards = c}>
@@ -136,32 +136,32 @@ class Lessons extends React.Component<IProps, IState> {
   }
 }
 
-const GSContainer: any = glamor(Container)({
+const GSContainer = glamor(Container)({
   alignItems: 'center',
   alignSelf: 'stretch',
   justifyContent: 'space-between',
 });
 
-const GSLessonIcon: any = glamor.view({
+const GSLessonIcon = glamor.view({
   position: 'absolute',
   top: 10,
   width: 150,
 });
 
-const GSLessonInstruction: any = glamor.view({
+const GSLessonInstruction = glamor.view({
   justifyContent: 'center',
   alignSelf: 'center',
   marginTop: 150,
   marginBottom: 20,
 });
 
-const GSAnimatable: any = glamor(Animatable.View)({
+const GSAnimatable = glamor(Animatable.View)({
   alignSelf: 'center',
   justifyContent: 'center',
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
-  learnersLanguage: getLearnersLanguage(state),
+  sourceLanguage: getSourceLanguage(state),
   targetLanguage: getTargetLanguage(state),
   getLessons: (skillId: string) => getSkillLessons(skillId)(state),
   profile: state.profile,

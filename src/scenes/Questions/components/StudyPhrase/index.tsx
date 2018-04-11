@@ -31,7 +31,7 @@ export default (props: IProps) => {
   );
 };
 
-const GSContainer: any = glamor.view<{ centralize: boolean }>(
+const GSContainer = glamor.view<{ centralize: boolean }>(
   {
     flexDirection: 'row',
     marginHorizontal: 5,

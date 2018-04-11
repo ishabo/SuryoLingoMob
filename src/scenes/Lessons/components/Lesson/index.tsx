@@ -13,11 +13,11 @@ interface IProps {
   skill: ISkill;
   active: boolean;
   targetLanguage: TLangs;
-  learnersLanguage: TLangs;
+  sourceLanguage: TLangs;
   enterLesson (lessonId: string): void;
 }
 
-export default ({ lesson, skill, enterLesson, active, targetLanguage, learnersLanguage }: IProps) => {
+export default ({ lesson, skill, enterLesson, active, targetLanguage, sourceLanguage }: IProps) => {
   const { lessons } = skill;
 
   const lessonTitle = I18n.t('lessons.lesson.title', {
@@ -37,7 +37,7 @@ export default ({ lesson, skill, enterLesson, active, targetLanguage, learnersLa
 
   return <GSLesson>
     <GSCard active>
-      <GSLessonTitle lang={learnersLanguage}>{lessonTitle}</GSLessonTitle>
+      <GSLessonTitle lang={sourceLanguage}>{lessonTitle}</GSLessonTitle>
       <GSLessonNewWords lang={targetLanguage}>{lesson.newWords.split('|').join(', ')}</GSLessonNewWords>
       <GSButton onPress={() => active && enterLesson(lesson.id)} {...buttonProps}>
         <GSButtonText active={active} >

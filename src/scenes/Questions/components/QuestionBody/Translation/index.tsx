@@ -14,7 +14,7 @@ interface IProps extends IAnswerProps {
 export default class Translation extends React.Component<IProps> {
   render () {
     const { course, userHasAnswered, reverse, collectAnswer } = this.props;
-    const translateTo: string = reverse ? 'targetLanguage' : 'learnersLanguage';
+    const translateTo: string = reverse ? 'targetLanguage' : 'sourceLanguage';
     const placeholder = I18n.t(`questions.translateTo.${course[translateTo].shortName}`);
     return (
       <GSContainer>
@@ -30,6 +30,6 @@ export default class Translation extends React.Component<IProps> {
   }
 }
 
-const GSContainer: any = glamor(Container)({
+const GSContainer = glamor(Container)({
   alignSelf: 'stretch',
 });

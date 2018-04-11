@@ -4,11 +4,7 @@ import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
 import { switchCourse } from 'services/courses/actions';
 import I18n from 'I18n';
-import {
-  GSContainer,
-  GSCourse,
-  GSAnimatable,
-} from './index.styles';
+import { GSContainer, GSCourse, GSAnimatable } from './index.styles';
 import { snakeToCamel, getWindowWidth } from 'helpers';
 import {
   CachedImage,
@@ -17,6 +13,8 @@ import {
 import { IAssets } from 'services/assets';
 import { IInitialState } from 'services/reducers';
 import { Dispatch } from 'redux';
+import { AnimatableAnimationMethods } from 'react-native-animatable';
+import { GSDrawerLabel } from 'scenes/Drawer';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
 
@@ -28,10 +26,11 @@ interface IProps {
 
 class Courses extends React.Component<IProps> {
 
-  private cards: any;
+  private cards: AnimatableAnimationMethods;
 
   static navigationOptions = {
     title: I18n.t('courses.title'),
+    drawerLabel: <GSDrawerLabel>{I18n.t('courses.title')}</GSDrawerLabel>
   };
 
   componentDidMount () {
@@ -54,7 +53,7 @@ class Courses extends React.Component<IProps> {
 
   private renderCourseCard = (course: ICourse) => {
     const imageName = snakeToCamel(course.targetLanguage.shortName + '_' +
-      course.learnersLanguage.shortName);
+      course.sourceLanguage.shortName);
 
     const width = getWindowWidth() - 20;
     const height = (width * (67 / 100));
@@ -85,7 +84,7 @@ class Courses extends React.Component<IProps> {
             urlsToPreload={Object.values(this.props.courseImages)}
             onPreloadComplete={() => console.log(JSON.stringify(this.props.courseImages))}
           >
-            <GSAnimatable innerRef={(c: Courses) => this.cards = c} >
+            <GSAnimatable innerRef={(c: AnimatableAnimationMethods) => this.cards = c} >
               {this.renderCourses()}
             </GSAnimatable>
           </ImageCacheProvider>

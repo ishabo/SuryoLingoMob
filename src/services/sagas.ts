@@ -56,10 +56,9 @@ const sagasFunctions: ISagasFunctions[] = [
   ...progress.sagas.functions(),
   ...starter.sagas.functions(),
   ...assets.sagas.functions(),
-
 ];
 
-export default function* rootSagas(): IterableIterator<any> {
+export default function* rootSagas (): IterableIterator<any> {
   yield all(sagasFunctions.map((sagasFunction: ISagasFunctions) => {
     return takeLatest(sagasFunction.action, preSagas(withToken(sagasFunction.func)));
   }));

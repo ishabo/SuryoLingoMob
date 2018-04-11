@@ -1,17 +1,11 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { isNarrowDevice, scaleSize } from 'helpers';
-import { GSCustomText } from 'styles/text';
+import { GSCustomText, ICustomText } from 'styles/text';
 
 const height = 120;
 
-export const GSBannerHeader: any = glamor(GSCustomText)({
-  color: Colors.white,
-  alignSelf: 'flex-start',
-  fontSize: scaleSize(26, 22),
-});
-
-export const GSBanner: any = glamor.view({
+export const GSBanner = glamor.view({
   height,
   left: 0,
   bottom: 100,
@@ -20,32 +14,38 @@ export const GSBanner: any = glamor.view({
   zIndex: 100,
 });
 
-export const GSBannerText: any = glamor(GSCustomText)({
+export const GSBannerHeader = glamor(GSCustomText)<ICustomText>({
+  color: Colors.white,
+  alignSelf: 'flex-start',
+  fontSize: scaleSize(26, 22),
+});
+
+export const GSBannerText = glamor(GSCustomText)<ICustomText>({
   color: Colors.white,
   alignSelf: 'flex-start',
   fontSize: scaleSize(16, 14),
 });
 
-export const GSBoldText: any = glamor(GSBannerText)({
+export const GSBoldText = glamor(GSBannerText)<ICustomText>({
   fontSize: scaleSize(16, 14),
 });
 
-export const GSBannerTail: any = glamor.view({
+export const GSBannerTail = glamor.view({
   width: 100,
   marginLeft: -25,
 });
 
-export const GSMessageBox: any = glamor.view({
+export const GSMessageBox = glamor.view({
   height,
   width: isNarrowDevice() ? 230 : 270,
   padding: 15,
   alignContent: 'flex-start',
 });
 
-export const GSMessageText: any = glamor.view({
+export const GSMessageText = glamor.view({
 });
 
-export const GSTriangle: any = glamor.view<{ color: string, upsideDown?: boolean }>(
+export const GSTriangle = glamor.view<{ color: string, upsideDown?: boolean }>(
   {
     position: 'absolute',
     left: 0,

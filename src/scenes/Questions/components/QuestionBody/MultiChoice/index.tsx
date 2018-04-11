@@ -4,7 +4,7 @@ import { IAnswerProps } from '../../../index.types';
 import I18n from 'I18n';
 import shortid from 'shortid';
 import glamor from 'glamorous-native';
-import { GSCustomText } from 'styles/text';
+import { GSCustomText, ICustomText } from 'styles/text';
 import { ICourse } from 'services/courses';
 import Colors from 'styles/colors';
 import { TouchableOpacity } from 'react-native';
@@ -44,7 +44,7 @@ export default class MultiChoice extends React.Component<IProps, IState> {
 
   getWordTextLang = () => {
     const { reverse, course } = this.props;
-    return reverse ? course.targetLanguage.shortName : course.learnersLanguage.shortName;
+    return reverse ? course.targetLanguage.shortName : course.sourceLanguage.shortName;
   }
 
   isChoiceSelected = (choice: string): boolean => {
@@ -79,7 +79,7 @@ export default class MultiChoice extends React.Component<IProps, IState> {
   }
 }
 
-export const GSChoice: any = glamor.view<{ checked: boolean }>(
+export const GSChoice = glamor.view<{ checked: boolean }>(
   {
     borderWidth: 2,
     borderColor: Colors.lightBlue,
@@ -95,7 +95,7 @@ export const GSChoice: any = glamor.view<{ checked: boolean }>(
   }),
 );
 
-export const GSRadio: any = glamor.view<{ checked: boolean }>(
+export const GSRadio = glamor.view<{ checked: boolean }>(
   {
     borderRadius: 50,
     borderWidth: 1,
@@ -108,21 +108,21 @@ export const GSRadio: any = glamor.view<{ checked: boolean }>(
     backgroundColor: props.checked ? Colors.blue : 'transparent',
   }),
 );
-export const GSContainer: any = glamor(Container)({
+export const GSContainer = glamor(Container)({
   alignSelf: 'stretch',
 });
 
-export const GSTitle: any = glamor(GSCustomText)({
+export const GSTitle = glamor(GSCustomText)<ICustomText>({
   paddingHorizontal: 10,
   fontSize: 22,
 });
 
-export const GSText: any = glamor(GSCustomText)({
+export const GSText = glamor(GSCustomText)<ICustomText>({
   paddingHorizontal: 30,
   fontSize: 20,
   alignSelf: 'center',
 });
 
-export const GSContent: any = glamor(Content)({
+export const GSContent = glamor(Content)({
   marginTop: 20,
 });

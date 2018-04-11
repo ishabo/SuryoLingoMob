@@ -1,18 +1,18 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { GSCustomText } from 'styles/text';
+import { GSCustomText, ICustomText } from 'styles/text';
 
-interface IWordProps {
+interface IWordProps extends ICustomText {
   shadowed?: boolean;
   selected?: boolean;
 }
 
-export const GSWordBox: any = glamor.view({
+export const GSWordBox = glamor.view({
   // height: 40,
   margin: 5
 });
 
-export const GSWordText: any = glamor(GSCustomText)<IWordProps>(
+export const GSWordText = glamor(GSCustomText)<IWordProps>(
   {
     alignSelf: 'stretch',
     padding: 10,
@@ -25,7 +25,7 @@ export const GSWordText: any = glamor(GSCustomText)<IWordProps>(
   }),
 );
 
-export const GSSelectionBox: any = glamor.view({
+export const GSSelectionBox = glamor.view({
   alignContent: 'center',
   justifyContent: 'center',
   flexDirection: 'row',
@@ -33,7 +33,7 @@ export const GSSelectionBox: any = glamor.view({
   height: 120,
 });
 
-export const GSAnswerBox: any = glamor.view({
+export const GSAnswerBox = glamor.view({
   padding: 10,
   minHeight: 120,
   flexDirection: 'row',
@@ -43,7 +43,7 @@ export const GSAnswerBox: any = glamor.view({
   alignContent: 'flex-start',
 });
 
-export const GSTitle: any = glamor(GSCustomText)({
+export const GSTitle = glamor(GSCustomText)<ICustomText>({
   alignSelf: 'center',
   fontSize: 18,
   marginVertical: 10,

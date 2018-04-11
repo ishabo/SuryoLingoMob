@@ -12,7 +12,7 @@ import {
   getLessonInProgress,
   getSkillInProgress,
   isRegistered,
-  getLearnersLanguage,
+  getSourceLanguage,
 } from 'services/selectors';
 import config from 'config/';
 import { resetToLessons, resetToSkills } from 'helpers/navigation';
@@ -26,7 +26,7 @@ interface IProps {
   profile: IProfile;
   skillInProgress: ISkill;
   isRegistered: boolean;
-  learnersLanguage: TLangs;
+  sourceLanguage: TLangs;
 }
 
 interface IState {
@@ -56,7 +56,6 @@ class Completion extends React.Component<IProps, IState> {
 
     this.countDown();
   }
-
 
   countDown = () => {
     setTimeout(() => {
@@ -88,7 +87,7 @@ class Completion extends React.Component<IProps, IState> {
 
     return <NextButton onPress={this.navBackToLessons}
       disabled={!this.canSkipAdd()}
-      lang={this.props.learnersLanguage}
+      lang={this.props.sourceLanguage}
       text={buttonName} />;
   }
 
@@ -108,7 +107,6 @@ class Completion extends React.Component<IProps, IState> {
           {this.props.isRegistered ||
             <SignOnOrOut />}
         </GSNextButton>
-
       </GSContainer>
     );
   }
@@ -120,7 +118,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
 });
 
 const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
-  learnersLanguage: getLearnersLanguage(state),
+  sourceLanguage: getSourceLanguage(state),
   profile: state.profile,
   lessonInProgress: getLessonInProgress(state),
   skillInProgress: getSkillInProgress(state),

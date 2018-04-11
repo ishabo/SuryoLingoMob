@@ -10,10 +10,12 @@
     "noImplicitAny": false,
     "preserveConstEnums": true,
     "allowJs": false,
+    "pretty": true,
     "sourceMap": true,
     "noImplicitReturns": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "importHelpers": true,
     "paths": {

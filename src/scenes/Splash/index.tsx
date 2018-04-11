@@ -25,6 +25,7 @@ interface IState {
 
 const alertDelayTime = 1000;
 const fetchDelayTime = 1000;
+
 class Splash extends React.Component<IProps, IState> {
 
   static navigationOptions = {

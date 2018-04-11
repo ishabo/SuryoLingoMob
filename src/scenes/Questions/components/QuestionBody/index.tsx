@@ -5,7 +5,7 @@ import { IQuestion } from 'services/questions';
 import * as skill from 'services/skills';
 import * as course from 'services/courses';
 import { StudyPhrase } from '../';
-import { isReverseQuestion, toGarshoni, hintify } from 'helpers';
+import { isReverseQuestion, hintify } from 'helpers';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
 import { TAnswer } from '../../index.types';
@@ -14,13 +14,14 @@ import Translation from './Translation';
 import Dictation from './Dictation';
 import WordSelection from './WordSelection';
 import NewWordOrPhrase from './NewWordOrPhrase';
-import { isEmpty } from 'lodash';
+import { isEmpty, camelCase } from 'lodash';
 import Modal from 'react-native-modal';
 import shortid from 'shortid';
 import Colors from 'styles/colors';
 import { IDictionary } from 'services/dictionaries';
 import { downloadAndPlayAudio } from 'helpers/audio';
 import { SwitchButton } from 'components';
+import garshonify from 'garshonify';
 
 interface IProps {
   question: IQuestion;
@@ -73,7 +74,7 @@ class QuestionBody extends React.Component<IProps, IState> {
       onPress={() => { this.switchGarshoni(); }}
       text={I18n.t('questions.garshoni')}
       {...buttonProps}
-      lang={this.props.course.learnersLanguage.shortName}
+      lang={this.props.course.sourceLanguage.shortName}
     />;
   }
 
@@ -86,7 +87,7 @@ class QuestionBody extends React.Component<IProps, IState> {
       onPress={() => { this.toggleSkillDescription(true); }}
       text={this.props.skill.name}
       light
-      lang={this.props.course.learnersLanguage.shortName}
+      lang={this.props.course.sourceLanguage.shortName}
     />;
   }
 
@@ -151,18 +152,17 @@ class QuestionBody extends React.Component<IProps, IState> {
         return null;
     }
 
-    const sentence = this.state.garshoniToggle ? toGarshoni({
+    const langConfig = { source: camelCase(course.targetLanguage.shortName), target: camelCase(course.sourceLanguage.shortName) }
+    const sentence = this.state.garshoniToggle ? garshonify({
       sentence: question.phrase,
-      targetLang: course.learnersLanguage.shortName,
-      sentenceLang: course.targetLanguage.shortName,
-      advanced: true,
+      langConfig,
+      byCombo: true,
     }) : hintify(question.phrase, this.props.hints);
 
     const options = this.listOptions();
-    const lang = course[reverse || this.state.garshoniToggle ? 'learnersLanguage' : 'targetLanguage'].shortName as TLangs
+    const lang = course[reverse || this.state.garshoniToggle ? 'sourceLanguage' : 'targetLanguage'].shortName as TLangs
 
     return <GSContainer>
-
       <GSActionButtons>
         {this.props.renderNextButton}
 
@@ -196,23 +196,23 @@ class QuestionBody extends React.Component<IProps, IState> {
   }
 }
 
-const GSContainer: any = glamor(Container)({
+const GSContainer = glamor(Container)({
   flex: 1, justifyContent: 'flex-start',
 });
 
-const GSActionButtons: any = glamor.view({
+const GSActionButtons = glamor.view({
   justifyContent: 'space-between',
   flexDirection: 'row',
   marginBottom: 10,
   alignSelf: 'stretch',
 });
 
-const GSOptions: any = glamor.view({
+const GSOptions = glamor.view({
   flexDirection: 'row',
   justifyContent: 'flex-end',
 });
 
-export const GSIcon: any = glamor(Icon)({
+export const GSIcon = glamor(Icon)({
   position: 'absolute',
   right: 15,
   top: 10,
