@@ -24,3 +24,9 @@ export const GSFooter = glamor.view({
   bottom: 0,
   alignSelf: 'center'
 });
+
+export const GSSeparator = glamor.view({
+  marginVertical: 10,
+  alignSelf: 'stretch',
+  flex: 1,
+})

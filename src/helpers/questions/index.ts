@@ -16,9 +16,7 @@ export const hintify = (sentence: string, dictionary: IDictionary[]): IWordHint[
   return words.map((word: string) => {
     const hint = dictionary.find((d: IDictionary) => d.word === word);
     const key = shortid.generate();
-    return hint ?
-      { word: hint.word, translations: hint.translations, key } :
-      { word, translations: null, key };
+    return hint ? { word: hint.word, translations: hint.translations, key } : { word, translations: null, key };
   });
 };
 
@@ -26,4 +24,3 @@ export const cleanAnswer = (answer: string) => {
   const cleanned = answer.trim();
   return cleanned.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/؟܀٬]/gi, '');
 };
-

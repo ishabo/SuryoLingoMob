@@ -1,8 +1,17 @@
 import { API_VERSION, API_DOMAIN } from 'react-native-dotenv';
+import { Platform } from 'react-native';
 
+const apiHost = () => {
+  let domain = API_DOMAIN;
+
+  if (domain.match(/localhost/) && Platform.OS === 'android') {
+    domain = domain.replace(/localhost/, '10.0.2.2');
+  }
+  return `${domain}/v${API_VERSION}`
+}
 export default {
+  apiHost,
   locale: 'ar',
-  apiHost: `${API_DOMAIN}/v${API_VERSION}`,
   lessonXP: 100,
   sInfoOptions: {
     keychainService: 'SuryoLingoKeyChain',

@@ -6,12 +6,18 @@ import { downloadAndPlayAudio } from 'helpers/audio';
 
 interface IProps {
   soundTrack?: string;
-  size: { large?: boolean; small?: boolean; };
+  size: { large?: boolean; small?: boolean };
+  disabled?: boolean;
 }
 
-const SoundButton = ({ soundTrack, size }: IProps) =>
-  <TouchableOpacity onPress={async () => { await downloadAndPlayAudio(soundTrack); }}>
-    <Thumbnail {...size} source={Images.icons.speaker} />
-  </TouchableOpacity>;
+const SoundButton = ({ soundTrack, size, disabled }: IProps) => (
+  <TouchableOpacity
+    onPress={async () => {
+      await downloadAndPlayAudio(soundTrack);
+    }}
+  >
+    <Thumbnail {...size} source={disabled ? Images.icons.noSpeaker : Images.icons.speaker} />
+  </TouchableOpacity>
+);
 
 export default SoundButton;

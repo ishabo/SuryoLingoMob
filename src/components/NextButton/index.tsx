@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from 'native-base';
+import { Button, View } from 'native-base';
 import glamor from 'glamorous-native';
 import { calcWindowWidth } from 'helpers';
 import { GSCustomText, ICustomText } from 'styles/text';
@@ -21,7 +21,7 @@ export default (
     lang,
     restProps = { success: true, wide: true } }: IProps,
 ) => {
-  return <GSButton
+  return <View style={{ height: 50 }}><GSButton
     {...restProps}
     rounded
     block
@@ -31,12 +31,12 @@ export default (
     <GSButtonText lang={lang} light={restProps.light}>
       {text}
     </GSButtonText>
-  </GSButton>;
+  </GSButton></View>;
 };
 
 const GSButton = glamor(Button)<{ wide?: boolean, narrow?: boolean }>(
   {
-    alignSelf: 'center',
+    alignSelf: 'stretch',
   },
   ({ wide, narrow }) => {
     let width;

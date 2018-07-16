@@ -10,15 +10,13 @@ import * as signon from 'services/signon';
 import * as profile from 'services/profile';
 import {
   GSContainer, GSTabs, GSTabButton,
-  GSForgotPassword,
-  GSButtonText, GSInput,
-  GSForm, GSItem, GSLebel,
-  GSNextButtons, GSTitle,
+  GSLink, GSButtonText, GSInput,
+  GSForm, GSItem, GSLebel, GSTitle,
   GSIcon, GSErrorText,
 } from './index.styles';
 import { GSCustomText } from 'styles/text';
 
-import { GSHeader } from 'styles/layouts';
+import { GSHeader, GSSeparator } from 'styles/layouts';
 import { NextButton } from 'components';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
@@ -121,12 +119,14 @@ class Signon extends React.Component<IProps, IState> {
   }
 
   private skipToNext = () => {
+    Keyboard.dismiss();
     const { activeCourse, navigation, profile } = this.props;
     const routeName = activeCourse ? 'Skills' : 'Courses';
     navigation.navigate(routeName, profile);
   }
 
   private submitSignon = () => {
+    Keyboard.dismiss();
     this.props.submitSignon(this.state.signUpOrIn);
   }
 
@@ -189,7 +189,6 @@ class Signon extends React.Component<IProps, IState> {
 
   private renderForm = () =>
     <GSForm>
-
       {this.isSignup() && this.renderInput('name', {
         defaultValue: this.props.signon.item.name,
         onSubmitEditing: this.focusOn('email'),
@@ -213,10 +212,7 @@ class Signon extends React.Component<IProps, IState> {
         this.renderShowPasswordIcon(),
       )}
 
-      {<GSNextButtons>
-        {this.renderSubmitButton()}
-        {this.renderSkipButton()}
-      </GSNextButtons>}
+      {this.renderButtons()}
 
       {this.renderRecoverPasswordLink()}
     </GSForm>
@@ -228,27 +224,28 @@ class Signon extends React.Component<IProps, IState> {
 
   private renderRecoverPasswordLink = () =>
     this.isSignin() &&
-    <GSForgotPassword onPress={() => this.props.navigation.navigate('PasswordRecovery')}>
+    <GSLink onPress={() => this.props.navigation.navigate('PasswordRecovery')}>
       <GSCustomText>
         {I18n.t(`passwordRecovery.links.recoverPassword`)}
       </GSCustomText>
-    </GSForgotPassword>
+    </GSLink>
 
-  private renderSubmitButton = () =>
-    <NextButton
-      onPress={this.submitSignon}
-      text={I18n.t(`profile.form.submit.${this.isSignin() ? 'signin' : 'signup'}`)}
-      restProps={{ success: true, narrow: true }}
-      lang={'cl-ara'}
-    />
+  private renderButtons = () => {
+    return <>
+      <GSSeparator />
+      <NextButton
+        onPress={this.submitSignon}
+        text={I18n.t(`profile.form.submit.${this.isSignin() ? 'signin' : 'signup'}`)}
+        lang={'cl-ara'}
+      />
+      <GSLink onPress={this.skipToNext}>
+        <GSCustomText>
+          {I18n.t('profile.form.skip')}
+        </GSCustomText>
+      </GSLink>
+    </>
+  }
 
-  private renderSkipButton = () =>
-    <NextButton
-      onPress={this.skipToNext}
-      text={I18n.t('profile.form.skip')}
-      restProps={{ primry: true, narrow: true }}
-      lang={'cl-ara'}
-    />
 
   private renderBulb = (subject: TAlertSubject) => <GSIcon name="bulb"
     onPress={() => this.showAlert(subject)} />

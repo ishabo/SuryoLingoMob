@@ -36,12 +36,3 @@ export const GSErrorText = glamor(GSCustomText)<ICustomText>({
   fontSize: 14,
   marginLeft: 20,
 });
-
-export const GSNextButtons = glamor.view({
-  alignItems: 'stretch',
-  alignSelf: 'stretch',
-  alignContent: 'center',
-  justifyContent: 'space-between',
-  marginTop: 20,
-  flexDirection: 'row',
-});
