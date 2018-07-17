@@ -24,13 +24,14 @@ export interface ILesson {
 export interface ISkill {
   id: string;
   unit: number;
+  name: string;
+  icon: string;
   active?: boolean;
   progress?: number;
-  name: string;
   lessons: ILesson[];
   description: string;
   totalSkillXp?: number;
-  icon: string;
+  isComingSoon: boolean;
 }
 
 export interface ISkillsAction {
@@ -43,11 +44,4 @@ export interface ISkillsAction {
   timestamp?: Moment;
 }
 
-export {
-  api,
-  actions,
-  reducers,
-  selectors,
-  sagas,
-};
-
+export { api, actions, reducers, selectors, sagas };

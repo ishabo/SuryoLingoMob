@@ -77,7 +77,8 @@ export default {
   skills: {
     title: 'المهارات',
     level: 'المستوى رقم: {{level}}',
-    skillInactive: 'هذه المهارة غير فعالة. عليك اجتياز المهارات الفعالة أولاً.'
+    skillInactive: 'هذه المهارة غير فعالة. عليك اجتياز المهارات الفعالة أولاً.',
+    comingSoon: 'قريباً!'
   },
   questions: {
     garshoni: 'جرشوني',

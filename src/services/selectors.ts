@@ -19,20 +19,19 @@ const selectLesson = (skills: skills.ISkill[], lessonId: string): skills.ILesson
 export const getActiveCourse = (state: IInitialState): courses.ICourse =>
   courses.selectors.getActiveCourse(state.courses);
 
-export const getTargetLanguage = (state: IInitialState) =>
-  courses.selectors.getTargetLanguage(state.courses);
+export const getComingSoonSkills = (state: IInitialState) => skills.selectors.getComingSoonSkills(state.skills);
 
-export const getSourceLanguage = (state: IInitialState) =>
-  courses.selectors.getSourceLanguage(state.courses);
+export const getPublishedSkills = (state: IInitialState) => skills.selectors.getPublishedSkills(state.skills);
 
-export const getPending = (state: IInitialState) =>
-  questions.selectors.getPending(state.questions);
+export const getTargetLanguage = (state: IInitialState) => courses.selectors.getTargetLanguage(state.courses);
 
-export const calcProress = (state: IInitialState) =>
-  questions.selectors.calcProress(state.questions);
+export const getSourceLanguage = (state: IInitialState) => courses.selectors.getSourceLanguage(state.courses);
 
-export const getCurrentQuestion = (state: IInitialState) =>
-  questions.selectors.getCurrentQuestion(state.questions);
+export const getPending = (state: IInitialState) => questions.selectors.getPending(state.questions);
+
+export const calcProress = (state: IInitialState) => questions.selectors.calcProress(state.questions);
+
+export const getCurrentQuestion = (state: IInitialState) => questions.selectors.getCurrentQuestion(state.questions);
 
 export const allCorrectAnswers = (state: IInitialState, questionId: string) =>
   questions.selectors.allCorrectAnswers(state.questions, questionId);
@@ -46,8 +45,9 @@ export const getSkillsByUnit = (unit: number) => (state: IInitialState): skills.
 export const getSkillInProgress = (state: IInitialState): skills.ISkill => {
   const lessonId = state.progress.lessonInProgress;
 
-  return state.skills.find((skill: skills.ISkill) =>
-    skill.lessons.find((skillLesson: skills.ILesson) => skillLesson.id === lessonId) !== void (0),
+  return state.skills.find(
+    (skill: skills.ISkill) =>
+      skill.lessons.find((skillLesson: skills.ILesson) => skillLesson.id === lessonId) !== void 0
   );
 };
 
@@ -65,10 +65,8 @@ export const getSkillProgress = (state: IInitialState): skills.ISkill[] => {
 
 const orderLessonsByOrder = (lessons: skills.ILesson[]) => {
   const compare = (a: skills.ILesson, b: skills.ILesson) => {
-    if (a.order < b.order)
-      return -1;
-    if (a.order > b.order)
-      return 1;
+    if (a.order < b.order) return -1;
+    if (a.order > b.order) return 1;
     return 0;
   };
   const filteredLessons = cloneDeep(lessons).sort(compare);
@@ -81,9 +79,7 @@ const orderLessonsByOrder = (lessons: skills.ILesson[]) => {
 };
 
 export const getSkillLessons = (skillId: string) => (state: IInitialState): skills.ILesson[] =>
-  orderLessonsByOrder(
-    state.skills.find((skill: skills.ISkill) => skill.id === skillId).lessons,
-  );
+  orderLessonsByOrder(state.skills.find((skill: skills.ISkill) => skill.id === skillId).lessons);
 
 export const numOfTimesLessonInProgressPassed = (state: IInitialState): number => {
   const lesson = selectLesson(state.skills, state.progress.lessonInProgress);
@@ -91,10 +87,9 @@ export const numOfTimesLessonInProgressPassed = (state: IInitialState): number =
     return lesson.lessonHistory.length;
   }
   return 0;
-}
+};
 
-export const getLessonsToSync = (state: IInitialState): ILessonToSync[] =>
-  state.progress.lessonsToSync;
+export const getLessonsToSync = (state: IInitialState): ILessonToSync[] => state.progress.lessonsToSync;
 
 export const isRegistered = (state: IInitialState): boolean =>
   typeof state.profile.email === 'string' && state.profile.email.length > 3;
@@ -111,12 +106,7 @@ export const hasNetworkError = (state: IInitialState): boolean =>
   exceptions.selectors.hasNetworkError(state.exceptions);
 
 export const calcTotaluserXp = (state: IInitialState): number =>
-  state.skills.reduce((total: number, skill: skills.ISkill): number =>
-    total + skill.totalSkillXp, 0,
-  );
+  state.skills.reduce((total: number, skill: skills.ISkill): number => total + skill.totalSkillXp, 0);
 
-export const getSkillIcon = (state: IInitialState) => (
-  icon: string, size: assets.TImageSizes,
-): assets.ISkillIcon =>
+export const getSkillIcon = (state: IInitialState) => (icon: string, size: assets.TImageSizes): assets.ISkillIcon =>
   assets.selectors.getSkillIcon(icon, size)(state.assets);
-
