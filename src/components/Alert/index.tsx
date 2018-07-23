@@ -15,6 +15,7 @@ interface IProps {
   lastException: exceptions.IException;
   apiStatus: api.IApiStatus;
   signout: () => void;
+  removeAll: () => void;
 }
 
 const durationToHide = 2000;
@@ -37,6 +38,7 @@ class Alert extends React.Component<IProps> {
 
   componentWillReceiveProps (nextProps: Partial<IProps>) {
     const exception = nextProps.lastException;
+
     if (exception) {
       alertType = config.alerts[exception.name]
         ? config.alerts[exception.name].alertType : 'error';
@@ -55,15 +57,15 @@ class Alert extends React.Component<IProps> {
     }
 
     if (doAlert) {
+
+      if (exception) {
+        this.props.removeException(exception.id);
+      }
+
       MessageBarManager.showAlert({
-        alertType, title, message, durationToHide, onHide: () => {
-          if (exception) {
-            this.props.removeException(exception.id);
-          }
-        }
+        alertType, title, message, durationToHide, position: 'bottom', onHide: () => { }
       });
     }
-
   }
 
   render () {
@@ -74,6 +76,7 @@ class Alert extends React.Component<IProps> {
 const mapStateToDispatch = (dispatch: Dispatch<any>): Partial<IProps> => ({
   signout: () => dispatch(signon.actions.signout()),
   removeException: (id: number) => dispatch(exceptions.actions.remove(id)),
+  removeAll: () => dispatch(exceptions.actions.removeAll()),
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({

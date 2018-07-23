@@ -10,9 +10,9 @@ import * as exceptions from 'services/exceptions';
 import { fetchProfile } from 'services/profile/sagas';
 
 export function* firstFetch (): IterableIterator<any> {
-  const activeCourse = yield select(getActiveCourse);
   yield put(exceptions.actions.removeAll());
   yield put(setLoadingOff());
+  const activeCourse = yield select(getActiveCourse);
   yield call(fetchProfile);
   yield put(fetchCourses());
 
@@ -20,6 +20,7 @@ export function* firstFetch (): IterableIterator<any> {
     yield put(syncFinishedLessons());
     yield put(fetchSkills());
   }
+  yield put(setLoadingOff());
 }
 
 export const functions = (): ISagasFunctions[] => {

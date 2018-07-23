@@ -5,13 +5,14 @@ import { GSContainer } from './index.styles';
 import { Dispatch } from 'redux';
 import I18n from 'I18n';
 import * as signon from 'services/signon';
-import { GSInput, GSNextButtons, GSForm } from 'styles/forms';
+import { GSInput, GSForm } from 'styles/forms';
 import { NextButton } from 'components';
 import { GSTitle, GSAlert, GSCustomText } from 'styles/text';
 import { IInitialState } from 'services/reducers';
 import { IApiStatus } from 'services/api/reducers';
 import { Item } from 'native-base';
 import { NavigationScreenProp } from 'react-navigation';
+import { GSSeparator } from 'styles/layouts';
 
 export interface IProps {
   recoverPassword: (email: string) => void;
@@ -72,14 +73,13 @@ class PasswordRecovery extends React.Component<IProps, IState> {
             value={this.state.email}
             onChangeText={this.setEmail} />
         </Item>
-        <GSNextButtons>
-          <NextButton
-            onPress={() => this.props.recoverPassword(this.state.email)}
-            text={I18n.t('passwordRecovery.form.submit')}
-            restProps={{ primary: true, wide: true }}
-            lang={'cl-ara'}
-          />
-        </GSNextButtons>
+        <GSSeparator />
+        <NextButton
+          onPress={() => this.props.recoverPassword(this.state.email)}
+          text={I18n.t('passwordRecovery.form.submit')}
+          restProps={{ success: true, wide: true }}
+          lang={'cl-ara'}
+        />
       </GSForm>
     );
   }

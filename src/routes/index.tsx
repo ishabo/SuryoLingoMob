@@ -14,7 +14,7 @@ import { Platform } from 'react-native';
 
 const SignonStack = StackNavigator({
   Signon: { screen: Signon },
-  PasswordRecovery: { screen: PasswordRecovery, navigationOptions: { visible: true } },
+  PasswordRecovery: { screen: PasswordRecovery, navigationOptions: { visible: false } },
 });
 
 const DrawerNav = DrawerNavigator({

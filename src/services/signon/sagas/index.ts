@@ -28,7 +28,7 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
   }
 
   const errors: signon.ISignonFormErrors = validateSigon(fields);
-
+  debugger;
   if (isEmpty(errors)) {
 
     yield put(setLoadingOn());
@@ -55,9 +55,9 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
       } else {
         yield put(NavigationActions.navigate({ routeName: 'Courses' }));
       }
-
     } catch (error) {
-      if (isApiResponse(error)) {
+
+      if (isApiResponse(error.response)) {
         if (error.response.status === 400) {
           if (error.response.data.match(/Email already exists/)) {
             errors['email'] = 'emailSlreadyExists';
@@ -66,7 +66,6 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
         }
       }
     }
-
   } else {
     yield put(signon.actions.setErrors(errors));
   }

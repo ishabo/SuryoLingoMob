@@ -10,7 +10,7 @@ target 'SuryoLingo' do
   pod 'AppCenter/Push', '~> 1.5.0'
   pod 'AppCenter/Analytics', '~> 1.5.0'
   pod 'AppCenterReactNativeShared', '~> 1.4.0'
-
+  pod 'ReactNativeFabric', :path => '../node_modules/react-native-fabric'
   
   platform :ios, '9.0'
   target 'SuryoLingoTests' do

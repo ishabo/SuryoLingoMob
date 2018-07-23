@@ -11,7 +11,7 @@ export const GSContainer = glamor(KeyboardAvoidingView)({
   justifyContent: 'space-between',
 });
 
-export const GSForgotPassword = glamor(TouchableOpacity)({
+export const GSLink = glamor(TouchableOpacity)({
   alignSelf: 'center',
   marginTop: 10,
   padding: 10,
