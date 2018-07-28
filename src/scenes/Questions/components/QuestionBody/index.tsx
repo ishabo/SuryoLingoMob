@@ -5,7 +5,7 @@ import { IQuestion } from 'services/questions';
 import * as skill from 'services/skills';
 import * as course from 'services/courses';
 import { StudyPhrase } from '../';
-import { isReverseQuestion, hintify } from 'helpers';
+import { isReverseQuestion, hintify, openPhraseInAdmin } from 'helpers';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
 import { TAnswer } from '../../index.types';
@@ -31,6 +31,7 @@ interface IProps {
   userHasAnswered: boolean;
   hints: IDictionary[];
   renderNextButton: React.ReactElement<any>;
+  isAdmin?: boolean;
 }
 
 interface IState {
@@ -84,6 +85,16 @@ class QuestionBody extends React.Component<IProps, IState> {
       />
     );
   };
+
+  private renderEditLink = () => (
+    <SwitchButton
+      key={shortid.generate()}
+      onPress={() => openPhraseInAdmin(this.props.question.phrase)}
+      text={I18n.t('questions.correction')}
+      light={true}
+      lang={this.props.course.sourceLanguage.shortName}
+    />
+  );
 
   private renderDescriptionSwitch = () => {
     if (isEmpty(this.props.skill.description)) {
@@ -195,7 +206,10 @@ class QuestionBody extends React.Component<IProps, IState> {
         })
       : hintify(question.phrase, this.props.hints);
 
-    const options = this.listOptions();
+    let options = this.listOptions();
+    if (this.props.isAdmin) {
+      options.push(this.renderEditLink());
+    }
     const lang = course[reverse || this.state.garshoniToggle ? 'sourceLanguage' : 'targetLanguage'].shortName as TLangs;
 
     return (

@@ -42,7 +42,6 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor} loading={null}>
-          {/* <Loading /> */}
           <Navigation />
           <Alert />
         </PersistGate>
