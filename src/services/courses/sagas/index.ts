@@ -1,7 +1,8 @@
 import { call, put, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+
 import * as courses from 'services/courses';
 import * as skill from 'services/skills';
-import * as dictionaries from 'services/dictionaries';
 import { NavigationActions } from 'react-navigation';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as profile from 'services/profile';
@@ -11,7 +12,7 @@ import { isRegistered, getActiveCourse } from 'services/selectors';
 import { ISagasFunctions } from 'services/sagas';
 import { navToSkills } from 'helpers';
 
-export function* fetchCourses (): IterableIterator<any> {
+export function* fetchCourses(): IterableIterator<any> {
   yield put(setLoadingOn());
   yield put(profile.actions.createProfile());
   const hasRegistered = yield select(isRegistered);
@@ -28,7 +29,6 @@ export function* fetchCourses (): IterableIterator<any> {
       yield put(NavigationActions.navigate({ routeName }));
     }
   } catch (error) {
-    yield put(setLoadingOff());
     if (hasRegistered && typeof error === 'object' && error.response) {
       const { status } = error.response;
       if (status === 401 || status === 402) {
@@ -37,19 +37,20 @@ export function* fetchCourses (): IterableIterator<any> {
     }
     console.log(error);
   }
-
   yield put(setLoadingOff());
 }
 
-export function* switchCourse (action: courses.ICourseAction): IterableIterator<any> {
+export function* switchCourse(action: courses.ICourseAction): IterableIterator<any> {
+  yield put(setLoadingOn());
+  yield delay(1000);
   yield put(courses.actions.setActiveCourse(action.courseId));
-  yield put(dictionaries.actions.fetchDictionaries(action.courseId));
   yield put(skill.actions.fetchSkills());
+  yield put(setLoadingOff());
 }
 
 export const functions = (): ISagasFunctions[] => {
   return [
     { action: courses.actions.types.FETCH_COURSES, func: fetchCourses },
-    { action: courses.actions.types.SWITCH_COURSE, func: switchCourse },
+    { action: courses.actions.types.SWITCH_COURSE, func: switchCourse }
   ];
 };

@@ -82,6 +82,7 @@ export default {
   },
   questions: {
     garshoni: 'جرشوني',
+    correction: '!',
     cannotHear: 'لست أسمع',
     help: 'مساعدة',
     submit: 'أرسل الاجابة',

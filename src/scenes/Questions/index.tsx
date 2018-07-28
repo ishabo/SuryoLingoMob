@@ -4,8 +4,12 @@ import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
 import {
-  navToSkills, evalAgainstAllAnswers, isReverseQuestion,
-  cleanAnswer, getWindowWidth, isNarrowDevice,
+  navToSkills,
+  evalAgainstAllAnswers,
+  isReverseQuestion,
+  cleanAnswer,
+  getWindowWidth,
+  isNarrowDevice
 } from 'helpers';
 import { connect } from 'react-redux';
 import { nextQuestionOrFinish, TQuestionType } from 'services/questions/actions';
@@ -16,7 +20,7 @@ import {
   allCorrectAnswers,
   getSkillInProgress,
   getTargetLanguage,
-  getSourceLanguage,
+  getSourceLanguage
 } from 'services/selectors';
 import { GSCustomText } from 'styles/text';
 import Colors from 'styles/colors';
@@ -32,30 +36,29 @@ import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
 
 class Questions extends React.Component<IProps, IState> {
-
   public state = {
     answer: null,
     progress: 0,
     answerCorrect: null,
     modalOn: false,
     movingNext: false,
-    keyboardIsOn: false,
+    keyboardIsOn: false
   };
 
   private keyboardDidShowListener;
   private keyboardDidHideListener;
 
-  private userHasAnswered = () =>
-    this.state.answerCorrect !== null
+  private userHasAnswered = () => this.state.answerCorrect !== null;
 
   static navigationOptions = {
     header: null,
 
     cardStack: {
-      transition: (previousRoute: any) => { // configure the animation here 
+      transition: (previousRoute: any) => {
+        // configure the animation here
         console.warn(previousRoute);
-      },
-    },
+      }
+    }
   };
 
   collectAnswer = (answer: TAnswer) => {
@@ -70,25 +73,25 @@ class Questions extends React.Component<IProps, IState> {
     if (!this.userHasAnswered() && cleannedAnswer.length > length) {
       this.setState({ answer: cleannedAnswer });
     }
-  }
+  };
 
-  submitDisallowed = () => isEmpty(this.state.answer) && this.actionNeeded()
+  submitDisallowed = () => isEmpty(this.state.answer) && this.actionNeeded();
 
   actionNeeded = () => this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE';
 
   needsEvaluation = () => this.actionNeeded() && !this.userHasAnswered();
 
-  componentWillMount () {
+  componentWillMount() {
     this.setState({ progress: this.props.calcProress });
   }
 
-  componentDidMount () {
+  componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove();
@@ -96,16 +99,16 @@ class Questions extends React.Component<IProps, IState> {
 
   private keyboardDidShow = () => {
     this.setState({ keyboardIsOn: true });
-  }
+  };
 
   private keyboardDidHide = () => {
     this.setState({ keyboardIsOn: false });
-  }
+  };
 
   handleBackPress = () => {
     this.existQuestions();
     return true;
-  }
+  };
 
   evaluateOrNext = () => {
     if (this.submitDisallowed() || this.state.movingNext) {
@@ -119,7 +122,7 @@ class Questions extends React.Component<IProps, IState> {
     } else {
       this.nextQuestionOrComplete();
     }
-  }
+  };
 
   evaluate = () => {
     const targetLangConfig = getLangConfig(this.props.targetLanguage);
@@ -127,17 +130,17 @@ class Questions extends React.Component<IProps, IState> {
 
     const evaluationOptions = {
       allowedLetters: targetLangConfig.letters.concat(sourceLangConfig.letters),
-      overlookLetters: { ...targetLangConfig.overlookLetters, ...sourceLangConfig.overlookLetters },
+      overlookLetters: { ...targetLangConfig.overlookLetters, ...sourceLangConfig.overlookLetters }
     };
     const answer = this.state.answer;
     const answerCorrect = evalAgainstAllAnswers(
       typeof answer === 'string' ? [answer] : answer,
       this.props.allCorrectAnswers(this.props.currentQuestion.id),
-      evaluationOptions,
+      evaluationOptions
     );
 
     this.setState({ answerCorrect });
-  }
+  };
 
   answeredCorrectly = () => !isEmpty(this.state.answer) && this.state.answerCorrect === true;
 
@@ -150,16 +153,16 @@ class Questions extends React.Component<IProps, IState> {
       }
       this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
     });
-  }
+  };
 
   private backToSkills = () => {
     const resetAction = NavigationActions.reset({
       index: 0,
       key: null,
-      actions: [navToSkills()],
+      actions: [navToSkills()]
     });
     this.props.navigation.dispatch(resetAction);
-  }
+  };
 
   existQuestions = () => {
     Alert.alert(
@@ -167,35 +170,46 @@ class Questions extends React.Component<IProps, IState> {
       I18n.t('questions.exist.caviat'),
       [
         {
-          text: I18n.t('questions.exist.cancel'), onPress: () => {
+          text: I18n.t('questions.exist.cancel'),
+          onPress: () => {
             console.log('Cancelled exist');
-          }, style: 'cancel',
+          },
+          style: 'cancel'
         },
         {
-          text: I18n.t('questions.exist.ok'), onPress: () => {
+          text: I18n.t('questions.exist.ok'),
+          onPress: () => {
             this.backToSkills();
-          },
-        },
+          }
+        }
       ],
-      { cancelable: false },
+      { cancelable: false }
+    );
+  };
+
+  renderEvaluationBanner() {
+    const { questionType, phrase, translation } = this.props.currentQuestion;
+    const correctAnswer = (
+      <GSCustomText
+        style={{ fontSize: 16 }}
+        lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.sourceLanguage}
+      >
+        {isReverseQuestion(questionType) ? phrase : translation}
+      </GSCustomText>
+    );
+
+    return (
+      this.userHasAnswered() && (
+        <EvaluationBanner
+          lang={this.props.sourceLanguage}
+          passed={this.state.answerCorrect}
+          correctAnswer={correctAnswer}
+        />
+      )
     );
   }
 
-  renderEvaluationBanner () {
-    const { questionType, phrase, translation } = this.props.currentQuestion;
-    const correctAnswer = <GSCustomText style={{ fontSize: 16 }}
-      lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.sourceLanguage}>
-      {isReverseQuestion(questionType) ? phrase : translation}
-    </GSCustomText>
-
-    return this.userHasAnswered()
-      && <EvaluationBanner
-        lang={this.props.sourceLanguage}
-        passed={this.state.answerCorrect}
-        correctAnswer={correctAnswer} />;
-  }
-
-  renderProgressBar = () =>
+  renderProgressBar = () => (
     <GSHeader>
       <GSIcon name="close" onPress={this.existQuestions} />
       <GSProgress>
@@ -206,13 +220,16 @@ class Questions extends React.Component<IProps, IState> {
           borderColor={Colors.lightGray}
           color={Colors.darkGreen}
           unfilledColor="#d3d3d3"
-          animated style={{ marginLeft: 10 }}
+          animated
+          style={{ marginLeft: 10 }}
         />
       </GSProgress>
     </GSHeader>
+  );
 
-  renderQuestionBody = () =>
+  renderQuestionBody = () => (
     <QuestionBody
+      isAdmin={this.props.profile.isTester}
       course={this.props.course}
       skill={this.props.skillInProgress}
       question={this.props.currentQuestion}
@@ -221,56 +238,55 @@ class Questions extends React.Component<IProps, IState> {
       hints={this.props.dictionaries}
       renderNextButton={this.showSmallButton() ? this.renderNextQuestionSmall() : <View />}
     />
+  );
 
-  showSmallButton = () => !this.submitDisallowed() && !this.state.movingNext && this.state.keyboardIsOn && isNarrowDevice()
+  showSmallButton = () =>
+    !this.submitDisallowed() && !this.state.movingNext && this.state.keyboardIsOn && isNarrowDevice();
 
   renderNextQuestionSmall = () => {
-    let text = this.needsEvaluation()
-      ? I18n.t('questions.submit')
-      : I18n.t('questions.continue')
+    let text = this.needsEvaluation() ? I18n.t('questions.submit') : I18n.t('questions.continue');
 
-    return <SwitchButton onPress={this.evaluateOrNext}
-      lang={this.props.sourceLanguage}
-      success
-      text={text} />
-  }
+    return <SwitchButton onPress={this.evaluateOrNext} lang={this.props.sourceLanguage} success text={text} />;
+  };
 
   renderNextQuestion = () => {
-    let text = this.needsEvaluation()
-      ? I18n.t('questions.submit')
-      : I18n.t('questions.continue')
+    let text = this.needsEvaluation() ? I18n.t('questions.submit') : I18n.t('questions.continue');
 
-    return <NextButton onPress={this.evaluateOrNext}
-      disabled={this.submitDisallowed() || this.state.movingNext}
-      lang={this.props.sourceLanguage}
-      text={text} />
+    return (
+      <NextButton
+        onPress={this.evaluateOrNext}
+        disabled={this.submitDisallowed() || this.state.movingNext}
+        lang={this.props.sourceLanguage}
+        text={text}
+      />
+    );
+  };
+
+  renderBodyAndFooter() {
+    return (
+      <GSFooterAndBody>
+        <GSBody>{this.renderQuestionBody()}</GSBody>
+        <GSFooter>{(this.state.keyboardIsOn && isNarrowDevice() && <View />) || this.renderNextQuestion()}</GSFooter>
+      </GSFooterAndBody>
+    );
   }
 
-  renderBodyAndFooter () {
-    return <GSFooterAndBody>
-      <GSBody>
-        {this.renderQuestionBody()}
-      </GSBody>
-      <GSFooter>
-        {(this.state.keyboardIsOn && isNarrowDevice()) && <View /> || this.renderNextQuestion()}
-      </GSFooter>
-    </GSFooterAndBody>;
-  }
-
-  render () {
-    return this.props.currentQuestion && (
-      <GSContainer>
-        {this.renderProgressBar()}
-        {this.renderBodyAndFooter()}
-        {this.state.movingNext || this.renderEvaluationBanner()}
-      </GSContainer >
-    ) || <Container />;
+  render() {
+    return (
+      (this.props.currentQuestion && (
+        <GSContainer>
+          {this.renderProgressBar()}
+          {this.renderBodyAndFooter()}
+          {this.state.movingNext || this.renderEvaluationBanner()}
+        </GSContainer>
+      )) || <Container />
+    );
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   nextQuestionOrFinish: (questionId: string, status: TQuestionType) =>
-    dispatch(nextQuestionOrFinish(questionId, status)),
+    dispatch(nextQuestionOrFinish(questionId, status))
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
@@ -284,7 +300,10 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   dictionaries: state.dictionaries,
   allCorrectAnswers: (questionId: string) => allCorrectAnswers(state, questionId),
   targetLanguage: getTargetLanguage(state),
-  sourceLanguage: getSourceLanguage(state),
+  sourceLanguage: getSourceLanguage(state)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questions);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Questions);

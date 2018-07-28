@@ -1,8 +1,9 @@
 import { call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import * as questions from '../';
+import * as dictionaries from 'services/dictionaries';
 import { NavigationActions } from 'react-navigation';
-import { getPending, getLessonInProgress } from '../../selectors';
+import { getPending, getLessonInProgress, getActiveCourse } from '../../selectors';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
@@ -10,11 +11,15 @@ import { downloadFile } from 'helpers';
 import cloneDeep from 'clone-deep';
 import { finishLesson } from 'services/progress/sagas';
 
-export function* fetchQuestions (action: questions.IQuestionsAction): IterableIterator<any> {
-  yield put(setLoadingOn());
+export function* fetchQuestions(action: questions.IQuestionsAction): IterableIterator<any> {
   let fetchedQuestions;
   let reportError = false;
   let usingBackup = false;
+
+  yield put(setLoadingOn());
+
+  const activeCourse = yield select(getActiveCourse);
+  yield put(dictionaries.actions.fetchDictionaries(activeCourse.id));
 
   try {
     fetchedQuestions = yield call(questions.api.getQuestions, action.lessonId);
@@ -25,10 +30,10 @@ export function* fetchQuestions (action: questions.IQuestionsAction): IterableIt
         usingBackup = true;
         fetchedQuestions = cloneDeep(lessonInProgress.questions);
       } else {
-        reportError = true
+        reportError = true;
       }
     } else {
-      reportError = true
+      reportError = true;
     }
 
     if (reportError) {
@@ -45,12 +50,12 @@ export function* fetchQuestions (action: questions.IQuestionsAction): IterableIt
   yield put(setLoadingOff());
 }
 
-function* saveQuestionsAndNavigate (data: questions.IQuestion[]) {
+function* saveQuestionsAndNavigate(data: questions.IQuestion[]) {
   yield put(questions.actions.saveQuestions(data));
   yield put(NavigationActions.navigate({ routeName: 'Questions' }));
 }
 
-function* cacheAudioSounds (data: questions.IQuestion[]) {
+function* cacheAudioSounds(data: questions.IQuestion[]) {
   try {
     let question: questions.IQuestion;
 
@@ -64,7 +69,7 @@ function* cacheAudioSounds (data: questions.IQuestion[]) {
   }
 }
 
-export function* nextQuestionOrFinish (action: questions.IQuestionsAction): IterableIterator<any> {
+export function* nextQuestionOrFinish(action: questions.IQuestionsAction): IterableIterator<any> {
   yield put(questions.actions.updateQuestionStatus(action.questionId, action.status));
   const pending: string[] = yield select(getPending);
   let routeName = 'Questions';
@@ -80,8 +85,7 @@ export function* nextQuestionOrFinish (action: questions.IQuestionsAction): Iter
   yield put(NavigationActions.navigate({ routeName }));
 }
 
-export const functions = (): ISagasFunctions[] => ([
+export const functions = (): ISagasFunctions[] => [
   { action: questions.actions.types.FETCH_QUESTIONS, func: fetchQuestions },
-  { action: questions.actions.types.NEXT_QUESTION_OR_FINISH, func: nextQuestionOrFinish },
-]);
-
+  { action: questions.actions.types.NEXT_QUESTION_OR_FINISH, func: nextQuestionOrFinish }
+];
