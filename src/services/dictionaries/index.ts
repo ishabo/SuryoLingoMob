@@ -2,6 +2,12 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as sagas from './sagas';
 
+export interface IWordHint {
+  word: string;
+  translations?: string;
+  key?: string;
+}
+
 export interface IDictionary {
   id: string;
   word: string;
@@ -14,8 +20,4 @@ export interface IDictionaryAction {
   dictionaries: IDictionary[];
 }
 
-export {
-  actions,
-  reducers,
-  sagas,
-};
+export { actions, reducers, sagas };
