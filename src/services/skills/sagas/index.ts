@@ -5,11 +5,13 @@ import { resetToSkills } from 'helpers';
 import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
 import * as assets from 'services/assets';
+import { setLoadingOn, setLoadingOff } from 'services/api/actions';
 
 export function* fetchSkills(): IterableIterator<any> {
   const activeCourse = yield select(getActiveCourse);
 
   if (activeCourse) {
+    yield put(setLoadingOn());
     try {
       const response = yield call(skills.api.getSkills, activeCourse.id);
       yield put(skills.actions.saveSkills(response));
@@ -19,6 +21,7 @@ export function* fetchSkills(): IterableIterator<any> {
     }
 
     yield put(resetToSkills());
+    yield put(setLoadingOff());
   }
 }
 

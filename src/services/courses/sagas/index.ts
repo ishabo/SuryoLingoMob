@@ -41,11 +41,9 @@ export function* fetchCourses(): IterableIterator<any> {
 }
 
 export function* switchCourse(action: courses.ICourseAction): IterableIterator<any> {
-  yield put(setLoadingOn());
   yield delay(1000);
   yield put(courses.actions.setActiveCourse(action.courseId));
   yield put(skill.actions.fetchSkills());
-  yield put(setLoadingOff());
 }
 
 export const functions = (): ISagasFunctions[] => {

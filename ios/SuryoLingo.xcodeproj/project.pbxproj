@@ -46,7 +46,6 @@
 		5F59E58D5B1F42DF9C50672F /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99663E6C6D174FACB8EFFA8A /* Roboto.ttf */; };
 		67B57F879271405CBE07E4C4 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E07780019D0747AEA16343ED /* rubicon-icon-font.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		8AE9D4BA991E497B9C5E8337 /* libSMXCrashlytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9C098282154F03A3DD83F0 /* libSMXCrashlytics.a */; };
 		935F4640FD8D43C681C3EBCC /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A331AF76789248CD829F990E /* libRNExitApp.a */; };
 		96EDF0231FF338D65533A059 /* libPods-SuryoLingo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1579F669763DDC8AD0C4718E /* libPods-SuryoLingo-tvOSTests.a */; };
 		9A27869596124D03A28D92AF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 896631603A7F4FC59AD7D7BA /* Octicons.ttf */; };
@@ -72,8 +71,8 @@
 		D6BCDC20896C428E845F3DD3 /* Al-Jazeera-Arabic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007DA2D71412451898EB133E /* Al-Jazeera-Arabic-Regular.ttf */; };
 		E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */; };
 		E45B640E079C43E2B1055E53 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C65B2527E6841469E5CF2D2 /* Foundation.ttf */; };
-		F0FA5316ABB4E2A5B35D6D9E /* libPods-SuryoLingo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6A38087BB819786195544B /* libPods-SuryoLingo.a */; };
 		F660850E755B4AA7A990055A /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A8FDEAD917466386111274 /* libRNSound.a */; };
+		F7343D071A25C169FFA9684A /* libPods-SuryoLingo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6A38087BB819786195544B /* libPods-SuryoLingo.a */; };
 		FBAE87DE530649E7BE2621D5 /* libAppCenterReactNativePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB4227AB8BD4FB285692F48 /* libAppCenterReactNativePush.a */; };
 /* End PBXBuildFile section */
 
@@ -308,20 +307,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 2858ECD01F8B91B400610575;
 			remoteInfo = "RNVersionNumber-tvOS";
-		};
-		D62F5470200A71B30058DDC6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA884AE9A8C74BE7B2600E97 /* SMXCrashlytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D8D9DB831C6D03DB009FBC0E;
-			remoteInfo = SMXCrashlytics;
-		};
-		D62F5472200A71B30058DDC6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA884AE9A8C74BE7B2600E97 /* SMXCrashlytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6463C84C1EBA12A60095B8CD;
-			remoteInfo = "SMXCrashlytics-tvOS";
 		};
 		D655219A1FFFEAE8007C9243 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -565,7 +550,6 @@
 		2E5CA97B576D4524BFD33E9C /* AppCenterReactNativeAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeAnalytics.xcodeproj; path = "../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		2F548936E2C34966BC65B1B5 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		33A8FDEAD917466386111274 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
-		3A9C098282154F03A3DD83F0 /* libSMXCrashlytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSMXCrashlytics.a; sourceTree = "<group>"; };
 		3BEAFC1403FE4939A257940C /* Serto Urhoy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Serto Urhoy.ttf"; path = "../src/assets/fonts/Serto Urhoy.ttf"; sourceTree = "<group>"; };
 		41CDEA583D7C4CBD98A17BEF /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		47082B318EFB4AFCA6A6728C /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
@@ -610,7 +594,6 @@
 		DD4B41EE498ECC93DC703215 /* Pods-SuryoLingo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingo-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuryoLingo-tvOS/Pods-SuryoLingo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		E07780019D0747AEA16343ED /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		E859623701FE4E4D80E810D9 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		EA884AE9A8C74BE7B2600E97 /* SMXCrashlytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SMXCrashlytics.xcodeproj; path = "../node_modules/react-native-fabric/ios/SMXCrashlytics.xcodeproj"; sourceTree = "<group>"; };
 		EFF1A9FDEF86483C8A73CABE /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		F0A13932CC344B0386299CB3 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		F6C2E8C6AD44498E9EBF2F15 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -654,7 +637,6 @@
 				5B75E7A5C8A447AF8665944B /* libBVLinearGradient.a in Frameworks */,
 				C0913FEEBF0F46B3BF22E0A6 /* libRNFS.a in Frameworks */,
 				1014F51A373D4376BD161914 /* libRNDeviceInfo.a in Frameworks */,
-				8AE9D4BA991E497B9C5E8337 /* libSMXCrashlytics.a in Frameworks */,
 				1A01618B143B4385913C2F20 /* libRCTRestart.a in Frameworks */,
 				935F4640FD8D43C681C3EBCC /* libRNExitApp.a in Frameworks */,
 				E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */,
@@ -663,7 +645,7 @@
 				9F268B56D38244EC88D74D91 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
 				C8DA09CC6EED44A9A90FC133 /* libAppCenterReactNativeCrashes.a in Frameworks */,
 				FBAE87DE530649E7BE2621D5 /* libAppCenterReactNativePush.a in Frameworks */,
-				F0FA5316ABB4E2A5B35D6D9E /* libPods-SuryoLingo.a in Frameworks */,
+				F7343D071A25C169FFA9684A /* libPods-SuryoLingo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,7 +854,6 @@
 				4EDD10ED7F554A9AA65F67F3 /* RNSensitiveInfo.xcodeproj */,
 				41CDEA583D7C4CBD98A17BEF /* BVLinearGradient.xcodeproj */,
 				EFF1A9FDEF86483C8A73CABE /* RNFS.xcodeproj */,
-				EA884AE9A8C74BE7B2600E97 /* SMXCrashlytics.xcodeproj */,
 				4FC64751280740069630B5E0 /* RCTRestart.xcodeproj */,
 				01CF1F3B9F86472B896BDB40 /* RNExitApp.xcodeproj */,
 				1957988ECD544DC9AB2BFCA9 /* RNVersionNumber.xcodeproj */,
@@ -982,15 +963,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D62F546C200A71B20058DDC6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D62F5471200A71B30058DDC6 /* libSMXCrashlytics.a */,
-				D62F5473200A71B30058DDC6 /* libSMXCrashlytics.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D65521961FFFEAE8007C9243 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1063,7 +1035,6 @@
 				47082B318EFB4AFCA6A6728C /* libBVLinearGradient.a */,
 				A0F6B70201BD45B0B863EF60 /* libRNFS.a */,
 				2B77DCD63F8645BEB9640A39 /* libRNDeviceInfo.a */,
-				3A9C098282154F03A3DD83F0 /* libSMXCrashlytics.a */,
 				FE7656186D954CFDB481E5A3 /* libRCTRestart.a */,
 				A331AF76789248CD829F990E /* libRNExitApp.a */,
 				2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */,
@@ -1373,10 +1344,6 @@
 					ProductGroup = D6193C04203E339800917FE6 /* Products */;
 					ProjectRef = 1957988ECD544DC9AB2BFCA9 /* RNVersionNumber.xcodeproj */;
 				},
-				{
-					ProductGroup = D62F546C200A71B20058DDC6 /* Products */;
-					ProjectRef = EA884AE9A8C74BE7B2600E97 /* SMXCrashlytics.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1604,20 +1571,6 @@
 			fileType = archive.ar;
 			path = "libRNVersionNumber-tvOS.a";
 			remoteRef = D6193C15203E339800917FE6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D62F5471200A71B30058DDC6 /* libSMXCrashlytics.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSMXCrashlytics.a;
-			remoteRef = D62F5470200A71B30058DDC6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D62F5473200A71B30058DDC6 /* libSMXCrashlytics.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSMXCrashlytics.a;
-			remoteRef = D62F5472200A71B30058DDC6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D655219B1FFFEAE8007C9243 /* libRNDeviceInfo.a */ = {
@@ -2192,7 +2145,6 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
 					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
@@ -2204,16 +2156,7 @@
 				INFOPLIST_FILE = SuryoLingoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2242,7 +2185,6 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
 					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
@@ -2254,16 +2196,7 @@
 				INFOPLIST_FILE = SuryoLingoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2281,7 +2214,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 8822656F5W;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2298,7 +2231,6 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
 					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
@@ -2326,7 +2258,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8822656F5W;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2342,7 +2274,6 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
 					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
@@ -2389,7 +2320,6 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
 					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
@@ -2400,16 +2330,7 @@
 				);
 				INFOPLIST_FILE = "SuryoLingo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2448,7 +2369,6 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
 					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
@@ -2459,16 +2379,7 @@
 				);
 				INFOPLIST_FILE = "SuryoLingo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2496,16 +2407,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "SuryoLingo-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SuryoLingo-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2528,16 +2430,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "SuryoLingo-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SuryoLingo-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;

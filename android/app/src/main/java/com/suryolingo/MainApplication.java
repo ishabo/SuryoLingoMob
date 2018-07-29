@@ -7,7 +7,6 @@ import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPa
 import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
 import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.smixx.fabric.FabricPackage;
 import com.apsl.versionnumber.RNVersionNumberPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
