@@ -17,10 +17,12 @@ import { GSCustomText } from 'styles/text';
 import { IProfile } from 'services/profile';
 import { Dispatch } from 'redux';
 import { Loading } from 'components';
+import { overviewLesson } from 'services/progress/actions';
 
 interface IProps {
   getLessons(skillId: string): ILesson[];
   enterLesson(lessonId: string): void;
+  previewLesson: (lessonId: string) => void;
   navigation: NavigationScreenProp<any, any>;
   sourceLanguage: TLangs;
   targetLanguage: TLangs;
@@ -100,6 +102,7 @@ class Lessons extends React.Component<IProps, IState> {
         lesson={lesson}
         active={this.isLessonActive(lesson)}
         enterLesson={this.props.enterLesson}
+        previewLesson={this.props.previewLesson}
         targetLanguage={this.props.targetLanguage}
         sourceLanguage={this.props.sourceLanguage}
       />
@@ -166,7 +169,8 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  enterLesson: (lessonId: string) => dispatch(enterLesson(lessonId))
+  enterLesson: (lessonId: string) => dispatch(enterLesson(lessonId)),
+  previewLesson: (lessonId: string) => dispatch(overviewLesson(lessonId))
 });
 
 export default connect(

@@ -123,6 +123,9 @@ export default {
     title: 'دروس - {{skill}}',
     instruction: 'اسحب يميناً وشمالاً للتنقل بين الدروس',
     enterLesson: 'ادخل الى الدرس',
+    startLesson: 'ابدأ الدرس',
+    retakeLesson: 'إعادة الدرس',
+
     locked: 'الدرس مقفل'
   },
   courses: {

@@ -2,8 +2,9 @@ import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
 import images from 'assets/images';
 import SkillIcon from '../SkillIcon';
+import { GSBackground, GSSkill, GSSkillTitle } from './index.styles';
+import { ProgressCircle } from 'components';
 import Colors from 'styles/colors';
-import { GSBackground, GSCircle, GSSkills, GSSkillsTitle } from './index.styles';
 
 export interface IProps {
   onSkillsClick: () => void;
@@ -11,34 +12,29 @@ export interface IProps {
   icon: string;
   progress: number;
   unlocked: boolean;
+  inactive: boolean;
 }
 
 export default (props: IProps) => {
-
-  const { name, unlocked, progress, icon, onSkillsClick } = props;
-  const filling = unlocked ? 1 - progress : 1;
-
-  const LinearGradientProps = {
-    colors: ['transparent', Colors.darkYellow],
-    locations: [filling, 0],
-  };
+  const { name, unlocked, progress, icon, onSkillsClick, inactive } = props;
 
   const imageState = unlocked ? 'unlocked' : 'locked';
 
   return (
-    <GSSkills>
+    <GSSkill>
       <TouchableOpacity onPress={onSkillsClick}>
         <GSBackground source={images.skills.bg[imageState]} />
-        <GSCircle {...LinearGradientProps} >
+        <ProgressCircle
+          backgroundColor={inactive ? Colors.lightGray : Colors.lightYellow}
+          size="large"
+          progress={unlocked ? progress : 0}
+        >
           <SkillIcon icon={icon} state={imageState} />
-        </GSCircle>
+        </ProgressCircle>
       </TouchableOpacity>
       <TouchableOpacity onPress={onSkillsClick}>
-        <GSSkillsTitle>
-          {name}
-        </GSSkillsTitle>
+        <GSSkillTitle>{name}</GSSkillTitle>
       </TouchableOpacity>
-    </GSSkills>
+    </GSSkill>
   );
 };
-

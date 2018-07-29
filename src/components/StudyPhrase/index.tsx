@@ -1,17 +1,30 @@
 import * as React from 'react';
-import Phrase, { IProps as IPhraseProps } from './components/Phrase';
-import SoundButton from './components/SoundButton';
+import Phrase, { IProps as IPhraseProps } from 'components/Phrase';
+import { SoundButton } from 'components';
 import glamor from 'glamorous-native';
-import { getWindowWidth } from 'helpers';
+import { getWindowWidth, openPhraseInAdmin } from 'helpers';
+import SwitchButton from 'components/SwitchButton';
+import I18n from 'I18n';
 
 interface IProps extends IPhraseProps {
   sound: { soundTrack: string; location?: string };
   showSentence: boolean;
   centralize?: boolean;
+  isAdmin?: boolean;
 }
 
 export default (props: IProps) => {
-  const { showSentence, sentence, sound, lang, centralize } = props;
+  const { showSentence, sentence, sound, lang, centralize, isAdmin } = props;
+
+  const renderEditLink = () =>
+    isAdmin && (
+      <SwitchButton
+        onPress={() => openPhraseInAdmin(sentence.raw)}
+        text={I18n.t('questions.correction')}
+        light={true}
+        lang={'cl-ara'}
+      />
+    );
 
   const renderSound = () => (
     <SoundButton
@@ -21,8 +34,12 @@ export default (props: IProps) => {
       size={centralize ? { large: true } : { small: true }}
     />
   );
+
   const renderPhrase = () => (
-    <Phrase key={lang + 'phrase'} obscureText={!showSentence} sentence={sentence} lang={lang} />
+    <>
+      <Phrase key={lang + 'phrase'} obscureText={!showSentence} sentence={sentence} lang={lang} />
+      {renderEditLink()}
+    </>
   );
 
   const content = [];

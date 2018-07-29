@@ -4,11 +4,10 @@ import { Container, Icon } from 'native-base';
 import { IQuestion } from 'services/questions';
 import * as skill from 'services/skills';
 import * as course from 'services/courses';
-import { StudyPhrase } from '../';
-import { isReverseQuestion, hintify, openPhraseInAdmin } from 'helpers';
+import { isReverseQuestion, hintify } from 'helpers';
 import I18n from 'I18n';
 import glamor from 'glamorous-native';
-import { TAnswer } from '../../index.types';
+import { TAnswer } from 'scenes/Questions/index.types';
 import MultiChoice from './MultiChoice';
 import Translation from './Translation';
 import Dictation from './Dictation';
@@ -20,7 +19,7 @@ import shortid from 'shortid';
 import Colors from 'styles/colors';
 import { IDictionary } from 'services/dictionaries';
 import { downloadAndPlayAudio } from 'helpers/audio';
-import { SwitchButton } from 'components';
+import { SwitchButton, StudyPhrase } from 'components';
 import garshonify from 'garshonify';
 
 interface IProps {
@@ -86,16 +85,6 @@ class QuestionBody extends React.Component<IProps, IState> {
     );
   };
 
-  private renderEditLink = () => (
-    <SwitchButton
-      key={shortid.generate()}
-      onPress={() => openPhraseInAdmin(this.props.question.phrase)}
-      text={I18n.t('questions.correction')}
-      light={true}
-      lang={this.props.course.sourceLanguage.shortName}
-    />
-  );
-
   private renderDescriptionSwitch = () => {
     if (isEmpty(this.props.skill.description)) {
       return null;
@@ -159,8 +148,31 @@ class QuestionBody extends React.Component<IProps, IState> {
   private pathToSoundTrack = (): string =>
     this.props.question.soundFiles.length > 0 ? this.props.question.soundFiles[0] : null;
 
-  render() {
-    const { question, course, collectAnswer, userHasAnswered } = this.props;
+  private getSentence = (reverse: boolean) => {
+    const { question, course } = this.props;
+
+    const langConfig = {
+      source: camelCase(course.targetLanguage.shortName),
+      target: camelCase(course.sourceLanguage.shortName)
+    };
+
+    let rawSentence = reverse ? question.translation : question.phrase;
+    let hintifiedSentence = reverse ? null : hintify(question.phrase, this.props.hints);
+
+    if (this.state.garshoniToggle && !reverse) {
+      rawSentence = garshonify({
+        sentence: question.phrase,
+        langConfig,
+        byCombo: true
+      });
+      hintifiedSentence = null;
+    }
+
+    return { raw: rawSentence, hintified: hintifiedSentence };
+  };
+
+  private prepareTemplate = () => {
+    const { question } = this.props;
     let QuestionComponent;
     let showPhraseInHeader = true;
     let reverse = isReverseQuestion(question.questionType);
@@ -194,38 +206,30 @@ class QuestionBody extends React.Component<IProps, IState> {
         return null;
     }
 
-    const langConfig = {
-      source: camelCase(course.targetLanguage.shortName),
-      target: camelCase(course.sourceLanguage.shortName)
-    };
-    const sentence = this.state.garshoniToggle
-      ? garshonify({
-          sentence: question.phrase,
-          langConfig,
-          byCombo: true
-        })
-      : hintify(question.phrase, this.props.hints);
+    return { QuestionComponent, showPhraseInHeader, reverse, centralizeAudio };
+  };
 
-    let options = this.listOptions();
-    if (this.props.isAdmin) {
-      options.push(this.renderEditLink());
-    }
+  render() {
+    const { question, collectAnswer, userHasAnswered, course } = this.props;
+    const { reverse, QuestionComponent, showPhraseInHeader, centralizeAudio } = this.prepareTemplate();
+    const options = this.listOptions();
     const lang = course[reverse || this.state.garshoniToggle ? 'sourceLanguage' : 'targetLanguage'].shortName as TLangs;
+    const sentence = this.getSentence(reverse);
 
     return (
       <GSContainer>
         <GSActionButtons>
           {this.props.renderNextButton}
-
           {options.length > 0 && <GSOptions>{options}</GSOptions>}
         </GSActionButtons>
 
         <StudyPhrase
-          sentence={reverse ? question.translation : sentence}
+          sentence={sentence}
           sound={this.showAndPlaySound() && { soundTrack: this.pathToSoundTrack() }}
           showSentence={showPhraseInHeader}
           lang={lang}
           centralize={centralizeAudio}
+          isAdmin={this.props.isAdmin}
         />
 
         <QuestionComponent

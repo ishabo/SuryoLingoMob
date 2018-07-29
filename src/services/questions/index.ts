@@ -3,12 +3,32 @@ import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
 import * as api from './api';
+import { IWordHint } from 'services/dictionaries';
 
-export type TQuestionType = string | 'NEW_WORD_OR_PHRASE'
-  | 'TRANSLATION' | 'TRANSLATION_REVERSE'
-  | 'WORD_SELECTION' | 'WORD_SELECTION_REVERSE'
-  | 'MULTI_CHOICE' | 'MULTI_CHOICE_REVERSE'
-  | 'PICTURE_SELECTION' | 'DICTATION';
+export type TQuestionType =
+  | string
+  | 'NEW_WORD_OR_PHRASE'
+  | 'TRANSLATION'
+  | 'TRANSLATION_REVERSE'
+  | 'WORD_SELECTION'
+  | 'WORD_SELECTION_REVERSE'
+  | 'MULTI_CHOICE'
+  | 'MULTI_CHOICE_REVERSE'
+  | 'PICTURE_SELECTION'
+  | 'DICTATION';
+
+export type TDestination = 'Questions' | 'LessonOverview';
+
+export interface ISentence {
+  raw: string;
+  hintified?: IWordHint[];
+}
+
+export interface IPhrase {
+  sentence: ISentence;
+  translation: string;
+  sound: string;
+}
 
 export interface IQuestion {
   id: string;
@@ -28,6 +48,7 @@ export interface IQuestionsAction {
   skillId?: string;
   status?: TQuestionType;
   payload?: IQuestion[];
+  destination?: TDestination;
 }
 
 export interface IQuestions {
@@ -38,10 +59,4 @@ export interface IQuestions {
   failed: string[];
 }
 
-export {
-  api,
-  actions,
-  reducers,
-  selectors,
-  sagas,
-};
+export { api, actions, reducers, selectors, sagas };

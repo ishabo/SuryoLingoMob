@@ -45,14 +45,14 @@ export function* fetchQuestions(action: questions.IQuestionsAction): IterableIte
     yield call(cacheAudioSounds, fetchedQuestions);
   }
 
-  yield call(saveQuestionsAndNavigate, fetchedQuestions);
+  yield call(saveQuestionsAndNavigate, fetchedQuestions, action.destination);
 
   yield put(setLoadingOff());
 }
 
-function* saveQuestionsAndNavigate(data: questions.IQuestion[]) {
+function* saveQuestionsAndNavigate(data: questions.IQuestion[], destination: questions.TDestination = 'Questions') {
   yield put(questions.actions.saveQuestions(data));
-  yield put(NavigationActions.navigate({ routeName: 'Questions' }));
+  yield put(NavigationActions.navigate({ routeName: destination }));
 }
 
 function* cacheAudioSounds(data: questions.IQuestion[]) {
