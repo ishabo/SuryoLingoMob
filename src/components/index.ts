@@ -6,3 +6,8 @@ export { default as CustomKeyboard } from './CustomKeyboard';
 export { default as SignOnOrOut } from './SignOnOrOut';
 export { default as SwitchButton } from './SwitchButton';
 export { default as Hamburger } from './Hamburger';
+export { default as ProgressCircle } from './ProgressCircle';
+export { default as Phrase } from './Phrase';
+export { default as SoundButton } from './SoundButton';
+export { default as StudyPhrase } from './StudyPhrase';
+export { default as EvaluationBanner } from './EvaluationBanner';

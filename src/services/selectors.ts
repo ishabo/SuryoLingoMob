@@ -9,6 +9,7 @@ import * as assets from './assets';
 
 import { Platform } from 'react-native';
 import { ILessonToSync } from 'services/progress';
+import { hintify } from 'helpers';
 
 const allLessons = (skills: skills.ISkill[]) =>
   [].concat.apply([], skills.map((skill: skills.ISkill) => skill.lessons));
@@ -110,3 +111,14 @@ export const calcTotaluserXp = (state: IInitialState): number =>
 
 export const getSkillIcon = (state: IInitialState) => (icon: string, size: assets.TImageSizes): assets.ISkillIcon =>
   assets.selectors.getSkillIcon(icon, size)(state.assets);
+
+export const getPhrases = (state: IInitialState): questions.IPhrase[] =>
+  state.questions.onGoing.map(({ phrase, translation, soundFiles }) => {
+    const sentence = { raw: phrase, hintified: hintify(phrase, state.dictionaries) };
+
+    return {
+      sentence,
+      translation,
+      sound: soundFiles[0]
+    };
+  });

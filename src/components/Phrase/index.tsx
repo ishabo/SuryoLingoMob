@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { IWordHint, dashify } from 'helpers';
+import { dashify } from 'helpers';
 import { GSHintedSentence, GSSentence } from './index.styles';
 import PopoverTooltip from 'react-native-popover-tooltip';
 import { Keyboard, View } from 'react-native';
-
-type TSentence = string | IWordHint[];
+import { IWordHint } from 'services/dictionaries';
+import { ISentence } from 'services/questions';
 
 export interface IProps {
-  sentence: TSentence;
+  sentence: ISentence;
   lang: TLangs;
   obscureText?: boolean;
   style?: object;
@@ -89,9 +89,9 @@ export default class Phrase extends React.Component<IProps, IState> {
     const style = { marginRight: 5, marginTop: 2 };
     return (
       <GSHintedSentence>
-        {typeof sentence === 'string'
-          ? this.renderText(sentence, false, () => {}, { marginRight: 10 })
-          : sentence.map((word: IWordHint, index: number) => {
+        {sentence.hintified === null
+          ? this.renderText(sentence.raw, false, () => {}, { marginRight: 10 })
+          : sentence.hintified.map((word: IWordHint, index: number) => {
               if (word.translations && word.translations.length > 0) {
                 const tooltip = `tooltip${index}`;
                 const buttonCompoent = this.renderText(word.word, true, this.toggleOnPress(tooltip));

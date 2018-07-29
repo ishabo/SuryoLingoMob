@@ -97,6 +97,7 @@ class Skills extends React.Component<IProps> {
         key={`skill_${skill.id}`}
         name={skill.name}
         icon={skill.icon}
+        inactive={skill.isComingSoon}
         progress={skill.progress && published ? skill.progress : 0}
         unlocked={published && this.isSkillActive(skill)}
         onSkillsClick={() => (published ? this.enterSkill(skill) : alert(I18n.t('skills.skillInactive')))}

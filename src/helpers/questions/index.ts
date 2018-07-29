@@ -1,17 +1,11 @@
 import { TQuestionType } from 'services/questions/actions/index';
-import { IDictionary } from 'services/dictionaries';
+import { IDictionary, IWordHint } from 'services/dictionaries';
 import shortid from 'shortid';
 import { Linking } from 'react-native';
 import config from 'config';
 
 export const isReverseQuestion = (questionType: TQuestionType) =>
   /_REVERSE$/.test(questionType) || questionType === 'DICTATION';
-
-export interface IWordHint {
-  word: string;
-  translations?: string;
-  key?: string;
-}
 
 export const hintify = (sentence: string, dictionary: IDictionary[]): IWordHint[] => {
   const words = sentence.split(' ');

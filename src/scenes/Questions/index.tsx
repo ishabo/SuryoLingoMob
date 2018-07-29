@@ -26,14 +26,14 @@ import { GSCustomText } from 'styles/text';
 import Colors from 'styles/colors';
 import { getLangConfig } from 'config/language';
 import I18n from 'I18n';
-import { QuestionBody, EvaluationBanner } from './components';
 import { GSIcon, GSProgress, GSFooterAndBody, GSContainer } from './index.styles';
 import { GSHeader, GSBody, GSFooter } from 'styles/layouts';
 import { IProps, IState, TAnswer } from './index.types';
 import { NavigationActions } from 'react-navigation';
-import { NextButton, SwitchButton } from 'components';
+import { NextButton, SwitchButton, EvaluationBanner } from 'components';
 import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
+import QuestionBody from './components/QuestionBody';
 
 class Questions extends React.Component<IProps, IState> {
   public state = {
