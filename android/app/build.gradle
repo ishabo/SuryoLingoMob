@@ -172,6 +172,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-fabric')
     compile project(':appcenter-push')
     compile project(':appcenter-crashes')
     compile project(':appcenter-analytics')
