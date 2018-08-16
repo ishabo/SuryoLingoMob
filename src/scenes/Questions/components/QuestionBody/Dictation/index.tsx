@@ -12,7 +12,7 @@ interface IProps extends IAnswerProps {
 }
 
 export default class Dictation extends React.Component<IProps> {
-  render () {
+  render() {
     return (
       <GSContainer>
         <TextArea
@@ -20,6 +20,7 @@ export default class Dictation extends React.Component<IProps> {
           captureInput={this.props.collectAnswer}
           showCustomKeyboard={this.props.reverse && !this.props.userHasAnswered}
           inputLanguage={this.props.course.targetLanguage.shortName}
+          onSubmit={this.props.onSubmit}
         />
       </GSContainer>
     );

@@ -237,6 +237,7 @@ class Questions extends React.Component<IProps, IState> {
       userHasAnswered={this.userHasAnswered()}
       hints={this.props.dictionaries}
       renderNextButton={this.showSmallButton() ? this.renderNextQuestionSmall() : <View />}
+      onSubmit={this.evaluateOrNext}
     />
   );
 

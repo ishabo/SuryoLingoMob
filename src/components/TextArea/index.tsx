@@ -11,6 +11,7 @@ interface IProps {
   showCustomKeyboard: boolean;
   inputLanguage: TLangs;
   autoFocus?: boolean;
+  onSubmit?: () => void;
 }
 
 interface IState {
@@ -53,6 +54,8 @@ export default class TextArea extends React.Component<IProps, IState> {
               placeholder={this.props.placeholder}
               placeholderTextColor={Colors.gray}
               multiline
+              blurOnSubmit
+              onSubmitEditing={this.props.onSubmit}
               numberOfLines={4}
               value={this.state.value}
               autoFocus={this.props.autoFocus === true}

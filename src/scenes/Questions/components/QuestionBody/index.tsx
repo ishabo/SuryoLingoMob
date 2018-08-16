@@ -31,6 +31,7 @@ interface IProps {
   hints: IDictionary[];
   renderNextButton: React.ReactElement<any>;
   isAdmin?: boolean;
+  onSubmit: () => void;
 }
 
 interface IState {
@@ -240,6 +241,7 @@ class QuestionBody extends React.Component<IProps, IState> {
           course={course}
           reverse={reverse}
           lang={lang}
+          onSubmit={this.props.onSubmit}
         />
 
         {this.renderModal()}
