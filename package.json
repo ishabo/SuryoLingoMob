@@ -18,7 +18,7 @@
     "clear": "yarn cache clean --force && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-*",
     "bundle:android:prod": "yarn build && react-native bundle --platform android --dev false --entry-file artifacts/index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "release:android:prod": "yarn preStart:prod && yarn bundle:android:prod && cd android && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && cd -",
-    "bundle:ios:prod": "yarn build && react-native bundle --platform ios --dev false --entry-file artifacts/index.ios.js --bundle-output ios/main.jsbundle --assets-dest ./ios",
+    "bundle:ios:prod": "yarn build && react-native bundle --dev false --entry-file artifacts/index.ios.js --bundle-output ios/main.jsbundle --platform ios --assets-dest ios",
     "release:ios:prod": "yarn preStart:prod && yarn bundle:ios:prod",
     "postversion": "react-native-version --never-amend",
     "preStart:prod": "./preStart.sh prod"

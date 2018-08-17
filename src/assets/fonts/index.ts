@@ -1,19 +1,19 @@
 const EstrangeloEdessa = 'Serto Urhoy';
-const Aljazeera = 'Al-Jazeera-Arabic-Regular';
+const Aljazeera = 'HelveticaNeue';
 
 const fonts = {
   'cl-syr': {
     bold: EstrangeloEdessa,
-    regular: EstrangeloEdessa,
+    regular: EstrangeloEdessa
   },
   'tur-syr': {
     bold: EstrangeloEdessa,
-    regular: EstrangeloEdessa,
+    regular: EstrangeloEdessa
   },
   'cl-ara': {
     bold: Aljazeera,
-    regular: Aljazeera,
-  },
+    regular: Aljazeera
+  }
 };
 
 export const getFont = (lang: TLangs, fontType?: 'bold' | 'regular') => {

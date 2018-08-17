@@ -5,6 +5,7 @@ import PopoverTooltip from 'react-native-popover-tooltip';
 import { Keyboard, View } from 'react-native';
 import { IWordHint } from 'services/dictionaries';
 import { ISentence } from 'services/questions';
+import { detectLanguage } from 'helpers/language';
 
 export interface IProps {
   sentence: ISentence;
@@ -62,7 +63,7 @@ export default class Phrase extends React.Component<IProps, IState> {
       onPress={onPress}
       hasTooltip={hasTooltip}
       style={this.props.style || { ...style }}
-      lang={this.props.lang}
+      lang={detectLanguage(text)}
     >
       {this.obscureText(text)}
     </GSSentence>
