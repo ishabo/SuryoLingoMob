@@ -2995,9 +2995,9 @@ fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
     mkdirp ">=0.5 0"
     rimraf "2"
 
-"garshonify@git+https://github.com/ishabo/garshonify":
-  version "1.0.0"
-  resolved "git+https://github.com/ishabo/garshonify#e68fa2634fced8dd0beb8be670b5263b8f351d48"
+"garshonify@git+https://github.com/ishabo/garshonify#v1.0.2":
+  version "1.0.2"
+  resolved "git+https://github.com/ishabo/garshonify#39bd1e6215c30a2263fb3db17aca998315169b26"
 
 gauge@~1.2.5:
   version "1.2.7"

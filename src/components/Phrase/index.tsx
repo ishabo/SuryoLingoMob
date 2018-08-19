@@ -81,40 +81,45 @@ export default class Phrase extends React.Component<IProps, IState> {
       Keyboard.dismiss();
       time = 100;
     }
-    setTimeout(() => this[tooltip].toggle(), time);
+    setTimeout(this[tooltip].toggle, time);
+  };
+
+  private renderHintifiedWord = (hintifiedWord: IWordHint, index: number) => {
+    const style = { marginRight: 5, marginTop: 2, fontFamily: 'Arial' };
+    const tooltip = `tooltip${index}`;
+    const { key, word, translations } = hintifiedWord;
+
+    if (translations && translations.length > 0) {
+      const buttonCompoent = this.renderText(word, true, this.toggleOnPress(tooltip));
+      const items = this.renderHint(translations);
+      const ref = (c: Phrase) => (this[tooltip] = c);
+      return (
+        <PopoverTooltip
+          ref={ref}
+          items={items}
+          key={key}
+          animationType="spring"
+          componentWrapperStyle={style}
+          buttonComponent={buttonCompoent}
+        />
+      );
+    } else {
+      return (
+        <View key={key} style={style}>
+          {this.renderText(word, false)}
+        </View>
+      );
+    }
   };
 
   render() {
     const { sentence } = this.props;
 
-    const style = { marginRight: 5, marginTop: 2 };
     return (
       <GSHintedSentence>
         {sentence.hintified === null
           ? this.renderText(sentence.raw, false, () => {}, { marginRight: 10 })
-          : sentence.hintified.map((word: IWordHint, index: number) => {
-              if (word.translations && word.translations.length > 0) {
-                const tooltip = `tooltip${index}`;
-                const buttonCompoent = this.renderText(word.word, true, this.toggleOnPress(tooltip));
-                return (
-                  <PopoverTooltip
-                    ref={(c: Phrase) => (this[tooltip] = c)}
-                    key={word.key}
-                    buttonComponent={buttonCompoent}
-                    items={this.renderHint(word.translations)}
-                    animationType="spring"
-                    componentWrapperStyle={style}
-                    onRequestClose={() => alert('adads')}
-                  />
-                );
-              } else {
-                return (
-                  <View key={word.key} style={style}>
-                    {this.renderText(word.word, false)}
-                  </View>
-                );
-              }
-            })}
+          : sentence.hintified.map(this.renderHintifiedWord)}
       </GSHintedSentence>
     );
   }

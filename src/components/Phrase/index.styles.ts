@@ -1,7 +1,6 @@
-import { GSCustomText, ICustomText } from 'styles/text';
+import { ICustomText, GSCustomStudyText } from 'styles/text';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { scaleSize } from 'helpers';
 import { StyleProp, TextStyle } from 'react-native';
 
 export const GSHints = glamor.view({
@@ -49,16 +48,22 @@ interface IGSSentence extends ICustomText {
   style: StyleProp<TextStyle>;
 }
 
-export const GSSentence = glamor(GSCustomText)<IGSSentence>(
+export const GSSentence = glamor(GSCustomStudyText)<IGSSentence>(
   {
     paddingVertical: 3,
     flexWrap: 'wrap'
   },
-  props =>
-    props.hasTooltip
-      ? {
+  props => {
+    let style = {};
+
+    style = props.hasTooltip
+      ? ({
           color: Colors.darkBlue,
-          fontSize: props.lang === 'cl-ara' ? scaleSize(24, 20) : scaleSize(20, 16)
-        }
-      : null
+          // fontSize: props.lang === 'cl-ara' ? scaleSize(24, 20) : scaleSize(18, 14),
+          ...style
+        } as any)
+      : style;
+
+    return style;
+  }
 );

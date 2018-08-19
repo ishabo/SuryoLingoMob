@@ -2,10 +2,7 @@ import * as React from 'react';
 import { Keyboard, Vibration } from 'react-native';
 import { Icon } from 'native-base';
 import shortid from 'shortid';
-import {
-  GSBackSpaceKey, GSContainer, GSContent,
-  GSKey, GSKeyText, GSSpaceKey,
-} from './index.styles';
+import { GSBackSpaceKey, GSContainer, GSContent, GSKey, GSKeyText, GSSpaceKey } from './index.styles';
 
 interface IProps {
   letters: string[];
@@ -15,54 +12,72 @@ interface IProps {
   lang: TLangs;
 }
 
+interface IState {
+  keyboardOn: boolean;
+}
+
 const VIBRATE_DURATION = 50;
 
-export default class extends React.Component<IProps> {
+export default class extends React.Component<IProps, IState> {
+  state = {
+    keyboardOn: false
+  };
 
   private keyboardDidShowListener;
   private keyboardDidHideListener;
 
   private keyboardDidShow = () => {
     this.setState({ keyboardOn: true });
-  }
+  };
 
   private keyboardDidHide = () => {
     this.setState({ keyboardOn: false });
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     this.keyboardDidShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardDidHide);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove();
   }
 
-  private listKeys = (keys: string[], style:
-    { fontSize: number; paddingTop?: number; },
-  ) =>
-    keys.map((key: string) =>
-      <GSKey key={shortid.generate()} primary
-        onPress={this.onPress(() => { this.props.onKeyPress(key); })}>
-        <GSKeyText lang={this.props.lang} style={{ ...style }}>{key}</GSKeyText>
-      </GSKey>)
+  private listKeys = (keys: string[], style: { fontSize: number; paddingTop?: number }) =>
+    keys.map((key: string) => (
+      <GSKey
+        key={shortid.generate()}
+        primary
+        onPress={this.onPress(() => {
+          this.props.onKeyPress(key);
+        })}
+      >
+        <GSKeyText lang={this.props.lang} style={{ ...style }}>
+          {key}
+        </GSKeyText>
+      </GSKey>
+    ));
 
   private onPress = (pressFunction: () => void) => () => {
+    Keyboard.dismiss();
     pressFunction();
     Vibration.vibrate(VIBRATE_DURATION, false);
-  }
+  };
 
-  render () {
-    return <GSContainer>
-      <GSContent>
-        <GSBackSpaceKey primary onPress={this.onPress(this.props.onBackSpacePress)}>
-          <Icon name="ios-arrow-forward" />
-        </GSBackSpaceKey>
-        {this.listKeys(this.props.letters, { fontSize: 14, paddingTop: -23 })}
-        <GSSpaceKey primary onPress={this.onPress(this.props.onSpacePress)} />
-      </GSContent>
-    </GSContainer>;
+  render() {
+    return (
+      this.state.keyboardOn || (
+        <GSContainer>
+          <GSContent>
+            <GSBackSpaceKey primary onPress={this.onPress(this.props.onBackSpacePress)}>
+              <Icon name="ios-arrow-forward" />
+            </GSBackSpaceKey>
+            {this.listKeys(this.props.letters, { fontSize: 14, paddingTop: -23 })}
+            <GSSpaceKey primary onPress={this.onPress(this.props.onSpacePress)} />
+          </GSContent>
+        </GSContainer>
+      )
+    );
   }
 }

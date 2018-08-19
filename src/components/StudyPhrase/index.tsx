@@ -44,13 +44,9 @@ export default (props: IProps) => {
 
   const content = [];
 
-  if (sound) {
-    content.push(renderSound());
-  }
+  sound && content.push(renderSound());
 
-  if (!centralize) {
-    content.push(renderPhrase());
-  }
+  centralize || content.push(renderPhrase());
 
   return <GSContainer centralize={centralize}>{content}</GSContainer>;
 };

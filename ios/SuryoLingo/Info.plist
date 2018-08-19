@@ -73,10 +73,8 @@
 		<string>AljazeeraBold.ttf</string>
 		<string>AljazeeraRegular.ttf</string>
 		<string>Al-Jazeera-Arabic-Regular.ttf</string>
-		<string>Estrangelo Edessa.ttf</string>
-		<string>AlJazeeraArabicRegular.ttf</string>
-		<string>EstrangeloEdessa.ttf</string>
 		<string>Serto Urhoy.ttf</string>
+		<string>HelveticaNeue.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

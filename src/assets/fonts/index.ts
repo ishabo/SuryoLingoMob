@@ -1,5 +1,5 @@
 const EstrangeloEdessa = 'Serto Urhoy';
-const Aljazeera = 'HelveticaNeue';
+const HelveticaNeue = 'Al-Jazeera-Arabic-Regular';
 
 const fonts = {
   'cl-syr': {
@@ -11,8 +11,8 @@ const fonts = {
     regular: EstrangeloEdessa
   },
   'cl-ara': {
-    bold: Aljazeera,
-    regular: Aljazeera
+    bold: HelveticaNeue,
+    regular: HelveticaNeue
   }
 };
 

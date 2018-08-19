@@ -22,7 +22,7 @@ import {
   getTargetLanguage,
   getSourceLanguage
 } from 'services/selectors';
-import { GSCustomText } from 'styles/text';
+import { GSCustomStudyText } from 'styles/text';
 import Colors from 'styles/colors';
 import { getLangConfig } from 'config/language';
 import I18n from 'I18n';
@@ -190,12 +190,12 @@ class Questions extends React.Component<IProps, IState> {
   renderEvaluationBanner() {
     const { questionType, phrase, translation } = this.props.currentQuestion;
     const correctAnswer = (
-      <GSCustomText
+      <GSCustomStudyText
         style={{ fontSize: 16 }}
         lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.sourceLanguage}
       >
         {isReverseQuestion(questionType) ? phrase : translation}
-      </GSCustomText>
+      </GSCustomStudyText>
     );
 
     return (
