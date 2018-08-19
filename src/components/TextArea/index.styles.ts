@@ -1,5 +1,4 @@
-import { Container, Input } from 'native-base';
-
+import { Container, Input, Button } from 'native-base';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { isShortDevice } from 'helpers';
@@ -38,3 +37,15 @@ export const GSTextArea = glamor(Input)<{ rtl: boolean; lang: TLangs }>(
     return styles;
   }
 );
+
+export const GSKeyboardToolBar = glamor.view({
+  justifyContent: 'flex-end',
+  alignSelf: 'stretch',
+  backgroundColor: 'white',
+  padding: 8
+});
+
+export const GSKeyboardClosebutton = glamor(Button)({
+  width: 35,
+  height: 35
+});

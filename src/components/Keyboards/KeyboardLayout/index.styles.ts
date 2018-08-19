@@ -8,12 +8,13 @@ export const GSContainer = glamor(Container, { displayName: 'CustomKeyboard' })(
   alignContent: 'center',
   alignSelf: 'center',
   zIndex: 100,
+  flex: 1
 });
 
 export const GSKey = glamor(Button)({
-  width: 38,
-  height: 38,
-  margin: 4,
+  width: 35,
+  height: 35,
+  margin: 2
 });
 
 export const GSKeyText = glamor(GSCustomText)<ICustomText>({
@@ -21,26 +22,31 @@ export const GSKeyText = glamor(GSCustomText)<ICustomText>({
   width: 10,
   flex: 1,
   height: 20,
-  color: Colors.white,
+  color: Colors.white
 });
 
 export const GSContent = glamor(View, { displayName: 'GSContent' })({
-  maxWidth: 310,
   flexDirection: 'row',
   flexWrap: 'wrap',
-  alignItems: 'flex-start',
-  alignSelf: 'flex-start',
-  justifyContent: 'center',
+  alignItems: 'center',
+  alignSelf: 'center',
+  justifyContent: 'center'
 });
 
 export const GSSpaceKey = glamor(Button)({
-  width: 269,
+  width: 200,
   height: 38,
-  margin: 4,
+  margin: 2
+});
+
+export const GSReturnKey = glamor(Button)({
+  width: 78,
+  height: 38,
+  margin: 2
 });
 
 export const GSBackSpaceKey = glamor(Button)({
-  width: 85,
-  height: 38,
-  margin: 4,
+  width: 78,
+  height: 35,
+  margin: 2
 });

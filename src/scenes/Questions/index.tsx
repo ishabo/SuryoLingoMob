@@ -156,6 +156,8 @@ class Questions extends React.Component<IProps, IState> {
   };
 
   private backToSkills = () => {
+    Keyboard.dismiss();
+
     const resetAction = NavigationActions.reset({
       index: 0,
       key: null,
@@ -165,6 +167,7 @@ class Questions extends React.Component<IProps, IState> {
   };
 
   existQuestions = () => {
+    Keyboard.dismiss();
     Alert.alert(
       I18n.t('questions.exist.areYouSure'),
       I18n.t('questions.exist.caviat'),

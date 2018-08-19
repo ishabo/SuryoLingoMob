@@ -24,6 +24,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		161E2DE72C634BC3B4FB07A5 /* libRCTCustomInputController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 779B638D46BC487B9C03222D /* libRCTCustomInputController.a */; };
 		1A01618B143B4385913C2F20 /* libRCTRestart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE7656186D954CFDB481E5A3 /* libRCTRestart.a */; };
 		298A4C365BE34003A9EA3FFB /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AC6C7CE56D4E0BAB6A43F6 /* libAppCenterReactNative.a */; };
 		2B6B892165644A48990D3898 /* Serto Urhoy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BEAFC1403FE4939A257940C /* Serto Urhoy.ttf */; };
@@ -67,6 +68,8 @@
 		D621BDCC21260A080080E495 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = D621BDCB21260A080080E495 /* main.jsbundle */; };
 		D621BF1B21260F830080E495 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D621BEDE21260F830080E495 /* assets */; };
 		D621C0F42126CC130080E495 /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D621C0B72126CC130080E495 /* HelveticaNeue.ttf */; };
+		D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D621C173212913550080E495 /* libKeyboardTrackingView.a */; };
+		D621C25921292BD70080E495 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D621C24A21292BBE0080E495 /* libRNBlur.a */; };
 		D62F5476200A71DD0058DDC6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F5474200A71DC0058DDC6 /* Crashlytics.framework */; };
 		D62F5477200A71DD0058DDC6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F5475200A71DD0058DDC6 /* Fabric.framework */; };
 		D655219F1FFFEB18007C9243 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D655219B1FFFEAE8007C9243 /* libRNDeviceInfo.a */; };
@@ -311,6 +314,41 @@
 			remoteGlobalIDString = 2858ECD01F8B91B400610575;
 			remoteInfo = "RNVersionNumber-tvOS";
 		};
+		D621C166212912280080E495 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A16BB8C117542EE86CFC494 /* RCTCustomInputController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 39DF4FE71E00394E00F5B4B2;
+			remoteInfo = RCTCustomInputController;
+		};
+		D621C16C2129131B0080E495 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 39DF4FE71E00394E00F5B4B2;
+			remoteInfo = RCTCustomInputController;
+		};
+		D621C172212913550080E495 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D834CED81CC64F2400FA5668;
+			remoteInfo = KeyboardTrackingView;
+		};
+		D621C24921292BBE0080E495 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D621C21121292BBE0080E495 /* RNBlur.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A68BD7BC1BC31318005F02DF;
+			remoteInfo = RNBlur;
+		};
+		D621C24B21292BBE0080E495 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D621C21121292BBE0080E495 /* RNBlur.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
+			remoteInfo = "RNBlur-tvOS";
+		};
 		D655219A1FFFEAE8007C9243 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */;
@@ -542,6 +580,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1579F669763DDC8AD0C4718E /* libPods-SuryoLingo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuryoLingo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1957988ECD544DC9AB2BFCA9 /* RNVersionNumber.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVersionNumber.xcodeproj; path = "../node_modules/react-native-version-number/ios/RNVersionNumber.xcodeproj"; sourceTree = "<group>"; };
+		1A16BB8C117542EE86CFC494 /* RCTCustomInputController.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCustomInputController.xcodeproj; path = "../node_modules/react-native-keyboard-input/lib/ios/RCTCustomInputController.xcodeproj"; sourceTree = "<group>"; };
 		1C65B2527E6841469E5CF2D2 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		1F56010ACA204500A205E6A5 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		2266CAF6BD88450687A92004 /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
@@ -567,6 +606,7 @@
 		613FAB2017EC435084A0844D /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
 		650E603159A94D8BAF48AE1A /* libRNAudioPlayer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAudioPlayer.a; sourceTree = "<group>"; };
 		731CE1FAB4D4469DA3436A72 /* AppCenterReactNativePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativePush.xcodeproj; path = "../node_modules/appcenter-push/ios/AppCenterReactNativePush.xcodeproj"; sourceTree = "<group>"; };
+		779B638D46BC487B9C03222D /* libRCTCustomInputController.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCustomInputController.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7DD76011DECD42DF94D77E29 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -592,6 +632,9 @@
 		D621BDCB21260A080080E495 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		D621BEDE21260F830080E495 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		D621C0B72126CC130080E495 /* HelveticaNeue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = HelveticaNeue.ttf; path = ../src/assets/fonts/HelveticaNeue.ttf; sourceTree = "<group>"; };
+		D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCustomInputController.xcodeproj; path = "../node_modules/react-native-keyboard-input/lib/ios/RCTCustomInputController.xcodeproj"; sourceTree = "<group>"; };
+		D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeyboardTrackingView.xcodeproj; path = "../node_modules/react-native-keyboard-tracking-view/lib/KeyboardTrackingView.xcodeproj"; sourceTree = "<group>"; };
+		D621C21121292BBE0080E495 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		D62F5474200A71DC0058DDC6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D62F5475200A71DD0058DDC6 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
@@ -621,6 +664,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D621C25921292BD70080E495 /* libRNBlur.a in Frameworks */,
+				D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */,
 				D62F5477200A71DD0058DDC6 /* Fabric.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				D6B159691FA2C9D60044EA78 /* libRCTAnimation.a in Frameworks */,
@@ -652,6 +697,7 @@
 				C8DA09CC6EED44A9A90FC133 /* libAppCenterReactNativeCrashes.a in Frameworks */,
 				FBAE87DE530649E7BE2621D5 /* libAppCenterReactNativePush.a in Frameworks */,
 				F7343D071A25C169FFA9684A /* libPods-SuryoLingo.a in Frameworks */,
+				161E2DE72C634BC3B4FB07A5 /* libRCTCustomInputController.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,6 +887,9 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D621C21121292BBE0080E495 /* RNBlur.xcodeproj */,
+				D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */,
+				D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */,
 				D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -869,6 +918,7 @@
 				2E5CA97B576D4524BFD33E9C /* AppCenterReactNativeAnalytics.xcodeproj */,
 				613FAB2017EC435084A0844D /* AppCenterReactNativeCrashes.xcodeproj */,
 				731CE1FAB4D4469DA3436A72 /* AppCenterReactNativePush.xcodeproj */,
+				1A16BB8C117542EE86CFC494 /* RCTCustomInputController.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -972,6 +1022,39 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D621C163212912280080E495 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D621C167212912280080E495 /* libRCTCustomInputController.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D621C1692129131B0080E495 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D621C16D2129131B0080E495 /* libRCTCustomInputController.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D621C16F212913550080E495 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D621C173212913550080E495 /* libKeyboardTrackingView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D621C21221292BBE0080E495 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D621C24A21292BBE0080E495 /* libRNBlur.a */,
+				D621C24C21292BBE0080E495 /* libRNBlur.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D65521961FFFEAE8007C9243 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1052,6 +1135,7 @@
 				11586CECBC6D46D59819DC47 /* libAppCenterReactNativeAnalytics.a */,
 				CED93749F81E48AFBDB56A80 /* libAppCenterReactNativeCrashes.a */,
 				BBB4227AB8BD4FB285692F48 /* libAppCenterReactNativePush.a */,
+				779B638D46BC487B9C03222D /* libRCTCustomInputController.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1262,6 +1346,10 @@
 					ProjectRef = 41CDEA583D7C4CBD98A17BEF /* BVLinearGradient.xcodeproj */;
 				},
 				{
+					ProductGroup = D621C16F212913550080E495 /* Products */;
+					ProjectRef = D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -1272,6 +1360,14 @@
 				{
 					ProductGroup = ADBDB9201DFEBF0600ED6528 /* Products */;
 					ProjectRef = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
+				},
+				{
+					ProductGroup = D621C163212912280080E495 /* Products */;
+					ProjectRef = 1A16BB8C117542EE86CFC494 /* RCTCustomInputController.xcodeproj */;
+				},
+				{
+					ProductGroup = D621C1692129131B0080E495 /* Products */;
+					ProjectRef = D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -1320,6 +1416,10 @@
 				{
 					ProductGroup = D6B159541FA2C8330044EA78 /* Products */;
 					ProjectRef = 9344D9C4D5594D4FBF810C1A /* RNAudioPlayer.xcodeproj */;
+				},
+				{
+					ProductGroup = D621C21221292BBE0080E495 /* Products */;
+					ProjectRef = D621C21121292BBE0080E495 /* RNBlur.xcodeproj */;
 				},
 				{
 					ProductGroup = D65521961FFFEAE8007C9243 /* Products */;
@@ -1580,6 +1680,41 @@
 			fileType = archive.ar;
 			path = "libRNVersionNumber-tvOS.a";
 			remoteRef = D6193C15203E339800917FE6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D621C167212912280080E495 /* libRCTCustomInputController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCustomInputController.a;
+			remoteRef = D621C166212912280080E495 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D621C16D2129131B0080E495 /* libRCTCustomInputController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCustomInputController.a;
+			remoteRef = D621C16C2129131B0080E495 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D621C173212913550080E495 /* libKeyboardTrackingView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKeyboardTrackingView.a;
+			remoteRef = D621C172212913550080E495 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D621C24A21292BBE0080E495 /* libRNBlur.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBlur.a;
+			remoteRef = D621C24921292BBE0080E495 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D621C24C21292BBE0080E495 /* libRNBlur.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBlur.a;
+			remoteRef = D621C24B21292BBE0080E495 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D655219B1FFFEAE8007C9243 /* libRNDeviceInfo.a */ = {
@@ -2164,11 +2299,15 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 				);
 				INFOPLIST_FILE = SuryoLingoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2204,11 +2343,15 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 				);
 				INFOPLIST_FILE = SuryoLingoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2250,6 +2393,7 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 				);
 				INFOPLIST_FILE = SuryoLingo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2258,7 +2402,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SuryoLingo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.suryolingo.android;
 				PRODUCT_NAME = SuryoLingo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2293,6 +2437,7 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 				);
 				INFOPLIST_FILE = SuryoLingo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2301,7 +2446,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SuryoLingo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.suryolingo.android;
 				PRODUCT_NAME = SuryoLingo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2339,10 +2484,14 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 				);
 				INFOPLIST_FILE = "SuryoLingo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2388,10 +2537,14 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 				);
 				INFOPLIST_FILE = "SuryoLingo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2419,7 +2572,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "SuryoLingo-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SuryoLingo-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2442,7 +2598,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "SuryoLingo-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SuryoLingo-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;

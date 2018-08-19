@@ -32,7 +32,8 @@ const language = {
       '3soso': 'ܶ',
       rboso: 'ܽ'
     },
-    overlookLetters: {}
+    overlookLetters: {},
+    keyboardKeys: []
   },
 
   arabic: {
@@ -89,11 +90,47 @@ const language = {
       إ: 'ا',
       آ: 'ا',
       ة: 'ه'
-    }
+    },
+    keyboardKeys: [
+      'ا',
+      'ب',
+      'ت',
+      'ث',
+      'ج',
+      'ح',
+      'خ',
+      'د',
+      'ذ',
+      'ر',
+      'ز',
+      'س',
+      'ش',
+      'ص',
+      'ض',
+      'ط',
+      'ظ',
+      'ع',
+      'غ',
+      'ف',
+      'ق',
+      'ك',
+      'ل',
+      'م',
+      'ن',
+      'ه',
+      'و',
+      'ي',
+      'ى‎',
+      'ؤ‎',
+      'ئ‎',
+      'ء‎',
+      'ة'
+    ]
   }
 };
 
 interface ILangConfig {
+  keyboardKeys: string[];
   letters: string[];
   vowels: string[];
   overlookLetters: IDictionary<string>;
@@ -102,13 +139,15 @@ interface ILangConfig {
 language['cl-syr'] = language['tur-syr'] = {
   letters: language.syriac.letters,
   vowels: language.syriac.vowels,
-  overlookLetters: language.syriac.overlookLetters
+  overlookLetters: language.syriac.overlookLetters,
+  keyboardKeys: language.syriac.letters
 };
 
 language['cl-ara'] = {
   letters: language.arabic.letters,
   vowels: language.arabic.vowels,
-  overlookLetters: language.arabic.overlookLetters
+  overlookLetters: language.arabic.overlookLetters,
+  keyboardKeys: language.arabic.keyboardKeys
 };
 
 export const getLangConfig = (lang: TLangs): ILangConfig => language[lang];
