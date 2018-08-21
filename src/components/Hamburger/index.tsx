@@ -9,10 +9,10 @@ export default ({ onPress }: { onPress(): void }) => (
   </GSBars>
 );
 
-const GSBars = glamor(TouchableOpacity)({
+const GSBars = glamor(TouchableOpacity as any)({
   width: 50,
   height: 40,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-around'
-});
+}) as any;

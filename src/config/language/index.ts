@@ -33,7 +33,11 @@ const language = {
       rboso: 'ܽ'
     },
     overlookLetters: {},
-    keyboardKeys: []
+    keyboardKeys: [
+      ['ܦ', 'ܥ', 'ܝ', 'ܬ', 'ܪ', 'ܘ', 'ܩ'],
+      ['ܚ', 'ܠ', 'ܟ', 'ܛ', 'ܗ', 'ܓ', 'ܕ', 'ܣ', 'ܐ'],
+      ['ܡ', 'ܢ', 'ܒ', 'ܫ', 'ܤ', 'ܨ', 'ܙ']
+    ]
   },
 
   arabic: {
@@ -92,45 +96,15 @@ const language = {
       ة: 'ه'
     },
     keyboardKeys: [
-      'ا',
-      'ب',
-      'ت',
-      'ث',
-      'ج',
-      'ح',
-      'خ',
-      'د',
-      'ذ',
-      'ر',
-      'ز',
-      'س',
-      'ش',
-      'ص',
-      'ض',
-      'ط',
-      'ظ',
-      'ع',
-      'غ',
-      'ف',
-      'ق',
-      'ك',
-      'ل',
-      'م',
-      'ن',
-      'ه',
-      'و',
-      'ي',
-      'ى‎',
-      'ؤ‎',
-      'ئ‎',
-      'ء‎',
-      'ة'
+      ['د', 'ج', 'ح', 'خ', 'ه', 'ع', 'غ', 'ف', 'ق', 'ث', 'ص', 'ض'],
+      ['ط', 'ك', 'م', 'ن', 'ت', 'ا', 'ل', 'ب', 'ي', 'س', 'ش'],
+      ['ظ', 'ز', 'و', 'ة', 'ى', 'ر', 'ؤ', 'ء', 'ئ', 'ذ']
     ]
   }
 };
 
 interface ILangConfig {
-  keyboardKeys: string[];
+  keyboardKeys: string[][];
   letters: string[];
   vowels: string[];
   overlookLetters: IDictionary<string>;
@@ -140,7 +114,7 @@ language['cl-syr'] = language['tur-syr'] = {
   letters: language.syriac.letters,
   vowels: language.syriac.vowels,
   overlookLetters: language.syriac.overlookLetters,
-  keyboardKeys: language.syriac.letters
+  keyboardKeys: language.syriac.keyboardKeys
 };
 
 language['cl-ara'] = {

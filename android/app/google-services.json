@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "133197540908",
+    "firebase_url": "https://suryolingo-99de9.firebaseio.com",
+    "project_id": "suryolingo-99de9",
+    "storage_bucket": "suryolingo-99de9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133197540908:android:e780a1589cf81b78",
+        "android_client_info": {
+          "package_name": "com.suryolingo.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133197540908-jg1rlph6fk3t9c8o9d97ehqqqei36uu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIi9kXR6o2tIZTX0xvTq9DK7M_11fmmd8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

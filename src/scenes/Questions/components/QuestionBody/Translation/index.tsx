@@ -19,6 +19,7 @@ export default class Translation extends React.Component<IProps> {
     return (
       <GSContainer>
         <TextArea
+          disableKeyboard={userHasAnswered}
           placeholder={placeholder}
           captureInput={collectAnswer}
           showCustomKeyboard={reverse && !userHasAnswered}

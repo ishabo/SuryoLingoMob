@@ -8,7 +8,6 @@ interface IWordProps extends ICustomText {
 }
 
 export const GSWordBox = glamor.view({
-  // height: 40,
   margin: 5
 });
 
@@ -36,9 +35,9 @@ export const GSAnswerBox = glamor.view({
   minHeight: 120,
   flexDirection: 'row',
   flexWrap: 'wrap',
-  backgroundColor: Colors.white,
   marginVertical: 5,
-  alignContent: 'flex-start'
+  alignContent: 'flex-start',
+  backgroundColor: '#E8E8E8'
 });
 
 export const GSTitle = glamor(GSCustomText)<ICustomText>({

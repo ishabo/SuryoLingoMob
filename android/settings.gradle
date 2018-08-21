@@ -1,6 +1,8 @@
 rootProject.name = 'SuryoLingo'
-include ':react-native-fabric'
-project(':react-native-fabric').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fabric/android')
+include ':react-native-keyboard-view'
+project(':react-native-keyboard-view').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-keyboard-view/android')
+include ':react-native-custom-keyboard'
+project(':react-native-custom-keyboard').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-custom-keyboard/android')
 include ':appcenter-push'
 project(':appcenter-push').projectDir = new File(rootProject.projectDir, '../node_modules/appcenter-push/android')
 include ':appcenter-crashes'
@@ -31,5 +33,6 @@ include ':react-native-device-info'
 project(':react-native-device-info').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-device-info/android')
 include ':react-native-audioplayer'
 project(':react-native-audioplayer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-audioplayer/android')
-
+include ':reactnativekeyboardinput'
+project(':reactnativekeyboardinput').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-keyboard-input/lib/android')
 include ':app'

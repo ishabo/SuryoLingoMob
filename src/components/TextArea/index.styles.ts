@@ -3,6 +3,7 @@ import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { isShortDevice } from 'helpers';
 import { getFont } from 'assets/fonts';
+// import { TextInput } from 'react-native-custom-keyboard';
 
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch'
@@ -21,7 +22,7 @@ export const GSTextAreaContainer = glamor.view({
   padding: 3
 });
 
-export const GSTextArea = glamor(Input)<{ rtl: boolean; lang: TLangs }>(
+export const GSTextArea = glamor(Input as any)(
   {
     textAlign: 'right',
     backgroundColor: Colors.lightGray,
@@ -36,16 +37,23 @@ export const GSTextArea = glamor(Input)<{ rtl: boolean; lang: TLangs }>(
     }
     return styles;
   }
-);
+) as any;
 
 export const GSKeyboardToolBar = glamor.view({
   justifyContent: 'flex-end',
-  alignSelf: 'stretch',
   backgroundColor: 'white',
-  padding: 8
+  padding: 8,
+  flexDirection: 'row'
 });
 
-export const GSKeyboardClosebutton = glamor(Button)({
-  width: 35,
-  height: 35
+export const GSKeyboardCloseButton = glamor(Button)({
+  width: 30,
+  height: 34,
+  margin: 2
+});
+
+export const GSKeyboardToggleButton = glamor(Button)({
+  width: 64,
+  height: 34,
+  margin: 2
 });

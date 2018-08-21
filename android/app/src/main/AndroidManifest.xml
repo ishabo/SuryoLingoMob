@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.suryolingo"
+    package="com.suryolingo.android"
     android:versionCode="1"
     android:versionName="1.0">
 
@@ -42,7 +42,7 @@
           <data android:scheme="http" />
           <data android:scheme="https" />
           <data android:scheme="launch" />
-          <data android:host="com.suryolingo" />
+          <data android:host="com.suryolingo.android" />
         </intent-filter>
 
       </activity>

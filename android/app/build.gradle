@@ -95,11 +95,11 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '26.0.1'
 
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.suryolingo"
+        applicationId "com.suryolingo.android"
         minSdkVersion 21
         targetSdkVersion 22
         versionCode 21
@@ -150,32 +150,9 @@ android {
     }
 }
 
-buildscript {
-  repositories {
-    mavenCentral()
-    maven { url 'https://maven.fabric.io/public' }
-  }
-
-  dependencies {
-    // These docs use an open ended version so that our plugin
-    // can be updated quickly in response to Android tooling updates
-
-    // We recommend changing it to the latest version from our changelog:
-    // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
-    
-    classpath 'io.fabric.tools:gradle:1.+'
-  }
-}
-
-apply plugin: 'io.fabric'
-
-repositories {
-  maven { url 'https://maven.fabric.io/public' }
-}
-
 dependencies {
-    compile project(':react-native-blur')
-    compile project(':react-native-fabric')
+    compile project(':react-native-keyboard-view')
+    compile project(':react-native-custom-keyboard')
     compile project(':appcenter-push')
     compile project(':appcenter-crashes')
     compile project(':appcenter-analytics')
@@ -193,11 +170,9 @@ dependencies {
     compile project(':react-native-fetch-blob')
     compile project(":reactnativekeyboardinput")
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.4.0"
+    compile "com.microsoft.appcenter:appcenter-push:1.7.0"
+    compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
-        transitive = true;
-    }
 }
 
 // Run this once to be able to run the application with BUCK
@@ -206,3 +181,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'

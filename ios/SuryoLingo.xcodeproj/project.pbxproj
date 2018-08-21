@@ -65,13 +65,8 @@
 		C8F847F0F1CD29902BED80A2 /* libPods-SuryoLingo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CC4534EF9CE566F856DDB8 /* libPods-SuryoLingo-tvOS.a */; };
 		D06CEFB1E778974F2FAA6103 /* libPods-SuryoLingoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D07120CDC01F43B594D4650 /* libPods-SuryoLingoTests.a */; };
 		D0A9CF5622F94EFFAA4752BF /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2089CCAF314FA0925EB790 /* Zocial.ttf */; };
-		D621BDCC21260A080080E495 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = D621BDCB21260A080080E495 /* main.jsbundle */; };
-		D621BF1B21260F830080E495 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D621BEDE21260F830080E495 /* assets */; };
 		D621C0F42126CC130080E495 /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D621C0B72126CC130080E495 /* HelveticaNeue.ttf */; };
 		D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D621C173212913550080E495 /* libKeyboardTrackingView.a */; };
-		D621C25921292BD70080E495 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D621C24A21292BBE0080E495 /* libRNBlur.a */; };
-		D62F5476200A71DD0058DDC6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F5474200A71DC0058DDC6 /* Crashlytics.framework */; };
-		D62F5477200A71DD0058DDC6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F5475200A71DD0058DDC6 /* Fabric.framework */; };
 		D655219F1FFFEB18007C9243 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D655219B1FFFEAE8007C9243 /* libRNDeviceInfo.a */; };
 		D6B159691FA2C9D60044EA78 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		D6BCDC20896C428E845F3DD3 /* Al-Jazeera-Arabic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007DA2D71412451898EB133E /* Al-Jazeera-Arabic-Regular.ttf */; };
@@ -334,20 +329,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = D834CED81CC64F2400FA5668;
 			remoteInfo = KeyboardTrackingView;
-		};
-		D621C24921292BBE0080E495 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D621C21121292BBE0080E495 /* RNBlur.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A68BD7BC1BC31318005F02DF;
-			remoteInfo = RNBlur;
-		};
-		D621C24B21292BBE0080E495 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D621C21121292BBE0080E495 /* RNBlur.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
-			remoteInfo = "RNBlur-tvOS";
 		};
 		D655219A1FFFEAE8007C9243 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -629,14 +610,9 @@
 		C7E4AB6AA80564FAA8D75C89 /* Pods-SuryoLingoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuryoLingoTests/Pods-SuryoLingoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C93C963850534E0EA5A46F9C /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		CED93749F81E48AFBDB56A80 /* libAppCenterReactNativeCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNativeCrashes.a; sourceTree = "<group>"; };
-		D621BDCB21260A080080E495 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		D621BEDE21260F830080E495 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		D621C0B72126CC130080E495 /* HelveticaNeue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = HelveticaNeue.ttf; path = ../src/assets/fonts/HelveticaNeue.ttf; sourceTree = "<group>"; };
 		D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCustomInputController.xcodeproj; path = "../node_modules/react-native-keyboard-input/lib/ios/RCTCustomInputController.xcodeproj"; sourceTree = "<group>"; };
 		D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeyboardTrackingView.xcodeproj; path = "../node_modules/react-native-keyboard-tracking-view/lib/KeyboardTrackingView.xcodeproj"; sourceTree = "<group>"; };
-		D621C21121292BBE0080E495 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
-		D62F5474200A71DC0058DDC6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		D62F5475200A71DD0058DDC6 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		D66CF52B207421E800059473 /* SuryoLingo-tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "SuryoLingo-tvOS.entitlements"; path = "SuryoLingo-tvOS/SuryoLingo-tvOS.entitlements"; sourceTree = "<group>"; };
 		D818D289FAE040FF129DE70E /* Pods-SuryoLingo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuryoLingo/Pods-SuryoLingo.release.xcconfig"; sourceTree = "<group>"; };
@@ -664,9 +640,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D621C25921292BD70080E495 /* libRNBlur.a in Frameworks */,
 				D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */,
-				D62F5477200A71DD0058DDC6 /* Fabric.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				D6B159691FA2C9D60044EA78 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -677,7 +651,6 @@
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
-				D62F5476200A71DD0058DDC6 /* Crashlytics.framework in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				4A2857D6036A4AD58D0668AA /* libRNI18n.a in Frameworks */,
@@ -887,7 +860,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				D621C21121292BBE0080E495 /* RNBlur.xcodeproj */,
 				D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */,
 				D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */,
 				D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */,
@@ -935,11 +907,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				D621BEDE21260F830080E495 /* assets */,
-				D621BDCB21260A080080E495 /* main.jsbundle */,
 				D66CF52B207421E800059473 /* SuryoLingo-tvOS.entitlements */,
-				D62F5474200A71DC0058DDC6 /* Crashlytics.framework */,
-				D62F5475200A71DD0058DDC6 /* Fabric.framework */,
 				13B07FAE1A68108700A75B9A /* SuryoLingo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SuryoLingoTests */,
@@ -1042,15 +1010,6 @@
 			isa = PBXGroup;
 			children = (
 				D621C173212913550080E495 /* libKeyboardTrackingView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D621C21221292BBE0080E495 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D621C24A21292BBE0080E495 /* libRNBlur.a */,
-				D621C24C21292BBE0080E495 /* libRNBlur.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1418,10 +1377,6 @@
 					ProjectRef = 9344D9C4D5594D4FBF810C1A /* RNAudioPlayer.xcodeproj */;
 				},
 				{
-					ProductGroup = D621C21221292BBE0080E495 /* Products */;
-					ProjectRef = D621C21121292BBE0080E495 /* RNBlur.xcodeproj */;
-				},
-				{
 					ProductGroup = D65521961FFFEAE8007C9243 /* Products */;
 					ProjectRef = D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */;
 				},
@@ -1703,20 +1658,6 @@
 			remoteRef = D621C172212913550080E495 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D621C24A21292BBE0080E495 /* libRNBlur.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNBlur.a;
-			remoteRef = D621C24921292BBE0080E495 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D621C24C21292BBE0080E495 /* libRNBlur.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNBlur.a;
-			remoteRef = D621C24B21292BBE0080E495 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		D655219B1FFFEAE8007C9243 /* libRNDeviceInfo.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1937,7 +1878,6 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				0741D5A4C0944DF58C34329C /* Entypo.ttf in Resources */,
-				D621BF1B21260F830080E495 /* assets in Resources */,
 				9FFF9AACD4F04C419E2CDD67 /* EvilIcons.ttf in Resources */,
 				4B499F2E54724F1DB20B06B9 /* FontAwesome.ttf in Resources */,
 				E45B640E079C43E2B1055E53 /* Foundation.ttf in Resources */,
@@ -1945,7 +1885,6 @@
 				BBE64C0FE56B44058B6CCCF6 /* MaterialIcons.ttf in Resources */,
 				9A27869596124D03A28D92AF /* Octicons.ttf in Resources */,
 				53570F1B56D84FB997A93916 /* Roboto_medium.ttf in Resources */,
-				D621BDCC21260A080080E495 /* main.jsbundle in Resources */,
 				5F59E58D5B1F42DF9C50672F /* Roboto.ttf in Resources */,
 				67B57F879271405CBE07E4C4 /* rubicon-icon-font.ttf in Resources */,
 				B14C736B59034492ADEB5A16 /* SimpleLineIcons.ttf in Resources */,

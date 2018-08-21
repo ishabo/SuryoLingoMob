@@ -16,6 +16,7 @@ export default class Dictation extends React.Component<IProps> {
     return (
       <GSContainer>
         <TextArea
+          disableKeyboard={this.props.userHasAnswered}
           placeholder={I18n.t(`questions.dictation`)}
           captureInput={this.props.collectAnswer}
           showCustomKeyboard={this.props.reverse && !this.props.userHasAnswered}

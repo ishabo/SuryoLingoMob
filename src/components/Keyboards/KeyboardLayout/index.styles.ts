@@ -1,31 +1,33 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { View } from 'react-native';
-import { Container, Button } from 'native-base';
+import { TouchableOpacity, View } from 'react-native';
+import { Icon } from 'native-base';
 import { GSCustomText, ICustomText } from 'styles/text';
 
-export const GSContainer = glamor(Container, { displayName: 'CustomKeyboard' })({
-  alignContent: 'center',
-  alignSelf: 'center',
-  zIndex: 100,
-  flex: 1
+export const GSContainer = glamor.view({
+  justifyContent: 'center',
+  backgroundColor: 'white'
 });
 
-export const GSKey = glamor(Button)({
-  width: 35,
-  height: 35,
-  margin: 2
-});
+const textStyle = {
+  textAlign: 'center',
+  alignSelf: 'center',
+  color: Colors.white,
+  fontSize: 20
+};
 
 export const GSKeyText = glamor(GSCustomText)<ICustomText>({
-  textAlign: 'center',
-  width: 10,
-  flex: 1,
-  height: 20,
-  color: Colors.white
+  ...textStyle
 });
 
-export const GSContent = glamor(View, { displayName: 'GSContent' })({
+export const GSIcon = glamor(Icon)({
+  ...textStyle,
+  alignSelf: 'flex-start',
+  marginLeft: 10,
+  fontSize: 25
+});
+
+export const GSContent = glamor(View as any, { displayName: 'GSContent' })({
   flexDirection: 'row',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -33,20 +35,25 @@ export const GSContent = glamor(View, { displayName: 'GSContent' })({
   justifyContent: 'center'
 });
 
-export const GSSpaceKey = glamor(Button)({
-  width: 200,
-  height: 38,
-  margin: 2
+export const GSButton = glamor(TouchableOpacity as any)<{ onPress: () => void }>({
+  width: 78,
+  height: 30,
+  margin: 1,
+  borderRadius: 4,
+  backgroundColor: '#1373E4',
+  alignContent: 'stretch',
+  alignSelf: 'center',
+  justifyContent: 'center'
 });
 
-export const GSReturnKey = glamor(Button)({
-  width: 78,
-  height: 38,
-  margin: 2
+export const GSReturnKey = glamor(GSButton)({});
+
+export const GSKey = glamor(GSButton)({
+  width: 25
 });
 
-export const GSBackSpaceKey = glamor(Button)({
-  width: 78,
-  height: 35,
-  margin: 2
+export const GSBackSpaceKey = glamor(GSButton)({
+  width: 60
 });
+
+export const GSSpaceKey = glamor(GSButton)({ width: 160 });

@@ -11,6 +11,8 @@ export interface IKeyboardActions {
 }
 
 export default {
-  SyriacKeyboard: () => <KeyboardLayout lang={'cl-syr'} letters={syriac} layoutName="SyriacKeyboard" />,
-  ArabicKeyboard: () => <KeyboardLayout lang={'cl-ara'} letters={arabic} layoutName="ArabicKeyboard" />
+  SyriacKeyboard: props => <KeyboardLayout {...props} lang={'cl-syr'} letters={syriac} layoutName="SyriacKeyboard" />,
+  ArabicKeyboard: props => (
+    <KeyboardLayout {...props} wide lang={'cl-ara'} letters={arabic} layoutName="ArabicKeyboard" />
+  )
 };

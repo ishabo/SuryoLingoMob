@@ -1,27 +1,28 @@
 import * as React from 'react';
 
-import { Vibration, ScrollView } from 'react-native';
-import { Icon, Text } from 'native-base';
+import { ScrollView, View } from 'react-native';
 import shortid from 'shortid';
-import { GSBackSpaceKey, GSContainer, GSContent, GSKey, GSKeyText, GSSpaceKey, GSReturnKey } from './index.styles';
+import { GSBackSpaceKey, GSContainer, GSContent, GSKey, GSIcon, GSKeyText, GSSpaceKey } from './index.styles';
 import { KeyboardRegistry } from 'react-native-keyboard-input';
 import { IKeyboardActions } from 'components/Keyboards';
-import I18n from 'I18n';
 
 interface IProps {
   layoutName: string;
-  letters: string[];
+  letters: string[][];
   lang: TLangs;
+  wide?: boolean;
+  renderContent?: () => React.ReactElement<any>;
 }
 
-const VIBRATE_DURATION = 50;
-
 class KeyboardLayout extends React.Component<IProps> {
-  private listKeys = (keys: string[], style: { fontSize: number; paddingTop?: number }) =>
+  private listKeys = (
+    keys: string[],
+    style: { fontSize: number; paddingTop?: number } = { fontSize: 14, paddingTop: -23 }
+  ) =>
+    keys &&
     keys.map((key: string) => (
       <GSKey
         key={shortid.generate()}
-        primary
         onPress={this.onPress(() => {
           this.onKeyPress(key);
         })}
@@ -34,7 +35,6 @@ class KeyboardLayout extends React.Component<IProps> {
 
   private onPress = (pressFunction: () => void) => () => {
     pressFunction();
-    Vibration.vibrate(VIBRATE_DURATION, false);
   };
 
   private onKeyPress = (value: string) => {
@@ -51,32 +51,36 @@ class KeyboardLayout extends React.Component<IProps> {
     });
   };
 
-  private onSubmit = () => {
-    this.onItemSelected({
-      value: null,
-      action: 'submitAndClose'
-    });
-  };
-
   private onItemSelected = (params: IKeyboardActions) => {
     KeyboardRegistry.onItemSelected(this.props.layoutName, params);
   };
 
+  private listRows = (letters: string[][]) =>
+    letters.map((row: string[]) => <GSContent>{this.listKeys(row)}</GSContent>);
+
   render() {
     return (
-      <ScrollView contentContainerStyle={{ flex: 1 }} style={{ flex: 1 }}>
+      <ScrollView
+        contentContainerStyle={{
+          flex: 1,
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          height: 300,
+          paddingBottom: 20
+        }}
+        style={{ height: 300 }}
+        scrollEnabled={false}
+      >
         <GSContainer>
+          <>{this.listRows(this.props.letters)}</>
           <GSContent>
-            <GSBackSpaceKey primary onPress={this.onPress(this.onBackSpacePress)}>
-              <Icon name="ios-arrow-forward" />
+            <GSBackSpaceKey onPress={this.onPress(this.onBackSpacePress)}>
+              <GSIcon name="ios-arrow-forward" />
             </GSBackSpaceKey>
-            {this.listKeys(this.props.letters, { fontSize: 14, paddingTop: -23 })}
-          </GSContent>
-          <GSContent>
-            <GSReturnKey success onPress={this.onPress(this.onSubmit)}>
-              <Text>{I18n.t('questions.continue')}</Text>
-            </GSReturnKey>
-            <GSSpaceKey primary onPress={this.onPress(() => this.onKeyPress(' '))} />
+            <GSSpaceKey onPress={this.onPress(() => this.onKeyPress(' '))}>
+              <View />
+            </GSSpaceKey>
           </GSContent>
         </GSContainer>
       </ScrollView>

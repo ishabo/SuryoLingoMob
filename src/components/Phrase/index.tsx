@@ -6,6 +6,7 @@ import { Keyboard, View } from 'react-native';
 import { IWordHint } from 'services/dictionaries';
 import { ISentence } from 'services/questions';
 import { detectLanguage } from 'helpers/language';
+import { KeyboardUtils } from 'react-native-keyboard-input';
 
 export interface IProps {
   sentence: ISentence;
@@ -79,6 +80,8 @@ export default class Phrase extends React.Component<IProps, IState> {
     let time = 0;
     if (this.state.keyboardOpen) {
       Keyboard.dismiss();
+      KeyboardUtils.dismiss();
+
       time = 100;
     }
     setTimeout(this[tooltip].toggle, time);

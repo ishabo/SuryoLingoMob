@@ -12,9 +12,6 @@ target 'SuryoLingo' do
   pod 'AppCenterReactNativeShared', '~> 1.4.0'
   
   platform :ios, '9.0'
-  pod 'ReactNativeFabric', :path => '../node_modules/react-native-fabric'
-
-  pod 'react-native-blur', :path => '../node_modules/react-native-blur'
 
   target 'SuryoLingoTests' do
     inherit! :search_paths

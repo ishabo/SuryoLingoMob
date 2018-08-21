@@ -3,6 +3,6 @@
     "outputType": { "type": "APK" },
     "apkInfo": { "type": "MAIN", "splits": [], "versionCode": 1 },
     "path": "app-release.apk",
-    "properties": { "packageId": "com.suryolingo", "split": "", "minSdkVersion": "16" }
+    "properties": { "packageId": "com.suryolingo.android", "split": "", "minSdkVersion": "16" }
   }
 ]

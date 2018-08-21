@@ -34,6 +34,7 @@ import { NextButton, SwitchButton, EvaluationBanner } from 'components';
 import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
 import QuestionBody from './components/QuestionBody';
+import { KeyboardUtils } from 'react-native-keyboard-input';
 
 class Questions extends React.Component<IProps, IState> {
   public state = {
@@ -115,6 +116,7 @@ class Questions extends React.Component<IProps, IState> {
       return;
     }
 
+    KeyboardUtils.dismiss();
     Keyboard.dismiss();
 
     if (this.needsEvaluation()) {
@@ -270,7 +272,9 @@ class Questions extends React.Component<IProps, IState> {
     return (
       <GSFooterAndBody>
         <GSBody>{this.renderQuestionBody()}</GSBody>
-        <GSFooter>{(this.state.keyboardIsOn && isNarrowDevice() && <View />) || this.renderNextQuestion()}</GSFooter>
+        <GSFooter keyboardVerticalOffset={60} behavior="padding" enabled>
+          {(this.state.keyboardIsOn && isNarrowDevice() && <View />) || this.renderNextQuestion()}
+        </GSFooter>
       </GSFooterAndBody>
     );
   }
