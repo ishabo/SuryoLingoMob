@@ -8,9 +8,7 @@ import * as courses from 'services/courses';
 import { IInitialState } from 'services/reducers';
 import { isEmpty } from 'lodash';
 import { validateSigon } from '../validation';
-import {
-  setLoadingOn, setLoadingOff, setFailureMessage, setSuccessMessage,
-} from 'services/api/actions';
+import { setLoadingOn, setLoadingOff, setFailureMessage, setSuccessMessage } from 'services/api/actions';
 import { ISagasFunctions } from 'services/sagas';
 import { NavigationActions } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
@@ -18,9 +16,8 @@ import { isApiResponse } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 
-export function* submitSignon (action: signon.ISignonFormAction): IterableIterator<any> {
-
-  const fields = { ...yield select((state: IInitialState) => state.signon.item) };
+export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
+  const fields = { ...(yield select((state: IInitialState) => state.signon.item)) };
 
   // console.warn(fields);
   if (action.signon === 'signin') {
@@ -28,9 +25,7 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
   }
 
   const errors: signon.ISignonFormErrors = validateSigon(fields);
-  debugger;
   if (isEmpty(errors)) {
-
     yield put(setLoadingOn());
 
     const currentProfile = yield select((state: IInitialState) => state.profile);
@@ -56,7 +51,6 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
         yield put(NavigationActions.navigate({ routeName: 'Courses' }));
       }
     } catch (error) {
-
       if (isApiResponse(error.response)) {
         if (error.response.status === 400) {
           if (error.response.data.match(/Email already exists/)) {
@@ -73,7 +67,7 @@ export function* submitSignon (action: signon.ISignonFormAction): IterableIterat
   yield put(setLoadingOff());
 }
 
-export function* recoverPassword (action: signon.ISignonFormAction): IterableIterator<any> {
+export function* recoverPassword(action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   try {
     yield call(signon.api.recoverPassword, action.email);
@@ -91,7 +85,7 @@ export function* recoverPassword (action: signon.ISignonFormAction): IterableIte
   yield put(setLoadingOff());
 }
 
-export function* signout (): IterableIterator<any> {
+export function* signout(): IterableIterator<any> {
   yield put(setLoadingOn());
   yield put(profile.actions.resetProfile());
   yield put(progress.actions.resetProgress());
@@ -104,8 +98,8 @@ export function* signout (): IterableIterator<any> {
   yield call(RNRestart.Restart);
 }
 
-export const functions = (): ISagasFunctions[] => ([
+export const functions = (): ISagasFunctions[] => [
   { action: signon.actions.types.SUBMIT_SIGNON, func: submitSignon },
   { action: signon.actions.types.SIGNOUT, func: signout },
-  { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
-]);
+  { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword }
+];

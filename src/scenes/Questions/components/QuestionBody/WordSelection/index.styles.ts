@@ -8,7 +8,8 @@ interface IWordProps extends ICustomText {
 }
 
 export const GSWordBox = glamor.view({
-  margin: 5
+  margin: 5,
+  backgroundColor: Colors.lightGray
 });
 
 export const GSWordText = glamor(GSCustomStudyText)<IWordProps>(
@@ -18,7 +19,7 @@ export const GSWordText = glamor(GSCustomStudyText)<IWordProps>(
   },
   props => ({
     color: props.shadowed ? Colors.darkGray : Colors.black,
-    backgroundColor: props.shadowed ? Colors.darkGray : Colors[props.selected ? 'lightGray' : 'white']
+    backgroundColor: props.shadowed ? Colors.darkGray : Colors.lightGray
   })
 );
 
@@ -26,17 +27,15 @@ export const GSSelectionBox = glamor.view({
   alignContent: 'center',
   justifyContent: 'center',
   flexDirection: 'row',
-  flexWrap: 'wrap',
-  height: 120
+  flexWrap: 'wrap'
 });
 
 export const GSAnswerBox = glamor.view({
   padding: 10,
-  minHeight: 120,
+  minHeight: 80,
   flexDirection: 'row',
   flexWrap: 'wrap',
   marginVertical: 5,
-  alignContent: 'flex-start',
   backgroundColor: '#E8E8E8'
 });
 

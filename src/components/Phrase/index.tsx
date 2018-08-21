@@ -88,7 +88,7 @@ export default class Phrase extends React.Component<IProps, IState> {
   };
 
   private renderHintifiedWord = (hintifiedWord: IWordHint, index: number) => {
-    const style = { marginRight: 5, marginTop: 2, fontFamily: 'Arial' };
+    const style = { marginRight: 5, marginTop: 2 };
     const tooltip = `tooltip${index}`;
     const { key, word, translations } = hintifiedWord;
 
@@ -103,6 +103,7 @@ export default class Phrase extends React.Component<IProps, IState> {
           key={key}
           animationType="spring"
           componentWrapperStyle={style}
+          labelStyle={{ fontFamily: 'Arial' }}
           buttonComponent={buttonCompoent}
         />
       );

@@ -151,8 +151,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-keyboard-view')
-    compile project(':react-native-custom-keyboard')
     compile project(':appcenter-push')
     compile project(':appcenter-crashes')
     compile project(':appcenter-analytics')

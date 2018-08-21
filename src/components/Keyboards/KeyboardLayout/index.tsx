@@ -56,7 +56,7 @@ class KeyboardLayout extends React.Component<IProps> {
   };
 
   private listRows = (letters: string[][]) =>
-    letters.map((row: string[]) => <GSContent>{this.listKeys(row)}</GSContent>);
+    letters.map((row: string[]) => <GSContent key={shortid.generate()}>{this.listKeys(row)}</GSContent>);
 
   render() {
     return (
@@ -65,7 +65,7 @@ class KeyboardLayout extends React.Component<IProps> {
           flex: 1,
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'flex-end',
+          justifyContent: 'flex-start',
           height: 300,
           paddingBottom: 20
         }}
@@ -76,7 +76,7 @@ class KeyboardLayout extends React.Component<IProps> {
           <>{this.listRows(this.props.letters)}</>
           <GSContent>
             <GSBackSpaceKey onPress={this.onPress(this.onBackSpacePress)}>
-              <GSIcon name="ios-arrow-forward" />
+              <GSIcon name="backspace" />
             </GSBackSpaceKey>
             <GSSpaceKey onPress={this.onPress(() => this.onKeyPress(' '))}>
               <View />

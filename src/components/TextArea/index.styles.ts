@@ -1,8 +1,9 @@
-import { Container, Input, Button } from 'native-base';
+import { Container, Button } from 'native-base';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { isShortDevice } from 'helpers';
 import { getFont } from 'assets/fonts';
+import { TouchableOpacity } from 'react-native';
 // import { TextInput } from 'react-native-custom-keyboard';
 
 export const GSContainer = glamor(Container)({
@@ -15,15 +16,27 @@ export const GSContent = glamor.view({
 });
 
 export const GSTextAreaContainer = glamor.view({
-  height: isShortDevice() ? 80 : 115,
-  marginBottom: 5,
+  height: isShortDevice() ? 80 : 80,
+  marginBottom: 2,
   borderWidth: 1,
   borderColor: Colors.white,
   padding: 3
 });
 
-export const GSTextArea = glamor(Input as any)(
+export const GSFakeTextArea = glamor(TouchableOpacity as any)({
+  flex: 1,
+  alignItems: 'flex-start',
+  flexDirection: 'row',
+  padding: 10,
+  backgroundColor: '#d9d9d9',
+  position: 'relative'
+}) as any;
+
+export const GSTextArea = glamor.textInput(
   {
+    height: 0,
+    position: 'absolute',
+    top: -99999999,
     textAlign: 'right',
     backgroundColor: Colors.lightGray,
     textAlignVertical: 'top'
@@ -42,7 +55,7 @@ export const GSTextArea = glamor(Input as any)(
 export const GSKeyboardToolBar = glamor.view({
   justifyContent: 'flex-end',
   backgroundColor: 'white',
-  padding: 8,
+  padding: 4,
   flexDirection: 'row'
 });
 

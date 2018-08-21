@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BackHandler, Keyboard, Alert, View } from 'react-native';
+import { BackHandler, Keyboard, Platform, Alert, View } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
@@ -272,7 +272,7 @@ class Questions extends React.Component<IProps, IState> {
     return (
       <GSFooterAndBody>
         <GSBody>{this.renderQuestionBody()}</GSBody>
-        <GSFooter keyboardVerticalOffset={60} behavior="padding" enabled>
+        <GSFooter behavior={Platform.OS === 'ios' ? 'padding' : 'height'} enabled>
           {(this.state.keyboardIsOn && isNarrowDevice() && <View />) || this.renderNextQuestion()}
         </GSFooter>
       </GSFooterAndBody>

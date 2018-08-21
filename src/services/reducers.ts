@@ -11,6 +11,8 @@ import * as api from './api/reducers';
 import * as exceptions from './exceptions';
 import * as signon from './signon';
 import * as assets from './assets';
+import * as preferences from './preferences';
+
 import { NavigationState } from 'react-navigation';
 
 export interface IInitialState {
@@ -25,6 +27,7 @@ export interface IInitialState {
   questions: questions.IQuestions;
   dictionaries: dictionaries.IDictionary[];
   exceptions: exceptions.IException[];
+  preferences: preferences.IPrefererences;
 }
 
 export const initialState: IInitialState = {
@@ -39,6 +42,7 @@ export const initialState: IInitialState = {
   questions: questions.reducers.initialState,
   dictionaries: dictionaries.reducers.initialState,
   exceptions: exceptions.reducers.initialState,
+  preferences: preferences.reducers.initialState
 };
 
 export default combineReducers({
@@ -53,4 +57,5 @@ export default combineReducers({
   questions: questions.reducers.reducer,
   dictionaries: dictionaries.reducers.reducer,
   exceptions: exceptions.reducers.reducer,
+  preferences: preferences.reducers.reducer
 });

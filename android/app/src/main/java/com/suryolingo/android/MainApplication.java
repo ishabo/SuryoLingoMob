@@ -2,8 +2,6 @@ package com.suryolingo.android;
 
 import android.app.Application;
 import com.facebook.react.ReactApplication;
-import im.shimo.react.keyboard.KeyboardPackage;
-import cn.reactnative.customkeyboard.RNCustomKeyboardPackage;
 import com.microsoft.appcenter.reactnative.push.AppCenterReactNativePushPackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
@@ -40,9 +38,6 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new KeyboardPackage(),
-            new RNCustomKeyboardPackage(),
-          new RNCustomKeyboardPackage(),
           new AppCenterReactNativePushPackage(MainApplication.this),
           new AppCenterReactNativeCrashesPackage(MainApplication.this,
               getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),

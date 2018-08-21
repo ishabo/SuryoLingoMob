@@ -38,47 +38,38 @@ const ensureShuffeled = (words: string[]) => {
 };
 
 export default class WordSelection extends React.Component<IProps, IState> {
-
   constructor(props: IProps) {
     super(props);
     const shuffledWords = this.getSuffledWords();
 
     this.state = {
       shuffledWords,
-      answer: [],
+      answer: []
     };
   }
 
   private determineAnswerWords = () => {
     const { reverse, phrase, translation, incorrectChoices } = this.props;
-    return (reverse ? phrase : translation).split(' ')
-      .concat(incorrectChoices);
-  }
+    return (reverse ? phrase : translation).split(' ').concat(incorrectChoices);
+  };
 
   private getSuffledWords = () => {
     const wordsToShuffle = this.determineAnswerWords();
-    return ensureShuffeled(wordsToShuffle).map((word: string) =>
-      ({
-        word,
-        id: shortid.generate(),
-        selected: false,
-      }),
-    );
-  }
+    return ensureShuffeled(wordsToShuffle).map((word: string) => ({
+      word,
+      id: shortid.generate(),
+      selected: false
+    }));
+  };
 
   private updateShuffledWords = (updatedRecord: IWord) => {
     const shuffledWords = this.state.shuffledWords;
-    const newShuffledWords = shuffledWords.map((word: IWord) =>
-      word.id !== updatedRecord.id
-        ? word
-        : updatedRecord,
-    );
+    const newShuffledWords = shuffledWords.map((word: IWord) => (word.id !== updatedRecord.id ? word : updatedRecord));
 
     this.setState({ shuffledWords: newShuffledWords });
-  }
+  };
 
-  answerHasWord = (word: IWord) =>
-    this.state.answer.find((w: IWord) => w.id === word.id)
+  answerHasWord = (word: IWord) => this.state.answer.find((w: IWord) => w.id === word.id);
 
   updateAnswers = (word: IWord, action: 'add' | 'remove', saveCallback: () => void) => {
     const { answer } = this.state;
@@ -95,67 +86,70 @@ export default class WordSelection extends React.Component<IProps, IState> {
       this.props.collectAnswer(this.mapAnswerToString());
       saveCallback();
     });
-  }
+  };
 
   getWordTextLang = () => {
     const { reverse, course } = this.props;
     return reverse ? course.targetLanguage.shortName : course.sourceLanguage.shortName;
-  }
+  };
 
   mapAnswerToString = () => {
     return this.state.answer.map((word: IWord) => word.word).join(' ');
-  }
+  };
 
   addWordToAnswer = (word: IWord) => {
     this.updateAnswers(word, 'add', () => {
       this.updateShuffledWords({ ...word, selected: true });
     });
-  }
+  };
 
   removeWordFromAnswer = (word: IWord) => {
     this.updateAnswers(word, 'remove', () => {
       this.updateShuffledWords({ ...word, selected: false });
     });
-  }
+  };
 
-  renderAnswerWords = () => this.state.answer.map((word: IWord, _: number) =>
-    <GSWordBox key={word.id}>
-      {this.renderWord(word, true)}
-    </GSWordBox>)
+  renderAnswerWords = () =>
+    this.state.answer.map((word: IWord, _: number) => (
+      <GSWordBox key={word.id}>{this.renderWord(word, true)}</GSWordBox>
+    ));
 
-  renderShuffledWords = () => this.state.shuffledWords.map((word: IWord, _: number) =>
-    <GSWordBox key={word.id} >
-      {word.selected
-        ? <GSWordText lang={this.getWordTextLang()} shadowed>{word.word}</GSWordText>
-        : this.renderWord(word)
-      }
-    </GSWordBox>)
+  renderShuffledWords = () =>
+    this.state.shuffledWords.map((word: IWord, _: number) => (
+      <GSWordBox key={word.id}>
+        {word.selected ? (
+          <GSWordText lang={this.getWordTextLang()} shadowed>
+            {word.word}
+          </GSWordText>
+        ) : (
+          this.renderWord(word)
+        )}
+      </GSWordBox>
+    ));
 
   renderWord = (word: IWord, selected: boolean = false) => {
-    const handleWord = (word: IWord) => this.answerHasWord(word)
-      ? this.removeWordFromAnswer(word)
-      : this.addWordToAnswer(word);
+    const handleWord = (word: IWord) =>
+      this.answerHasWord(word) ? this.removeWordFromAnswer(word) : this.addWordToAnswer(word);
 
-    return word &&
-      <TouchableOpacity onPress={() => handleWord(word)}>
-        <GSWordText lang={this.getWordTextLang()} selected={selected}>
-          {word.word}
-        </GSWordText>
-      </TouchableOpacity>;
-  }
+    return (
+      word && (
+        <TouchableOpacity onPress={() => handleWord(word)}>
+          <GSWordText lang={this.getWordTextLang()} selected={selected}>
+            {word.word}
+          </GSWordText>
+        </TouchableOpacity>
+      )
+    );
+  };
 
-  render () {
+  render() {
     return (
       <Container>
-        <GSAnswerBox>
-          {this.renderAnswerWords()}
-        </GSAnswerBox>
+        <GSAnswerBox>{this.renderAnswerWords()}</GSAnswerBox>
 
         <GSTitle>{I18n.t('questions.wordSelection')}</GSTitle>
 
-        <GSSelectionBox>
-          {this.renderShuffledWords()}
-        </GSSelectionBox>
+        <GSSelectionBox>{this.renderShuffledWords()}</GSSelectionBox>
       </Container>
     );
   }

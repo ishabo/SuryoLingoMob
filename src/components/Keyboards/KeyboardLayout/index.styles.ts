@@ -3,9 +3,10 @@ import Colors from 'styles/colors';
 import { TouchableOpacity, View } from 'react-native';
 import { Icon } from 'native-base';
 import { GSCustomText, ICustomText } from 'styles/text';
+import { isNarrowDevice } from 'helpers';
 
 export const GSContainer = glamor.view({
-  justifyContent: 'center',
+  marginTop: 20,
   backgroundColor: 'white'
 });
 
@@ -22,38 +23,53 @@ export const GSKeyText = glamor(GSCustomText)<ICustomText>({
 
 export const GSIcon = glamor(Icon)({
   ...textStyle,
-  alignSelf: 'flex-start',
+  alignSelf: 'center',
   marginLeft: 10,
-  fontSize: 25
+  fontSize: 25,
+  width: 40,
+  transform: [{ rotate: '180deg' }]
 });
 
-export const GSContent = glamor(View as any, { displayName: 'GSContent' })({
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  alignItems: 'center',
-  alignSelf: 'center',
-  justifyContent: 'center'
-});
+export const GSContent = glamor(View as any, { displayName: 'GSContent' })<{ spread?: boolean }>(
+  {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center'
+  },
+  ({ spread }) => ({
+    justifyContent: spread ? 'space-between' : 'flex-start',
+    alignSelf: spread ? 'stretch' : 'center'
+  })
+);
 
 export const GSButton = glamor(TouchableOpacity as any)<{ onPress: () => void }>({
   width: 78,
-  height: 30,
+  height: isNarrowDevice() ? 28 : 32,
   margin: 1,
   borderRadius: 4,
   backgroundColor: '#1373E4',
   alignContent: 'stretch',
   alignSelf: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  shadowColor: '#000',
+  shadowOffset: { width: 2, height: 2 },
+  shadowOpacity: 0.8,
+  shadowRadius: 2,
+  elevation: 2
 });
 
 export const GSReturnKey = glamor(GSButton)({});
 
 export const GSKey = glamor(GSButton)({
-  width: 25
+  width: isNarrowDevice() ? 23 : 26
 });
 
 export const GSBackSpaceKey = glamor(GSButton)({
-  width: 60
+  width: 54,
+  alignItems: 'center'
 });
 
-export const GSSpaceKey = glamor(GSButton)({ width: 160 });
+export const GSSpaceKey = glamor(GSButton)({
+  width: 220,
+  alignSelf: 'center'
+});
