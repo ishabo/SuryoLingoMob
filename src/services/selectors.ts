@@ -1,6 +1,6 @@
 import { IInitialState } from './reducers';
 import cloneDeep from 'clone-deep';
-import { isEmpty } from 'lodash';
+import { isEmpty, uniqBy } from 'lodash';
 import * as courses from './courses';
 import * as skills from './skills';
 import * as questions from './questions';
@@ -112,8 +112,8 @@ export const calcTotaluserXp = (state: IInitialState): number =>
 export const getSkillIcon = (state: IInitialState) => (icon: string, size: assets.TImageSizes): assets.ISkillIcon =>
   assets.selectors.getSkillIcon(icon, size)(state.assets);
 
-export const getPhrases = (state: IInitialState): questions.IPhrase[] =>
-  state.questions.onGoing.map(({ phrase, translation, soundFiles }) => {
+export const getPhrases = (state: IInitialState): questions.IPhrase[] => {
+  const phrases = state.questions.onGoing.map(({ phrase, translation, soundFiles }) => {
     const sentence = { raw: phrase, hintified: hintify(phrase, state.dictionaries) };
 
     return {
@@ -122,3 +122,6 @@ export const getPhrases = (state: IInitialState): questions.IPhrase[] =>
       sound: soundFiles[0]
     };
   });
+
+  return uniqBy(phrases, phrase => phrase.sentence.raw);
+};

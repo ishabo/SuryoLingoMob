@@ -5,24 +5,21 @@ import glamor from 'glamorous-native';
 
 interface ITitleProps {
   title?: string;
-  navigate (): boolean;
+  navigate(): boolean;
 }
 
-const GSTouchable = glamor(TouchableOpacity)({
+const GSTouchable = glamor(TouchableOpacity as any)({
   width: 100,
   height: 40,
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'space-around',
-});
+  justifyContent: 'space-around'
+}) as any;
 
 export default ({ title, navigate }: ITitleProps) =>
-  title && <GSTouchable
-    onPress={() => navigate()}>
-    <Icon name="list" />
-    <Text>
-      {title}
-    </Text>
-  </GSTouchable > || <Text></Text>;
-
-
+  (title && (
+    <GSTouchable onPress={() => navigate()}>
+      <Icon name="list" />
+      <Text>{title}</Text>
+    </GSTouchable>
+  )) || <Text />;

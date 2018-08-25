@@ -12,18 +12,20 @@ interface IProps extends IAnswerProps {
 }
 
 export default class Translation extends React.Component<IProps> {
-  render () {
+  render() {
     const { course, userHasAnswered, reverse, collectAnswer } = this.props;
     const translateTo: string = reverse ? 'targetLanguage' : 'sourceLanguage';
     const placeholder = I18n.t(`questions.translateTo.${course[translateTo].shortName}`);
     return (
       <GSContainer>
         <TextArea
+          disableKeyboard={userHasAnswered}
           placeholder={placeholder}
           captureInput={collectAnswer}
           showCustomKeyboard={reverse && !userHasAnswered}
           inputLanguage={course[translateTo].shortName}
           autoFocus={!reverse}
+          onSubmit={this.props.onSubmit}
         />
       </GSContainer>
     );
@@ -31,5 +33,5 @@ export default class Translation extends React.Component<IProps> {
 }
 
 const GSContainer = glamor(Container)({
-  alignSelf: 'stretch',
+  alignSelf: 'stretch'
 });

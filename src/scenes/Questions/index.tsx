@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BackHandler, Keyboard, Alert, View } from 'react-native';
+import { BackHandler, Keyboard, Platform, Alert, View } from 'react-native';
 import { Bar as ProgressBar } from 'react-native-progress';
 import { Container } from 'native-base';
 import { isEmpty } from 'lodash';
@@ -22,7 +22,7 @@ import {
   getTargetLanguage,
   getSourceLanguage
 } from 'services/selectors';
-import { GSCustomText } from 'styles/text';
+import { GSCustomStudyText } from 'styles/text';
 import Colors from 'styles/colors';
 import { getLangConfig } from 'config/language';
 import I18n from 'I18n';
@@ -34,6 +34,7 @@ import { NextButton, SwitchButton, EvaluationBanner } from 'components';
 import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
 import QuestionBody from './components/QuestionBody';
+import { KeyboardUtils } from 'react-native-keyboard-input';
 
 class Questions extends React.Component<IProps, IState> {
   public state = {
@@ -115,6 +116,7 @@ class Questions extends React.Component<IProps, IState> {
       return;
     }
 
+    KeyboardUtils.dismiss();
     Keyboard.dismiss();
 
     if (this.needsEvaluation()) {
@@ -156,6 +158,8 @@ class Questions extends React.Component<IProps, IState> {
   };
 
   private backToSkills = () => {
+    Keyboard.dismiss();
+
     const resetAction = NavigationActions.reset({
       index: 0,
       key: null,
@@ -165,6 +169,7 @@ class Questions extends React.Component<IProps, IState> {
   };
 
   existQuestions = () => {
+    Keyboard.dismiss();
     Alert.alert(
       I18n.t('questions.exist.areYouSure'),
       I18n.t('questions.exist.caviat'),
@@ -190,12 +195,12 @@ class Questions extends React.Component<IProps, IState> {
   renderEvaluationBanner() {
     const { questionType, phrase, translation } = this.props.currentQuestion;
     const correctAnswer = (
-      <GSCustomText
+      <GSCustomStudyText
         style={{ fontSize: 16 }}
         lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.sourceLanguage}
       >
         {isReverseQuestion(questionType) ? phrase : translation}
-      </GSCustomText>
+      </GSCustomStudyText>
     );
 
     return (
@@ -237,6 +242,7 @@ class Questions extends React.Component<IProps, IState> {
       userHasAnswered={this.userHasAnswered()}
       hints={this.props.dictionaries}
       renderNextButton={this.showSmallButton() ? this.renderNextQuestionSmall() : <View />}
+      onSubmit={this.evaluateOrNext}
     />
   );
 
@@ -266,7 +272,9 @@ class Questions extends React.Component<IProps, IState> {
     return (
       <GSFooterAndBody>
         <GSBody>{this.renderQuestionBody()}</GSBody>
-        <GSFooter>{(this.state.keyboardIsOn && isNarrowDevice() && <View />) || this.renderNextQuestion()}</GSFooter>
+        <GSFooter behavior={Platform.OS === 'ios' ? 'padding' : 'height'} enabled>
+          {(this.state.keyboardIsOn && isNarrowDevice() && <View />) || this.renderNextQuestion()}
+        </GSFooter>
       </GSFooterAndBody>
     );
   }

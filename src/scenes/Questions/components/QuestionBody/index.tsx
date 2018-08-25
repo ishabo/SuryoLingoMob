@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { WebView } from 'react-native';
+import { WebView, Keyboard } from 'react-native';
 import { Container, Icon } from 'native-base';
 import { IQuestion } from 'services/questions';
 import * as skill from 'services/skills';
@@ -20,6 +20,7 @@ import Colors from 'styles/colors';
 import { IDictionary } from 'services/dictionaries';
 import { downloadAndPlayAudio } from 'helpers/audio';
 import { SwitchButton, StudyPhrase } from 'components';
+import { KeyboardUtils } from 'react-native-keyboard-input';
 import garshonify from 'garshonify';
 
 interface IProps {
@@ -31,6 +32,7 @@ interface IProps {
   hints: IDictionary[];
   renderNextButton: React.ReactElement<any>;
   isAdmin?: boolean;
+  onSubmit: () => void;
 }
 
 interface IState {
@@ -136,7 +138,13 @@ class QuestionBody extends React.Component<IProps, IState> {
       n => n
     );
 
-  private toggleSkillDescription = (modalOn: boolean) => this.setState({ modalOn });
+  private toggleSkillDescription = (modalOn: boolean) =>
+    this.setState({ modalOn }, () => {
+      if (this.state.modalOn) {
+        Keyboard.dismiss();
+        KeyboardUtils.dismiss();
+      }
+    });
 
   private renderModal = () => (
     <Modal isVisible={this.state.modalOn} style={{ borderRadius: 30 }}>
@@ -240,6 +248,7 @@ class QuestionBody extends React.Component<IProps, IState> {
           course={course}
           reverse={reverse}
           lang={lang}
+          onSubmit={this.props.onSubmit}
         />
 
         {this.renderModal()}

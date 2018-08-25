@@ -8,7 +8,7 @@ export const isReverseQuestion = (questionType: TQuestionType) =>
   /_REVERSE$/.test(questionType) || questionType === 'DICTATION';
 
 export const hintify = (sentence: string, dictionary: IDictionary[]): IWordHint[] => {
-  const words = sentence.split(' ');
+  const words = sentence.replace(/[؟]/g, '').split(' ');
   return words.map((word: string) => {
     const hint = dictionary.find((d: IDictionary) => d.word === word);
     const key = shortid.generate();

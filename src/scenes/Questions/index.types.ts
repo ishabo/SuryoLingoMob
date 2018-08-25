@@ -19,6 +19,7 @@ export interface IState {
 export interface IAnswerProps {
   collectAnswer: (answer: TAnswer) => void;
   userHasAnswered: boolean;
+  onSubmit: () => void;
 }
 
 export interface IProps {
@@ -30,8 +31,8 @@ export interface IProps {
   dictionaries: IDictionary[];
   calcProress: number;
   currentQuestion: IQuestion;
-  nextQuestionOrFinish (questionId: string, status: TQuestionType): void;
-  allCorrectAnswers (questionId: string): string[];
+  nextQuestionOrFinish(questionId: string, status: TQuestionType): void;
+  allCorrectAnswers(questionId: string): string[];
   skillInProgress: ISkill;
   targetLanguage: TLangs;
   sourceLanguage: TLangs;

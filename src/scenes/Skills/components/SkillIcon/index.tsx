@@ -6,15 +6,15 @@ import { getSkillIcon } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
 import { TImageSizes } from 'services/assets';
 
-const GSIcon= glamor(Image)<{ size: number }>(
+const GSIcon = glamor(Image as any)<{ size: number }>(
   {
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   props => ({
     width: props.size || 100,
-    height: props.size || 100,
-  }),
-);
+    height: props.size || 100
+  })
+) as any;
 
 interface ISkillIconProps {
   icon: string;
@@ -24,18 +24,18 @@ interface ISkillIconProps {
 }
 
 const mapStateToProps = (state: IInitialState) => ({
-  getSkillIcon: getSkillIcon(state),
+  getSkillIcon: getSkillIcon(state)
 });
 
 const sizes = {
   hdpi: 50,
   xhdpi: 88,
   xxhdpi: 100,
-  xxxhdpi: 130,
+  xxxhdpi: 130
 };
 
 export default connect(mapStateToProps)(
-  ({ icon, size = 'xhdpi', getSkillIcon, state = 'unlocked' }: ISkillIconProps) =>
-    <GSIcon source={{ uri: 'data:image/png;base64,' + getSkillIcon(icon, size)[state] }}
-      size={sizes[size]} />,
+  ({ icon, size = 'xhdpi', getSkillIcon, state = 'unlocked' }: ISkillIconProps) => (
+    <GSIcon source={{ uri: 'data:image/png;base64,' + getSkillIcon(icon, size)[state] }} size={sizes[size]} />
+  )
 );

@@ -16,8 +16,6 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <React/RCTI18nUtil.h>
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -34,6 +32,8 @@
   [AppCenterReactNative register];  // Initialize AppCenter 
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"artifacts/index.ios" fallbackResource:nil];
+  // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+
 
   for (NSString* family in [UIFont familyNames])
   {
@@ -57,7 +57,6 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  [Fabric with:@[[Crashlytics class]]];
   return YES;
 }
 

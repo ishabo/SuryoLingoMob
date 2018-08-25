@@ -1,7 +1,6 @@
-import { GSCustomText, ICustomText } from 'styles/text';
+import { ICustomText, GSCustomStudyText } from 'styles/text';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { scaleSize } from 'helpers';
 import { StyleProp, TextStyle } from 'react-native';
 
 export const GSHints = glamor.view({
@@ -11,7 +10,7 @@ export const GSHints = glamor.view({
   justifyContent: 'center',
   borderRadius: 5,
   width: 150,
-  height: 200,
+  height: 200
 });
 
 export const GSHintBlock = glamor.view<{ last: boolean }>(
@@ -19,17 +18,20 @@ export const GSHintBlock = glamor.view<{ last: boolean }>(
     justifyContent: 'center',
     borderWidth: 1,
     paddingHorizontal: 20,
-    borderColor: Colors.lightBlack,
+    borderColor: Colors.lightBlack
   },
-  props => !props.last ? ({
-    borderBottomColor: Colors.darkWhite,
-  }) : null,
+  props =>
+    !props.last
+      ? {
+          borderBottomColor: Colors.darkWhite
+        }
+      : null
 );
 
 export const GSHintText = glamor.text({
   color: Colors.white,
   textAlign: 'center',
-  alignSelf: 'stretch',
+  alignSelf: 'stretch'
 });
 
 export const GSHintedSentence = glamor.view({
@@ -37,7 +39,7 @@ export const GSHintedSentence = glamor.view({
   flexWrap: 'wrap',
   marginBottom: 10,
   marginLeft: 10,
-  marginTop: 0,
+  marginTop: 0
 });
 
 interface IGSSentence extends ICustomText {
@@ -46,13 +48,22 @@ interface IGSSentence extends ICustomText {
   style: StyleProp<TextStyle>;
 }
 
-export const GSSentence = glamor(GSCustomText)<IGSSentence>(
+export const GSSentence = glamor(GSCustomStudyText)<IGSSentence>(
   {
-    paddingTop: 3,
-    flexWrap: 'wrap',
+    paddingVertical: 3,
+    flexWrap: 'wrap'
   },
-  props => props.hasTooltip ? ({
-    color: Colors.darkBlue,
-    fontSize: props.lang === 'cl-ara' ? scaleSize(24, 20) : scaleSize(20, 16),
-  }) : null,
+  props => {
+    let style = {};
+
+    style = props.hasTooltip
+      ? ({
+          color: Colors.darkBlue,
+          // fontSize: props.lang === 'cl-ara' ? scaleSize(24, 20) : scaleSize(18, 14),
+          ...style
+        } as any)
+      : style;
+
+    return style;
+  }
 );

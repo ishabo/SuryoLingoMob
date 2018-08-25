@@ -95,7 +95,7 @@ class Lessons extends React.Component<IProps, IState> {
     }
   };
 
-  private renderCards({ item: lesson, _ }) {
+  private renderCards({ item: lesson }) {
     return (
       <Lesson
         skill={this.props.navigation.state.params.skill}
@@ -139,7 +139,8 @@ class Lessons extends React.Component<IProps, IState> {
 const GSContainer = glamor(Container)({
   alignItems: 'center',
   alignSelf: 'stretch',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  backgroundColor: '#E8E8E8'
 });
 
 const GSLessonIcon = glamor.view({
@@ -155,7 +156,7 @@ const GSLessonInstruction = glamor.view({
   marginBottom: 20
 });
 
-const GSAnimatable = glamor(Animatable.View)({
+const GSAnimatable = glamor(Animatable.View as any)({
   alignSelf: 'center',
   justifyContent: 'center'
 });
