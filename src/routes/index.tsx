@@ -7,9 +7,11 @@ import Lessons from 'scenes/Lessons';
 import LessonOverview from 'scenes/LessonOverview';
 import Questions from 'scenes/Questions';
 import Completion from 'scenes/Completion';
+import Leaderboard from 'scenes/Leaderboard';
 import Profile from 'scenes/Profile';
 import Drawer from 'scenes/Drawer';
 import PasswordRecovery from 'scenes/PasswordRecovery';
+
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import { Platform } from 'react-native';
 
@@ -22,7 +24,8 @@ const DrawerNav = DrawerNavigator(
   {
     Courses: { screen: Courses, navigationOptions: { visible: true } },
     Course: { screen: Skills },
-    Profile: { screen: Profile }
+    Profile: { screen: Profile },
+    Leaderboard: { screen: Leaderboard }
   },
   {
     contentComponent: props => <Drawer {...props} />,

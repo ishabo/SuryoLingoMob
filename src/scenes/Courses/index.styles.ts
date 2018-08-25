@@ -1,4 +1,3 @@
-import { TouchableOpacity } from 'react-native';
 import { Container } from 'native-base';
 import { GSCustomText } from 'styles/text';
 import * as Animatable from 'react-native-animatable';
@@ -12,13 +11,13 @@ export const GSTitle = glamor(GSCustomText)({
   fontSize: 30,
   alignSelf: 'center',
   textAlign: 'center'
-}) as any;
+});
 
-export const GSCourse = glamor(TouchableOpacity as any)({
+export const GSCourse = glamor.touchableOpacity({
   alignContent: 'stretch',
   alignItems: 'stretch',
   justifyContent: 'center'
-}) as any;
+});
 
 export const GSAnimatable = glamor(Animatable.View as any)({
   alignSelf: 'stretch',

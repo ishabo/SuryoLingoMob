@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Text, Icon } from 'native-base';
-import { TouchableOpacity } from 'react-native';
 import glamor from 'glamorous-native';
 
 interface ITitleProps {
@@ -8,13 +7,13 @@ interface ITitleProps {
   navigate(): boolean;
 }
 
-const GSTouchable = glamor(TouchableOpacity as any)({
+const GSTouchable = glamor.touchableOpacity({
   width: 100,
   height: 40,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-around'
-}) as any;
+});
 
 export default ({ title, navigate }: ITitleProps) =>
   (title && (

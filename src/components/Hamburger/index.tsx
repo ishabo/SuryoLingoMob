@@ -1,5 +1,4 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import glamor from 'glamorous-native';
 import { Icon } from 'native-base';
 
@@ -9,10 +8,10 @@ export default ({ onPress }: { onPress(): void }) => (
   </GSBars>
 );
 
-const GSBars = glamor(TouchableOpacity as any)({
+const GSBars = glamor.touchableOpacity({
   width: 50,
   height: 40,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-around'
-}) as any;
+});

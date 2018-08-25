@@ -1,7 +1,7 @@
 import { Button, Icon } from 'native-base';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 export * from 'styles/forms';
 export * from 'styles/text';
 
@@ -9,11 +9,11 @@ export const GSContainer = glamor(KeyboardAvoidingView as any)({
   justifyContent: 'space-between'
 }) as any;
 
-export const GSLink = glamor(TouchableOpacity as any)({
+export const GSLink = glamor.touchableOpacity({
   alignSelf: 'center',
   marginTop: 10,
   padding: 10
-}) as any;
+});
 
 export const GSTabs = glamor.view({
   flexDirection: 'row',

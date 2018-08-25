@@ -154,6 +154,9 @@ export default {
       }
     }
   },
+  leaderboard: {
+    title: 'المتصدرين'
+  },
   profile: {
     title: 'حسابي',
     userXp: 'النقاط: {{userXp}}',
