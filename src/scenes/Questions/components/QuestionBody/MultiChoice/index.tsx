@@ -5,6 +5,7 @@ import shortid from 'shortid';
 import { ICourse } from 'services/courses';
 import { TouchableOpacity } from 'react-native';
 import { GSChoice, GSContainer, GSContent, GSRadio, GSText, GSTitle } from './index.styles';
+import { shuffle } from 'lodash';
 
 interface IProps extends IAnswerProps {
   phrase: string;
@@ -16,12 +17,23 @@ interface IProps extends IAnswerProps {
 
 interface IState {
   answer: string[];
+  choices: string[];
 }
 
 export default class MultiChoice extends React.Component<IProps, IState> {
   public state = {
-    answer: []
+    answer: [],
+    choices: []
   };
+
+  componentDidMount() {
+    const { reverse, phrase, translation, incorrectChoices } = this.props;
+    const correctChoice = reverse ? phrase : translation;
+
+    this.setState({
+      choices: shuffle([correctChoice].concat(incorrectChoices))
+    });
+  }
 
   updateAnswers = (choice: string) => {
     const { answer } = this.state;
@@ -48,12 +60,8 @@ export default class MultiChoice extends React.Component<IProps, IState> {
     return index >= 0;
   };
 
-  renderChoices = () => {
-    const { reverse, phrase, translation, incorrectChoices } = this.props;
-    const correctChoice = reverse ? phrase : translation;
-    const choices = [correctChoice].concat(incorrectChoices);
-
-    return choices.map((choice: string) => (
+  renderChoices = () =>
+    this.state.choices.map((choice: string) => (
       <TouchableOpacity key={shortid.generate()} onPress={() => this.updateAnswers(choice)}>
         <GSChoice checked={this.isChoiceSelected(choice)}>
           <GSRadio checked={this.isChoiceSelected(choice)} />
@@ -61,7 +69,6 @@ export default class MultiChoice extends React.Component<IProps, IState> {
         </GSChoice>
       </TouchableOpacity>
     ));
-  };
 
   render() {
     return (

@@ -34,9 +34,9 @@ export const GSFakeTextArea = glamor(TouchableOpacity as any)({
 
 export const GSTextArea = glamor.textInput(
   {
-    height: 0,
-    position: 'absolute',
-    top: -99999999,
+    // height: 0,
+    // position: 'absolute',
+    // top: -99999999,
     textAlign: 'right',
     backgroundColor: Colors.lightGray,
     textAlignVertical: 'top'

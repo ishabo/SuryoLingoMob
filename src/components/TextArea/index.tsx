@@ -1,17 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Platform, View, NativeModules, TouchableOpacity, Keyboard } from 'react-native';
-import { GSContainer, GSContent, GSTextArea, GSTextAreaContainer, GSFakeTextArea } from './index.styles';
+import { GSContainer, GSContent, GSTextArea, GSTextAreaContainer /*GSFakeTextArea*/ } from './index.styles';
 import Colors from 'styles/colors';
 import { isNarrowDevice } from 'helpers';
-import * as Animatable from 'react-native-animatable';
-// import { GSKeyboardCloseButton, GSKeyboardToggleButton, GSKeyboardToolBar } from './index.styles';
 import { KeyboardAccessoryView, KeyboardRegistry, KeyboardUtils } from 'react-native-keyboard-input';
 import Keyboards, { IKeyboardActions } from 'components/Keyboards';
 import { Icon, Text } from 'native-base';
 import { IInitialState } from 'services/reducers';
-import { toggleCustomKeyboard } from 'services/preferences/actions';
-// import BlinkView from 'react-native-blink-view';
+import { toggleCustomKeyboard, setPreferences } from 'services/preferences/actions';
 
 const iosScrollBehavior =
   Platform.OS === 'ios' ? NativeModules.KeyboardTrackingViewManager.KeyboardTrackingScrollBehaviorNone : null;
@@ -26,6 +23,7 @@ interface IProps {
   onSubmit?: () => void;
   customKeyboardEnabled: boolean;
   toggleCustomKeyboard: () => void;
+  setPreferences: (pref) => void;
 }
 
 interface IState {
@@ -45,18 +43,12 @@ class TextArea extends React.Component<IProps, IState> {
       keyboardProps: {}
     };
 
-    // this.keyboardAccessoryViewContent = this.keyboardAccessoryViewContent.bind(this);
     this.showKeyboard = this.showKeyboard.bind(this);
     this.hideKeyboard = this.hideKeyboard.bind(this);
   }
 
   keyboardDidShowListener;
   keyboardDidHideListener;
-
-  // static getDerivedStateFromProps(nextProps: Partial<IProps>) {
-  //   const getCustomKeyboardType = nextProps.inputLanguage === 'cl-syr' ? 'SyriacKeyboard' : 'ArabicKeyboard';
-  //   return { keyboardName: nextProps.customKeyboardEnabled ? getCustomKeyboardType : null };
-  // }
 
   componentDidMount() {
     this.textArea.focus();
@@ -70,7 +62,9 @@ class TextArea extends React.Component<IProps, IState> {
   }
 
   keyboardDidShow = () => {
-    this.setState({ keyboardOn: true });
+    this.setState({
+      keyboardOn: true
+    });
   };
 
   keyboardDidHide = () => {
@@ -113,16 +107,12 @@ class TextArea extends React.Component<IProps, IState> {
       return;
     }
 
-    if (!this.props.customKeyboardEnabled) {
-      this.textArea.focus();
-    } else {
-      setTimeout(() => {
-        this.setState({
-          keyboardOn: true,
-          keyboardName: this.props.customKeyboardEnabled ? this.getCustomKeyboard() : null
-        });
-      }, 100);
-    }
+    setTimeout(() => {
+      this.setState({
+        keyboardOn: true,
+        keyboardName: this.props.customKeyboardEnabled ? this.getCustomKeyboard() : null
+      });
+    }, 100);
   };
 
   getCustomKeyboard = () => (this.props.inputLanguage === 'cl-syr' ? 'SyriacKeyboard' : 'ArabicKeyboard');
@@ -178,6 +168,10 @@ class TextArea extends React.Component<IProps, IState> {
     );
   }
 
+  private setNativeKeyboard = () => {
+    this.props.setPreferences({ customKeyboardEnabled: false });
+  };
+
   render() {
     return (
       <GSContainer>
@@ -188,9 +182,11 @@ class TextArea extends React.Component<IProps, IState> {
               placeholder={this.props.placeholder}
               placeholderTextColor={Colors.gray}
               multiline
+              onTouchStart={this.setNativeKeyboard}
               blurOnSubmit={false}
               onSubmitEditing={this.props.onSubmit}
-              numberOfLines={isNarrowDevice() ? 5 : 7}
+              underlineColorAndroid="rgba(0,0,0,0)"
+              numberOfLines={isNarrowDevice() ? 4 : 5}
               value={this.state.value}
               onChangeText={this.onChange}
               keyboardAppearance="light"
@@ -198,7 +194,7 @@ class TextArea extends React.Component<IProps, IState> {
               innerRef={(c: TextArea) => (this.textArea = c)}
               lang={this.state.value.length === 0 ? 'cl-ara' : this.props.inputLanguage}
             />
-            <GSFakeTextArea onPress={this.showKeyboard}>
+            {/* <GSFakeTextArea onPress={this.showKeyboard}>
               <Text
                 style={{
                   writingDirection: 'rtl',
@@ -212,9 +208,8 @@ class TextArea extends React.Component<IProps, IState> {
                   </Animatable.Text>
                 )}
               </Text>
-            </GSFakeTextArea>
+            </GSFakeTextArea> */}
           </GSTextAreaContainer>
-
           {this.renderKeyboardToggleButton()}
         </GSContent>
 
@@ -236,7 +231,8 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
 });
 
 const mapDispatchToProps: Partial<IProps> = {
-  toggleCustomKeyboard
+  toggleCustomKeyboard,
+  setPreferences
 };
 
 export default connect(
