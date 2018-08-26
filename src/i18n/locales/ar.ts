@@ -204,7 +204,7 @@ export default {
         nameRequired: 'الاسم مطلوب',
         emailRequired: 'البريد الالكتروني مطلوب',
         passwordRequired: 'كلمة السر مطلوبة',
-        nameInvalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو انكليزية',
+        nameInvalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو سريانية أو انكليزية',
         emailInvalid: 'هذا الإيميل لا يبدو صالحاً',
         passwordInvalid: 'كلمة السر ضعيفة. ' + 'يجب ان تحتوي على الأقل على ٦ أحرف ' + 'a-z ورقم واحد ',
         emailSlreadyExists: 'هذا الإيميل مأخوذ'
