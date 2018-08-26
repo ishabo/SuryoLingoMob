@@ -1,10 +1,9 @@
-import { Image } from 'react-native';
 import glamor from 'glamorous-native';
 
-export const GSBackground = glamor(Image as any)({
+export const GSBackground = glamor.image({
   height: 120,
   width: 120
-}) as any;
+});
 
 export const GSSkill = glamor.view({
   flexDirection: 'column',

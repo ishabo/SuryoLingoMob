@@ -9,6 +9,7 @@ import * as profile from './profile';
 import * as courses from './courses';
 import * as dictionaries from './dictionaries';
 import * as questions from './questions';
+import * as leaderboard from './leaderboard';
 import * as signon from './signon';
 import * as exceptions from './exceptions';
 import * as assets from './assets';
@@ -16,16 +17,16 @@ import * as assets from './assets';
 import { IInitialState } from 'services/reducers';
 import { setUserToken } from 'services/api';
 
-const preSagas = (saga) => {
-  return function* (action) {
+const preSagas = saga => {
+  return function*(action) {
     yield put(exceptions.actions.removeAll());
 
     yield call(saga, action);
   };
 };
 
-const withToken = (saga) => {
-  return function* (action) {
+const withToken = saga => {
+  return function*(action) {
     const currentProfile = yield select((state: IInitialState) => state.profile);
 
     if (!currentProfile.id) {
@@ -56,10 +57,13 @@ const sagasFunctions: ISagasFunctions[] = [
   ...progress.sagas.functions(),
   ...starter.sagas.functions(),
   ...assets.sagas.functions(),
+  ...leaderboard.sagas.functions()
 ];
 
-export default function* rootSagas (): IterableIterator<any> {
-  yield all(sagasFunctions.map((sagasFunction: ISagasFunctions) => {
-    return takeLatest(sagasFunction.action, preSagas(withToken(sagasFunction.func)));
-  }));
+export default function* rootSagas(): IterableIterator<any> {
+  yield all(
+    sagasFunctions.map((sagasFunction: ISagasFunctions) => {
+      return takeLatest(sagasFunction.action, preSagas(withToken(sagasFunction.func)));
+    })
+  );
 }

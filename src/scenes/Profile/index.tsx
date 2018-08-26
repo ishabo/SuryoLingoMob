@@ -12,9 +12,12 @@ import { GSCustomText } from 'styles/text';
 import { NavigationScreenProp } from 'react-navigation';
 import images from 'assets/images';
 import {
-  GSContainer, GSProfilePictureFrame,
-  GSProfile, GSProfileDetails, GSProfileDetailsItem,
-  GSProfilePicture,
+  GSContainer,
+  GSProfilePictureFrame,
+  GSProfile,
+  GSProfileDetails,
+  GSProfileDetailsItem,
+  GSProfilePicture
 } from './index.styles';
 import VersionNumber from 'react-native-version-number';
 import { GSDrawerLabel } from 'scenes/Drawer';
@@ -28,15 +31,14 @@ export interface IProps {
 }
 
 class Profile extends React.Component<IProps> {
-
   static navigationOptions = ({ navigation: { navigate } }) => ({
     title: I18n.t('profile.title'),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     drawerLabel: <GSDrawerLabel>{I18n.t('profile.title')}</GSDrawerLabel>,
-    headerRight: null,
+    headerRight: null
   });
 
-  componentWillMount () {
+  componentDidMount() {
     if (!this.props.isRegistered) {
       this.props.navigation.navigate('Signon');
     }
@@ -67,26 +69,25 @@ class Profile extends React.Component<IProps> {
           <GSCustomText>{VersionNumber.appVersion}</GSCustomText>
         </GSProfileDetails>
       </GSProfile>
-    )
-  }
-
-  render () {
-    return (
-      <GSContainer>
-        {this.props.isRegistered && this.renderProfile()}
-      </GSContainer>
     );
+  };
+
+  render() {
+    return <GSContainer>{this.props.isRegistered && this.renderProfile()}</GSContainer>;
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  signout: () => dispatch(signon.actions.signout()),
+  signout: () => dispatch(signon.actions.signout())
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   apiStatus: state.api,
   profile: state.profile,
-  isRegistered: isRegistered(state),
+  isRegistered: isRegistered(state)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);

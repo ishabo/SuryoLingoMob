@@ -1,7 +1,7 @@
 import { Container } from 'native-base';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { GSCustomText } from 'styles/text';
+import { getWindowWidth } from 'helpers';
 
 export const GSContainer = glamor(Container)({
   flex: 1,
@@ -9,23 +9,31 @@ export const GSContainer = glamor(Container)({
   alignItems: 'center'
 });
 
-export const GSProfile = glamor.scrollView({
-  flex: 1,
-  alignSelf: 'stretch',
-  margin: 20
+export const GSTopUsers = glamor.scrollView({
+  alignContent: 'stretch'
 });
 
-export const GSProfileDetails = glamor.view({
+export const GSTopUser = glamor.view({
   flexDirection: 'row',
+  alignItems: 'center',
   justifyContent: 'space-between',
-  marginVertical: 10,
-  padding: 2,
-  alignSelf: 'stretch',
-  borderBottomWidth: 0.4
+  padding: 20,
+  borderBottomWidth: 1,
+  borderBottomColor: Colors.gray
 });
 
-export const GSProfileDetailsItem = glamor(GSCustomText)({
-  fontWeight: '900'
+export const GSUserDetails = glamor.view({
+  alignItems: 'flex-start',
+  width: getWindowWidth() / 3
+});
+
+export const GSUserName = glamor.text({});
+
+export const GSUserXP = glamor.text({});
+
+export const GSUserBadge = glamor.image({
+  width: 60,
+  height: 60
 });
 
 export const GSProfilePictureFrame = glamor.view<{ inner?: boolean; outer?: boolean }>(
@@ -37,27 +45,22 @@ export const GSProfilePictureFrame = glamor.view<{ inner?: boolean; outer?: bool
   props => {
     if (props.outer) {
       return {
-        width: 140,
-        height: 140,
+        width: 100,
+        height: 100,
         backgroundColor: Colors.white,
         borderRadius: 70,
-        marginVertical: 20
+        marginVertical: 10
       };
     } else if (props.inner) {
       return {
-        width: 130,
-        height: 130,
+        width: 90,
+        height: 90,
         backgroundColor: Colors.lightBlue,
         borderRadius: 70,
-        marginVertical: 20
+        marginVertical: 10
       };
     } else {
       return {};
     }
   }
 );
-
-export const GSProfilePicture = glamor.image({
-  width: 100,
-  height: 100
-});

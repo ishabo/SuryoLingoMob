@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Image } from 'react-native';
 import glamor from 'glamorous-native';
 import { getSkillIcon } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
 import { TImageSizes } from 'services/assets';
 
-const GSIcon = glamor(Image as any)<{ size: number }>(
+const GSIcon = glamor.image<{ size: number }>(
   {
     alignSelf: 'center'
   },
@@ -14,7 +13,7 @@ const GSIcon = glamor(Image as any)<{ size: number }>(
     width: props.size || 100,
     height: props.size || 100
   })
-) as any;
+);
 
 interface ISkillIconProps {
   icon: string;

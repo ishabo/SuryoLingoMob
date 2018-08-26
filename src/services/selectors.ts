@@ -6,6 +6,7 @@ import * as skills from './skills';
 import * as questions from './questions';
 import * as exceptions from './exceptions';
 import * as assets from './assets';
+import * as leaderboard from './leaderboard';
 
 import { Platform } from 'react-native';
 import { ILessonToSync } from 'services/progress';
@@ -125,3 +126,6 @@ export const getPhrases = (state: IInitialState): questions.IPhrase[] => {
 
   return uniqBy(phrases, phrase => phrase.sentence.raw);
 };
+
+export const isUserInLeaderboard = (state: IInitialState): boolean =>
+  !!state.leaderboard.users.find((user: leaderboard.ILeaderboardUser) => user.id === state.profile.id);
