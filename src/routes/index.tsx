@@ -14,6 +14,7 @@ import PasswordRecovery from 'scenes/PasswordRecovery';
 
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import { Platform } from 'react-native';
+import colors from 'styles/colors';
 
 const SignonStack = StackNavigator({
   Signon: { screen: Signon },
@@ -45,6 +46,9 @@ export const AppNavigator = StackNavigator(
     Completion: { screen: Completion }
   },
   {
-    initialRouteName: 'Splash'
+    initialRouteName: 'Splash',
+    navigationOptions: {
+      headerStyle: { backgroundColor: colors.snow }
+    }
   }
 );

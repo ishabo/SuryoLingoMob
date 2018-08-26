@@ -4,7 +4,8 @@ const Images = {
     noSpeaker: require(`../../../src/assets/images/noSpeaker.png`)
   },
   logo: {
-    splash: require(`../../../src/assets/images/SuryoLingo-Logo.png`)
+    splash: require(`../../../src/assets/images/SuryoSplash.png`),
+    SuryoBird: require(`../../../src/assets/images/SuryoBird.png`)
   },
   skills: {
     bg: {
@@ -13,9 +14,9 @@ const Images = {
     }
   },
   badges: {
-    first: require('../../../src/assets/images/badges/1st.jpg'),
-    second: require('../../../src/assets/images/badges/2nd.jpg'),
-    third: require('../../../src/assets/images/badges/3rd.jpg')
+    first: require('../../../src/assets/images/badges/1st.png'),
+    second: require('../../../src/assets/images/badges/2nd.png'),
+    third: require('../../../src/assets/images/badges/3rd.png')
   }
 };
 

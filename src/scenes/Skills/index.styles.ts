@@ -2,6 +2,10 @@ import glamor from 'glamorous-native';
 import colors from 'styles/colors';
 import { getWindowWidth } from 'helpers';
 
+export const GSContainer = glamor.view({
+  backgroundColor: colors.whiteSmoke
+});
+
 export const GUnit = glamor.view({
   justifyContent: 'space-around',
   flexDirection: 'row'

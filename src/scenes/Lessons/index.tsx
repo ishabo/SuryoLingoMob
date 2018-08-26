@@ -1,23 +1,21 @@
 import * as React from 'react';
-import { Container } from 'native-base';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import I18n from 'I18n';
-import * as Animatable from 'react-native-animatable';
 import { ISkill, ILesson } from 'services/skills';
 import { enterLesson } from 'services/progress/actions';
 import { IInitialState } from 'services/reducers';
 import { getSkillLessons, getSourceLanguage, getTargetLanguage } from 'services/selectors';
 import Lesson from './components/Lesson';
 import { SkillIcon } from '../Skills/components';
-import glamor from 'glamorous-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { GSCustomText } from 'styles/text';
 import { IProfile } from 'services/profile';
 import { Dispatch } from 'redux';
 import { Loading } from 'components';
 import { overviewLesson } from 'services/progress/actions';
+import { GSContainer, GSAnimatable, GSLessonIcon, GSLessonInstruction } from './index.styles';
 
 interface IProps {
   getLessons(skillId: string): ILesson[];
@@ -135,31 +133,6 @@ class Lessons extends React.Component<IProps, IState> {
     );
   }
 }
-
-const GSContainer = glamor(Container)({
-  alignItems: 'center',
-  alignSelf: 'stretch',
-  justifyContent: 'space-between',
-  backgroundColor: '#E8E8E8'
-});
-
-const GSLessonIcon = glamor.view({
-  position: 'absolute',
-  top: 10,
-  width: 150
-});
-
-const GSLessonInstruction = glamor.view({
-  justifyContent: 'center',
-  alignSelf: 'center',
-  marginTop: 150,
-  marginBottom: 20
-});
-
-const GSAnimatable = glamor(Animatable.View as any)({
-  alignSelf: 'center',
-  justifyContent: 'center'
-});
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   sourceLanguage: getSourceLanguage(state),
