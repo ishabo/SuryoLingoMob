@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { isRegistered } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
@@ -6,11 +7,12 @@ import { Hamburger } from 'components';
 import { Dispatch } from 'redux';
 import I18n from 'I18n';
 import * as profile from 'services/profile';
+import * as leaderboard from 'services/leaderboard';
 import * as signon from 'services/signon';
 import * as api from 'services/api/reducers';
 import { GSCustomText } from 'styles/text';
 import { NavigationScreenProp } from 'react-navigation';
-import images from 'assets/images';
+
 import {
   GSContainer,
   GSProfilePictureFrame,
@@ -21,6 +23,7 @@ import {
 } from './index.styles';
 import VersionNumber from 'react-native-version-number';
 import { GSDrawerLabel } from 'scenes/Drawer';
+import { getRankBadge } from 'helpers';
 
 export interface IProps {
   apiStatus: api.IApiStatus;
@@ -28,6 +31,8 @@ export interface IProps {
   signout: () => void;
   isRegistered: boolean;
   navigation: NavigationScreenProp<any, any>;
+  fetchLeaderboard: () => void;
+  currentUserPosition: number;
 }
 
 class Profile extends React.Component<IProps> {
@@ -41,6 +46,8 @@ class Profile extends React.Component<IProps> {
   componentDidMount() {
     if (!this.props.isRegistered) {
       this.props.navigation.navigate('Signon');
+    } else {
+      this.props.fetchLeaderboard();
     }
   }
 
@@ -49,7 +56,9 @@ class Profile extends React.Component<IProps> {
       <GSProfile>
         <GSProfilePictureFrame outer>
           <GSProfilePictureFrame inner>
-            <GSProfilePicture source={images.logo.splash} />
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
+              <GSProfilePicture source={getRankBadge(this.props.currentUserPosition)} />
+            </TouchableOpacity>
           </GSProfilePictureFrame>
         </GSProfilePictureFrame>
         <GSProfileDetails>
@@ -78,13 +87,15 @@ class Profile extends React.Component<IProps> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  signout: () => dispatch(signon.actions.signout())
+  signout: () => dispatch(signon.actions.signout()),
+  fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard())
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   apiStatus: state.api,
   profile: state.profile,
-  isRegistered: isRegistered(state)
+  isRegistered: isRegistered(state),
+  currentUserPosition: state.leaderboard.currentUserPosition
 });
 
 export default connect(

@@ -1,13 +1,12 @@
 import React from 'react';
 import { DrawerItems } from 'react-navigation';
-import { View } from 'react-native';
 import { SignOnOrOut } from 'components';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
 import { isRegistered } from 'services/selectors';
 import { GSCustomText, ICustomText } from 'styles/text';
 import glamor from 'glamorous-native';
-import Color from 'styles/colors';
+import colors from 'styles/colors';
 
 interface IProps {
   items: { routeName: string; key: number | string }[];
@@ -15,41 +14,48 @@ interface IProps {
 }
 
 class Drawer extends React.Component<IProps> {
-
   static navigationOptions = {
     header: null,
     headerRight: null,
-    headerLeft: null,
-
+    headerLeft: null
   };
 
   private filteredItems = () => {
     const { items } = this.props;
     if (!this.props.isLoggedIn) {
-      return items.filter(item => item.routeName !== 'Profile')
+      return items.filter(item => item.routeName !== 'Profile');
     }
     return items;
-  }
+  };
 
-  render () {
+  render() {
     const props = { ...this.props, items: this.filteredItems() };
 
-    return (<View>
-      <DrawerItems {...props} />
-      <GSDrawerLabel><SignOnOrOut noStyle lang={'cl-ara'} /></GSDrawerLabel>
-    </View>)
+    return (
+      <GSContainer>
+        <DrawerItems {...props} />
+        <GSDrawerLabel>
+          <SignOnOrOut noStyle lang={'cl-ara'} />
+        </GSDrawerLabel>
+      </GSContainer>
+    );
   }
 }
 
+export const GSContainer = glamor.view({
+  backgroundColor: colors.snow,
+  alignItems: 'stretch',
+  flex: 1
+});
 export const GSDrawerLabel = glamor(GSCustomText)<ICustomText>({
   fontSize: 18,
-  color: Color.orange,
+  color: colors.orange,
   margin: 10,
-  padding: 10,
+  padding: 10
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
-  isLoggedIn: isRegistered(state),
+  isLoggedIn: isRegistered(state)
 });
 
-export default connect(mapStateToProps)(Drawer)
+export default connect(mapStateToProps)(Drawer);

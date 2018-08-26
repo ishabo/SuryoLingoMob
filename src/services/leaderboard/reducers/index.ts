@@ -3,7 +3,7 @@ import { ILeaderboard, ILeaderboardAction } from '../';
 
 export const initialState = {
   users: [],
-  currentUserPosition: 1
+  currentUserPosition: 0
 };
 
 export const reducer = (state: ILeaderboard = initialState, action: ILeaderboardAction) => {

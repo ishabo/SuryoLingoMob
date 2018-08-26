@@ -4,7 +4,6 @@ import Colors from 'styles/colors';
 import { isShortDevice } from 'helpers';
 import { getFont } from 'assets/fonts';
 import { TouchableOpacity } from 'react-native';
-// import { TextInput } from 'react-native-custom-keyboard';
 
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch'
@@ -34,9 +33,8 @@ export const GSFakeTextArea = glamor(TouchableOpacity as any)({
 
 export const GSTextArea = glamor.textInput(
   {
-    // height: 0,
-    // position: 'absolute',
-    // top: -99999999,
+    minHeight: 70,
+    padding: 5,
     textAlign: 'right',
     backgroundColor: Colors.lightGray,
     textAlignVertical: 'top'

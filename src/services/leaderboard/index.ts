@@ -5,7 +5,7 @@ import * as sagas from './sagas';
 export interface ILeaderboardUser {
   id: string;
   name: string;
-  userXp: string;
+  userXp: number;
 }
 export interface ILeaderboard {
   users: ILeaderboardUser[];

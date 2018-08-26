@@ -23,7 +23,7 @@ export const GSHintBlock = glamor.view<{ last: boolean }>(
   props =>
     !props.last
       ? {
-          borderBottomColor: Colors.darkWhite
+          borderBottomColor: Colors.lightGray
         }
       : null
 );
