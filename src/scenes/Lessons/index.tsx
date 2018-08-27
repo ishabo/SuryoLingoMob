@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import I18n from 'I18n';
@@ -54,6 +54,8 @@ class Lessons extends React.Component<IProps, IState> {
   private totalLessons = () => this.getSkill().lessons.length;
 
   componentDidMount() {
+    Keyboard.dismiss();
+
     if (this.state.snapped === false) {
       this.cards.fadeInUp();
       setTimeout(this.snapToItem, 800);

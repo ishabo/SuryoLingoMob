@@ -8,21 +8,20 @@ PODS:
     - AppCenter/Core
   - AppCenterReactNativeShared (1.4.0):
     - AppCenter/Core (= 1.5.0)
+  - Google-Mobile-Ads-SDK (7.32.0)
 
 DEPENDENCIES:
   - AppCenter/Analytics (~> 1.5.0)
   - AppCenter/Crashes (~> 1.5.0)
   - AppCenter/Push (~> 1.5.0)
   - AppCenterReactNativeShared (~> 1.4.0)
+  - Google-Mobile-Ads-SDK
 
 SPEC CHECKSUMS:
   AppCenter: 42c293f0de27e173aacd600a55a49da5317cd40e
   AppCenterReactNativeShared: 056324303732841fff14f2a71c4a6839831b038b
+  Google-Mobile-Ads-SDK: 2aca87e46e860f1e1fc0fdc1201dd9caa4be9ba6
 
-<<<<<<< HEAD
-PODFILE CHECKSUM: 5ccfd3683dc9bbc822e27af40e335f18a34eed7b
-=======
-PODFILE CHECKSUM: 7954ce1f84c98657c2717d6dfd37bda4a9c89614
->>>>>>> Successfully integrating with appcenter
+PODFILE CHECKSUM: c379a90b6165d7533449580fe5edbcf963aa9bd8
 
 COCOAPODS: 1.4.0

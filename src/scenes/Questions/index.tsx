@@ -134,9 +134,8 @@ class Questions extends React.Component<IProps, IState> {
       allowedLetters: targetLangConfig.letters.concat(sourceLangConfig.letters),
       overlookLetters: { ...targetLangConfig.overlookLetters, ...sourceLangConfig.overlookLetters }
     };
-    const answer = this.state.answer;
     const answerCorrect = evalAgainstAllAnswers(
-      typeof answer === 'string' ? [answer] : answer,
+      this.state.answer,
       this.props.allCorrectAnswers(this.props.currentQuestion.id),
       evaluationOptions
     );

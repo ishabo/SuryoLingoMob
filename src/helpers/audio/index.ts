@@ -9,7 +9,6 @@ let currentlyPlaying: string;
 type TSoundLocations = 'CACHES' | 'TEMPERORY' | 'MAIN_BUNDLE' | '';
 
 const RNFSDir = (location: TSoundLocations) => {
-
   switch (location) {
     case 'TEMPERORY':
       return RNFS.TemporaryDirectoryPath;
@@ -24,10 +23,7 @@ const RNFSDir = (location: TSoundLocations) => {
 
 const defaultLocation = Platform.OS === 'android' ? 'CACHES' : 'MAIN_BUNDLE';
 
-export const downloadFile = async (
-  soundTrack,
-  location: TSoundLocations = defaultLocation,
-) => {
+export const downloadFile = async (soundTrack, location: TSoundLocations = defaultLocation) => {
   let filename: string;
   const url = parseUrl(soundTrack);
 
@@ -50,10 +46,7 @@ export const downloadFile = async (
   return filename;
 };
 
-export const downloadAndPlayAudio = async (
-  soundTrack,
-  location: TSoundLocations = defaultLocation,
-) => {
+export const downloadAndPlayAudio = async (soundTrack, location: TSoundLocations = defaultLocation) => {
   const filename = await downloadFile(soundTrack, location);
   playAudio(filename, location);
 };
@@ -61,7 +54,7 @@ export const downloadAndPlayAudio = async (
 export const playAudio = (soundTrack, location: TSoundLocations = defaultLocation) => {
   const soundPath = RNFSDir(location);
 
-  const errorCallback = (error) => {
+  const errorCallback = error => {
     console.log('Attempting to play sound track', soundTrack);
 
     if (error) {
@@ -75,7 +68,6 @@ export const playAudio = (soundTrack, location: TSoundLocations = defaultLocatio
     currentlyPlaying = soundTrack;
 
     setTimeout(stopAndPlayAudio, 200);
-
   } catch (error) {
     console.warn(error);
   }

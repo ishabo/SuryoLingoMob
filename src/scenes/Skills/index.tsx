@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, BackHandler } from 'react-native';
+import { ScrollView, BackHandler, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { Skill } from './components';
 import { mapValues, groupBy } from 'lodash';
@@ -15,6 +15,8 @@ import { GSDrawerLabel } from 'scenes/Drawer';
 import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
 import I18n from 'I18n';
 import shortid from 'shortid';
+import { AdMobInterstitial } from 'react-native-admob';
+import vars from 'config/vars';
 
 interface IProps {
   activeCourse: ICourse;
@@ -40,7 +42,14 @@ class Skills extends React.Component<IProps> {
   }
 
   componentDidMount() {
+    Keyboard.dismiss();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+
+    AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    AdMobInterstitial.setAdUnitID(vars.admob.interstitial.skills);
+    AdMobInterstitial.requestAd()
+      .then(() => AdMobInterstitial.showAd())
+      .catch(error => console.log('====>', error));
   }
 
   componentWillUnmount() {

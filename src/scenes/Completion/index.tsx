@@ -1,19 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import {
-  NavigationActions,
-  NavigationResetActionPayload,
-} from 'react-navigation';
+import { NavigationActions, NavigationResetActionPayload } from 'react-navigation';
 import I18n from 'I18n';
 import { ILesson, ISkill, ILessonHistory } from 'services/skills';
 import { GSContainer, GSCongratMessage, GSXPGain, GSNextButton } from './index.styles';
 import { IInitialState } from 'services/reducers';
-import {
-  getLessonInProgress,
-  getSkillInProgress,
-  isRegistered,
-  getSourceLanguage,
-} from 'services/selectors';
+import { getLessonInProgress, getSkillInProgress, isRegistered, getSourceLanguage } from 'services/selectors';
 import config from 'config/';
 import { resetToLessons, resetToSkills } from 'helpers/navigation';
 import { NextButton, SignOnOrOut } from 'components/';
@@ -30,24 +22,23 @@ interface IProps {
 }
 
 interface IState {
-  timeToSkipAdd: number;
+  timeToSkipAd: number;
   lessonXp: number;
 }
 
 const decreaseIntervals = 1000;
 
 class Completion extends React.Component<IProps, IState> {
-
   state = {
-    timeToSkipAdd: 0,
-    lessonXp: config.lessonXP,
+    timeToSkipAd: 0,
+    lessonXp: config.lessonXP
   };
 
   static navigationOptions = {
-    header: null,
+    header: null
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const lastAccomplishment: ILessonHistory = this.props.lessonInProgress.lessonHistory.slice(-1)[0];
 
     if (lastAccomplishment) {
@@ -59,53 +50,48 @@ class Completion extends React.Component<IProps, IState> {
 
   countDown = () => {
     setTimeout(() => {
-      const decreasedTime = this.state.timeToSkipAdd - decreaseIntervals;
-      this.setState({ timeToSkipAdd: decreasedTime }, () => {
-        if (!this.canSkipAdd()) {
+      const decreasedTime = this.state.timeToSkipAd - decreaseIntervals;
+      this.setState({ timeToSkipAd: decreasedTime }, () => {
+        if (!this.canSkipAd()) {
           this.countDown();
         }
       });
     }, decreaseIntervals);
-  }
+  };
 
-  canSkipAdd = () =>
-    this.state.timeToSkipAdd <= 0
+  canSkipAd = () => this.state.timeToSkipAd <= 0;
 
   navBackToLessons = () => {
     const { navigationReset, skillInProgress } = this.props;
-    navigationReset(skillInProgress.progress === 1
-      ? resetToSkills()
-      : resetToLessons(skillInProgress),
-    );
-  }
+    navigationReset(skillInProgress.progress === 1 ? resetToSkills() : resetToLessons(skillInProgress));
+  };
 
   renderBackToLessonsButton = () => {
-    const seconds = this.state.timeToSkipAdd / 1000;
-    const buttonName = this.canSkipAdd()
+    const seconds = this.state.timeToSkipAd / 1000;
+    const buttonName = this.canSkipAd()
       ? I18n.t('completion.backToLessons')
       : I18n.t('completion.willAllowToGoInSeconds', { seconds });
 
-    return <NextButton onPress={this.navBackToLessons}
-      disabled={!this.canSkipAdd()}
-      lang={this.props.sourceLanguage}
-      text={buttonName} />;
-  }
+    return (
+      <NextButton
+        onPress={this.navBackToLessons}
+        disabled={!this.canSkipAd()}
+        lang={this.props.sourceLanguage}
+        text={buttonName}
+      />
+    );
+  };
 
-  render () {
+  render() {
     const { order } = this.props.lessonInProgress;
 
     return (
       <GSContainer>
-        <GSCongratMessage>
-          {I18n.t('completion.congratulations', { order })}
-        </GSCongratMessage>
-        <GSXPGain>
-          {I18n.t('completion.xpGain', { xp: this.state.lessonXp })}
-        </GSXPGain>
+        <GSCongratMessage>{I18n.t('completion.congratulations', { order })}</GSCongratMessage>
+        <GSXPGain>{I18n.t('completion.xpGain', { xp: this.state.lessonXp })}</GSXPGain>
         <GSNextButton>
           {this.renderBackToLessonsButton()}
-          {this.props.isRegistered ||
-            <SignOnOrOut />}
+          {this.props.isRegistered || <SignOnOrOut />}
         </GSNextButton>
       </GSContainer>
     );
@@ -113,8 +99,7 @@ class Completion extends React.Component<IProps, IState> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  navigationReset: (reset: NavigationResetActionPayload) =>
-    dispatch(NavigationActions.reset(reset)),
+  navigationReset: (reset: NavigationResetActionPayload) => dispatch(NavigationActions.reset(reset))
 });
 
 const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
@@ -122,7 +107,10 @@ const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
   profile: state.profile,
   lessonInProgress: getLessonInProgress(state),
   skillInProgress: getSkillInProgress(state),
-  isRegistered: isRegistered(state),
+  isRegistered: isRegistered(state)
 });
 
-export default connect(mapStateToDispatch, mapDispatchToProps)(Completion);
+export default connect(
+  mapStateToDispatch,
+  mapDispatchToProps
+)(Completion);

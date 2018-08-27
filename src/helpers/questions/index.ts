@@ -2,7 +2,7 @@ import { TQuestionType } from 'services/questions/actions/index';
 import { IDictionary, IWordHint } from 'services/dictionaries';
 import shortid from 'shortid';
 import { Linking } from 'react-native';
-import config from 'config';
+import config from '../../config';
 
 export const isReverseQuestion = (questionType: TQuestionType) =>
   /_REVERSE$/.test(questionType) || questionType === 'DICTATION';

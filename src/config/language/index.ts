@@ -5,6 +5,7 @@ const language = {
       'ܐ',
       'ܒ',
       'ܓ',
+      'ܔ',
       'ܕ',
       'ܗ',
       'ܘ',
@@ -32,7 +33,9 @@ const language = {
       '3soso': 'ܶ',
       rboso: 'ܽ'
     },
-    overlookLetters: {},
+    overlookLetters: {
+      ܔ: 'ܓ'
+    },
     keyboardKeys: [
       ['ܦ', 'ܥ', 'ܝ', 'ܪ', 'ܘ', 'ܩ'],
       ['ܠ', 'ܟ', 'ܛ', 'ܬ', 'ܗ', 'ܓ', 'ܕ', 'ܣ'],

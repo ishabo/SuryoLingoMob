@@ -69,7 +69,7 @@ export function* finishLesson(): IterableIterator<any> {
     })
   );
 
-  yield delay(500);
+  yield delay(200);
 
   const skillsOfUnit = yield select(getSkillsByUnit(skillInProgress.unit));
   const userXp = yield select(calcTotaluserXp);
@@ -81,7 +81,7 @@ export function* finishLesson(): IterableIterator<any> {
     yield put(skills.actions.activateUnit(nextUnit));
   }
 
-  yield delay(500);
+  yield delay(200);
   yield put(progress.actions.syncFinishedLessons());
 }
 
