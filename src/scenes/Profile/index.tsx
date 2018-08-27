@@ -13,14 +13,7 @@ import * as api from 'services/api/reducers';
 import { GSCustomText } from 'styles/text';
 import { NavigationScreenProp } from 'react-navigation';
 
-import {
-  GSContainer,
-  GSProfilePictureFrame,
-  GSProfile,
-  GSProfileDetails,
-  GSProfileDetailsItem,
-  GSProfilePicture
-} from './index.styles';
+import { GSContainer, GSProfile, GSProfileDetails, GSProfileDetailsItem, GSProfilePicture } from './index.styles';
 import VersionNumber from 'react-native-version-number';
 import { GSDrawerLabel } from 'scenes/Drawer';
 import { getRankBadge } from 'helpers';
@@ -32,7 +25,7 @@ export interface IProps {
   isRegistered: boolean;
   navigation: NavigationScreenProp<any, any>;
   fetchLeaderboard: () => void;
-  currentUserPosition: number;
+  currentUserCourseXpRatio: number;
 }
 
 class Profile extends React.Component<IProps> {
@@ -54,13 +47,9 @@ class Profile extends React.Component<IProps> {
   renderProfile = () => {
     return (
       <GSProfile>
-        <GSProfilePictureFrame outer>
-          <GSProfilePictureFrame inner>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
-              <GSProfilePicture source={getRankBadge(this.props.currentUserPosition)} />
-            </TouchableOpacity>
-          </GSProfilePictureFrame>
-        </GSProfilePictureFrame>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
+          <GSProfilePicture source={getRankBadge(this.props.currentUserCourseXpRatio)} />
+        </TouchableOpacity>
         <GSProfileDetails>
           <GSProfileDetailsItem>{I18n.t('profile.details.name')}:</GSProfileDetailsItem>
           <GSCustomText>{this.props.profile.name}</GSCustomText>
@@ -95,7 +84,7 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   apiStatus: state.api,
   profile: state.profile,
   isRegistered: isRegistered(state),
-  currentUserPosition: state.leaderboard.currentUserPosition
+  currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio
 });
 
 export default connect(

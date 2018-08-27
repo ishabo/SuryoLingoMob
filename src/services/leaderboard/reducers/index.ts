@@ -2,8 +2,9 @@ import { types } from '../actions';
 import { ILeaderboard, ILeaderboardAction } from '../';
 
 export const initialState = {
-  users: [],
-  currentUserPosition: 0
+  topUsers: [],
+  currentUserPosition: 0,
+  currentUserCourseXpRatio: 0
 };
 
 export const reducer = (state: ILeaderboard = initialState, action: ILeaderboardAction) => {

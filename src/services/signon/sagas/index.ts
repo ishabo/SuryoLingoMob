@@ -10,16 +10,14 @@ import { isEmpty } from 'lodash';
 import { validateSigon } from '../validation';
 import { setLoadingOn, setLoadingOff, setFailureMessage, setSuccessMessage } from 'services/api/actions';
 import { ISagasFunctions } from 'services/sagas';
-import { NavigationActions } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
-import { isApiResponse } from 'helpers';
+import { isApiResponse, resetToCourses } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 
 export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
   const fields = { ...(yield select((state: IInitialState) => state.signon.item)) };
 
-  // console.warn(fields);
   if (action.signon === 'signin') {
     delete fields['name'];
   }
@@ -48,7 +46,7 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
       if (activeCourse) {
         yield put(skills.actions.fetchSkills());
       } else {
-        yield put(NavigationActions.navigate({ routeName: 'Courses' }));
+        yield put(resetToCourses());
       }
     } catch (error) {
       if (isApiResponse(error.response)) {

@@ -32,9 +32,10 @@ export interface IProps {
   signout: () => void;
   isUserInLeaderboard: boolean;
   navigation: NavigationScreenProp<any, any>;
-  users: leaderboard.ILeaderboardUser[];
+  topUsers: leaderboard.ILeaderboardUser[];
   fetchLeaderboard: () => void;
   currentUserPosition: number;
+  currentUserCourseXpRatio: number;
 }
 
 class Leaderboard extends React.Component<IProps> {
@@ -63,18 +64,18 @@ class Leaderboard extends React.Component<IProps> {
         <GSUserXP>{user.userXp}</GSUserXP>
       </GSUserDetails>
       <GSUserDetails align="left">
-        <GSUserBadge source={getRankBadge(rank)} />
+        <GSUserBadge source={getRankBadge(user.ratio)} />
       </GSUserDetails>
     </GSTopUser>
   );
 
-  renderLeaderboard = () => this.props.users.map((user, index) => this.renderUser(user, index + 1));
+  renderLeaderboard = () => this.props.topUsers.map((user, index) => this.renderUser(user, index + 1));
 
   renderUserPosition = () => {
     const { profile } = this.props;
     const { id, name, userXp } = profile;
-
-    return this.renderUser({ id, name, userXp }, this.props.currentUserPosition);
+    const ratio = this.props.currentUserCourseXpRatio;
+    return this.renderUser({ id, name, userXp, ratio }, this.props.currentUserPosition);
   };
 
   render() {
@@ -107,8 +108,9 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   isUserInLeaderboard: isUserInLeaderboard(state),
-  users: state.leaderboard.users,
+  topUsers: state.leaderboard.topUsers,
   currentUserPosition: state.leaderboard.currentUserPosition,
+  currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio,
   profile: state.profile
 });
 

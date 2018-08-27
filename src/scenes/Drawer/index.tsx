@@ -47,6 +47,7 @@ export const GSContainer = glamor.view({
   alignItems: 'stretch',
   flex: 1
 });
+
 export const GSDrawerLabel = glamor(GSCustomText)<ICustomText>({
   fontSize: 18,
   color: colors.orange,

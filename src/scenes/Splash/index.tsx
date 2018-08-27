@@ -11,7 +11,6 @@ import VersionNumber from 'react-native-version-number';
 import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
 import { ICourse } from 'services/courses';
-// import Crashes from 'appcenter-crashes';
 
 export interface IProps {
   hasNetworkError: boolean;
@@ -26,6 +25,9 @@ interface IState {
 
 const alertDelayTime = 1000;
 const fetchDelayTime = 1000;
+
+const logos = [images.logo.arabic, images.logo.syriac, images.logo.english];
+const logo = logos[Math.floor(Math.random() * logos.length)];
 
 class Splash extends React.Component<IProps, IState> {
   static navigationOptions = {
@@ -83,14 +85,14 @@ class Splash extends React.Component<IProps, IState> {
 
   componentWillReceiveProps(newProps: Partial<IProps>) {
     if (newProps.hasNetworkError && !this.props.activeCourse) {
-      // this.alertConnection();
+      this.alertConnection();
     }
   }
 
   render() {
     return (
       <GSContainer>
-        <GSLogo source={images.logo.splash} />
+        <GSLogo source={logo} />
         <GSVersion>v{VersionNumber.appVersion}</GSVersion>
       </GSContainer>
     );

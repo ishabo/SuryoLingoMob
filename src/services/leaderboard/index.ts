@@ -6,10 +6,12 @@ export interface ILeaderboardUser {
   id: string;
   name: string;
   userXp: number;
+  ratio: number;
 }
 export interface ILeaderboard {
-  users: ILeaderboardUser[];
+  topUsers: ILeaderboardUser[];
   currentUserPosition: number;
+  currentUserCourseXpRatio: number;
 }
 
 export interface ILeaderboardAction {

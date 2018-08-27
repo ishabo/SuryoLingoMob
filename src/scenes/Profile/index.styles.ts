@@ -57,6 +57,9 @@ export const GSProfilePictureFrame = glamor.view<{ inner?: boolean; outer?: bool
 );
 
 export const GSProfilePicture = glamor.image({
-  width: 100,
-  height: 80
+  justifyContent: 'center',
+  alignSelf: 'center',
+  alignItems: 'center',
+  width: 200,
+  height: 200
 });

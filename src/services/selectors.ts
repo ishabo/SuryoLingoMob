@@ -128,4 +128,5 @@ export const getPhrases = (state: IInitialState): questions.IPhrase[] => {
 };
 
 export const isUserInLeaderboard = (state: IInitialState): boolean =>
-  !!state.leaderboard.users.find((user: leaderboard.ILeaderboardUser) => user.id === state.profile.id);
+  state.leaderboard.topUsers &&
+  !!state.leaderboard.topUsers.find((user: leaderboard.ILeaderboardUser) => user.id === state.profile.id);

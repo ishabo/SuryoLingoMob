@@ -4,8 +4,10 @@ const Images = {
     noSpeaker: require(`../../../src/assets/images/noSpeaker.png`)
   },
   logo: {
-    splash: require(`../../../src/assets/images/SuryoSplash.png`),
-    SuryoBird: require(`../../../src/assets/images/SuryoBird.png`)
+    arabic: require(`../../../src/assets/images/logo/arabic.png`),
+    syriac: require(`../../../src/assets/images/logo/syriac.png`),
+    english: require(`../../../src/assets/images/logo/english.png`),
+    SuryoBird: require(`../../../src/assets/images/logo/bird.png`)
   },
   skills: {
     bg: {
@@ -14,9 +16,11 @@ const Images = {
     }
   },
   badges: {
-    first: require('../../../src/assets/images/badges/1st.png'),
-    second: require('../../../src/assets/images/badges/2nd.png'),
-    third: require('../../../src/assets/images/badges/3rd.png')
+    gold: require('../../../src/assets/images/badges/gold.png'),
+    silver: require('../../../src/assets/images/badges/silver.png'),
+    bronze: require('../../../src/assets/images/badges/bronze.png'),
+    stone: require('../../../src/assets/images/badges/stone.png'),
+    wood: require('../../../src/assets/images/badges/wood.png')
   }
 };
 
