@@ -8,8 +8,11 @@ import { ISagasFunctions } from 'services/sagas';
 import * as starter from '../';
 import * as exceptions from 'services/exceptions';
 import { fetchProfile } from 'services/profile/sagas';
+// import { fetchStatusSettings } from 'services/starter/api';
 
-export function* firstFetch (): IterableIterator<any> {
+export function* firstFetch(): IterableIterator<any> {
+  // const response = yield call(fetchStatusSettings);
+  // console.warn(response);
   yield put(exceptions.actions.removeAll());
   yield put(setLoadingOff());
   const activeCourse = yield select(getActiveCourse);
@@ -24,7 +27,5 @@ export function* firstFetch (): IterableIterator<any> {
 }
 
 export const functions = (): ISagasFunctions[] => {
-  return [
-    { action: starter.actions.types.FIRST_FETCH, func: firstFetch },
-  ];
+  return [{ action: starter.actions.types.FIRST_FETCH, func: firstFetch }];
 };
