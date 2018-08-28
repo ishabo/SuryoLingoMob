@@ -1,7 +1,7 @@
 import { reducer as preferencesReducer } from './index';
 import { types } from '../actions';
 
-describe('progress reducer', () => {
+describe('preferences reducer', () => {
   it('should set lesson in progress', () => {
     const initialState = {
       customKeyboardEnabled: true

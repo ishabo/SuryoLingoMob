@@ -1,4 +1,4 @@
-import { API_VERSION, API_DOMAIN } from 'react-native-dotenv';
+import { API_VERSION, API_DOMAIN, LAMBDA_HOST } from 'react-native-dotenv';
 import { Platform } from 'react-native';
 
 const website = () => {
@@ -11,12 +11,14 @@ const website = () => {
   return domain;
 };
 
-const apiHost = () => `${website()}/api/v${API_VERSION}`;
-const adminHost = () => `${website()}/admin`;
+const apiHost = `${website()}/api/v${API_VERSION}`;
+const adminHost = `${website()}/admin`;
+const lambdaHost = LAMBDA_HOST;
 
 export default {
   apiHost,
   adminHost,
+  lambdaHost,
   locale: 'ar',
   lessonXP: 100,
   sInfoOptions: {

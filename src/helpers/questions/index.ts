@@ -1,8 +1,8 @@
 import { TQuestionType } from 'services/questions/actions/index';
 import { IDictionary, IWordHint } from 'services/dictionaries';
 import shortid from 'shortid';
-import { Linking } from 'react-native';
 import config from '../../config';
+import { openUrl } from 'helpers/common';
 
 export const isReverseQuestion = (questionType: TQuestionType) =>
   /_REVERSE$/.test(questionType) || questionType === 'DICTATION';
@@ -22,12 +22,6 @@ export const cleanAnswer = (answer: string) => {
 };
 
 export const openPhraseInAdmin = (phrase: string) => {
-  const url = `${config.adminHost()}/phrases?q[by_phrase]=${phrase}`;
-  Linking.canOpenURL(url).then(supported => {
-    if (supported) {
-      Linking.openURL(url);
-    } else {
-      console.warn("Don't know how to open URI: " + url);
-    }
-  });
+  const url = `${config.adminHost}/phrases?q[by_phrase]=${phrase}`;
+  openUrl(url);
 };

@@ -1,12 +1,12 @@
 import * as actions from './actions';
 import * as reducers from './reducers';
+import { IAction } from 'services/sagas';
 
 export interface IPrefererences {
   customKeyboardEnabled: boolean;
 }
 
-export interface IPreferencesAction {
-  type: string;
+export interface IPreferencesAction extends IAction {
   preferences?: IPrefererences;
 }
 export { actions, reducers };

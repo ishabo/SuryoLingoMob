@@ -1,6 +1,6 @@
 {
   "name": "SuryoLingo",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -76,6 +76,7 @@
     "react-native-snap-carousel": "^3.3.3",
     "react-native-sound": "git+https://github.com/zmxv/react-native-sound",
     "react-native-version": "^2.4.1",
+    "react-native-version-check": "^3.0.0",
     "react-native-version-number": "^0.3.1",
     "react-navigation": "^1.5.8",
     "react-navigation-redux-helpers": "1.0.3",

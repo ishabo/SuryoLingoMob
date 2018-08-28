@@ -12,6 +12,7 @@ import * as exceptions from './exceptions';
 import * as signon from './signon';
 import * as assets from './assets';
 import * as preferences from './preferences';
+import * as settings from './settings';
 import * as leaderboard from './leaderboard';
 
 import { NavigationState } from 'react-navigation';
@@ -28,8 +29,9 @@ export interface IInitialState {
   questions: questions.IQuestions;
   dictionaries: dictionaries.IDictionary[];
   leaderboard: leaderboard.ILeaderboard;
-  exceptions: exceptions.IException[];
   preferences: preferences.IPrefererences;
+  settings: settings.IAppSettings;
+  exceptions: exceptions.IException[];
 }
 
 export const initialState: IInitialState = {
@@ -45,6 +47,7 @@ export const initialState: IInitialState = {
   dictionaries: dictionaries.reducers.initialState,
   preferences: preferences.reducers.initialState,
   leaderboard: leaderboard.reducers.initialState,
+  settings: settings.reducers.initialState,
   exceptions: exceptions.reducers.initialState
 };
 
@@ -59,7 +62,8 @@ export default combineReducers({
   progress: progress.reducers.reducer,
   questions: questions.reducers.reducer,
   dictionaries: dictionaries.reducers.reducer,
-  exceptions: exceptions.reducers.reducer,
   preferences: preferences.reducers.reducer,
-  leaderboard: leaderboard.reducers.reducer
+  leaderboard: leaderboard.reducers.reducer,
+  settings: settings.reducers.reducer,
+  exceptions: exceptions.reducers.reducer
 });

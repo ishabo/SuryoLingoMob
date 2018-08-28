@@ -1,20 +1,17 @@
-import { IException, IAction } from '../';
+import { IException, IExceptionAction } from '../';
 import { types } from '../actions';
 
 export const initialState: IException[] = [];
 
 let exceptionId = 0;
 
-export const reducer = (
-  state: ReadonlyArray<IException> = initialState,
-  action: IAction,
-) => {
+export const reducer = (state: ReadonlyArray<IException> = initialState, action: IExceptionAction) => {
   switch (action.type) {
     case types.ADD:
       exceptionId += 1;
       return state.concat({
         id: exceptionId,
-        ...action.payload,
+        ...action.payload
       } as IException);
     case types.REMOVE: {
       return state.reduce(
@@ -24,7 +21,7 @@ export const reducer = (
           }
           return prev;
         },
-        [] as IException[],
+        [] as IException[]
       );
     }
     case types.REMOVE_ALL: {

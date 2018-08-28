@@ -3,6 +3,7 @@ import * as api from './api';
 import * as actions from './actions';
 import * as sagas from './sagas';
 import * as selectors from './selectors';
+import { IAction } from 'services/sagas';
 
 export type TImageSizes = 'hdpi' | 'mdpi' | 'xhdpi' | 'xxhdpi' | 'xxxhdpi';
 
@@ -12,9 +13,7 @@ export interface ISkillIcon {
 }
 
 export interface ISkillIcons {
-  [key: string]: {
-    [key in TImageSizes]: ISkillIcon;
-  };
+  [key: string]: { [key in TImageSizes]: ISkillIcon };
 }
 
 export interface IAssets {
@@ -22,16 +21,9 @@ export interface IAssets {
   courseImages: IDictionary<string>;
 }
 
-export interface IAssetsAction {
+export interface IAssetsAction extends IAction {
   skillIcons: IAssets['skillIcons'];
   courseImages: IAssets['courseImages'];
-  type: string;
 }
 
-export {
-  api,
-  actions,
-  reducers,
-  selectors,
-  sagas,
-};
+export { api, actions, reducers, selectors, sagas };

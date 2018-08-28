@@ -12,6 +12,7 @@ import * as questions from './questions';
 import * as leaderboard from './leaderboard';
 import * as signon from './signon';
 import * as exceptions from './exceptions';
+import * as settings from './settings';
 import * as assets from './assets';
 
 import { IInitialState } from 'services/reducers';
@@ -42,6 +43,10 @@ const withToken = saga => {
   };
 };
 
+export interface IAction {
+  type: string;
+}
+
 export interface ISagasFunctions {
   action: string;
   func: (action?: any) => void;
@@ -57,7 +62,8 @@ const sagasFunctions: ISagasFunctions[] = [
   ...progress.sagas.functions(),
   ...starter.sagas.functions(),
   ...assets.sagas.functions(),
-  ...leaderboard.sagas.functions()
+  ...leaderboard.sagas.functions(),
+  ...settings.sagas.functions()
 ];
 
 export default function* rootSagas(): IterableIterator<any> {

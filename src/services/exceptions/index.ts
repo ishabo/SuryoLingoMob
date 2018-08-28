@@ -24,7 +24,7 @@ export interface IRemoveAction extends Action {
   id: number;
 }
 
-export interface IAction extends IAddAction, IRemoveAction { }
+export interface IExceptionAction extends IAddAction, IRemoveAction {}
 
 export interface IState {
   [key: number]: IException;
@@ -53,8 +53,4 @@ export const create = (payload: IExceptionPayload): IExceptionPayload => {
   return payload;
 };
 
-export {
-  actions,
-  reducers,
-  selectors,
-};
+export { actions, reducers, selectors };

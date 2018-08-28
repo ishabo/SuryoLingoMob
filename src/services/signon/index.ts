@@ -2,6 +2,7 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as sagas from './sagas';
 import * as api from './api';
+import { IAction } from 'services/sagas';
 
 export type TSignon = string | 'signup' | 'signin';
 
@@ -22,17 +23,11 @@ export interface ISignonState {
   errors: ISignonFormErrors;
 }
 
-export interface ISignonFormAction {
-  type: string;
+export interface ISignonFormAction extends IAction {
   signon?: TSignon;
   data?: ISignonFormData;
   errors?: ISignonFormData;
   email?: string;
 }
 
-export {
-  api,
-  sagas,
-  actions,
-  reducers,
-};
+export { api, sagas, actions, reducers };
