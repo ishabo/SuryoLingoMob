@@ -14,7 +14,14 @@ target 'SuryoLingo' do
 
   platform :ios, '9.0'
 
-  pod 'react-native-version-check', :path => '../node_modules/react-native-version-check'
+  # Remove React from projects 
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.name == "React"
+        target.remove_from_project
+      end
+    end
+  end
 
   target 'SuryoLingoTests' do
     inherit! :search_paths
