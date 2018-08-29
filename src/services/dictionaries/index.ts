@@ -1,6 +1,7 @@
 import * as reducers from './reducers';
 import * as actions from './actions';
 import * as sagas from './sagas';
+import { IAction } from 'services/sagas';
 
 export interface IWordHint {
   word: string;
@@ -14,8 +15,7 @@ export interface IDictionary {
   translations: string;
 }
 
-export interface IDictionaryAction {
-  type: string;
+export interface IDictionaryAction extends IAction {
   courseId: string;
   dictionaries: IDictionary[];
 }

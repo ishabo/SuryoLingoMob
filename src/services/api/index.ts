@@ -1,7 +1,4 @@
-export {
-  setApiOrigin,
-  setUserToken,
-} from './api';
+export { setApiOrigin, setUserToken } from './api';
 
 import { createApi, getUserToken } from './api';
 import { changeCase } from 'helpers';
@@ -9,6 +6,12 @@ import { changeCase } from 'helpers';
 export type TErrors = IIndex<string>;
 export type THeaders = IDictionary<string>;
 export type TMethod = 'get' | 'post' | 'put';
+
+export interface IApiOptions {
+  headers?: THeaders;
+  errors?: TErrors;
+  baseURL?: string;
+}
 
 export interface IApiInstance {
   api: any;
@@ -18,17 +21,19 @@ export interface IApiInstance {
   put: (...args: any[]) => Promise<any>;
 }
 
-export const create = (headers?: THeaders, errors?: TErrors): IApiInstance => {
+export const create = (options: IApiOptions = {}): IApiInstance => {
+  const { baseURL, errors, headers } = options;
   const api = createApi({
     errors,
     headers,
+    baseURL
   });
 
   async function makeRequest(method, url, ...args) {
     let response;
     try {
       const authorizationHeader = {
-        Authorization: `Token token=${await getUserToken()}`,
+        Authorization: `Token token=${await getUserToken()}`
       };
       response = await api.call(method, url, authorizationHeader, ...args);
       response = response ? response.data : null;
@@ -40,7 +45,7 @@ export const create = (headers?: THeaders, errors?: TErrors): IApiInstance => {
 
   return {
     api,
-    call (method, url, ...args) {
+    call(method, url, ...args) {
       if (method !== 'get' && args[0]) {
         args[0] = changeCase(args[0], 'snake');
       }
@@ -54,14 +59,14 @@ export const create = (headers?: THeaders, errors?: TErrors): IApiInstance => {
         }
       });
     },
-    get (...args) {
+    get(...args) {
       return this.call('get', ...args);
     },
-    post (...args) {
+    post(...args) {
       return this.call('post', ...args);
     },
-    put (...args) {
+    put(...args) {
       return this.call('put', ...args);
-    },
+    }
   };
 };

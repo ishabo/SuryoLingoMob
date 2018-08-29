@@ -1,7 +1,7 @@
 import * as ApiSauce from 'apisauce';
 import * as Exceptions from '../exceptions';
 import { isEmpty } from 'lodash';
-import { THeaders, TErrors, TMethod } from './index';
+import { THeaders, TMethod, IApiOptions } from './index';
 import { changeCase } from 'helpers';
 
 let userToken: string = null;
@@ -33,13 +33,8 @@ export const setApiOrigin = (domain: string) => {
   origin = domain;
 };
 
-export interface IApiOptions {
-  headers: THeaders;
-  errors?: TErrors;
-}
-
 export const createApi = (options: IApiOptions) => {
-  const { errors, headers } = options;
+  const { errors, headers, baseURL = getApiOrigin() } = options;
 
   let statusErrors: { [key: number]: string } = {
     404: 'Resource not found',
@@ -60,7 +55,7 @@ export const createApi = (options: IApiOptions) => {
   };
 
   const request: ApiSauce.ApisauceInstance = ApiSauce.create({
-    baseURL: getApiOrigin(),
+    baseURL,
     timeout: 60000,
     headers: {
       agentOptions: {

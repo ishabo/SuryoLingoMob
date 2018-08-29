@@ -10,7 +10,7 @@ import * as signon from 'services/signon';
 import * as assets from 'services/assets';
 import { isRegistered, getActiveCourse } from 'services/selectors';
 import { ISagasFunctions } from 'services/sagas';
-import { navToSkills } from 'helpers';
+import { navToSkills, resetToCourses } from 'helpers';
 
 export function* fetchCourses(): IterableIterator<any> {
   yield put(setLoadingOn());
@@ -25,8 +25,11 @@ export function* fetchCourses(): IterableIterator<any> {
     if (activeCourse) {
       navToSkills();
     } else {
-      const routeName = hasRegistered ? 'Courses' : 'Signon';
-      yield put(NavigationActions.navigate({ routeName }));
+      if (hasRegistered) {
+        yield put(resetToCourses());
+      } else {
+        yield put(NavigationActions.navigate({ routeName: 'Signon' }));
+      }
     }
   } catch (error) {
     if (hasRegistered && typeof error === 'object' && error.response) {

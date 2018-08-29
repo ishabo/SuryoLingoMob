@@ -5,6 +5,7 @@ import * as selectors from './selectors';
 import * as sagas from './sagas';
 import { Moment } from 'moment';
 import { IQuestion } from 'services/questions';
+import { IAction } from 'services/sagas';
 
 export interface ILessonHistory {
   timestamp: Moment;
@@ -34,8 +35,7 @@ export interface ISkill {
   isComingSoon: boolean;
 }
 
-export interface ISkillsAction {
-  type: string;
+export interface ISkillsAction extends IAction {
   unit?: number;
   lessonId?: string;
   courseId?: string;

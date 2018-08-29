@@ -420,6 +420,16 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
+"@types/caseless@*":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.1.tgz#9794c69c8385d0192acc471a540d1f8e0d16218a"
+
+"@types/form-data@*":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@types/form-data/-/form-data-2.2.1.tgz#ee2b3b8eaa11c0938289953606b745b738c54b1e"
+  dependencies:
+    "@types/node" "*"
+
 "@types/jest@^21.1.5":
   version "21.1.10"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.10.tgz#dcacb5217ddf997a090cc822bba219b4b2fd7984"
@@ -428,11 +438,25 @@
   version "4.14.116"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.116.tgz#5ccf215653e3e8c786a58390751033a9adca0eb9"
 
+<<<<<<< HEAD
 "@types/prop-types@*":
   version "15.5.5"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.5.tgz#17038dd322c2325f5da650a94d5f9974943625e3"
   dependencies:
     "@types/react" "*"
+=======
+"@types/node@*":
+  version "9.6.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.2.tgz#e49ac1adb458835e95ca6487bc20f916b37aff23"
+
+"@types/node@^8.9.4":
+  version "8.10.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.2.tgz#f1fb9c73414832c5b00ee954c4bbf68394e2e526"
+
+"@types/react-native-fabric@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-fabric/-/react-native-fabric-0.5.0.tgz#9f957864b2673584fc314644bd98e4f781fa809b"
+>>>>>>> Successfully integrating with appcenter
 
 "@types/react-native-fs@2.8.0":
   version "2.8.0"
@@ -460,8 +484,36 @@
     "@types/react-native" "*"
 
 "@types/react@*", "@types/react@^16.3.1":
+<<<<<<< HEAD
   version "16.4.11"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.11.tgz#330f3d864300f71150dc2d125e48644c098f8770"
+=======
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.1.tgz#6f6aaffaf7dba502ff5ca15e4aa18caee9b04995"
+
+"@types/request@^2.47.0":
+  version "2.47.0"
+  resolved "https://registry.yarnpkg.com/@types/request/-/request-2.47.0.tgz#76a666cee4cb85dcffea6cd4645227926d9e114e"
+  dependencies:
+    "@types/caseless" "*"
+    "@types/form-data" "*"
+    "@types/node" "*"
+    "@types/tough-cookie" "*"
+
+"@types/tough-cookie@*":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-2.3.2.tgz#e0d481d8bb282ad8a8c9e100ceb72c995fb5e709"
+
+"@types/unzip@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/unzip/-/unzip-0.1.0.tgz#5bcfd2b4e19fc75f0ae2adfc7d6af97b3845a073"
+  dependencies:
+    "@types/node" "*"
+
+"@types/url-parse@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/url-parse/-/url-parse-1.1.0.tgz#61f8e1b52024d07fceb73fd7f8292e5ddd2b60a1"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -469,6 +521,16 @@
 "@types/url-parse@^1.1.0":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@types/url-parse/-/url-parse-1.4.1.tgz#c7ad9eb4f409fc14b93ea5d0d3c3dd812ac5b372"
+
+"@types/uuid@^3.4.3":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.3.tgz#121ace265f5569ce40f4f6d0ff78a338c732a754"
+  dependencies:
+    "@types/node" "*"
+
+"@types/xmldom@^0.1.29":
+  version "0.1.29"
+  resolved "https://registry.yarnpkg.com/@types/xmldom/-/xmldom-0.1.29.tgz#c4428b0ca86d3b881475726fd94980b38a27c381"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -606,6 +668,7 @@ apisauce@^0.14.3:
     ramda "^0.24.1"
 
 appcenter-analytics@^1.4.0:
+<<<<<<< HEAD
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/appcenter-analytics/-/appcenter-analytics-1.7.1.tgz#8d8b72dca11f320933de015e9e32570f07991e0d"
   dependencies:
@@ -620,6 +683,24 @@ appcenter-cli@^1.0.14:
     chalk "^1.1.3"
     cli-spinner "^0.2.5"
     cli-table3 "^0.5.0"
+=======
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/appcenter-analytics/-/appcenter-analytics-1.4.0.tgz#1d4ee299085f795451466c15005ccdd3ab27b89b"
+  dependencies:
+    appcenter "1.4.0"
+
+appcenter-cli@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/appcenter-cli/-/appcenter-cli-1.0.14.tgz#043c48f0442ec63dd1a67c115395eefd97c76860"
+  dependencies:
+    "@types/unzip" "^0.1.0"
+    "@types/xmldom" "^0.1.29"
+    azure-storage "^2.1.0"
+    bplist "0.0.4"
+    chalk "^1.1.3"
+    cli-spinner "^0.2.5"
+    cli-table2 "^0.2.0"
+>>>>>>> Successfully integrating with appcenter
     date-fns "^1.28.5"
     debug "^2.2.0"
     event-stream "^3.3.4"
@@ -646,7 +727,10 @@ appcenter-cli@^1.0.14:
     semver "^5.4.1"
     temp "^0.8.3"
     unzip "^0.1.11"
+<<<<<<< HEAD
     update-notifier "^2.5.0"
+=======
+>>>>>>> Successfully integrating with appcenter
     uuid "^3.0.1"
     which "^1.3.0"
     wordwrap "^1.0.0"
@@ -655,6 +739,7 @@ appcenter-cli@^1.0.14:
     yazl "^2.4.3"
 
 appcenter-crashes@^1.4.0:
+<<<<<<< HEAD
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/appcenter-crashes/-/appcenter-crashes-1.7.1.tgz#b414fb92b2c4c9be78c9f254a9967b9ca49ca225"
   dependencies:
@@ -663,11 +748,22 @@ appcenter-crashes@^1.4.0:
 appcenter-link-scripts@1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/appcenter-link-scripts/-/appcenter-link-scripts-1.7.1.tgz#ba0ea093a4af1ab4b9b8b6ceeeaa1da4730ace45"
+=======
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/appcenter-crashes/-/appcenter-crashes-1.4.0.tgz#342ca2f51c10a0ea6e96becad2481192d2f8c6d8"
+  dependencies:
+    appcenter "1.4.0"
+
+appcenter-link-scripts@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/appcenter-link-scripts/-/appcenter-link-scripts-1.4.0.tgz#05fd6b7643c88f29b07b96f7e390df9d177ac362"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     debug "^2.2.0"
     glob "^5.0.15"
     inquirer "1.1.2"
     mkdirp "^0.5.1"
+<<<<<<< HEAD
     plist "^3.0.1"
     which "^1.2.11"
     xcode "^1.0.0"
@@ -675,6 +771,27 @@ appcenter-link-scripts@1.7.1:
 appcenter-push@^1.4.0:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/appcenter-push/-/appcenter-push-1.7.1.tgz#ac44dd3db7b00063ec0af24134c2d2a71f411347"
+=======
+    plist "1.2.0"
+    which "^1.2.11"
+    xcode "^0.8.9"
+
+appcenter-push@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/appcenter-push/-/appcenter-push-1.4.0.tgz#5bc0f34fef8549d93772629e4b57b7c8d2f987d9"
+  dependencies:
+    appcenter "1.4.0"
+
+appcenter@1.4.0, appcenter@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/appcenter/-/appcenter-1.4.0.tgz#dd5215c0985e3ee02935a03a0b33fa04338a45b0"
+  dependencies:
+    appcenter-link-scripts "1.4.0"
+
+append-transform@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/append-transform/-/append-transform-0.4.0.tgz#d76ebf8ca94d276e247a36bad44a4b74ab611991"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     appcenter "1.7.1"
 
@@ -849,16 +966,26 @@ axios@^0.16.2:
     follow-redirects "^1.2.3"
     is-buffer "^1.1.5"
 
+<<<<<<< HEAD
 azure-storage@^2.8.2:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/azure-storage/-/azure-storage-2.10.1.tgz#f8c1780bda97bb803e5a4bf7d6aad7862301cd81"
+=======
+azure-storage@^2.1.0:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/azure-storage/-/azure-storage-2.8.1.tgz#ecb9d050ef1395e79ffbb652c02fe643687bec63"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     browserify-mime "~1.2.9"
     extend "~1.2.1"
     json-edm-parser "0.1.2"
     md5.js "1.3.4"
     readable-stream "~2.0.0"
+<<<<<<< HEAD
     request "^2.86.0"
+=======
+    request "~2.83.0"
+>>>>>>> Successfully integrating with appcenter
     underscore "~1.8.3"
     uuid "^3.0.0"
     validator "~9.4.1"
@@ -1546,9 +1673,23 @@ binary-extensions@^1.0.0:
 "binary@>= 0.3.0 < 1":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/binary/-/binary-0.3.0.tgz#9f60553bc5ce8c3386f3b553cff47462adecaa79"
+<<<<<<< HEAD
+=======
   dependencies:
     buffers "~0.1.1"
     chainsaw "~0.1.0"
+
+block-stream@*:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
+>>>>>>> Successfully integrating with appcenter
+  dependencies:
+    buffers "~0.1.1"
+    chainsaw "~0.1.0"
+
+bluebird@3.3.5:
+  version "3.3.5"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.3.5.tgz#5ee747f1c7bd967658b683936430aee753955a34"
 
 bluebird@3.3.5:
   version "3.3.5"
@@ -1604,11 +1745,24 @@ boxen@^1.2.1:
     term-size "^1.2.0"
     widest-line "^2.0.0"
 
+<<<<<<< HEAD
+=======
+bplist-creator@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/bplist-creator/-/bplist-creator-0.0.4.tgz#4ac0496782e127a85c1d2026a4f5eb22a7aff991"
+  dependencies:
+    stream-buffers "~0.2.3"
+
+>>>>>>> Successfully integrating with appcenter
 bplist-creator@0.0.7, bplist-creator@~0.0.2:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/bplist-creator/-/bplist-creator-0.0.7.tgz#37df1536092824b87c42f957b01344117372ae45"
   dependencies:
     stream-buffers "~2.2.0"
+
+bplist-parser@0.0.6, bplist-parser@~0.0.4:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/bplist-parser/-/bplist-parser-0.0.6.tgz#38da3471817df9d44ab3892e27707bbbd75a11b9"
 
 bplist-parser@0.1.1:
   version "0.1.1"
@@ -1616,10 +1770,13 @@ bplist-parser@0.1.1:
   dependencies:
     big-integer "^1.6.7"
 
+<<<<<<< HEAD
 bplist-parser@~0.0.4:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/bplist-parser/-/bplist-parser-0.0.6.tgz#38da3471817df9d44ab3892e27707bbbd75a11b9"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 bplist@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/bplist/-/bplist-0.0.4.tgz#bc8d552ed56ff8a2992c4f9093c2b5ab8259d8dc"
@@ -1693,6 +1850,10 @@ buffers@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/buffers/-/buffers-0.1.1.tgz#b24579c3bed4d6d396aeee6d9a8ae7f5482ab7bb"
 
+buffers@~0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/buffers/-/buffers-0.1.1.tgz#b24579c3bed4d6d396aeee6d9a8ae7f5482ab7bb"
+
 builtin-modules@^1.0.0, builtin-modules@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
@@ -1758,6 +1919,15 @@ center-align@^0.1.1:
 chainsaw@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/chainsaw/-/chainsaw-0.1.0.tgz#5eab50b28afe58074d0d58291388828b5e5fbc98"
+<<<<<<< HEAD
+=======
+  dependencies:
+    traverse ">=0.3.0 <0.4"
+
+chalk@0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-0.5.1.tgz#663b3a648b68b55d04690d49167aa837858f2174"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     traverse ">=0.3.0 <0.4"
 
@@ -1876,12 +2046,21 @@ cli-spinner@^0.2.5:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/cli-spinner/-/cli-spinner-0.2.8.tgz#8169d9ffae870676445e6ee4397e95a7a15bd805"
 
+<<<<<<< HEAD
 cli-table3@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/cli-table3/-/cli-table3-0.5.1.tgz#0252372d94dfc40dbd8df06005f48f31f656f202"
   dependencies:
     object-assign "^4.1.0"
     string-width "^2.1.1"
+=======
+cli-table2@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/cli-table2/-/cli-table2-0.2.0.tgz#2d1ef7f218a0e786e214540562d4bd177fe32d97"
+  dependencies:
+    lodash "^3.10.1"
+    string-width "^1.0.1"
+>>>>>>> Successfully integrating with appcenter
   optionalDependencies:
     colors "^1.1.2"
 
@@ -1981,10 +2160,17 @@ color@~1.0.3:
     color-string "^1.4.0"
 
 colors@^1.1.2:
+<<<<<<< HEAD
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.3.1.tgz#4accdb89cf2cabc7f982771925e9468784f32f3d"
 
 combined-stream@1.0.6, combined-stream@~1.0.6:
+=======
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/colors/-/colors-1.2.1.tgz#f4a3d302976aaf042356ba1ade3b1a2c62d9d794"
+
+combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
+>>>>>>> Successfully integrating with appcenter
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.6.tgz#723e7df6e801ac5613113a7e445a9b69cb632818"
   dependencies:
@@ -2132,6 +2318,10 @@ core-js@^1.0.0:
 core-js@^2.2.2, core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
+
+core-js@~2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.3.0.tgz#fab83fbb0b2d8dc85fa636c4b9d34c75420c6d65"
 
 core-js@~2.3.0:
   version "2.3.0"
@@ -2362,10 +2552,13 @@ dottie@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/dottie/-/dottie-2.0.0.tgz#da191981c8b8d713ca0115d5898cf397c2f0ddd0"
 
+<<<<<<< HEAD
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 duplexer@^0.1.1, duplexer@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
@@ -2652,6 +2845,10 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
 extend@^3.0.0, extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
+
+extend@~1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-1.2.1.tgz#a0f5fd6cfc83a5fe49ef698d60ec8a624dd4576c"
 
 extend@~1.2.1:
   version "1.2.1"
@@ -2954,6 +3151,18 @@ fsevents@^1.0.0, fsevents@^1.2.3:
 "fstream@>= 0.1.30 < 1":
   version "0.1.31"
   resolved "https://registry.yarnpkg.com/fstream/-/fstream-0.1.31.tgz#7337f058fbbbbefa8c9f561a28cab0849202c988"
+<<<<<<< HEAD
+=======
+  dependencies:
+    graceful-fs "~3.0.2"
+    inherits "~2.0.0"
+    mkdirp "0.5"
+    rimraf "2"
+
+fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/fstream/-/fstream-1.0.11.tgz#5c1fb1f117477114f0632a0eb4b71b3cb0fd3171"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     graceful-fs "~3.0.2"
     inherits "~2.0.0"
@@ -3114,6 +3323,26 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.6,
 graceful-fs@~3.0.2:
   version "3.0.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-3.0.11.tgz#7613c778a1afea62f25c630a086d7f3acbbdd818"
+<<<<<<< HEAD
+=======
+  dependencies:
+    natives "^1.1.0"
+
+gradle-to-js@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gradle-to-js/-/gradle-to-js-1.1.0.tgz#73546dce0586c020cbb60e114788cf5ada2f037e"
+  dependencies:
+    bluebird "3.3.5"
+    deep-assign "2.0.0"
+
+growly@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
+
+gulp-util@^3.0.4:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     natives "^1.1.0"
 
@@ -3197,6 +3426,25 @@ has-values@^1.0.0:
 hash-base@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/hash-base/-/hash-base-3.0.4.tgz#5fc8686847ecd73499403319a6b0a3f3f6ae4918"
+<<<<<<< HEAD
+=======
+  dependencies:
+    inherits "^2.0.1"
+    safe-buffer "^5.0.1"
+
+hawk@3.1.3, hawk@~3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/hawk/-/hawk-3.1.3.tgz#078444bd7c1640b0fe540d2c9b73d59678e8e1c4"
+  dependencies:
+    boom "2.x.x"
+    cryptiles "2.x.x"
+    hoek "2.x.x"
+    sntp "1.x.x"
+
+hawk@~6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/hawk/-/hawk-6.0.2.tgz#af4d914eb065f9b5ce4d9d11c1cb2126eecc3038"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
@@ -3295,6 +3543,10 @@ immediate@~3.0.5:
 import-lazy@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
+
+immediate@~3.0.5:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -3543,9 +3795,15 @@ is-obj@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
 
+<<<<<<< HEAD
 is-path-inside@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-path-inside/-/is-path-inside-1.0.1.tgz#8ef5b7de50437a3fdca6b4e865ef7aa55cb48036"
+=======
+is-odd@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/is-odd/-/is-odd-2.0.0.tgz#7646624671fd7ea558ccd9a2795182f2958f1b24"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     path-is-inside "^1.0.1"
 
@@ -4068,10 +4326,13 @@ json-edm-parser@0.1.2:
   dependencies:
     jsonparse "~1.2.0"
 
+<<<<<<< HEAD
 json-parse-better-errors@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 json-schema-traverse@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.3.1.tgz#349a6d44c53a51de89b40805c5d5e59b417d3340"
@@ -4119,10 +4380,17 @@ jsonparse@~1.2.0:
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.2.0.tgz#5c0c5685107160e72fe7489bddea0b44c2bc67bd"
 
 jsonwebtoken@^8.1.0:
+<<<<<<< HEAD
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.3.0.tgz#056c90eee9a65ed6e6c72ddb0a1d325109aaf643"
   dependencies:
     jws "^3.1.5"
+=======
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.2.0.tgz#690ec3a9e7e95e2884347ce3e9eb9d389aa598b3"
+  dependencies:
+    jws "^3.1.4"
+>>>>>>> Successfully integrating with appcenter
     lodash.includes "^4.3.0"
     lodash.isboolean "^3.0.3"
     lodash.isinteger "^4.0.4"
@@ -4131,6 +4399,10 @@ jsonwebtoken@^8.1.0:
     lodash.isstring "^4.0.1"
     lodash.once "^4.0.0"
     ms "^2.1.1"
+<<<<<<< HEAD
+=======
+    xtend "^4.0.1"
+>>>>>>> Successfully integrating with appcenter
 
 jsprim@^1.2.2:
   version "1.4.1"
@@ -4151,9 +4423,15 @@ jszip@^3.1.3:
     pako "~1.0.2"
     readable-stream "~2.0.6"
 
+<<<<<<< HEAD
 jwa@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.1.6.tgz#87240e76c9808dbde18783cf2264ef4929ee50e6"
+=======
+jwa@^1.1.4:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.1.5.tgz#a0552ce0220742cd52e153774a32905c30e756e5"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     buffer-equal-constant-time "1.0.1"
     ecdsa-sig-formatter "1.0.10"
@@ -4287,14 +4565,39 @@ lodash.flattendeep@^4.4.0:
 lodash.includes@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.includes/-/lodash.includes-4.3.0.tgz#60bb98a87cb923c68ca1e51325483314849f553f"
+<<<<<<< HEAD
+=======
+
+lodash.isarguments@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz#2f573d85c6a24289ff00663b491c1d338ff3458a"
+>>>>>>> Successfully integrating with appcenter
 
 lodash.isboolean@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz#6c2e171db2a257cd96802fd43b01b20d5f5870f6"
 
+<<<<<<< HEAD
+=======
+lodash.isboolean@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz#6c2e171db2a257cd96802fd43b01b20d5f5870f6"
+
+<<<<<<< HEAD
+>>>>>>> Successfully integrating with appcenter
+=======
+lodash.isfunction@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
+
+>>>>>>> Add settings
 lodash.isinteger@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz#619c0af3d03f8b04c31f5882840b77b11cd68343"
+
+lodash.isnil@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/lodash.isnil/-/lodash.isnil-4.0.0.tgz#49e28cd559013458c814c5479d3c663a21bfaa6c"
 
 lodash.isnumber@^3.0.3:
   version "3.0.3"
@@ -4307,6 +4610,17 @@ lodash.isplainobject@^4.0.6:
 lodash.isstring@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
+<<<<<<< HEAD
+=======
+
+lodash.keys@^3.0.0:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/lodash.keys/-/lodash.keys-3.1.2.tgz#4dbc0472b156be50a0b286855d1bd0b0c656098a"
+  dependencies:
+    lodash._getnative "^3.0.0"
+    lodash.isarguments "^3.0.0"
+    lodash.isarray "^3.0.0"
+>>>>>>> Successfully integrating with appcenter
 
 lodash.once@^4.0.0:
   version "4.1.1"
@@ -4323,6 +4637,10 @@ lodash.padend@^4.1.0:
 lodash.padstart@^4.1.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.padstart/-/lodash.padstart-4.6.1.tgz#d2e3eebff0d9d39ad50f5cbd1b52a7bce6bb611b"
+
+lodash.pick@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
 
 lodash.throttle@^4.1.1:
   version "4.1.1"
@@ -4344,9 +4662,19 @@ lodash@^3.10.1, lodash@^3.5.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
+<<<<<<< HEAD
 lodash@^4.0.0, lodash@^4.10.1, lodash@^4.11.1, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.1, lodash@^4.6.1, lodash@^4.8.0:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+=======
+lodash@^4.0.0, lodash@^4.10.1, lodash@^4.11.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.1, lodash@^4.6.1, lodash@^4.8.0:
+  version "4.17.5"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+
+lodash@~4.11.1:
+  version "4.11.2"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.11.2.tgz#d6b4338b110a58e21dae5cebcfdbbfd2bc4cdb3b"
+>>>>>>> Successfully integrating with appcenter
 
 longest@^1.0.1:
   version "1.0.1"
@@ -4422,10 +4750,13 @@ map-visit@^1.0.0:
     buffers "~0.1.1"
     readable-stream "~1.0.0"
 
+<<<<<<< HEAD
 math-random@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/math-random/-/math-random-1.0.1.tgz#8b3aac588b8a66e4975e3cdea67f7bb329601fac"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 md5.js@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.4.tgz#e9bdbde94a20a5ac18b04340fc5764d5b09d901d"
@@ -4667,7 +4998,11 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
+<<<<<<< HEAD
 "minimatch@2 || 3", minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
+=======
+"minimatch@2 || 3", minimatch@^3.0.0, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
+>>>>>>> Successfully integrating with appcenter
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   dependencies:
@@ -4716,7 +5051,11 @@ mixin-object@^2.0.1:
     for-in "^0.1.3"
     is-extendable "^0.1.1"
 
+<<<<<<< HEAD
 mkdirp@0.5, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
+=======
+mkdirp@0.5, "mkdirp@>=0.5 0", mkdirp@^0.5.1, mkdirp@~0.5.0:
+>>>>>>> Successfully integrating with appcenter
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
@@ -4733,8 +5072,13 @@ mockdate@^2.0.2:
   resolved "https://registry.yarnpkg.com/mockdate/-/mockdate-2.0.2.tgz#5ae0c0eaf8fe23e009cd01f9889b42c4f634af12"
 
 moment@2.x.x, moment@^2.19.3, moment@^2.21.0:
+<<<<<<< HEAD
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
+=======
+  version "2.22.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.0.tgz#7921ade01017dd45186e7fee5f424f0b8663a730"
+>>>>>>> Successfully integrating with appcenter
 
 morgan@^1.9.0:
   version "1.9.0"
@@ -4747,14 +5091,27 @@ morgan@^1.9.0:
     on-headers "~1.0.1"
 
 ms-rest@^2.3.2:
+<<<<<<< HEAD
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/ms-rest/-/ms-rest-2.3.6.tgz#9984fe9328cd07e3172b520db5dff0acb68f1f7a"
   dependencies:
+=======
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/ms-rest/-/ms-rest-2.3.2.tgz#228debf47ce4981c3ef7a82f5d91945ee9b98975"
+  dependencies:
+    "@types/node" "^8.9.4"
+    "@types/request" "^2.47.0"
+    "@types/uuid" "^3.4.3"
+>>>>>>> Successfully integrating with appcenter
     duplexer "^0.1.1"
     is-buffer "^1.1.6"
     is-stream "^1.1.0"
     moment "^2.21.0"
+<<<<<<< HEAD
     request "^2.87.0"
+=======
+    request "^2.83.0"
+>>>>>>> Successfully integrating with appcenter
     through "^2.3.8"
     tunnel "0.0.5"
     uuid "^3.2.1"
@@ -4827,8 +5184,13 @@ native-base@^2.3.10:
     tween-functions "^1.0.1"
 
 natives@^1.1.0:
+<<<<<<< HEAD
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/natives/-/natives-1.1.4.tgz#2f0f224fc9a7dd53407c7667c84cf8dbe773de58"
+=======
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/natives/-/natives-1.1.2.tgz#4437ca1ed8a7f047531ccdfaf2792853df4efa1c"
+>>>>>>> Successfully integrating with appcenter
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -4885,7 +5247,20 @@ node-pre-gyp@^0.10.0:
     rc "^1.2.7"
     rimraf "^2.6.1"
     semver "^5.3.0"
+<<<<<<< HEAD
     tar "^4"
+=======
+    tar "^2.2.1"
+    tar-pack "^3.4.0"
+
+node-uuid@1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.7.tgz#6da5a17668c4b3dd59623bda11cf7fa4c1f60a6f"
+
+node-uuid@^1.4.0:
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.8.tgz#b040eb0923968afabf8d32fb1f17f1167fdab907"
+>>>>>>> Successfully integrating with appcenter
 
 nopt@^4.0.1:
   version "4.0.1"
@@ -4997,8 +5372,13 @@ object.pick@^1.3.0:
     isobject "^3.0.1"
 
 omelette@^0.4.0:
+<<<<<<< HEAD
   version "0.4.11"
   resolved "https://registry.yarnpkg.com/omelette/-/omelette-0.4.11.tgz#75d93e14441d12f3b8c13191052a714ab97d1261"
+=======
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/omelette/-/omelette-0.4.5.tgz#f16bc477b7e263b59796a65661964e4762e9ae74"
+>>>>>>> Successfully integrating with appcenter
 
 on-finished@~2.3.0:
   version "2.3.0"
@@ -5027,8 +5407,13 @@ onetime@^2.0.0:
     mimic-fn "^1.0.0"
 
 opener@^1.4.3:
+<<<<<<< HEAD
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.0.tgz#24222fb4ad423ba21f5bf38855cebe44220f6531"
+=======
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/opener/-/opener-1.4.3.tgz#5c6da2c5d7e5831e8ffa3964950f8d6674ac90b8"
+>>>>>>> Successfully integrating with appcenter
 
 opn@^3.0.2:
   version "3.0.3"
@@ -5105,8 +5490,13 @@ p-finally@^1.0.0:
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
 
 p-limit@^1.0.0, p-limit@^1.1.0, p-limit@^1.2.0:
+<<<<<<< HEAD
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-1.3.0.tgz#b86bd5f0c25690911c7590fcbfc2010d54b3ccb8"
+=======
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-1.2.0.tgz#0e92b6bedcb59f022c13d0f1949dc82d15909f1c"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     p-try "^1.0.0"
 
@@ -5131,6 +5521,7 @@ p-try@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-1.0.0.tgz#cbc79cdbaf8fd4228e13f621f2b1a237c1b207b3"
 
+<<<<<<< HEAD
 package-json@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/package-json/-/package-json-4.0.1.tgz#8869a0401253661c4c4ca3da6c2121ed555f5eed"
@@ -5140,6 +5531,8 @@ package-json@^4.0.0:
     registry-url "^3.0.3"
     semver "^5.1.0"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 pako@~1.0.2:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.6.tgz#0101211baa70c4bca4a0f63f2206e97b7dfaf258"
@@ -5247,12 +5640,15 @@ path-type@^2.0.0:
   dependencies:
     pify "^2.0.0"
 
+<<<<<<< HEAD
 path-type@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-3.0.0.tgz#cef31dc8e0a1a3bb0d105c0cd97cf3bf47f4e36f"
   dependencies:
     pify "^3.0.0"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 pause-stream@0.0.11:
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/pause-stream/-/pause-stream-0.0.11.tgz#fe5a34b0cbce12b5aa6a2b403ee2e73b602f1445"
@@ -5262,6 +5658,10 @@ pause-stream@0.0.11:
 pbxproj-dom@^1.0.11:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/pbxproj-dom/-/pbxproj-dom-1.0.11.tgz#3136c6d6da61c24396f01cafaf9c4124668f4c05"
+
+pegjs@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.9.0.tgz#f6aefa2e3ce56169208e52179dfe41f89141a369"
 
 pegjs@^0.10.0:
   version "0.10.0"
@@ -5301,21 +5701,21 @@ pkg-up@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-plist@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/plist/-/plist-2.0.1.tgz#0a32ca9481b1c364e92e18dc55c876de9d01da8b"
-  dependencies:
-    base64-js "1.1.2"
-    xmlbuilder "8.2.2"
-    xmldom "0.1.x"
-
-plist@^1.2.0:
+plist@1.2.0, plist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/plist/-/plist-1.2.0.tgz#084b5093ddc92506e259f874b8d9b1afb8c79593"
   dependencies:
     base64-js "0.0.8"
     util-deprecate "1.0.2"
     xmlbuilder "4.0.0"
+    xmldom "0.1.x"
+
+plist@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/plist/-/plist-2.0.1.tgz#0a32ca9481b1c364e92e18dc55c876de9d01da8b"
+  dependencies:
+    base64-js "1.1.2"
+    xmlbuilder "8.2.2"
     xmldom "0.1.x"
 
 plist@^2.1.0:
@@ -5436,10 +5836,13 @@ pseudomap@^1.0.1, pseudomap@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
+<<<<<<< HEAD
 psl@^1.1.24:
   version "1.1.29"
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.1.29.tgz#60f580d360170bb722a797cc704411e6da850c67"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 "pullstream@>= 0.4.1 < 1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/pullstream/-/pullstream-0.4.1.tgz#d6fb3bf5aed697e831150eb1002c25a3f8ae1314"
@@ -5453,7 +5856,11 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
+<<<<<<< HEAD
 qs@6.5.1:
+=======
+qs@6.5.1, qs@^6.4.0, qs@~6.5.1:
+>>>>>>> Successfully integrating with appcenter
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
@@ -5547,6 +5954,12 @@ react-devtools-core@3.1.0:
 react-lifecycles-compat@^3.0.2:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-native-admob@^2.0.0-beta.5:
+  version "2.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/react-native-admob/-/react-native-admob-2.0.0-beta.5.tgz#f83fd6144c5dd3e708e937793f41c0c50db86682"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-animatable@^1.2.3, react-native-animatable@^1.3.0:
   version "1.3.0"
@@ -5751,6 +6164,16 @@ react-native-vector-icons@4.6.0:
     lodash "^4.0.0"
     prop-types "^15.5.10"
     yargs "^8.0.2"
+
+react-native-version-check@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-version-check/-/react-native-version-check-3.0.0.tgz#1f48781d5b016af160f823d59b840f2596d3fbbe"
+  dependencies:
+    babel-preset-react-native "^4.0.0"
+    lodash.isfunction "^3.0.9"
+    lodash.isnil "^4.0.0"
+    lodash.pick "^4.4.0"
+    semver "^5.5.0"
 
 react-native-version-number@^0.3.1:
   version "0.3.4"
@@ -5961,6 +6384,18 @@ readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.6, readable
 readable-stream@~1.0.0, readable-stream@~1.0.31:
   version "1.0.34"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-1.0.34.tgz#125820e34bc842d2f2aaafafe4c2916ee32c157c"
+<<<<<<< HEAD
+=======
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
+
+readable-stream@~1.1.9:
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     core-util-is "~1.0.0"
     inherits "~2.0.1"
@@ -6167,9 +6602,46 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
+<<<<<<< HEAD
 request@^2.76.0, request@^2.79.0, request@^2.86.0, request@^2.87.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
+=======
+replace-ext@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-0.0.1.tgz#29bbd92078a739f0bcce2b4ee41e837953522924"
+
+request@2.81.0:
+  version "2.81.0"
+  resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
+  dependencies:
+    aws-sign2 "~0.6.0"
+    aws4 "^1.2.1"
+    caseless "~0.12.0"
+    combined-stream "~1.0.5"
+    extend "~3.0.0"
+    forever-agent "~0.6.1"
+    form-data "~2.1.1"
+    har-validator "~4.2.1"
+    hawk "~3.1.3"
+    http-signature "~1.1.0"
+    is-typedarray "~1.0.0"
+    isstream "~0.1.2"
+    json-stringify-safe "~5.0.1"
+    mime-types "~2.1.7"
+    oauth-sign "~0.8.1"
+    performance-now "^0.2.0"
+    qs "~6.4.0"
+    safe-buffer "^5.0.1"
+    stringstream "~0.0.4"
+    tough-cookie "~2.3.0"
+    tunnel-agent "^0.6.0"
+    uuid "^3.0.0"
+
+request@^2.76.0, request@^2.79.0, request@^2.83.0:
+  version "2.85.0"
+  resolved "https://registry.yarnpkg.com/request/-/request-2.85.0.tgz#5a03615a47c61420b3eb99b7dba204f83603e1fa"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     aws-sign2 "~0.7.0"
     aws4 "^1.8.0"
@@ -6191,6 +6663,33 @@ request@^2.76.0, request@^2.79.0, request@^2.86.0, request@^2.87.0:
     tough-cookie "~2.4.3"
     tunnel-agent "^0.6.0"
     uuid "^3.3.2"
+
+request@~2.83.0:
+  version "2.83.0"
+  resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
+  dependencies:
+    aws-sign2 "~0.7.0"
+    aws4 "^1.6.0"
+    caseless "~0.12.0"
+    combined-stream "~1.0.5"
+    extend "~3.0.1"
+    forever-agent "~0.6.1"
+    form-data "~2.3.1"
+    har-validator "~5.0.3"
+    hawk "~6.0.2"
+    http-signature "~1.2.0"
+    is-typedarray "~1.0.0"
+    isstream "~0.1.2"
+    json-stringify-safe "~5.0.1"
+    mime-types "~2.1.17"
+    oauth-sign "~0.8.2"
+    performance-now "^2.1.0"
+    qs "~6.5.1"
+    safe-buffer "^5.1.1"
+    stringstream "~0.0.5"
+    tough-cookie "~2.3.3"
+    tunnel-agent "^0.6.0"
+    uuid "^3.1.0"
 
 require-directory@^2.1.1:
   version "2.1.1"
@@ -6333,7 +6832,15 @@ sax@0.5.x:
   version "0.5.8"
   resolved "https://registry.yarnpkg.com/sax/-/sax-0.5.8.tgz#d472db228eb331c2506b0e8c15524adb939d12c1"
 
+<<<<<<< HEAD
 sax@>=0.6.0, sax@^1.2.1, sax@^1.2.4:
+=======
+sax@0.5.x:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-0.5.8.tgz#d472db228eb331c2506b0e8c15524adb939d12c1"
+
+sax@>=0.6.0, sax@^1.2.1:
+>>>>>>> Successfully integrating with appcenter
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
@@ -6541,6 +7048,14 @@ sigmund@^1.0.1:
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+simple-plist@0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/simple-plist/-/simple-plist-0.1.4.tgz#10eb51b47e33c556eb8ec46d5ee64d64e717db5d"
+  dependencies:
+    bplist-creator "0.0.4"
+    bplist-parser "0.0.6"
+    plist "1.2.0"
 
 simple-plist@^0.2.1:
   version "0.2.1"
@@ -6787,6 +7302,10 @@ statuses@~1.3.1:
 statuses@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.4.0.tgz#bb73d446da2796106efcc1b601a253d6c46bd087"
+
+stream-buffers@~0.2.3:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/stream-buffers/-/stream-buffers-0.2.6.tgz#181c08d5bb3690045f69401b9ae6a7a0cf3313fc"
 
 stream-buffers@~2.2.0:
   version "2.2.0"
@@ -7238,10 +7757,13 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
+<<<<<<< HEAD
 unzip-response@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 unzip@^0.1.11:
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/unzip/-/unzip-0.1.11.tgz#89749c63b058d7d90d619f86b98aa1535d3b97f0"
@@ -7253,6 +7775,7 @@ unzip@^0.1.11:
     readable-stream "~1.0.31"
     setimmediate ">= 1.0.1 < 2"
 
+<<<<<<< HEAD
 update-notifier@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/update-notifier/-/update-notifier-2.5.0.tgz#d0744593e13f161e406acb1d9408b72cad08aff6"
@@ -7268,6 +7791,8 @@ update-notifier@^2.5.0:
     semver-diff "^2.0.0"
     xdg-basedir "^3.0.0"
 
+=======
+>>>>>>> Successfully integrating with appcenter
 upper-case-first@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/upper-case-first/-/upper-case-first-1.1.2.tgz#5d79bedcff14419518fd2edb0a0507c9b6859115"
@@ -7326,7 +7851,11 @@ uuid@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
+<<<<<<< HEAD
 uuid@3.2.1:
+=======
+uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0, uuid@^3.2.1:
+>>>>>>> Successfully integrating with appcenter
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
 
@@ -7408,8 +7937,13 @@ which-module@^2.0.0:
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
 
 which@^1.2.11, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0:
+<<<<<<< HEAD
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/which/-/which-1.3.1.tgz#a45043d54f5805316da8d62f9f50918d3da70b0a"
+=======
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/which/-/which-1.3.0.tgz#ff04bdfc010ee547d780bec38e1ac1c2777d253a"
+>>>>>>> Successfully integrating with appcenter
   dependencies:
     isexe "^2.0.0"
 
@@ -7507,6 +8041,14 @@ ws@^2.0.3:
     safe-buffer "~5.0.1"
     ultron "~1.1.0"
 
+xcode@^0.8.9:
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/xcode/-/xcode-0.8.9.tgz#ec6765f70e9dccccc9f6e9a5b9b4e7e814b4cf35"
+  dependencies:
+    node-uuid "1.4.7"
+    pegjs "0.9.0"
+    simple-plist "0.1.4"
+
 xcode@^0.9.1:
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/xcode/-/xcode-0.9.3.tgz#910a89c16aee6cc0b42ca805a6d0b4cf87211cf3"
@@ -7558,7 +8100,11 @@ xmlbuilder@8.2.2:
   version "8.2.2"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
 
+<<<<<<< HEAD
 xmlbuilder@^9.0.7, xmlbuilder@~9.0.1:
+=======
+xmlbuilder@~9.0.1:
+>>>>>>> Successfully integrating with appcenter
   version "9.0.7"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
 
@@ -7667,8 +8213,13 @@ yargs@~3.10.0:
     window-size "0.1.0"
 
 yarn@^1.3.2:
+<<<<<<< HEAD
   version "1.9.4"
   resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.9.4.tgz#3b82d8446b652775723900b470d966861976924b"
+=======
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.5.1.tgz#e8680360e832ac89521eb80dad3a7bc27a40bab4"
+>>>>>>> Successfully integrating with appcenter
 
 yazl@^2.4.3:
   version "2.4.3"

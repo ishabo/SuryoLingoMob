@@ -2,7 +2,7 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as sagas from './sagas';
 import * as api from './api';
-
+import { IAction } from 'services/sagas';
 import { ICourse } from 'services/courses';
 export type TSignon = string | 'signup' | 'signin';
 
@@ -21,8 +21,7 @@ export interface ISignonFormData {
   password: string;
 }
 
-export interface IProfileAction {
-  type: string;
+export interface IProfileAction extends IAction {
   profileData?: IFetchedProfileData;
   payload?: IProfileSignonPayload;
   data?: IProfile;
@@ -60,9 +59,4 @@ export interface IFetchedProfileData extends IProfile {
   apiKey?: string;
 }
 
-export {
-  api,
-  sagas,
-  actions,
-  reducers,
-};
+export { api, sagas, actions, reducers };

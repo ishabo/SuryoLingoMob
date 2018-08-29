@@ -1,14 +1,26 @@
 export default {
+  lang: 'clAra',
   skillsList: 'المهارات اللغة {{lang}}',
   loading: 'الرجاء انتظر قليلاً',
   chooseYourWay: 'اختر طريقك',
   general: {
     close: 'أغلق',
+    cancelAndExist: 'اخرج من البرنامج',
+    cancel: 'الغاء',
     retry: {
       title: 'حصل مشكلة في الاتصال!',
       reason: 'فشل البرنامج بالاتصال مع مخدم سوريولينجو. ' + 'الرجاء التأكد من اتصال الجهاز بشكبة الانترنت.',
-      reconnect: 'حاول الاتصال',
-      cancelAndExist: 'اخرج من البرنامج'
+      reconnect: 'حاول الاتصال'
+    }
+  },
+  maintenance: {
+    message: 'السرفر قيد الصيانة ولذلك قد لا يكون متاحاً في بعض أو كل الأوقات. الرجاء الصبر ومعاودة دراستك في وقت لاحق.'
+  },
+  update: {
+    message: 'يوجد نسخة أحدث للتطبيق متاحة على سوق التطبيقات.',
+    actions: {
+      update: 'حدّث',
+      cancel: 'تجاهل وتابع'
     }
   },
   alert: {
@@ -204,7 +216,7 @@ export default {
         nameRequired: 'الاسم مطلوب',
         emailRequired: 'البريد الالكتروني مطلوب',
         passwordRequired: 'كلمة السر مطلوبة',
-        nameInvalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو انكليزية',
+        nameInvalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو سريانية أو انكليزية',
         emailInvalid: 'هذا الإيميل لا يبدو صالحاً',
         passwordInvalid: 'كلمة السر ضعيفة. ' + 'يجب ان تحتوي على الأقل على ٦ أحرف ' + 'a-z ورقم واحد ',
         emailSlreadyExists: 'هذا الإيميل مأخوذ'

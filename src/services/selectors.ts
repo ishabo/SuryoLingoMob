@@ -7,10 +7,11 @@ import * as questions from './questions';
 import * as exceptions from './exceptions';
 import * as assets from './assets';
 import * as leaderboard from './leaderboard';
-
 import { Platform } from 'react-native';
 import { ILessonToSync } from 'services/progress';
 import { hintify } from 'helpers';
+import VersionNumber from 'react-native-version-number';
+import { IDeviceSettings } from 'services/settings';
 
 const allLessons = (skills: skills.ISkill[]) =>
   [].concat.apply([], skills.map((skill: skills.ISkill) => skill.lessons));
@@ -128,4 +129,33 @@ export const getPhrases = (state: IInitialState): questions.IPhrase[] => {
 };
 
 export const isUserInLeaderboard = (state: IInitialState): boolean =>
-  !!state.leaderboard.users.find((user: leaderboard.ILeaderboardUser) => user.id === state.profile.id);
+  state.leaderboard.topUsers &&
+  !!state.leaderboard.topUsers.find((user: leaderboard.ILeaderboardUser) => user.id === state.profile.id);
+
+export const isOnMaintenance = (state: IInitialState): boolean =>
+  !!(state.settings.maintenance && state.settings.maintenance.switchedOn);
+
+export const getDeviceSpecificSettings = (state: IInitialState): IDeviceSettings => state.settings[Platform.OS];
+
+export const shouldUpdateApp = (state: IInitialState): boolean => {
+  const device = getDeviceSpecificSettings(state);
+  if (device) {
+    const currentVersion = VersionNumber.appVersion;
+    return currentVersion < device.version && device.update.since <= currentVersion;
+  }
+
+  return false;
+};
+
+export const canProceedToStudy = (state: IInitialState): boolean => {
+  if (state.settings.maintenance && state.settings.maintenance.switchedOn === true) {
+    return false;
+  }
+  const device = getDeviceSpecificSettings(state);
+
+  if (shouldUpdateApp(state) && device && device.update && device.update.force) {
+    return false;
+  }
+
+  return true;
+};

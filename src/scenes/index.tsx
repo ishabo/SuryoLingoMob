@@ -12,7 +12,7 @@ import config from 'config/';
 import { Alert } from 'components';
 import { getFont } from 'assets/fonts';
 
-setApiOrigin(config.apiHost());
+setApiOrigin(config.apiHost);
 setCustomText({
   style: {
     fontFamily: getFont('cl-ara', 'regular')

@@ -6,22 +6,36 @@ import I18n from 'I18n';
 import * as profile from 'services/profile';
 import * as leaderboard from 'services/leaderboard';
 import { isUserInLeaderboard } from 'services/selectors';
-import Images from 'assets/images';
 
 import { NavigationScreenProp } from 'react-navigation';
-import { GSContainer, GSTopUsers, GSTopUser, GSUserDetails, GSUserName, GSUserXP, GSUserBadge } from './index.styles';
+import {
+  GSContainer,
+  GSTopUsers,
+  GSCurrentUserPosition,
+  GSTopUser,
+  GSUserDetails,
+  GSUserName,
+  GSUserXP,
+  GSUserBadge,
+  GSGap,
+  GSRank
+} from './index.styles';
 
 import { GSDrawerLabel } from 'scenes/Drawer';
 import { Dispatch } from 'redux';
-import { getWindowWidth } from 'helpers';
+import { getWindowWidth, getRankBadge } from 'helpers';
+import { GSCustomText } from 'styles/text';
+import { Text } from 'react-native-animatable';
 
 export interface IProps {
   profile: profile.IProfile;
   signout: () => void;
   isUserInLeaderboard: boolean;
   navigation: NavigationScreenProp<any, any>;
-  users: leaderboard.ILeaderboardUser[];
+  topUsers: leaderboard.ILeaderboardUser[];
   fetchLeaderboard: () => void;
+  currentUserPosition: number;
+  currentUserCourseXpRatio: number;
 }
 
 class Leaderboard extends React.Component<IProps> {
@@ -36,32 +50,33 @@ class Leaderboard extends React.Component<IProps> {
     this.props.fetchLeaderboard();
   }
 
-  returnBadge = (rank: number) => {
-    switch (rank) {
-      case 0:
-        return Images.badges.first;
-      case 1:
-        return Images.badges.second;
-      case 2:
-        return Images.badges.third;
-      default:
-        return Images.logo.splash;
-    }
-  };
+  renderUser = (user: leaderboard.ILeaderboardUser, rank: number) => (
+    <GSTopUser key={user.id} highlight={user.id === this.props.profile.id}>
+      <GSRank>
+        <Text animation="pulse" easing="ease-out" iterationCount={1}>
+          {rank}
+        </Text>
+      </GSRank>
+      <GSUserDetails align="right">
+        <GSUserName>{user.name}</GSUserName>
+      </GSUserDetails>
+      <GSUserDetails align="center">
+        <GSUserXP>{user.userXp}</GSUserXP>
+      </GSUserDetails>
+      <GSUserDetails align="left">
+        <GSUserBadge source={getRankBadge(user.ratio)} />
+      </GSUserDetails>
+    </GSTopUser>
+  );
 
-  renderLeaderboard() {
-    return this.props.users.map((user: leaderboard.ILeaderboardUser, index: number) => (
-      <GSTopUser key={user.id}>
-        <GSUserDetails>
-          <GSUserName>{user.name}</GSUserName>
-        </GSUserDetails>
-        <GSUserDetails>
-          <GSUserXP>{user.userXp}</GSUserXP>
-        </GSUserDetails>
-        <GSUserBadge source={this.returnBadge(index)} />
-      </GSTopUser>
-    ));
-  }
+  renderLeaderboard = () => this.props.topUsers.map((user, index) => this.renderUser(user, index + 1));
+
+  renderUserPosition = () => {
+    const { profile } = this.props;
+    const { id, name, userXp } = profile;
+    const ratio = this.props.currentUserCourseXpRatio;
+    return this.renderUser({ id, name, userXp, ratio }, this.props.currentUserPosition);
+  };
 
   render() {
     return (
@@ -73,6 +88,14 @@ class Leaderboard extends React.Component<IProps> {
           }}
         >
           {this.renderLeaderboard()}
+          {this.props.isUserInLeaderboard || (
+            <GSCurrentUserPosition>
+              <GSGap>
+                <GSCustomText style={{ alignSelf: 'center', fontSize: 30 }}>...</GSCustomText>
+              </GSGap>
+              {this.renderUserPosition()}
+            </GSCurrentUserPosition>
+          )}
         </GSTopUsers>
       </GSContainer>
     );
@@ -85,7 +108,9 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   isUserInLeaderboard: isUserInLeaderboard(state),
-  users: state.leaderboard.users,
+  topUsers: state.leaderboard.topUsers,
+  currentUserPosition: state.leaderboard.currentUserPosition,
+  currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio,
   profile: state.profile
 });
 

@@ -3,14 +3,14 @@ import * as api from './api';
 import * as actions from './actions';
 import * as sagas from './sagas';
 import { Moment } from 'moment';
+import { IAction } from 'services/sagas';
 
 export interface ILessonDoneParams {
   lessonId: string;
   lessonXP: number;
 }
 
-export interface IProgressAction {
-  type: string;
+export interface IProgressAction extends IAction {
   skillId?: string;
   lessonId?: string;
   userXp?: number;
@@ -30,9 +30,4 @@ export interface IProgress {
   lessonsToSync: ILessonToSync[];
 }
 
-export {
-  api,
-  actions,
-  reducers,
-  sagas,
-};
+export { api, actions, reducers, sagas };

@@ -2,6 +2,7 @@ import { ICustomText, GSCustomStudyText } from 'styles/text';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { StyleProp, TextStyle } from 'react-native';
+import { scaleSize } from 'helpers';
 
 export const GSHints = glamor.view({
   flex: 1,
@@ -23,7 +24,7 @@ export const GSHintBlock = glamor.view<{ last: boolean }>(
   props =>
     !props.last
       ? {
-          borderBottomColor: Colors.darkWhite
+          borderBottomColor: Colors.lightGray
         }
       : null
 );
@@ -59,7 +60,7 @@ export const GSSentence = glamor(GSCustomStudyText)<IGSSentence>(
     style = props.hasTooltip
       ? ({
           color: Colors.darkBlue,
-          // fontSize: props.lang === 'cl-ara' ? scaleSize(24, 20) : scaleSize(18, 14),
+          fontSize: props.lang === 'cl-ara' ? scaleSize(24, 20) : scaleSize(20, 14),
           ...style
         } as any)
       : style;

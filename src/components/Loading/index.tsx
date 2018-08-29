@@ -17,7 +17,7 @@ const GSLoading = glamor.view({
 export default (props: IProps) => (
   <Modal isVisible={props.loading}>
     <GSLoading>
-      <ActivityIndicator size="large" color={Colors.darkWhite} />
+      <ActivityIndicator size="large" color={Colors.lightGray} />
     </GSLoading>
   </Modal>
 );

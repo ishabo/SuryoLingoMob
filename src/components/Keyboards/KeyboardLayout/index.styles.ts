@@ -1,6 +1,5 @@
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { TouchableOpacity, View } from 'react-native';
 import { Icon } from 'native-base';
 import { GSCustomText, ICustomText } from 'styles/text';
 import { isNarrowDevice } from 'helpers';
@@ -30,7 +29,7 @@ export const GSIcon = glamor(Icon)({
   transform: [{ rotate: '180deg' }]
 });
 
-export const GSContent = glamor(View as any, { displayName: 'GSContent' })<{ spread?: boolean }>(
+export const GSContent = glamor.view<{ spread?: boolean }>(
   {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -42,7 +41,7 @@ export const GSContent = glamor(View as any, { displayName: 'GSContent' })<{ spr
   })
 );
 
-export const GSButton = glamor(TouchableOpacity as any)<{ onPress: () => void }>({
+export const GSButton = glamor.touchableOpacity<{ onPress: () => void }>({
   width: 78,
   height: isNarrowDevice() ? 28 : 32,
   margin: 1,
@@ -52,8 +51,8 @@ export const GSButton = glamor(TouchableOpacity as any)<{ onPress: () => void }>
   alignSelf: 'center',
   justifyContent: 'center',
   shadowColor: '#000',
-  shadowOffset: { width: 2, height: 2 },
-  shadowOpacity: 0.8,
+  shadowOffset: { width: -2, height: 3 },
+  shadowOpacity: 0.6,
   shadowRadius: 2,
   elevation: 2
 });

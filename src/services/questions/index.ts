@@ -4,6 +4,7 @@ import * as selectors from './selectors';
 import * as sagas from './sagas';
 import * as api from './api';
 import { IWordHint } from 'services/dictionaries';
+import { IAction } from 'services/sagas';
 
 export type TQuestionType =
   | string
@@ -41,8 +42,7 @@ export interface IQuestion {
   incorrectChoices?: string[];
 }
 
-export interface IQuestionsAction {
-  type: string;
+export interface IQuestionsAction extends IAction {
   questionId?: string;
   lessonId?: string;
   skillId?: string;

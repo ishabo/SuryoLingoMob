@@ -1,6 +1,6 @@
 import { create } from 'services/api';
 
-export const getLeaderboard = () => {
+export const getLeaderboard = (courseId: string) => {
   const api = create();
-  return api.get('/leaderboards');
+  return api.get(`/leaderboards?course=${courseId}&limit=10`);
 };

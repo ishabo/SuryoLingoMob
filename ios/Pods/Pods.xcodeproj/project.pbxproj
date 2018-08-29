@@ -19,24 +19,26 @@
 
 /* Begin PBXFileReference section */
 		05E0686ED18ED7069C737C5991A333DD /* Pods-SuryoLingo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SuryoLingo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		11C7A5841B5EBE9B487F6F3FC3C6DCF9 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "AppCenter-SDK-Apple/iOS/AppCenter.framework"; sourceTree = "<group>"; };
 		140B1589908A849FA0695173D7C1DF02 /* Pods-SuryoLingoTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuryoLingoTests-frameworks.sh"; sourceTree = "<group>"; };
 		278716EE22EB11EF6E1EF8A1E767C073 /* Pods-SuryoLingo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuryoLingo-resources.sh"; sourceTree = "<group>"; };
-		28B984AF8E1E23B3F2BEFBBE6B51887F /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
+		294D3C4AD5A021FA6F49A6993E78EFE8 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		355B6CA5ED6CEB92553A521F87D6666D /* Pods-SuryoLingoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuryoLingoTests.release.xcconfig"; sourceTree = "<group>"; };
+		35797BDC6DC99DC9DAB0833561D25FFA /* AppCenterPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterPush.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterPush.framework"; sourceTree = "<group>"; };
 		366129D00E6D920117541E109DB68F53 /* Pods-SuryoLingo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuryoLingo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		39698F2B365F00C8F8DF7F6327752DCE /* Pods-SuryoLingo-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SuryoLingo-tvOS-dummy.m"; sourceTree = "<group>"; };
 		3A0BB104053326EC04720DF2FE7C8492 /* Pods-SuryoLingo-tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SuryoLingo-tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3A75CB0C256DB4C1E45E60A50BDFA573 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
 		400F9F48AC07E1917366DE69BB28D56C /* Pods-SuryoLingo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SuryoLingo-acknowledgements.plist"; sourceTree = "<group>"; };
+		45A4C2FDBFAB19A39B9E17687D7ABEC8 /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
 		46B44338EDC56615E546C87D9C7A5F12 /* libPods-SuryoLingo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SuryoLingo-tvOSTests.a"; path = "libPods-SuryoLingo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A6087A274D202D55B644D5C98FF3FD /* Pods-SuryoLingo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuryoLingo.release.xcconfig"; sourceTree = "<group>"; };
 		4DA4493DAF833C4BF8DA3BDDBA7F4C80 /* Pods-SuryoLingo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SuryoLingo-dummy.m"; sourceTree = "<group>"; };
-		6357DA0B19F11F13970F405405A8BB5F /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		6B329F7206A526C4192DD32A89088B0D /* Pods-SuryoLingo-tvOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuryoLingo-tvOS-frameworks.sh"; sourceTree = "<group>"; };
 		6D17C5AAE89E09C83F7BE9BDCDF935EC /* Pods-SuryoLingo-tvOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuryoLingo-tvOS-resources.sh"; sourceTree = "<group>"; };
 		716CD859F2C9C14F948578E6BBB59F75 /* Pods-SuryoLingo-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuryoLingo-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		71AFFC4E41EBEEF85BDD6C7AE1F028F1 /* Pods-SuryoLingo-tvOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SuryoLingo-tvOSTests-dummy.m"; sourceTree = "<group>"; };
-		78F8D2756754958D9628B306E4CFFB41 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
 		793A7D14861EDCB5434103A456CF7E4D /* Pods-SuryoLingo-tvOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SuryoLingo-tvOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		7C44781950B54C0FC0C1F729FA3746DA /* Pods-SuryoLingo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuryoLingo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		7E309D71F6435A45DFD186AC944A0FC8 /* libPods-SuryoLingoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SuryoLingoTests.a"; path = "libPods-SuryoLingoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,12 +52,11 @@
 		C9FF9DF243B6CAC950A63BB1B34C7F0A /* libPods-SuryoLingo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SuryoLingo-tvOS.a"; path = "libPods-SuryoLingo-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF69DE070FF603BB9FE6034638DBA37 /* Pods-SuryoLingoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SuryoLingoTests-dummy.m"; sourceTree = "<group>"; };
 		D9E2BAE6C992A4140044FD4D2762A666 /* Pods-SuryoLingo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuryoLingo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		E1A0B4F50EB4E4EF749670AE4D4844EA /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "AppCenter-SDK-Apple/iOS/AppCenter.framework"; sourceTree = "<group>"; };
 		E885E2A49B552CC5E54B324C109ABF6D /* Pods-SuryoLingoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SuryoLingoTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		EA05D3205DA241E5F02C826809EDC0E0 /* AppCenterPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterPush.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterPush.framework"; sourceTree = "<group>"; };
 		EA1ED26AAED9AA97C1CBAF6046C2A687 /* Pods-SuryoLingo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuryoLingo.debug.xcconfig"; sourceTree = "<group>"; };
 		EEEE8575FCFEE5BD7C23081BAA9692AD /* Pods-SuryoLingo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuryoLingo-frameworks.sh"; sourceTree = "<group>"; };
 		F338765F24641649217858F8C0158A7A /* Pods-SuryoLingo-tvOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuryoLingo-tvOSTests-frameworks.sh"; sourceTree = "<group>"; };
+		FD59856D989427CEF7676F01B4BED7ED /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
 		FDF1F5B504D6498A49AA219D8D777802 /* Pods-SuryoLingo-tvOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuryoLingo-tvOSTests-resources.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A21ADAEEAC3B0870C4299DDF184D68C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				294D3C4AD5A021FA6F49A6993E78EFE8 /* GoogleMobileAds.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		176E711A4DCA4BAA3917BE9FAD7BAB33 /* Pods-SuryoLingo */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,15 +134,6 @@
 			path = "Target Support Files/Pods-SuryoLingo-tvOS";
 			sourceTree = "<group>";
 		};
-		1CEC81492C87AE86F3B5DA3898FA4064 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3F43F514DA7EAA0C7B1DDA4EA2318F18 /* AppCenter */,
-				B3B37DB3C2AB3F4C1C7075DD994C95F5 /* AppCenterReactNativeShared */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		22E2B4E090449DF0362375FC491FCACD /* Pods-SuryoLingo-tvOSTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,40 +149,38 @@
 			path = "Target Support Files/Pods-SuryoLingo-tvOSTests";
 			sourceTree = "<group>";
 		};
-		2873DC716EFD401E9AA75751A9030597 /* Frameworks */ = {
+		28BF2006AADADA045F0F3434DA55F583 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				28B984AF8E1E23B3F2BEFBBE6B51887F /* AppCenterAnalytics.framework */,
+				FD59856D989427CEF7676F01B4BED7ED /* AppCenterAnalytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3F43F514DA7EAA0C7B1DDA4EA2318F18 /* AppCenter */ = {
+		2BC2071C6C37522A072233F01E0C0E02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9C020A2A5E06D8F470DD148664CC6876 /* Analytics */,
-				474AC2EAB054918F21B6B70B3FD98E7D /* Core */,
-				7335AEC09AABC1369D3DE8B273D7FEAA /* Crashes */,
-				E3CB28B022B6D8808384250825E7C3F9 /* Push */,
+				45A4C2FDBFAB19A39B9E17687D7ABEC8 /* AppCenterReactNativeShared.framework */,
 			);
-			name = AppCenter;
-			path = AppCenter;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		474AC2EAB054918F21B6B70B3FD98E7D /* Core */ = {
+		3AFFAC7B559178328EFA029F677A89F2 /* Google-Mobile-Ads-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				8A2CDFBDDBA8FED75AA43254B3D5072E /* Frameworks */,
+				0A21ADAEEAC3B0870C4299DDF184D68C /* Frameworks */,
 			);
-			name = Core;
+			name = "Google-Mobile-Ads-SDK";
+			path = "Google-Mobile-Ads-SDK";
 			sourceTree = "<group>";
 		};
-		7335AEC09AABC1369D3DE8B273D7FEAA /* Crashes */ = {
+		69990FD850FE59ACD40E32BAC3C8B7DB /* AppCenterReactNativeShared */ = {
 			isa = PBXGroup;
 			children = (
-				D87E7075F6BF3A23A60DAB5A2A93FFDF /* Frameworks */,
+				2BC2071C6C37522A072233F01E0C0E02 /* Frameworks */,
 			);
-			name = Crashes;
+			name = AppCenterReactNativeShared;
+			path = AppCenterReactNativeShared;
 			sourceTree = "<group>";
 		};
 		7C76191189386FD902E6976B465B7B95 /* Products */ = {
@@ -201,35 +199,54 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				1CEC81492C87AE86F3B5DA3898FA4064 /* Pods */,
+				C14FE08FF523A1B45D3EABECEC8A0369 /* Pods */,
 				7C76191189386FD902E6976B465B7B95 /* Products */,
 				F77D7846427806B7E80AC2D8F8745585 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		8A2CDFBDDBA8FED75AA43254B3D5072E /* Frameworks */ = {
+		9412EE9B24164F137CC434A64928B571 /* Crashes */ = {
 			isa = PBXGroup;
 			children = (
-				E1A0B4F50EB4E4EF749670AE4D4844EA /* AppCenter.framework */,
+				D13F08268F40ACE69A8CB163CF37AC7C /* Frameworks */,
+			);
+			name = Crashes;
+			sourceTree = "<group>";
+		};
+		967270ECEDC36114C750F399530850DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11C7A5841B5EBE9B487F6F3FC3C6DCF9 /* AppCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9C020A2A5E06D8F470DD148664CC6876 /* Analytics */ = {
+		9E6B6C431FAF510608271D0ABCD35178 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				2873DC716EFD401E9AA75751A9030597 /* Frameworks */,
+				967270ECEDC36114C750F399530850DB /* Frameworks */,
 			);
-			name = Analytics;
+			name = Core;
 			sourceTree = "<group>";
 		};
-		B3B37DB3C2AB3F4C1C7075DD994C95F5 /* AppCenterReactNativeShared */ = {
+		A419E8CBC77A07159BD683FBA534EE44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C0409D3F50AA40A51EE0FF9BD95D9139 /* Frameworks */,
+				35797BDC6DC99DC9DAB0833561D25FFA /* AppCenterPush.framework */,
 			);
-			name = AppCenterReactNativeShared;
-			path = AppCenterReactNativeShared;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5163F503F5A407DE4FCCBADD899F783 /* AppCenter */ = {
+			isa = PBXGroup;
+			children = (
+				EF2FBD389BF77FE70BF13795BB64E5AE /* Analytics */,
+				9E6B6C431FAF510608271D0ABCD35178 /* Core */,
+				9412EE9B24164F137CC434A64928B571 /* Crashes */,
+				E6114256158B2C67EBA005D115FEB9B9 /* Push */,
+			);
+			name = AppCenter;
+			path = AppCenter;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -240,10 +257,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C0409D3F50AA40A51EE0FF9BD95D9139 /* Frameworks */ = {
+		C14FE08FF523A1B45D3EABECEC8A0369 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6357DA0B19F11F13970F405405A8BB5F /* AppCenterReactNativeShared.framework */,
+				B5163F503F5A407DE4FCCBADD899F783 /* AppCenter */,
+				69990FD850FE59ACD40E32BAC3C8B7DB /* AppCenterReactNativeShared */,
+				3AFFAC7B559178328EFA029F677A89F2 /* Google-Mobile-Ads-SDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D13F08268F40ACE69A8CB163CF37AC7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A75CB0C256DB4C1E45E60A50BDFA573 /* AppCenterCrashes.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,14 +281,6 @@
 				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		D6FFA9EF6598188A2EB042646962F9A5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EA05D3205DA241E5F02C826809EDC0E0 /* AppCenterPush.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D7DBA172F64A97B74046920F4338C96B /* Pods-SuryoLingoTests */ = {
@@ -279,20 +298,20 @@
 			path = "Target Support Files/Pods-SuryoLingoTests";
 			sourceTree = "<group>";
 		};
-		D87E7075F6BF3A23A60DAB5A2A93FFDF /* Frameworks */ = {
+		E6114256158B2C67EBA005D115FEB9B9 /* Push */ = {
 			isa = PBXGroup;
 			children = (
-				78F8D2756754958D9628B306E4CFFB41 /* AppCenterCrashes.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E3CB28B022B6D8808384250825E7C3F9 /* Push */ = {
-			isa = PBXGroup;
-			children = (
-				D6FFA9EF6598188A2EB042646962F9A5 /* Frameworks */,
+				A419E8CBC77A07159BD683FBA534EE44 /* Frameworks */,
 			);
 			name = Push;
+			sourceTree = "<group>";
+		};
+		EF2FBD389BF77FE70BF13795BB64E5AE /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				28BF2006AADADA045F0F3434DA55F583 /* Frameworks */,
+			);
+			name = Analytics;
 			sourceTree = "<group>";
 		};
 		F77D7846427806B7E80AC2D8F8745585 /* Targets Support Files */ = {

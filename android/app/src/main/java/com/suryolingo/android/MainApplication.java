@@ -2,6 +2,7 @@ package com.suryolingo.android;
 
 import android.app.Application;
 import com.facebook.react.ReactApplication;
+import io.xogus.reactnative.versioncheck.RNVersionCheckPackage;
 import com.microsoft.appcenter.reactnative.push.AppCenterReactNativePushPackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
@@ -23,6 +24,7 @@ import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.wix.reactnativekeyboardinput.KeyboardInputPackage;
+import com.sbugert.rnadmob.RNAdMobPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +39,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNVersionCheckPackage(),
           new AppCenterReactNativePushPackage(MainApplication.this),
           new AppCenterReactNativeCrashesPackage(MainApplication.this,
               getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
@@ -46,7 +48,8 @@ public class MainApplication extends Application implements ReactApplication {
           new AppCenterReactNativePackage(MainApplication.this), new RNFetchBlobPackage(), new RNVersionNumberPackage(),
           new RNSoundPackage(), new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(),
           new LinearGradientPackage(), new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(),
-          new RNDeviceInfo(), new RNAudioPlayer(), new KeyboardInputPackage(this.getApplication()));
+          new RNAdMobPackage(), new RNDeviceInfo(), new RNAudioPlayer(),
+          new KeyboardInputPackage(this.getApplication()));
     }
 
     @Override
