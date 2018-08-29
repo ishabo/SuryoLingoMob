@@ -75,11 +75,8 @@
 		<string>Al-Jazeera-Arabic-Regular.ttf</string>
 		<string>Serto Urhoy.ttf</string>
 		<string>HelveticaNeue.ttf</string>
-	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-		<string>fetch</string>
+		<string>Feather.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
