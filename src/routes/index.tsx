@@ -23,7 +23,7 @@ const SignonStack = StackNavigator({
 
 const DrawerNav = DrawerNavigator(
   {
-    Courses: { screen: Courses, navigationOptions: { visible: true } },
+    Courses: { screen: Courses },
     Course: { screen: Skills },
     Profile: { screen: Profile },
     Leaderboard: { screen: Leaderboard }
@@ -38,7 +38,7 @@ const DrawerNav = DrawerNavigator(
 export const AppNavigator = StackNavigator(
   {
     Splash: { screen: Splash },
-    Courses: { screen: Courses, navigationOptions: { visible: true } },
+    Courses: { screen: Courses },
     Skills: { screen: DrawerNav },
     Signon: { screen: SignonStack },
     Lessons: { screen: Lessons },
