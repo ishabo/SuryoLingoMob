@@ -7,6 +7,7 @@ import { IInitialState } from 'services/reducers';
 import { IQuestion, IPhrase } from 'services/questions';
 import { getPhrases } from 'services/selectors';
 import { StudyPhrase } from 'components';
+import shortid from 'shortid';
 
 interface IProps {
   phrases: IPhrase[];
@@ -32,7 +33,7 @@ const LessonOverview = ({ phrases, isAdmin }: IProps) => (
   <GSContainer>
     <ScrollView style={{ flexDirection: 'column' }}>
       {phrases.map((phrase: IPhrase) => (
-        <GSOverview>
+        <GSOverview key={shortid.generate()}>
           <GSPhrase>
             <StudyPhrase
               isAdmin={isAdmin}

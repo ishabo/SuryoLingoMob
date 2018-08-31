@@ -2,11 +2,11 @@ import Sound from 'react-native-sound';
 import parseUrl from 'url-parse';
 import RNFS from 'react-native-fs';
 import { Platform } from 'react-native';
+// import SoundPlayer from 'react-native-sound-player';
 
 let audio;
-let currentlyPlaying: string;
 
-type TSoundLocations = 'CACHES' | 'TEMPERORY' | 'MAIN_BUNDLE' | '';
+type TSoundLocations = 'CACHES' | 'TEMPERORY' | 'MAIN_BUNDLE' | 'DOCUMENT' | '';
 
 const RNFSDir = (location: TSoundLocations) => {
   switch (location) {
@@ -16,25 +16,28 @@ const RNFSDir = (location: TSoundLocations) => {
       return RNFS.CachesDirectoryPath;
     case 'MAIN_BUNDLE':
       return RNFS.MainBundlePath;
+    case 'DOCUMENT':
+      return RNFS.DocumentDirectoryPath;
     default:
       return '';
   }
 };
 
-const defaultLocation = Platform.OS === 'android' ? 'CACHES' : 'MAIN_BUNDLE';
+const defaultLocation = Platform.OS === 'android' ? 'CACHES' : 'CACHES';
 
-export const downloadFile = async (soundTrack, location: TSoundLocations = defaultLocation) => {
+export const downloadFile = async (soundTrack, downloadDest: TSoundLocations = defaultLocation) => {
   let filename: string;
   const url = parseUrl(soundTrack);
-
   filename = url.pathname.split('/').pop();
-  const localSoundTrackPath = `${RNFSDir(location)}/${filename}`.replace(/\/\//, '/');
+  const localSoundTrackPath = `${RNFSDir(downloadDest)}/${filename}`.replace(/\/\//, '/');
   const fileExists = await RNFS.exists(localSoundTrackPath);
-  console.log(`Looking for file ${localSoundTrackPath}`);
 
   if (!fileExists) {
     try {
-      await RNFS.downloadFile({ fromUrl: soundTrack, toFile: localSoundTrackPath });
+      await RNFS.downloadFile({
+        fromUrl: soundTrack,
+        toFile: localSoundTrackPath
+      });
       console.log('Downloaded file at ' + localSoundTrackPath);
     } catch (error) {
       console.warn('Could not download file', error);
@@ -43,45 +46,44 @@ export const downloadFile = async (soundTrack, location: TSoundLocations = defau
     console.log(`Found file ${localSoundTrackPath}`);
   }
 
-  return filename;
+  return localSoundTrackPath;
 };
 
 export const downloadAndPlayAudio = async (soundTrack, location: TSoundLocations = defaultLocation) => {
-  const filename = await downloadFile(soundTrack, location);
-  playAudio(filename, location);
+  const localSoundTrackPath = await downloadFile(soundTrack, location);
+  playAudio(localSoundTrackPath);
 };
 
-export const playAudio = (soundTrack, location: TSoundLocations = defaultLocation) => {
-  const soundPath = RNFSDir(location);
-
-  const errorCallback = error => {
-    console.log('Attempting to play sound track', soundTrack);
-
+export const playAudio = (fullSoundPath: string) => {
+  // const soundPath = RNFSDir(location).replace(/\/$/, '');
+  // const fullSoundPath = soundPath + '/' + soundTrack;
+  audio = new Sound(fullSoundPath, '', error => {
     if (error) {
-      console.warn('Failed to load the sound', soundPath + '/' + soundTrack);
-      console.warn(error);
+      console.warn('Failed to load the sound', error);
+    } else {
+      stopAndPlayAudio();
     }
-  };
-
-  try {
-    audio = new Sound(soundTrack, soundPath, errorCallback);
-    currentlyPlaying = soundTrack;
-
-    setTimeout(stopAndPlayAudio, 200);
-  } catch (error) {
-    console.warn(error);
-  }
+  });
 };
 
 const stopAndPlayAudio = () => {
   if (typeof audio === 'object') {
     audio.stop(() => {
-      audio.play(() => {
+      Sound.setCategory('Playback', false);
+
+      audio.play(success => {
+        if (success) {
+          console.log('successfully finished playing');
+        } else {
+          console.warn('playback failed due to audio decoding errors');
+          // reset the player to its uninitialized state (android only)
+          // this is the only option to recover after an error occured and use the player again
+          audio.reset();
+        }
         audio.release();
-        console.log(`Played sound track ${currentlyPlaying}`, JSON.stringify(audio));
       });
     });
   } else {
-    console.warn('What? Audio is not an object?', currentlyPlaying);
+    console.warn('What? Audio is not an object?');
   }
 };

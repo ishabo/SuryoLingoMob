@@ -11,10 +11,10 @@ export const GSProgress = glamor.view({
 
 export const GSIcon = glamor(Icon)({
   position: 'absolute',
-  top: Platform.OS === 'android' ? 0 : 10,
-  left: Platform.OS === 'android' ? 10 : 15,
-  fontSize: 40,
-  color: 'gray'
+  top: Platform.select({ android: 0, ios: 5 }),
+  left: Platform.select({ android: 10, ios: 15 }),
+  fontSize: Platform.select({ android: 40, ios: 50 }),
+  alignSelf: 'center'
 });
 
 export const GSFooterAndBody = glamor.view({

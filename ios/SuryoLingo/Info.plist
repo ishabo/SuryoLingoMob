@@ -44,15 +44,19 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>NSAllowsLocalNetworking</key>
+			<true/>
 			<key>suryolingo.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
