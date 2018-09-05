@@ -271,7 +271,11 @@ class Questions extends React.Component<IProps, IState> {
     return (
       <GSFooterAndBody>
         <GSBody>{this.renderQuestionBody()}</GSBody>
-        <GSFooter behavior={Platform.OS === 'ios' ? 'padding' : 'height'} enabled>
+        <GSFooter
+          behavior={Platform.select({ android: 'height', ios: 'padding' })}
+          keyboardVerticalOffset={Platform.select({ android: 0, ios: 75 })}
+          enabled
+        >
           {(this.state.keyboardIsOn && isNarrowDevice() && <View />) || this.renderNextQuestion()}
         </GSFooter>
       </GSFooterAndBody>

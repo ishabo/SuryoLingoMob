@@ -7,8 +7,10 @@ import { alertToUpdateApp, alertMaintenance } from 'helpers';
 import { shouldUpdateApp, getDeviceSpecificSettings, isOnMaintenance } from 'services/selectors';
 
 export function* fetchSettings(): IterableIterator<any> {
-  const response: settings.IAppSettings = yield call(getSettings);
-  yield put(settings.actions.saveSettings(response));
+  try {
+    const response: settings.IAppSettings = yield call(getSettings);
+    yield put(settings.actions.saveSettings(response));
+  } catch (error) {}
 }
 
 export function* checkStatuses(): IterableIterator<any> {

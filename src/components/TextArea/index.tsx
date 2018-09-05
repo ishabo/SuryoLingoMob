@@ -182,6 +182,7 @@ class TextArea extends React.Component<IProps, IState> {
               placeholder={this.props.placeholder}
               placeholderTextColor={Colors.gray}
               multiline
+              autoCorrect={false}
               onTouchStart={this.setNativeKeyboard}
               blurOnSubmit={false}
               onSubmitEditing={this.props.onSubmit}

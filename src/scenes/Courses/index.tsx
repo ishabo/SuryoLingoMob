@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, Alert, Animated } from 'react-native';
+import { ScrollView, Alert, Animated, SafeAreaView } from 'react-native';
 import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
 import { switchCourse } from 'services/courses/actions';
@@ -29,6 +29,7 @@ class Courses extends React.Component<IProps> {
 
   static navigationOptions = {
     title: I18n.t('courses.title'),
+    header: null,
     drawerLabel: <GSDrawerLabel>{I18n.t('courses.title')}</GSDrawerLabel>
   };
 
@@ -69,24 +70,26 @@ class Courses extends React.Component<IProps> {
   render() {
     return (
       <GSContainer>
-        <GSTitle>{I18n.t('courses.title')}</GSTitle>
-        <ScrollView
-          contentContainerStyle={{
-            flex: 1,
-            alignSelf: 'stretch',
-            alignContent: 'center'
-          }}
-        >
-          <ImageCacheProvider
-            urlsToPreload={Object.values(this.props.courseImages)}
-            onPreloadComplete={() => console.log(JSON.stringify(this.props.courseImages))}
+        <SafeAreaView style={{ flex: 1 }}>
+          <GSTitle>{I18n.t('courses.title')}</GSTitle>
+          <ScrollView
+            contentContainerStyle={{
+              flex: 1,
+              alignSelf: 'stretch',
+              alignContent: 'center'
+            }}
           >
-            <GSAnimatable innerRef={(c: AnimatableAnimationMethods) => (this.cards = c)}>
-              {this.renderCourses()}
-            </GSAnimatable>
-          </ImageCacheProvider>
-          <Loading loading={this.props.loading} />
-        </ScrollView>
+            <ImageCacheProvider
+              urlsToPreload={Object.values(this.props.courseImages)}
+              onPreloadComplete={() => console.log(JSON.stringify(this.props.courseImages))}
+            >
+              <GSAnimatable innerRef={(c: AnimatableAnimationMethods) => (this.cards = c)}>
+                {this.renderCourses()}
+              </GSAnimatable>
+            </ImageCacheProvider>
+            <Loading loading={this.props.loading} />
+          </ScrollView>
+        </SafeAreaView>
       </GSContainer>
     );
   }
