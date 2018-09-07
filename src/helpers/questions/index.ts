@@ -3,16 +3,20 @@ import { IDictionary, IWordHint } from 'services/dictionaries';
 import shortid from 'shortid';
 import config from '../../config';
 import { openUrl } from 'helpers/common';
+import { TTargetLangs } from 'services/courses';
+import { ignoreByPattern, getLangConfig } from 'helpers/language';
 
 export const isReverseQuestion = (questionType: TQuestionType) =>
   /_REVERSE$/.test(questionType) || questionType === 'DICTATION';
 
-export const hintify = (sentence: string, dictionary: IDictionary[]): IWordHint[] => {
-  const words = sentence.replace(/[؟]/g, '').split(' ');
-  return words.map((word: string) => {
-    const hint = dictionary.find((d: IDictionary) => d.word === word);
+export const hintify = (sentence: string, dictionary: IDictionary[], targetLanguage: TTargetLangs): IWordHint[] => {
+  return sentence.split(' ').map((word: string) => {
+    const patterns = getLangConfig(targetLanguage).hintPatterns;
+    const filteredWord = ignoreByPattern(word, patterns);
+    const hint = dictionary.find((d: IDictionary) => ignoreByPattern(d.word, patterns) === filteredWord);
     const key = shortid.generate();
-    return hint ? { word: hint.word, translations: hint.translations, key } : { word, translations: null, key };
+
+    return hint ? { word, translations: hint.translations, key } : { word, translations: null, key };
   });
 };
 

@@ -40,7 +40,8 @@ const language = {
       ['ܦ', 'ܥ', 'ܝ', 'ܪ', 'ܘ', 'ܩ'],
       ['ܠ', 'ܟ', 'ܛ', 'ܬ', 'ܗ', 'ܓ', 'ܕ', 'ܣ'],
       ['ܚ', 'ܡ', 'ܢ', 'ܒ', 'ܫ', 'ܤ', 'ܨ', 'ܙ', 'ܐ']
-    ]
+    ],
+    hintPatterns: [{ pattern: /^(.{1})[̥̊]{0,2}(.+)/, replace: '$1$2' }, { pattern: /[؟ ? , ، .]/g, replace: '' }]
   },
 
   arabic: {
@@ -102,31 +103,37 @@ const language = {
       ['ج', 'ح', 'خ', 'ه', 'ع', 'غ', 'ف', 'ق', 'ث', 'ص', 'ض'],
       ['ط', 'ك', 'م', 'ن', 'ت', 'ا', 'ل', 'ب', 'ي', 'س', 'ش'],
       ['د', 'ظ', 'ز', 'و', 'ة', 'ى', 'ر', 'ؤ', 'ء', 'ئ', 'ذ']
-    ]
+    ],
+    hintPatterns: []
   }
 };
 
-interface ILangConfig {
+export interface IReplacePattern {
+  pattern: RegExp;
+  replace: string;
+}
+export interface ILangConfig {
   keyboardKeys: string[][];
   letters: string[];
   vowels: string[];
   overlookLetters: IDictionary<string>;
+  hintPatterns: IReplacePattern[];
 }
 
 language['cl-syr'] = language['tur-syr'] = {
   letters: language.syriac.letters,
   vowels: language.syriac.vowels,
   overlookLetters: language.syriac.overlookLetters,
-  keyboardKeys: language.syriac.keyboardKeys
+  keyboardKeys: language.syriac.keyboardKeys,
+  hintPatterns: language.syriac.hintPatterns
 };
 
 language['cl-ara'] = {
   letters: language.arabic.letters,
   vowels: language.arabic.vowels,
   overlookLetters: language.arabic.overlookLetters,
-  keyboardKeys: language.arabic.keyboardKeys
+  keyboardKeys: language.arabic.keyboardKeys,
+  hintPatterns: language.arabic.hintPatterns
 };
-
-export const getLangConfig = (lang: TLangs): ILangConfig => language[lang];
 
 export default language;

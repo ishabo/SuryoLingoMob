@@ -78,7 +78,7 @@ export const GSUserName = glamor.text({
 
 export const GSUserXP = glamor.text({});
 
-export const GSUserBadge = glamor.image({
+export const GSUserProfilePicture = glamor.image({
   width: 70,
   height: 60,
   alignSelf: 'center'

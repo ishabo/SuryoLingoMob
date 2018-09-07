@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 const website = () => {
   let domain = API_DOMAIN;
 
-  if (domain.match(/localhost/) && Platform.OS === 'android') {
+  if (domain && domain.match(/localhost/) && Platform.OS === 'android') {
     domain = domain.replace(/localhost/, '10.0.2.2');
   }
 

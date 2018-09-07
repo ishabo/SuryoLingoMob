@@ -16,7 +16,7 @@ import { NavigationScreenProp } from 'react-navigation';
 import { GSContainer, GSProfile, GSProfileDetails, GSProfileDetailsItem, GSProfilePicture } from './index.styles';
 import VersionNumber from 'react-native-version-number';
 import { GSDrawerLabel } from 'scenes/Drawer';
-import { getRankBadge } from 'helpers';
+import Images from 'assets/images';
 
 export interface IProps {
   apiStatus: api.IApiStatus;
@@ -48,7 +48,7 @@ class Profile extends React.Component<IProps> {
     return (
       <GSProfile>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
-          <GSProfilePicture source={getRankBadge(this.props.currentUserCourseXpRatio)} />
+          <GSProfilePicture source={Images.logo.plain} />
         </TouchableOpacity>
         <GSProfileDetails>
           <GSProfileDetailsItem>{I18n.t('profile.details.name')}:</GSProfileDetailsItem>

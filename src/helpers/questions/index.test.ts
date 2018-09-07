@@ -3,18 +3,22 @@ import * as h from './index';
 describe('common', () => {
   describe('hintify', () => {
     it('Breaks a sentence to an array of object with translations from provided dictionary', () => {
-      const hintified = h.hintify('This sentence will be hintified', [
-        { id: '1', word: 'This', translations: 'هذه' },
-        { id: '2', word: 'sentence', translations: 'الجملة' },
-        { id: '3', word: 'hintified', translations: 'مهنتفة' },
-      ]);
-
+      const hintified = h.hintify(
+        'This sentence will be hintified',
+        [
+          { id: '1', word: 'This', translations: 'هذه' },
+          { id: '2', word: 'sentence', translations: 'الجملة' },
+          { id: '3', word: 'hintified', translations: 'مهنتفة' }
+        ],
+        'cl-ara'
+      );
+      console.warn(hintified);
       expect(hintified).toEqual([
         { key: hintified[0].key, word: 'This', translations: 'هذه' },
         { key: hintified[1].key, word: 'sentence', translations: 'الجملة' },
         { key: hintified[2].key, word: 'will', translations: null },
         { key: hintified[3].key, word: 'be', translations: null },
-        { key: hintified[4].key, word: 'hintified', translations: 'مهنتفة' },
+        { key: hintified[4].key, word: 'hintified', translations: 'مهنتفة' }
       ]);
     });
   });
@@ -38,18 +42,19 @@ describe('common', () => {
     });
 
     it('it clears answers from commas and fullstops', () => {
-      expect(h.cleanAnswer('there should be no commans, and fullstops.'))
-        .toEqual('there should be no commans and fullstops');
+      expect(h.cleanAnswer('there should be no commans, and fullstops.')).toEqual(
+        'there should be no commans and fullstops'
+      );
     });
 
     it('it clears answers from question or exclamation marks', () => {
-      expect(h.cleanAnswer('!does it have a question mark?؟'))
-        .toEqual('does it have a question mark');
+      expect(h.cleanAnswer('!does it have a question mark?؟')).toEqual('does it have a question mark');
     });
 
     it('it clears answers from special chars', () => {
-      expect(h.cleanAnswer('<th!is -is$_ gonna@ be clear from=: special chars/%;>'))
-        .toEqual('this is gonna be clear from special chars');
+      expect(h.cleanAnswer('<th!is -is$_ gonna@ be clear from=: special chars/%;>')).toEqual(
+        'this is gonna be clear from special chars'
+      );
     });
   });
 });
