@@ -116,7 +116,10 @@ export const getSkillIcon = (state: IInitialState) => (icon: string, size: asset
 
 export const getPhrases = (state: IInitialState): questions.IPhrase[] => {
   const phrases = state.questions.onGoing.map(({ phrase, translation, soundFiles }) => {
-    const sentence = { raw: phrase, hintified: hintify(phrase, state.dictionaries) };
+    const sentence = {
+      raw: phrase,
+      hintified: hintify(phrase, state.dictionaries, getActiveCourse(state).targetLanguage.shortName)
+    };
 
     return {
       sentence,

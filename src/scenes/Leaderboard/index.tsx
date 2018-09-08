@@ -6,6 +6,7 @@ import I18n from 'I18n';
 import * as profile from 'services/profile';
 import * as leaderboard from 'services/leaderboard';
 import { isUserInLeaderboard } from 'services/selectors';
+import images from 'assets/images';
 
 import { NavigationScreenProp } from 'react-navigation';
 import {
@@ -16,14 +17,14 @@ import {
   GSUserDetails,
   GSUserName,
   GSUserXP,
-  GSUserBadge,
+  GSUserProfilePicture,
   GSGap,
   GSRank
 } from './index.styles';
 
 import { GSDrawerLabel } from 'scenes/Drawer';
 import { Dispatch } from 'redux';
-import { getWindowWidth, getRankBadge } from 'helpers';
+import { getWindowWidth } from 'helpers';
 import { GSCustomText } from 'styles/text';
 import { Text } from 'react-native-animatable';
 
@@ -64,7 +65,7 @@ class Leaderboard extends React.Component<IProps> {
         <GSUserXP>{user.userXp}</GSUserXP>
       </GSUserDetails>
       <GSUserDetails align="left">
-        <GSUserBadge source={getRankBadge(user.ratio)} />
+        <GSUserProfilePicture source={images.logo.plain} />
       </GSUserDetails>
     </GSTopUser>
   );

@@ -1,15 +1,15 @@
 {
-  "presets": [
-    "react-native",
-    "react-native-dotenv"
-  ],
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2", "react"]
+    }
+  },
+  "presets": ["react-native", "react-native-dotenv"],
   "plugins": [
     [
       "module-resolver",
       {
-        "root": [
-          "./artifacts"
-        ],
+        "root": ["./artifacts"],
         "cwd": "babelrc"
       }
     ]

@@ -1,4 +1,4 @@
-import language from 'config/language';
+import language, { ILangConfig, IReplacePattern } from 'config/language';
 
 const isOfLanguage = (arr: string[], text: string): boolean => {
   const firstLetter = text[0];
@@ -15,4 +15,14 @@ export const detectLanguage = (text: string): TLangs => {
   } else {
     return arabic.langId;
   }
+};
+
+export const getLangConfig = (lang: TLangs): ILangConfig => language[lang];
+
+export const ignoreByPattern = (word: string, patterns: ILangConfig['hintPatterns']) => {
+  let pattern: IReplacePattern;
+  for (pattern of patterns) {
+    word = word.replace(pattern.pattern, pattern.replace);
+  }
+  return word;
 };

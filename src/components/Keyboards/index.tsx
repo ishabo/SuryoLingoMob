@@ -1,9 +1,9 @@
 import React from 'react';
 import KeyboardLayout from './KeyboardLayout';
-import Language from 'config/language';
+import language from 'config/language';
 
-const syriac = Language['cl-syr'].keyboardKeys;
-const arabic = Language['cl-ara'].keyboardKeys;
+const syriac = language['cl-syr'].keyboardKeys;
+const arabic = language['cl-ara'].keyboardKeys;
 
 export interface IKeyboardActions {
   action: 'addChar' | 'removeChar' | 'submitAndClose' | 'close';

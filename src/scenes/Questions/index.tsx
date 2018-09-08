@@ -9,7 +9,8 @@ import {
   isReverseQuestion,
   cleanAnswer,
   getWindowWidth,
-  isNarrowDevice
+  isNarrowDevice,
+  getLangConfig
 } from 'helpers';
 import { connect } from 'react-redux';
 import { nextQuestionOrFinish, TQuestionType } from 'services/questions/actions';
@@ -24,7 +25,6 @@ import {
 } from 'services/selectors';
 import { GSCustomStudyText } from 'styles/text';
 import Colors from 'styles/colors';
-import { getLangConfig } from 'config/language';
 import I18n from 'I18n';
 import { GSIcon, GSProgress, GSFooterAndBody, GSContainer } from './index.styles';
 import { GSHeader, GSBody, GSFooter } from 'styles/layouts';

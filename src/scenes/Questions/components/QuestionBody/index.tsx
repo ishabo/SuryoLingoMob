@@ -165,7 +165,7 @@ class QuestionBody extends React.Component<IProps, IState> {
     };
 
     let rawSentence = reverse ? question.translation : question.phrase;
-    let hintifiedSentence = reverse ? null : hintify(question.phrase, this.props.hints);
+    let hintifiedSentence = reverse ? null : hintify(question.phrase, this.props.hints, course.targetLanguage.shortName);
 
     if (this.state.garshoniToggle && !reverse) {
       rawSentence = garshonify({
