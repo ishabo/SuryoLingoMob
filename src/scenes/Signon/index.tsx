@@ -29,7 +29,7 @@ import { getActiveCourse } from 'services/selectors';
 import { ICourse } from 'services/courses';
 import { exitApp } from 'helpers';
 import { Dispatch } from 'redux';
-
+import { FBLoginButton } from 'components';
 type TAlertSubject = 'signupReason' | 'signupName' | 'signupEmail' | 'signinReason' | 'signinEmail' | 'signinPassword';
 
 interface IState {
@@ -245,6 +245,8 @@ class Signon extends React.Component<IProps, IState> {
           text={I18n.t(`profile.form.submit.${this.isSignin() ? 'signin' : 'signup'}`)}
           lang={'cl-ara'}
         />
+
+        <FBLoginButton />
         <GSLink onPress={this.skipToNext}>
           <GSCustomText>{I18n.t('profile.form.skip')}</GSCustomText>
         </GSLink>
