@@ -8,11 +8,11 @@ import { setApiOrigin } from '../services/api';
 import RNRestart from 'react-native-restart';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { setCustomText } from 'react-native-global-props';
-import config from 'config/';
+// import config from 'config/';
 import { Alert } from 'components';
 import { getFont } from 'assets/fonts';
 
-setApiOrigin(config.apiHost);
+setApiOrigin('http://localhost:3000/api/v1');
 setCustomText({
   style: {
     fontFamily: getFont('cl-ara', 'regular')

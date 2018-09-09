@@ -70,9 +70,7 @@
 		D621C0F42126CC130080E495 /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D621C0B72126CC130080E495 /* HelveticaNeue.ttf */; };
 		D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D621C173212913550080E495 /* libKeyboardTrackingView.a */; };
 		D655219F1FFFEB18007C9243 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D655219B1FFFEAE8007C9243 /* libRNDeviceInfo.a */; };
-		D66C601221420D68004D2396 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D66C601121420D68004D2396 /* assets */; };
 		D6B159691FA2C9D60044EA78 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		D6B2A3A121394AA700854573 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = D6B2A36021394AA700854573 /* main.jsbundle */; };
 		D6BCDC20896C428E845F3DD3 /* Al-Jazeera-Arabic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007DA2D71412451898EB133E /* Al-Jazeera-Arabic-Regular.ttf */; };
 		E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */; };
 		E45B640E079C43E2B1055E53 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C65B2527E6841469E5CF2D2 /* Foundation.ttf */; };
@@ -630,9 +628,7 @@
 		D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCustomInputController.xcodeproj; path = "../node_modules/react-native-keyboard-input/lib/ios/RCTCustomInputController.xcodeproj"; sourceTree = "<group>"; };
 		D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeyboardTrackingView.xcodeproj; path = "../node_modules/react-native-keyboard-tracking-view/lib/KeyboardTrackingView.xcodeproj"; sourceTree = "<group>"; };
 		D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
-		D66C601121420D68004D2396 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		D66CF52B207421E800059473 /* SuryoLingo-tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "SuryoLingo-tvOS.entitlements"; path = "SuryoLingo-tvOS/SuryoLingo-tvOS.entitlements"; sourceTree = "<group>"; };
-		D6B2A36021394AA700854573 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		D818D289FAE040FF129DE70E /* Pods-SuryoLingo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuryoLingo/Pods-SuryoLingo.release.xcconfig"; sourceTree = "<group>"; };
 		DD4B41EE498ECC93DC703215 /* Pods-SuryoLingo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingo-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuryoLingo-tvOS/Pods-SuryoLingo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		E07780019D0747AEA16343ED /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
@@ -930,8 +926,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				D66C601121420D68004D2396 /* assets */,
-				D6B2A36021394AA700854573 /* main.jsbundle */,
 				D66CF52B207421E800059473 /* SuryoLingo-tvOS.entitlements */,
 				13B07FAE1A68108700A75B9A /* SuryoLingo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1920,7 +1914,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D66C601221420D68004D2396 /* assets in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				0741D5A4C0944DF58C34329C /* Entypo.ttf in Resources */,
@@ -1928,7 +1921,6 @@
 				4B499F2E54724F1DB20B06B9 /* FontAwesome.ttf in Resources */,
 				E45B640E079C43E2B1055E53 /* Foundation.ttf in Resources */,
 				BC14BB39499F4D52AC829263 /* Ionicons.ttf in Resources */,
-				D6B2A3A121394AA700854573 /* main.jsbundle in Resources */,
 				BBE64C0FE56B44058B6CCCF6 /* MaterialIcons.ttf in Resources */,
 				9A27869596124D03A28D92AF /* Octicons.ttf in Resources */,
 				53570F1B56D84FB997A93916 /* Roboto_medium.ttf in Resources */,
@@ -2343,7 +2335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = LB4JJ7565B;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2390,7 +2382,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = LB4JJ7565B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

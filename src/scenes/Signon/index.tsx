@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { BackHandler, TextInputProperties, Keyboard, Alert, View, SafeAreaView } from 'react-native';
+import { BackHandler, TextInputProperties, Keyboard, Alert, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
@@ -17,11 +17,12 @@ import {
   GSLebel,
   GSTitle,
   GSIcon,
-  GSErrorText
+  GSErrorText,
+  GSSeparator,
+  GSSeperatorText
 } from './index.styles';
 import { GSCustomText } from 'styles/text';
-
-import { GSHeader, GSSeparator } from 'styles/layouts';
+//import { GSHeader } from 'styles/layouts';
 import { NextButton } from 'components';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
@@ -33,7 +34,7 @@ import { FBLoginButton } from 'components';
 type TAlertSubject = 'signupReason' | 'signupName' | 'signupEmail' | 'signinReason' | 'signinEmail' | 'signinPassword';
 
 interface IState {
-  signUpOrIn: signon.TSignon;
+  signUpOrIn: signon.TSignonType;
   focusOn: 'name' | 'email' | 'password';
   keyboardOn: boolean;
   showPassword: boolean;
@@ -42,7 +43,7 @@ interface IState {
 interface IProps {
   profile: profile.IProfile;
   signon: signon.ISignonState;
-  submitSignon: (signUpOrIn: signon.TSignon) => void;
+  submitSignon: (signUpOrIn: signon.TSignonType) => void;
   captureSignon: (data: signon.ISignonFormData) => void;
   setError: (errors: signon.ISignonFormErrors) => void;
   navigation: NavigationScreenProp<any, any>;
@@ -161,7 +162,7 @@ class Signon extends React.Component<IProps, IState> {
   private getError = (name: string): string => this.props.signon.errors[name];
 
   private renderInput = (name: string, props?: TextInputProperties, afterInput = null) => (
-    <View>
+    <>
       <GSItem inlineLabel error={this.hasError(name)}>
         <GSLebel>
           <GSCustomText onPress={this.focusOn(name)}>{I18n.t(`profile.form.fields.${name}`)}</GSCustomText>
@@ -177,7 +178,7 @@ class Signon extends React.Component<IProps, IState> {
         {afterInput}
       </GSItem>
       {this.hasError(name) && <GSErrorText>{I18n.t(`profile.form.errors.${this.getError(name)}`)}</GSErrorText>}
-    </View>
+    </>
   );
 
   private showPassword = () => this.state.showPassword && this.isSignup();
@@ -203,7 +204,11 @@ class Signon extends React.Component<IProps, IState> {
 
       {this.renderInput(
         'email',
-        { onSubmitEditing: this.focusOn('password'), returnKeyType: 'next' },
+        {
+          defaultValue: this.props.signon.item.email,
+          onSubmitEditing: this.focusOn('password'),
+          returnKeyType: 'next'
+        },
         this.renderBulb(this.isSignin ? 'signinEmail' : 'signupEmail')
       )}
 
@@ -239,14 +244,13 @@ class Signon extends React.Component<IProps, IState> {
   private renderButtons = () => {
     return (
       <>
-        <GSSeparator />
+        <GSSeparator margin={10} blank />
         <NextButton
           onPress={this.submitSignon}
           text={I18n.t(`profile.form.submit.${this.isSignin() ? 'signin' : 'signup'}`)}
           lang={'cl-ara'}
         />
 
-        <FBLoginButton />
         <GSLink onPress={this.skipToNext}>
           <GSCustomText>{I18n.t('profile.form.skip')}</GSCustomText>
         </GSLink>
@@ -265,21 +269,25 @@ class Signon extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <GSContainer behavior="position">
-          <GSHeader>
+      <GSContainer>
+        <SafeAreaView style={{ flex: 1 }}>
+          <KeyboardAvoidingView style={{ alignItems: 'flex-start', flex: 1 }} behavior="padding">
             {this.renderTitle()}
             {this.renderTabs()}
-          </GSHeader>
-          {this.renderForm()}
-        </GSContainer>
-      </SafeAreaView>
+            <FBLoginButton type={this.state.signUpOrIn} />
+            <GSSeparator>
+              <GSSeperatorText>{I18n.t('profile.form.orElse')}</GSSeperatorText>
+            </GSSeparator>
+            {this.renderForm()}
+          </KeyboardAvoidingView>
+        </SafeAreaView>
+      </GSContainer>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  submitSignon: (signUpOrIn: signon.TSignon) => dispatch(signon.actions.submitSignon(signUpOrIn)),
+  submitSignon: (signUpOrIn: signon.TSignonType) => dispatch(signon.actions.submitSignon(signUpOrIn)),
   captureSignon: (data: signon.ISignonFormData) => dispatch(signon.actions.captureSignon(data)),
   setError: (errors: signon.ISignonFormErrors) => dispatch(signon.actions.setErrors(errors))
 });

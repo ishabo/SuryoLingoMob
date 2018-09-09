@@ -1,4 +1,1 @@
-export const isApiResponse = response =>
-  typeof response === 'object'
-  && response.response
-  && typeof response.response.status === 'number';
+export const isApiResponse = response => typeof response === 'object' && typeof response.status === 'number';

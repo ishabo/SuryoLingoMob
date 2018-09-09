@@ -102,7 +102,7 @@ android {
         applicationId "com.suryolingo.android"
         minSdkVersion 21
         targetSdkVersion 22
-        versionCode 28
+        versionCode 29
         versionName "0.3.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"

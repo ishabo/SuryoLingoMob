@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { isRegistered } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
-import { Hamburger } from 'components';
+import { Hamburger, FBLoginButton } from 'components';
 import { Dispatch } from 'redux';
 import I18n from 'I18n';
 import * as profile from 'services/profile';
@@ -45,10 +45,12 @@ class Profile extends React.Component<IProps> {
   }
 
   renderProfile = () => {
+    const { profilePic } = this.props.profile;
+
     return (
       <GSProfile>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
-          <GSProfilePicture source={Images.logo.plain} />
+          <GSProfilePicture source={profilePic ? { uri: profilePic } : Images.logo.plain} />
         </TouchableOpacity>
         <GSProfileDetails>
           <GSProfileDetailsItem>{I18n.t('profile.details.name')}:</GSProfileDetailsItem>
@@ -66,6 +68,8 @@ class Profile extends React.Component<IProps> {
           <GSProfileDetailsItem>{I18n.t('profile.details.appVersion')}:</GSProfileDetailsItem>
           <GSCustomText>{VersionNumber.appVersion}</GSCustomText>
         </GSProfileDetails>
+
+        <FBLoginButton signon="connect" />
       </GSProfile>
     );
   };

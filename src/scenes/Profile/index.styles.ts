@@ -61,5 +61,6 @@ export const GSProfilePicture = glamor.image({
   alignSelf: 'center',
   alignItems: 'center',
   width: 200,
-  height: 200
+  height: 200,
+  borderRadius: 100
 });

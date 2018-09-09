@@ -1,12 +1,15 @@
 import { Button, Icon } from 'native-base';
+import { Container } from 'native-base';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
-import { KeyboardAvoidingView } from 'react-native';
 export * from 'styles/forms';
 export * from 'styles/text';
 
-export const GSContainer = glamor(KeyboardAvoidingView as any)({
-  justifyContent: 'space-between'
+export const GSContainer = glamor(Container)({
+  backgroundColor: Colors.white,
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center'
 }) as any;
 
 export const GSLink = glamor.touchableOpacity({
@@ -17,11 +20,13 @@ export const GSLink = glamor.touchableOpacity({
 
 export const GSTabs = glamor.view({
   flexDirection: 'row',
-  height: 80
+  alignSelf: 'center',
+  marginTop: 10,
+  marginBottom: 20
 });
 
 export const GSTabButton = glamor(Button)({
-  paddingHorizontal: 10,
+  paddingHorizontal: 6,
   width: 170,
   alignSelf: 'center'
 });
@@ -59,4 +64,24 @@ export const GSDescription = glamor.text({
   textAlign: 'center',
   fontSize: 18,
   paddingVertical: 10
+});
+
+export const GSSeparator = glamor.view<{ margin?: number; blank?: boolean }>(
+  {
+    alignSelf: 'stretch',
+    borderBottomColor: Colors.gray,
+    position: 'relative'
+  },
+  ({ blank, margin }) => ({
+    borderBottomWidth: blank ? 0 : 1,
+    margin: margin ? margin : 30
+  })
+);
+
+export const GSSeperatorText = glamor.text({
+  padding: 5,
+  alignSelf: 'center',
+  backgroundColor: Colors.white,
+  position: 'absolute',
+  top: -13
 });

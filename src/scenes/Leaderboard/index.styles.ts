@@ -80,8 +80,9 @@ export const GSUserXP = glamor.text({});
 
 export const GSUserProfilePicture = glamor.image({
   width: 70,
-  height: 60,
-  alignSelf: 'center'
+  height: 70,
+  alignSelf: 'center',
+  borderRadius: 35
 });
 
 export const GSProfilePictureFrame = glamor.view<{ inner?: boolean; outer?: boolean }>(
