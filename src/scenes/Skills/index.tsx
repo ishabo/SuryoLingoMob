@@ -7,7 +7,7 @@ import { ISkill } from 'services/skills';
 import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
 import { NavigationScreenProp } from 'react-navigation';
-import { exitApp } from 'helpers';
+import { exitApp, displayInterstitialAd } from 'helpers';
 import { Hamburger } from 'components';
 import { ICourse } from 'services/courses';
 import { IProfile } from 'services/profile';
@@ -15,8 +15,6 @@ import { GSDrawerLabel } from 'scenes/Drawer';
 import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
 import I18n from 'I18n';
 import shortid from 'shortid';
-import { AdMobInterstitial } from 'react-native-admob';
-import vars from 'config/vars';
 
 interface IProps {
   activeCourse: ICourse;
@@ -45,11 +43,7 @@ class Skills extends React.Component<IProps> {
     Keyboard.dismiss();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
-    AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-    AdMobInterstitial.setAdUnitID(vars.admob.interstitial.skills);
-    AdMobInterstitial.requestAd()
-      .then(() => AdMobInterstitial.showAd())
-      .catch(error => console.log('====>', error));
+    displayInterstitialAd('skills');
   }
 
   componentWillUnmount() {

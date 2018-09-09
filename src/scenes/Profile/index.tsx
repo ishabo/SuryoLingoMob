@@ -69,7 +69,7 @@ class Profile extends React.Component<IProps> {
           <GSCustomText>{VersionNumber.appVersion}</GSCustomText>
         </GSProfileDetails>
 
-        <FBLoginButton signon="connect" />
+        {this.props.profile.hasConnectedViaFacebook || <FBLoginButton signon="connect" />}
       </GSProfile>
     );
   };

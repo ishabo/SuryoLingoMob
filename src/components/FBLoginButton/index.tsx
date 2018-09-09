@@ -10,17 +10,18 @@ import { GSCustomText } from 'styles/text';
 import { TSignonType } from 'services/profile';
 
 const GSButtonText = glamor(GSCustomText)({
-  alignSelf: 'stretch',
-  flex: 1,
+  alignSelf: 'center',
   color: Colors.white,
   textAlign: 'center',
   flexDirection: 'row',
-  marginLeft: -30
+  fontSize: 14,
+  marginLeft: 5
 });
 
 const GSButton = glamor(Button)({
   width: calcWindowWidth(10),
   alignSelf: 'center',
+  justifyContent: 'center',
   backgroundColor: Colors.facebook
 });
 
@@ -31,11 +32,11 @@ interface IProps {
 
 class FBLoginButton extends Component<IProps> {
   render() {
-    const connectViaFacebookText = this.props.signon === 'signin' ? 'signinViaFacebook' : 'signupViaFacebook';
+    const connectViaFacebookText = `${this.props.signon}ViaFacebook`;
     return (
       <GSButton iconLeft rounded onPress={() => this.props.connectViaFacebook(this.props.signon)}>
-        <Icon name="facebook" type="Entypo" />
         <GSButtonText>{I18n.t(`profile.form.${connectViaFacebookText}`)}</GSButtonText>
+        <Icon name="facebook" type="Entypo" />
       </GSButton>
     );
   }

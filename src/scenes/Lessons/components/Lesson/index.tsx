@@ -55,7 +55,7 @@ export default ({ lesson, previewLesson, skill, enterLesson, active, targetLangu
           previewLesson(lesson.id);
         }}
       >
-        <Icon type="FontAwesome" name="bars" style={{ fontSize: 20 }} />
+        <Icon type="FontAwesome" name="bars" style={{ color: 'black', fontSize: 20 }} />
       </Button>
     </GSListButton>
   );

@@ -73,15 +73,16 @@ export function* connectViaFacebook(actions: signon.ISignonFormAction): Iterable
   } else {
     const { accessToken } = yield call(AccessToken.getCurrentAccessToken);
 
-    const profile = yield call(signon.api.getFacebookProfile, accessToken);
+    const profileData = yield call(signon.api.getFacebookProfile, accessToken);
     const payload = {
       password: accessToken,
       viaFacebook: true
     };
+
     if (actions.signon === 'connect') {
       yield put(profile.actions.updateProfile(payload));
     } else {
-      yield put(signon.actions.captureSignon({ ...payload, name: profile.name, email: profile.email }));
+      yield put(signon.actions.captureSignon({ ...payload, name: profileData.name, email: profileData.email }));
 
       yield put(signon.actions.submitSignon(actions.signon));
     }

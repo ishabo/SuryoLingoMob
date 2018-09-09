@@ -11,7 +11,7 @@ export const GSContainer = glamor.view({
 export const GSProfile = glamor.scrollView({
   flex: 1,
   alignSelf: 'stretch',
-  margin: 20
+  margin: 16
 });
 
 export const GSProfileDetails = glamor.view({

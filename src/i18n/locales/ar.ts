@@ -208,7 +208,7 @@ export default {
       signOut: 'تسجيل الخروج',
       signUp: 'تسجيل حساب جديد',
       orElse: 'أو سجل عن طريق الإيميل',
-      connectViaFacebook: 'سجل عن طريق الفيسبوك',
+      connectViaFacebook: 'صل حسابك بالفيسبوك',
       signinViaFacebook: ' ادخل عن طريق الفيسبوك',
       signupViaFacebook: 'سجل حساب عن طريق الفيسبوك',
       fields: {

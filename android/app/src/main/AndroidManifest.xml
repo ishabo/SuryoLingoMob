@@ -32,7 +32,7 @@
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-     <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+            <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
         </intent-filter>
 
         <intent-filter android:autoVerify="true">
@@ -50,6 +50,11 @@
         android:name="io.fabric.ApiKey"
         android:value="f36f290af5bada487affcc6dbfea3b47704605f5"
       />
+      <activity android:name="com.facebook.FacebookActivity"
+        android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        android:theme="@style/com_facebook_activity_theme"
+        android:label="@string/app_name" />
+      <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 

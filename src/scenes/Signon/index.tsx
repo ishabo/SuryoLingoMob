@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { BackHandler, TextInputProperties, Keyboard, Alert, SafeAreaView, KeyboardAvoidingView } from 'react-native';
+import { BackHandler, TextInputProperties, Keyboard, Alert, SafeAreaView } from 'react-native';
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
@@ -269,19 +269,17 @@ class Signon extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <GSContainer>
-        <SafeAreaView style={{ flex: 1 }}>
-          <KeyboardAvoidingView style={{ alignItems: 'flex-start', flex: 1 }} behavior="padding">
-            {this.renderTitle()}
-            {this.renderTabs()}
-            <FBLoginButton type={this.state.signUpOrIn} />
-            <GSSeparator>
-              <GSSeperatorText>{I18n.t('profile.form.orElse')}</GSSeperatorText>
-            </GSSeparator>
-            {this.renderForm()}
-          </KeyboardAvoidingView>
-        </SafeAreaView>
-      </GSContainer>
+      <SafeAreaView style={{ flex: 1 }}>
+        <GSContainer behavior="position">
+          {this.renderTitle()}
+          {this.renderTabs()}
+          <FBLoginButton signon={this.state.signUpOrIn} />
+          <GSSeparator>
+            <GSSeperatorText>{I18n.t('profile.form.orElse')}</GSSeperatorText>
+          </GSSeparator>
+          {this.renderForm()}
+        </GSContainer>
+      </SafeAreaView>
     );
   }
 }

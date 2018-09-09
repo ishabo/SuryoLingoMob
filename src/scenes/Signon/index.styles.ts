@@ -1,11 +1,11 @@
 import { Button, Icon } from 'native-base';
-import { Container } from 'native-base';
+import { KeyboardAvoidingView } from 'react-native';
 import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 export * from 'styles/forms';
 export * from 'styles/text';
 
-export const GSContainer = glamor(Container)({
+export const GSContainer = glamor(KeyboardAvoidingView as any)({
   backgroundColor: Colors.white,
   flex: 1,
   justifyContent: 'center',
@@ -80,6 +80,7 @@ export const GSSeparator = glamor.view<{ margin?: number; blank?: boolean }>(
 
 export const GSSeperatorText = glamor.text({
   padding: 5,
+  height: 20,
   alignSelf: 'center',
   backgroundColor: Colors.white,
   position: 'absolute',

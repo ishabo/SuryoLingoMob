@@ -20,7 +20,6 @@ export const getFacebookProfile = (accessToken: string) =>
       if (error) {
         reject(error);
       } else {
-        console.warn(result.picture.data.url);
         resolve(result);
       }
     };
