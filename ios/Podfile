@@ -22,8 +22,6 @@ target 'SuryoLingo' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
-
-  
   post_install do |installer|
     installer.pods_project.targets.each do |target|
       if target.name == "React"
@@ -31,8 +29,8 @@ target 'SuryoLingo' do
       end
     end
   end
-  platform :ios, '9.0'
 
+  platform :ios, '9.0'
 
   target 'SuryoLingoTests' do
     inherit! :search_paths

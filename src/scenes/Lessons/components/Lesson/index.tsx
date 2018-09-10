@@ -15,7 +15,6 @@ import {
 } from './index.styles';
 import { ProgressCircle } from 'components';
 import { Icon } from 'native-base';
-import { Button } from 'native-base';
 
 interface IProps {
   lesson: ILesson;
@@ -48,15 +47,13 @@ export default ({ lesson, previewLesson, skill, enterLesson, active, targetLangu
   );
 
   const renderListButton = () => (
-    <GSListButton>
-      <Button
-        light
-        onPress={() => {
-          previewLesson(lesson.id);
-        }}
-      >
-        <Icon type="FontAwesome" name="bars" style={{ color: 'black', fontSize: 20 }} />
-      </Button>
+    <GSListButton
+      light
+      onPress={() => {
+        previewLesson(lesson.id);
+      }}
+    >
+      <Icon type="FontAwesome" name="bars" style={{ color: 'black', fontSize: 20 }} />
     </GSListButton>
   );
 

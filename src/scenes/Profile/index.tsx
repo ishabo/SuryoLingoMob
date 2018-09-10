@@ -50,7 +50,7 @@ class Profile extends React.Component<IProps> {
     return (
       <GSProfile>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
-          <GSProfilePicture source={profilePic ? { uri: profilePic } : Images.logo.plain} />
+          <GSProfilePicture source={profilePic ? { uri: profilePic } : Images.profile.default} />
         </TouchableOpacity>
         <GSProfileDetails>
           <GSProfileDetailsItem>{I18n.t('profile.details.name')}:</GSProfileDetailsItem>

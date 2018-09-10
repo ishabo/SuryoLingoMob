@@ -71,7 +71,7 @@ class Leaderboard extends React.Component<IProps> {
   );
 
   renderProfilePicture = (profilePic: string) => {
-    return profilePic ? { uri: profilePic } : images.logo.plain;
+    return profilePic ? { uri: profilePic } : images.profile.default;
   };
 
   renderLeaderboard = () => this.props.topUsers.map((user, index) => this.renderUser(user, index + 1));

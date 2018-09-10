@@ -202,13 +202,13 @@ export default {
     },
     form: {
       signonToSave: 'سجل حسابك لحفظ تقدمك',
-      signinTitle: 'تسجيل دخول إلى سوريولينجو',
-      signupTitle: 'سجل حساب على سوريولينجو',
+      signinTitle: 'دخول إلى سوريولينجو',
+      signupTitle: 'تسجيل في سوريولينجو',
       signIn: 'تسجيل الدخول',
       signOut: 'تسجيل الخروج',
       signUp: 'تسجيل حساب جديد',
       orElse: 'أو سجل عن طريق الإيميل',
-      connectViaFacebook: 'صل حسابك بالفيسبوك',
+      connectViaFacebook: 'اربط حسابك بالفيسبوك',
       signinViaFacebook: ' ادخل عن طريق الفيسبوك',
       signupViaFacebook: 'سجل حساب عن طريق الفيسبوك',
       fields: {

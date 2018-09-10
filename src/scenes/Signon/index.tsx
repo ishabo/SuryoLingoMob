@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { BackHandler, TextInputProperties, Keyboard, Alert, SafeAreaView } from 'react-native';
+import { BackHandler, TextInputProperties, Keyboard, Alert } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Colors from 'styles/colors';
 import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
@@ -8,6 +10,7 @@ import * as profile from 'services/profile';
 import {
   GSContainer,
   GSTabs,
+  GSContent,
   GSTabButton,
   GSLink,
   GSButtonText,
@@ -19,10 +22,11 @@ import {
   GSIcon,
   GSErrorText,
   GSSeparator,
-  GSSeperatorText
+  GSSeperatorText,
+  GSSeperatorLine
 } from './index.styles';
+
 import { GSCustomText } from 'styles/text';
-//import { GSHeader } from 'styles/layouts';
 import { NextButton } from 'components';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
@@ -145,12 +149,12 @@ class Signon extends React.Component<IProps, IState> {
 
   private renderTabs = () => (
     <GSTabs>
-      <GSTabButton full primary={this.isSignup()} light={this.isSignin()} onPress={this.setSignup}>
+      <GSTabButton full selected={this.isSignup()} onPress={this.setSignup}>
         <GSButtonText large={this.isSignup()} color={this.isSignup() ? 'white' : 'gray'}>
           {I18n.t('profile.form.signUp')}
         </GSButtonText>
       </GSTabButton>
-      <GSTabButton full primary={this.isSignin()} light={this.isSignup()} onPress={this.setSignin}>
+      <GSTabButton full selected={this.isSignin()} onPress={this.setSignin}>
         <GSButtonText large={this.isSignin()} color={this.isSignin() ? 'white' : 'gray'}>
           {I18n.t('profile.form.signIn')}
         </GSButtonText>
@@ -221,9 +225,6 @@ class Signon extends React.Component<IProps, IState> {
         },
         this.renderShowPasswordIcon()
       )}
-
-      {this.renderButtons()}
-
       {this.renderRecoverPasswordLink()}
     </GSForm>
   );
@@ -244,7 +245,7 @@ class Signon extends React.Component<IProps, IState> {
   private renderButtons = () => {
     return (
       <>
-        <GSSeparator margin={10} blank />
+        <GSSeparator margin={4} />
         <NextButton
           onPress={this.submitSignon}
           text={I18n.t(`profile.form.submit.${this.isSignin() ? 'signin' : 'signup'}`)}
@@ -269,17 +270,24 @@ class Signon extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <GSContainer behavior="position">
+      <KeyboardAwareScrollView style={{ backgroundColor: Colors.white }}>
+        <GSContainer>
           {this.renderTitle()}
-          {this.renderTabs()}
-          <FBLoginButton signon={this.state.signUpOrIn} />
-          <GSSeparator>
-            <GSSeperatorText>{I18n.t('profile.form.orElse')}</GSSeperatorText>
-          </GSSeparator>
-          {this.renderForm()}
+          <GSContent>
+            {this.renderTabs()}
+
+            <FBLoginButton signon={this.state.signUpOrIn} />
+
+            <GSSeparator margin={10}>
+              <GSSeperatorLine />
+              <GSSeperatorText>{I18n.t('profile.form.orElse')}</GSSeperatorText>
+            </GSSeparator>
+
+            {this.renderForm()}
+            {this.renderButtons()}
+          </GSContent>
         </GSContainer>
-      </SafeAreaView>
+      </KeyboardAwareScrollView>
     );
   }
 }
