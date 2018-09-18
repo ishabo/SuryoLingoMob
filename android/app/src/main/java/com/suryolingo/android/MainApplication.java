@@ -1,5 +1,9 @@
 package com.suryolingo.android;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+
 import android.app.Application;
 import com.facebook.react.ReactApplication;
 import io.xogus.reactnative.versioncheck.RNVersionCheckPackage;
@@ -31,6 +35,12 @@ import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
 
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
+
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -39,6 +49,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
+
       return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNVersionCheckPackage(),
           new AppCenterReactNativePushPackage(MainApplication.this),
           new AppCenterReactNativeCrashesPackage(MainApplication.this,
@@ -48,7 +59,7 @@ public class MainApplication extends Application implements ReactApplication {
           new AppCenterReactNativePackage(MainApplication.this), new RNFetchBlobPackage(), new RNVersionNumberPackage(),
           new RNSoundPackage(), new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(),
           new LinearGradientPackage(), new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(),
-          new RNAdMobPackage(), new RNDeviceInfo(), new RNAudioPlayer(),
+          new RNAdMobPackage(), new RNDeviceInfo(), new RNAudioPlayer(), new FBSDKPackage(mCallbackManager),
           new KeyboardInputPackage(this.getApplication()));
     }
 
@@ -56,6 +67,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected String getJSMainModuleName() {
       return "artifacts/index.android";
     }
+
   };
 
   @Override
@@ -66,6 +78,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    FacebookSdk.sdkInitialize(getApplicationContext());
     SoLoader.init(this, /* native exopackage */ false);
 
     I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();

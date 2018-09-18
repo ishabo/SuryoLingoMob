@@ -4,10 +4,11 @@ import * as sagas from './sagas';
 import * as api from './api';
 import { IAction } from 'services/sagas';
 
-export type TSignon = string | 'signup' | 'signin';
+export type TSignonType = string | 'signup' | 'signin';
 
 export interface ISignonFormData {
   name?: string;
+  viaFacebook?: boolean;
   email: string;
   password: string;
 }
@@ -24,7 +25,7 @@ export interface ISignonState {
 }
 
 export interface ISignonFormAction extends IAction {
-  signon?: TSignon;
+  signon?: TSignonType;
   data?: ISignonFormData;
   errors?: ISignonFormData;
   email?: string;

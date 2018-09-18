@@ -14,6 +14,7 @@ import { getActiveCourse } from 'services/selectors';
 import { isApiResponse, resetToCourses } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
   const fields = { ...(yield select((state: IInitialState) => state.signon.item)) };
@@ -38,7 +39,7 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
       }
 
       yield put(profile.actions.saveProfileAndAccessToken(profileData));
-      yield put(signon.actions.resetSignon());
+      yield put(signon.actions.reseTSignonType());
 
       const activeCourse = yield select(getActiveCourse);
       yield delay(100);
@@ -52,7 +53,7 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
       if (isApiResponse(error.response)) {
         if (error.response.status === 400) {
           if (error.response.data.match(/Email already exists/)) {
-            errors['email'] = 'emailSlreadyExists';
+            errors['email'] = 'emailAlreadyExists';
           }
           yield put(signon.actions.setErrors(errors));
         }
@@ -65,14 +66,35 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
   yield put(setLoadingOff());
 }
 
+export function* connectViaFacebook(actions: signon.ISignonFormAction): IterableIterator<any> {
+  const result = yield call(LoginManager.logInWithReadPermissions, ['public_profile', 'email']);
+  if (result.isCancelled) {
+    console.log('cancelled');
+  } else {
+    const { accessToken } = yield call(AccessToken.getCurrentAccessToken);
+
+    const profileData = yield call(signon.api.getFacebookProfile, accessToken);
+    const payload = {
+      password: accessToken,
+      viaFacebook: true
+    };
+
+    if (actions.signon === 'connect') {
+      yield put(profile.actions.updateProfile(payload));
+    } else {
+      yield put(signon.actions.captureSignon({ ...payload, name: profileData.name, email: profileData.email }));
+
+      yield put(signon.actions.submitSignon(actions.signon));
+    }
+  }
+}
+
 export function* recoverPassword(action: signon.ISignonFormAction): IterableIterator<any> {
   yield put(setLoadingOn());
   try {
     yield call(signon.api.recoverPassword, action.email);
     yield put(setSuccessMessage('passwordRecoverySuccess', true));
   } catch (error) {
-    console.warn(JSON.stringify(error));
-
     if (isApiResponse(error)) {
       if (error.response.status === 422) {
         yield put(setFailureMessage('passwordRecoveryFailure', true));
@@ -99,5 +121,6 @@ export function* signout(): IterableIterator<any> {
 export const functions = (): ISagasFunctions[] => [
   { action: signon.actions.types.SUBMIT_SIGNON, func: submitSignon },
   { action: signon.actions.types.SIGNOUT, func: signout },
-  { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword }
+  { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
+  { action: signon.actions.types.CONNECT_VIA_FACEBOOK, func: connectViaFacebook }
 ];

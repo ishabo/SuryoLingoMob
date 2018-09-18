@@ -14,6 +14,9 @@ const Images = {
       locked: require('../../../src/assets/images/skills/bg/drawable-xhdpi/locked.png'),
       unlocked: require('../../../src/assets/images/skills/bg/drawable-xhdpi/unlocked.png')
     }
+  },
+  profile: {
+    default: require(`../../../src/assets/images/default_profile_pic.png`)
   }
 };
 

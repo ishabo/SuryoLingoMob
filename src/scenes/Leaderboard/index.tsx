@@ -65,10 +65,14 @@ class Leaderboard extends React.Component<IProps> {
         <GSUserXP>{user.userXp}</GSUserXP>
       </GSUserDetails>
       <GSUserDetails align="left">
-        <GSUserProfilePicture source={images.logo.plain} />
+        <GSUserProfilePicture source={this.renderProfilePicture(user.profilePic)} />
       </GSUserDetails>
     </GSTopUser>
   );
+
+  renderProfilePicture = (profilePic: string) => {
+    return profilePic ? { uri: profilePic } : images.profile.default;
+  };
 
   renderLeaderboard = () => this.props.topUsers.map((user, index) => this.renderUser(user, index + 1));
 

@@ -4,7 +4,7 @@ import * as sagas from './sagas';
 import * as api from './api';
 import { IAction } from 'services/sagas';
 import { ICourse } from 'services/courses';
-export type TSignon = string | 'signup' | 'signin';
+export type TSignonType = 'connect' | 'signup' | 'signin';
 
 export interface IProfile {
   id?: string;
@@ -12,7 +12,11 @@ export interface IProfile {
   email?: string;
   userXp?: number;
   deviceId?: string;
+  isRep?: boolean;
   isTester?: boolean;
+  profilePic?: string;
+  facebookId?: string;
+  hasConnectedViaFacebook?: boolean;
 }
 
 export interface ISignonFormData {
@@ -26,7 +30,7 @@ export interface IProfileAction extends IAction {
   payload?: IProfileSignonPayload;
   data?: IProfile;
   courseId: ICourse['id'];
-  signon?: TSignon;
+  signon?: TSignonType;
   formData?: ISignonFormData;
 }
 

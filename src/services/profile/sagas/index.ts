@@ -6,7 +6,7 @@ import { ISagasFunctions } from 'services/sagas';
 import { setAccessToken } from 'services/api/access';
 import { isRegistered } from 'services/selectors';
 
-export function* createProfile (action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
 
   if (isEmpty(profileState)) {
@@ -19,7 +19,7 @@ export function* createProfile (action: profile.IProfileAction): IterableIterato
   }
 }
 
-export function* updateProfile (action: profile.IProfileAction): IterableIterator<any> {
+export function* updateProfile(action: profile.IProfileAction): IterableIterator<any> {
   const currentProfile = yield select((state: IInitialState) => state.profile);
   try {
     const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
@@ -30,7 +30,7 @@ export function* updateProfile (action: profile.IProfileAction): IterableIterato
   }
 }
 
-export function* fetchProfile (): IterableIterator<any> {
+export function* fetchProfile(): IterableIterator<any> {
   const userIsRegistered = yield select(isRegistered);
   if (userIsRegistered) {
     try {
@@ -42,7 +42,7 @@ export function* fetchProfile (): IterableIterator<any> {
   }
 }
 
-export function* saveProfileAndAccessToken (action: profile.IProfileAction): IterableIterator<any> {
+export function* saveProfileAndAccessToken(action: profile.IProfileAction): IterableIterator<any> {
   const accessToken = action.profileData.apiKey;
   console.log('Will save token', accessToken);
   delete action.profileData.apiKey;
@@ -57,6 +57,7 @@ export const functions = (): ISagasFunctions[] => {
     { action: profile.actions.types.UPDATE_PROFILE, func: updateProfile },
     {
       action: profile.actions.types.SAVE_PROFILE_AND_ACCESS_TOKEN,
-      func: saveProfileAndAccessToken,
-    }];
+      func: saveProfileAndAccessToken
+    }
+  ];
 };

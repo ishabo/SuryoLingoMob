@@ -202,11 +202,15 @@ export default {
     },
     form: {
       signonToSave: 'سجل حسابك لحفظ تقدمك',
-      signinTitle: 'تسجيل دخول إلى سوريولينجو',
-      signupTitle: 'سجل حساب على سوريولينجو',
+      signinTitle: 'دخول إلى سوريولينجو',
+      signupTitle: 'تسجيل في سوريولينجو',
       signIn: 'تسجيل الدخول',
       signOut: 'تسجيل الخروج',
       signUp: 'تسجيل حساب جديد',
+      orElse: 'أو سجل عن طريق الإيميل',
+      connectViaFacebook: 'اربط حسابك بالفيسبوك',
+      signinViaFacebook: ' ادخل عن طريق الفيسبوك',
+      signupViaFacebook: 'سجل حساب عن طريق الفيسبوك',
       fields: {
         email: 'الإيميل',
         name: 'الاسم',
@@ -219,11 +223,11 @@ export default {
         nameInvalid: 'عليك اختيار اسم مؤلف من أحرف عربية أو سريانية أو انكليزية',
         emailInvalid: 'هذا الإيميل لا يبدو صالحاً',
         passwordInvalid: 'كلمة السر ضعيفة. ' + 'يجب ان تحتوي على الأقل على ٦ أحرف ' + 'a-z ورقم واحد ',
-        emailSlreadyExists: 'هذا الإيميل مأخوذ'
+        emailAlreadyExists: 'هذا الإيميل مأخوذ'
       },
       submit: {
-        signin: 'دخول',
-        signup: 'تسجيل'
+        signin: 'ادخل',
+        signup: 'سجّل'
       },
       skip: 'سجل لاحقاً'
     },

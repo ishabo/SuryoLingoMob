@@ -71,7 +71,7 @@ export const GSBadgePosition = glamor.view({
   right: 0
 });
 
-export const GSListButton = glamor.view({
+export const GSListButton = glamor(Button)({
   position: 'absolute',
   top: 10,
   left: 15

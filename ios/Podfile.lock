@@ -6,9 +6,71 @@ PODS:
     - AppCenter/Core
   - AppCenter/Push (1.9.0):
     - AppCenter/Core
-  - AppCenterReactNativeShared (1.8.0):
+  - AppCenterReactNativeShared (1.8.1):
     - AppCenter/Core (= 1.9.0)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - boost-for-react-native (1.63.0)
+  - DoubleConversion (1.1.5)
+  - FBSDKCoreKit (4.36.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.36.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.36.0):
+    - FBSDKCoreKit (~> 4.36.0)
+  - Folly (2016.09.26.00):
+    - boost-for-react-native
+    - DoubleConversion
+    - glog
+  - glog (0.3.4)
   - Google-Mobile-Ads-SDK (7.32.0)
+  - React (0.54.4):
+    - React/Core (= 0.54.4)
+  - react-native-fbsdk (0.8.0):
+    - React
+    - react-native-fbsdk/Core (= 0.8.0)
+    - react-native-fbsdk/Login (= 0.8.0)
+    - react-native-fbsdk/Share (= 0.8.0)
+  - react-native-fbsdk/Core (0.8.0):
+    - FBSDKCoreKit
+    - React
+  - react-native-fbsdk/Login (0.8.0):
+    - FBSDKLoginKit
+    - React
+  - react-native-fbsdk/Share (0.8.0):
+    - FBSDKShareKit
+    - React
+  - React/Core (0.54.4):
+    - yoga (= 0.54.4.React)
+  - React/CxxBridge (0.54.4):
+    - Folly (= 2016.09.26.00)
+    - React/Core
+    - React/cxxreact
+  - React/cxxreact (0.54.4):
+    - boost-for-react-native (= 1.63.0)
+    - Folly (= 2016.09.26.00)
+    - React/jschelpers
+    - React/jsinspector
+  - React/DevSupport (0.54.4):
+    - React/Core
+    - React/RCTWebSocket
+  - React/fishhook (0.54.4)
+  - React/jschelpers (0.54.4):
+    - Folly (= 2016.09.26.00)
+    - React/PrivateDatabase
+  - React/jsinspector (0.54.4)
+  - React/PrivateDatabase (0.54.4)
+  - React/RCTBlob (0.54.4):
+    - React/Core
+  - React/RCTWebSocket (0.54.4):
+    - React/Core
+    - React/fishhook
+    - React/RCTBlob
+  - yoga (0.54.4.React)
 
 DEPENDENCIES:
   - AppCenter/Analytics (~> 1.9.0)
@@ -16,12 +78,37 @@ DEPENDENCIES:
   - AppCenter/Push (~> 1.9.0)
   - AppCenterReactNativeShared (~> 1.8.0)
   - Google-Mobile-Ads-SDK
+  - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
+  - React/Core (from `../node_modules/react-native`)
+  - React/CxxBridge (from `../node_modules/react-native`)
+  - React/DevSupport (from `../node_modules/react-native`)
+  - React/RCTBlob (from `../node_modules/react-native`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+
+EXTERNAL SOURCES:
+  React:
+    :path: ../node_modules/react-native
+  react-native-fbsdk:
+    :path: ../node_modules/react-native-fbsdk
+  yoga:
+    :path: ../node_modules/react-native/ReactCommon/yoga
 
 SPEC CHECKSUMS:
   AppCenter: 3cf7b9387549e9703dab068793e404013e8c0cc1
-  AppCenterReactNativeShared: 53eb73a85b3adaf0d5b6dd8ea276a56e2d9aed6c
+  AppCenterReactNativeShared: 3d804f256b964e040d902d1a215d7866fedae55d
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
+  FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
+  FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
+  FBSDKShareKit: 7090fdd55c39b03941efddb64c83a64ff6b3949f
+  Folly: 211775e49d8da0ca658aebc8eab89d642935755c
+  glog: 1de0bb937dccdc981596d3b5825ebfb765017ded
   Google-Mobile-Ads-SDK: 2aca87e46e860f1e1fc0fdc1201dd9caa4be9ba6
+  React: c237e42de9c70e5cac6eeb52b4cfd3a0910c1f00
+  react-native-fbsdk: d5f98cc5abecbcc463e3c35c04743d716d002d37
+  yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: 773bd486b9c2d582b3df48ed9d551545f480d7c0
+PODFILE CHECKSUM: bc936140d33ee4f1ae497bcead2a9349e18544b8
 
 COCOAPODS: 1.4.0

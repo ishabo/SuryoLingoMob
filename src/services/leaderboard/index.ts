@@ -7,6 +7,7 @@ export interface ILeaderboardUser {
   id: string;
   name: string;
   userXp: number;
+  profilePic?: string;
   ratio: number;
 }
 export interface ILeaderboard {

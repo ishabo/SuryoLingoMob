@@ -25,6 +25,7 @@ const colors = {
   darkBlue: '#1F55AD',
   violet: '#ee82ee',
   blueViolet: '#8a2be2',
+  facebook: '#3B5998',
   // gray
   lightGray: '#D9D9D9',
   gray: '#B0B0B0',

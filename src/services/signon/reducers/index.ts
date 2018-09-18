@@ -2,8 +2,8 @@ import { types } from '../actions';
 import { ISignonFormAction, ISignonState } from '../';
 
 export const initialState: ISignonState = {
-  item: { name: null, email: null, password: null },
-  errors: {},
+  item: { name: null, email: null, password: null, viaFacebook: false },
+  errors: {}
 };
 
 export const reducer = (state: ISignonState = initialState, action: ISignonFormAction) => {

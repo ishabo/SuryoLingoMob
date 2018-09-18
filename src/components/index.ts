@@ -12,3 +12,4 @@ export { default as SoundButton } from './SoundButton';
 export { default as StudyPhrase } from './StudyPhrase';
 export { default as EvaluationBanner } from './EvaluationBanner';
 export { default as TryCatch } from './TryCatch';
+export { default as FBLoginButton } from './FBLoginButton';

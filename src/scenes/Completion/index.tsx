@@ -11,6 +11,7 @@ import { resetToLessons, resetToSkills } from 'helpers/navigation';
 import { NextButton, SignOnOrOut } from 'components/';
 import { IProfile } from 'services/profile';
 import { Dispatch } from 'redux';
+import { displayInterstitialAd } from 'helpers';
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void;
@@ -25,8 +26,6 @@ interface IState {
   timeToSkipAd: number;
   lessonXp: number;
 }
-
-const decreaseIntervals = 1000;
 
 class Completion extends React.Component<IProps, IState> {
   state = {
@@ -45,42 +44,21 @@ class Completion extends React.Component<IProps, IState> {
       this.setState({ lessonXp: lastAccomplishment.thisLessonXp });
     }
 
-    this.countDown();
+    displayInterstitialAd('completion');
   }
-
-  countDown = () => {
-    setTimeout(() => {
-      const decreasedTime = this.state.timeToSkipAd - decreaseIntervals;
-      this.setState({ timeToSkipAd: decreasedTime }, () => {
-        if (!this.canSkipAd()) {
-          this.countDown();
-        }
-      });
-    }, decreaseIntervals);
-  };
-
-  canSkipAd = () => this.state.timeToSkipAd <= 0;
 
   navBackToLessons = () => {
     const { navigationReset, skillInProgress } = this.props;
     navigationReset(skillInProgress.progress === 1 ? resetToSkills() : resetToLessons(skillInProgress));
   };
 
-  renderBackToLessonsButton = () => {
-    const seconds = this.state.timeToSkipAd / 1000;
-    const buttonName = this.canSkipAd()
-      ? I18n.t('completion.backToLessons')
-      : I18n.t('completion.willAllowToGoInSeconds', { seconds });
-
-    return (
-      <NextButton
-        onPress={this.navBackToLessons}
-        disabled={!this.canSkipAd()}
-        lang={this.props.sourceLanguage}
-        text={buttonName}
-      />
-    );
-  };
+  renderBackToLessonsButton = () => (
+    <NextButton
+      onPress={this.navBackToLessons}
+      lang={this.props.sourceLanguage}
+      text={I18n.t('completion.backToLessons')}
+    />
+  );
 
   render() {
     const { order } = this.props.lessonInProgress;
