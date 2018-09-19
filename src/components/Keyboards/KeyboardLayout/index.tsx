@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import shortid from 'shortid';
 import { GSBackSpaceKey, GSContainer, GSContent, GSKey, GSIcon, GSKeyText, GSSpaceKey } from './index.styles';
 import { KeyboardRegistry } from 'react-native-keyboard-input';
@@ -60,30 +60,17 @@ class KeyboardLayout extends React.Component<IProps> {
 
   render() {
     return (
-      <ScrollView
-        contentContainerStyle={{
-          flex: 1,
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          height: 300,
-          paddingBottom: 20
-        }}
-        style={{ height: 300 }}
-        scrollEnabled={false}
-      >
-        <GSContainer>
-          <>{this.listRows(this.props.letters)}</>
-          <GSContent>
-            <GSBackSpaceKey onPress={this.onPress(this.onBackSpacePress)}>
-              <GSIcon name="backspace" />
-            </GSBackSpaceKey>
-            <GSSpaceKey onPress={this.onPress(() => this.onKeyPress(' '))}>
-              <View />
-            </GSSpaceKey>
-          </GSContent>
-        </GSContainer>
-      </ScrollView>
+      <GSContainer>
+        <>{this.listRows(this.props.letters)}</>
+        <GSContent>
+          <GSBackSpaceKey onPress={this.onPress(this.onBackSpacePress)}>
+            <GSIcon name="backspace" />
+          </GSBackSpaceKey>
+          <GSSpaceKey onPress={this.onPress(() => this.onKeyPress(' '))}>
+            <View />
+          </GSSpaceKey>
+        </GSContent>
+      </GSContainer>
     );
   }
 }

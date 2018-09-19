@@ -192,13 +192,14 @@ class Questions extends React.Component<IProps, IState> {
   };
 
   renderEvaluationBanner() {
-    const { questionType, phrase, translation } = this.props.currentQuestion;
+    const { questionType, phrase, translation, otherCorrectAnswers = [] } = this.props.currentQuestion;
+    const correctAnswers = [...otherCorrectAnswers, isReverseQuestion(questionType) ? phrase : translation];
     const correctAnswer = (
       <GSCustomStudyText
         style={{ fontSize: 16 }}
         lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.sourceLanguage}
       >
-        {isReverseQuestion(questionType) ? phrase : translation}
+        {correctAnswers.join(I18n.t('general.comma') + ' ')}
       </GSCustomStudyText>
     );
 
@@ -208,6 +209,7 @@ class Questions extends React.Component<IProps, IState> {
           lang={this.props.sourceLanguage}
           passed={this.state.answerCorrect}
           correctAnswer={correctAnswer}
+          multipleAnswers={correctAnswers.length > 1}
         />
       )
     );

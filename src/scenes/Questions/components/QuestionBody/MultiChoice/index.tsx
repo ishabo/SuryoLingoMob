@@ -3,7 +3,7 @@ import { IAnswerProps } from '../../../index.types';
 import I18n from 'I18n';
 import shortid from 'shortid';
 import { ICourse } from 'services/courses';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ScrollView } from 'react-native';
 import { GSChoice, GSContainer, GSContent, GSRadio, GSText, GSTitle } from './index.styles';
 import { shuffle } from 'lodash';
 
@@ -11,6 +11,7 @@ interface IProps extends IAnswerProps {
   phrase: string;
   translation: string;
   incorrectChoices: string[];
+  otherCorrectAnswers: string[];
   reverse: boolean;
   course: ICourse;
 }
@@ -27,11 +28,16 @@ export default class MultiChoice extends React.Component<IProps, IState> {
   };
 
   componentDidMount() {
-    const { reverse, phrase, translation, incorrectChoices } = this.props;
+    const { reverse, phrase, translation, incorrectChoices, otherCorrectAnswers } = this.props;
     const correctChoice = reverse ? phrase : translation;
 
+    const correctChoices =
+      otherCorrectAnswers && Array.isArray(otherCorrectAnswers)
+        ? [...otherCorrectAnswers, correctChoice]
+        : [correctChoice];
+
     this.setState({
-      choices: shuffle([correctChoice].concat(incorrectChoices))
+      choices: shuffle(correctChoices.concat(incorrectChoices))
     });
   }
 
@@ -72,12 +78,14 @@ export default class MultiChoice extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <GSContainer>
-        <GSContent>
-          <GSTitle>{I18n.t('questions.multiChoice')}</GSTitle>
-          {this.renderChoices()}
-        </GSContent>
-      </GSContainer>
+      <ScrollView contentContainerStyle={{ paddingBottom: 80, flex: 1 }}>
+        <GSContainer>
+          <GSContent>
+            <GSTitle>{I18n.t('questions.multiChoice')}</GSTitle>
+            {this.renderChoices()}
+          </GSContent>
+        </GSContainer>
+      </ScrollView>
     );
   }
 }

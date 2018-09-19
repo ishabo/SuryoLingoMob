@@ -58,7 +58,7 @@ class Lessons extends React.Component<IProps, IState> {
 
     if (this.state.snapped === false) {
       this.cards.fadeInUp();
-      setTimeout(this.snapToItem, 800);
+      setTimeout(this.snapToItem, 1200);
     }
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
