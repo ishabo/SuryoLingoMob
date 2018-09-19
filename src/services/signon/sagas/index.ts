@@ -50,6 +50,7 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
         yield put(resetToCourses());
       }
     } catch (error) {
+      console.warn(error.response);
       if (isApiResponse(error.response)) {
         if (error.response.status === 400) {
           if (error.response.data.match(/Email already exists/)) {
