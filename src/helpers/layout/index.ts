@@ -12,15 +12,16 @@ export const getWindowDimentions = () => {
 export const getWindowHeight = () => getWindowDimentions().height;
 export const getWindowWidth = () => getWindowDimentions().width;
 
-export const isShortDevice = () => getWindowHeight() < 600;
-export const isNarrowDevice = () => getWindowWidth() < 350;
-export const isSmallDevice = () => isShortDevice() || isNarrowDevice();
+export const isShortDevice = (height: number = 600) => getWindowHeight() < height;
+export const isNarrowDevice = (width: number = 350) => getWindowWidth() < width;
+export const isSmallDevice = (height: number = 600, width: number = 350) =>
+  isShortDevice(height) || isNarrowDevice(width);
 
 export const calcWindowWidth = (percent: number) => {
   const width = getWindowWidth();
-  return width - (width * (percent / 100));
+  return width - width * (percent / 100);
 };
 
 export const scaleSize = (size: number, newSize?: number) => {
   return isSmallDevice() ? (newSize ? newSize : size - 2) : size;
-}
+};

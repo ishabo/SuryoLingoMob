@@ -9,8 +9,8 @@ import {
   isReverseQuestion,
   cleanAnswer,
   getWindowWidth,
-  isNarrowDevice,
-  getLangConfig
+  getLangConfig,
+  isShortDevice
 } from 'helpers';
 import { connect } from 'react-redux';
 import { nextQuestionOrFinish, TQuestionType } from 'services/questions/actions';
@@ -242,13 +242,14 @@ class Questions extends React.Component<IProps, IState> {
       collectAnswer={this.collectAnswer}
       userHasAnswered={this.userHasAnswered()}
       hints={this.props.dictionaries}
-      renderNextButton={this.showSmallButton() ? this.renderNextQuestionSmall() : <View />}
+      renderNextButtonSmall={this.showSmallButton() ? this.renderNextQuestionSmall() : <View />}
+      renderNextButton={this.renderNextQuestion()}
       onSubmit={this.evaluateOrNext}
     />
   );
 
   showSmallButton = () =>
-    !this.submitDisallowed() && !this.state.movingNext && this.state.keyboardIsOn && isNarrowDevice();
+    !this.submitDisallowed() && !this.state.movingNext && this.state.keyboardIsOn && isShortDevice(500);
 
   renderNextQuestionSmall = () => {
     let text = this.needsEvaluation() ? I18n.t('questions.submit') : I18n.t('questions.continue');
@@ -278,7 +279,7 @@ class Questions extends React.Component<IProps, IState> {
           keyboardVerticalOffset={Platform.select({ android: 0, ios: 75 })}
           enabled
         >
-          {(this.state.keyboardIsOn && isNarrowDevice() && <View />) || this.renderNextQuestion()}
+          {(this.state.keyboardIsOn && isShortDevice(500) && <View />) || this.renderNextQuestion()}
         </GSFooter>
       </GSFooterAndBody>
     );

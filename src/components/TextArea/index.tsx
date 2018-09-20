@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Platform, View, NativeModules, TouchableOpacity, Keyboard } from 'react-native';
-import { GSContainer, GSContent, GSTextArea, GSTextAreaContainer /*GSFakeTextArea*/ } from './index.styles';
+import { Platform, View, NativeModules, Keyboard } from 'react-native';
+import { GSContainer, GSContent, GSTextArea, GSTextAreaContainer, GSKeyboardToggleButton } from './index.styles';
 import Colors from 'styles/colors';
 import { isNarrowDevice } from 'helpers';
 import { KeyboardAccessoryView, KeyboardRegistry, KeyboardUtils } from 'react-native-keyboard-input';
@@ -24,11 +24,14 @@ interface IProps {
   customKeyboardEnabled: boolean;
   toggleCustomKeyboard: () => void;
   setPreferences: (pref) => void;
+  renderNextButton: React.ReactElement<any>;
 }
 
 interface IState {
   value: string;
   keyboardOn: boolean;
+  nextButtonBottomPosition: number;
+  customKeyboardEnabled: boolean;
 }
 
 class TextArea extends React.Component<IProps, IState> {
@@ -36,7 +39,9 @@ class TextArea extends React.Component<IProps, IState> {
     super(props);
     this.state = {
       value: '',
-      keyboardOn: false
+      keyboardOn: false,
+      nextButtonBottomPosition: 20,
+      customKeyboardEnabled: false
     };
   }
 
@@ -44,27 +49,31 @@ class TextArea extends React.Component<IProps, IState> {
   keyboardDidHideListener;
 
   componentDidMount() {
-    if (Platform.OS === 'android') {
-      setTimeout(() => {
-        if (!this.props.customKeyboardEnabled) {
-          this.textArea.focus();
-        }
-      }, 200);
+    if (this.props.customKeyboardEnabled) {
+      if (Platform.OS === 'ios') {
+        this.refreshCustomKeyboard();
+      } else {
+        this.textArea.focus();
+      }
     } else {
-      setTimeout(() => {
-        if (this.props.customKeyboardEnabled) {
-          this.props.toggleCustomKeyboard();
-          setTimeout(this.props.toggleCustomKeyboard, 200);
-        } else {
-          this.textArea.focus();
-          this.textArea.focus();
-        }
-      }, 200);
+      this.textArea.focus();
     }
 
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
   }
+
+  static getDerivedStateFromProps(props: Partial<IProps>) {
+    return { customKeyboardEnabled: props.customKeyboardEnabled };
+  }
+
+  refreshCustomKeyboard = () => {
+    setTimeout(() => {
+      this.setState({ customKeyboardEnabled: !this.state.customKeyboardEnabled }, () => {
+        this.setState({ customKeyboardEnabled: !this.state.customKeyboardEnabled });
+      });
+    }, 200);
+  };
 
   keyboardDidShow = () => {
     this.setState({
@@ -132,17 +141,17 @@ class TextArea extends React.Component<IProps, IState> {
 
   renderKeyboardToggleButton() {
     return (
-      <TouchableOpacity style={{ flexDirection: 'row-reverse' }} onPress={this.toggleCustomKeyboard}>
+      <GSKeyboardToggleButton onPress={this.toggleCustomKeyboard}>
         <Icon
           type="Entypo"
           name="keyboard"
           style={{
             fontSize: 40,
-            color: this.props.customKeyboardEnabled ? 'gray' : 'blue',
+            color: this.state.customKeyboardEnabled ? 'gray' : 'blue',
             marginRight: 4
           }}
         />
-      </TouchableOpacity>
+      </GSKeyboardToggleButton>
     );
   }
 
@@ -161,13 +170,7 @@ class TextArea extends React.Component<IProps, IState> {
               placeholderTextColor={Colors.gray}
               multiline
               autoCorrect={false}
-              onTouchStart={() => {
-                Platform.OS === 'android' && this.setNativeKeyboard();
-              }}
-              onFocus={() => {
-                Platform.OS === 'ios' && this.setNativeKeyboard();
-              }}
-              autoFocus={Platform.OS === 'android'}
+              onTouchStart={this.setNativeKeyboard}
               blurOnSubmit={false}
               onSubmitEditing={this.props.onSubmit}
               underlineColorAndroid="rgba(0,0,0,0)"
@@ -178,16 +181,17 @@ class TextArea extends React.Component<IProps, IState> {
               rtl={Platform.OS === 'ios'}
               innerRef={(c: TextArea) => (this.textArea = c)}
               lang={this.state.value.length === 0 ? 'cl-ara' : this.props.inputLanguage}
+              accessible={false}
             />
+            {this.renderKeyboardToggleButton()}
           </GSTextAreaContainer>
-          {this.renderKeyboardToggleButton()}
         </GSContent>
 
         <KeyboardAccessoryView
           androidAdjustResize
           iOSScrollBehavior={iosScrollBehavior}
           kbInputRef={this.textArea}
-          kbComponent={this.props.customKeyboardEnabled ? this.getCustomKeyboard() : null}
+          kbComponent={this.state.customKeyboardEnabled ? this.getCustomKeyboard() : null}
           onItemSelected={this.receivedKeyboardData}
           revealKeyboardInteractive
           style={{ flex: 1 }}

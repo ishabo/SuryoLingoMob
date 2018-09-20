@@ -16,13 +16,6 @@ import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import { Platform } from 'react-native';
 import colors from 'styles/colors';
 
-// const SignonStack = StackNavigator(
-//   {
-//     Signon: { screen: Signon }
-//   },
-//   { headerMode: 'none' }
-// );
-
 const DrawerNav = DrawerNavigator(
   {
     Courses: { screen: Courses },

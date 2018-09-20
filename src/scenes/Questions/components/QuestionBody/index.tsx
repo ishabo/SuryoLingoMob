@@ -31,6 +31,7 @@ interface IProps {
   userHasAnswered: boolean;
   hints: IDictionary[];
   renderNextButton: React.ReactElement<any>;
+  renderNextButtonSmall: React.ReactElement<any>;
   isAdmin?: boolean;
   onSubmit: () => void;
 }
@@ -165,7 +166,9 @@ class QuestionBody extends React.Component<IProps, IState> {
     };
 
     let rawSentence = reverse ? question.translation : question.phrase;
-    let hintifiedSentence = reverse ? null : hintify(question.phrase, this.props.hints, course.targetLanguage.shortName);
+    let hintifiedSentence = reverse
+      ? null
+      : hintify(question.phrase, this.props.hints, course.targetLanguage.shortName);
 
     if (this.state.garshoniToggle && !reverse) {
       rawSentence = garshonify({
@@ -227,7 +230,7 @@ class QuestionBody extends React.Component<IProps, IState> {
     return (
       <GSContainer>
         <GSActionButtons>
-          {this.props.renderNextButton}
+          {this.props.renderNextButtonSmall}
           {options.length > 0 && <GSOptions>{options}</GSOptions>}
         </GSActionButtons>
 
@@ -249,6 +252,7 @@ class QuestionBody extends React.Component<IProps, IState> {
           reverse={reverse}
           lang={lang}
           onSubmit={this.props.onSubmit}
+          renderNextButton={this.props.renderNextButton}
         />
 
         {this.renderModal()}
