@@ -22,6 +22,7 @@ export default class Dictation extends React.Component<IProps> {
           showCustomKeyboard={this.props.reverse && !this.props.userHasAnswered}
           inputLanguage={this.props.course.targetLanguage.shortName}
           onSubmit={this.props.onSubmit}
+          renderNextButton={this.props.renderNextButton}
         />
       </GSContainer>
     );

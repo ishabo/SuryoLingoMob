@@ -26,6 +26,7 @@ export default class Translation extends React.Component<IProps> {
           inputLanguage={course[translateTo].shortName}
           autoFocus={!reverse}
           onSubmit={this.props.onSubmit}
+          renderNextButton={this.props.renderNextButton}
         />
       </GSContainer>
     );

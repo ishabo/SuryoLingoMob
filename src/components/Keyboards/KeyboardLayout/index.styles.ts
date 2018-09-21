@@ -12,12 +12,12 @@ export const GSContainer = glamor.view({
 const textStyle = {
   textAlign: 'center',
   alignSelf: 'center',
-  color: Colors.white,
   fontSize: 20
 };
 
 export const GSKeyText = glamor(GSCustomText)<ICustomText>({
-  ...textStyle
+  ...textStyle,
+  color: Colors.white
 });
 
 export const GSIcon = glamor(Icon)({

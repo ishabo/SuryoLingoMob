@@ -16,11 +16,6 @@ import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import { Platform } from 'react-native';
 import colors from 'styles/colors';
 
-const SignonStack = StackNavigator({
-  Signon: { screen: Signon },
-  PasswordRecovery: { screen: PasswordRecovery, navigationOptions: { visible: false } }
-});
-
 const DrawerNav = DrawerNavigator(
   {
     Courses: { screen: Courses },
@@ -40,7 +35,8 @@ export const AppNavigator = StackNavigator(
     Splash: { screen: Splash },
     Courses: { screen: Courses },
     Skills: { screen: DrawerNav },
-    Signon: { screen: SignonStack },
+    Signon: { screen: Signon },
+    PasswordRecovery: { screen: PasswordRecovery, navigationOptions: { visible: false } },
     Lessons: { screen: Lessons },
     Questions: { screen: Questions },
     LessonOverview: { screen: LessonOverview },

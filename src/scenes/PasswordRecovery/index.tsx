@@ -25,33 +25,31 @@ export interface IState {
 }
 
 class PasswordRecovery extends React.Component<IProps, IState> {
-
   state = {
-    email: '',
+    email: ''
   };
 
   static navigationOptions = {
-    title: null,
+    title: I18n.t('passwordRecovery.title')
   };
-
-  componentDidMount () {
+  componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
   handleBackPress = () => {
     this.props.navigation.goBack();
     return true;
-  }
+  };
 
   setEmail = (email: string) => {
     this.setState({ email: email.trim().toLocaleLowerCase() });
-  }
+  };
 
-  componentWillReceiveProps (nextProps: Partial<IProps>) {
+  componentWillReceiveProps(nextProps: Partial<IProps>) {
     if (nextProps.apiStatus !== this.props.apiStatus) {
       if (nextProps.apiStatus.success) {
         this.setState({ email: '' });
@@ -59,11 +57,11 @@ class PasswordRecovery extends React.Component<IProps, IState> {
     }
   }
 
-  renderForm () {
+  renderForm() {
     return (
       <GSForm>
         <GSTitle lang={'cl-ara'}>{I18n.t('passwordRecovery.title')}</GSTitle>
-        <Item fixedLabel >
+        <Item fixedLabel>
           <GSCustomText>{I18n.t(`passwordRecovery.form.fields.email`)}</GSCustomText>
           <GSInput
             dir="ltr"
@@ -71,7 +69,8 @@ class PasswordRecovery extends React.Component<IProps, IState> {
             autoFocus={true}
             returnKeyType="go"
             value={this.state.email}
-            onChangeText={this.setEmail} />
+            onChangeText={this.setEmail}
+          />
         </Item>
         <GSSeparator />
         <NextButton
@@ -83,13 +82,15 @@ class PasswordRecovery extends React.Component<IProps, IState> {
       </GSForm>
     );
   }
-  render () {
+  render() {
     const { success, message } = this.props.apiStatus;
     return (
       <GSContainer>
-        {message && <GSAlert success={success} lang={'cl-ara'}>
-          {I18n.t(`passwordRecovery.result.${success ? 'success' : 'failure'}`)}
-        </GSAlert>}
+        {message && (
+          <GSAlert success={success} lang={'cl-ara'}>
+            {I18n.t(`passwordRecovery.result.${success ? 'success' : 'failure'}`)}
+          </GSAlert>
+        )}
         {this.props.apiStatus.success || this.renderForm()}
       </GSContainer>
     );
@@ -97,11 +98,14 @@ class PasswordRecovery extends React.Component<IProps, IState> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  recoverPassword: (email: string) => dispatch(signon.actions.recoverPassword(email)),
+  recoverPassword: (email: string) => dispatch(signon.actions.recoverPassword(email))
 });
 
 const mapStateToProps = (state: IInitialState) => ({
-  apiStatus: state.api,
+  apiStatus: state.api
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PasswordRecovery);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PasswordRecovery);

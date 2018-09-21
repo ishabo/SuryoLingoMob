@@ -20,6 +20,7 @@ export interface IAnswerProps {
   collectAnswer: (answer: TAnswer) => void;
   userHasAnswered: boolean;
   onSubmit: () => void;
+  renderNextButton: React.ReactElement<any>;
 }
 
 export interface IProps {
@@ -36,4 +37,5 @@ export interface IProps {
   skillInProgress: ISkill;
   targetLanguage: TLangs;
   sourceLanguage: TLangs;
+  customKeyboardEnabled: boolean;
 }

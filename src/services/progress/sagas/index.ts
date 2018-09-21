@@ -18,8 +18,10 @@ import moment from 'moment';
 import { ISagasFunctions } from 'services/sagas';
 import { saveProfile } from 'services/profile/actions';
 import { IInitialState } from 'services/reducers';
+import { setLoadingOn } from 'services/api/actions';
 
 export function* enterLesson(action: progress.IProgressAction): IterableIterator<any> {
+  yield put(setLoadingOn());
   yield put(setLessonInProgress(action.lessonId));
   yield put(questions.actions.fetchQuestionsForLesson(action.lessonId, 'Questions'));
 }

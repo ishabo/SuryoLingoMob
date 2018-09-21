@@ -12,7 +12,7 @@ const website = () => {
 };
 
 const apiHost = `${website()}/api/v${API_VERSION}`;
-const adminHost = `${website()}/admin`;
+const adminHost = `${website()}/idara`;
 const lambdaHost = LAMBDA_HOST;
 
 export default {

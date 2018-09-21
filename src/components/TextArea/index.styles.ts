@@ -3,7 +3,6 @@ import glamor from 'glamorous-native';
 import Colors from 'styles/colors';
 import { isShortDevice } from 'helpers';
 import { getFont } from 'assets/fonts';
-import { TouchableOpacity } from 'react-native';
 
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch'
@@ -19,17 +18,9 @@ export const GSTextAreaContainer = glamor.view({
   marginBottom: 2,
   borderWidth: 1,
   borderColor: Colors.white,
-  padding: 3
-});
-
-export const GSFakeTextArea = glamor(TouchableOpacity as any)({
-  flex: 1,
-  alignItems: 'flex-start',
-  flexDirection: 'row',
-  padding: 10,
-  backgroundColor: '#d9d9d9',
+  padding: 3,
   position: 'relative'
-}) as any;
+});
 
 export const GSTextArea = glamor.textInput(
   {
@@ -63,8 +54,10 @@ export const GSKeyboardCloseButton = glamor(Button)({
   margin: 2
 });
 
-export const GSKeyboardToggleButton = glamor(Button)({
-  width: 64,
-  height: 34,
-  margin: 2
+export const GSKeyboardToggleButton = glamor.touchableOpacity({
+  flexDirection: 'row-reverse',
+  zIndex: 1000,
+  position: 'absolute',
+  bottom: 0,
+  right: 5
 });

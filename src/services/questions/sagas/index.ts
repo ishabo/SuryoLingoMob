@@ -50,9 +50,19 @@ export function* fetchQuestions(action: questions.IQuestionsAction): IterableIte
   yield put(setLoadingOff());
 }
 
-function* saveQuestionsAndNavigate(data: questions.IQuestion[], destination: questions.TDestination = 'Questions') {
+function* saveQuestionsAndNavigate(data: questions.IQuestion[], routeName: questions.TDestination = 'Questions') {
   yield put(questions.actions.saveQuestions(data));
-  yield put(NavigationActions.navigate({ routeName: destination }));
+  const action = NavigationActions.navigate({ routeName });
+  if (routeName === 'Questions') {
+    yield put(
+      NavigationActions.reset({
+        index: 0,
+        actions: [action]
+      })
+    );
+  } else {
+    yield put(action);
+  }
 }
 
 function* cacheAudioSounds(data: questions.IQuestion[]) {
@@ -77,12 +87,17 @@ export function* nextQuestionOrFinish(action: questions.IQuestionsAction): Itera
   if (pending.length === 0) {
     yield call(finishLesson);
     yield put(setLoadingOn());
-    delay(500);
+    delay(300);
     yield put(setLoadingOff());
     routeName = 'Completion';
   }
 
-  yield put(NavigationActions.navigate({ routeName }));
+  yield put(
+    NavigationActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName })]
+    })
+  );
 }
 
 export const functions = (): ISagasFunctions[] => [
