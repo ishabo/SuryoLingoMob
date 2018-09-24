@@ -22,6 +22,7 @@ import { downloadAndPlayAudio } from 'helpers/audio';
 import { SwitchButton, StudyPhrase } from 'components';
 import { KeyboardUtils } from 'react-native-keyboard-input';
 import garshonify from 'garshonify';
+import { Analytics } from 'config/firebase';
 
 interface IProps {
   question: IQuestion;
@@ -65,6 +66,7 @@ class QuestionBody extends React.Component<IProps, IState> {
   };
 
   private switchFromDictationToTranslation = () => {
+    Analytics.logEvent('cannot_hear_clicked', { questionId: this.props.question.id });
     this.setState({ dictationToTranslationToggle: !this.state.dictationToTranslationToggle });
   };
 

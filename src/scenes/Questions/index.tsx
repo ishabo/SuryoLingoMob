@@ -35,6 +35,7 @@ import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
 import QuestionBody from './components/QuestionBody';
 import { KeyboardUtils } from 'react-native-keyboard-input';
+import { Analytics } from 'config/firebase';
 
 class Questions extends React.Component<IProps, IState> {
   public state = {
@@ -83,6 +84,7 @@ class Questions extends React.Component<IProps, IState> {
   needsEvaluation = () => this.actionNeeded() && !this.userHasAnswered();
 
   componentWillMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
     this.setState({ progress: this.props.calcProress });
   }
 
@@ -134,12 +136,18 @@ class Questions extends React.Component<IProps, IState> {
       allowedLetters: targetLangConfig.letters.concat(sourceLangConfig.letters),
       overlookLetters: { ...targetLangConfig.overlookLetters, ...sourceLangConfig.overlookLetters }
     };
+
     const answerCorrect = evalAgainstAllAnswers(
       this.state.answer,
       this.props.allCorrectAnswers(this.props.currentQuestion.id),
       evaluationOptions
     );
 
+    const { id: questionId, questionType } = this.props.currentQuestion;
+
+    if (!answerCorrect) {
+      Analytics.logEvent('incorrect_answer', { questionId, questionType });
+    }
     this.setState({ answerCorrect });
   };
 

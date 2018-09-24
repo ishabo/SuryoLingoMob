@@ -6,6 +6,10 @@ import com.facebook.reactnative.androidsdk.FBSDKPackage;
 
 import android.app.Application;
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+
 import io.xogus.reactnative.versioncheck.RNVersionCheckPackage;
 import com.microsoft.appcenter.reactnative.push.AppCenterReactNativePushPackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
@@ -50,12 +54,14 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
 
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNVersionCheckPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new RNFirebasePackage(),
+            new RNFirebaseAnalyticsPackage(),
+            new RNFirebaseMessagingPackage(),
+          new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
+          new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
           new AppCenterReactNativePushPackage(MainApplication.this),
-          new AppCenterReactNativeCrashesPackage(MainApplication.this,
-              getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
-          new AppCenterReactNativeAnalyticsPackage(MainApplication.this,
-              getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
+          new RNVersionCheckPackage(),
           new AppCenterReactNativePackage(MainApplication.this), new RNFetchBlobPackage(), new RNVersionNumberPackage(),
           new RNSoundPackage(), new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(),
           new LinearGradientPackage(), new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(),
@@ -79,6 +85,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     FacebookSdk.sdkInitialize(getApplicationContext());
+    
     SoLoader.init(this, /* native exopackage */ false);
 
     I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();

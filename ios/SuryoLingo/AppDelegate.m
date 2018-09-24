@@ -18,11 +18,14 @@
 #import <React/RCTI18nUtil.h>
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Firebase.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [FIRApp configure];
+
   NSURL *jsCodeLocation;
 
   [AppCenterReactNativePush register];  // Initialize AppCenter push
@@ -33,8 +36,8 @@
 
   [AppCenterReactNative register];  // Initialize AppCenter 
 
-//   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"artifacts/index.ios" fallbackResource:nil];
-  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"artifacts/index.ios" fallbackResource:nil];
+  //  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
 
   for (NSString* family in [UIFont familyNames])
@@ -47,6 +50,7 @@
   }
   
   [[RCTI18nUtil sharedInstance] allowRTL:YES];
+
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"SuryoLingo"
@@ -62,6 +66,7 @@
 
   [[FBSDKApplicationDelegate sharedInstance] application:application
     didFinishLaunchingWithOptions:launchOptions];
+  
   return YES;
 }
 

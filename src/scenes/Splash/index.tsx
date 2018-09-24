@@ -11,6 +11,7 @@ import VersionNumber from 'react-native-version-number';
 import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
 import { ICourse } from 'services/courses';
+import { Analytics, Messaging } from 'config/firebase';
 
 export interface IProps {
   hasNetworkError: boolean;
@@ -30,6 +31,8 @@ const logos = [images.logo.arabic, images.logo.syriac, images.logo.english];
 const logo = logos[Math.floor(Math.random() * logos.length)];
 
 class Splash extends React.Component<IProps, IState> {
+  private messageListener;
+
   static navigationOptions = {
     header: null
   };
@@ -75,8 +78,20 @@ class Splash extends React.Component<IProps, IState> {
   };
 
   componentDidMount() {
+    Analytics.setAnalyticsCollectionEnabled(true);
+
+    Analytics.setCurrentScreen(this.constructor.name);
+
+    this.messageListener = Messaging.onMessage(res => {
+      console.warn('Message received', res);
+    });
+
     setTimeout(this.props.firstFetch, fetchDelayTime);
     setTimeout(this.checkConnection, alertDelayTime);
+  }
+
+  componentWillUnmount() {
+    this.messageListener();
   }
 
   checkConnection = () => {

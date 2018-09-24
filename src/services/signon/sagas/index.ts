@@ -15,6 +15,8 @@ import { isApiResponse, resetToCourses } from 'helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from 'services/api/access';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
+import { NavigationActions } from 'react-navigation';
+import { Analytics } from 'config/firebase';
 
 export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
   const fields = { ...(yield select((state: IInitialState) => state.signon.item)) };
@@ -27,16 +29,16 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
   if (isEmpty(errors)) {
     yield put(setLoadingOn());
 
-    const currentProfile = yield select((state: IInitialState) => state.profile);
+    let profileData = yield select((state: IInitialState) => state.profile);
 
     try {
-      let profileData;
-
       if (action.signon === 'signin') {
         profileData = yield call(signon.api.signin, fields);
-      } else {
-        profileData = yield call(profile.api.updateProfile(currentProfile.id), fields);
+        yield put(profile.actions.saveProfileAndAccessToken(profileData));
       }
+      profileData = yield select((state: IInitialState) => state.profile);
+
+      profileData = yield call(profile.api.updateProfile(profileData.id), fields);
 
       yield put(profile.actions.saveProfileAndAccessToken(profileData));
       yield put(signon.actions.reseTSignonType());
@@ -68,11 +70,14 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
 }
 
 export function* connectViaFacebook(actions: signon.ISignonFormAction): IterableIterator<any> {
+  Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Started: true });
+
   const result = yield call(LoginManager.logInWithReadPermissions, ['public_profile', 'email']);
   if (result.isCancelled) {
-    console.log('cancelled');
+    Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Cancelled: true });
   } else {
     const { accessToken } = yield call(AccessToken.getCurrentAccessToken);
+    Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Successful: true });
 
     const profileData = yield call(signon.api.getFacebookProfile, accessToken);
     const payload = {
@@ -107,7 +112,10 @@ export function* recoverPassword(action: signon.ISignonFormAction): IterableIter
 }
 
 export function* signout(): IterableIterator<any> {
+  Analytics.logEvent('signout_clicked', {});
   yield put(setLoadingOn());
+  yield put(NavigationActions.navigate({ routeName: 'DrawerClose' }));
+  yield delay(500);
   yield put(profile.actions.resetProfile());
   yield put(progress.actions.resetProgress());
   yield put(skills.actions.resetSkills());

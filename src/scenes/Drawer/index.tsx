@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
 import { isRegistered } from 'services/selectors';
 import { GSCustomText, ICustomText } from 'styles/text';
+import { Analytics } from 'config/firebase';
 import glamor from 'glamorous-native';
 import colors from 'styles/colors';
 
@@ -19,6 +20,10 @@ class Drawer extends React.Component<IProps> {
     headerRight: null,
     headerLeft: null
   };
+
+  componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
+  }
 
   private filteredItems = () => {
     const { items } = this.props;

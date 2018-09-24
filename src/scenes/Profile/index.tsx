@@ -17,6 +17,7 @@ import { GSContainer, GSProfile, GSProfileDetails, GSProfileDetailsItem, GSProfi
 import VersionNumber from 'react-native-version-number';
 import { GSDrawerLabel } from 'scenes/Drawer';
 import Images from 'assets/images';
+import { Analytics } from 'config/firebase';
 
 export interface IProps {
   apiStatus: api.IApiStatus;
@@ -37,6 +38,7 @@ class Profile extends React.Component<IProps> {
   });
 
   componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
     if (!this.props.isRegistered) {
       this.props.navigation.navigate('Signon');
     } else {

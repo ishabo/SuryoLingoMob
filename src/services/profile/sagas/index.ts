@@ -5,6 +5,7 @@ import { IInitialState } from 'services/reducers';
 import { ISagasFunctions } from 'services/sagas';
 import { setAccessToken } from 'services/api/access';
 import { isRegistered } from 'services/selectors';
+import { Analytics } from 'config/firebase';
 
 export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
@@ -44,10 +45,18 @@ export function* fetchProfile(): IterableIterator<any> {
 
 export function* saveProfileAndAccessToken(action: profile.IProfileAction): IterableIterator<any> {
   const accessToken = action.profileData.apiKey;
-  console.log('Will save token', accessToken);
   delete action.profileData.apiKey;
   const token = yield call(setAccessToken, accessToken);
   console.log('Saving Token ', token);
+  const { id, userXp } = action.profileData;
+
+  Analytics.setUserId(id);
+  if (userXp) {
+    Analytics.setUserProperty('userXp', String(userXp));
+  }
+
+  Analytics.setUserId(action.profileData.id);
+
   yield put(profile.actions.saveProfile(action.profileData));
 }
 

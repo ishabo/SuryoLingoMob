@@ -14,6 +14,7 @@ import { Dispatch } from 'redux';
 import { AnimatableAnimationMethods } from 'react-native-animatable';
 import { GSDrawerLabel } from 'scenes/Drawer';
 import { Loading } from 'components';
+import { Analytics } from 'config/firebase';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
 
@@ -22,6 +23,7 @@ interface IProps {
   courses: ICourse[];
   switchCourse(courseId: string): void;
   loading: boolean;
+  deviceId: string;
 }
 
 class Courses extends React.Component<IProps> {
@@ -34,6 +36,7 @@ class Courses extends React.Component<IProps> {
   };
 
   componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
     this.cards.fadeInUp();
   }
 
@@ -41,6 +44,8 @@ class Courses extends React.Component<IProps> {
     if (!course.comingSoon) {
       this.props.switchCourse(course.id);
     } else {
+      Analytics.logEvent('coming_soon_course_clicked', { CourseName: course.name });
+
       Alert.alert(I18n.t('courses.alerts.commingSoon.title'), I18n.t('courses.alerts.commingSoon.description'), [
         { text: I18n.t('courses.alerts.commingSoon.ok'), onPress: () => {} }
       ]);
@@ -102,7 +107,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   courses: state.courses,
   courseImages: state.assets.courseImages,
-  loading: state.api.loading
+  loading: state.api.loading,
+  deviceId: state.profile.deviceId
 });
 
 export default connect(

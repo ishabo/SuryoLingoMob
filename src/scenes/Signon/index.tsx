@@ -35,6 +35,8 @@ import { ICourse } from 'services/courses';
 import { exitApp } from 'helpers';
 import { Dispatch } from 'redux';
 import { FBLoginButton } from 'components';
+import { Analytics } from 'config/firebase';
+
 type TAlertSubject = 'signupReason' | 'signupName' | 'signupEmail' | 'signinReason' | 'signinEmail' | 'signinPassword';
 
 interface IState {
@@ -83,6 +85,7 @@ class Signon extends React.Component<IProps, IState> {
   };
 
   componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);

@@ -16,6 +16,7 @@ import { Dispatch } from 'redux';
 import { Loading } from 'components';
 import { overviewLesson } from 'services/progress/actions';
 import { GSContainer, GSAnimatable, GSLessonIcon, GSLessonInstruction } from './index.styles';
+import { Analytics } from 'config/firebase';
 
 interface IProps {
   getLessons(skillId: string): ILesson[];
@@ -54,6 +55,7 @@ class Lessons extends React.Component<IProps, IState> {
   private totalLessons = () => this.getSkill().lessons.length;
 
   componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
     Keyboard.dismiss();
 
     if (this.state.snapped === false) {

@@ -7,6 +7,7 @@ import * as profile from 'services/profile';
 import * as leaderboard from 'services/leaderboard';
 import { isUserInLeaderboard } from 'services/selectors';
 import images from 'assets/images';
+import { Analytics } from 'config/firebase';
 
 import { NavigationScreenProp } from 'react-navigation';
 import {
@@ -48,6 +49,7 @@ class Leaderboard extends React.Component<IProps> {
   });
 
   componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
     this.props.fetchLeaderboard();
   }
 

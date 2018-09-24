@@ -28,7 +28,7 @@ const persistor = reduxStore.persistStore();
 setStore(store);
 
 export default class App extends React.Component {
-  componentWillMount() {
+  async componentDidMount() {
     if (!I18nManager.isRTL) {
       I18nManager.forceRTL(true);
       RNRestart.Restart();

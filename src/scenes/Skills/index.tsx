@@ -15,6 +15,7 @@ import { GSDrawerLabel } from 'scenes/Drawer';
 import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
 import I18n from 'I18n';
 import shortid from 'shortid';
+import { Analytics } from 'config/firebase';
 
 interface IProps {
   activeCourse: ICourse;
@@ -33,13 +34,13 @@ class Skills extends React.Component<IProps> {
     headerRight: null
   });
 
-  componentWillMount() {
+  componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
+
     if (!this.props.activeCourse) {
       this.goToCourses();
     }
-  }
 
-  componentDidMount() {
     Keyboard.dismiss();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 

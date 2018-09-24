@@ -13,6 +13,7 @@ import { IApiStatus } from 'services/api/reducers';
 import { Item } from 'native-base';
 import { NavigationScreenProp } from 'react-navigation';
 import { GSSeparator } from 'styles/layouts';
+import { Analytics } from 'config/firebase';
 
 export interface IProps {
   recoverPassword: (email: string) => void;
@@ -32,7 +33,9 @@ class PasswordRecovery extends React.Component<IProps, IState> {
   static navigationOptions = {
     title: I18n.t('passwordRecovery.title')
   };
+
   componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
