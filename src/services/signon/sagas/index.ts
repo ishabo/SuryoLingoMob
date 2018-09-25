@@ -20,6 +20,8 @@ import { Analytics } from 'config/firebase';
 import { logError } from 'helpers';
 
 export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
+  yield put(setLoadingOn());
+
   const fields = { ...(yield select((state: IInitialState) => state.signon.item)) };
 
   if (action.signon === 'signin') {
@@ -73,26 +75,35 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
 export function* connectViaFacebook(actions: signon.ISignonFormAction): IterableIterator<any> {
   Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Started: true });
 
-  const result = yield call(LoginManager.logInWithReadPermissions, ['public_profile', 'email']);
-  if (result.isCancelled) {
-    Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Cancelled: true });
-  } else {
-    const { accessToken } = yield call(AccessToken.getCurrentAccessToken);
-    Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Successful: true });
-
-    const profileData = yield call(signon.api.getFacebookProfile, accessToken);
-    const payload = {
-      password: accessToken,
-      viaFacebook: true
-    };
-
-    if (actions.signon === 'connect') {
-      yield put(profile.actions.updateProfile(payload));
+  try {
+    const result = yield call(LoginManager.logInWithReadPermissions, ['public_profile', 'email']);
+    if (result.isCancelled) {
+      Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Cancelled: true });
     } else {
-      yield put(signon.actions.captureSignon({ ...payload, name: profileData.name, email: profileData.email }));
+      const { accessToken } = yield call(AccessToken.getCurrentAccessToken);
+      Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Successful: true });
 
-      yield put(signon.actions.submitSignon(actions.signon));
+      const facebookProfileData = yield call(signon.api.getFacebookProfile, accessToken);
+
+      const payload = {
+        password: accessToken,
+        viaFacebook: true
+      };
+
+      if (actions.signon === 'connect') {
+        yield put(profile.actions.updateProfile(payload));
+      } else {
+        const { email, name } = facebookProfileData;
+        yield put(signon.actions.captureSignon({ ...payload, name, email }));
+        if (email) {
+          yield put(signon.actions.submitSignon(actions.signon));
+        }
+      }
     }
+  } catch (e) {
+    logError(e);
+    console.warn(JSON.stringify(e));
+    yield put(signon.actions.setErrors({ facebook: 'failedToLoginViaFacebook' }));
   }
 }
 
@@ -113,15 +124,15 @@ export function* recoverPassword(action: signon.ISignonFormAction): IterableIter
 }
 
 export function* signout(): IterableIterator<any> {
-  Analytics.logEvent('signout_clicked', {});
-  yield put(setLoadingOn());
   yield put(NavigationActions.navigate({ routeName: 'DrawerClose' }));
+  yield put(setLoadingOn());
   yield delay(500);
   yield put(profile.actions.resetProfile());
   yield put(progress.actions.resetProgress());
   yield put(skills.actions.resetSkills());
   yield put(courses.actions.resetCourses());
   yield call(deleteAccessToken);
+  Analytics.logEvent('signout_clicked', {});
   yield delay(500);
   yield put(setLoadingOff());
 

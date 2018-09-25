@@ -54,10 +54,8 @@ class Questions extends React.Component<IProps, IState> {
 
   static navigationOptions = {
     header: null,
-
     cardStack: {
       transition: (previousRoute: any) => {
-        // configure the animation here
         console.warn(previousRoute);
       }
     }
@@ -191,6 +189,9 @@ class Questions extends React.Component<IProps, IState> {
         {
           text: I18n.t('questions.exist.ok'),
           onPress: () => {
+            const { id: questionId, questionType, lessonId } = this.props.currentQuestion;
+            const totalRemainingQuestions = this.props.pending.length;
+            Analytics.logEvent('exist_', { lessonId, questionId, questionType, totalRemainingQuestions });
             this.backToSkills();
           }
         }

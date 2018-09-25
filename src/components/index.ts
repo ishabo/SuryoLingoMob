@@ -5,6 +5,7 @@ export { default as TextArea } from './TextArea';
 export { default as Keyboards } from './Keyboards';
 export { default as SignOnOrOut } from './SignOnOrOut';
 export { default as SwitchButton } from './SwitchButton';
+export { default as DrawerIcon } from './DrawerIcon';
 export { default as Hamburger } from './Hamburger';
 export { default as ProgressCircle } from './ProgressCircle';
 export { default as Phrase } from './Phrase';

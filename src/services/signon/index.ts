@@ -9,14 +9,17 @@ export type TSignonType = string | 'signup' | 'signin';
 export interface ISignonFormData {
   name?: string;
   viaFacebook?: boolean;
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 }
+
+export type TSignonFacebookErrors = 'failedToLoginViaFacebook';
 
 export interface ISignonFormErrors {
   name?: string;
   email?: string;
   password?: string;
+  facebook?: TSignonFacebookErrors;
 }
 
 export interface ISignonState {

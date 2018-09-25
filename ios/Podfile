@@ -25,6 +25,8 @@ target 'SuryoLingo' do
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
   pod 'react-native-version-check', :path => '../node_modules/react-native-version-check'
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
 
   pod 'Fabric'
   pod 'Crashlytics'

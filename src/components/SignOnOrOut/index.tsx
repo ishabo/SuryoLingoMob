@@ -16,24 +16,30 @@ interface IProps {
   isLoggedIn: boolean;
   navigationReset: (reset: NavigationResetActionPayload) => void;
   sourceLanguage: TLangs;
-  signOut (): void;
+  signOut(): void;
   noStyle?: boolean;
 }
 
 const SignInOrOut = ({ isLoggedIn, navigationReset, sourceLanguage, signOut, noStyle }: IProps) => {
   const onPress = isLoggedIn ? signOut : () => navigationReset(resetToSignon());
-  const text = isLoggedIn ? I18n.t('profile.form.signOut') : I18n.t('profile.form.signonToSave');
-  return noStyle && <Text onPress={onPress}>{text}</Text> || <GSText onPress={onPress} lang={sourceLanguage} >{text}</GSText>
+  const text = isLoggedIn ? I18n.t('signon.form.signOut') : I18n.t('signon.form.signonToSave');
+  return (
+    (noStyle && <Text onPress={onPress}>{text}</Text>) || (
+      <GSText onPress={onPress} lang={sourceLanguage}>
+        {text}
+      </GSText>
+    )
+  );
 };
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   isLoggedIn: isRegistered(state),
-  sourceLanguage: getSourceLanguage(state),
+  sourceLanguage: getSourceLanguage(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   navigationReset: (reset: NavigationResetActionPayload) => dispatch(NavigationActions.reset(reset)),
-  signOut: () => dispatch(signon.actions.signout()),
+  signOut: () => dispatch(signon.actions.signout())
 });
 
 const GSText = glamor(GSCustomText)<ICustomText>({
@@ -41,8 +47,10 @@ const GSText = glamor(GSCustomText)<ICustomText>({
   marginHorizontal: 10,
   fontWeight: '600',
   color: Colors.darkBlue,
+  alignSelf: 'center'
 });
 
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignInOrOut);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignInOrOut);

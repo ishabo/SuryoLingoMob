@@ -1,6 +1,5 @@
 import React from 'react';
 import { DrawerItems } from 'react-navigation';
-import { SignOnOrOut } from 'components';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
 import { isRegistered } from 'services/selectors';
@@ -29,8 +28,9 @@ class Drawer extends React.Component<IProps> {
     const { items } = this.props;
     if (!this.props.isLoggedIn) {
       return items.filter(item => item.routeName !== 'Profile');
+    } else {
+      return items.filter(item => item.routeName !== 'Signon');
     }
-    return items;
   };
 
   render() {
@@ -39,9 +39,6 @@ class Drawer extends React.Component<IProps> {
     return (
       <GSContainer>
         <DrawerItems {...props} />
-        <GSDrawerLabel>
-          <SignOnOrOut noStyle lang={'cl-ara'} />
-        </GSDrawerLabel>
       </GSContainer>
     );
   }
@@ -57,7 +54,9 @@ export const GSDrawerLabel = glamor(GSCustomText)<ICustomText>({
   fontSize: 18,
   color: colors.orange,
   margin: 10,
-  padding: 10
+  padding: 10,
+  flexDirection: 'row-reverse',
+  justifyContent: 'space-between'
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({

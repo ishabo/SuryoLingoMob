@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
-import { Hamburger } from 'components';
+import { Hamburger, DrawerIcon } from 'components';
 import I18n from 'I18n';
 import * as profile from 'services/profile';
 import * as leaderboard from 'services/leaderboard';
@@ -45,6 +45,7 @@ class Leaderboard extends React.Component<IProps> {
     title: I18n.t('leaderboard.title'),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     drawerLabel: <GSDrawerLabel>{I18n.t('leaderboard.title')}</GSDrawerLabel>,
+    drawerIcon: () => <DrawerIcon icon="leaderboard" />,
     headerRight: null
   });
 

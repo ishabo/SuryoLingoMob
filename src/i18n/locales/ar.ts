@@ -174,6 +174,15 @@ export default {
   profile: {
     title: 'حسابي',
     userXp: 'النقاط: {{userXp}}',
+    details: {
+      name: 'الاسم',
+      email: 'الإيميل',
+      userXp: 'نقاط الخبرة',
+      appVersion: 'نسخة البرنامج'
+    }
+  },
+  signon: {
+    title: 'الدخول إلى سوريولينجو',
     alerts: {
       signupReason: {
         title: 'سجل حساب على سوريولينجو',
@@ -200,6 +209,11 @@ export default {
       signinPassword: {
         title: 'كلمة المرور',
         description: 'إن كنت قد نسيت كلمة المرور للدخول إلى حسابك إلى سوريولينجو فعليك الضفط على رابط "نسيت كلمة السر"'
+      },
+      failedToLoginViaFacebook: {
+        title: 'تعذر التسجيل عن طريق الفيسبوك',
+        description:
+          'السبب غير معروف، لكن على كل حال تستطيع استخدام الإيميل للتسجيل وربط حساب الفيسبوك بحساب سوريولينجو لاحقا.'
       }
     },
     form: {
@@ -232,12 +246,6 @@ export default {
         signup: 'سجّل'
       },
       skip: 'سجل لاحقاً'
-    },
-    details: {
-      name: 'الاسم',
-      email: 'الإيميل',
-      userXp: 'نقاط الخبرة',
-      appVersion: 'نسخة البرنامج'
     }
   },
   passwordRecovery: {

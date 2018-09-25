@@ -21,7 +21,8 @@ const DrawerNav = DrawerNavigator(
     Courses: { screen: Courses },
     Course: { screen: Skills },
     Profile: { screen: Profile },
-    Leaderboard: { screen: Leaderboard }
+    Leaderboard: { screen: Leaderboard },
+    Signon: { screen: Signon }
   },
   {
     contentComponent: props => <Drawer {...props} />,
@@ -35,10 +36,14 @@ export const AppNavigator = StackNavigator(
     Splash: { screen: Splash },
     Courses: { screen: Courses },
     Skills: { screen: DrawerNav },
-    Signon: { screen: Signon },
     PasswordRecovery: { screen: PasswordRecovery, navigationOptions: { visible: false } },
     Lessons: { screen: Lessons },
-    Questions: { screen: Questions },
+    Questions: {
+      screen: Questions,
+      navigationOptions: {
+        mode: 'modal'
+      }
+    },
     LessonOverview: { screen: LessonOverview },
     Completion: { screen: Completion }
   },

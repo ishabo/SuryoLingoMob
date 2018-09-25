@@ -9,7 +9,7 @@ import { Analytics } from 'config/firebase';
 const Fabric = require('react-native-fabric');
 const { Crashlytics } = Fabric;
 
-export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfileIfNeeded(action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
 
   if (isEmpty(profileState)) {
@@ -37,8 +37,8 @@ export function* fetchProfile(): IterableIterator<any> {
   const userIsRegistered = yield select(isRegistered);
   if (userIsRegistered) {
     try {
-      const response = yield call(profile.api.getUser);
-      yield put(profile.actions.saveProfile(response));
+      const profileData = yield call(profile.api.getUser);
+      yield put(profile.actions.saveProfileAndAccessToken(profileData));
     } catch (error) {
       console.warn(error);
     }
@@ -66,8 +66,10 @@ export function* saveProfileAndAccessToken(action: profile.IProfileAction): Iter
 
 export const functions = (): ISagasFunctions[] => {
   return [
-    { action: profile.actions.types.CREATE_PROFILE, func: createProfile },
+    { action: profile.actions.types.CREATE_PROFILE_IF_NEEDED, func: createProfileIfNeeded },
     { action: profile.actions.types.UPDATE_PROFILE, func: updateProfile },
+    { action: profile.actions.types.FETCH_PROFILE, func: fetchProfile },
+
     {
       action: profile.actions.types.SAVE_PROFILE_AND_ACCESS_TOKEN,
       func: saveProfileAndAccessToken

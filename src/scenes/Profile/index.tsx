@@ -3,10 +3,11 @@ import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { isRegistered } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
-import { Hamburger, FBLoginButton } from 'components';
+import { Hamburger, FBLoginButton, DrawerIcon, SignOnOrOut } from 'components';
 import { Dispatch } from 'redux';
 import I18n from 'I18n';
 import * as profile from 'services/profile';
+import * as courses from 'services/courses';
 import * as leaderboard from 'services/leaderboard';
 import * as signon from 'services/signon';
 import * as api from 'services/api/reducers';
@@ -26,7 +27,10 @@ export interface IProps {
   isRegistered: boolean;
   navigation: NavigationScreenProp<any, any>;
   fetchLeaderboard: () => void;
+  fetchProfile: () => void;
   currentUserCourseXpRatio: number;
+  courses: courses.ICourse[];
+  fetchCourses: () => void;
 }
 
 class Profile extends React.Component<IProps> {
@@ -34,6 +38,7 @@ class Profile extends React.Component<IProps> {
     title: I18n.t('profile.title'),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     drawerLabel: <GSDrawerLabel>{I18n.t('profile.title')}</GSDrawerLabel>,
+    drawerIcon: () => <DrawerIcon icon="profile" />,
     headerRight: null
   });
 
@@ -42,9 +47,20 @@ class Profile extends React.Component<IProps> {
     if (!this.props.isRegistered) {
       this.props.navigation.navigate('Signon');
     } else {
+      this.props.fetchProfile();
       this.props.fetchLeaderboard();
+      this.props.fetchCourses();
     }
   }
+
+  returnUserCourse = () => {
+    return this.props.courses.map(course => (
+      <GSProfileDetails>
+        <GSProfileDetailsItem>{course.targetLanguage.fullName}:</GSProfileDetailsItem>
+        <GSCustomText>{course.courseXp}</GSCustomText>
+      </GSProfileDetails>
+    ));
+  };
 
   renderProfile = () => {
     const { profilePic } = this.props.profile;
@@ -66,12 +82,15 @@ class Profile extends React.Component<IProps> {
           <GSProfileDetailsItem>{I18n.t('profile.details.userXp')}:</GSProfileDetailsItem>
           <GSCustomText>{this.props.profile.userXp}</GSCustomText>
         </GSProfileDetails>
+
+        {this.returnUserCourse()}
         <GSProfileDetails>
           <GSProfileDetailsItem>{I18n.t('profile.details.appVersion')}:</GSProfileDetailsItem>
           <GSCustomText>{VersionNumber.appVersion}</GSCustomText>
         </GSProfileDetails>
 
         {this.props.profile.hasConnectedViaFacebook || <FBLoginButton signon="connect" />}
+        <SignOnOrOut lang={'cl-ara'} isLoggedIn />
       </GSProfile>
     );
   };
@@ -83,12 +102,15 @@ class Profile extends React.Component<IProps> {
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   signout: () => dispatch(signon.actions.signout()),
-  fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard())
+  fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard()),
+  fetchProfile: () => dispatch(profile.actions.fetchProfile()),
+  fetchCourses: () => dispatch(courses.actions.fetchCourses())
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   apiStatus: state.api,
   profile: state.profile,
+  courses: state.courses,
   isRegistered: isRegistered(state),
   currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio
 });

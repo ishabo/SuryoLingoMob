@@ -13,7 +13,7 @@ import { IInitialState } from 'services/reducers';
 import { Dispatch } from 'redux';
 import { AnimatableAnimationMethods } from 'react-native-animatable';
 import { GSDrawerLabel } from 'scenes/Drawer';
-import { Loading } from 'components';
+import { Loading, DrawerIcon } from 'components';
 import { Analytics } from 'config/firebase';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
@@ -32,7 +32,8 @@ class Courses extends React.Component<IProps> {
   static navigationOptions = {
     title: I18n.t('courses.title'),
     header: null,
-    drawerLabel: <GSDrawerLabel>{I18n.t('courses.title')}</GSDrawerLabel>
+    drawerLabel: <GSDrawerLabel>{I18n.t('courses.title')}</GSDrawerLabel>,
+    drawerIcon: () => <DrawerIcon icon="courses" />
   };
 
   componentDidMount() {

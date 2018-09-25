@@ -22,10 +22,11 @@ export interface IProps {
 
 interface IState {
   hasAlert: boolean;
+  isConnected: boolean;
 }
 
 const alertDelayTime = 1000;
-const fetchDelayTime = 1000;
+// const fetchDelayTime = 1000;
 
 const logos = [images.logo.arabic, images.logo.syriac, images.logo.english];
 const logo = logos[Math.floor(Math.random() * logos.length)];
@@ -38,21 +39,28 @@ class Splash extends React.Component<IProps, IState> {
   };
 
   state = {
-    hasAlert: false
+    hasAlert: false,
+    isConnected: false
   };
 
   private handleFirstConnectivityChange = isConnected => {
-    if (!isConnected) {
-      this.props.addException({
-        name: 'NETWORK_ERROR',
-        message: 'Not connected to the internet',
-        report: false
-      });
-    } else if (isConnected) {
-      this.props.firstFetch();
-    }
-
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
+    this.setState(
+      {
+        isConnected
+      },
+      () => {
+        if (!isConnected) {
+          this.props.addException({
+            name: 'NETWORK_ERROR',
+            message: 'Not connected to the internet',
+            report: false
+          });
+        } else if (isConnected) {
+          this.props.firstFetch();
+        }
+        // NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
+      }
+    );
   };
 
   setAlertDismissed = () => {
@@ -71,7 +79,13 @@ class Splash extends React.Component<IProps, IState> {
 
     setTimeout(() => {
       this.setState({ hasAlert: true }, () => {
-        alertConnection(this.firstFetch, exitApp, this.setAlertDismissed);
+        alertConnection(
+          () => {
+            this.setState({ hasAlert: false }, this.alertConnection);
+          },
+          exitApp,
+          this.setAlertDismissed
+        );
       });
     }, alertDelayTime);
   };
@@ -85,12 +99,19 @@ class Splash extends React.Component<IProps, IState> {
       console.warn('Message received', res);
     });
 
-    setTimeout(this.props.firstFetch, fetchDelayTime);
     setTimeout(this.checkConnection, alertDelayTime);
+  }
+
+  componentDidUpdate(_, prevState: Partial<IState>) {
+    if (this.state.isConnected && !prevState.isConnected) {
+      // Force close alert
+      this.props.firstFetch();
+    }
   }
 
   componentWillUnmount() {
     this.messageListener();
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
   }
 
   checkConnection = () => {

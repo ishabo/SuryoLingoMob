@@ -32,6 +32,7 @@ interface IState {
   keyboardOn: boolean;
   nextButtonBottomPosition: number;
   customKeyboardEnabled: boolean;
+  firstLoad: boolean;
 }
 
 class TextArea extends React.Component<IProps, IState> {
@@ -41,7 +42,8 @@ class TextArea extends React.Component<IProps, IState> {
       value: '',
       keyboardOn: false,
       nextButtonBottomPosition: 20,
-      customKeyboardEnabled: false
+      customKeyboardEnabled: false,
+      firstLoad: true
     };
   }
 
@@ -50,29 +52,38 @@ class TextArea extends React.Component<IProps, IState> {
 
   componentDidMount() {
     if (this.props.customKeyboardEnabled) {
-      if (Platform.OS === 'ios') {
-        this.refreshCustomKeyboard();
-      } else {
-        this.textArea.focus();
-      }
+      // if (Platform.OS === 'ios') {
+      //   this.refreshCustomKeyboard();
+      // } else {
+      //   this.textArea.focus();
+      // }
+      this.refreshCustomKeyboard();
     } else {
       this.textArea.focus();
     }
+
+    setTimeout(() => {
+      this.setState({ firstLoad: false });
+    }, 500);
 
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
   }
 
-  static getDerivedStateFromProps(props: Partial<IProps>) {
-    return { customKeyboardEnabled: props.customKeyboardEnabled };
+  static getDerivedStateFromProps(props: Partial<IProps>, state: Partial<IState>) {
+    if (!state.firstLoad) {
+      return { customKeyboardEnabled: props.customKeyboardEnabled };
+    } else {
+      return {};
+    }
   }
 
   refreshCustomKeyboard = () => {
     setTimeout(() => {
-      this.setState({ customKeyboardEnabled: !this.state.customKeyboardEnabled }, () => {
-        this.setState({ customKeyboardEnabled: !this.state.customKeyboardEnabled });
+      this.setState({ customKeyboardEnabled: false }, () => {
+        this.setState({ customKeyboardEnabled: true }, this.textArea.focus);
       });
-    }, 200);
+    }, 1);
   };
 
   keyboardDidShow = () => {
@@ -133,10 +144,11 @@ class TextArea extends React.Component<IProps, IState> {
   }
 
   toggleCustomKeyboard = () => {
-    if (this.props.customKeyboardEnabled && Platform.OS === 'android') {
-      this.textArea.focus();
-    }
     this.props.toggleCustomKeyboard();
+
+    // if (this.props.customKeyboardEnabled && Platform.OS === 'android') {
+    //   this.textArea.focus();
+    // }
   };
 
   renderKeyboardToggleButton() {
@@ -147,7 +159,7 @@ class TextArea extends React.Component<IProps, IState> {
           name="keyboard"
           style={{
             fontSize: 40,
-            color: this.state.customKeyboardEnabled ? 'gray' : 'blue',
+            color: this.props.customKeyboardEnabled ? 'gray' : 'blue',
             marginRight: 4
           }}
         />

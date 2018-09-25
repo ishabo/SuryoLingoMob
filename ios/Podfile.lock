@@ -108,6 +108,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNDeviceInfo (0.21.5):
+    - React
   - yoga (0.54.4.React)
 
 DEPENDENCIES:
@@ -126,6 +128,7 @@ DEPENDENCIES:
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
   - React/RCTBlob (from `../node_modules/react-native`)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 EXTERNAL SOURCES:
@@ -135,6 +138,8 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native-fbsdk
   react-native-version-check:
     :path: ../node_modules/react-native-version-check
+  RNDeviceInfo:
+    :path: ../node_modules/react-native-device-info
   yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga
 
@@ -163,8 +168,9 @@ SPEC CHECKSUMS:
   React: c237e42de9c70e5cac6eeb52b4cfd3a0910c1f00
   react-native-fbsdk: d5f98cc5abecbcc463e3c35c04743d716d002d37
   react-native-version-check: 1a1381469cc65b953aa30d52a0150be6f038c6ba
+  RNDeviceInfo: 568c5641057313b4912d08a7742ff0b2f753ed5c
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: c8d53388028b103716506ebae35a847f1cab016f
+PODFILE CHECKSUM: 110f597a8800a3d0cd2bb45426c99be657a9c20c
 
 COCOAPODS: 1.4.0

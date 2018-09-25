@@ -8,7 +8,7 @@ import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from 'servic
 import { IInitialState } from 'services/reducers';
 import { NavigationScreenProp } from 'react-navigation';
 import { exitApp, displayInterstitialAd } from 'helpers';
-import { Hamburger } from 'components';
+import { Hamburger, DrawerIcon } from 'components';
 import { ICourse } from 'services/courses';
 import { IProfile } from 'services/profile';
 import { GSDrawerLabel } from 'scenes/Drawer';
@@ -31,6 +31,7 @@ class Skills extends React.Component<IProps> {
     title: I18n.t(`skills.title`),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     drawerLabel: <GSDrawerLabel>{I18n.t('skills.title')}</GSDrawerLabel>,
+    drawerIcon: () => <DrawerIcon icon="skills" />,
     headerRight: null
   });
 
