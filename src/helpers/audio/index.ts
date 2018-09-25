@@ -3,6 +3,7 @@ import parseUrl from 'url-parse';
 import RNFS from 'react-native-fs';
 import { Platform } from 'react-native';
 // import SoundPlayer from 'react-native-sound-player';
+import { logError } from 'helpers';
 
 let audio;
 
@@ -40,7 +41,7 @@ export const downloadFile = async (soundTrack, downloadDest: TSoundLocations = d
       });
       console.log('Downloaded file at ' + localSoundTrackPath);
     } catch (error) {
-      console.warn('Could not download file', error);
+      logError(`Could not download file ${JSON.stringify(error)}`);
     }
   } else {
     console.log(`Found file ${localSoundTrackPath}`);
@@ -59,7 +60,7 @@ export const playAudio = (fullSoundPath: string) => {
   // const fullSoundPath = soundPath + '/' + soundTrack;
   audio = new Sound(fullSoundPath, '', error => {
     if (error) {
-      console.warn('Failed to load the sound', error);
+      logError(`Failed to load the sound ${JSON.stringify(error)}`);
     } else {
       stopAndPlayAudio();
     }
@@ -75,7 +76,7 @@ const stopAndPlayAudio = () => {
         if (success) {
           console.log('successfully finished playing');
         } else {
-          console.warn('playback failed due to audio decoding errors');
+          logError('playback failed due to audio decoding errors');
           // reset the player to its uninitialized state (android only)
           // this is the only option to recover after an error occured and use the player again
           audio.reset();
@@ -84,6 +85,6 @@ const stopAndPlayAudio = () => {
       });
     });
   } else {
-    console.warn('What? Audio is not an object?');
+    logError('What? Audio is not an object?');
   }
 };

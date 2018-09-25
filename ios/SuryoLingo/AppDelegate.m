@@ -19,12 +19,16 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Firebase.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
+  [Fabric with:@[[Crashlytics class]]];
+  
 
   NSURL *jsCodeLocation;
 

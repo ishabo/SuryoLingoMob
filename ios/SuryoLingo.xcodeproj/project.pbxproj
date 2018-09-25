@@ -71,10 +71,11 @@
 		D621C0F42126CC130080E495 /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D621C0B72126CC130080E495 /* HelveticaNeue.ttf */; };
 		D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D621C173212913550080E495 /* libKeyboardTrackingView.a */; };
 		D655219F1FFFEB18007C9243 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D655219B1FFFEAE8007C9243 /* libRNDeviceInfo.a */; };
+		D6562F23215997640090408D /* libSMXCrashlytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6562F202159974B0090408D /* libSMXCrashlytics.a */; };
+		D6562F992159B2E20090408D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6562F982159B2E20090408D /* GoogleService-Info.plist */; };
 		D6B159691FA2C9D60044EA78 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		D6BCDC20896C428E845F3DD3 /* Al-Jazeera-Arabic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007DA2D71412451898EB133E /* Al-Jazeera-Arabic-Regular.ttf */; };
 		D6C5C7602155BF4C002A599D /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C5C75F2155BF4C002A599D /* libFirebaseCore.a */; };
-		D6C5C93021579E05002A599D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6C5C92F21579E04002A599D /* GoogleService-Info.plist */; };
 		D6F2413421462B8900F974FD /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = D6F240F221462B8900F974FD /* main.jsbundle */; };
 		D6F2413521462B8900F974FD /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F2413321462B8900F974FD /* assets */; };
 		E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */; };
@@ -351,6 +352,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
 			remoteInfo = "RNDeviceInfo-tvOS";
+		};
+		D6562F1F2159974B0090408D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8D9DB831C6D03DB009FBC0E;
+			remoteInfo = SMXCrashlytics;
+		};
+		D6562F212159974B0090408D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6463C84C1EBA12A60095B8CD;
+			remoteInfo = "SMXCrashlytics-tvOS";
 		};
 		D65F694F1FA3601D005923BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -642,10 +657,11 @@
 		D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCustomInputController.xcodeproj; path = "../node_modules/react-native-keyboard-input/lib/ios/RCTCustomInputController.xcodeproj"; sourceTree = "<group>"; };
 		D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeyboardTrackingView.xcodeproj; path = "../node_modules/react-native-keyboard-tracking-view/lib/KeyboardTrackingView.xcodeproj"; sourceTree = "<group>"; };
 		D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
+		D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SMXCrashlytics.xcodeproj; path = "../node_modules/react-native-fabric/ios/SMXCrashlytics.xcodeproj"; sourceTree = "<group>"; };
+		D6562F982159B2E20090408D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D66CF52B207421E800059473 /* SuryoLingo-tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "SuryoLingo-tvOS.entitlements"; path = "SuryoLingo-tvOS/SuryoLingo-tvOS.entitlements"; sourceTree = "<group>"; };
 		D6C5C5882155AAFE002A599D /* SuryoLingo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SuryoLingo.entitlements; path = SuryoLingo/SuryoLingo.entitlements; sourceTree = "<group>"; };
 		D6C5C75F2155BF4C002A599D /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6C5C92F21579E04002A599D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6F240F221462B8900F974FD /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		D6F2413321462B8900F974FD /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		D818D289FAE040FF129DE70E /* Pods-SuryoLingo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuryoLingo/Pods-SuryoLingo.release.xcconfig"; sourceTree = "<group>"; };
@@ -674,6 +690,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6562F23215997640090408D /* libSMXCrashlytics.a in Frameworks */,
 				D6C5C7602155BF4C002A599D /* libFirebaseCore.a in Frameworks */,
 				D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -845,7 +862,7 @@
 		13B07FAE1A68108700A75B9A /* SuryoLingo */ = {
 			isa = PBXGroup;
 			children = (
-				D6C5C92F21579E04002A599D /* GoogleService-Info.plist */,
+				D6562F982159B2E20090408D /* GoogleService-Info.plist */,
 				D6C5C5882155AAFE002A599D /* SuryoLingo.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -901,6 +918,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */,
 				D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */,
 				D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */,
 				D65521951FFFEAE8007C9243 /* RNDeviceInfo.xcodeproj */,
@@ -1081,6 +1099,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D6562F1B2159974B0090408D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6562F202159974B0090408D /* libSMXCrashlytics.a */,
+				D6562F222159974B0090408D /* libSMXCrashlytics.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D65F694B1FA3601D005923BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1251,6 +1278,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				3311E143ED93F83489C61F07 /* [CP] Embed Pods Frameworks */,
 				730D57787341FCAB201F325A /* [CP] Copy Pods Resources */,
+				D6562D6521598A8F0090408D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1484,6 +1512,10 @@
 				{
 					ProductGroup = D6193C04203E339800917FE6 /* Products */;
 					ProjectRef = 1957988ECD544DC9AB2BFCA9 /* RNVersionNumber.xcodeproj */;
+				},
+				{
+					ProductGroup = D6562F1B2159974B0090408D /* Products */;
+					ProjectRef = D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1749,6 +1781,20 @@
 			remoteRef = D655219C1FFFEAE8007C9243 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D6562F202159974B0090408D /* libSMXCrashlytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSMXCrashlytics.a;
+			remoteRef = D6562F1F2159974B0090408D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6562F222159974B0090408D /* libSMXCrashlytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSMXCrashlytics.a;
+			remoteRef = D6562F212159974B0090408D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		D65F69501FA3601D005923BE /* libBVLinearGradient.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1985,7 +2031,7 @@
 				D6BCDC20896C428E845F3DD3 /* Al-Jazeera-Arabic-Regular.ttf in Resources */,
 				2B6B892165644A48990D3898 /* Serto Urhoy.ttf in Resources */,
 				D621C0F42126CC130080E495 /* HelveticaNeue.ttf in Resources */,
-				D6C5C93021579E05002A599D /* GoogleService-Info.plist in Resources */,
+				D6562F992159B2E20090408D /* GoogleService-Info.plist in Resources */,
 				0CBFC872A8C2489E9D556A4F /* Feather.ttf in Resources */,
 				F6CFF797FE2043268709C7A2 /* MaterialCommunityIcons.ttf in Resources */,
 			);
@@ -2201,6 +2247,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D6562D6521598A8F0090408D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Crashlytics/Fabric.framework/run\" bf7af3050a875a91e2cc3198aceb8213284ca099 557555dae74eb13cbe0bbe212c3cb3bcbdb9b5b7de57d4b59a18ad5c02441894\n";
 		};
 		E9A9D126EC3F872489D93A1E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

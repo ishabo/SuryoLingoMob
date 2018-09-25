@@ -65,7 +65,6 @@ class Splash extends React.Component<IProps, IState> {
   };
 
   alertConnection = () => {
-    console.warn(this.state.hasAlert);
     if (this.state.hasAlert) {
       return;
     }

@@ -3,21 +3,21 @@ import firebase from 'react-native-firebase';
 
 const config = {
   clientId: Platform.select({
-    android: '133197540908-jg1rlph6fk3t9c8o9d97ehqqqei36uu4.apps.googleusercontent.com',
-    ios: '133197540908-e8bq7ebmuga46vbo6qpnp195n2scedkj.apps.googleusercontent.com'
+    android: '964006513680-jg1rlph6fk3t9c8o9d97ehqqqei36uu4.apps.googleusercontent.com',
+    ios: '964006513680-8lv66en1rph1tem81823kapi7pp6f01e.apps.googleusercontent.com'
   }),
   appId: Platform.select({
-    android: '1:133197540908:android:e780a1589cf81b78',
-    ios: '1:133197540908:ios:4309c91f70c0c7db'
+    android: '1:964006513680:android:e780a1589cf81b78',
+    ios: '1:964006513680:ios:4309c91f70c0c7db'
   }),
   apiKey: Platform.select({
-    android: 'AIzaSyBIi9kXR6o2tIZTX0xvTq9DK7M_11fmmd8',
-    ios: 'AIzaSyCyfBlSsUh9mqYTcp_L_Rk9nYX72DtWD4k'
+    android: 'AIzaSyBICdeAqUnqDYMJ9zGXXReIbgNUzBXH9Fs',
+    ios: 'AIzaSyB6aiYDbp88gaE5BIJCVOIiyM58d1nWQTU'
   }),
-  databaseURL: 'https://suryolingo-99de9.firebaseio.com',
-  storageBucket: 'suryolingo-99de9.appspot.com',
-  messagingSenderId: '133197540908',
-  projectId: 'suryolingo-99de9',
+  databaseURL: 'https://suryolingo-ltd.firebaseio.com',
+  storageBucket: 'suryolingo-ltd.appspot.com',
+  messagingSenderId: '964006513680',
+  projectId: 'suryolingo-ltd',
 
   // enable persistence by adding the below flag
   persistence: true

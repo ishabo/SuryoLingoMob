@@ -17,20 +17,10 @@ import * as assets from './assets';
 
 import { IInitialState } from 'services/reducers';
 import { setUserToken } from 'services/api';
-// import { Messaging } from 'config/firebase';
 
 const preSagas = saga => {
   return function*(action) {
     yield put(exceptions.actions.removeAll());
-
-    // Messaging.onTokenRefresh(function*(fcmToken) {
-    //   if (fcmToken) {
-    //     console.warn('TOKEN UPDATED!', fcmToken);
-    //     yield put(profile.actions.updateProfile({}));
-    //   } else {
-    //     console.warn('NO TOKEN UPDATED!', fcmToken);
-    //   }
-    // });
 
     yield call(saga, action);
   };

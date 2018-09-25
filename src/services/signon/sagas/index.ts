@@ -17,6 +17,7 @@ import { deleteAccessToken } from 'services/api/access';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { NavigationActions } from 'react-navigation';
 import { Analytics } from 'config/firebase';
+import { logError } from 'helpers';
 
 export function* submitSignon(action: signon.ISignonFormAction): IterableIterator<any> {
   const fields = { ...(yield select((state: IInitialState) => state.signon.item)) };
@@ -52,7 +53,7 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
         yield put(resetToCourses());
       }
     } catch (error) {
-      console.warn(error.response);
+      logError(JSON.stringify(error.response));
       if (isApiResponse(error.response)) {
         if (error.response.status === 400) {
           if (error.response.data.match(/Email already exists/)) {

@@ -1,5 +1,6 @@
 import { AdMobInterstitial } from 'react-native-admob';
 import vars from 'config/vars';
+import { logError } from 'helpers';
 
 export type TScenes = 'skills' | 'completion';
 export const displayInterstitialAd = (scene: TScenes) => {
@@ -7,5 +8,5 @@ export const displayInterstitialAd = (scene: TScenes) => {
   AdMobInterstitial.setAdUnitID(vars.admob.interstitial[scene]);
   AdMobInterstitial.requestAd()
     .then(() => AdMobInterstitial.showAd())
-    .catch(error => console.warn('=======>', error));
+    .catch(error => logError(JSON.stringify(error)));
 };

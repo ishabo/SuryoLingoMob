@@ -150,7 +150,23 @@ android {
     }
 }
 
+buildscript {
+  repositories {
+    maven { url 'https://maven.fabric.io/public' }
+  }
+  dependencies {
+    classpath 'io.fabric.tools:gradle:1.22.1'
+  }
+}
+
+apply plugin: 'io.fabric'
+
+repositories {
+  maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
+    compile project(':react-native-fabric')
     compile project(':react-native-firebase')
     compile project(':appcenter-push')
     compile project(':appcenter-crashes')
@@ -182,6 +198,9 @@ dependencies {
 
     compile 'me.leolin:ShortcutBadger:1.1.21@aar'
 
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
+      transitive = true
+    }
     // compile "com.facebook.android:facebook-android-sdk:[4,5)"
 }
 

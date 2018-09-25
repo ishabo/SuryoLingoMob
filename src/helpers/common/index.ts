@@ -1,6 +1,7 @@
 import changeObjectCase from 'change-object-case';
 import RNExitApp from 'react-native-exit-app';
 import { Linking, Platform } from 'react-native';
+import { logError } from 'helpers';
 
 export const changeCase = (data: object, direction: 'snake' | 'camel') => {
   const caseFunction = Array.isArray(data) ? `Array` : `Keys`;
@@ -36,7 +37,7 @@ export const openUrl = (url: string) => {
     if (supported) {
       Linking.openURL(url);
     } else {
-      console.warn("Don't know how to open URI: " + url);
+      logError(`Don't know how to open URI: ${url}`);
     }
   });
 };

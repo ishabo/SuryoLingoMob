@@ -6,6 +6,8 @@ import { ISagasFunctions } from 'services/sagas';
 import { setAccessToken } from 'services/api/access';
 import { isRegistered } from 'services/selectors';
 import { Analytics } from 'config/firebase';
+const Fabric = require('react-native-fabric');
+const { Crashlytics } = Fabric;
 
 export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
@@ -46,8 +48,7 @@ export function* fetchProfile(): IterableIterator<any> {
 export function* saveProfileAndAccessToken(action: profile.IProfileAction): IterableIterator<any> {
   const accessToken = action.profileData.apiKey;
   delete action.profileData.apiKey;
-  const token = yield call(setAccessToken, accessToken);
-  console.log('Saving Token ', token);
+  yield call(setAccessToken, accessToken);
   const { id, userXp } = action.profileData;
 
   Analytics.setUserId(id);
@@ -56,6 +57,9 @@ export function* saveProfileAndAccessToken(action: profile.IProfileAction): Iter
   }
 
   Analytics.setUserId(action.profileData.id);
+  Crashlytics.setUserIdentifier(action.profileData.id);
+  Crashlytics.setUserName(action.profileData.name);
+  Crashlytics.setUserEmail(action.profileData.email);
 
   yield put(profile.actions.saveProfile(action.profileData));
 }

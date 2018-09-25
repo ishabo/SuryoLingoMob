@@ -28,6 +28,7 @@ project.xcworkspace
 *.jsbundle
 *.jsbundle.meta
 ios/assets
+ios/*.framework
 # Android/IntelliJ
 #
 build/
@@ -35,6 +36,7 @@ build/
 .history
 .gradle
 local.properties
+fabric.properties
 *.iml
 
 # node.js

@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>133197540908-e8bq7ebmuga46vbo6qpnp195n2scedkj.apps.googleusercontent.com</string>
+	<string>964006513680-8lv66en1rph1tem81823kapi7pp6f01e.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.133197540908-e8bq7ebmuga46vbo6qpnp195n2scedkj</string>
+	<string>com.googleusercontent.apps.964006513680-8lv66en1rph1tem81823kapi7pp6f01e</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCyfBlSsUh9mqYTcp_L_Rk9nYX72DtWD4k</string>
+	<string>AIzaSyB6aiYDbp88gaE5BIJCVOIiyM58d1nWQTU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>133197540908</string>
+	<string>964006513680</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.suryolingo.iphone</string>
 	<key>PROJECT_ID</key>
-	<string>suryolingo-99de9</string>
+	<string>suryolingo-ltd</string>
 	<key>STORAGE_BUCKET</key>
-	<string>suryolingo-99de9.appspot.com</string>
+	<string>suryolingo-ltd.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:133197540908:ios:4309c91f70c0c7db</string>
+	<string>1:964006513680:ios:4309c91f70c0c7db</string>
 	<key>DATABASE_URL</key>
-	<string>https://suryolingo-99de9.firebaseio.com</string>
+	<string>https://suryolingo-ltd.firebaseio.com</string>
 </dict>
 </plist>

@@ -3,7 +3,7 @@ import { I18nManager } from 'react-native';
 import { Provider } from 'react-redux';
 import Navigation from './Navigation';
 import Store from '../services/store';
-import { setStore } from '../services/exceptions';
+import { setStore, setCrashReporter } from '../services/exceptions';
 import { setApiOrigin } from '../services/api';
 import RNRestart from 'react-native-restart';
 import { PersistGate } from 'redux-persist/lib/integration/react';
@@ -11,7 +11,9 @@ import { setCustomText } from 'react-native-global-props';
 import config from 'config/';
 import { Alert } from 'components';
 import { getFont } from 'assets/fonts';
+import { logError } from 'helpers';
 
+setCrashReporter(logError);
 setApiOrigin(config.apiHost);
 setCustomText({
   style: {

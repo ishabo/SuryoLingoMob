@@ -12,7 +12,7 @@ describe('common', () => {
         ],
         'cl-ara'
       );
-      console.warn(hintified);
+
       expect(hintified).toEqual([
         { key: hintified[0].key, word: 'This', translations: 'هذه' },
         { key: hintified[1].key, word: 'sentence', translations: 'الجملة' },

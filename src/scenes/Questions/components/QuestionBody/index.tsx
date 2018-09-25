@@ -23,6 +23,7 @@ import { SwitchButton, StudyPhrase } from 'components';
 import { KeyboardUtils } from 'react-native-keyboard-input';
 import garshonify from 'garshonify';
 import { Analytics } from 'config/firebase';
+import { logError } from 'helpers';
 
 interface IProps {
   question: IQuestion;
@@ -215,7 +216,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         centralizeAudio = true;
         break;
       default:
-        console.warn(`Unknown Type ${question.questionType} for ${JSON.stringify(question)}`);
+        logError(`Unknown Type ${question.questionType} for ${JSON.stringify(question)}`);
         return null;
     }
 
