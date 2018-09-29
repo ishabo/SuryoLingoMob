@@ -98,13 +98,18 @@ class Splash extends React.Component<IProps, IState> {
     this.messageListener = Messaging.onMessage(res => {
       console.warn('Message received', res);
     });
-
-    setTimeout(this.checkConnection, alertDelayTime);
+    this.checkConnection();
+    NetInfo.isConnected.fetch().then(isConnected => {
+      if (isConnected) {
+        this.props.firstFetch();
+      } else {
+      }
+    });
   }
 
   componentDidUpdate(_, prevState: Partial<IState>) {
     if (this.state.isConnected && !prevState.isConnected) {
-      // Force close alert
+      // Force close alert before calling this function
       this.props.firstFetch();
     }
   }

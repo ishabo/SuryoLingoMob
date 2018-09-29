@@ -51,12 +51,7 @@ class TextArea extends React.Component<IProps, IState> {
   keyboardDidHideListener;
 
   componentDidMount() {
-    if (this.props.customKeyboardEnabled) {
-      // if (Platform.OS === 'ios') {
-      //   this.refreshCustomKeyboard();
-      // } else {
-      //   this.textArea.focus();
-      // }
+    if (this.props.customKeyboardEnabled && Platform.OS === 'android') {
       this.refreshCustomKeyboard();
     } else {
       this.textArea.focus();
@@ -71,7 +66,7 @@ class TextArea extends React.Component<IProps, IState> {
   }
 
   static getDerivedStateFromProps(props: Partial<IProps>, state: Partial<IState>) {
-    if (!state.firstLoad) {
+    if (!state.firstLoad && Platform.OS === 'android') {
       return { customKeyboardEnabled: props.customKeyboardEnabled };
     } else {
       return {};
@@ -144,11 +139,10 @@ class TextArea extends React.Component<IProps, IState> {
   }
 
   toggleCustomKeyboard = () => {
+    if (this.state.customKeyboardEnabled) {
+      this.textArea.focus();
+    }
     this.props.toggleCustomKeyboard();
-
-    // if (this.props.customKeyboardEnabled && Platform.OS === 'android') {
-    //   this.textArea.focus();
-    // }
   };
 
   renderKeyboardToggleButton() {
@@ -170,6 +164,8 @@ class TextArea extends React.Component<IProps, IState> {
   private setNativeKeyboard = () => {
     this.props.setPreferences({ customKeyboardEnabled: false });
   };
+
+  private shouldDisplayCustomKeyabord = () => Platform.OS === 'android';
 
   render() {
     return (
@@ -195,19 +191,21 @@ class TextArea extends React.Component<IProps, IState> {
               lang={this.state.value.length === 0 ? 'cl-ara' : this.props.inputLanguage}
               accessible={false}
             />
-            {this.renderKeyboardToggleButton()}
+            {Platform.OS === 'android' && this.renderKeyboardToggleButton()}
           </GSTextAreaContainer>
         </GSContent>
 
-        <KeyboardAccessoryView
-          androidAdjustResize
-          iOSScrollBehavior={iosScrollBehavior}
-          kbInputRef={this.textArea}
-          kbComponent={this.state.customKeyboardEnabled ? this.getCustomKeyboard() : null}
-          onItemSelected={this.receivedKeyboardData}
-          revealKeyboardInteractive
-          style={{ flex: 1 }}
-        />
+        {this.shouldDisplayCustomKeyabord() && (
+          <KeyboardAccessoryView
+            androidAdjustResize
+            iOSScrollBehavior={iosScrollBehavior}
+            kbInputRef={this.textArea}
+            kbComponent={this.state.customKeyboardEnabled ? this.getCustomKeyboard() : null}
+            onItemSelected={this.receivedKeyboardData}
+            revealKeyboardInteractive
+            style={{ flex: 1 }}
+          />
+        )}
       </GSContainer>
     );
   }
