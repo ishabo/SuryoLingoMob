@@ -26,7 +26,7 @@ export const GSGap = glamor.view({
   width: getWindowWidth()
 });
 
-export const GSTopUser = glamor.view<{ highlight: boolean }>(
+export const GSTopUser = glamor.view<{ highlight?: boolean; header?: boolean }>(
   {
     flexDirection: 'row',
     alignItems: 'center',
@@ -35,31 +35,31 @@ export const GSTopUser = glamor.view<{ highlight: boolean }>(
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGray
   },
-  ({ highlight }) => ({
-    backgroundColor: highlight ? colors.lemonChiffon : 'transparent'
-  })
+  ({ highlight, header }) =>
+    header
+      ? { backgroundColor: colors.lightBlue }
+      : {
+          backgroundColor: highlight ? colors.lemonChiffon : 'transparent'
+        }
 );
 
 export const GSRank = glamor.view({
-  width: 50,
-  height: 50,
-  padding: 2,
-  borderWidth: 1,
-  borderRadius: 100,
-  marginHorizontal: 10,
+  padding: 20,
+  borderLeftWidth: 1,
   alignItems: 'center',
   justifyContent: 'center',
   borderColor: colors.lightGray
 });
 
-export const GSUserDetails = glamor.view<{ align: 'left' | 'right' | 'center' }>(
+export const GSUserDetails = glamor.view<{ align: 'left' | 'right' | 'center' | 'stretch' }>(
   {
     justifyContent: 'center',
-    paddingHorizontal: 20,
     flex: 1
   },
   ({ align }) => {
     switch (align) {
+      case 'stretch':
+        return { alignItems: 'stretch', alignSelf: 'stretch' };
       case 'center':
         return { alignItems: 'center' };
       case 'left':
@@ -76,7 +76,11 @@ export const GSUserName = glamor.text({
   writingDirection: 'rtl'
 });
 
-export const GSUserXP = glamor.text({});
+export const GSUserXP = glamor.text({
+  fontWeight: '900',
+  fontSize: 16,
+  fontFamily: 'Arial'
+});
 
 export const GSUserProfilePicture = glamor.image({
   width: 70,

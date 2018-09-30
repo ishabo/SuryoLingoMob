@@ -8,10 +8,9 @@ import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from 'servic
 import { IInitialState } from 'services/reducers';
 import { NavigationScreenProp } from 'react-navigation';
 import { exitApp, displayInterstitialAd } from 'helpers';
-import { Hamburger, DrawerIcon } from 'components';
+import { Hamburger, DrawerItem } from 'components';
 import { ICourse } from 'services/courses';
 import { IProfile } from 'services/profile';
-import { GSDrawerLabel } from 'scenes/Drawer';
 import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
 import I18n from 'I18n';
 import shortid from 'shortid';
@@ -30,9 +29,8 @@ class Skills extends React.Component<IProps> {
   static navigationOptions = ({ navigation: { navigate } }) => ({
     title: I18n.t(`skills.title`),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
-    drawerLabel: <GSDrawerLabel>{I18n.t('skills.title')}</GSDrawerLabel>,
-    drawerIcon: () => <DrawerIcon icon="skills" />,
-    headerRight: null
+    headerRight: null,
+    drawerLabel: <DrawerItem label={I18n.t('skills.title')} icon="skills" />
   });
 
   componentDidMount() {

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { I18nManager } from 'react-native';
 import { Provider } from 'react-redux';
 import Navigation from './Navigation';
-import Store from '../services/store';
 import { setStore, setCrashReporter } from '../services/exceptions';
 import { setApiOrigin } from '../services/api';
 import RNRestart from 'react-native-restart';
@@ -12,6 +11,7 @@ import config from 'config/';
 import { Alert } from 'components';
 import { getFont } from 'assets/fonts';
 import { logError } from 'helpers';
+import { getStoreInstance } from '../services/store';
 
 setCrashReporter(logError);
 setApiOrigin(config.apiHost);
@@ -23,14 +23,14 @@ setCustomText({
 
 I18nManager.forceRTL(true);
 
-const reduxStore = new Store();
+const reduxStore = getStoreInstance();
 const store = reduxStore.getStore();
 const persistor = reduxStore.persistStore();
 
 setStore(store);
 
 export default class App extends React.Component {
-  async componentDidMount() {
+  componentDidMount() {
     if (!I18nManager.isRTL) {
       I18nManager.forceRTL(true);
       RNRestart.Restart();

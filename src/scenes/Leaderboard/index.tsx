@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
-import { Hamburger, DrawerIcon } from 'components';
+import { Hamburger, DrawerItem } from 'components';
 import I18n from 'I18n';
 import * as profile from 'services/profile';
 import * as leaderboard from 'services/leaderboard';
@@ -23,7 +23,6 @@ import {
   GSRank
 } from './index.styles';
 
-import { GSDrawerLabel } from 'scenes/Drawer';
 import { Dispatch } from 'redux';
 import { getWindowWidth } from 'helpers';
 import { GSCustomText } from 'styles/text';
@@ -44,8 +43,7 @@ class Leaderboard extends React.Component<IProps> {
   static navigationOptions = ({ navigation: { navigate } }) => ({
     title: I18n.t('leaderboard.title'),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
-    drawerLabel: <GSDrawerLabel>{I18n.t('leaderboard.title')}</GSDrawerLabel>,
-    drawerIcon: () => <DrawerIcon icon="leaderboard" />,
+    drawerLabel: <DrawerItem label={I18n.t('leaderboard.title')} icon="leaderboard" />,
     headerRight: null
   });
 
@@ -62,13 +60,13 @@ class Leaderboard extends React.Component<IProps> {
         </Text>
       </GSRank>
       <GSUserDetails align="right">
-        <GSUserName>{user.name}</GSUserName>
+        <GSUserProfilePicture source={this.renderProfilePicture(user.profilePic)} />
+      </GSUserDetails>
+      <GSUserDetails align="stretch">
+        <GSUserName>{user.name.split(' ')[0]}</GSUserName>
       </GSUserDetails>
       <GSUserDetails align="center">
         <GSUserXP>{user.userXp}</GSUserXP>
-      </GSUserDetails>
-      <GSUserDetails align="left">
-        <GSUserProfilePicture source={this.renderProfilePicture(user.profilePic)} />
       </GSUserDetails>
     </GSTopUser>
   );

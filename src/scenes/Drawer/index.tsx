@@ -3,7 +3,6 @@ import { DrawerItems } from 'react-navigation';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
 import { isRegistered } from 'services/selectors';
-import { GSCustomText, ICustomText } from 'styles/text';
 import { Analytics } from 'config/firebase';
 import glamor from 'glamorous-native';
 import colors from 'styles/colors';
@@ -48,15 +47,6 @@ export const GSContainer = glamor.view({
   backgroundColor: colors.snow,
   alignItems: 'stretch',
   flex: 1
-});
-
-export const GSDrawerLabel = glamor(GSCustomText)<ICustomText>({
-  fontSize: 18,
-  color: colors.orange,
-  margin: 10,
-  padding: 10,
-  flexDirection: 'row-reverse',
-  justifyContent: 'space-between'
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({

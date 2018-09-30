@@ -7,7 +7,6 @@ import I18n from 'I18n';
 import { IInitialState } from 'services/reducers';
 import * as signon from 'services/signon';
 import * as profile from 'services/profile';
-import { GSDrawerLabel } from 'scenes/Drawer';
 
 import {
   GSContainer,
@@ -29,7 +28,7 @@ import {
 } from './index.styles';
 
 import { GSCustomText } from 'styles/text';
-import { NextButton, DrawerIcon } from 'components';
+import { NextButton, DrawerItem, Loading } from 'components';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
 import { getActiveCourse } from 'services/selectors';
@@ -57,15 +56,14 @@ interface IProps {
 }
 
 class Signon extends React.Component<IProps, IState> {
+  private keyboardDidShowListener;
+  private keyboardDidHideListener;
+
   static navigationOptions = {
     title: I18n.t('signon.title'),
     header: null,
-    drawerLabel: <GSDrawerLabel>{I18n.t('signon.title')}</GSDrawerLabel>,
-    drawerIcon: () => <DrawerIcon icon="signin" />
+    drawerLabel: <DrawerItem label={I18n.t('signon.title')} icon="signon" />
   };
-
-  private keyboardDidShowListener;
-  private keyboardDidHideListener;
 
   state = {
     signUpOrIn: 'signup',
@@ -141,7 +139,8 @@ class Signon extends React.Component<IProps, IState> {
 
   private submitSignon = () => {
     Keyboard.dismiss();
-    this.props.captureSignon({ viaFacebook: false });
+    this.resetErrors();
+    this.props.captureSignon({ ...this.props.signon.item, viaFacebook: false });
     this.props.submitSignon(this.state.signUpOrIn);
   };
 
@@ -293,6 +292,7 @@ class Signon extends React.Component<IProps, IState> {
             {this.renderButtons()}
           </GSContent>
         </GSContainer>
+        <Loading />
       </KeyboardAwareScrollView>
     );
   }

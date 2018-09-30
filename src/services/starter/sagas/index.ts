@@ -1,81 +1,80 @@
 import { put, call, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { NavigationActions } from 'react-navigation';
-
 import { getActiveCourse, isRegistered, canProceedToStudy } from 'services/selectors';
 import { setLoadingOff } from 'services/api/actions';
 import { fetchCourses } from 'services/courses/actions';
 import { syncFinishedLessons } from 'services/progress/actions';
 import { fetchSkills } from 'services/skills/actions';
 import { ISagasFunctions } from 'services/sagas';
+import { fetchSettings, checkStatus } from 'services/settings/actions';
+import { createProfileIfNeeded } from 'services/profile/actions';
+import * as signon from 'services/signon';
 import * as starter from '../';
 import * as exceptions from 'services/exceptions';
-import { fetchProfile } from 'services/profile/sagas';
-import { fetchSettings, checkStatus } from 'services/settings/actions';
-import * as profile from 'services/profile';
-import * as signon from 'services/signon';
-import { navToSkills, resetToCourses, logError } from 'helpers';
+import { resetToCourses, logError, resetToSkills, navToSignon } from 'helpers';
+import { isEmpty } from 'lodash';
+import { IInitialState } from 'services/reducers';
 
-export function* firstFetch(): IterableIterator<any> {
+export function* onAppStart(): IterableIterator<any> {
   yield put(exceptions.actions.removeAll());
   yield put(setLoadingOff());
+}
 
-  yield put(fetchSettings());
+export function* firstFetch(actions: starter.IStarterActions): IterableIterator<any> {
+  yield put(starter.actions.onAppStart());
 
-  yield delay(200);
+  if (actions.checkSettings) {
+    yield put(fetchSettings());
+    yield delay(200);
+    yield put(checkStatus());
 
-  yield put(checkStatus());
+    const canProceed = yield select(canProceedToStudy);
 
-  const canProceed = yield select(canProceedToStudy);
-  if (!canProceed) {
-    return;
-  }
-
-  yield put(profile.actions.createProfileIfNeeded());
-
-  yield delay(200);
-  yield call(fetchProfile);
-
-  const hasRegistered = yield select(isRegistered);
-
-  try {
-    yield put(fetchCourses());
-
-    yield delay(100);
-
-    if (yield select(getActiveCourse)) {
-      navToSkills();
-    } else {
-      if (hasRegistered) {
-        yield put(resetToCourses());
-      } else {
-        yield put(NavigationActions.navigate({ routeName: 'Signon' }));
-      }
+    if (!canProceed) {
+      return;
     }
-  } catch (error) {
-    if (hasRegistered && typeof error === 'object' && error.response) {
-      const { status } = error.response;
-      if (status === 401 || status === 402) {
-        yield put(signon.actions.signout());
+
+    try {
+      yield put(createProfileIfNeeded());
+
+      yield delay(500);
+      const profileState = yield select((state: IInitialState) => state.profile);
+      if (isEmpty(profileState)) {
+        yield call(firstFetch, { checkSettings: false });
         return;
       }
-    }
+    } catch (error) {
+      if (typeof error === 'object' && error.response) {
+        const { status } = error.response;
+        if (status === 401 || status === 402) {
+          yield put(signon.actions.signout());
+          return;
+        }
+      }
 
-    logError(JSON.stringify(error));
+      logError(JSON.stringify(error));
+    }
   }
 
-  yield delay(200);
+  yield put(fetchCourses());
+  yield delay(500);
 
-  const activeCourse = yield select(getActiveCourse);
-
-  if (activeCourse) {
+  if (yield select(getActiveCourse)) {
     yield put(syncFinishedLessons());
     yield put(fetchSkills());
+    yield put(resetToSkills());
+  } else {
+    if (yield select(isRegistered)) {
+      yield put(resetToCourses());
+    } else {
+      yield put(navToSignon());
+    }
   }
 
   yield put(setLoadingOff());
 }
 
 export const functions = (): ISagasFunctions[] => {
-  return [{ action: starter.actions.types.FIRST_FETCH, func: firstFetch }];
+  const types = starter.actions.types;
+  return [{ action: types.FIRST_FETCH, func: firstFetch }, { action: types.ON_APP_START, func: onAppStart }];
 };

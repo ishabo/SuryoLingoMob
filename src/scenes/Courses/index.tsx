@@ -4,16 +4,13 @@ import { ICourse } from 'services/courses';
 import { connect } from 'react-redux';
 import { switchCourse } from 'services/courses/actions';
 import I18n from 'I18n';
-
 import { GSContainer, GSTitle, GSCourse, GSAnimatable } from './index.styles';
 import { snakeToCamel, getWindowWidth } from 'helpers';
 import { CachedImage, ImageCacheProvider } from 'react-native-cached-image';
 import { IAssets } from 'services/assets';
 import { IInitialState } from 'services/reducers';
-import { Dispatch } from 'redux';
 import { AnimatableAnimationMethods } from 'react-native-animatable';
-import { GSDrawerLabel } from 'scenes/Drawer';
-import { Loading, DrawerIcon } from 'components';
+import { Loading, DrawerItem } from 'components';
 import { Analytics } from 'config/firebase';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
@@ -22,7 +19,6 @@ interface IProps {
   courseImages: IAssets['courseImages'];
   courses: ICourse[];
   switchCourse(courseId: string): void;
-  loading: boolean;
   deviceId: string;
 }
 
@@ -32,8 +28,7 @@ class Courses extends React.Component<IProps> {
   static navigationOptions = {
     title: I18n.t('courses.title'),
     header: null,
-    drawerLabel: <GSDrawerLabel>{I18n.t('courses.title')}</GSDrawerLabel>,
-    drawerIcon: () => <DrawerIcon icon="courses" />
+    drawerLabel: <DrawerItem label={I18n.t('courses.title')} icon="courses" />
   };
 
   componentDidMount() {
@@ -60,7 +55,12 @@ class Courses extends React.Component<IProps> {
     const height = width * (67 / 100);
 
     return (
-      <GSCourse key={course.id} onPress={() => this.switchCourse(course)}>
+      <GSCourse
+        key={course.id}
+        onPress={() => {
+          this.switchCourse(course);
+        }}
+      >
         <AnimatedCachedImage
           style={{ width, height }}
           source={{
@@ -93,7 +93,7 @@ class Courses extends React.Component<IProps> {
                 {this.renderCourses()}
               </GSAnimatable>
             </ImageCacheProvider>
-            <Loading loading={this.props.loading} />
+            <Loading />
           </ScrollView>
         </SafeAreaView>
       </GSContainer>
@@ -101,14 +101,11 @@ class Courses extends React.Component<IProps> {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  switchCourse: (courseId: string) => dispatch(switchCourse(courseId))
-});
+const mapDispatchToProps = { switchCourse };
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   courses: state.courses,
   courseImages: state.assets.courseImages,
-  loading: state.api.loading,
   deviceId: state.profile.deviceId
 });
 

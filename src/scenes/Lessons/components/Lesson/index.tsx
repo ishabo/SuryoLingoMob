@@ -15,9 +15,12 @@ import {
 } from './index.styles';
 import { ProgressCircle } from 'components';
 import { Icon } from 'native-base';
+import { ActivityIndicator } from 'react-native';
+import colors from 'styles/colors';
 
 interface IProps {
   lesson: ILesson;
+  loading: boolean;
   skill: ISkill;
   active: boolean;
   targetLanguage: TLangs;
@@ -26,7 +29,16 @@ interface IProps {
   previewLesson(lessonId: string): void;
 }
 
-export default ({ lesson, previewLesson, skill, enterLesson, active, targetLanguage, sourceLanguage }: IProps) => {
+export default ({
+  lesson,
+  previewLesson,
+  skill,
+  enterLesson,
+  active,
+  targetLanguage,
+  sourceLanguage,
+  loading
+}: IProps) => {
   const { lessons } = skill;
 
   const lessonTitle = I18n.t('lessons.lesson.title', {
@@ -68,7 +80,11 @@ export default ({ lesson, previewLesson, skill, enterLesson, active, targetLangu
         <GSLessonTitle lang={sourceLanguage}>{lessonTitle}</GSLessonTitle>
         <GSLessonNewWords lang={targetLanguage}>{lesson.newWords.split('|').join(', ')}</GSLessonNewWords>
         <GSButton onPress={() => active && enterLesson(lesson.id)} {...buttonProps}>
-          <GSButtonText active={active}>{buttonText}</GSButtonText>
+          {loading ? (
+            <ActivityIndicator size="large" color={colors.lightGray} />
+          ) : (
+            <GSButtonText active={active}>{buttonText}</GSButtonText>
+          )}
         </GSButton>
       </GSCard>
       {lesson.finished && renderListButton()}

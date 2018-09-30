@@ -65,6 +65,12 @@ class TextArea extends React.Component<IProps, IState> {
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
   }
 
+  componentDidUpdate(prevProps: Partial<IProps>) {
+    if (prevProps.customKeyboardEnabled && !this.props.customKeyboardEnabled) {
+      this.textArea.focus();
+    }
+  }
+
   static getDerivedStateFromProps(props: Partial<IProps>, state: Partial<IState>) {
     if (!state.firstLoad && Platform.OS === 'android') {
       return { customKeyboardEnabled: props.customKeyboardEnabled };
@@ -78,7 +84,7 @@ class TextArea extends React.Component<IProps, IState> {
       this.setState({ customKeyboardEnabled: false }, () => {
         this.setState({ customKeyboardEnabled: true }, this.textArea.focus);
       });
-    }, 1);
+    }, 100);
   };
 
   keyboardDidShow = () => {
@@ -139,9 +145,6 @@ class TextArea extends React.Component<IProps, IState> {
   }
 
   toggleCustomKeyboard = () => {
-    if (this.state.customKeyboardEnabled) {
-      this.textArea.focus();
-    }
     this.props.toggleCustomKeyboard();
   };
 

@@ -35,7 +35,7 @@ export const AppNavigator = StackNavigator(
   {
     Splash: { screen: Splash },
     Courses: { screen: Courses },
-    Skills: { screen: DrawerNav },
+    Skills: { screen: DrawerNav, navigationOptions: { headerMode: 'none', visible: false } },
     PasswordRecovery: { screen: PasswordRecovery, navigationOptions: { visible: false } },
     Lessons: { screen: Lessons },
     Questions: {

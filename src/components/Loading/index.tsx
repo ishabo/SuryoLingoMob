@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { ActivityIndicator } from 'react-native';
-import Modal from 'react-native-modal';
-import Colors from 'styles/colors';
-import glamor from 'glamorous-native';
+import { connect } from 'react-redux';
 
-interface IProps {
+import Modal from 'react-native-modal';
+import colors from 'styles/colors';
+import glamor from 'glamorous-native';
+import { IInitialState } from 'services/reducers';
+
+export interface IProps {
   loading: boolean;
 }
 
@@ -14,10 +17,14 @@ const GSLoading = glamor.view({
   alignItems: 'center'
 });
 
-export default (props: IProps) => (
-  <Modal isVisible={props.loading}>
+const mapStateToDispatch = (state: IInitialState): IProps => ({
+  loading: state.api.loading
+});
+
+export default connect(mapStateToDispatch)(({ loading }: IProps) => (
+  <Modal isVisible={loading}>
     <GSLoading>
-      <ActivityIndicator size="large" color={Colors.lightGray} />
+      <ActivityIndicator size="large" color={colors.lightGray} />
     </GSLoading>
   </Modal>
-);
+));

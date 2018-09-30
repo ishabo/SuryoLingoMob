@@ -1,7 +1,7 @@
 import { Alert, AlertButton } from 'react-native';
 import I18n from 'I18n';
 import { exitApp, goToAppStore } from 'helpers';
-import { TSignonFacebookErrors } from 'services/signon';
+import { TSignonFacebookErrors, TSignonEmailErrors } from 'services/signon';
 
 export const alertConnection = (
   onReconnect: () => void,
@@ -51,11 +51,16 @@ export type TAlertSubject =
   | 'signinEmail'
   | 'signinPassword';
 
-export const showAlert = (context: TAlertContext, subject: TAlertSubject | TSignonFacebookErrors) => {
-  Alert.alert(
-    I18n.t(`${context}.alerts.${subject}.title`),
-    I18n.t(`${context}.alerts.${subject}.description`),
-    [{ text: I18n.t('general.close'), onPress: () => {} }],
-    { cancelable: false }
-  );
+export const showAlert = (
+  context: TAlertContext,
+  subject: TAlertSubject | TSignonFacebookErrors | TSignonEmailErrors
+) => {
+  setTimeout(() => {
+    Alert.alert(
+      I18n.t(`${context}.alerts.${subject}.title`),
+      I18n.t(`${context}.alerts.${subject}.description`),
+      [{ text: I18n.t('general.close'), onPress: () => {} }],
+      { cancelable: false }
+    );
+  }, 1000);
 };

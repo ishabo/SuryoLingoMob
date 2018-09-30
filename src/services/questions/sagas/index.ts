@@ -87,7 +87,7 @@ export function* nextQuestionOrFinish(action: questions.IQuestionsAction): Itera
   if (pending.length === 0) {
     yield call(finishLesson);
     yield put(setLoadingOn());
-    delay(300);
+    yield delay(300);
     yield put(setLoadingOff());
     routeName = 'Completion';
   }

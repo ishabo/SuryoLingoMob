@@ -1,22 +1,21 @@
 import * as React from 'react';
-import { BackHandler, Keyboard } from 'react-native';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import Lesson from './components/Lesson';
+import { BackHandler, Keyboard } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import I18n from 'I18n';
 import { ISkill, ILesson } from 'services/skills';
 import { enterLesson } from 'services/progress/actions';
 import { IInitialState } from 'services/reducers';
 import { getSkillLessons, getSourceLanguage, getTargetLanguage } from 'services/selectors';
-import Lesson from './components/Lesson';
 import { SkillIcon } from '../Skills/components';
 import { NavigationScreenProp } from 'react-navigation';
 import { GSCustomText } from 'styles/text';
 import { IProfile } from 'services/profile';
-import { Dispatch } from 'redux';
-import { Loading } from 'components';
 import { overviewLesson } from 'services/progress/actions';
 import { GSContainer, GSAnimatable, GSLessonIcon, GSLessonInstruction } from './index.styles';
 import { Analytics } from 'config/firebase';
+import I18n from 'I18n';
 
 interface IProps {
   getLessons(skillId: string): ILesson[];
@@ -107,6 +106,7 @@ class Lessons extends React.Component<IProps, IState> {
         previewLesson={this.props.previewLesson}
         targetLanguage={this.props.targetLanguage}
         sourceLanguage={this.props.sourceLanguage}
+        loading={this.props.loading}
       />
     );
   }
@@ -132,7 +132,6 @@ class Lessons extends React.Component<IProps, IState> {
             lockScrollWhileSnapping
           />
         </GSAnimatable>
-        <Loading loading={this.props.loading} />
       </GSContainer>
     );
   }

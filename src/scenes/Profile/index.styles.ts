@@ -64,3 +64,11 @@ export const GSProfilePicture = glamor.image({
   height: 200,
   borderRadius: 100
 });
+
+export const GSPersonalDetails = glamor.view({
+  marginVertical: 10
+});
+
+export const GSBottom = glamor.view({
+  alignItems: 'center'
+});

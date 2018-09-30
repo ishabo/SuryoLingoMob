@@ -4,6 +4,7 @@ import * as courses from 'services/courses';
 import * as skill from 'services/skills';
 import * as assets from 'services/assets';
 import { ISagasFunctions } from 'services/sagas';
+import { resetToSkills } from 'helpers';
 
 export function* fetchCourses(): IterableIterator<any> {
   try {
@@ -19,6 +20,7 @@ export function* switchCourse(action: courses.ICourseAction): IterableIterator<a
   yield delay(1000);
   yield put(courses.actions.setActiveCourse(action.courseId));
   yield put(skill.actions.fetchSkills());
+  yield put(resetToSkills());
 }
 
 export const functions = (): ISagasFunctions[] => {

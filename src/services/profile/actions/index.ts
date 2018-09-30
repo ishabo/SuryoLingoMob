@@ -7,6 +7,7 @@ export const types = {
   SAVE_PROFILE_AND_ACCESS_TOKEN: `${namespace}/SAVE_PROFILE_AND_ACCESS_TOKEN`,
   FETCH_PROFILE: `${namespace}/FETCH_PROFILE`,
   CREATE_PROFILE_IF_NEEDED: `${namespace}/CREATE_PROFILE_IF_NEEDED`,
+  CREATE_PROFILE: `${namespace}/CREATE_PROFILE`,
   UPDATE_PROFILE: `${namespace}/UPDATE_PROFILE`,
   RESET_PROFILE: `${namespace}/RESET_PROFILE`
 };
@@ -19,6 +20,11 @@ export const saveProfile = (data: IProfile) => ({
 export const createProfileIfNeeded = (payload?: IProfilePayload) => ({
   payload,
   type: types.CREATE_PROFILE_IF_NEEDED
+});
+
+export const createProfile = (payload: IProfilePayload) => ({
+  payload,
+  type: types.CREATE_PROFILE
 });
 
 export const updateProfile = (payload: IProfilePayload) => ({

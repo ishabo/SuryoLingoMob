@@ -13,24 +13,25 @@ export function* createProfileIfNeeded(action: profile.IProfileAction): Iterable
   const profileState = yield select((state: IInitialState) => state.profile);
 
   if (isEmpty(profileState)) {
-    try {
-      const profileData = yield call(profile.api.createProfile, action.payload);
-      yield put(profile.actions.saveProfileAndAccessToken(profileData));
-    } catch (error) {
-      console.log(error);
-    }
+    yield put(profile.actions.createProfile(action.payload));
+  } else {
+    yield put(profile.actions.fetchProfile());
+  }
+}
+
+export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
+  try {
+    const profileData = yield call(profile.api.createProfile, action.payload);
+    yield put(profile.actions.saveProfileAndAccessToken(profileData));
+  } catch (error) {
+    console.log(error);
   }
 }
 
 export function* updateProfile(action: profile.IProfileAction): IterableIterator<any> {
   const currentProfile = yield select((state: IInitialState) => state.profile);
-  try {
-    const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
-
-    yield put(profile.actions.saveProfileAndAccessToken(profileData));
-  } catch (error) {
-    console.log(error);
-  }
+  const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
+  yield put(profile.actions.saveProfileAndAccessToken(profileData));
 }
 
 export function* fetchProfile(): IterableIterator<any> {
@@ -65,13 +66,14 @@ export function* saveProfileAndAccessToken(action: profile.IProfileAction): Iter
 }
 
 export const functions = (): ISagasFunctions[] => {
+  const types = profile.actions.types;
   return [
-    { action: profile.actions.types.CREATE_PROFILE_IF_NEEDED, func: createProfileIfNeeded },
-    { action: profile.actions.types.UPDATE_PROFILE, func: updateProfile },
-    { action: profile.actions.types.FETCH_PROFILE, func: fetchProfile },
-
+    { action: types.CREATE_PROFILE_IF_NEEDED, func: createProfileIfNeeded },
+    { action: types.CREATE_PROFILE, func: createProfile },
+    { action: types.UPDATE_PROFILE, func: updateProfile },
+    { action: types.FETCH_PROFILE, func: fetchProfile },
     {
-      action: profile.actions.types.SAVE_PROFILE_AND_ACCESS_TOKEN,
+      action: types.SAVE_PROFILE_AND_ACCESS_TOKEN,
       func: saveProfileAndAccessToken
     }
   ];

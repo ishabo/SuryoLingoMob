@@ -25,23 +25,21 @@ let message: string;
 let alertType: string = 'warning';
 
 class Alert extends React.Component<IProps> {
-
   private alert;
 
-  componentDidMount () {
+  componentDidMount() {
     MessageBarManager.registerMessageBar(this.alert);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     MessageBarManager.unregisterMessageBar();
   }
 
-  componentWillReceiveProps (nextProps: Partial<IProps>) {
+  componentWillReceiveProps(nextProps: Partial<IProps>) {
     const exception = nextProps.lastException;
 
     if (exception) {
-      alertType = config.alerts[exception.name]
-        ? config.alerts[exception.name].alertType : 'error';
+      alertType = config.alerts[exception.name] ? config.alerts[exception.name].alertType : 'error';
       title = I18n.t(`alert.${exception.name}.title`);
       message = I18n.t(`alert.${exception.name}.message`);
       doAlert = !exception.silent;
@@ -57,31 +55,38 @@ class Alert extends React.Component<IProps> {
     }
 
     if (doAlert) {
-
       if (exception) {
         this.props.removeException(exception.id);
       }
 
       MessageBarManager.showAlert({
-        alertType, title, message, durationToHide, position: 'bottom', onHide: () => { }
+        alertType,
+        title,
+        message,
+        durationToHide,
+        position: 'bottom',
+        onHide: () => {}
       });
     }
   }
 
-  render () {
-    return <MessageBar ref={(c: Alert) => this.alert = c} />;
+  render() {
+    return <MessageBar ref={(c: Alert) => (this.alert = c)} />;
   }
 }
 
 const mapStateToDispatch = (dispatch: Dispatch<any>): Partial<IProps> => ({
   signout: () => dispatch(signon.actions.signout()),
   removeException: (id: number) => dispatch(exceptions.actions.remove(id)),
-  removeAll: () => dispatch(exceptions.actions.removeAll()),
+  removeAll: () => dispatch(exceptions.actions.removeAll())
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   lastException: getLatestException(state),
-  apiStatus: state.api,
+  apiStatus: state.api
 });
 
-export default connect(mapStateToProps, mapStateToDispatch)(Alert);
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch
+)(Alert);

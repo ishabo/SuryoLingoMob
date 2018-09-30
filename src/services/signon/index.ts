@@ -7,17 +7,17 @@ import { IAction } from 'services/sagas';
 export type TSignonType = string | 'signup' | 'signin';
 
 export interface ISignonFormData {
-  name?: string;
-  viaFacebook?: boolean;
-  email?: string;
-  password?: string;
+  email: string | null;
+  password: string | null;
+  name: string | null;
+  viaFacebook: boolean;
 }
 
-export type TSignonFacebookErrors = 'failedToLoginViaFacebook';
-
+export type TSignonFacebookErrors = 'failedToLoginViaFacebook' | 'facebookAlreadyConnected';
+export type TSignonEmailErrors = 'emailAlreadyExists';
 export interface ISignonFormErrors {
   name?: string;
-  email?: string;
+  email?: TSignonEmailErrors;
   password?: string;
   facebook?: TSignonFacebookErrors;
 }
