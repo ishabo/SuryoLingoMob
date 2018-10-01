@@ -1,10 +1,9 @@
 import React from 'react';
 import { DrawerItems } from 'react-navigation';
-import { SignOnOrOut } from 'components';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
 import { isRegistered } from 'services/selectors';
-import { GSCustomText, ICustomText } from 'styles/text';
+import { Analytics } from 'config/firebase';
 import glamor from 'glamorous-native';
 import colors from 'styles/colors';
 
@@ -20,12 +19,17 @@ class Drawer extends React.Component<IProps> {
     headerLeft: null
   };
 
+  componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
+  }
+
   private filteredItems = () => {
     const { items } = this.props;
     if (!this.props.isLoggedIn) {
       return items.filter(item => item.routeName !== 'Profile');
+    } else {
+      return items.filter(item => item.routeName !== 'Signon');
     }
-    return items;
   };
 
   render() {
@@ -34,9 +38,6 @@ class Drawer extends React.Component<IProps> {
     return (
       <GSContainer>
         <DrawerItems {...props} />
-        <GSDrawerLabel>
-          <SignOnOrOut noStyle lang={'cl-ara'} />
-        </GSDrawerLabel>
       </GSContainer>
     );
   }
@@ -46,13 +47,6 @@ export const GSContainer = glamor.view({
   backgroundColor: colors.snow,
   alignItems: 'stretch',
   flex: 1
-});
-
-export const GSDrawerLabel = glamor(GSCustomText)<ICustomText>({
-  fontSize: 18,
-  color: colors.orange,
-  margin: 10,
-  padding: 10
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({

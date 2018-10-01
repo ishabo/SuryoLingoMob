@@ -12,6 +12,7 @@ import { NextButton, SignOnOrOut } from 'components/';
 import { IProfile } from 'services/profile';
 import { Dispatch } from 'redux';
 import { displayInterstitialAd } from 'helpers';
+import { Analytics } from 'config/firebase';
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void;
@@ -38,6 +39,8 @@ class Completion extends React.Component<IProps, IState> {
   };
 
   componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
+
     const lastAccomplishment: ILessonHistory = this.props.lessonInProgress.lessonHistory.slice(-1)[0];
 
     if (lastAccomplishment) {

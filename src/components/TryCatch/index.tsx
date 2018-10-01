@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { logError } from 'helpers';
 
 interface IProps {
   children: any;
@@ -17,6 +18,7 @@ export default class TryCatch extends React.Component<IProps, IState> {
     this.setState({ hasError: true });
     // You can also log the error to an error reporting service
     console.warn(error, info);
+    logError(JSON.stringify(error));
   }
 
   render() {

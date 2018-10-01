@@ -41,8 +41,7 @@ export const GSTabButton = glamor(Button)<{ selected: boolean }>(
     alignSelf: 'center'
   },
   ({ selected }) => ({
-    backgroundColor: selected ? Colors.lightBlue : Colors.whiteSmoke,
-    color: selected ? Colors.gray : Colors.snow
+    backgroundColor: selected ? Colors.lightBlue : Colors.whiteSmoke
   })
 );
 

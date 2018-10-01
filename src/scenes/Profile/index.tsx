@@ -1,22 +1,31 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
+import I18n from 'I18n';
 import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { isRegistered } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
-import { Hamburger, FBLoginButton } from 'components';
-import { Dispatch } from 'redux';
-import I18n from 'I18n';
+import { Hamburger, FBLoginButton, DrawerItem, SignOnOrOut } from 'components';
+import {
+  GSContainer,
+  GSProfile,
+  GSProfileDetails,
+  GSProfileDetailsItem,
+  GSProfilePicture,
+  GSPersonalDetails,
+  GSBottom
+} from './index.styles';
 import * as profile from 'services/profile';
+import * as courses from 'services/courses';
 import * as leaderboard from 'services/leaderboard';
 import * as signon from 'services/signon';
 import * as api from 'services/api/reducers';
 import { GSCustomText } from 'styles/text';
 import { NavigationScreenProp } from 'react-navigation';
-
-import { GSContainer, GSProfile, GSProfileDetails, GSProfileDetailsItem, GSProfilePicture } from './index.styles';
 import VersionNumber from 'react-native-version-number';
-import { GSDrawerLabel } from 'scenes/Drawer';
 import Images from 'assets/images';
+import { Analytics } from 'config/firebase';
+import { showAlert } from 'helpers';
 
 export interface IProps {
   apiStatus: api.IApiStatus;
@@ -25,51 +34,79 @@ export interface IProps {
   isRegistered: boolean;
   navigation: NavigationScreenProp<any, any>;
   fetchLeaderboard: () => void;
+  fetchProfile: () => void;
   currentUserCourseXpRatio: number;
+  courses: courses.ICourse[];
+  fetchCourses: () => void;
+  signon: signon.ISignonState;
 }
 
 class Profile extends React.Component<IProps> {
   static navigationOptions = ({ navigation: { navigate } }) => ({
     title: I18n.t('profile.title'),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
-    drawerLabel: <GSDrawerLabel>{I18n.t('profile.title')}</GSDrawerLabel>,
+    drawerLabel: <DrawerItem label={I18n.t('profile.title')} icon="profile" />,
     headerRight: null
   });
 
   componentDidMount() {
+    Analytics.setCurrentScreen(this.constructor.name);
     if (!this.props.isRegistered) {
       this.props.navigation.navigate('Signon');
     } else {
+      this.props.fetchProfile();
       this.props.fetchLeaderboard();
+      this.props.fetchCourses();
     }
   }
+
+  componentDidUpdate(prevProps: Partial<IProps>) {
+    if (this.props.signon.errors !== prevProps.signon.errors) {
+      if (this.props.signon.errors.facebook) {
+        showAlert('signon', this.props.signon.errors.facebook);
+      }
+    }
+  }
+
+  returnUserCourse = () => {
+    return this.props.courses.map(course => (
+      <GSProfileDetails key={course.id}>
+        <GSProfileDetailsItem>{course.targetLanguage.fullName}:</GSProfileDetailsItem>
+        <GSCustomText>{course.courseXp}</GSCustomText>
+      </GSProfileDetails>
+    ));
+  };
 
   renderProfile = () => {
     const { profilePic } = this.props.profile;
 
     return (
       <GSProfile>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
-          <GSProfilePicture source={profilePic ? { uri: profilePic } : Images.profile.default} />
-        </TouchableOpacity>
-        <GSProfileDetails>
-          <GSProfileDetailsItem>{I18n.t('profile.details.name')}:</GSProfileDetailsItem>
-          <GSCustomText>{this.props.profile.name}</GSCustomText>
-        </GSProfileDetails>
-        <GSProfileDetails>
-          <GSProfileDetailsItem>{I18n.t('profile.details.email')}:</GSProfileDetailsItem>
-          <GSCustomText>{this.props.profile.email}</GSCustomText>
-        </GSProfileDetails>
-        <GSProfileDetails>
-          <GSProfileDetailsItem>{I18n.t('profile.details.userXp')}:</GSProfileDetailsItem>
-          <GSCustomText>{this.props.profile.userXp}</GSCustomText>
-        </GSProfileDetails>
-        <GSProfileDetails>
-          <GSProfileDetailsItem>{I18n.t('profile.details.appVersion')}:</GSProfileDetailsItem>
-          <GSCustomText>{VersionNumber.appVersion}</GSCustomText>
-        </GSProfileDetails>
+        <>
+          <GSPersonalDetails>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
+              <GSProfilePicture source={profilePic ? { uri: profilePic } : Images.profile.default} />
+            </TouchableOpacity>
+            <GSProfileDetails>
+              <GSProfileDetailsItem>{I18n.t('profile.details.name')}:</GSProfileDetailsItem>
+              <GSCustomText>{this.props.profile.name}</GSCustomText>
+            </GSProfileDetails>
+            <GSProfileDetails>
+              <GSProfileDetailsItem>{I18n.t('profile.details.email')}:</GSProfileDetailsItem>
+              <GSCustomText>{this.props.profile.email}</GSCustomText>
+            </GSProfileDetails>
 
-        {this.props.profile.hasConnectedViaFacebook || <FBLoginButton signon="connect" />}
+            {this.returnUserCourse()}
+            <GSProfileDetails>
+              <GSProfileDetailsItem>{I18n.t('profile.details.appVersion')}:</GSProfileDetailsItem>
+              <GSCustomText>{VersionNumber.appVersion}</GSCustomText>
+            </GSProfileDetails>
+          </GSPersonalDetails>
+          <GSBottom>
+            {this.props.profile.hasConnectedViaFacebook || <FBLoginButton signon="connect" />}
+            <SignOnOrOut lang={'cl-ara'} isLoggedIn />
+          </GSBottom>
+        </>
       </GSProfile>
     );
   };
@@ -81,13 +118,17 @@ class Profile extends React.Component<IProps> {
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   signout: () => dispatch(signon.actions.signout()),
-  fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard())
+  fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard()),
+  fetchProfile: () => dispatch(profile.actions.fetchProfile()),
+  fetchCourses: () => dispatch(courses.actions.fetchCourses())
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   apiStatus: state.api,
   profile: state.profile,
+  courses: state.courses,
   isRegistered: isRegistered(state),
+  signon: state.signon,
   currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio
 });
 

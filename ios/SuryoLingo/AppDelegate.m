@@ -18,11 +18,18 @@
 #import <React/RCTI18nUtil.h>
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Firebase.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [FIRApp configure];
+  [Fabric with:@[[Crashlytics class]]];
+  
+
   NSURL *jsCodeLocation;
 
   [AppCenterReactNativePush register];  // Initialize AppCenter push
@@ -48,6 +55,7 @@
   
   [[RCTI18nUtil sharedInstance] allowRTL:YES];
 
+
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"SuryoLingo"
                                                initialProperties:nil
@@ -62,6 +70,7 @@
 
   [[FBSDKApplicationDelegate sharedInstance] application:application
     didFinishLaunchingWithOptions:launchOptions];
+  
   return YES;
 }
 

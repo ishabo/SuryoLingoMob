@@ -11,6 +11,7 @@ import VersionNumber from 'react-native-version-number';
 import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
 import { ICourse } from 'services/courses';
+import { Analytics, Messaging } from 'config/firebase';
 
 export interface IProps {
   hasNetworkError: boolean;
@@ -21,35 +22,45 @@ export interface IProps {
 
 interface IState {
   hasAlert: boolean;
+  isConnected: boolean;
 }
 
 const alertDelayTime = 1000;
-const fetchDelayTime = 1000;
+// const fetchDelayTime = 1000;
 
 const logos = [images.logo.arabic, images.logo.syriac, images.logo.english];
 const logo = logos[Math.floor(Math.random() * logos.length)];
 
 class Splash extends React.Component<IProps, IState> {
+  private messageListener;
+
   static navigationOptions = {
     header: null
   };
 
   state = {
-    hasAlert: false
+    hasAlert: false,
+    isConnected: false
   };
 
   private handleFirstConnectivityChange = isConnected => {
-    if (!isConnected) {
-      this.props.addException({
-        name: 'NETWORK_ERROR',
-        message: 'Not connected to the internet',
-        report: false
-      });
-    } else if (isConnected) {
-      this.props.firstFetch();
-    }
-
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
+    this.setState(
+      {
+        isConnected
+      },
+      () => {
+        if (!isConnected) {
+          this.props.addException({
+            name: 'NETWORK_ERROR',
+            message: 'Not connected to the internet',
+            report: false
+          });
+        } else if (isConnected) {
+          this.props.firstFetch();
+        }
+        // NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
+      }
+    );
   };
 
   setAlertDismissed = () => {
@@ -62,21 +73,50 @@ class Splash extends React.Component<IProps, IState> {
   };
 
   alertConnection = () => {
-    console.warn(this.state.hasAlert);
     if (this.state.hasAlert) {
       return;
     }
 
     setTimeout(() => {
       this.setState({ hasAlert: true }, () => {
-        alertConnection(this.firstFetch, exitApp, this.setAlertDismissed);
+        alertConnection(
+          () => {
+            this.setState({ hasAlert: false }, this.alertConnection);
+          },
+          exitApp,
+          this.setAlertDismissed
+        );
       });
     }, alertDelayTime);
   };
 
   componentDidMount() {
-    setTimeout(this.props.firstFetch, fetchDelayTime);
-    setTimeout(this.checkConnection, alertDelayTime);
+    Analytics.setAnalyticsCollectionEnabled(true);
+
+    Analytics.setCurrentScreen(this.constructor.name);
+
+    this.messageListener = Messaging.onMessage(res => {
+      console.warn('Message received', res);
+    });
+    this.checkConnection();
+    NetInfo.isConnected.fetch().then(isConnected => {
+      if (isConnected) {
+        this.props.firstFetch();
+      } else {
+      }
+    });
+  }
+
+  componentDidUpdate(_, prevState: Partial<IState>) {
+    if (this.state.isConnected && !prevState.isConnected) {
+      // Force close alert before calling this function
+      this.props.firstFetch();
+    }
+  }
+
+  componentWillUnmount() {
+    this.messageListener();
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
   }
 
   checkConnection = () => {

@@ -27,7 +27,7 @@ export const setErrors = (errors: ISignonFormErrors) => ({
   type: types.SET_ERRORS
 });
 
-export const reseTSignonType = () => ({
+export const resetSignOn = () => ({
   type: types.RESET_SIGNON
 });
 

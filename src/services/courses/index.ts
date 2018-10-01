@@ -16,6 +16,7 @@ export interface ICourse {
   targetLanguage: ILanguage<TTargetLangs>;
   sourceLanguage: ILanguage<TLearnerLangs>;
   comingSoon?: boolean;
+  courseXp?: number;
 }
 
 export interface ILanguage<T> {

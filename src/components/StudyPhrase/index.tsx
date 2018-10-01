@@ -3,8 +3,8 @@ import Phrase, { IProps as IPhraseProps } from 'components/Phrase';
 import { SoundButton } from 'components';
 import glamor from 'glamorous-native';
 import { getWindowWidth, openPhraseInAdmin } from 'helpers';
-import SwitchButton from 'components/SwitchButton';
 import I18n from 'I18n';
+import { TouchableOpacity, Text } from 'react-native';
 
 interface IProps extends IPhraseProps {
   sound: { soundTrack: string; location?: string };
@@ -18,12 +18,10 @@ export default (props: IProps) => {
 
   const renderEditLink = () =>
     isAdmin && (
-      <SwitchButton
-        onPress={() => openPhraseInAdmin(sentence.raw)}
-        text={I18n.t('questions.correction')}
-        light={true}
-        lang={'cl-ara'}
-      />
+      <TouchableOpacity onPress={() => openPhraseInAdmin(sentence.raw)}>
+        <Text>{I18n.t('questions.correction')}</Text>
+        />
+      </TouchableOpacity>
     );
 
   const renderSound = () => (

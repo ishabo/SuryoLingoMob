@@ -35,7 +35,7 @@ class FBLoginButton extends Component<IProps> {
     const connectViaFacebookText = `${this.props.signon}ViaFacebook`;
     return (
       <GSButton iconLeft rounded onPress={() => this.props.connectViaFacebook(this.props.signon)}>
-        <GSButtonText>{I18n.t(`profile.form.${connectViaFacebookText}`)}</GSButtonText>
+        <GSButtonText>{I18n.t(`signon.form.${connectViaFacebookText}`)}</GSButtonText>
         <Icon name="facebook" type="Entypo" />
       </GSButton>
     );

@@ -22,6 +22,7 @@ export const GSKeyText = glamor(GSCustomText)<ICustomText>({
 
 export const GSIcon = glamor(Icon)({
   ...textStyle,
+  color: Colors.white,
   alignSelf: 'center',
   marginLeft: 10,
   fontSize: 25,

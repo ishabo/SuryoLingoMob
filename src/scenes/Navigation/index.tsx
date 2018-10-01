@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, NavigationActions, NavigationState } from 'react-navigation';
+import { addNavigationHelpers, NavigationState } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 import { AppNavigator } from 'routes';
 import { BackHandler } from 'react-native';
@@ -13,10 +13,6 @@ interface IProps {
 }
 
 class Navigation extends React.Component<IProps> {
-  componentWillMount() {
-    NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: 'Splash' })] });
-  }
-
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
@@ -31,7 +27,6 @@ class Navigation extends React.Component<IProps> {
 
   render() {
     const addListener = createReduxBoundAddListener('root');
-
     const navigation = addNavigationHelpers({
       dispatch: this.props.dispatch,
       state: this.props.nav,

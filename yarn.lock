@@ -5152,6 +5152,10 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+opencollective-postinstall@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.0.tgz#5fe062f2706bb84150f7fb1af9f1277e46ec1388"
+
 opener@^1.5.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.1.tgz#6d2f0e77f1a0af0032aca716c2c1fbb8e7e8abed"
@@ -5729,9 +5733,9 @@ react-native-debugger-open@^0.3.15:
     minimist "^1.2.0"
     semver "^5.4.1"
 
-react-native-device-info@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.13.0.tgz#81051eebd3db6959e4f1d2cb0ae8df74105040cf"
+react-native-device-info@^0.22.5:
+  version "0.22.5"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.22.5.tgz#9b1882cbb030f2926cff77336e7cd2e87edf52bf"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
@@ -5772,6 +5776,10 @@ react-native-exit-app@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-exit-app/-/react-native-exit-app-1.0.0.tgz#a2fbb121d902e6967cd8a365fe8453e5c4bc3172"
 
+react-native-fabric@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-fabric/-/react-native-fabric-0.5.1.tgz#e5eb65c56196355b41f230c14adcc9c4bcf60dda"
+
 react-native-fbsdk@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-0.8.0.tgz#4ee95ebb7be4b00fa9f871ca594f068c9782c7de"
@@ -5790,6 +5798,13 @@ react-native-fetch-blob@0.10.8:
   dependencies:
     base-64 "0.1.0"
     glob "7.0.6"
+
+react-native-firebase@^5.0.0-rc4:
+  version "5.0.0-rc4"
+  resolved "https://registry.yarnpkg.com/react-native-firebase/-/react-native-firebase-5.0.0-rc4.tgz#19e3e966fcaec82673113741e58c93e8c58f976e"
+  dependencies:
+    opencollective-postinstall "^2.0.0"
+    prop-types "^15.6.2"
 
 react-native-fs@2.9.7:
   version "2.9.7"

@@ -7,15 +7,16 @@ import rootReducer from './reducers';
 import { persistStore, persistReducer } from 'redux-persist';
 import { Platform } from 'react-native';
 import storage from 'redux-persist/es/storage';
-import {
-  createReactNavigationReduxMiddleware,
-} from 'react-navigation-redux-helpers';
+
+import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
+
+let storeInstance;
 
 const config = {
   storage,
   key: 'root',
   // stateReconciler: true,
-  blacklist: ['api', 'nav', 'exceptions', 'signon'],
+  blacklist: ['api', 'nav', 'exceptions', 'signon']
 };
 
 const reducer = persistReducer(config, rootReducer);
@@ -35,7 +36,6 @@ const hasDevTools = (item: IContainsDevtools | Window): item is IContainsDevtool
  */
 
 export default class Store {
-
   private store: any;
   private sagaMiddleware = createSagaMiddleware();
 
@@ -43,43 +43,41 @@ export default class Store {
     this.configure();
   }
 
-  public getStore () {
+  public getStore() {
     this.sagaMiddleware.run(rootSagas);
     return this.store;
   }
 
-  public persistStore () {
+  public persistStore() {
     return persistStore(this.store);
   }
 
-  private configure () {
+  private configure() {
+    const reactNavMiddleWare = createReactNavigationReduxMiddleware('root', state => state.nav);
 
-    const reactNavMiddleWare = createReactNavigationReduxMiddleware(
-      "root",
-      state => state.nav,
-    );
-
-    const middlewares = applyMiddleware(
-      this.sagaMiddleware,
-      reduxImmutableStateInvariant(),
-      reactNavMiddleWare,
-
-    );
+    const middlewares = applyMiddleware(this.sagaMiddleware, reduxImmutableStateInvariant(), reactNavMiddleWare);
 
     let composeEnhancers = compose;
 
     if (__DEV__) {
-      composeEnhancers = hasDevTools(window) && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
+      composeEnhancers =
+        (hasDevTools(window) && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
         composeWithDevTools({
           name: Platform.OS,
-          ...require('../../package.json').remotedev,
+          ...require('../../package.json').remotedev
         });
     }
 
-    const enhancer = composeEnhancers(
-      middlewares,
-    );
+    const enhancer = composeEnhancers(middlewares);
 
     this.store = createStore(reducer, enhancer);
   }
 }
+
+export const getStoreInstance = () => {
+  if (!storeInstance) {
+    storeInstance = new Store();
+  }
+
+  return storeInstance;
+};

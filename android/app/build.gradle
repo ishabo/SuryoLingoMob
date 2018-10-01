@@ -102,8 +102,8 @@ android {
         applicationId "com.suryolingo.android"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 30
-        versionName "0.3.1"
+        versionCode 32
+        versionName "0.4.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -150,30 +150,57 @@ android {
     }
 }
 
+buildscript {
+  repositories {
+    maven { url 'https://maven.fabric.io/public' }
+  }
+  dependencies {
+    classpath 'io.fabric.tools:gradle:1.22.1'
+  }
+}
+
+apply plugin: 'io.fabric'
+
+repositories {
+  maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
-    implementation project(':react-native-fbsdk')
-    implementation project(':react-native-version-check')
-    implementation project(':react-native-admob')
-    implementation project(':appcenter-push')
-    implementation project(':appcenter-crashes')
-    implementation project(':appcenter-analytics')
-    implementation project(':appcenter')
-    implementation project(':react-native-version-number')
-    implementation project(':react-native-exit-app')
-    implementation project(':react-native-restart')
-    implementation project(':react-native-audioplayer')
-    implementation project(':react-native-device-info')
-    implementation project(':react-native-fs')
-    implementation project(':react-native-linear-gradient')
-    implementation project(':react-native-sensitive-info')
-    implementation project(':react-native-sound')
-    implementation project(':react-native-i18n')
-    implementation project(':react-native-fetch-blob')
-    implementation project(":reactnativekeyboardinput")
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.microsoft.appcenter:appcenter-push:1.7.0"
-    implementation "com.android.support:appcompat-v7:27.0.2"
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    compile project(':react-native-fabric')
+    compile project(':react-native-firebase')
+    compile project(':appcenter-push')
+    compile project(':appcenter-crashes')
+    compile project(':appcenter-analytics')
+    compile project(':appcenter')
+    compile project(':react-native-fbsdk')
+    compile project(':react-native-version-check')
+    compile project(':react-native-admob')
+    compile project(':react-native-version-number')
+    compile project(':react-native-exit-app')
+    compile project(':react-native-restart')
+    compile project(':react-native-audioplayer')
+    compile project(':react-native-device-info')
+    compile project(':react-native-fs')
+    compile project(':react-native-linear-gradient')
+    compile project(':react-native-sensitive-info')
+    compile project(':react-native-sound')
+    compile project(':react-native-i18n')
+    compile project(':react-native-fetch-blob')
+    compile project(":reactnativekeyboardinput")
+    compile fileTree(dir: "libs", include: ["*.jar"])
+    compile "com.microsoft.appcenter:appcenter-push:1.7.0"
+    compile "com.android.support:appcompat-v7:27.0.2"
+    compile "com.facebook.react:react-native:+"  // From node_modules
+    
+    compile "com.google.android.gms:play-services-base:15.0.1"
+    compile "com.google.firebase:firebase-core:16.0.1"
+    compile "com.google.firebase:firebase-messaging:17.1.0"
+
+    compile 'me.leolin:ShortcutBadger:1.1.21@aar'
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
+      transitive = true
+    }
     // compile "com.facebook.android:facebook-android-sdk:[4,5)"
 }
 
@@ -185,3 +212,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
+

@@ -30,7 +30,7 @@ export interface IState {
   [key: number]: IException;
 }
 
-let crashReporter: any;
+let crashReporter: (error: any) => void;
 let store: Store<any>;
 
 export const setCrashReporter = (newCrashReporter: any) => {
@@ -43,7 +43,7 @@ export const setStore = (newStore: Store<any>) => {
 
 export const create = (payload: IExceptionPayload): IExceptionPayload => {
   if (payload.report && crashReporter) {
-    crashReporter.logException(`${payload.name}: ${payload.message}`);
+    crashReporter(`${payload.name}: ${payload.message}`);
   }
 
   if (store) {
