@@ -184,7 +184,9 @@ export default {
       email: 'الإيميل',
       userXp: 'نقاط الخبرة',
       appVersion: 'نسخة البرنامج'
-    }
+    },
+    you: 'أنت',
+    me: 'أنا'
   },
   signon: {
     title: 'الدخول إلى سوريولينجو',

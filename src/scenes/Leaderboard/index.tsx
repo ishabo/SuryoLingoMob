@@ -63,7 +63,7 @@ class Leaderboard extends React.Component<IProps> {
         <GSUserProfilePicture source={this.renderProfilePicture(user.profilePic)} />
       </GSUserDetails>
       <GSUserDetails align="stretch">
-        <GSUserName>{user.name.split(' ')[0]}</GSUserName>
+        <GSUserName>{user.name ? user.name.split(' ')[0] : I18n.t('profile.me')}</GSUserName>
       </GSUserDetails>
       <GSUserDetails align="center">
         <GSUserXP>{user.userXp}</GSUserXP>

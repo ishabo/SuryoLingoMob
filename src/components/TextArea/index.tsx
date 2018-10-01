@@ -176,7 +176,6 @@ class TextArea extends React.Component<IProps, IState> {
         <GSContent>
           <GSTextAreaContainer>
             <GSTextArea
-              keyboardType={'ascii-capable'}
               placeholder={this.props.placeholder}
               placeholderTextColor={Colors.gray}
               multiline
