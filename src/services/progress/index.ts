@@ -2,7 +2,6 @@ import * as reducers from './reducers';
 import * as api from './api';
 import * as actions from './actions';
 import * as sagas from './sagas';
-import { Moment } from 'moment';
 import { IAction } from 'services/sagas';
 
 export interface ILessonDoneParams {
@@ -21,7 +20,7 @@ export interface ILessonToSync {
   lessonId: string;
   skillId: string;
   courseId: string;
-  createdAt: Moment;
+  createdAt: Date;
   lessonXP: number;
 }
 

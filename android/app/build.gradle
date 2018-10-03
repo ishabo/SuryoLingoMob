@@ -94,21 +94,21 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        multiDexEnabled true
+        // multiDexEnabled true
         applicationId "com.suryolingo.android"
-        minSdkVersion 21
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 32
         versionName "0.4.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        renderscriptTargetApi 23
-        renderscriptSupportModeEnabled true
+        // renderscriptTargetApi 23
+        // renderscriptSupportModeEnabled true
     }
     splits {
         abi {
@@ -120,6 +120,9 @@ android {
     }
     signingConfigs {
         release {
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+
             if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
                 storeFile file(MYAPP_RELEASE_STORE_FILE)
                 storePassword MYAPP_RELEASE_STORE_PASSWORD
@@ -189,7 +192,7 @@ dependencies {
     compile project(":reactnativekeyboardinput")
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.microsoft.appcenter:appcenter-push:1.7.0"
-    compile "com.android.support:appcompat-v7:27.0.2"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile "com.facebook.react:react-native:+"  // From node_modules
     
     compile "com.google.android.gms:play-services-base:15.0.1"

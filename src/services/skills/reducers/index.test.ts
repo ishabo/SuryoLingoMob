@@ -3,15 +3,13 @@ import { types } from '../actions';
 import { skills } from 'data/dummy/skills';
 import cloneDeep from 'clone-deep';
 
-import moment from 'moment';
 import MockDate from 'mockdate';
 
 describe('course reducer', () => {
-
   it('saves skills', () => {
     const action = {
       payload: [...skills],
-      type: types.SAVE_SKILLS,
+      type: types.SAVE_SKILLS
     };
 
     const state = [];
@@ -21,13 +19,12 @@ describe('course reducer', () => {
     newState[1].active = true;
     const updatedState = skillReducer(state, action);
     expect(JSON.stringify(updatedState)).toEqual(JSON.stringify(newState));
-
   });
 
   it('activate unit', () => {
     const action = {
       unit: 2,
-      type: types.ACTIVATE_UNIT,
+      type: types.ACTIVATE_UNIT
     };
 
     const state = [...skills];
@@ -41,23 +38,25 @@ describe('course reducer', () => {
 
   it('mark lesson finished unit', () => {
     MockDate.set('06/06/2015');
-    const timestamp1 = moment('2015-01-01 11:11:00');
-    const timestamp2 = moment();
+    const timestamp1 = new Date('2015-01-01 11:11:00');
+    const timestamp2 = new Date();
     const action = {
       lessonXP: 100,
       lessonId: '11',
       timestamp: timestamp2,
-      type: types.MARK_LESSON_FINISHED,
+      type: types.MARK_LESSON_FINISHED
     };
 
     const state = cloneDeep(skills);
 
     state[0].lessons[0].finished = false;
     state[0].lessons[0].totalLessonXp = 50;
-    state[0].lessons[0].lessonHistory = [{
-      timestamp: timestamp1,
-      thisLessonXp: 50,
-    }];
+    state[0].lessons[0].lessonHistory = [
+      {
+        timestamp: timestamp1,
+        thisLessonXp: 50
+      }
+    ];
     state[0].progress = 0.5;
     state[0].totalSkillXp = 0;
 
@@ -66,7 +65,7 @@ describe('course reducer', () => {
     newState[0].lessons[0].totalLessonXp = 150;
     newState[0].lessons[0].lessonHistory.push({
       timestamp: timestamp2,
-      thisLessonXp: 100,
+      thisLessonXp: 100
     });
     newState[0].progress = 0.5;
 

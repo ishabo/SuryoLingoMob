@@ -6,6 +6,7 @@ export const logError = error => {
   console.warn('-->', error);
   try {
     return Platform.OS === 'android' ? Crashlytics.logException(error) : Crashlytics.recordError(error);
+    // return console.warn;
   } catch (e) {
     return console.warn;
   }

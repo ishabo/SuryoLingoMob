@@ -3,12 +3,11 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
-import { Moment } from 'moment';
 import { IQuestion } from 'services/questions';
 import { IAction } from 'services/sagas';
 
 export interface ILessonHistory {
-  timestamp: Moment;
+  timestamp: Date;
   thisLessonXp: number;
 }
 
@@ -41,7 +40,7 @@ export interface ISkillsAction extends IAction {
   courseId?: string;
   lessonXP?: number;
   payload?: ISkill[];
-  timestamp?: Moment;
+  timestamp?: Date;
 }
 
 export { api, actions, reducers, selectors, sagas };

@@ -14,7 +14,6 @@ import {
 import config from 'config/';
 import { setLessonInProgress } from '../actions';
 import * as skills from 'services/skills';
-import moment from 'moment';
 import { ISagasFunctions } from 'services/sagas';
 import { saveProfile } from 'services/profile/actions';
 import { IInitialState } from 'services/reducers';
@@ -58,7 +57,7 @@ export function* finishLesson(): IterableIterator<any> {
   const { id: lessonId } = yield select(getLessonInProgress);
   const course = yield select(getActiveCourse);
   const skillInProgress = yield select(getSkillInProgress);
-  const timestamp = moment();
+  const timestamp = new Date();
   yield put(skills.actions.markLessonFinished(lessonId, lessonXP, timestamp));
 
   yield put(

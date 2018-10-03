@@ -58,7 +58,7 @@ class Splash extends React.Component<IProps, IState> {
         } else if (isConnected) {
           this.props.firstFetch();
         }
-        // NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
+        NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
       }
     );
   };
@@ -99,6 +99,7 @@ class Splash extends React.Component<IProps, IState> {
       console.warn('Message received', res);
     });
     this.checkConnection();
+    // this.props.firstFetch();
     NetInfo.isConnected.fetch().then(isConnected => {
       if (isConnected) {
         this.props.firstFetch();

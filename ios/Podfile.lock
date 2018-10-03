@@ -47,7 +47,7 @@ PODS:
     - FirebaseInstanceID (~> 3.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
-  - Folly (2016.09.26.00):
+  - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
@@ -64,8 +64,8 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
-  - React (0.54.4):
-    - React/Core (= 0.54.4)
+  - React (0.57.1):
+    - React/Core (= 0.57.1)
   - react-native-fbsdk (0.8.0):
     - React
     - react-native-fbsdk/Core (= 0.8.0)
@@ -80,37 +80,37 @@ PODS:
   - react-native-fbsdk/Share (0.8.0):
     - FBSDKShareKit
     - React
-  - react-native-version-check (3.0.0):
+  - react-native-version-check (3.0.1):
     - React
-  - React/Core (0.54.4):
-    - yoga (= 0.54.4.React)
-  - React/CxxBridge (0.54.4):
-    - Folly (= 2016.09.26.00)
+  - React/Core (0.57.1):
+    - yoga (= 0.57.1.React)
+  - React/CxxBridge (0.57.1):
+    - Folly (= 2016.10.31.00)
     - React/Core
     - React/cxxreact
-  - React/cxxreact (0.54.4):
+  - React/cxxreact (0.57.1):
     - boost-for-react-native (= 1.63.0)
-    - Folly (= 2016.09.26.00)
+    - Folly (= 2016.10.31.00)
     - React/jschelpers
     - React/jsinspector
-  - React/DevSupport (0.54.4):
+  - React/DevSupport (0.57.1):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.54.4)
-  - React/jschelpers (0.54.4):
-    - Folly (= 2016.09.26.00)
+  - React/fishhook (0.57.1)
+  - React/jschelpers (0.57.1):
+    - Folly (= 2016.10.31.00)
     - React/PrivateDatabase
-  - React/jsinspector (0.54.4)
-  - React/PrivateDatabase (0.54.4)
-  - React/RCTBlob (0.54.4):
+  - React/jsinspector (0.57.1)
+  - React/PrivateDatabase (0.57.1)
+  - React/RCTBlob (0.57.1):
     - React/Core
-  - React/RCTWebSocket (0.54.4):
+  - React/RCTWebSocket (0.57.1):
     - React/Core
     - React/fishhook
     - React/RCTBlob
   - RNDeviceInfo (0.21.5):
     - React
-  - yoga (0.54.4.React)
+  - yoga (0.57.1.React)
 
 DEPENDENCIES:
   - AppCenter/Analytics (~> 1.9.0)
@@ -121,6 +121,7 @@ DEPENDENCIES:
   - Fabric
   - Firebase/Core (~> 5.3.0)
   - Firebase/Messaging (~> 5.3.0)
+  - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - Google-Mobile-Ads-SDK
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
   - react-native-version-check (from `../node_modules/react-native-version-check`)
@@ -132,6 +133,8 @@ DEPENDENCIES:
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 EXTERNAL SOURCES:
+  Folly:
+    :podspec: ../node_modules/react-native/third-party-podspecs/Folly.podspec
   React:
     :path: ../node_modules/react-native
   react-native-fbsdk:
@@ -159,18 +162,18 @@ SPEC CHECKSUMS:
   FirebaseCore: 62f1b792a49bb9e8b4073f24606d2c93ffc352f0
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FirebaseMessaging: 6894b8fe0a0cf26c3b13dad729f1131654ae0bdb
-  Folly: 211775e49d8da0ca658aebc8eab89d642935755c
+  Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   glog: 1de0bb937dccdc981596d3b5825ebfb765017ded
   Google-Mobile-Ads-SDK: 2aca87e46e860f1e1fc0fdc1201dd9caa4be9ba6
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
-  React: c237e42de9c70e5cac6eeb52b4cfd3a0910c1f00
+  React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-fbsdk: d5f98cc5abecbcc463e3c35c04743d716d002d37
   react-native-version-check: 1a1381469cc65b953aa30d52a0150be6f038c6ba
   RNDeviceInfo: 568c5641057313b4912d08a7742ff0b2f753ed5c
-  yoga: 55da126afc384965b96bff46652464373b330add
+  yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 110f597a8800a3d0cd2bb45426c99be657a9c20c
+PODFILE CHECKSUM: 28a125a87c68435eefe7444c9b2736540583fb25
 
 COCOAPODS: 1.4.0
