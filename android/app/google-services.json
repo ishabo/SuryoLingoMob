@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "964006513680-846q8u30jdam8f0i79rv05g0pjc08mp4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.suryolingo.android",
+            "certificate_hash": "da4faa1b0a4f0ab969f5f6c0e49ace6ef9df34d8"
+          }
+        },
+        {
           "client_id": "964006513680-eo6imj6e3aqne6m9vte0bdlqn3ijm5on.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,13 +37,27 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964006513680-eo6imj6e3aqne6m9vte0bdlqn3ijm5on.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "964006513680-8lv66en1rph1tem81823kapi7pp6f01e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.suryolingo.iphone",
+                "app_store_id": "1435694063"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-8869715274661120~7406584400"
     }
   ],
   "configuration_version": "1"

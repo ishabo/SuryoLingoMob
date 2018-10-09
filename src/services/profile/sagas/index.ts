@@ -5,9 +5,7 @@ import { IInitialState } from 'services/reducers';
 import { ISagasFunctions } from 'services/sagas';
 import { setAccessToken } from 'services/api/access';
 import { isRegistered } from 'services/selectors';
-import { Analytics } from 'config/firebase';
-const Fabric = require('react-native-fabric');
-const { Crashlytics } = Fabric;
+import { Analytics, Crashlytics } from 'config/firebase';
 
 export function* createProfileIfNeeded(action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
@@ -35,6 +33,7 @@ export function* updateProfile(action: profile.IProfileAction): IterableIterator
 }
 
 export function* fetchProfile(): IterableIterator<any> {
+  debugger;
   const userIsRegistered = yield select(isRegistered);
   if (userIsRegistered) {
     try {
@@ -59,8 +58,8 @@ export function* saveProfileAndAccessToken(action: profile.IProfileAction): Iter
 
   Analytics.setUserId(action.profileData.id);
   Crashlytics.setUserIdentifier(action.profileData.id);
-  Crashlytics.setUserName(action.profileData.name);
-  Crashlytics.setUserEmail(action.profileData.email);
+  Crashlytics.setStringValue('userName', action.profileData.name);
+  Crashlytics.setStringValue('userEmail', action.profileData.email);
 
   yield put(profile.actions.saveProfile(action.profileData));
 }

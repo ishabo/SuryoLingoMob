@@ -1,10 +1,9 @@
 import DeviceInfo from 'react-native-device-info';
-import AppCenter from 'appcenter';
 import { Messaging } from 'config/firebase';
 
 const deviceDetails = async () => ({
   fcmToken: await Messaging.getToken(),
-  installId: await AppCenter.getInstallId(),
+  installId: '',
   deviceId: DeviceInfo.getDeviceId(),
   deviceName: DeviceInfo.getDeviceName(),
   appVersion: DeviceInfo.getVersion(),

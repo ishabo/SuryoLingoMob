@@ -27,5 +27,6 @@ const SuryoLingoApp = firebase.initializeApp(config, 'suryolingo');
 
 const Analytics = SuryoLingoApp.analytics();
 const Messaging = SuryoLingoApp.messaging();
+const Crashlytics = SuryoLingoApp.crashlytics();
 
-export { Analytics, Messaging };
+export { Analytics, Messaging, Crashlytics };

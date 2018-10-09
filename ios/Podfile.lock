@@ -4,8 +4,6 @@ PODS:
   - AppCenter/Core (1.9.0)
   - AppCenter/Crashes (1.9.0):
     - AppCenter/Core
-  - AppCenter/Push (1.9.0):
-    - AppCenter/Core
   - AppCenterReactNativeShared (1.8.1):
     - AppCenter/Core (= 1.9.0)
   - Bolts (1.9.0):
@@ -64,8 +62,8 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
-  - React (0.57.1):
-    - React/Core (= 0.57.1)
+  - React (0.57.2):
+    - React/Core (= 0.57.2)
   - react-native-fbsdk (0.8.0):
     - React
     - react-native-fbsdk/Core (= 0.8.0)
@@ -82,43 +80,42 @@ PODS:
     - React
   - react-native-version-check (3.0.1):
     - React
-  - React/Core (0.57.1):
-    - yoga (= 0.57.1.React)
-  - React/CxxBridge (0.57.1):
+  - React/Core (0.57.2):
+    - yoga (= 0.57.2.React)
+  - React/CxxBridge (0.57.2):
     - Folly (= 2016.10.31.00)
     - React/Core
     - React/cxxreact
-  - React/cxxreact (0.57.1):
+  - React/cxxreact (0.57.2):
     - boost-for-react-native (= 1.63.0)
     - Folly (= 2016.10.31.00)
     - React/jschelpers
     - React/jsinspector
-  - React/DevSupport (0.57.1):
+  - React/DevSupport (0.57.2):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.57.1)
-  - React/jschelpers (0.57.1):
+  - React/fishhook (0.57.2)
+  - React/jschelpers (0.57.2):
     - Folly (= 2016.10.31.00)
     - React/PrivateDatabase
-  - React/jsinspector (0.57.1)
-  - React/PrivateDatabase (0.57.1)
-  - React/RCTBlob (0.57.1):
+  - React/jsinspector (0.57.2)
+  - React/PrivateDatabase (0.57.2)
+  - React/RCTBlob (0.57.2):
     - React/Core
-  - React/RCTWebSocket (0.57.1):
+  - React/RCTWebSocket (0.57.2):
     - React/Core
     - React/fishhook
     - React/RCTBlob
   - RNDeviceInfo (0.21.5):
     - React
-  - yoga (0.57.1.React)
+  - yoga (0.57.2.React)
 
 DEPENDENCIES:
   - AppCenter/Analytics (~> 1.9.0)
   - AppCenter/Crashes (~> 1.9.0)
-  - AppCenter/Push (~> 1.9.0)
-  - AppCenterReactNativeShared (~> 1.8.0)
-  - Crashlytics
-  - Fabric
+  - AppCenterReactNativeShared (~> 1.8.1)
+  - Crashlytics (~> 3.10.1)
+  - Fabric (~> 1.7.5)
   - Firebase/Core (~> 5.3.0)
   - Firebase/Messaging (~> 5.3.0)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
@@ -174,6 +171,6 @@ SPEC CHECKSUMS:
   RNDeviceInfo: 568c5641057313b4912d08a7742ff0b2f753ed5c
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 28a125a87c68435eefe7444c9b2736540583fb25
+PODFILE CHECKSUM: 02f378a1387222d7c9971383207b202222a7e4f4
 
 COCOAPODS: 1.4.0

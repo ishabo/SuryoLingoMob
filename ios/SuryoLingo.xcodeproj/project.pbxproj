@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -25,7 +26,6 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		161E2DE72C634BC3B4FB07A5 /* libRCTCustomInputController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 779B638D46BC487B9C03222D /* libRCTCustomInputController.a */; };
 		1A01618B143B4385913C2F20 /* libRCTRestart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE7656186D954CFDB481E5A3 /* libRCTRestart.a */; };
-		298A4C365BE34003A9EA3FFB /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AC6C7CE56D4E0BAB6A43F6 /* libAppCenterReactNative.a */; };
 		2B6B892165644A48990D3898 /* Serto Urhoy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BEAFC1403FE4939A257940C /* Serto Urhoy.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -50,7 +50,6 @@
 		96EDF0231FF338D65533A059 /* libPods-SuryoLingo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1579F669763DDC8AD0C4718E /* libPods-SuryoLingo-tvOSTests.a */; };
 		9A27869596124D03A28D92AF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 896631603A7F4FC59AD7D7BA /* Octicons.ttf */; };
 		9D3FF9CCFC664C1F9F156287 /* libRNAudioPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 650E603159A94D8BAF48AE1A /* libRNAudioPlayer.a */; };
-		9F268B56D38244EC88D74D91 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11586CECBC6D46D59819DC47 /* libAppCenterReactNativeAnalytics.a */; };
 		9FFF9AACD4F04C419E2CDD67 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DD76011DECD42DF94D77E29 /* EvilIcons.ttf */; };
 		A2C777D4B07D4E7481EF660A /* libRNSensitiveInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C03DAC999AF147D8AA1B5AAE /* libRNSensitiveInfo.a */; };
 		A70BEE1E9D4C425183748E5A /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A13932CC344B0386299CB3 /* libRNFetchBlob.a */; };
@@ -62,25 +61,26 @@
 		BF16666D3AE443DEA819A0C8 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CE1B20D736490FA2794D4A /* libRCTActionSheet.a */; };
 		BFAAF17CA7DA46389FCFB1BD /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50CA418FC8614CFAA1C40281 /* libRNFirebase.a */; };
 		C0913FEEBF0F46B3BF22E0A6 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F6B70201BD45B0B863EF60 /* libRNFS.a */; };
-		C8DA09CC6EED44A9A90FC133 /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CED93749F81E48AFBDB56A80 /* libAppCenterReactNativeCrashes.a */; };
 		C8F847F0F1CD29902BED80A2 /* libPods-SuryoLingo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CC4534EF9CE566F856DDB8 /* libPods-SuryoLingo-tvOS.a */; };
 		D06CEFB1E778974F2FAA6103 /* libPods-SuryoLingoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D07120CDC01F43B594D4650 /* libPods-SuryoLingoTests.a */; };
 		D0A9CF5622F94EFFAA4752BF /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2089CCAF314FA0925EB790 /* Zocial.ttf */; };
 		D621C0F42126CC130080E495 /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D621C0B72126CC130080E495 /* HelveticaNeue.ttf */; };
 		D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D621C173212913550080E495 /* libKeyboardTrackingView.a */; };
 		D62A1106215C575E0019E9DE /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = D62A10C4215C575E0019E9DE /* main.jsbundle */; };
-		D6562F23215997640090408D /* libSMXCrashlytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6562F202159974B0090408D /* libSMXCrashlytics.a */; };
 		D6562F992159B2E20090408D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6562F982159B2E20090408D /* GoogleService-Info.plist */; };
+		D69CB9CD216688AE00ABB89E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D69CB98C216688AE00ABB89E /* LaunchScreen.xib */; };
 		D6B159691FA2C9D60044EA78 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		D6BCDC20896C428E845F3DD3 /* Al-Jazeera-Arabic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007DA2D71412451898EB133E /* Al-Jazeera-Arabic-Regular.ttf */; };
 		D6C5C7602155BF4C002A599D /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C5C75F2155BF4C002A599D /* libFirebaseCore.a */; };
+		D6C7CC1B216D474200ED5E26 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C7CA39216D450C00ED5E26 /* libAppCenterReactNative.a */; };
+		D6C7CC1C216D474200ED5E26 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C7CACA216D452A00ED5E26 /* libAppCenterReactNativeAnalytics.a */; };
+		D6C7CC1D216D474200ED5E26 /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C7CB5E216D455500ED5E26 /* libAppCenterReactNativeCrashes.a */; };
 		D6F2413521462B8900F974FD /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F2413321462B8900F974FD /* assets */; };
 		E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B53D2CF32C54A8693B1CD2B /* libRNVersionNumber.a */; };
 		E45B640E079C43E2B1055E53 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C65B2527E6841469E5CF2D2 /* Foundation.ttf */; };
 		F660850E755B4AA7A990055A /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A8FDEAD917466386111274 /* libRNSound.a */; };
 		F6CFF797FE2043268709C7A2 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 674E9F47787F4138A9496857 /* MaterialCommunityIcons.ttf */; };
 		F7343D071A25C169FFA9684A /* libPods-SuryoLingo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6A38087BB819786195544B /* libPods-SuryoLingo.a */; };
-		FBAE87DE530649E7BE2621D5 /* libAppCenterReactNativePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB4227AB8BD4FB285692F48 /* libAppCenterReactNativePush.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -336,20 +336,6 @@
 			remoteGlobalIDString = D834CED81CC64F2400FA5668;
 			remoteInfo = KeyboardTrackingView;
 		};
-		D6562F1F2159974B0090408D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D8D9DB831C6D03DB009FBC0E;
-			remoteInfo = SMXCrashlytics;
-		};
-		D6562F212159974B0090408D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6463C84C1EBA12A60095B8CD;
-			remoteInfo = "SMXCrashlytics-tvOS";
-		};
 		D65F694F1FA3601D005923BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 41CDEA583D7C4CBD98A17BEF /* BVLinearGradient.xcodeproj */;
@@ -377,34 +363,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = EBF21BFA1FC4989A0052F4D5;
 			remoteInfo = "jsinspector-tvOS";
-		};
-		D66CF389207420AC00059473 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55AD6CFC6AB6444A867F2420 /* AppCenterReactNative.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C35AEC211EF91F9300931F0C;
-			remoteInfo = AppCenterReactNative;
-		};
-		D66CF3FE207420CF00059473 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E5CA97B576D4524BFD33E9C /* AppCenterReactNativeAnalytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 548694001D8384E600E6685A;
-			remoteInfo = AppCenterReactNativeAnalytics;
-		};
-		D66CF48B207420DF00059473 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 613FAB2017EC435084A0844D /* AppCenterReactNativeCrashes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5419C2701D824AA700DDF3A1;
-			remoteInfo = AppCenterReactNativeCrashes;
-		};
-		D66CF5BA207422D800059473 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 731CE1FAB4D4469DA3436A72 /* AppCenterReactNativePush.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BA189FAA1EEE74F100CAD13F;
-			remoteInfo = AppCenterReactNativePush;
 		};
 		D6AAD0332133917800122982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -553,6 +511,27 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
 		};
+		D6C7CA38216D450C00ED5E26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 168F8FF769C04D819660B5FB /* AppCenterReactNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C35AEC211EF91F9300931F0C;
+			remoteInfo = AppCenterReactNative;
+		};
+		D6C7CAC9216D452A00ED5E26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17AA0CE1978648A2A6D9F528 /* AppCenterReactNativeAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 548694001D8384E600E6685A;
+			remoteInfo = AppCenterReactNativeAnalytics;
+		};
+		D6C7CB5D216D455500ED5E26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1B0D615F47E4A63A9EE14E7 /* AppCenterReactNativeCrashes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5419C2701D824AA700DDF3A1;
+			remoteInfo = AppCenterReactNativeCrashes;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -579,6 +558,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SuryoLingo/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1579F669763DDC8AD0C4718E /* libPods-SuryoLingo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuryoLingo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		168F8FF769C04D819660B5FB /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
+		17AA0CE1978648A2A6D9F528 /* AppCenterReactNativeAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeAnalytics.xcodeproj; path = "../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		1957988ECD544DC9AB2BFCA9 /* RNVersionNumber.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVersionNumber.xcodeproj; path = "../node_modules/react-native-version-number/ios/RNVersionNumber.xcodeproj"; sourceTree = "<group>"; };
 		1A16BB8C117542EE86CFC494 /* RCTCustomInputController.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCustomInputController.xcodeproj; path = "../node_modules/react-native-keyboard-input/lib/ios/RCTCustomInputController.xcodeproj"; sourceTree = "<group>"; };
 		1C65B2527E6841469E5CF2D2 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -590,7 +571,6 @@
 		2B77DCD63F8645BEB9640A39 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* SuryoLingo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SuryoLingo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* SuryoLingo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SuryoLingo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E5CA97B576D4524BFD33E9C /* AppCenterReactNativeAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeAnalytics.xcodeproj; path = "../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		2F548936E2C34966BC65B1B5 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		33A8FDEAD917466386111274 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		3BEAFC1403FE4939A257940C /* Serto Urhoy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Serto Urhoy.ttf"; path = "../src/assets/fonts/Serto Urhoy.ttf"; sourceTree = "<group>"; };
@@ -601,15 +581,12 @@
 		4FC64751280740069630B5E0 /* RCTRestart.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTRestart.xcodeproj; path = "../node_modules/react-native-restart/ios/RCTRestart.xcodeproj"; sourceTree = "<group>"; };
 		50CA418FC8614CFAA1C40281 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		53587E7FFEF0446B80345F8D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		55AD6CFC6AB6444A867F2420 /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
 		5D07120CDC01F43B594D4650 /* libPods-SuryoLingoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuryoLingoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		5EABD8C7070A4EFF9EA3425F /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		605901FD8D2B6DFCB642FD48 /* Pods-SuryoLingo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingo-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuryoLingo-tvOSTests/Pods-SuryoLingo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		613FAB2017EC435084A0844D /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
 		650E603159A94D8BAF48AE1A /* libRNAudioPlayer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAudioPlayer.a; sourceTree = "<group>"; };
 		674E9F47787F4138A9496857 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
-		731CE1FAB4D4469DA3436A72 /* AppCenterReactNativePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativePush.xcodeproj; path = "../node_modules/appcenter-push/ios/AppCenterReactNativePush.xcodeproj"; sourceTree = "<group>"; };
 		779B638D46BC487B9C03222D /* libRCTCustomInputController.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCustomInputController.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7DD76011DECD42DF94D77E29 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -634,14 +611,15 @@
 		C7E4AB6AA80564FAA8D75C89 /* Pods-SuryoLingoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuryoLingoTests/Pods-SuryoLingoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C93C963850534E0EA5A46F9C /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		CED93749F81E48AFBDB56A80 /* libAppCenterReactNativeCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNativeCrashes.a; sourceTree = "<group>"; };
+		D1B0D615F47E4A63A9EE14E7 /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
 		D614BD302137291700E630F3 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "Pods/Google-Mobile-Ads-SDK/Frameworks/frameworks/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		D621C0B72126CC130080E495 /* HelveticaNeue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = HelveticaNeue.ttf; path = ../src/assets/fonts/HelveticaNeue.ttf; sourceTree = "<group>"; };
 		D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCustomInputController.xcodeproj; path = "../node_modules/react-native-keyboard-input/lib/ios/RCTCustomInputController.xcodeproj"; sourceTree = "<group>"; };
 		D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeyboardTrackingView.xcodeproj; path = "../node_modules/react-native-keyboard-tracking-view/lib/KeyboardTrackingView.xcodeproj"; sourceTree = "<group>"; };
 		D62A10C4215C575E0019E9DE /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SMXCrashlytics.xcodeproj; path = "../node_modules/react-native-fabric/ios/SMXCrashlytics.xcodeproj"; sourceTree = "<group>"; };
 		D6562F982159B2E20090408D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D66CF52B207421E800059473 /* SuryoLingo-tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "SuryoLingo-tvOS.entitlements"; path = "SuryoLingo-tvOS/SuryoLingo-tvOS.entitlements"; sourceTree = "<group>"; };
+		D69CB98D216688AE00ABB89E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = SuryoLingo/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D6C5C5882155AAFE002A599D /* SuryoLingo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SuryoLingo.entitlements; path = SuryoLingo/SuryoLingo.entitlements; sourceTree = "<group>"; };
 		D6C5C75F2155BF4C002A599D /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F2413321462B8900F974FD /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -671,7 +649,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6562F23215997640090408D /* libSMXCrashlytics.a in Frameworks */,
+				D6C7CC1B216D474200ED5E26 /* libAppCenterReactNative.a in Frameworks */,
+				D6C7CC1C216D474200ED5E26 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
+				D6C7CC1D216D474200ED5E26 /* libAppCenterReactNativeCrashes.a in Frameworks */,
 				D6C5C7602155BF4C002A599D /* libFirebaseCore.a in Frameworks */,
 				D621C19F212926A10080E495 /* libKeyboardTrackingView.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -698,10 +678,6 @@
 				935F4640FD8D43C681C3EBCC /* libRNExitApp.a in Frameworks */,
 				E181D2707EAD447BB39D8D13 /* libRNVersionNumber.a in Frameworks */,
 				A70BEE1E9D4C425183748E5A /* libRNFetchBlob.a in Frameworks */,
-				298A4C365BE34003A9EA3FFB /* libAppCenterReactNative.a in Frameworks */,
-				9F268B56D38244EC88D74D91 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
-				C8DA09CC6EED44A9A90FC133 /* libAppCenterReactNativeCrashes.a in Frameworks */,
-				FBAE87DE530649E7BE2621D5 /* libAppCenterReactNativePush.a in Frameworks */,
 				F7343D071A25C169FFA9684A /* libPods-SuryoLingo.a in Frameworks */,
 				161E2DE72C634BC3B4FB07A5 /* libRCTCustomInputController.a in Frameworks */,
 				B7D11E103DAC465C9F574A5E /* libRNAdMobManager.a in Frameworks */,
@@ -842,6 +818,7 @@
 		13B07FAE1A68108700A75B9A /* SuryoLingo */ = {
 			isa = PBXGroup;
 			children = (
+				D69CB98C216688AE00ABB89E /* LaunchScreen.xib */,
 				D6562F982159B2E20090408D /* GoogleService-Info.plist */,
 				D6C5C5882155AAFE002A599D /* SuryoLingo.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -897,7 +874,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */,
 				D621C16E212913550080E495 /* KeyboardTrackingView.xcodeproj */,
 				D621C1682129131B0080E495 /* RCTCustomInputController.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -923,13 +899,12 @@
 				01CF1F3B9F86472B896BDB40 /* RNExitApp.xcodeproj */,
 				1957988ECD544DC9AB2BFCA9 /* RNVersionNumber.xcodeproj */,
 				1F56010ACA204500A205E6A5 /* RNFetchBlob.xcodeproj */,
-				55AD6CFC6AB6444A867F2420 /* AppCenterReactNative.xcodeproj */,
-				2E5CA97B576D4524BFD33E9C /* AppCenterReactNativeAnalytics.xcodeproj */,
-				613FAB2017EC435084A0844D /* AppCenterReactNativeCrashes.xcodeproj */,
-				731CE1FAB4D4469DA3436A72 /* AppCenterReactNativePush.xcodeproj */,
 				1A16BB8C117542EE86CFC494 /* RCTCustomInputController.xcodeproj */,
 				4D1C1C49BD354A84A8E499DF /* RNAdMobManager.xcodeproj */,
 				2623291966BF4369A276E510 /* RNFirebase.xcodeproj */,
+				168F8FF769C04D819660B5FB /* AppCenterReactNative.xcodeproj */,
+				17AA0CE1978648A2A6D9F528 /* AppCenterReactNativeAnalytics.xcodeproj */,
+				D1B0D615F47E4A63A9EE14E7 /* AppCenterReactNativeCrashes.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1068,52 +1043,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D6562F1B2159974B0090408D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D6562F202159974B0090408D /* libSMXCrashlytics.a */,
-				D6562F222159974B0090408D /* libSMXCrashlytics.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D65F694B1FA3601D005923BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				D65F69501FA3601D005923BE /* libBVLinearGradient.a */,
 				D65F69521FA3601D005923BE /* libBVLinearGradient.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D66CF386207420AB00059473 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D66CF38A207420AC00059473 /* libAppCenterReactNative.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D66CF3FA207420CF00059473 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D66CF3FF207420CF00059473 /* libAppCenterReactNativeAnalytics.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D66CF486207420DF00059473 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D66CF48C207420DF00059473 /* libAppCenterReactNativeCrashes.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D66CF5B7207422D700059473 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D66CF5BB207422D800059473 /* libAppCenterReactNativePush.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1208,6 +1142,30 @@
 			isa = PBXGroup;
 			children = (
 				D6C5C6DA2155B77E002A599D /* libRNFirebase.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6C7CA35216D450C00ED5E26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6C7CA39216D450C00ED5E26 /* libAppCenterReactNative.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6C7CAC5216D452900ED5E26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6C7CACA216D452A00ED5E26 /* libAppCenterReactNativeAnalytics.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6C7CB58216D455400ED5E26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6C7CB5E216D455500ED5E26 /* libAppCenterReactNativeCrashes.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1354,20 +1312,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = D66CF386207420AB00059473 /* Products */;
-					ProjectRef = 55AD6CFC6AB6444A867F2420 /* AppCenterReactNative.xcodeproj */;
+					ProductGroup = D6C7CA35216D450C00ED5E26 /* Products */;
+					ProjectRef = 168F8FF769C04D819660B5FB /* AppCenterReactNative.xcodeproj */;
 				},
 				{
-					ProductGroup = D66CF3FA207420CF00059473 /* Products */;
-					ProjectRef = 2E5CA97B576D4524BFD33E9C /* AppCenterReactNativeAnalytics.xcodeproj */;
+					ProductGroup = D6C7CAC5216D452900ED5E26 /* Products */;
+					ProjectRef = 17AA0CE1978648A2A6D9F528 /* AppCenterReactNativeAnalytics.xcodeproj */;
 				},
 				{
-					ProductGroup = D66CF486207420DF00059473 /* Products */;
-					ProjectRef = 613FAB2017EC435084A0844D /* AppCenterReactNativeCrashes.xcodeproj */;
-				},
-				{
-					ProductGroup = D66CF5B7207422D700059473 /* Products */;
-					ProjectRef = 731CE1FAB4D4469DA3436A72 /* AppCenterReactNativePush.xcodeproj */;
+					ProductGroup = D6C7CB58216D455400ED5E26 /* Products */;
+					ProjectRef = D1B0D615F47E4A63A9EE14E7 /* AppCenterReactNativeCrashes.xcodeproj */;
 				},
 				{
 					ProductGroup = D65F694B1FA3601D005923BE /* Products */;
@@ -1480,10 +1434,6 @@
 				{
 					ProductGroup = D6193C04203E339800917FE6 /* Products */;
 					ProjectRef = 1957988ECD544DC9AB2BFCA9 /* RNVersionNumber.xcodeproj */;
-				},
-				{
-					ProductGroup = D6562F1B2159974B0090408D /* Products */;
-					ProjectRef = D6562F1A2159974B0090408D /* SMXCrashlytics.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1735,20 +1685,6 @@
 			remoteRef = D621C172212913550080E495 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D6562F202159974B0090408D /* libSMXCrashlytics.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSMXCrashlytics.a;
-			remoteRef = D6562F1F2159974B0090408D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6562F222159974B0090408D /* libSMXCrashlytics.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSMXCrashlytics.a;
-			remoteRef = D6562F212159974B0090408D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		D65F69501FA3601D005923BE /* libBVLinearGradient.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1775,34 +1711,6 @@
 			fileType = archive.ar;
 			path = "libjsinspector-tvOS.a";
 			remoteRef = D66CF372207420AB00059473 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D66CF38A207420AC00059473 /* libAppCenterReactNative.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAppCenterReactNative.a;
-			remoteRef = D66CF389207420AC00059473 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D66CF3FF207420CF00059473 /* libAppCenterReactNativeAnalytics.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAppCenterReactNativeAnalytics.a;
-			remoteRef = D66CF3FE207420CF00059473 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D66CF48C207420DF00059473 /* libAppCenterReactNativeCrashes.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAppCenterReactNativeCrashes.a;
-			remoteRef = D66CF48B207420DF00059473 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D66CF5BB207422D800059473 /* libAppCenterReactNativePush.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAppCenterReactNativePush.a;
-			remoteRef = D66CF5BA207422D800059473 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D6AAD0342133917800122982 /* libRNAdMobManager.a */ = {
@@ -1952,6 +1860,27 @@
 			remoteRef = D6C5C6D92155B77E002A599D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D6C7CA39216D450C00ED5E26 /* libAppCenterReactNative.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAppCenterReactNative.a;
+			remoteRef = D6C7CA38216D450C00ED5E26 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6C7CACA216D452A00ED5E26 /* libAppCenterReactNativeAnalytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAppCenterReactNativeAnalytics.a;
+			remoteRef = D6C7CAC9216D452A00ED5E26 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6C7CB5E216D455500ED5E26 /* libAppCenterReactNativeCrashes.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAppCenterReactNativeCrashes.a;
+			remoteRef = D6C7CB5D216D455500ED5E26 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1980,6 +1909,7 @@
 				67B57F879271405CBE07E4C4 /* rubicon-icon-font.ttf in Resources */,
 				D62A1106215C575E0019E9DE /* main.jsbundle in Resources */,
 				B14C736B59034492ADEB5A16 /* SimpleLineIcons.ttf in Resources */,
+				D69CB9CD216688AE00ABB89E /* LaunchScreen.xib in Resources */,
 				D0A9CF5622F94EFFAA4752BF /* Zocial.ttf in Resources */,
 				D6BCDC20896C428E845F3DD3 /* Al-Jazeera-Arabic-Regular.ttf in Resources */,
 				2B6B892165644A48990D3898 /* Serto Urhoy.ttf in Resources */,
@@ -2213,7 +2143,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Crashlytics/Fabric.framework/run\" bf7af3050a875a91e2cc3198aceb8213284ca099 557555dae74eb13cbe0bbe212c3cb3bcbdb9b5b7de57d4b59a18ad5c02441894\n";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		E9A9D126EC3F872489D93A1E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2297,6 +2227,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		D69CB98C216688AE00ABB89E /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D69CB98D216688AE00ABB89E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2328,6 +2269,9 @@
 					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 				);
 				INFOPLIST_FILE = SuryoLingoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2374,6 +2318,9 @@
 					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 				);
 				INFOPLIST_FILE = SuryoLingoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2401,7 +2348,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SuryoLingo/SuryoLingo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = LB4JJ7565B;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2429,6 +2376,9 @@
 					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 				);
 				INFOPLIST_FILE = SuryoLingo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2440,6 +2390,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suryolingo.iphone;
 				PRODUCT_NAME = SuryoLingo;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2452,7 +2403,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SuryoLingo/SuryoLingo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = LB4JJ7565B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2479,6 +2430,9 @@
 					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 				);
 				INFOPLIST_FILE = SuryoLingo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2490,6 +2444,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suryolingo.iphone;
 				PRODUCT_NAME = SuryoLingo;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -2529,6 +2484,9 @@
 					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 				);
 				INFOPLIST_FILE = "SuryoLingo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2584,6 +2542,9 @@
 					"$(SRCROOT)/../node_modules/react-native-keyboard-input/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 				);
 				INFOPLIST_FILE = "SuryoLingo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

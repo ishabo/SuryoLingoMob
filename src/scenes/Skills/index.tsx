@@ -8,7 +8,7 @@ import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from 'servic
 import { IInitialState } from 'services/reducers';
 import { NavigationScreenProp } from 'react-navigation';
 import { exitApp, displayInterstitialAd } from 'helpers';
-import { Hamburger, DrawerItem } from 'components';
+import { Hamburger, DrawerItem, Loading } from 'components';
 import { ICourse } from 'services/courses';
 import { IProfile } from 'services/profile';
 import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
@@ -114,6 +114,7 @@ class Skills extends React.Component<IProps> {
           {this.renderUnits(true)}
           {this.renderUnits(false)}
         </ScrollView>
+        <Loading />
       </GSContainer>
     );
   }
