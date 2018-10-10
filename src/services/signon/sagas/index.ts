@@ -88,7 +88,6 @@ export function* submitSignon(action: signon.ISignonFormAction): IterableIterato
 
 export function* connectViaFacebook(actions: signon.ISignonFormAction): IterableIterator<any> {
   Analytics.logEvent('connect_via_facebook', { SignonType: actions.signon, Started: true });
-  debugger;
 
   try {
     const result = yield call(LoginManager.logInWithReadPermissions, ['public_profile', 'email']);
@@ -119,7 +118,6 @@ export function* connectViaFacebook(actions: signon.ISignonFormAction): Iterable
       }
     }
   } catch (error) {
-    debugger;
     yield put(setLoadingOff());
     const errors: signon.ISignonFormErrors = {};
     if (isApiResponse(error.response)) {

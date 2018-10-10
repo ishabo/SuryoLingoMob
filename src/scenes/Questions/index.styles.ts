@@ -8,6 +8,7 @@ export const GSProgress = glamor.view({
   marginBottom: 20,
   marginTop: Platform.OS === 'android' ? 15 : 25
 });
+GSProgress.displayName = 'GSProgress';
 
 export const GSIcon = glamor(Icon)({
   position: 'absolute',
@@ -16,6 +17,7 @@ export const GSIcon = glamor(Icon)({
   fontSize: Platform.select({ android: 40, ios: 50 }),
   alignSelf: 'center'
 });
+GSIcon.displayName = 'GSIcon';
 
 export const GSFooterAndBody = glamor.view({
   flex: 1,
@@ -23,3 +25,4 @@ export const GSFooterAndBody = glamor.view({
 });
 
 export const GSContainer = glamor(Container)({});
+GSContainer.displayName = 'GSContainer';

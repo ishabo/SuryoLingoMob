@@ -7,7 +7,7 @@ import { setAccessToken } from 'services/api/access';
 import { isRegistered } from 'services/selectors';
 import { Analytics, Crashlytics } from 'config/firebase';
 
-export function* createProfileIfNeeded(action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfileIfNeeded (action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
 
   if (isEmpty(profileState)) {
@@ -17,7 +17,7 @@ export function* createProfileIfNeeded(action: profile.IProfileAction): Iterable
   }
 }
 
-export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfile (action: profile.IProfileAction): IterableIterator<any> {
   try {
     const profileData = yield call(profile.api.createProfile, action.payload);
     yield put(profile.actions.saveProfileAndAccessToken(profileData));
@@ -26,26 +26,25 @@ export function* createProfile(action: profile.IProfileAction): IterableIterator
   }
 }
 
-export function* updateProfile(action: profile.IProfileAction): IterableIterator<any> {
+export function* updateProfile (action: profile.IProfileAction): IterableIterator<any> {
   const currentProfile = yield select((state: IInitialState) => state.profile);
   const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
   yield put(profile.actions.saveProfileAndAccessToken(profileData));
 }
 
-export function* fetchProfile(): IterableIterator<any> {
-  debugger;
+export function* fetchProfile (): IterableIterator<any> {
   const userIsRegistered = yield select(isRegistered);
   if (userIsRegistered) {
     try {
       const profileData = yield call(profile.api.getUser);
       yield put(profile.actions.saveProfileAndAccessToken(profileData));
     } catch (error) {
-      console.warn(error);
+      console.warn(JSON.stringify(error));
     }
   }
 }
 
-export function* saveProfileAndAccessToken(action: profile.IProfileAction): IterableIterator<any> {
+export function* saveProfileAndAccessToken (action: profile.IProfileAction): IterableIterator<any> {
   const accessToken = action.profileData.apiKey;
   delete action.profileData.apiKey;
   yield call(setAccessToken, accessToken);

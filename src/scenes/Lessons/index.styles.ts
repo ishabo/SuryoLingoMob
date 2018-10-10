@@ -8,12 +8,14 @@ export const GSContainer = glamor.view({
   justifyContent: 'space-between',
   backgroundColor: colors.whiteSmoke
 });
+GSContainer.displayName = 'GSContainer';
 
 export const GSLessonIcon = glamor.view({
   position: 'absolute',
   top: 10,
   width: 150
 });
+GSLessonIcon.displayName = 'GSLessonIcon';
 
 export const GSLessonInstruction = glamor.view({
   justifyContent: 'center',
@@ -21,8 +23,10 @@ export const GSLessonInstruction = glamor.view({
   marginTop: 150,
   marginBottom: 20
 });
+GSLessonInstruction.displayName = 'GSLessonInstruction';
 
 export const GSAnimatable = glamor(Animatable.View as any)({
   alignSelf: 'center',
   justifyContent: 'center'
 });
+GSAnimatable.displayName = 'GSAnimatable';

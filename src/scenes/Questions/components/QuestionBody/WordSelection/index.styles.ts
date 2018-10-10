@@ -11,6 +11,7 @@ export const GSWordBox = glamor.view({
   margin: 5,
   backgroundColor: Colors.lightGray
 });
+GSWordBox.displayName = 'GSWordBox';
 
 export const GSWordText = glamor(GSCustomStudyText)<IWordProps>(
   {
@@ -22,6 +23,7 @@ export const GSWordText = glamor(GSCustomStudyText)<IWordProps>(
     backgroundColor: props.shadowed ? Colors.darkGray : Colors.lightGray
   })
 );
+GSWordText.displayName = 'GSWordText';
 
 export const GSSelectionBox = glamor.view({
   alignContent: 'center',
@@ -29,6 +31,7 @@ export const GSSelectionBox = glamor.view({
   flexDirection: 'row',
   flexWrap: 'wrap'
 });
+GSSelectionBox.displayName = 'GSSelectionBox';
 
 export const GSAnswerBox = glamor.view({
   padding: 10,
@@ -38,6 +41,7 @@ export const GSAnswerBox = glamor.view({
   marginVertical: 5,
   backgroundColor: '#E8E8E8'
 });
+GSAnswerBox.displayName = 'GSAnswerBox';
 
 export const GSTitle = glamor(GSCustomText)<ICustomText>({
   alignSelf: 'center',
@@ -45,3 +49,4 @@ export const GSTitle = glamor(GSCustomText)<ICustomText>({
   marginVertical: 10,
   textAlign: 'left'
 });
+GSTitle.displayName = 'GSTitle';

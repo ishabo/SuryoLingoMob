@@ -36,3 +36,5 @@ export default class Translation extends React.Component<IProps> {
 const GSContainer = glamor(Container)({
   alignSelf: 'stretch'
 });
+
+GSContainer.displayName = 'GSContainer';

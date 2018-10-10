@@ -19,6 +19,7 @@ export const GSChoice = glamor.view<{ checked: boolean }>(
     backgroundColor: props.checked ? Colors.lightBlue : 'transparent'
   })
 );
+GSChoice.displayName = 'GSChoice';
 
 export const GSRadio = glamor.view<{ checked: boolean }>(
   {
@@ -33,15 +34,19 @@ export const GSRadio = glamor.view<{ checked: boolean }>(
     backgroundColor: props.checked ? Colors.blue : 'transparent'
   })
 );
+GSRadio.displayName = 'GSRadio';
+
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch'
 });
+GSContainer.displayName = 'GSContainer';
 
 export const GSTitle = glamor(GSCustomText)<ICustomText>({
   paddingHorizontal: 10,
   fontSize: 20,
   alignSelf: 'flex-start'
 });
+GSTitle.displayName = 'GSTitle';
 
 export const GSText = glamor(GSCustomStudyText)<ICustomText>({
   paddingHorizontal: 30,
@@ -49,7 +54,9 @@ export const GSText = glamor(GSCustomStudyText)<ICustomText>({
   fontSize: 18,
   alignSelf: 'center'
 });
+GSText.displayName = 'GSText';
 
 export const GSContent = glamor(Content)({
   marginTop: 20
 });
+GSContent.displayName = 'GSContent';

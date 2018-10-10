@@ -7,12 +7,14 @@ export const GSContainer = glamor.view({
   justifyContent: 'center',
   alignItems: 'center'
 });
+GSContainer.displayName = 'GSContainer';
 
 export const GSProfile = glamor.scrollView({
   flex: 1,
   alignSelf: 'stretch',
   margin: 16
 });
+GSProfile.displayName = 'GSProfile';
 
 export const GSProfileDetails = glamor.view({
   flexDirection: 'row',
@@ -22,10 +24,12 @@ export const GSProfileDetails = glamor.view({
   alignSelf: 'stretch',
   borderBottomWidth: 0.4
 });
+GSProfileDetails.displayName = 'GSProfileDetails';
 
 export const GSProfileDetailsItem = glamor(GSCustomText)({
   fontWeight: '900'
 });
+GSProfileDetailsItem.displayName = 'GSProfileDetailsItem';
 
 export const GSProfilePictureFrame = glamor.view<{ inner?: boolean; outer?: boolean }>(
   {
@@ -55,6 +59,7 @@ export const GSProfilePictureFrame = glamor.view<{ inner?: boolean; outer?: bool
     }
   }
 );
+GSProfilePictureFrame.displayName = 'GSProfilePictureFrame';
 
 export const GSProfilePicture = glamor.image({
   justifyContent: 'center',
@@ -64,11 +69,14 @@ export const GSProfilePicture = glamor.image({
   height: 200,
   borderRadius: 100
 });
+GSProfilePicture.displayName = 'GSProfilePicture';
 
 export const GSPersonalDetails = glamor.view({
   marginVertical: 10
 });
+GSPersonalDetails.displayName = 'GSPersonalDetails';
 
 export const GSBottom = glamor.view({
   alignItems: 'center'
 });
+GSBottom.displayName = 'GSBottom';

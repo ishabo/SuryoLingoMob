@@ -13,6 +13,7 @@ export const GSContainer = glamor(AreaView as any)({
   alignItems: 'stretch',
   flex: 1
 }) as any;
+GSContainer.displayName = 'GSContainer';
 
 export const GSContent = glamor.view({
   alignSelf: 'stretch',
@@ -20,12 +21,14 @@ export const GSContent = glamor.view({
   padding: 10,
   paddingTop: 0
 });
+GSContent.displayName = 'GSContent';
 
 export const GSLink = glamor.touchableOpacity({
   alignSelf: 'center',
   marginTop: 5,
   padding: 10
 });
+GSLink.displayName = 'GSLink';
 
 export const GSTabs = glamor.view({
   flexDirection: 'row',
@@ -33,6 +36,7 @@ export const GSTabs = glamor.view({
   marginHorizontal: 16,
   marginBottom: 20
 });
+GSTabs.displayName = 'GSTabs';
 
 export const GSTabButton = glamor(Button)<{ selected: boolean }>(
   {
@@ -44,6 +48,7 @@ export const GSTabButton = glamor(Button)<{ selected: boolean }>(
     backgroundColor: selected ? Colors.lightBlue : Colors.whiteSmoke
   })
 );
+GSTabButton.displayName = 'GSTabButton';
 
 export const GSButtonText = glamor.text<{ color: string; large: boolean }>(
   {
@@ -54,6 +59,7 @@ export const GSButtonText = glamor.text<{ color: string; large: boolean }>(
     fontSize: props.large ? 18 : 12
   })
 );
+GSButtonText.displayName = 'GSButtonText';
 
 export const GSIcon = glamor(Icon)({
   position: 'absolute',
@@ -63,22 +69,26 @@ export const GSIcon = glamor(Icon)({
   color: Colors.black,
   zIndex: 100
 });
+GSIcon.displayName = 'GSIcon';
 
 export const GSFooter = glamor.view({
   backgroundColor: 'transparent',
   justifyContent: 'flex-end',
   marginBottom: 12
 });
+GSFooter.displayName = 'GSFooter';
 
 export const GSError = glamor.text({
   color: Colors.red
 });
+GSError.displayName = 'GSError';
 
 export const GSDescription = glamor.text({
   textAlign: 'center',
   fontSize: 18,
   paddingVertical: 10
 });
+GSDescription.displayName = 'GSDescription';
 
 export const GSSeparator = glamor.view<{ margin?: number }>(
   {
@@ -93,6 +103,7 @@ export const GSSeparator = glamor.view<{ margin?: number }>(
     marginVertical: margin ? margin : 40
   })
 );
+GSSeparator.displayName = 'GSSeparator';
 
 export const GSSeperatorLine = glamor.view({
   borderBottomColor: Colors.lightBlue,
@@ -100,6 +111,7 @@ export const GSSeperatorLine = glamor.view({
   alignSelf: 'stretch',
   height: 1
 });
+GSSeperatorLine.displayName = 'GSSeperatorLine';
 
 export const GSSeperatorText = glamor.text({
   paddingVertical: 10,
@@ -110,3 +122,4 @@ export const GSSeperatorText = glamor.text({
   position: 'absolute',
   top: 0
 });
+GSSeperatorText.displayName = 'GSSeperatorText';

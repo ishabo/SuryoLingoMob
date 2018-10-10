@@ -26,7 +26,7 @@ interface IState {
 }
 
 const alertDelayTime = 1000;
-// const fetchDelayTime = 1000;
+const testForConnection = !__DEV__ && true;
 
 const logos = [images.logo.arabic, images.logo.syriac, images.logo.english];
 const logo = logos[Math.floor(Math.random() * logos.length)];
@@ -98,14 +98,18 @@ class Splash extends React.Component<IProps, IState> {
     this.messageListener = Messaging.onMessage(res => {
       console.warn('Message received', res);
     });
-    this.checkConnection();
-    // this.props.firstFetch();
-    NetInfo.isConnected.fetch().then(isConnected => {
-      if (isConnected) {
-        this.props.firstFetch();
-      } else {
-      }
-    });
+
+    if (testForConnection) {
+      this.props.firstFetch();
+    } else {
+      this.checkConnection();
+      NetInfo.isConnected.fetch().then(isConnected => {
+        if (isConnected) {
+          this.props.firstFetch();
+        } else {
+        }
+      });
+    }
   }
 
   componentDidUpdate(_, prevState: Partial<IState>) {
@@ -125,7 +129,7 @@ class Splash extends React.Component<IProps, IState> {
   };
 
   componentWillReceiveProps(newProps: Partial<IProps>) {
-    if (newProps.hasNetworkError && !this.props.activeCourse) {
+    if (newProps.hasNetworkError && !this.props.activeCourse && !testForConnection) {
       this.alertConnection();
     }
   }

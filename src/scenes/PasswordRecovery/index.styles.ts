@@ -6,5 +6,6 @@ export const GSContainer = glamor(Container)({
   flex: 1,
   paddingTop: 30,
   alignItems: 'center',
-  backgroundColor: 'white',
+  backgroundColor: 'white'
 });
+GSContainer.displayName = 'GSContainer';

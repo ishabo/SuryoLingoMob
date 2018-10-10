@@ -1,6 +1,4 @@
 import React from 'react';
-import glamor from 'glamorous-native';
-import { Container } from 'native-base';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { IInitialState } from 'services/reducers';
@@ -9,26 +7,12 @@ import { getPhrases } from 'services/selectors';
 import { StudyPhrase } from 'components';
 import shortid from 'shortid';
 import { Analytics } from 'config/firebase';
-
+import { GSContainer, GSOverview, GSPhrase, GSTranslation } from './index.styles';
 interface IProps {
   phrases: IPhrase[];
   questions: IQuestion;
   isAdmin: boolean;
 }
-
-export const GSContainer = glamor(Container)({
-  padding: 16
-});
-
-export const GSOverview = glamor.view({
-  paddingVertical: 20
-});
-
-export const GSPhrase = glamor.view({});
-
-export const GSTranslation = glamor.text({
-  textAlign: 'right'
-});
 
 class LessonOverview extends React.Component<IProps> {
   componentDidMount() {

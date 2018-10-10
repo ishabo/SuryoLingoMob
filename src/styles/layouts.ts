@@ -8,6 +8,7 @@ export const GSHeader = glamor.view({
   alignItems: 'center',
   marginTop: Platform.OS === 'ios' ? 20 : 10
 });
+GSHeader.displayName = 'GSHeader';
 
 export const GSBody = glamor(KeyboardAvoidingView as any)({
   flex: 1,
@@ -15,6 +16,7 @@ export const GSBody = glamor(KeyboardAvoidingView as any)({
   alignSelf: 'stretch',
   alignItems: 'stretch'
 });
+GSBody.displayName = 'GSBody';
 
 export const GSFooter = glamor(KeyboardAvoidingView as any)({
   backgroundColor: 'transparent',
@@ -25,9 +27,11 @@ export const GSFooter = glamor(KeyboardAvoidingView as any)({
   alignSelf: 'center',
   zIndex: 200
 }) as any;
+GSFooter.displayName = 'GSFooter';
 
 export const GSSeparator = glamor.view({
   marginVertical: 10,
   alignSelf: 'stretch',
   flex: 1
 });
+GSSeparator.displayName = 'GSSeparator';

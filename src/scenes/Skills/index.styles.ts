@@ -5,11 +5,13 @@ import { getWindowWidth } from 'helpers';
 export const GSContainer = glamor.view({
   backgroundColor: colors.whiteSmoke
 });
+GSContainer.displayName = 'GSContainer';
 
 export const GUnit = glamor.view({
   justifyContent: 'space-around',
   flexDirection: 'row'
 });
+GUnit.displayName = 'GUnit';
 
 export const GComingSoonSeparator = glamor.text({
   padding: 4,
@@ -24,3 +26,4 @@ export const GComingSoonSeparator = glamor.text({
   shadowOffset: { width: 2, height: 2 },
   backgroundColor: colors.lightGray
 });
+GComingSoonSeparator.displayName = 'GComingSoonSeparator';

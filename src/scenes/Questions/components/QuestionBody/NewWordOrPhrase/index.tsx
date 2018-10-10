@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { Container } from 'native-base';
+import { scaleSize } from 'helpers';
 import { IAnswerProps } from '../../../index.types';
-import glamor from 'glamorous-native';
-import { GSCustomText, ICustomText } from 'styles/text';
 import { ICourse } from 'services/courses';
 import Phrase, { IProps as IPhraseProps } from 'components/Phrase';
-import { scaleSize, getWindowWidth } from 'helpers';
+import { GSContainer, GSMeaning, GSPhrase } from './index.styles';
 
 interface IProps extends IAnswerProps, IPhraseProps {
   translation: string;
@@ -26,22 +24,3 @@ export default class NewWordOrPhrase extends React.Component<IProps> {
     );
   }
 }
-
-export const GSContainer = glamor(Container)({
-  paddingVertical: 50,
-  alignItems: 'center'
-});
-
-export const GSMeaning = glamor.view({
-  marginVertical: 30,
-  borderBottomWidth: 1,
-  width: getWindowWidth() - 100,
-  borderColor: 'gray'
-});
-
-export const GSPhrase = glamor(GSCustomText)<ICustomText>({
-  textAlign: 'center',
-  fontSize: scaleSize(26, 20),
-  flexWrap: 'wrap',
-  alignSelf: 'center'
-});

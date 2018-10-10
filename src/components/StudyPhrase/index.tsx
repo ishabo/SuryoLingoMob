@@ -20,7 +20,6 @@ export default (props: IProps) => {
     isAdmin && (
       <TouchableOpacity onPress={() => openPhraseInAdmin(sentence.raw)}>
         <Text>{I18n.t('questions.correction')}</Text>
-        />
       </TouchableOpacity>
     );
 
