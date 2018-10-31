@@ -4,6 +4,7 @@ export default {
   loading: 'الرجاء انتظر قليلاً',
   chooseYourWay: 'اختر طريقك',
   general: {
+    continue: 'تابع',
     close: 'أغلق',
     cancelAndExist: 'اخرج من البرنامج',
     cancel: 'الغاء',

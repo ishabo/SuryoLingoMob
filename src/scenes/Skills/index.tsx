@@ -1,28 +1,31 @@
 import * as React from 'react';
-import { ScrollView, BackHandler, Keyboard } from 'react-native';
+import { ScrollView, BackHandler, Keyboard, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { Skill } from './components';
 import { mapValues, groupBy } from 'lodash';
 import { ISkill } from 'services/skills';
+import { fetchSkills } from 'services/skills/actions';
 import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from 'services/selectors';
 import { IInitialState } from 'services/reducers';
 import { NavigationScreenProp } from 'react-navigation';
 import { exitApp, displayInterstitialAd } from 'helpers';
-import { Hamburger, DrawerItem, Loading } from 'components';
+import { Hamburger, DrawerItem, WhenReady } from 'components';
 import { ICourse } from 'services/courses';
 import { IProfile } from 'services/profile';
 import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
 import I18n from 'I18n';
 import shortid from 'shortid';
 import { Analytics } from 'config/firebase';
+import { ILoadingProps } from 'components/Loading/connect';
 
-interface IProps {
+interface IProps extends ILoadingProps {
   activeCourse: ICourse;
   navigation: NavigationScreenProp<any>;
   skills: ISkill[];
   profile: IProfile;
   publishedSkills: ISkill[];
   comingSoonSkills: ISkill[];
+  fetchSkills: () => void;
 }
 
 class Skills extends React.Component<IProps> {
@@ -42,8 +45,9 @@ class Skills extends React.Component<IProps> {
 
     Keyboard.dismiss();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-
-    displayInterstitialAd('skills');
+    setTimeout(() => {
+      displayInterstitialAd('skills');
+    }, 1000);
   }
 
   componentWillUnmount() {
@@ -110,11 +114,15 @@ class Skills extends React.Component<IProps> {
   render() {
     return (
       <GSContainer>
-        <ScrollView style={{ flexDirection: 'column' }}>
-          {this.renderUnits(true)}
-          {this.renderUnits(false)}
-        </ScrollView>
-        <Loading />
+        <WhenReady>
+          <ScrollView
+            style={{ flexDirection: 'column' }}
+            refreshControl={<RefreshControl refreshing={this.props.loading} onRefresh={this.props.fetchSkills} />}
+          >
+            {this.renderUnits(true)}
+            {this.renderUnits(false)}
+          </ScrollView>
+        </WhenReady>
       </GSContainer>
     );
   }
@@ -123,9 +131,17 @@ class Skills extends React.Component<IProps> {
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   profile: state.profile,
   skills: state.skills,
+  loading: state.api.loading,
   activeCourse: getActiveCourse(state),
   publishedSkills: getPublishedSkills(state),
   comingSoonSkills: getComingSoonSkills(state)
 });
 
-export default connect(mapStateToProps)(Skills);
+const mapDispatchToProps = {
+  fetchSkills
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Skills);

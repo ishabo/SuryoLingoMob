@@ -1,16 +1,22 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { getDictionaries } from '../api';
 import { saveDictionaries } from '../actions';
-import * as exceptions from 'services/exceptions';
 import * as dictionaries from 'services/dictionaries';
 import { ISagasFunctions } from 'services/sagas';
+import { getActiveCourse } from 'services/selectors';
 
 export function* fetchDictionaries(action: dictionaries.IDictionaryAction): IterableIterator<any> {
+  let activeCourseId = action.courseId;
+  if (!activeCourseId) {
+    const activeCourse = yield select(getActiveCourse);
+    activeCourseId = activeCourse.id;
+  }
+
   try {
-    const response = yield call(getDictionaries, action.courseId);
+    const response = yield call(getDictionaries, activeCourseId);
     yield put(saveDictionaries(response));
-  } catch (error) {
-    yield put(exceptions.actions.add(error));
+  } catch (e) {
+    console.warn(e);
   }
 }
 

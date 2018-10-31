@@ -1,4 +1,4 @@
-import { API_VERSION, API_DOMAIN, LAMBDA_HOST } from 'react-native-dotenv';
+import { API_DOMAIN, LAMBDA_HOST } from 'react-native-dotenv';
 import { Platform } from 'react-native';
 
 const website = () => {
@@ -11,7 +11,7 @@ const website = () => {
   return domain;
 };
 
-const apiHost = `${website()}/api/v${API_VERSION}`;
+const apiHost = `${website()}/api/v2`;
 const adminHost = `${website()}/idara`;
 const lambdaHost = LAMBDA_HOST;
 

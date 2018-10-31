@@ -3,6 +3,7 @@ import { delay } from 'redux-saga';
 import * as courses from 'services/courses';
 import * as skill from 'services/skills';
 import * as assets from 'services/assets';
+import * as dictionaries from 'services/dictionaries';
 import { ISagasFunctions } from 'services/sagas';
 import { resetToSkills } from 'helpers';
 
@@ -19,6 +20,7 @@ export function* fetchCourses(): IterableIterator<any> {
 export function* switchCourse(action: courses.ICourseAction): IterableIterator<any> {
   yield delay(1000);
   yield put(courses.actions.setActiveCourse(action.courseId));
+  yield put(dictionaries.actions.fetchDictionaries(action.courseId));
   yield put(skill.actions.fetchSkills());
   yield put(resetToSkills());
 }

@@ -10,7 +10,7 @@ import { CachedImage, ImageCacheProvider } from 'react-native-cached-image';
 import { IAssets } from 'services/assets';
 import { IInitialState } from 'services/reducers';
 import { AnimatableAnimationMethods } from 'react-native-animatable';
-import { Loading, DrawerItem } from 'components';
+import { DrawerItem, WhenReady } from 'components';
 import { Analytics } from 'config/firebase';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
@@ -90,10 +90,9 @@ class Courses extends React.Component<IProps> {
               onPreloadComplete={() => console.log(JSON.stringify(this.props.courseImages))}
             >
               <GSAnimatable innerRef={(c: AnimatableAnimationMethods) => (this.cards = c)}>
-                {this.renderCourses()}
+                <WhenReady>{this.renderCourses()}</WhenReady>
               </GSAnimatable>
             </ImageCacheProvider>
-            <Loading />
           </ScrollView>
         </SafeAreaView>
       </GSContainer>

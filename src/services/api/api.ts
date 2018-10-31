@@ -72,7 +72,6 @@ export const createApi = (options: IApiOptions) => {
       ...res,
       ...{ data: res.data || {} }
     };
-
     if (response.status === 200) {
       console.log(`API Success | ${JSON.stringify(response.data)}`);
     } else {
@@ -102,14 +101,14 @@ export const createApi = (options: IApiOptions) => {
         case 404:
           exceptionPayload = {
             name: 'NOT_FOUND',
-            message: response.data.error_description || statusErrors[response.status] || '',
+            message: response.data.error || statusErrors[response.status] || '',
             report: true
           };
           break;
         case 400:
           exceptionPayload = {
             name: 'BAD_REQUEST',
-            message: response.data.error_description || '',
+            message: response.data.error || '',
             report: true
           };
           break;
@@ -130,7 +129,7 @@ export const createApi = (options: IApiOptions) => {
         default:
           exceptionPayload = {
             name: response.data.error || 'UNKNOWN_ERROR',
-            message: response.data.error_description || statusErrors[response.status] || '',
+            message: response.data.error || statusErrors[response.status] || '',
             report: true
           };
       }
@@ -140,7 +139,7 @@ export const createApi = (options: IApiOptions) => {
         action,
         report: false,
         silent: false,
-        message: response.data.error_description || statusErrors[response.status] || '',
+        message: response.data.error || statusErrors[response.status] || '',
         name: response.data.error,
         ...exceptionPayload
       });

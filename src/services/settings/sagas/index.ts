@@ -2,6 +2,7 @@ import { put, call, select } from 'redux-saga/effects';
 import { ISagasFunctions } from 'services/sagas';
 import { IInitialState } from 'services/reducers';
 import * as settings from '../';
+
 import { getSettings } from 'services/settings/api';
 import { alertToUpdateApp, alertMaintenance } from 'helpers';
 import { shouldUpdateApp, getDeviceSpecificSettings, isOnMaintenance } from 'services/selectors';
@@ -14,11 +15,12 @@ export function* fetchSettings(): IterableIterator<any> {
 }
 
 export function* checkStatuses(): IterableIterator<any> {
+  const profile = yield select((state: IInitialState) => state.profile);
   if (yield select(isOnMaintenance)) {
     const maintenanceSettings: settings.IMaintenance = yield select(
       (state: IInitialState) => state.settings.maintenance
     );
-    alertMaintenance(maintenanceSettings.showDefaultMessage, maintenanceSettings.message);
+    alertMaintenance(maintenanceSettings.showDefaultMessage, maintenanceSettings.message, profile.isTester !== null);
     return;
   }
 
