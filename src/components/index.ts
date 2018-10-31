@@ -14,3 +14,4 @@ export { default as StudyPhrase } from './StudyPhrase';
 export { default as EvaluationBanner } from './EvaluationBanner';
 export { default as TryCatch } from './TryCatch';
 export { default as FBLoginButton } from './FBLoginButton';
+export { default as WhenReady } from './WhenReady';

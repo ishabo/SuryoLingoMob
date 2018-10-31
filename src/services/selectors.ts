@@ -97,6 +97,8 @@ export const getLessonsToSync = (state: IInitialState): ILessonToSync[] => state
 export const isRegistered = (state: IInitialState): boolean =>
   typeof state.profile.email === 'string' && state.profile.email.length > 3;
 
+export const userIsTester = (state: IInitialState): boolean => state.profile.isTester !== null;
+
 export const isLoading = (state: IInitialState): boolean => state.api.loading;
 
 export const getLatestException = (state: IInitialState): exceptions.IException =>
@@ -151,12 +153,13 @@ export const shouldUpdateApp = (state: IInitialState): boolean => {
 };
 
 export const canProceedToStudy = (state: IInitialState): boolean => {
-  if (state.settings.maintenance && state.settings.maintenance.switchedOn === true) {
+  if (isOnMaintenance(state) && !userIsTester(state)) {
     return false;
   }
+
   const device = getDeviceSpecificSettings(state);
 
-  if (shouldUpdateApp(state) && device && device.update && device.update.force) {
+  if (shouldUpdateApp(state) && device && device.update && device.update.force && !userIsTester(state)) {
     return false;
   }
 

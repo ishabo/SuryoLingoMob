@@ -9,13 +9,12 @@ buildscript {
         supportLibVersion = "27.1.1"
     }
     repositories {
-        jcenter()
         mavenCentral()
         google()
         maven {
            url 'https://maven.fabric.io/public'
         }
-
+        jcenter()
     }
 
     dependencies {
@@ -32,12 +31,12 @@ buildscript {
 allprojects {
     repositories {
         mavenLocal()
-        jcenter()
         google()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
+        jcenter()
     }
 }
 

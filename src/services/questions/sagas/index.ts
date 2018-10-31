@@ -3,9 +3,8 @@ import { delay } from 'redux-saga';
 import * as questions from '../';
 import * as dictionaries from 'services/dictionaries';
 import { NavigationActions } from 'react-navigation';
-import { getPending, getLessonInProgress, getActiveCourse } from '../../selectors';
+import { getPending, getLessonInProgress } from '../../selectors';
 import { setLoadingOn, setLoadingOff } from 'services/api/actions';
-import * as exceptions from 'services/exceptions';
 import { ISagasFunctions } from 'services/sagas';
 import { downloadFile } from 'helpers';
 import cloneDeep from 'clone-deep';
@@ -13,39 +12,24 @@ import { finishLesson } from 'services/progress/sagas';
 
 export function* fetchQuestions(action: questions.IQuestionsAction): IterableIterator<any> {
   let fetchedQuestions;
-  let reportError = false;
-  let usingBackup = false;
-
   yield put(setLoadingOn());
 
-  const activeCourse = yield select(getActiveCourse);
-  yield put(dictionaries.actions.fetchDictionaries(activeCourse.id));
-
   try {
+    yield put(dictionaries.actions.fetchDictionaries());
+
     fetchedQuestions = yield call(questions.api.getQuestions, action.lessonId);
   } catch (error) {
-    if (error.response.status === null) {
-      const lessonInProgress = yield select(getLessonInProgress);
-      if (Array.isArray(lessonInProgress.questions) && lessonInProgress.questions.length) {
-        usingBackup = true;
-        fetchedQuestions = cloneDeep(lessonInProgress.questions);
-      } else {
-        reportError = true;
-      }
-    } else {
-      reportError = true;
-    }
+    const lessonInProgress = yield select(getLessonInProgress);
 
-    if (reportError) {
-      yield put(exceptions.actions.add(error));
+    if (Array.isArray(lessonInProgress.questions) && lessonInProgress.questions.length) {
+      fetchedQuestions = cloneDeep(lessonInProgress.questions);
     }
   }
 
-  if (!usingBackup) {
+  if (fetchedQuestions) {
     yield call(cacheAudioSounds, fetchedQuestions);
+    yield call(saveQuestionsAndNavigate, fetchedQuestions, action.destination);
   }
-
-  yield call(saveQuestionsAndNavigate, fetchedQuestions, action.destination);
 
   yield put(setLoadingOff());
 }

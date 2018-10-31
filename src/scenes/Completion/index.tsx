@@ -11,7 +11,7 @@ import { resetToLessons, resetToSkills } from 'helpers/navigation';
 import { NextButton, SignOnOrOut } from 'components/';
 import { IProfile } from 'services/profile';
 import { Dispatch } from 'redux';
-import { displayInterstitialAd } from 'helpers';
+// import { displayInterstitialAd } from 'helpers';
 import { Analytics } from 'config/firebase';
 
 interface IProps {
@@ -47,7 +47,7 @@ class Completion extends React.Component<IProps, IState> {
       this.setState({ lessonXp: lastAccomplishment.thisLessonXp });
     }
 
-    displayInterstitialAd('completion');
+    // displayInterstitialAd('completion');
   }
 
   navBackToLessons = () => {

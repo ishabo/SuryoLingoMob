@@ -24,11 +24,14 @@ export const alertConnection = (
   );
 };
 
-export const alertMaintenance = (showDefaultMessage: boolean, message: IDictionary<string>) => {
+export const alertMaintenance = (showDefaultMessage: boolean, message: IDictionary<string>, allowBypass?: boolean) => {
+  const close = { text: I18n.t('general.close'), onPress: exitApp };
+  const ok = allowBypass ? { text: I18n.t('general.continue'), onPress: () => {} } : null;
   Alert.alert(
     '',
     showDefaultMessage ? I18n.t('maintenance.message') : message[I18n.t('lang')],
-    [{ text: I18n.t('general.close'), onPress: exitApp }],
+    [close, ok],
+
     { cancelable: false }
   );
 };

@@ -3,10 +3,15 @@ import vars from 'config/vars';
 import { logError } from 'helpers';
 
 export type TScenes = 'skills' | 'completion';
+
 export const displayInterstitialAd = (scene: TScenes) => {
-  if (__DEV__) AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-  AdMobInterstitial.setAdUnitID(vars.admob.interstitial[scene]);
-  AdMobInterstitial.requestAd()
-    .then(() => AdMobInterstitial.showAd())
-    .catch(error => logError(JSON.stringify(error)));
+  try {
+    AdMobInterstitial.setAdUnitID(vars.admob.interstitial[scene]);
+    AdMobInterstitial.setTestDevices(['359040086011833', AdMobInterstitial.simulatorId]);
+    AdMobInterstitial.requestAd()
+      .then(() => AdMobInterstitial.showAd())
+      .catch(error => logError(JSON.stringify(error)));
+  } catch (e) {
+    logError(JSON.stringify(e));
+  }
 };

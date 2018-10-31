@@ -36,8 +36,8 @@ export const create = (options: IApiOptions = {}): IApiInstance => {
       const authorizationHeader = {
         Authorization: `Token token=${await getUserToken()}`
       };
-      response = await api.call(method, url, authorizationHeader, ...args);
-      response = response ? response.data : null;
+      const { data } = await api.call(method, url, authorizationHeader, ...args);
+      response = data.result ? data.result : data;
     } catch (e) {
       throw e;
     }
