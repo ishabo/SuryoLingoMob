@@ -4,7 +4,6 @@
     "module": "esnext",
     "moduleResolution": "node",
     "jsx": "react",
-    "outDir": "artifacts",
     "rootDir": "src",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,

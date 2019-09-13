@@ -10,7 +10,7 @@ import {
   GSMessageText,
   GSBannerHeader,
   GSBannerText,
-  GSBoldText
+  GSBoldText,
 } from './index.styles';
 import * as Animatable from 'react-native-animatable';
 
@@ -24,7 +24,8 @@ interface IProps {
 const AnimatedEvaluationBanner = Animatable.createAnimatableComponent(GSBanner as any);
 
 const bgColor = (passed: boolean) => (passed ? Colors.lightGreen : Colors.lightRed);
-const passTitle = (passed: boolean) => I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`);
+const passTitle = (passed: boolean) =>
+  I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`);
 
 export default ({ passed, correctAnswer, multipleAnswers }: IProps) => {
   const showCorrectAnswer = correctAnswer && (

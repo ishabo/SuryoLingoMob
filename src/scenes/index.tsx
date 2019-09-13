@@ -6,7 +6,6 @@ import { setStore, setCrashReporter } from '../services/exceptions';
 import { setApiOrigin } from '../services/api';
 import RNRestart from 'react-native-restart';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-// import { setCustomText } from 'react-native-global-props';
 import GlobalFont from 'react-native-global-font';
 
 import config from 'config/';
@@ -17,11 +16,6 @@ import { getStoreInstance } from '../services/store';
 
 setCrashReporter(logError);
 setApiOrigin(config.apiHost);
-// setCustomText({
-//   style: {
-//     fontFamily: getFont('cl-ara', 'regular')
-//   }
-// });
 
 I18nManager.forceRTL(true);
 

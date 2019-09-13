@@ -12,6 +12,8 @@ import { Dispatch } from 'redux';
 import { IInitialState } from 'services/reducers';
 import { ICourse } from 'services/courses';
 import { Analytics, Messaging } from 'config/firebase';
+import config from 'config';
+const { isWorkingOffline } = config;
 
 export interface IProps {
   hasNetworkError: boolean;
@@ -26,7 +28,6 @@ interface IState {
 }
 
 const alertDelayTime = 1000;
-const testForConnection = !__DEV__ && true;
 
 const logos = [images.logo.arabic, images.logo.syriac, images.logo.english];
 const logo = logos[Math.floor(Math.random() * logos.length)];
@@ -35,42 +36,40 @@ class Splash extends React.Component<IProps, IState> {
   private messageListener;
 
   static navigationOptions = {
-    header: null
+    header: null,
   };
 
   state = {
     hasAlert: false,
-    isConnected: false
+    isConnected: false,
   };
 
-  private handleFirstConnectivityChange = isConnected => {
-    this.setState(
-      {
-        isConnected
-      },
-      () => {
-        if (!isConnected) {
-          this.props.addException({
-            name: 'NETWORK_ERROR',
-            message: 'Not connected to the internet',
-            report: false
-          });
-        } else if (isConnected) {
-          this.props.firstFetch();
-        }
-        NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
+  private handleFirstConnectivityChange = (isConnected: boolean) => {
+    this.setState({ isConnected }, () => {
+      if (!isConnected) {
+        this.props.addException({
+          name: 'NETWORK_ERROR',
+          message: 'Not connected to the internet',
+          report: false,
+        });
+      } else if (isConnected) {
+        this.props.firstFetch();
       }
-    );
-  };
+      NetInfo.isConnected.removeEventListener(
+        'connectionChange',
+        this.handleFirstConnectivityChange,
+      );
+    });
+  }
 
   setAlertDismissed = () => {
     this.setState({ hasAlert: false });
-  };
+  }
 
   firstFetch = () => {
     this.setAlertDismissed();
     this.props.firstFetch();
-  };
+  }
 
   alertConnection = () => {
     if (this.state.hasAlert) {
@@ -84,54 +83,62 @@ class Splash extends React.Component<IProps, IState> {
             this.setState({ hasAlert: false }, this.alertConnection);
           },
           exitApp,
-          this.setAlertDismissed
+          this.setAlertDismissed,
         );
       });
-    }, alertDelayTime);
-  };
+    },         alertDelayTime);
+  }
 
-  componentDidMount() {
-    Analytics.setAnalyticsCollectionEnabled(true);
-
+  async componentDidMount() {
     Analytics.setCurrentScreen(this.constructor.name);
 
     this.messageListener = Messaging.onMessage(res => {
       console.warn('Message received', res);
     });
 
-    if (testForConnection) {
-      this.props.firstFetch();
-    } else {
+    if (!isWorkingOffline) {
+      Analytics.setAnalyticsCollectionEnabled(true);
+    }
+
+    if (!isWorkingOffline) {
       this.checkConnection();
-      NetInfo.isConnected.fetch().then(isConnected => {
-        if (isConnected) {
-          this.props.firstFetch();
-        } else {
-        }
-      });
+      if (await NetInfo.isConnected.fetch()) {
+        this.props.firstFetch();
+      } else {
+      }
+    } else {
+      this.props.firstFetch();
     }
   }
 
-  componentDidUpdate(_, prevState: Partial<IState>) {
+  componentDidUpdate(prevProps: Partial<IProps>, prevState: Partial<IState>) {
     if (this.state.isConnected && !prevState.isConnected) {
       // Force close alert before calling this function
       this.props.firstFetch();
+    }
+
+    if (
+      this.props.hasNetworkError &&
+      !prevProps.activeCourse &&
+      !isWorkingOffline
+    ) {
+      this.alertConnection();
     }
   }
 
   componentWillUnmount() {
     this.messageListener();
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleFirstConnectivityChange);
+    NetInfo.isConnected.removeEventListener(
+      'connectionChange',
+      this.handleFirstConnectivityChange,
+    );
   }
 
   checkConnection = () => {
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleFirstConnectivityChange);
-  };
-
-  componentWillReceiveProps(newProps: Partial<IProps>) {
-    if (newProps.hasNetworkError && !this.props.activeCourse && !testForConnection) {
-      this.alertConnection();
-    }
+    NetInfo.isConnected.addEventListener(
+      'connectionChange',
+      this.handleFirstConnectivityChange,
+    );
   }
 
   render() {
@@ -146,15 +153,16 @@ class Splash extends React.Component<IProps, IState> {
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   firstFetch: () => dispatch(starter.actions.firstFetch()),
-  addException: (payload: exceptions.IExceptionPayload) => dispatch(exceptions.actions.add(payload))
+  addException: (payload: exceptions.IExceptionPayload) =>
+    dispatch(exceptions.actions.add(payload)),
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   hasNetworkError: hasNetworkError(state),
-  activeCourse: getActiveCourse(state)
+  activeCourse: getActiveCourse(state),
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Splash);

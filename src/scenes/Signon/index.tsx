@@ -24,7 +24,7 @@ import {
   GSErrorText,
   GSSeparator,
   GSSeperatorText,
-  GSSeperatorLine
+  GSSeperatorLine,
 } from './index.styles';
 
 import { GSCustomText } from 'styles/text';
@@ -62,14 +62,14 @@ class Signon extends React.Component<IProps, IState> {
   static navigationOptions = {
     title: I18n.t('signon.title'),
     header: null,
-    drawerLabel: <DrawerItem label={I18n.t('signon.title')} icon="signon" />
+    drawerLabel: <DrawerItem label={I18n.t('signon.title')} icon="signon" />,
   };
 
   state = {
     signUpOrIn: 'signup',
     focusOn: null,
     keyboardOn: false,
-    showPassword: false
+    showPassword: false,
   };
 
   handleBackPress() {
@@ -79,16 +79,22 @@ class Signon extends React.Component<IProps, IState> {
 
   private keyboardDidHide = () => {
     this.setState({ keyboardOn: false });
-  };
+  }
 
   private keyboardDidShow = () => {
     this.setState({ keyboardOn: true });
-  };
+  }
 
   componentDidMount() {
     Analytics.setCurrentScreen(this.constructor.name);
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+    this.keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      this.keyboardDidShow,
+    );
+    this.keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this.keyboardDidHide,
+    );
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
@@ -108,15 +114,15 @@ class Signon extends React.Component<IProps, IState> {
 
   private resetErrors = () => {
     this.props.setError(signon.reducers.initialState.errors);
-  };
+  }
 
   private setSignin = () => {
     this.setState({ signUpOrIn: 'signin' }, this.resetErrors);
-  };
+  }
 
   private setSignup = () => {
     this.setState({ signUpOrIn: 'signup' }, this.resetErrors);
-  };
+  }
 
   private isSignin = () => this.state.signUpOrIn === 'signin';
   private isSignup = () => this.state.signUpOrIn === 'signup';
@@ -128,21 +134,21 @@ class Signon extends React.Component<IProps, IState> {
       data[field] = data[field].toLowerCase();
     }
     this.props.captureSignon(data);
-  };
+  }
 
   private skipToNext = () => {
     Keyboard.dismiss();
     const { activeCourse, navigation, profile } = this.props;
     const routeName = activeCourse ? 'Skills' : 'Courses';
     navigation.navigate(routeName, profile);
-  };
+  }
 
   private submitSignon = () => {
     Keyboard.dismiss();
     this.resetErrors();
     this.props.captureSignon({ ...this.props.signon.item, viaFacebook: false });
     this.props.submitSignon(this.state.signUpOrIn);
-  };
+  }
 
   private focusOn = (field: string) => () => {
     try {
@@ -150,31 +156,43 @@ class Signon extends React.Component<IProps, IState> {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   private renderTabs = () => (
     <GSTabs>
       <GSTabButton full selected={this.isSignup()} onPress={this.setSignup}>
-        <GSButtonText large={this.isSignup()} color={this.isSignup() ? 'white' : 'gray'}>
+        <GSButtonText
+          large={this.isSignup()}
+          color={this.isSignup() ? 'white' : 'gray'}
+        >
           {I18n.t('signon.form.signUp')}
         </GSButtonText>
       </GSTabButton>
       <GSTabButton full selected={this.isSignin()} onPress={this.setSignin}>
-        <GSButtonText large={this.isSignin()} color={this.isSignin() ? 'white' : 'gray'}>
+        <GSButtonText
+          large={this.isSignin()}
+          color={this.isSignin() ? 'white' : 'gray'}
+        >
           {I18n.t('signon.form.signIn')}
         </GSButtonText>
       </GSTabButton>
     </GSTabs>
-  );
+  )
 
   private hasError = (name: string): boolean => !isEmpty(this.getError(name));
   private getError = (name: string): string => this.props.signon.errors[name];
 
-  private renderInput = (name: string, props?: TextInputProperties, afterInput = null) => (
+  private renderInput = (
+    name: string,
+    props?: TextInputProperties,
+    afterInput = null,
+  ) => (
     <>
       <GSItem inlineLabel error={this.hasError(name)}>
         <GSLebel>
-          <GSCustomText onPress={this.focusOn(name)}>{I18n.t(`signon.form.fields.${name}`)}</GSCustomText>
+          <GSCustomText onPress={this.focusOn(name)}>
+            {I18n.t(`signon.form.fields.${name}`)}
+          </GSCustomText>
         </GSLebel>
         <GSInput
           ref={c => (this[name] = c)}
@@ -186,9 +204,13 @@ class Signon extends React.Component<IProps, IState> {
         />
         {afterInput}
       </GSItem>
-      {this.hasError(name) && <GSErrorText>{I18n.t(`signon.form.errors.${this.getError(name)}`)}</GSErrorText>}
+      {this.hasError(name) && (
+        <GSErrorText>
+          {I18n.t(`signon.form.errors.${this.getError(name)}`)}
+        </GSErrorText>
+      )}
     </>
-  );
+  )
 
   private showPassword = () => this.state.showPassword && this.isSignup();
 
@@ -196,7 +218,7 @@ class Signon extends React.Component<IProps, IState> {
     this.setState({ showPassword: !this.state.showPassword }, () => {
       this.focusOn('password');
     });
-  };
+  }
 
   private renderForm = () => (
     <GSForm>
@@ -206,9 +228,9 @@ class Signon extends React.Component<IProps, IState> {
           {
             defaultValue: this.props.signon.item.name,
             onSubmitEditing: this.focusOn('email'),
-            returnKeyType: 'next'
+            returnKeyType: 'next',
           },
-          this.renderBulb('signupName')
+          this.renderBulb('signupName'),
         )}
 
       {this.renderInput(
@@ -216,9 +238,9 @@ class Signon extends React.Component<IProps, IState> {
         {
           defaultValue: this.props.signon.item.email,
           onSubmitEditing: this.focusOn('password'),
-          returnKeyType: 'next'
+          returnKeyType: 'next',
         },
-        this.renderBulb(this.isSignin ? 'signinEmail' : 'signupEmail')
+        this.renderBulb(this.isSignin ? 'signinEmail' : 'signupEmail'),
       )}
 
       {this.renderInput(
@@ -226,26 +248,33 @@ class Signon extends React.Component<IProps, IState> {
         {
           secureTextEntry: !this.showPassword(),
           onSubmitEditing: this.submitSignon,
-          returnKeyType: 'go'
+          returnKeyType: 'go',
         },
-        this.renderShowPasswordIcon()
+        this.renderShowPasswordIcon(),
       )}
       {this.renderRecoverPasswordLink()}
     </GSForm>
-  );
+  )
 
   private renderShowPasswordIcon = () =>
     (this.isSignup() && (
-      <GSIcon name={this.state.showPassword ? 'eye-off' : 'eye'} onPress={this.toggleShowPassword} />
+      <GSIcon
+        name={this.state.showPassword ? 'eye-off' : 'eye'}
+        onPress={this.toggleShowPassword}
+      />
     )) ||
-    this.renderBulb('signinPassword');
+    this.renderBulb('signinPassword')
 
   private renderRecoverPasswordLink = () =>
     this.isSignin() && (
-      <GSLink onPress={() => this.props.navigation.navigate('PasswordRecovery')}>
-        <GSCustomText>{I18n.t(`passwordRecovery.links.recoverPassword`)}</GSCustomText>
+      <GSLink
+        onPress={() => this.props.navigation.navigate('PasswordRecovery')}
+      >
+        <GSCustomText>
+          {I18n.t('passwordRecovery.links.recoverPassword')}
+        </GSCustomText>
       </GSLink>
-    );
+    )
 
   private renderButtons = () => {
     return (
@@ -253,7 +282,9 @@ class Signon extends React.Component<IProps, IState> {
         <GSSeparator margin={4} />
         <NextButton
           onPress={this.submitSignon}
-          text={I18n.t(`signon.form.submit.${this.isSignin() ? 'signin' : 'signup'}`)}
+          text={I18n.t(
+            `signon.form.submit.${this.isSignin() ? 'signin' : 'signup'}`,
+          )}
           lang={'cl-ara'}
         />
 
@@ -262,16 +293,18 @@ class Signon extends React.Component<IProps, IState> {
         </GSLink>
       </>
     );
-  };
+  }
 
-  private renderBulb = (subject: TAlertSubject) => <GSIcon name="bulb" onPress={() => showAlert('signon', subject)} />;
+  private renderBulb = (subject: TAlertSubject) => (
+    <GSIcon name="bulb" onPress={() => showAlert('signon', subject)} />
+  )
 
   private renderTitle = () => (
     <GSTitle lang={'cl-ara'}>
       {I18n.t(`signon.form.${this.isSignin() ? 'signinTitle' : 'signupTitle'}`)}{' '}
       {this.renderBulb(this.isSignin() ? 'signinReason' : 'signupReason')}
     </GSTitle>
-  );
+  )
 
   render() {
     return (
@@ -299,18 +332,21 @@ class Signon extends React.Component<IProps, IState> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  submitSignon: (signUpOrIn: signon.TSignonType) => dispatch(signon.actions.submitSignon(signUpOrIn)),
-  captureSignon: (data: signon.ISignonFormData) => dispatch(signon.actions.captureSignon(data)),
-  setError: (errors: signon.ISignonFormErrors) => dispatch(signon.actions.setErrors(errors))
+  submitSignon: (signUpOrIn: signon.TSignonType) =>
+    dispatch(signon.actions.submitSignon(signUpOrIn)),
+  captureSignon: (data: signon.ISignonFormData) =>
+    dispatch(signon.actions.captureSignon(data)),
+  setError: (errors: signon.ISignonFormErrors) =>
+    dispatch(signon.actions.setErrors(errors)),
 });
 
 const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
   signon: state.signon,
   profile: state.profile,
-  activeCourse: getActiveCourse(state)
+  activeCourse: getActiveCourse(state),
 });
 
 export default connect(
   mapStateToDispatch,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Signon);

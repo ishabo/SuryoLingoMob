@@ -6,9 +6,6 @@ import com.facebook.reactnative.androidsdk.FBSDKPackage;
 
 import android.app.Application;
 import com.facebook.react.ReactApplication;
-import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
-import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
-import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
@@ -56,10 +53,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
-            new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
-            new AppCenterReactNativePackage(MainApplication.this), new RNFirebasePackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebasePackage(),
           new RNFirebaseCrashlyticsPackage(), new RNFirebaseAnalyticsPackage(), new RNFirebaseMessagingPackage(),
           new RNVersionCheckPackage(), new RNFetchBlobPackage(), new RNVersionNumberPackage(), new RNSoundPackage(),
           new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(), new LinearGradientPackage(),
@@ -69,7 +63,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected String getJSMainModuleName() {
-      return "artifacts/index.android";
+      return "index";
     }
 
   };

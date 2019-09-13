@@ -103,8 +103,8 @@ android {
         applicationId "com.suryolingo.android"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 39
-        versionName "0.6.0"
+        versionCode 41
+        versionName "0.7.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -152,9 +152,6 @@ android {
 }
 
 dependencies {
-    compile project(':appcenter-crashes')
-    compile project(':appcenter-analytics')
-    compile project(':appcenter')
     compile project(':react-native-firebase')
     compile project(':react-native-fbsdk')
     compile project(':react-native-version-check')
@@ -178,9 +175,9 @@ dependencies {
     compile "com.facebook.react:react-native:+"  // From node_modules
 
     compile "com.google.android.gms:play-services-base:16.0.1"
-    compile 'com.google.android.gms:play-services-ads:17.0.0'
-    compile "com.google.firebase:firebase-core:16.0.4"
-    compile "com.google.firebase:firebase-messaging:17.3.3"
+    compile "com.google.android.gms:play-services-ads:17.0.0"
+    compile "com.google.firebase:firebase-core:17.2.0"
+    compile "com.google.firebase:firebase-messaging:20.0.0"
 
     compile 'me.leolin:ShortcutBadger:1.1.21@aar'
 
@@ -195,5 +192,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
-com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
+googleServices { disableVersionCheck = true }
 
