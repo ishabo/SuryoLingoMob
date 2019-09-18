@@ -3,8 +3,8 @@ import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
 import * as api from './api';
-import { IWordHint } from 'services/dictionaries';
-import { IAction } from 'services/sagas';
+import { IWordHint } from '@sl/services/dictionaries';
+import { IAction } from '@sl/services/sagas';
 
 export type TQuestionType =
   | string

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import shortid from 'shortid';
 import { GSBackSpaceKey, GSContainer, GSContent, GSKey, GSIcon, GSKeyText, GSSpaceKey } from './index.styles';
 import { KeyboardRegistry } from 'react-native-keyboard-input';
-import { IKeyboardActions } from 'components/Keyboards';
+import { IKeyboardActions } from '@sl/components/Keyboards';
 
 interface IProps {
   layoutName: string;

@@ -1,9 +1,9 @@
 import { call, put, select } from 'redux-saga/effects';
 import { getDictionaries } from '../api';
 import { saveDictionaries } from '../actions';
-import * as dictionaries from 'services/dictionaries';
-import { ISagasFunctions } from 'services/sagas';
-import { getActiveCourse } from 'services/selectors';
+import * as dictionaries from '@sl/services/dictionaries';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { getActiveCourse } from '@sl/services/selectors';
 
 export function* fetchDictionaries(action: dictionaries.IDictionaryAction): IterableIterator<any> {
   let activeCourseId = action.courseId;

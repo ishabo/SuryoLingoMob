@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import glamor from 'glamorous-native';
-import I18n from 'I18n';
+import I18n from '@sl/i18n';
 import { Button, Icon } from 'native-base';
-import { connectViaFacebook } from 'services/signon/actions';
-import { calcWindowWidth } from 'helpers';
-import Colors from 'styles/colors';
-import { GSCustomText } from 'styles/text';
-import { TSignonType } from 'services/profile';
+import { connectViaFacebook } from '@sl/services/signon/actions';
+import { calcWindowWidth } from '@sl/helpers';
+import Colors from '@sl/styles/colors';
+import { GSCustomText } from '@sl/styles/text';
+import { TSignonType } from '@sl/services/profile';
 
 const GSButtonText = glamor(GSCustomText)({
   alignSelf: 'center',

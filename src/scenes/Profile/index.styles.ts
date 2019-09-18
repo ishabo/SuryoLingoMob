@@ -1,6 +1,6 @@
 import glamor from 'glamorous-native';
-import colors from 'styles/colors';
-import { GSCustomText } from 'styles/text';
+import colors from '@sl/styles/colors';
+import { GSCustomText } from '@sl/styles/text';
 
 export const GSContainer = glamor.view({
   flex: 1,

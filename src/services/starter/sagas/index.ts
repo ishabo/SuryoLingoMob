@@ -1,19 +1,19 @@
 import { put, call, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { getActiveCourse, isRegistered, canProceedToStudy } from 'services/selectors';
-import { setLoadingOff } from 'services/api/actions';
-import { fetchCourses } from 'services/courses/actions';
-import { syncFinishedLessons } from 'services/progress/actions';
-import { fetchSkills } from 'services/skills/actions';
-import { ISagasFunctions } from 'services/sagas';
-import { fetchSettings, checkStatus } from 'services/settings/actions';
-import { createProfileIfNeeded } from 'services/profile/actions';
-import * as signon from 'services/signon';
+import { getActiveCourse, isRegistered, canProceedToStudy } from '@sl/services/selectors';
+import { setLoadingOff } from '@sl/services/api/actions';
+import { fetchCourses } from '@sl/services/courses/actions';
+import { syncFinishedLessons } from '@sl/services/progress/actions';
+import { fetchSkills } from '@sl/services/skills/actions';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { fetchSettings, checkStatus } from '@sl/services/settings/actions';
+import { createProfileIfNeeded } from '@sl/services/profile/actions';
+import * as signon from '@sl/services/signon';
 import * as starter from '../';
-import * as exceptions from 'services/exceptions';
-import { resetToCourses, logError, resetToSkills, navToSignon } from 'helpers';
+import * as exceptions from '@sl/services/exceptions';
+import { resetToCourses, logError, resetToSkills, navToSignon } from '@sl/helpers';
 import { isEmpty } from 'lodash';
-import { IInitialState } from 'services/reducers';
+import { IInitialState } from '@sl/services/reducers';
 
 export function* onAppStart(): IterableIterator<any> {
   yield put(exceptions.actions.removeAll());

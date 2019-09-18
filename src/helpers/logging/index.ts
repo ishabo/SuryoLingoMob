@@ -1,4 +1,4 @@
-import { Crashlytics } from 'config/firebase';
+import { Crashlytics } from '@sl/config/firebase';
 
 export const logError = error => {
   console.warn('-->', error);

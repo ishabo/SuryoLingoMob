@@ -1,5 +1,5 @@
 import { Container } from 'native-base';
-import { GSCustomText } from 'styles/text';
+import { GSCustomText } from '@sl/styles/text';
 import * as Animatable from 'react-native-animatable';
 import glamor from 'glamorous-native';
 

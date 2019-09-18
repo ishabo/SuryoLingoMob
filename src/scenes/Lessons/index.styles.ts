@@ -1,6 +1,6 @@
 import * as Animatable from 'react-native-animatable';
 import glamor from 'glamorous-native';
-import colors from 'styles/colors';
+import colors from '@sl/styles/colors';
 
 export const GSContainer = glamor.view({
   alignItems: 'center',

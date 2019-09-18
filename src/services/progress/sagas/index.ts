@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga';
 import { put, select, call } from 'redux-saga/effects';
-import * as progress from 'services/progress';
-import * as questions from 'services/questions';
+import * as progress from '@sl/services/progress';
+import * as questions from '@sl/services/questions';
 import {
   getLessonInProgress,
   getSkillsByUnit,
@@ -10,14 +10,14 @@ import {
   getLessonsToSync,
   numOfTimesLessonInProgressPassed,
   calcTotaluserXp
-} from 'services/selectors';
-import config from 'config/';
+} from '@sl/services/selectors';
+import config from '@sl/config';
 import { setLessonInProgress } from '../actions';
-import * as skills from 'services/skills';
-import { ISagasFunctions } from 'services/sagas';
-import { saveProfile } from 'services/profile/actions';
-import { IInitialState } from 'services/reducers';
-import { setLoadingOn } from 'services/api/actions';
+import * as skills from '@sl/services/skills';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { saveProfile } from '@sl/services/profile/actions';
+import { IInitialState } from '@sl/services/reducers';
+import { setLoadingOn } from '@sl/services/api/actions';
 
 export function* enterLesson(action: progress.IProgressAction): IterableIterator<any> {
   yield put(setLoadingOn());

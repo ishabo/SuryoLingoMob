@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Phrase, { IProps as IPhraseProps } from 'components/Phrase';
-import { SoundButton } from 'components';
+import Phrase, { IProps as IPhraseProps } from '@sl/components/Phrase';
+import { SoundButton } from '@sl/components';
 import glamor from 'glamorous-native';
-import { getWindowWidth, openPhraseInAdmin } from 'helpers';
-import I18n from 'I18n';
+import { getWindowWidth, openPhraseInAdmin } from '@sl/helpers';
+import I18n from '@sl/i18n';
 import { TouchableOpacity, Text } from 'react-native';
 
 interface IProps extends IPhraseProps {

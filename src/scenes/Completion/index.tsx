@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { NavigationActions, NavigationResetActionPayload } from 'react-navigation';
-import I18n from 'I18n';
-import { ILesson, ISkill, ILessonHistory } from 'services/skills';
+import I18n from '@sl/i18n';
+import { ILesson, ISkill, ILessonHistory } from '@sl/services/skills';
 import { GSContainer, GSCongratMessage, GSXPGain, GSNextButton } from './index.styles';
-import { IInitialState } from 'services/reducers';
-import { getLessonInProgress, getSkillInProgress, isRegistered, getSourceLanguage } from 'services/selectors';
-import config from 'config/';
-import { resetToLessons, resetToSkills } from 'helpers/navigation';
-import { NextButton, SignOnOrOut } from 'components/';
-import { IProfile } from 'services/profile';
+import { IInitialState } from '@sl/services/reducers';
+import { getLessonInProgress, getSkillInProgress, isRegistered, getSourceLanguage } from '@sl/services/selectors';
+import config from '@sl/config/';
+import { resetToLessons, resetToSkills } from '@sl/helpers/navigation';
+import { NextButton, SignOnOrOut } from '@sl/components/';
+import { IProfile } from '@sl/services/profile';
 import { Dispatch } from 'redux';
-// import { displayInterstitialAd } from 'helpers';
-import { Analytics } from 'config/firebase';
+// import { displayInterstitialAd } from '@sl/helpers';
+import { Analytics } from '@sl/config/firebase';
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void;

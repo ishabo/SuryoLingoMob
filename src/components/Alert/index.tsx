@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { MessageBar, MessageBarManager } from 'react-native-message-bar';
 import { connect } from 'react-redux';
-import { IInitialState } from 'services/reducers';
-import I18n from 'I18n';
-import { getLatestException } from 'services/selectors';
-import config from 'config';
+import { IInitialState } from '@sl/services/reducers';
+import I18n from '@sl/i18n';
+import { getLatestException } from '@sl/services/selectors';
+import config from '@sl/config';
 import { Dispatch } from 'redux';
-import * as signon from 'services/signon';
-import * as api from 'services/api/reducers';
-import * as exceptions from 'services/exceptions';
+import * as signon from '@sl/services/signon';
+import * as api from '@sl/services/api/reducers';
+import * as exceptions from '@sl/services/exceptions';
 
 interface IProps {
   removeException: (id: number) => void;

@@ -1,5 +1,5 @@
-import { create } from 'services/api';
-import { ILessonToSync } from 'services/progress';
+import { create } from '@sl/services/api';
+import { ILessonToSync } from '@sl/services/progress';
 
 export const getLesson = (lessonId: string) =>
   create().get(`/questions?lesson=${lessonId}`);

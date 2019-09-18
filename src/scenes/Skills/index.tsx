@@ -3,20 +3,20 @@ import { ScrollView, BackHandler, Keyboard, RefreshControl } from 'react-native'
 import { connect } from 'react-redux';
 import { Skill } from './components';
 import { mapValues, groupBy } from 'lodash';
-import { ISkill } from 'services/skills';
-import { fetchSkills } from 'services/skills/actions';
-import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from 'services/selectors';
-import { IInitialState } from 'services/reducers';
+import { ISkill } from '@sl/services/skills';
+import { fetchSkills } from '@sl/services/skills/actions';
+import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from '@sl/services/selectors';
+import { IInitialState } from '@sl/services/reducers';
 import { NavigationScreenProp } from 'react-navigation';
-import { exitApp, displayInterstitialAd } from 'helpers';
-import { Hamburger, DrawerItem, WhenReady } from 'components';
-import { ICourse } from 'services/courses';
-import { IProfile } from 'services/profile';
+import { exitApp, displayInterstitialAd } from '@sl/helpers';
+import { Hamburger, DrawerItem, WhenReady } from '@sl/components';
+import { ICourse } from '@sl/services/courses';
+import { IProfile } from '@sl/services/profile';
 import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
-import I18n from 'I18n';
+import I18n from '@sl/i18n';
 import shortid from 'shortid';
-import { Analytics } from 'config/firebase';
-import { ILoadingProps } from 'components/Loading/connect';
+import { Analytics } from '@sl/config/firebase';
+import { ILoadingProps } from '@sl/components/Loading/connect';
 
 interface IProps extends ILoadingProps {
   activeCourse: ICourse;

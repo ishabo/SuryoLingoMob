@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import I18n from 'I18n';
+import I18n from '@sl/i18n';
 import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { isRegistered } from 'services/selectors';
-import { IInitialState } from 'services/reducers';
-import { Hamburger, FBLoginButton, DrawerItem, SignOnOrOut } from 'components';
+import { isRegistered } from '@sl/services/selectors';
+import { IInitialState } from '@sl/services/reducers';
+import {
+  Hamburger,
+  FBLoginButton,
+  DrawerItem,
+  SignOnOrOut,
+} from '@sl/components';
 import {
   GSContainer,
   GSProfile,
@@ -13,19 +18,19 @@ import {
   GSProfileDetailsItem,
   GSProfilePicture,
   GSPersonalDetails,
-  GSBottom
+  GSBottom,
 } from './index.styles';
-import * as profile from 'services/profile';
-import * as courses from 'services/courses';
-import * as leaderboard from 'services/leaderboard';
-import * as signon from 'services/signon';
-import * as api from 'services/api/reducers';
-import { GSCustomText } from 'styles/text';
+import * as profile from '@sl/services/profile';
+import * as courses from '@sl/services/courses';
+import * as leaderboard from '@sl/services/leaderboard';
+import * as signon from '@sl/services/signon';
+import * as api from '@sl/services/api/reducers';
+import { GSCustomText } from '@sl/styles/text';
 import { NavigationScreenProp } from 'react-navigation';
 import VersionNumber from 'react-native-version-number';
-import Images from 'assets/images';
-import { Analytics } from 'config/firebase';
-import { showAlert } from 'helpers';
+import Images from '@sl/assets/images';
+import { Analytics } from '@sl/config/firebase';
+import { showAlert } from '@sl/helpers';
 
 export interface IProps {
   apiStatus: api.IApiStatus;
@@ -46,8 +51,8 @@ class Profile extends React.Component<IProps> {
     title: I18n.t('profile.title'),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     drawerLabel: <DrawerItem label={I18n.t('profile.title')} icon="profile" />,
-    headerRight: null
-  });
+    headerRight: null,
+  })
 
   componentDidMount() {
     Analytics.setCurrentScreen(this.constructor.name);
@@ -71,11 +76,13 @@ class Profile extends React.Component<IProps> {
   returnUserCourse = () => {
     return this.props.courses.map(course => (
       <GSProfileDetails key={course.id}>
-        <GSProfileDetailsItem>{course.targetLanguage.fullName}:</GSProfileDetailsItem>
+        <GSProfileDetailsItem>
+          {course.targetLanguage.fullName}:
+        </GSProfileDetailsItem>
         <GSCustomText>{course.courseXp}</GSCustomText>
       </GSProfileDetails>
     ));
-  };
+  }
 
   renderProfile = () => {
     const { profilePic } = this.props.profile;
@@ -84,35 +91,53 @@ class Profile extends React.Component<IProps> {
       <GSProfile>
         <>
           <GSPersonalDetails>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Leaderboard')}>
-              <GSProfilePicture source={profilePic ? { uri: profilePic } : Images.profile.default} />
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Leaderboard')}
+            >
+              <GSProfilePicture
+                source={
+                  profilePic ? { uri: profilePic } : Images.profile.default
+                }
+              />
             </TouchableOpacity>
             <GSProfileDetails>
-              <GSProfileDetailsItem>{I18n.t('profile.details.name')}:</GSProfileDetailsItem>
+              <GSProfileDetailsItem>
+                {I18n.t('profile.details.name')}:
+              </GSProfileDetailsItem>
               <GSCustomText>{this.props.profile.name}</GSCustomText>
             </GSProfileDetails>
             <GSProfileDetails>
-              <GSProfileDetailsItem>{I18n.t('profile.details.email')}:</GSProfileDetailsItem>
+              <GSProfileDetailsItem>
+                {I18n.t('profile.details.email')}:
+              </GSProfileDetailsItem>
               <GSCustomText>{this.props.profile.email}</GSCustomText>
             </GSProfileDetails>
 
             {this.returnUserCourse()}
             <GSProfileDetails>
-              <GSProfileDetailsItem>{I18n.t('profile.details.appVersion')}:</GSProfileDetailsItem>
+              <GSProfileDetailsItem>
+                {I18n.t('profile.details.appVersion')}:
+              </GSProfileDetailsItem>
               <GSCustomText>{VersionNumber.appVersion}</GSCustomText>
             </GSProfileDetails>
           </GSPersonalDetails>
           <GSBottom>
-            {this.props.profile.hasConnectedViaFacebook || <FBLoginButton signon="connect" />}
+            {this.props.profile.hasConnectedViaFacebook || (
+              <FBLoginButton signon="connect" />
+            )}
             <SignOnOrOut lang={'cl-ara'} isLoggedIn />
           </GSBottom>
         </>
       </GSProfile>
     );
-  };
+  }
 
   render() {
-    return <GSContainer>{this.props.isRegistered && this.renderProfile()}</GSContainer>;
+    return (
+      <GSContainer>
+        {this.props.isRegistered && this.renderProfile()}
+      </GSContainer>
+    );
   }
 }
 
@@ -120,7 +145,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   signout: () => dispatch(signon.actions.signout()),
   fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard()),
   fetchProfile: () => dispatch(profile.actions.fetchProfile()),
-  fetchCourses: () => dispatch(courses.actions.fetchCourses())
+  fetchCourses: () => dispatch(courses.actions.fetchCourses()),
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
@@ -129,10 +154,10 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   courses: state.courses,
   isRegistered: isRegistered(state),
   signon: state.signon,
-  currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio
+  currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio,
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Profile);

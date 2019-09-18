@@ -1,7 +1,7 @@
 import * as React from 'react';
-import SkillIcon from 'scenes/Skills/components/SkillIcon';
-import { ILesson, ISkill } from 'services/skills';
-import I18n from 'I18n';
+import SkillIcon from '@sl/scenes/Skills/components/SkillIcon';
+import { ILesson, ISkill } from '@sl/services/skills';
+import I18n from '@sl/i18n';
 import Badge from '../Badge';
 import {
   GSBadgePosition,
@@ -11,12 +11,12 @@ import {
   GSLessonNewWords,
   GSLessonTitle,
   GSButtonText,
-  GSListButton
+  GSListButton,
 } from './index.styles';
-import { ProgressCircle } from 'components';
+import { ProgressCircle } from '@sl/components';
 import { Icon } from 'native-base';
 import { ActivityIndicator } from 'react-native';
-import colors from 'styles/colors';
+import colors from '@sl/styles/colors';
 
 interface IProps {
   lesson: ILesson;
@@ -37,13 +37,13 @@ export default ({
   active,
   targetLanguage,
   sourceLanguage,
-  loading
+  loading,
 }: IProps) => {
   const { lessons } = skill;
 
   const lessonTitle = I18n.t('lessons.lesson.title', {
     lessonOrder: lesson.order,
-    totalLessons: lessons.length
+    totalLessons: lessons.length,
   });
 
   const lessonProgress = lesson.order / lessons.length;
@@ -65,7 +65,11 @@ export default ({
         previewLesson(lesson.id);
       }}
     >
-      <Icon type="FontAwesome" name="bars" style={{ color: 'black', fontSize: 20 }} />
+      <Icon
+        type="FontAwesome"
+        name="bars"
+        style={{ color: 'black', fontSize: 20 }}
+      />
     </GSListButton>
   );
 
@@ -78,8 +82,13 @@ export default ({
     <GSLesson>
       <GSCard active>
         <GSLessonTitle lang={sourceLanguage}>{lessonTitle}</GSLessonTitle>
-        <GSLessonNewWords lang={targetLanguage}>{lesson.newWords.split('|').join(', ')}</GSLessonNewWords>
-        <GSButton onPress={() => active && enterLesson(lesson.id)} {...buttonProps}>
+        <GSLessonNewWords lang={targetLanguage}>
+          {lesson.newWords.split('|').join(', ')}
+        </GSLessonNewWords>
+        <GSButton
+          onPress={() => active && enterLesson(lesson.id)}
+          {...buttonProps}
+        >
           {loading ? (
             <ActivityIndicator size="large" color={colors.lightGray} />
           ) : (

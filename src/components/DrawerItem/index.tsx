@@ -1,14 +1,14 @@
 import React from 'react';
 import glamor from 'glamorous-native';
-import Images from 'assets/images';
-import { GSCustomText, ICustomText } from 'styles/text';
-import colors from 'styles/colors';
+import Images from '@sl/assets/images';
+import { GSCustomText, ICustomText } from '@sl/styles/text';
+import colors from '@sl/styles/colors';
 
 export const GSDrawerLabel = glamor.view({
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
-  paddingHorizontal: 20
+  paddingHorizontal: 20,
 });
 
 export const GSDrawerLabelText = glamor(GSCustomText)<ICustomText>({
@@ -17,12 +17,12 @@ export const GSDrawerLabelText = glamor(GSCustomText)<ICustomText>({
   margin: 10,
   padding: 10,
   flexDirection: 'row-reverse',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
 });
 
 const GSImage = glamor.image({
   width: 40,
-  height: 40
+  height: 40,
 });
 
 export interface IProps {

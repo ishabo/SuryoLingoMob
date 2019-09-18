@@ -3,8 +3,8 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
-import { IQuestion } from 'services/questions';
-import { IAction } from 'services/sagas';
+import { IQuestion } from '@sl/services/questions';
+import { IAction } from '@sl/services/sagas';
 
 export interface ILessonHistory {
   timestamp: Date;

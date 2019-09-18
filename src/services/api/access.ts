@@ -1,5 +1,5 @@
 import SInfo from 'react-native-sensitive-info';
-import Config from 'config';
+import Config from '@sl/config';
 
 export const getAccessToken = async () => {
   const accessToken = await SInfo.getItem('accessToken', Config.sInfoOptions as any);

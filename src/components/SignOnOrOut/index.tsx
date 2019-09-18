@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { IInitialState } from 'services/reducers';
-import { isRegistered, getSourceLanguage } from 'services/selectors';
+import { IInitialState } from '@sl/services/reducers';
+import { isRegistered, getSourceLanguage } from '@sl/services/selectors';
 import { NavigationActions, NavigationResetActionPayload } from 'react-navigation';
 import { Dispatch } from 'redux';
-import { resetToSignon } from 'helpers/navigation';
-import * as signon from 'services/signon';
-import { Analytics } from 'config/firebase';
-import I18n from 'I18n';
-import { GSCustomText, ICustomText } from 'styles/text';
+import { resetToSignon } from '@sl/helpers/navigation';
+import * as signon from '@sl/services/signon';
+import { Analytics } from '@sl/config/firebase';
+import I18n from '@sl/i18n';
+import { GSCustomText, ICustomText } from '@sl/styles/text';
 import glamor from 'glamorous-native';
-import Colors from 'styles/colors';
+import Colors from '@sl/styles/colors';
 import { Text } from 'react-native';
 import { Alert } from 'react-native';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ActivityIndicator } from 'react-native';
 import Modal from 'react-native-modal';
-import colors from 'styles/colors';
+import colors from '@sl/styles/colors';
 import { GSLoading, IProps } from './index';
 
 const renderLoading = () => (

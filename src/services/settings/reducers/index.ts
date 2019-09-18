@@ -1,5 +1,5 @@
 import { types } from '../actions';
-import { IAppSettings, IAppSettingsAction } from 'services/settings';
+import { IAppSettings, IAppSettingsAction } from '@sl/services/settings';
 
 export const initialState: IAppSettings = {};
 

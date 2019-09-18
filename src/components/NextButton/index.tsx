@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Button, View } from 'native-base';
 import glamor from 'glamorous-native';
-import { calcWindowWidth } from 'helpers';
-import { GSCustomText, ICustomText } from 'styles/text';
-import Colors from 'styles/colors';
+import { calcWindowWidth } from '@sl/helpers';
+import { GSCustomText, ICustomText } from '@sl/styles/text';
+import Colors from '@sl/styles/colors';
 
 interface IProps {
   disabled?: boolean;

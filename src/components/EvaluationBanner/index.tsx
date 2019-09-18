@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Colors from 'styles/colors';
-import I18n from 'I18n';
+import Colors from '@sl/styles/colors';
+import I18n from '@sl/i18n';
 import { Text } from 'react-native';
 import {
   GSBanner,

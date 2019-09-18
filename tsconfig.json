@@ -1,26 +1,29 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
     "jsx": "react",
-    "rootDir": "src",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
     "preserveConstEnums": true,
     "allowJs": false,
+    "allowUnusedLabels": false,
     "pretty": true,
+    "declaration": true,
+    "experimentalDecorators":true,
+    "emitDecoratorMetadata": true,
     "sourceMap": true,
     "noImplicitReturns": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
+    "noEmit": true,
+    "resolveJsonModule": false,
     "importHelpers": true,
     "paths": {
-      "*": [
-        "src/*"
-      ]
+      "@sl/*": ["*"]
     }
   },
   "include": [
@@ -42,9 +45,11 @@
     "build",
     "node_modules"
   ],
-  "compileOnSave": false,
+  "compileOnSave":true,
   "lib": [
     "dom",
-    "es7"
+    "es2015",
+    "es2016",
+    "esnext"
   ]
 }

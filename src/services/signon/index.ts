@@ -2,7 +2,7 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as sagas from './sagas';
 import * as api from './api';
-import { IAction } from 'services/sagas';
+import { IAction } from '@sl/services/sagas';
 
 export type TSignonType = string | 'signup' | 'signin';
 

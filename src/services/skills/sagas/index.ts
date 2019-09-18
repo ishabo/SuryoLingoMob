@@ -1,10 +1,10 @@
 import { call, put, select } from 'redux-saga/effects';
-import * as skills from 'services/skills';
-import { getActiveCourse } from 'services/selectors';
-import * as exceptions from 'services/exceptions';
-import { ISagasFunctions } from 'services/sagas';
-import * as assets from 'services/assets';
-import { setLoadingOn, setLoadingOff } from 'services/api/actions';
+import * as skills from '@sl/services/skills';
+import { getActiveCourse } from '@sl/services/selectors';
+import * as exceptions from '@sl/services/exceptions';
+import { ISagasFunctions } from '@sl/services/sagas';
+import * as assets from '@sl/services/assets';
+import { setLoadingOn, setLoadingOff } from '@sl/services/api/actions';
 
 export function* fetchSkills(): IterableIterator<any> {
   const activeCourse = yield select(getActiveCourse);

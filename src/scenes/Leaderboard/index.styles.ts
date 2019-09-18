@@ -1,7 +1,7 @@
 import { Container } from 'native-base';
 import glamor from 'glamorous-native';
-import colors from 'styles/colors';
-import { getWindowWidth } from 'helpers';
+import colors from '@sl/styles/colors';
+import { getWindowWidth } from '@sl/helpers';
 
 export const GSContainer = glamor(Container)({
   flex: 1,

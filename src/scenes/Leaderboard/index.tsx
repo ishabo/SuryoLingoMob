@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { IInitialState } from 'services/reducers';
-import { Hamburger, DrawerItem } from 'components';
-import I18n from 'I18n';
-import * as profile from 'services/profile';
-import * as leaderboard from 'services/leaderboard';
-import { isUserInLeaderboard } from 'services/selectors';
-import images from 'assets/images';
-import { Analytics } from 'config/firebase';
+import { IInitialState } from '@sl/services/reducers';
+import { Hamburger, DrawerItem } from '@sl/components';
+import I18n from '@sl/i18n';
+import * as profile from '@sl/services/profile';
+import * as leaderboard from '@sl/services/leaderboard';
+import { isUserInLeaderboard } from '@sl/services/selectors';
+import images from '@sl/assets/images';
+import { Analytics } from '@sl/config/firebase';
 
 import { NavigationScreenProp } from 'react-navigation';
 import {
@@ -20,12 +20,12 @@ import {
   GSUserXP,
   GSUserProfilePicture,
   GSGap,
-  GSRank
+  GSRank,
 } from './index.styles';
 
 import { Dispatch } from 'redux';
-import { getWindowWidth } from 'helpers';
-import { GSCustomText } from 'styles/text';
+import { getWindowWidth } from '@sl/helpers';
+import { GSCustomText } from '@sl/styles/text';
 import { Text } from 'react-native-animatable';
 
 export interface IProps {
@@ -43,9 +43,11 @@ class Leaderboard extends React.Component<IProps> {
   static navigationOptions = ({ navigation: { navigate } }) => ({
     title: I18n.t('leaderboard.title'),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
-    drawerLabel: <DrawerItem label={I18n.t('leaderboard.title')} icon="leaderboard" />,
-    headerRight: null
-  });
+    drawerLabel: (
+      <DrawerItem label={I18n.t('leaderboard.title')} icon="leaderboard" />
+    ),
+    headerRight: null,
+  })
 
   componentDidMount() {
     Analytics.setCurrentScreen(this.constructor.name);
@@ -60,29 +62,37 @@ class Leaderboard extends React.Component<IProps> {
         </Text>
       </GSRank>
       <GSUserDetails align="right">
-        <GSUserProfilePicture source={this.renderProfilePicture(user.profilePic)} />
+        <GSUserProfilePicture
+          source={this.renderProfilePicture(user.profilePic)}
+        />
       </GSUserDetails>
       <GSUserDetails align="stretch">
-        <GSUserName>{user.name ? user.name.split(' ')[0] : I18n.t('profile.me')}</GSUserName>
+        <GSUserName>
+          {user.name ? user.name.split(' ')[0] : I18n.t('profile.me')}
+        </GSUserName>
       </GSUserDetails>
       <GSUserDetails align="center">
         <GSUserXP>{user.userXp}</GSUserXP>
       </GSUserDetails>
     </GSTopUser>
-  );
+  )
 
   renderProfilePicture = (profilePic: string) => {
     return profilePic ? { uri: profilePic } : images.profile.default;
-  };
+  }
 
-  renderLeaderboard = () => this.props.topUsers.map((user, index) => this.renderUser(user, index + 1));
+  renderLeaderboard = () =>
+    this.props.topUsers.map((user, index) => this.renderUser(user, index + 1))
 
   renderUserPosition = () => {
     const { profile } = this.props;
     const { id, name, userXp } = profile;
     const ratio = this.props.currentUserCourseXpRatio;
-    return this.renderUser({ id, name, userXp, ratio }, this.props.currentUserPosition);
-  };
+    return this.renderUser(
+      { id, name, userXp, ratio },
+      this.props.currentUserPosition,
+    );
+  }
 
   render() {
     return (
@@ -90,14 +100,16 @@ class Leaderboard extends React.Component<IProps> {
         <GSTopUsers
           contentContainerStyle={{
             alignItems: 'stretch',
-            width: getWindowWidth()
+            width: getWindowWidth(),
           }}
         >
           {this.renderLeaderboard()}
           {this.props.isUserInLeaderboard || (
             <GSCurrentUserPosition>
               <GSGap>
-                <GSCustomText style={{ alignSelf: 'center', fontSize: 30 }}>...</GSCustomText>
+                <GSCustomText style={{ alignSelf: 'center', fontSize: 30 }}>
+                  ...
+                </GSCustomText>
               </GSGap>
               {this.renderUserPosition()}
             </GSCurrentUserPosition>
@@ -109,7 +121,7 @@ class Leaderboard extends React.Component<IProps> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard())
+  fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard()),
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
@@ -117,10 +129,10 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   topUsers: state.leaderboard.topUsers,
   currentUserPosition: state.leaderboard.currentUserPosition,
   currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio,
-  profile: state.profile
+  profile: state.profile,
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Leaderboard);

@@ -1,4 +1,4 @@
-import { ISkill } from 'services/skills';
+import { ISkill } from '@sl/services/skills';
 
 const namespace = 'SuryoLingo/Skills';
 

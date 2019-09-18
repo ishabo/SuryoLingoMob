@@ -1,9 +1,8 @@
 import { reducer as courseReducer } from './index';
 import { types } from '../actions';
-import courses from 'data/dummy/courses';
+import courses from '@sl/data/dummy/courses';
 
 describe('course reducer', () => {
-
   it('saves courses', () => {
     const action = {
       courses: [...courses],
@@ -12,7 +11,9 @@ describe('course reducer', () => {
 
     const state = [];
     const updatedState = courseReducer(state, action);
-    expect(JSON.stringify(updatedState) === JSON.stringify(courses)).toEqual(true);
+    expect(JSON.stringify(updatedState) === JSON.stringify(courses)).toEqual(
+      true,
+    );
   });
 
   it('enroll in course', () => {
@@ -26,7 +27,9 @@ describe('course reducer', () => {
     newState[0].enrolled = true; // first course will also be enrolled
     const updatedState = courseReducer(state, action);
 
-    expect(JSON.stringify(updatedState) === JSON.stringify(newState)).toEqual(true);
+    expect(JSON.stringify(updatedState) === JSON.stringify(newState)).toEqual(
+      true,
+    );
   });
 
   it('set course as active and sets others as inactive', () => {

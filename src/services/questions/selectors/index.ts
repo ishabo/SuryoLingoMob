@@ -1,5 +1,5 @@
 import { IQuestions, IQuestion } from '../';
-import { isReverseQuestion } from 'helpers';
+import { isReverseQuestion } from '@sl/helpers';
 
 export const getPending = (state: IQuestions) => state.pending;
 

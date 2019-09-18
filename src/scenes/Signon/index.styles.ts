@@ -1,9 +1,9 @@
 import { Button, Container, Icon } from 'native-base';
 import glamor from 'glamorous-native';
-import Colors from 'styles/colors';
+import Colors from '@sl/styles/colors';
 import { SafeAreaView, Platform } from 'react-native';
-export * from 'styles/forms';
-export * from 'styles/text';
+export * from '@sl/styles/forms';
+export * from '@sl/styles/text';
 
 const AreaView = Platform.OS === 'ios' ? SafeAreaView : Container;
 

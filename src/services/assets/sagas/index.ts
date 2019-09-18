@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
-import * as assets from 'services/assets';
-import { ISagasFunctions } from 'services/sagas';
+import * as assets from '@sl/services/assets';
+import { ISagasFunctions } from '@sl/services/sagas';
 
 export function* fetchSkillIcons (): IterableIterator<any> {
   const icons = yield call(assets.api.getSkillIcons);

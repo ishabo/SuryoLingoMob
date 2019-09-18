@@ -1,6 +1,6 @@
 import { reducer as skillReducer } from './index';
 import { types } from '../actions';
-import { skills } from 'data/dummy/skills';
+import { skills } from '@sl/data/dummy/skills';
 import cloneDeep from 'clone-deep';
 
 import MockDate from 'mockdate';
@@ -9,7 +9,7 @@ describe('course reducer', () => {
   it('saves skills', () => {
     const action = {
       payload: [...skills],
-      type: types.SAVE_SKILLS
+      type: types.SAVE_SKILLS,
     };
 
     const state = [];
@@ -24,7 +24,7 @@ describe('course reducer', () => {
   it('activate unit', () => {
     const action = {
       unit: 2,
-      type: types.ACTIVATE_UNIT
+      type: types.ACTIVATE_UNIT,
     };
 
     const state = [...skills];
@@ -44,7 +44,7 @@ describe('course reducer', () => {
       lessonXP: 100,
       lessonId: '11',
       timestamp: timestamp2,
-      type: types.MARK_LESSON_FINISHED
+      type: types.MARK_LESSON_FINISHED,
     };
 
     const state = cloneDeep(skills);
@@ -54,8 +54,8 @@ describe('course reducer', () => {
     state[0].lessons[0].lessonHistory = [
       {
         timestamp: timestamp1,
-        thisLessonXp: 50
-      }
+        thisLessonXp: 50,
+      },
     ];
     state[0].progress = 0.5;
     state[0].totalSkillXp = 0;
@@ -65,7 +65,7 @@ describe('course reducer', () => {
     newState[0].lessons[0].totalLessonXp = 150;
     newState[0].lessons[0].lessonHistory.push({
       timestamp: timestamp2,
-      thisLessonXp: 100
+      thisLessonXp: 100,
     });
     newState[0].progress = 0.5;
 

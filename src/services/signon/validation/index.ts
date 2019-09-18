@@ -1,5 +1,5 @@
-import { ISignonFormData, ISignonFormErrors } from 'services/signon';
-import Config from 'config/';
+import { ISignonFormData, ISignonFormErrors } from '@sl/services/signon';
+import Config from '@sl/config';
 import { isEmpty } from 'lodash';
 
 const validateField = (

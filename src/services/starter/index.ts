@@ -2,7 +2,7 @@ import * as sagas from './sagas';
 import * as actions from './actions';
 
 export interface IStarterActions {
-  type: string;
+  type?: string;
   checkSettings: boolean;
 }
 

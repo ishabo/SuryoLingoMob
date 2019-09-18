@@ -1,5 +1,5 @@
 import glamor from 'glamorous-native';
-import Colors from 'styles/colors';
+import Colors from '@sl/styles/colors';
 
 export const GSBadge = glamor.view({
   width: 80

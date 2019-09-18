@@ -1,5 +1,5 @@
-import * as progress from 'services/progress';
-import { IInitialState } from 'services/reducers';
+import * as progress from '@sl/services/progress';
+import { IInitialState } from '@sl/services/reducers';
 import { Store } from 'redux';
 
 export default (store: Store<IInitialState>) => () => {

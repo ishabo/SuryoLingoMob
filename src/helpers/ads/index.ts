@@ -1,6 +1,6 @@
 import { AdMobInterstitial } from 'react-native-admob';
-import vars from 'config/vars';
-import { logError } from 'helpers';
+import vars from '@sl/config/vars';
+import { logError } from '@sl/helpers';
 
 export type TScenes = 'skills' | 'completion';
 

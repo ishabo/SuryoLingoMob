@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import glamor from 'glamorous-native';
-import { getSkillIcon } from 'services/selectors';
-import { IInitialState } from 'services/reducers';
-import { TImageSizes } from 'services/assets';
+import { getSkillIcon } from '@sl/services/selectors';
+import { IInitialState } from '@sl/services/reducers';
+import { TImageSizes } from '@sl/services/assets';
 
 const GSIcon = glamor.image<{ size: number }>(
   {

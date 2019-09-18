@@ -1,11 +1,11 @@
 import React from 'react';
 import { DrawerItems } from 'react-navigation';
 import { connect } from 'react-redux';
-import { IInitialState } from 'services/reducers';
-import { isRegistered } from 'services/selectors';
-import { Analytics } from 'config/firebase';
+import { IInitialState } from '@sl/services/reducers';
+import { isRegistered } from '@sl/services/selectors';
+import { Analytics } from '@sl/config/firebase';
 import glamor from 'glamorous-native';
-import colors from 'styles/colors';
+import colors from '@sl/styles/colors';
 
 interface IProps {
   items: { routeName: string; key: number | string }[];

@@ -1,14 +1,14 @@
 import { call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import * as questions from '../';
-import * as dictionaries from 'services/dictionaries';
+import * as dictionaries from '@sl/services/dictionaries';
 import { NavigationActions } from 'react-navigation';
 import { getPending, getLessonInProgress } from '../../selectors';
-import { setLoadingOn, setLoadingOff } from 'services/api/actions';
-import { ISagasFunctions } from 'services/sagas';
-import { downloadFile } from 'helpers';
+import { setLoadingOn, setLoadingOff } from '@sl/services/api/actions';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { downloadFile } from '@sl/helpers';
 import cloneDeep from 'clone-deep';
-import { finishLesson } from 'services/progress/sagas';
+import { finishLesson } from '@sl/services/progress/sagas';
 
 export function* fetchQuestions(action: questions.IQuestionsAction): IterableIterator<any> {
   let fetchedQuestions;

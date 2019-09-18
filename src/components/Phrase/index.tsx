@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { dashify } from 'helpers';
+import { dashify } from '@sl/helpers';
 import { GSHintedSentence, GSSentence } from './index.styles';
 import PopoverTooltip from 'react-native-popover-tooltip';
 import { Keyboard, View } from 'react-native';
-import { IWordHint } from 'services/dictionaries';
-import { ISentence } from 'services/questions';
-import { detectLanguage } from 'helpers/language';
+import { IWordHint } from '@sl/services/dictionaries';
+import { ISentence } from '@sl/services/questions';
+import { detectLanguage } from '@sl/helpers/language';
 import { KeyboardUtils } from 'react-native-keyboard-input';
 
 export interface IProps {

@@ -1,6 +1,6 @@
 import glamor from 'glamorous-native';
-import Colors from 'styles/colors';
-import { GSCustomText, ICustomText, GSCustomStudyText } from 'styles/text';
+import Colors from '@sl/styles/colors';
+import { GSCustomText, ICustomText, GSCustomStudyText } from '@sl/styles/text';
 
 interface IWordProps extends ICustomText {
   shadowed?: boolean;

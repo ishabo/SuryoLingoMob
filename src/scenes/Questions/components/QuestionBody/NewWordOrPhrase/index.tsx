@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { scaleSize } from 'helpers';
+import { scaleSize } from '@sl/helpers';
 import { IAnswerProps } from '../../../index.types';
-import { ICourse } from 'services/courses';
-import Phrase, { IProps as IPhraseProps } from 'components/Phrase';
+import { ICourse } from '@sl/services/courses';
+import Phrase, { IProps as IPhraseProps } from '@sl/components/Phrase';
 import { GSContainer, GSMeaning, GSPhrase } from './index.styles';
 
 interface IProps extends IAnswerProps, IPhraseProps {

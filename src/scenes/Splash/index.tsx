@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { NetInfo } from 'react-native';
 import { connect } from 'react-redux';
-import { hasNetworkError, getActiveCourse } from 'services/selectors';
-import images from 'assets/images';
-import * as exceptions from 'services/exceptions';
+import { hasNetworkError, getActiveCourse } from '@sl/services/selectors';
+import images from '@sl/assets/images';
+import * as exceptions from '@sl/services/exceptions';
 import { GSContainer, GSLogo, GSVersion } from './index.styles';
-import { exitApp, alertConnection } from 'helpers';
-import * as starter from 'services/starter';
+import { exitApp, alertConnection } from '@sl/helpers';
+import * as starter from '@sl/services/starter';
 import VersionNumber from 'react-native-version-number';
 import { Dispatch } from 'redux';
-import { IInitialState } from 'services/reducers';
-import { ICourse } from 'services/courses';
-import { Analytics, Messaging } from 'config/firebase';
-import config from 'config';
+import { IInitialState } from '@sl/services/reducers';
+import { ICourse } from '@sl/services/courses';
+import { Analytics, Messaging } from '@sl/config/firebase';
+import config from '@sl/config';
 const { isWorkingOffline } = config;
 
 export interface IProps {

@@ -1,4 +1,4 @@
-import { IPrefererences } from 'services/preferences';
+import { IPrefererences } from '@sl/services/preferences';
 
 const namespace = 'SuryoLingo/preferences';
 

@@ -1,8 +1,8 @@
 import { Item, Input, Label, Form } from 'native-base';
-import Colors from 'styles/colors';
+import Colors from '@sl/styles/colors';
 import glamor from 'glamorous-native';
-import { GSCustomText, ICustomText } from 'styles/text';
-import { scaleSize, isShortDevice, isNarrowDevice } from 'helpers';
+import { GSCustomText, ICustomText } from '@sl/styles/text';
+import { scaleSize, isShortDevice, isNarrowDevice } from '@sl/helpers';
 
 export const GSLebel = glamor(Label)({
   color: 'black'

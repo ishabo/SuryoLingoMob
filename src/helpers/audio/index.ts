@@ -3,7 +3,7 @@ import parseUrl from 'url-parse';
 import RNFS from 'react-native-fs';
 import { Platform } from 'react-native';
 // import SoundPlayer from 'react-native-sound-player';
-import { logError } from 'helpers';
+import { logError } from '@sl/helpers';
 
 let audio;
 

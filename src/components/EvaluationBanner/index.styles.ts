@@ -1,7 +1,7 @@
 import glamor from 'glamorous-native';
-import Colors from 'styles/colors';
-import { isNarrowDevice, scaleSize } from 'helpers';
-import { GSCustomText, ICustomText } from 'styles/text';
+import Colors from '@sl/styles/colors';
+import { isNarrowDevice, scaleSize } from '@sl/helpers';
+import { GSCustomText, ICustomText } from '@sl/styles/text';
 
 const height = 120;
 

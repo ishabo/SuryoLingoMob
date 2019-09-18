@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { IInitialState } from 'services/reducers';
+import { IInitialState } from '@sl/services/reducers';
 
 export interface ILoadingProps {
   loading: boolean;

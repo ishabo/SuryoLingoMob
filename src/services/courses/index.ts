@@ -3,7 +3,7 @@ import * as api from './api';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import * as sagas from './sagas';
-import { IAction } from 'services/sagas';
+import { IAction } from '@sl/services/sagas';
 
 export type TTargetLangs = string | 'cl-syc' | 'tur-syr';
 export type TLearnerLangs = string | 'cl-ara' | 'eng';

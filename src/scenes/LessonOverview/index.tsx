@@ -1,12 +1,12 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { IInitialState } from 'services/reducers';
-import { IQuestion, IPhrase } from 'services/questions';
-import { getPhrases } from 'services/selectors';
-import { StudyPhrase } from 'components';
+import { IInitialState } from '@sl/services/reducers';
+import { IQuestion, IPhrase } from '@sl/services/questions';
+import { getPhrases } from '@sl/services/selectors';
+import { StudyPhrase } from '@sl/components';
 import shortid from 'shortid';
-import { Analytics } from 'config/firebase';
+import { Analytics } from '@sl/config/firebase';
 import { GSContainer, GSOverview, GSPhrase, GSTranslation } from './index.styles';
 interface IProps {
   phrases: IPhrase[];

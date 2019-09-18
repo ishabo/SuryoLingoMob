@@ -2,7 +2,7 @@ import * as api from './api';
 import * as sagas from './sagas';
 import * as actions from './actions';
 import * as reducers from './reducers';
-import { IAction } from 'services/sagas';
+import { IAction } from '@sl/services/sagas';
 
 export interface IDeviceSettings {
   version: string;

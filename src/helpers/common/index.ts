@@ -1,7 +1,7 @@
 import changeObjectCase from 'change-object-case';
 import RNExitApp from 'react-native-exit-app';
 import { Linking, Platform } from 'react-native';
-import { logError } from 'helpers';
+import { logError } from '@sl/helpers';
 
 export const changeCase = (data: object, direction: 'snake' | 'camel') => {
   const caseFunction = Array.isArray(data) ? `Array` : `Keys`;

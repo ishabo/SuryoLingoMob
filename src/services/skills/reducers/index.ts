@@ -1,4 +1,4 @@
-import * as skill from 'services/skills';
+import * as skill from '@sl/services/skills';
 import { types } from '../actions';
 import cloneDeep from 'clone-deep';
 

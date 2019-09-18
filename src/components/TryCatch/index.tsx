@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { logError } from 'helpers';
+import { logError } from '@sl/helpers';
 
 interface IProps {
   children: any;

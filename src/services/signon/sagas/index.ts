@@ -1,23 +1,23 @@
 import { call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import * as signon from 'services/signon';
-import * as profile from 'services/profile';
-import * as progress from 'services/progress';
-import * as skills from 'services/skills';
-import * as courses from 'services/courses';
-import { IInitialState } from 'services/reducers';
+import * as signon from '@sl/services/signon';
+import * as profile from '@sl/services/profile';
+import * as progress from '@sl/services/progress';
+import * as skills from '@sl/services/skills';
+import * as courses from '@sl/services/courses';
+import { IInitialState } from '@sl/services/reducers';
 import { isEmpty } from 'lodash';
 import { validateSigon } from '../validation';
-import { setLoadingOn, setLoadingOff, setFailureMessage, setSuccessMessage } from 'services/api/actions';
-import { ISagasFunctions } from 'services/sagas';
-import { getActiveCourse } from 'services/selectors';
-import { isApiResponse, resetToSkills, navToCourses } from 'helpers';
+import { setLoadingOn, setLoadingOff, setFailureMessage, setSuccessMessage } from '@sl/services/api/actions';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { getActiveCourse } from '@sl/services/selectors';
+import { isApiResponse, resetToSkills, navToCourses } from '@sl/helpers';
 import RNRestart from 'react-native-restart';
-import { deleteAccessToken } from 'services/api/access';
+import { deleteAccessToken } from '@sl/services/api/access';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { NavigationActions } from 'react-navigation';
-import { Analytics } from 'config/firebase';
-import { logError } from 'helpers';
+import { Analytics } from '@sl/config/firebase';
+import { logError } from '@sl/helpers';
 
 function* captureBadRequest(response, errors): IterableIterator<any> {
   // logError(JSON.stringify(response));

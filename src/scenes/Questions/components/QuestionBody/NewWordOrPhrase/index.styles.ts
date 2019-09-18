@@ -1,7 +1,7 @@
 import glamor from 'glamorous-native';
 import { Container } from 'native-base';
-import { GSCustomText, ICustomText } from 'styles/text';
-import { scaleSize, getWindowWidth } from 'helpers';
+import { GSCustomText, ICustomText } from '@sl/styles/text';
+import { scaleSize, getWindowWidth } from '@sl/helpers';
 
 export const GSContainer = glamor(Container)({
   paddingVertical: 50,

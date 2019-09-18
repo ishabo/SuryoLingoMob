@@ -1,11 +1,11 @@
 import { call, put, select } from 'redux-saga/effects';
-import * as profile from 'services/profile';
+import * as profile from '@sl/services/profile';
 import { isEmpty } from 'lodash';
-import { IInitialState } from 'services/reducers';
-import { ISagasFunctions } from 'services/sagas';
-import { setAccessToken } from 'services/api/access';
-import { isRegistered } from 'services/selectors';
-import { Analytics, Crashlytics } from 'config/firebase';
+import { IInitialState } from '@sl/services/reducers';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { setAccessToken } from '@sl/services/api/access';
+import { isRegistered } from '@sl/services/selectors';
+import { Analytics, Crashlytics } from '@sl/config/firebase';
 
 export function* createProfileIfNeeded(action: profile.IProfileAction): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);

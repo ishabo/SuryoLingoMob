@@ -2,8 +2,8 @@ import * as reducers from './reducers';
 import * as actions from './actions';
 import * as sagas from './sagas';
 import * as api from './api';
-import { IAction } from 'services/sagas';
-import { ICourse } from 'services/courses';
+import { IAction } from '@sl/services/sagas';
+import { ICourse } from '@sl/services/courses';
 export type TSignonType = 'connect' | 'signup' | 'signin';
 
 export interface IProfile {

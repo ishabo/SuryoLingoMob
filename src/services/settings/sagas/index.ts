@@ -1,11 +1,11 @@
 import { put, call, select } from 'redux-saga/effects';
-import { ISagasFunctions } from 'services/sagas';
-import { IInitialState } from 'services/reducers';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { IInitialState } from '@sl/services/reducers';
 import * as settings from '../';
 
-import { getSettings } from 'services/settings/api';
-import { alertToUpdateApp, alertMaintenance } from 'helpers';
-import { shouldUpdateApp, getDeviceSpecificSettings, isOnMaintenance } from 'services/selectors';
+import { getSettings } from '@sl/services/settings/api';
+import { alertToUpdateApp, alertMaintenance } from '@sl/helpers';
+import { shouldUpdateApp, getDeviceSpecificSettings, isOnMaintenance } from '@sl/services/selectors';
 
 export function* fetchSettings(): IterableIterator<any> {
   try {

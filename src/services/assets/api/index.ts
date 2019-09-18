@@ -1,4 +1,4 @@
-import { create } from 'services/api';
+import { create } from '@sl/services/api';
 
 export const getSkillIcons = () => {
   const api = create();

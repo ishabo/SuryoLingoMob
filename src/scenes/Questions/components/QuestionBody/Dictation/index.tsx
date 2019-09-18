@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Container } from 'native-base';
-import { TextArea } from 'components';
+import { TextArea } from '@sl/components';
 import { IAnswerProps } from '../../../index.types';
-import I18n from 'I18n';
-import { ICourse } from 'services/courses';
+import I18n from '@sl/i18n';
+import { ICourse } from '@sl/services/courses';
 import glamor from 'glamorous-native';
 
 interface IProps extends IAnswerProps {

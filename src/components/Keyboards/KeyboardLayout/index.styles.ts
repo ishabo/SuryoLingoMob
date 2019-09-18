@@ -1,24 +1,24 @@
 import glamor from 'glamorous-native';
-import Colors from 'styles/colors';
+import Colors from '@sl/styles/colors';
 import { Icon } from 'native-base';
-import { GSCustomText, ICustomText } from 'styles/text';
-import { isNarrowDevice } from 'helpers';
+import { GSCustomText, ICustomText } from '@sl/styles/text';
+import { isNarrowDevice } from '@sl/helpers';
 
 export const GSContainer = glamor.view({
   marginTop: 20,
-  backgroundColor: 'white'
+  backgroundColor: 'white',
 });
 
 const textStyle = {
   textAlign: 'center',
   alignSelf: 'center',
-  fontSize: 20
+  fontSize: 20,
 };
 
 export const GSKeyText = glamor(GSCustomText)<ICustomText>({
   ...textStyle,
-  color: Colors.white
-});
+  color: Colors.white,
+} as any);
 
 export const GSIcon = glamor(Icon)({
   ...textStyle,

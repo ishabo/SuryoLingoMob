@@ -1,7 +1,7 @@
 import { Button } from 'native-base';
 import glamor from 'glamorous-native';
-import { GSCustomText, ICustomText } from 'styles/text';
-import Colors from 'styles/colors';
+import { GSCustomText, ICustomText } from '@sl/styles/text';
+import Colors from '@sl/styles/colors';
 
 export const GSLesson = glamor.view({
   height: 300,

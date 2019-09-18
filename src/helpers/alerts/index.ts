@@ -1,7 +1,7 @@
 import { Alert, AlertButton } from 'react-native';
-import I18n from 'I18n';
-import { exitApp, goToAppStore } from 'helpers';
-import { TSignonFacebookErrors, TSignonEmailErrors } from 'services/signon';
+import I18n from '@sl/i18n';
+import { exitApp, goToAppStore } from '@sl/helpers';
+import { TSignonFacebookErrors, TSignonEmailErrors } from '@sl/services/signon';
 
 export const alertConnection = (
   onReconnect: () => void,

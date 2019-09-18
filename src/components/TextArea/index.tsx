@@ -2,13 +2,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Platform, View, NativeModules, Keyboard } from 'react-native';
 import { GSContainer, GSContent, GSTextArea, GSTextAreaContainer, GSKeyboardToggleButton } from './index.styles';
-import Colors from 'styles/colors';
-import { isNarrowDevice } from 'helpers';
+import Colors from '@sl/styles/colors';
+import { isNarrowDevice } from '@sl/helpers';
 import { KeyboardAccessoryView, KeyboardRegistry, KeyboardUtils } from 'react-native-keyboard-input';
-import Keyboards, { IKeyboardActions } from 'components/Keyboards';
+import Keyboards, { IKeyboardActions } from '@sl/components/Keyboards';
 import { Icon } from 'native-base';
-import { IInitialState } from 'services/reducers';
-import { toggleCustomKeyboard, setPreferences } from 'services/preferences/actions';
+import { IInitialState } from '@sl/services/reducers';
+import { toggleCustomKeyboard, setPreferences } from '@sl/services/preferences/actions';
 
 const iosScrollBehavior =
   Platform.OS === 'ios' ? NativeModules.KeyboardTrackingViewManager.KeyboardTrackingScrollBehaviorNone : null;

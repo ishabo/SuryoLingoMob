@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { BackHandler, TextInputProperties, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Colors from 'styles/colors';
-import I18n from 'I18n';
-import { IInitialState } from 'services/reducers';
-import * as signon from 'services/signon';
-import * as profile from 'services/profile';
+import Colors from '@sl/styles/colors';
+import I18n from '@sl/i18n';
+import { IInitialState } from '@sl/services/reducers';
+import * as signon from '@sl/services/signon';
+import * as profile from '@sl/services/profile';
 
 import {
   GSContainer,
@@ -27,16 +27,16 @@ import {
   GSSeperatorLine,
 } from './index.styles';
 
-import { GSCustomText } from 'styles/text';
-import { NextButton, DrawerItem, Loading } from 'components';
+import { GSCustomText } from '@sl/styles/text';
+import { NextButton, DrawerItem, Loading } from '@sl/components';
 import { isEmpty } from 'lodash';
 import { NavigationScreenProp } from 'react-navigation';
-import { getActiveCourse } from 'services/selectors';
-import { ICourse } from 'services/courses';
-import { exitApp, TAlertSubject, showAlert } from 'helpers';
+import { getActiveCourse } from '@sl/services/selectors';
+import { ICourse } from '@sl/services/courses';
+import { exitApp, TAlertSubject, showAlert } from '@sl/helpers';
 import { Dispatch } from 'redux';
-import { FBLoginButton } from 'components';
-import { Analytics } from 'config/firebase';
+import { FBLoginButton } from '@sl/components';
+import { Analytics } from '@sl/config/firebase';
 
 interface IState {
   signUpOrIn: signon.TSignonType;

@@ -1,5 +1,5 @@
 import DeviceInfo from 'react-native-device-info';
-import { Messaging } from 'config/firebase';
+import { Messaging } from '@sl/config/firebase';
 
 const deviceDetails = async () => ({
   fcmToken: await Messaging.getToken(),

@@ -1,4 +1,4 @@
-import { ICourse } from 'services/courses';
+import { ICourse } from '@sl/services/courses';
 
 const courses: ICourse[] = [
   {

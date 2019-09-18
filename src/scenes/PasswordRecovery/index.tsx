@@ -3,17 +3,17 @@ import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { GSContainer } from './index.styles';
 import { Dispatch } from 'redux';
-import I18n from 'I18n';
-import * as signon from 'services/signon';
-import { GSInput, GSForm } from 'styles/forms';
-import { NextButton } from 'components';
-import { GSTitle, GSAlert, GSCustomText } from 'styles/text';
-import { IInitialState } from 'services/reducers';
-import { IApiStatus } from 'services/api/reducers';
+import I18n from '@sl/i18n';
+import * as signon from '@sl/services/signon';
+import { GSInput, GSForm } from '@sl/styles/forms';
+import { NextButton } from '@sl/components';
+import { GSTitle, GSAlert, GSCustomText } from '@sl/styles/text';
+import { IInitialState } from '@sl/services/reducers';
+import { IApiStatus } from '@sl/services/api/reducers';
 import { Item } from 'native-base';
 import { NavigationScreenProp } from 'react-navigation';
-import { GSSeparator } from 'styles/layouts';
-import { Analytics } from 'config/firebase';
+import { GSSeparator } from '@sl/styles/layouts';
+import { Analytics } from '@sl/config/firebase';
 
 export interface IProps {
   recoverPassword: (email: string) => void;

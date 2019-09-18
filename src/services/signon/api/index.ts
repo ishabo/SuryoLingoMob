@@ -1,4 +1,4 @@
-import { create } from 'services/api';
+import { create } from '@sl/services/api';
 import { ISignonFormData } from '../';
 import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 

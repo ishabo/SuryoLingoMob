@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { IAnswerProps } from '../../../index.types';
-import I18n from 'I18n';
+import I18n from '@sl/i18n';
 import shortid from 'shortid';
-import { ICourse } from 'services/courses';
+import { ICourse } from '@sl/services/courses';
 import { TouchableOpacity, ScrollView } from 'react-native';
 import { GSChoice, GSContainer, GSContent, GSRadio, GSText, GSTitle } from './index.styles';
 import { shuffle } from 'lodash';

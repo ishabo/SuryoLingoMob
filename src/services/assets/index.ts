@@ -3,7 +3,7 @@ import * as api from './api';
 import * as actions from './actions';
 import * as sagas from './sagas';
 import * as selectors from './selectors';
-import { IAction } from 'services/sagas';
+import { IAction } from '@sl/services/sagas';
 
 export type TImageSizes = 'hdpi' | 'mdpi' | 'xhdpi' | 'xxhdpi' | 'xxxhdpi';
 

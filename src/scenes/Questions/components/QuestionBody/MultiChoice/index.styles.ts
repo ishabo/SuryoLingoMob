@@ -1,8 +1,8 @@
 import { Container, Content } from 'native-base';
 
 import glamor from 'glamorous-native';
-import { GSCustomText, ICustomText, GSCustomStudyText } from 'styles/text';
-import Colors from 'styles/colors';
+import { GSCustomText, ICustomText, GSCustomStudyText } from '@sl/styles/text';
+import Colors from '@sl/styles/colors';
 
 export const GSChoice = glamor.view<{ checked: boolean }>(
   {

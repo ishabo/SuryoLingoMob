@@ -1,4 +1,4 @@
-import { ISkill, ILesson } from 'services/skills';
+import { ISkill, ILesson } from '@sl/services/skills';
 
 const lessons: ILesson[] = [
   {

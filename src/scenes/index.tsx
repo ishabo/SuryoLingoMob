@@ -8,10 +8,10 @@ import RNRestart from 'react-native-restart';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import GlobalFont from 'react-native-global-font';
 
-import config from 'config/';
-import { Alert } from 'components';
-import { getFont } from 'assets/fonts';
-import { logError } from 'helpers';
+import config from '@sl/config/';
+import { Alert } from '@sl/components';
+import { getFont } from '@sl/assets/fonts';
+import { logError } from '@sl/helpers';
 import { getStoreInstance } from '../services/store';
 
 setCrashReporter(logError);

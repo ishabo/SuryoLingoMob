@@ -5,8 +5,8 @@ import { GSAnswerBox, GSSelectionBox, GSWordBox, GSWordText, GSTitle } from './i
 import { shuffle, remove } from 'lodash';
 import { IAnswerProps } from '../../../index.types';
 import shortid from 'shortid';
-import I18n from 'I18n';
-import { ICourse } from 'services/courses';
+import I18n from '@sl/i18n';
+import { ICourse } from '@sl/services/courses';
 
 export interface IWord {
   id: string;

@@ -1,4 +1,4 @@
-import language, { ILangConfig, IReplacePattern } from 'config/language';
+import language, { ILangConfig, IReplacePattern } from '@sl/config/language';
 
 const isOfLanguage = (arr: string[], text: string): boolean => {
   const firstLetter = text[0];

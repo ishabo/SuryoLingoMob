@@ -1,8 +1,8 @@
-import { ICustomText, GSCustomStudyText } from 'styles/text';
+import { ICustomText, GSCustomStudyText } from '@sl/styles/text';
 import glamor from 'glamorous-native';
-import Colors from 'styles/colors';
+import Colors from '@sl/styles/colors';
 import { StyleProp, TextStyle } from 'react-native';
-import { scaleSize } from 'helpers';
+import { scaleSize } from '@sl/helpers';
 
 export const GSHints = glamor.view({
   flex: 1,

@@ -11,9 +11,9 @@ import {
   getWindowWidth,
   getLangConfig,
   isShortDevice
-} from 'helpers';
+} from '@sl/helpers';
 import { connect } from 'react-redux';
-import { nextQuestionOrFinish, TQuestionType } from 'services/questions/actions';
+import { nextQuestionOrFinish, TQuestionType } from '@sl/services/questions/actions';
 import {
   getActiveCourse,
   calcProress,
@@ -22,20 +22,20 @@ import {
   getSkillInProgress,
   getTargetLanguage,
   getSourceLanguage
-} from 'services/selectors';
-import { GSCustomStudyText } from 'styles/text';
-import Colors from 'styles/colors';
-import I18n from 'I18n';
+} from '@sl/services/selectors';
+import { GSCustomStudyText } from '@sl/styles/text';
+import Colors from '@sl/styles/colors';
+import I18n from '@sl/i18n';
 import { GSIcon, GSProgress, GSFooterAndBody, GSContainer } from './index.styles';
-import { GSHeader, GSBody, GSFooter } from 'styles/layouts';
+import { GSHeader, GSBody, GSFooter } from '@sl/styles/layouts';
 import { IProps, IState, TAnswer } from './index.types';
 import { NavigationActions } from 'react-navigation';
-import { NextButton, SwitchButton, EvaluationBanner } from 'components';
+import { NextButton, SwitchButton, EvaluationBanner } from '@sl/components';
 import { Dispatch } from 'redux';
-import { IInitialState } from 'services/reducers';
+import { IInitialState } from '@sl/services/reducers';
 import QuestionBody from './components/QuestionBody';
 import { KeyboardUtils } from 'react-native-keyboard-input';
-import { Analytics } from 'config/firebase';
+import { Analytics } from '@sl/config/firebase';
 
 class Questions extends React.Component<IProps, IState> {
   public state = {

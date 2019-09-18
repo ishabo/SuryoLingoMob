@@ -1,5 +1,5 @@
 import { NavigationActions } from 'react-navigation';
-import { ISkill } from 'services/skills';
+import { ISkill } from '@sl/services/skills';
 
 export const navToSkills = () => NavigationActions.navigate({ routeName: 'Skills' });
 

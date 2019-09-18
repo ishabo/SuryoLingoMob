@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { ScrollView, Alert, Animated, SafeAreaView } from 'react-native';
-import { ICourse } from 'services/courses';
+import { ICourse } from '@sl/services/courses';
 import { connect } from 'react-redux';
-import { switchCourse } from 'services/courses/actions';
-import I18n from 'I18n';
+import { switchCourse } from '@sl/services/courses/actions';
+import I18n from '@sl/i18n';
 import { GSContainer, GSTitle, GSCourse, GSAnimatable } from './index.styles';
-import { snakeToCamel, getWindowWidth } from 'helpers';
+import { snakeToCamel, getWindowWidth } from '@sl/helpers';
 import { CachedImage, ImageCacheProvider } from 'react-native-cached-image';
-import { IAssets } from 'services/assets';
-import { IInitialState } from 'services/reducers';
+import { IAssets } from '@sl/services/assets';
+import { IInitialState } from '@sl/services/reducers';
 import { AnimatableAnimationMethods } from 'react-native-animatable';
-import { DrawerItem, WhenReady } from 'components';
-import { Analytics } from 'config/firebase';
+import { DrawerItem, WhenReady } from '@sl/components';
+import { Analytics } from '@sl/config/firebase';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
 

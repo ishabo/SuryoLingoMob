@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { WebView, Keyboard } from 'react-native';
 import { Container, Icon } from 'native-base';
-import { IQuestion } from 'services/questions';
-import * as skill from 'services/skills';
-import * as course from 'services/courses';
-import { isReverseQuestion, hintify } from 'helpers';
-import I18n from 'I18n';
+import { IQuestion } from '@sl/services/questions';
+import * as skill from '@sl/services/skills';
+import * as course from '@sl/services/courses';
+import { isReverseQuestion, hintify } from '@sl/helpers';
+import I18n from '@sl/i18n';
 import glamor from 'glamorous-native';
-import { TAnswer } from 'scenes/Questions/index.types';
+import { TAnswer } from '@sl/scenes/Questions/index.types';
 import MultiChoice from './MultiChoice';
 import Translation from './Translation';
 import Dictation from './Dictation';
@@ -16,14 +16,14 @@ import NewWordOrPhrase from './NewWordOrPhrase';
 import { isEmpty, camelCase } from 'lodash';
 import Modal from 'react-native-modal';
 import shortid from 'shortid';
-import Colors from 'styles/colors';
-import { IDictionary } from 'services/dictionaries';
-import { downloadAndPlayAudio } from 'helpers/audio';
-import { SwitchButton, StudyPhrase } from 'components';
+import Colors from '@sl/styles/colors';
+import { IDictionary } from '@sl/services/dictionaries';
+import { downloadAndPlayAudio } from '@sl/helpers/audio';
+import { SwitchButton, StudyPhrase } from '@sl/components';
 import { KeyboardUtils } from 'react-native-keyboard-input';
 import garshonify from 'garshonify';
-import { Analytics } from 'config/firebase';
-import { logError } from 'helpers';
+import { Analytics } from '@sl/config/firebase';
+import { logError } from '@sl/helpers';
 
 interface IProps {
   question: IQuestion;
@@ -50,12 +50,16 @@ class QuestionBody extends React.Component<IProps, IState> {
     modalOn: false,
     garshoniToggle: false,
     audioHasPlayed: false,
-    dictationToTranslationToggle: false
+    dictationToTranslationToggle: false,
   };
 
   componentDidMount() {
     const soundTrack = this.pathToSoundTrack();
-    if (soundTrack && this.state.audioHasPlayed === false && this.showAndPlaySound()) {
+    if (
+      soundTrack &&
+      this.state.audioHasPlayed === false &&
+      this.showAndPlaySound()
+    ) {
       this.setState({ audioHasPlayed: true }, async () => {
         await downloadAndPlayAudio(soundTrack);
       });
@@ -64,19 +68,25 @@ class QuestionBody extends React.Component<IProps, IState> {
 
   private switchGarshoni = () => {
     this.setState({ garshoniToggle: !this.state.garshoniToggle });
-  };
+  }
 
   private switchFromDictationToTranslation = () => {
-    Analytics.logEvent('cannot_hear_clicked', { questionId: this.props.question.id });
-    this.setState({ dictationToTranslationToggle: !this.state.dictationToTranslationToggle });
-  };
+    Analytics.logEvent('cannot_hear_clicked', {
+      questionId: this.props.question.id,
+    });
+    this.setState({
+      dictationToTranslationToggle: !this.state.dictationToTranslationToggle,
+    });
+  }
 
   private renderGarshoniSwitch = () => {
     if (isReverseQuestion(this.props.question.questionType)) {
       return null;
     }
 
-    const buttonProps = this.state.garshoniToggle ? { success: true } : { light: true };
+    const buttonProps = this.state.garshoniToggle
+      ? { success: true }
+      : { light: true };
 
     return (
       <SwitchButton
@@ -89,7 +99,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         lang={this.props.course.sourceLanguage.shortName}
       />
     );
-  };
+  }
 
   private renderDescriptionSwitch = () => {
     if (isEmpty(this.props.skill.description)) {
@@ -106,7 +116,7 @@ class QuestionBody extends React.Component<IProps, IState> {
         lang={this.props.course.sourceLanguage.shortName}
       />
     );
-  };
+  }
 
   private renderDictationToTranslationSwitch = () => {
     if (this.props.question.questionType !== 'DICTATION') {
@@ -126,21 +136,23 @@ class QuestionBody extends React.Component<IProps, IState> {
         />
       )
     );
-  };
+  }
 
   private showAndPlaySound = () => {
     const { questionType } = this.props.question;
     if (questionType === 'DICTATION') {
       return !this.state.dictationToTranslationToggle;
-    } else {
+    } 
       return !isReverseQuestion(questionType);
-    }
-  };
+    
+  }
 
   private listOptions = () =>
-    [this.renderDescriptionSwitch(), this.renderGarshoniSwitch(), this.renderDictationToTranslationSwitch()].filter(
-      n => n
-    );
+    [
+      this.renderDescriptionSwitch(),
+      this.renderGarshoniSwitch(),
+      this.renderDictationToTranslationSwitch(),
+    ].filter(n => n)
 
   private toggleSkillDescription = (modalOn: boolean) =>
     this.setState({ modalOn }, () => {
@@ -148,42 +160,51 @@ class QuestionBody extends React.Component<IProps, IState> {
         Keyboard.dismiss();
         KeyboardUtils.dismiss();
       }
-    });
+    })
 
   private renderModal = () => (
     <Modal isVisible={this.state.modalOn} style={{ borderRadius: 30 }}>
       <GSIcon name="close" onPress={() => this.toggleSkillDescription(false)} />
-      <WebView source={{ html: this.props.skill.description }} scalesPageToFit />
+      <WebView
+        source={{ html: this.props.skill.description }}
+        scalesPageToFit
+      />
     </Modal>
-  );
+  )
 
   private pathToSoundTrack = (): string =>
-    this.props.question.soundFiles.length > 0 ? this.props.question.soundFiles[0] : null;
+    this.props.question.soundFiles.length > 0
+      ? this.props.question.soundFiles[0]
+      : null
 
   private getSentence = (reverse: boolean) => {
     const { question, course } = this.props;
 
     const langConfig = {
       source: camelCase(course.targetLanguage.shortName),
-      target: camelCase(course.sourceLanguage.shortName)
+      target: camelCase(course.sourceLanguage.shortName),
     };
 
     let rawSentence = reverse ? question.translation : question.phrase;
     let hintifiedSentence = reverse
       ? null
-      : hintify(question.phrase, this.props.hints, course.targetLanguage.shortName);
+      : hintify(
+          question.phrase,
+          this.props.hints,
+          course.targetLanguage.shortName,
+        );
 
     if (this.state.garshoniToggle && !reverse) {
       rawSentence = garshonify({
         sentence: question.phrase,
         langConfig,
-        byCombo: true
+        byCombo: true,
       });
       hintifiedSentence = null;
     }
 
     return { raw: rawSentence, hintified: hintifiedSentence };
-  };
+  }
 
   private prepareTemplate = () => {
     const { question } = this.props;
@@ -202,7 +223,9 @@ class QuestionBody extends React.Component<IProps, IState> {
         QuestionComponent = WordSelection;
         break;
       case 'DICTATION':
-        QuestionComponent = this.state.dictationToTranslationToggle ? Translation : Dictation;
+        QuestionComponent = this.state.dictationToTranslationToggle
+          ? Translation
+          : Dictation;
         showPhraseInHeader = this.state.dictationToTranslationToggle;
         reverse = true;
         break;
@@ -216,18 +239,28 @@ class QuestionBody extends React.Component<IProps, IState> {
         centralizeAudio = true;
         break;
       default:
-        logError(`Unknown Type ${question.questionType} for ${JSON.stringify(question)}`);
+        logError(
+          `Unknown Type ${question.questionType} for ${JSON.stringify(
+            question,
+          )}`,
+        );
         return null;
     }
 
     return { QuestionComponent, showPhraseInHeader, reverse, centralizeAudio };
-  };
+  }
 
   render() {
     const { question, collectAnswer, userHasAnswered, course } = this.props;
-    const { reverse, QuestionComponent, showPhraseInHeader, centralizeAudio } = this.prepareTemplate();
+    const {
+      reverse,
+      QuestionComponent,
+      showPhraseInHeader,
+      centralizeAudio,
+    } = this.prepareTemplate();
     const options = this.listOptions();
-    const lang = course[reverse || this.state.garshoniToggle ? 'sourceLanguage' : 'targetLanguage'].shortName as TLangs;
+    const lang = course[ reverse || this.state.garshoniToggle ? 'sourceLanguage' : 'targetLanguage'
+].shortName as TLangs;
     const sentence = this.getSentence(reverse);
 
     return (
@@ -239,7 +272,9 @@ class QuestionBody extends React.Component<IProps, IState> {
 
         <StudyPhrase
           sentence={sentence}
-          sound={this.showAndPlaySound() && { soundTrack: this.pathToSoundTrack() }}
+          sound={
+            this.showAndPlaySound() && { soundTrack: this.pathToSoundTrack() }
+          }
           showSentence={showPhraseInHeader}
           lang={lang}
           centralize={centralizeAudio}
@@ -266,19 +301,19 @@ class QuestionBody extends React.Component<IProps, IState> {
 
 const GSContainer = glamor(Container)({
   flex: 1,
-  justifyContent: 'flex-start'
+  justifyContent: 'flex-start',
 });
 
 const GSActionButtons = glamor.view({
   justifyContent: 'space-between',
   flexDirection: 'row',
   marginBottom: 10,
-  alignSelf: 'stretch'
+  alignSelf: 'stretch',
 });
 
 const GSOptions = glamor.view({
   flexDirection: 'row',
-  justifyContent: 'flex-end'
+  justifyContent: 'flex-end',
 });
 
 export const GSIcon = glamor(Icon)({
@@ -287,7 +322,7 @@ export const GSIcon = glamor(Icon)({
   top: 10,
   fontSize: 40,
   color: Colors.black,
-  zIndex: 100
+  zIndex: 100,
 });
 
 export default QuestionBody;

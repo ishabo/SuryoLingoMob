@@ -1,4 +1,4 @@
-import { create } from 'services/api';
+import { create } from '@sl/services/api';
 
 export const getDictionaries = (courseId: string) => {
   const api = create();

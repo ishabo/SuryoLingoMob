@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import Lesson from './components/Lesson';
 import { BackHandler, Keyboard } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { ISkill, ILesson } from 'services/skills';
-import { enterLesson } from 'services/progress/actions';
-import { IInitialState } from 'services/reducers';
-import { getSkillLessons, getSourceLanguage, getTargetLanguage } from 'services/selectors';
+import { ISkill, ILesson } from '@sl/services/skills';
+import { enterLesson } from '@sl/services/progress/actions';
+import { IInitialState } from '@sl/services/reducers';
+import { getSkillLessons, getSourceLanguage, getTargetLanguage } from '@sl/services/selectors';
 import { SkillIcon } from '../Skills/components';
 import { NavigationScreenProp } from 'react-navigation';
-import { GSCustomText } from 'styles/text';
-import { IProfile } from 'services/profile';
-import { overviewLesson } from 'services/progress/actions';
+import { GSCustomText } from '@sl/styles/text';
+import { IProfile } from '@sl/services/profile';
+import { overviewLesson } from '@sl/services/progress/actions';
 import { GSContainer, GSAnimatable, GSLessonIcon, GSLessonInstruction } from './index.styles';
-import { Analytics } from 'config/firebase';
-import I18n from 'I18n';
+import { Analytics } from '@sl/config/firebase';
+import I18n from '@sl/i18n';
 
 interface IProps {
   getLessons(skillId: string): ILesson[];

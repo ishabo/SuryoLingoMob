@@ -2,7 +2,7 @@ import * as ApiSauce from 'apisauce';
 import * as Exceptions from '../exceptions';
 import { isEmpty } from 'lodash';
 import { THeaders, TMethod, IApiOptions } from './index';
-import { changeCase } from 'helpers';
+import { changeCase } from '@sl/helpers';
 
 let userToken: string = null;
 let origin: string = null;

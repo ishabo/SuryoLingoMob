@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from 'native-base';
 import glamor from 'glamorous-native';
-import { GSCustomText } from 'styles/text';
+import { GSCustomText } from '@sl/styles/text';
 
 interface IProps {
   onPress: () => void;

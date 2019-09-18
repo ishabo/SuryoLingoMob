@@ -1,9 +1,9 @@
-import { ICourse } from 'services/courses';
-import { ISkill } from 'services/skills';
-import { IQuestion, TQuestionType } from 'services/questions';
+import { ICourse } from '@sl/services/courses';
+import { ISkill } from '@sl/services/skills';
+import { IQuestion, TQuestionType } from '@sl/services/questions';
 import { NavigationScreenProp } from 'react-navigation';
-import { IDictionary } from 'services/dictionaries';
-import { IProfile } from 'services/profile';
+import { IDictionary } from '@sl/services/dictionaries';
+import { IProfile } from '@sl/services/profile';
 
 export type TAnswer = string | string[];
 

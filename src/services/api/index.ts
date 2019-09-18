@@ -1,7 +1,7 @@
 export { setApiOrigin, setUserToken } from './api';
 
 import { createApi, getUserToken } from './api';
-import { changeCase } from 'helpers';
+import { changeCase } from '@sl/helpers';
 
 export type TErrors = IIndex<string>;
 export type THeaders = IDictionary<string>;

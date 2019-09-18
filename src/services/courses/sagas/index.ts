@@ -1,11 +1,11 @@
 import { call, put } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import * as courses from 'services/courses';
-import * as skill from 'services/skills';
-import * as assets from 'services/assets';
-import * as dictionaries from 'services/dictionaries';
-import { ISagasFunctions } from 'services/sagas';
-import { resetToSkills } from 'helpers';
+import * as courses from '@sl/services/courses';
+import * as skill from '@sl/services/skills';
+import * as assets from '@sl/services/assets';
+import * as dictionaries from '@sl/services/dictionaries';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { resetToSkills } from '@sl/helpers';
 
 export function* fetchCourses(): IterableIterator<any> {
   try {
