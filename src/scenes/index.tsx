@@ -8,7 +8,7 @@ import RNRestart from 'react-native-restart';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import GlobalFont from 'react-native-global-font';
 
-import config from '@sl/config/';
+import config from '@sl/config';
 import { Alert } from '@sl/components';
 import { getFont } from '@sl/assets/fonts';
 import { logError } from '@sl/helpers';
