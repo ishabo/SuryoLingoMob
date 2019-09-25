@@ -58,7 +58,7 @@ public class MainApplication extends Application implements ReactApplication {
           new RNVersionCheckPackage(), new RNFetchBlobPackage(), new RNVersionNumberPackage(), new RNSoundPackage(),
           new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(), new LinearGradientPackage(),
           new RNI18nPackage(), new RNFSPackage(), new RNExitAppPackage(), new RNAdMobPackage(), new RNDeviceInfo(),
-          new RNAudioPlayer(), new FBSDKPackage(mCallbackManager), new KeyboardInputPackage(this.getApplication()));
+          new RNAudioPlayer(), new FBSDKPackage(), new KeyboardInputPackage(this.getApplication()));
     }
 
     @Override
