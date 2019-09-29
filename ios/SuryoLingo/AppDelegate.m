@@ -12,27 +12,27 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-/* #import <React/RCTI18nUtil.h> */
+#import <React/RCTI18nUtil.h>
 
-/* #import <FBSDKCoreKit/FBSDKCoreKit.h> */
-/* @import Firebase; */
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import Firebase;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  /* [FIRApp configure]; */
+  [FIRApp configure];
 
-  /* for (NSString* family in [UIFont familyNames]) */
-  /* { */
-  /*   NSLog(@"%@", family); */
-  /*   for (NSString* name in [UIFont fontNamesForFamilyName: family]) */
-  /*   { */
-  /*     NSLog(@" %@", name); */
-  /*   } */
-  /* } */
+  for (NSString* family in [UIFont familyNames])
+  {
+    NSLog(@"%@", family);
+    for (NSString* name in [UIFont fontNamesForFamilyName: family])
+    {
+      NSLog(@" %@", name);
+    }
+  }
   
-  /* [[RCTI18nUtil sharedInstance] allowRTL:YES]; */
+  [[RCTI18nUtil sharedInstance] allowRTL:YES];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
@@ -62,22 +62,21 @@
 #endif
 }
 
+- (BOOL)application:(UIApplication *)application 
+            openURL:(NSURL *)url 
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
 
-/* - (BOOL)application:(UIApplication *)application */ 
-/*             openURL:(NSURL *)url */ 
-/*             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options { */
+  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+    openURL:url
+    sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+    annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+  ];
+  // Add any custom logic here.
+  return handled;
+}
 
-/*   BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application */
-/*     openURL:url */
-/*     sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] */
-/*     annotation:options[UIApplicationOpenURLOptionsAnnotationKey] */
-/*   ]; */
-/*   // Add any custom logic here. */
-/*   return handled; */
-/* } */
-
-/* - (void)applicationDidBecomeActive:(UIApplication *)application { */
-/*   [FBSDKAppEvents activateApp]; */
-/* } */
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [FBSDKAppEvents activateApp];
+}
 
 @end
