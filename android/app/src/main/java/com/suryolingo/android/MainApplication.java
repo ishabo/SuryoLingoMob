@@ -23,6 +23,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import java.lang.reflect.InvocationTargetException;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
 import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;

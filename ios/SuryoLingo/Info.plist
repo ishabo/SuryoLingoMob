@@ -52,7 +52,7 @@
 		<dict>
 			<key>NSAllowsLocalNetworking</key>
 			<true />
-			<key>suryolingo.com</key>
+			<key>locahost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true />
