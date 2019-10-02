@@ -5,12 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+#import <React/RCTBridgeDelegate.h>
 #import <UIKit/UIKit.h>
 
-#import "AppDelegate.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
 
-int main(int argc, char * argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-  }
-}
+@property (nonatomic, strong) UIWindow *window;
+
+@end

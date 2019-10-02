@@ -1,5 +1,3 @@
-#!/bin/ruby
-
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
@@ -37,13 +35,14 @@ target 'SuryoLingo' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'Google-Mobile-Ads-SDK'
-# /*   post_install do |installer| */
-# /*     installer.pods_project.targets.each do |target| */
-# /*       if target.name == "React" */
-# /*         target.remove_from_project */
-# /*       end */
-# /*     end */
-# /*   end */
+
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.name == "React"
+        target.remove_from_project
+      end
+    end
+  end
 
   target 'SuryoLingoTests' do
     inherit! :search_paths
@@ -60,4 +59,5 @@ target 'SuryoLingo-tvOS' do
     inherit! :search_paths
     # Pods for testing
   end
+
 end
