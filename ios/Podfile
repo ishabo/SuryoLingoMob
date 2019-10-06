@@ -37,7 +37,10 @@ target 'SuryoLingo' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'Google-Mobile-Ads-SDK'
-# /*   post_install do |installer| */
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+
+  # /*   post_install do |installer| */
 # /*     installer.pods_project.targets.each do |target| */
 # /*       if target.name == "React" */
 # /*         target.remove_from_project */

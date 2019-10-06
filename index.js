@@ -1,5 +1,5 @@
 import { AppRegistry } from "react-native";
 import App from "./src/scenes/index";
-console.warn("Warning");
+aler("Warning");
 
 AppRegistry.registerComponent("SuryoLingo", () => App);
