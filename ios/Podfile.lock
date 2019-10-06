@@ -297,6 +297,8 @@ PODS:
   - react-native-fbsdk/Share (1.0.4):
     - FBSDKShareKit (~> 5.5)
     - React
+  - react-native-fetch-blob (0.10.6):
+    - React-Core
   - react-native-keyboard-input (5.3.1):
     - React
     - react-native-keyboard-tracking-view
@@ -395,6 +397,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-admob (from `../node_modules/react-native-admob`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
+  - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - react-native-keyboard-input (from `../node_modules/react-native-keyboard-input`)
   - react-native-keyboard-tracking-view (from `../node_modules/react-native-keyboard-tracking-view`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
@@ -482,6 +485,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-admob"
   react-native-fbsdk:
     :path: "../node_modules/react-native-fbsdk"
+  react-native-fetch-blob:
+    :path: "../node_modules/react-native-fetch-blob"
   react-native-keyboard-input:
     :path: "../node_modules/react-native-keyboard-input"
   react-native-keyboard-tracking-view:
@@ -571,6 +576,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 574d597112f9ea3d1b717f6fb62aef764c70dd6f
   react-native-admob: cb7f9e5e7d6f1e68bfbf1df8f72b2e23963bc7db
   react-native-fbsdk: 45e28bbab3e905cbc635c0bdd3444b372e933ae9
+  react-native-fetch-blob: 0cbdf9764c75d9438c162427395f4bc35a857d5a
   react-native-keyboard-input: 83520632cab76a827bdf1db0aa1c87a047f7c18b
   react-native-keyboard-tracking-view: e5266ec24dd99e44fdb4529d12818e2ed6beff43
   react-native-netinfo: 09681d744eb8a3ca04cb0404fb8c2537f71d3e58
@@ -596,6 +602,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: d8c572ddec8d05b7dba08e4e5f1924004a177078
 
-PODFILE CHECKSUM: b1fee910481791a7355ee3c0b28797dd00464540
+PODFILE CHECKSUM: 0f2304a661867d25b6e7cd00a9fa49f92d9b9eb3
 
 COCOAPODS: 1.8.0
