@@ -93,6 +93,7 @@ class Courses extends React.Component<IProps> {
             }}
           >
             <ImageCacheProvider
+              numberOfConcurrentPreloads={2}
               urlsToPreload={Object.values(this.props.courseImages)}
               onPreloadComplete={() =>
                 console.log(JSON.stringify(this.props.courseImages))
