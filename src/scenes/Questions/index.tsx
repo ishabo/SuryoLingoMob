@@ -73,7 +73,7 @@ class Questions extends React.Component<IProps, IState> {
     if (!this.userHasAnswered() && cleannedAnswer.length > length) {
       this.setState({ answer: cleannedAnswer });
     }
-  };
+  }
 
   submitDisallowed = () => isEmpty(this.state.answer) && this.actionNeeded();
 
@@ -81,12 +81,9 @@ class Questions extends React.Component<IProps, IState> {
 
   needsEvaluation = () => this.actionNeeded() && !this.userHasAnswered();
 
-  componentWillMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
-    this.setState({ progress: this.props.calcProress });
-  }
-
   componentDidMount() {
+    this.setState({ progress: this.props.calcProress });
+    Analytics.setCurrentScreen(this.constructor.name);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
@@ -100,16 +97,16 @@ class Questions extends React.Component<IProps, IState> {
 
   private keyboardDidShow = () => {
     this.setState({ keyboardIsOn: true });
-  };
+  }
 
   private keyboardDidHide = () => {
     this.setState({ keyboardIsOn: false });
-  };
+  }
 
   handleBackPress = () => {
     this.existQuestions();
     return true;
-  };
+  }
 
   evaluateOrNext = () => {
     if (this.submitDisallowed() || this.state.movingNext) {
@@ -124,7 +121,7 @@ class Questions extends React.Component<IProps, IState> {
     } else {
       this.nextQuestionOrComplete();
     }
-  };
+  }
 
   evaluate = () => {
     const targetLangConfig = getLangConfig(this.props.targetLanguage);
@@ -147,7 +144,7 @@ class Questions extends React.Component<IProps, IState> {
       Analytics.logEvent('incorrect_answer', { questionId, questionType });
     }
     this.setState({ answerCorrect });
-  };
+  }
 
   answeredCorrectly = () => !isEmpty(this.state.answer) && this.state.answerCorrect === true;
 
@@ -160,7 +157,7 @@ class Questions extends React.Component<IProps, IState> {
       }
       this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
     });
-  };
+  }
 
   private backToSkills = () => {
     Keyboard.dismiss();
@@ -171,7 +168,7 @@ class Questions extends React.Component<IProps, IState> {
       actions: [navToSkills()]
     });
     this.props.navigation.dispatch(resetAction);
-  };
+  }
 
   existQuestions = () => {
     Keyboard.dismiss();
@@ -198,7 +195,7 @@ class Questions extends React.Component<IProps, IState> {
       ],
       { cancelable: false }
     );
-  };
+  }
 
   renderEvaluationBanner() {
     const { questionType, phrase, translation, otherCorrectAnswers = [] } = this.props.currentQuestion;

@@ -46,18 +46,17 @@ class PasswordRecovery extends React.Component<IProps, IState> {
   handleBackPress = () => {
     this.props.navigation.goBack();
     return true;
-  };
+  }
 
   setEmail = (email: string) => {
     this.setState({ email: email.trim().toLocaleLowerCase() });
-  };
+  }
 
-  componentWillReceiveProps(nextProps: Partial<IProps>) {
-    if (nextProps.apiStatus !== this.props.apiStatus) {
-      if (nextProps.apiStatus.success) {
-        this.setState({ email: '' });
-      }
+  static getDerivedStateFromProps(props) {
+    if (props.apiStatus.success) {
+      return { email: '' };
     }
+    return {};
   }
 
   renderForm() {
@@ -65,7 +64,7 @@ class PasswordRecovery extends React.Component<IProps, IState> {
       <GSForm>
         <GSTitle lang={'cl-ara'}>{I18n.t('passwordRecovery.title')}</GSTitle>
         <Item fixedLabel>
-          <GSCustomText>{I18n.t(`passwordRecovery.form.fields.email`)}</GSCustomText>
+          <GSCustomText>{I18n.t('passwordRecovery.form.fields.email')}</GSCustomText>
           <GSInput
             dir="ltr"
             autoCapitalize="none"

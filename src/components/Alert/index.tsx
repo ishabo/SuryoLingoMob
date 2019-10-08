@@ -35,7 +35,7 @@ class Alert extends React.Component<IProps> {
     MessageBarManager.unregisterMessageBar();
   }
 
-  componentWillReceiveProps(nextProps: Partial<IProps>) {
+  UNSAFE_componentWillReceiveProps(nextProps: Partial<IProps>) {
     const exception = nextProps.lastException;
 
     if (exception) {
