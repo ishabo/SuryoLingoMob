@@ -1,21 +1,20 @@
-import { call, put } from "redux-saga/effects";
-import { delay } from "redux-saga";
-import * as courses from "@sl/services/courses";
-import * as skill from "@sl/services/skills";
-import * as assets from "@sl/services/assets";
-import * as dictionaries from "@sl/services/dictionaries";
-import { ISagasFunctions } from "@sl/services/sagas";
-import { resetToSkills } from "@sl/helpers";
+import { call, put } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import * as courses from '@sl/services/courses';
+import * as skill from '@sl/services/skills';
+import * as assets from '@sl/services/assets';
+import * as dictionaries from '@sl/services/dictionaries';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { resetToSkills } from '@sl/helpers';
 
 export function* fetchCourses(): IterableIterator<any> {
-  debugger;
   try {
     const response = yield call(courses.api.getCourses);
     yield put(courses.actions.saveCourses(response));
     yield put(assets.actions.fetchCourseImages());
   } catch (e) {
     const err = e;
-    console.warn("Error", err);
+    console.warn('Error', err);
   }
 }
 

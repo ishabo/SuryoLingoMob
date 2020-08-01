@@ -91,7 +91,12 @@ class Courses extends React.Component<IProps> {
               alignContent: 'center'
             }}>
             <ImageCacheProvider
+              headers={{}}
+              ttl={2}
+              cacheLocation={''}
               numberOfConcurrentPreloads={2}
+              useQueryParamsInCacheKey
+              allowSelfSignedSSL
               urlsToPreload={Object.values(this.props.courseImages)}
               onPreloadComplete={() =>
                 console.log(JSON.stringify(this.props.courseImages))

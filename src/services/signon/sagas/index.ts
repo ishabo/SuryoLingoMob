@@ -1,45 +1,49 @@
-import { call, put, select } from "redux-saga/effects";
-import { delay } from "redux-saga";
-import * as signon from "@sl/services/signon";
-import * as profile from "@sl/services/profile";
-import * as progress from "@sl/services/progress";
-import * as skills from "@sl/services/skills";
-import * as courses from "@sl/services/courses";
-import { IInitialState } from "@sl/services/reducers";
-import { isEmpty } from "lodash";
-import { validateSigon } from "../validation";
+import { call, put, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import * as signon from '@sl/services/signon';
+import * as profile from '@sl/services/profile';
+import * as progress from '@sl/services/progress';
+import * as skills from '@sl/services/skills';
+import * as courses from '@sl/services/courses';
+import { IInitialState } from '@sl/services/reducers';
+import { isEmpty } from 'lodash';
+import { validateSigon } from '../validation';
 import {
   setLoadingOn,
   setLoadingOff,
   setFailureMessage,
   setSuccessMessage
-} from "@sl/services/api/actions";
-import { ISagasFunctions } from "@sl/services/sagas";
-import { getActiveCourse } from "@sl/services/selectors";
-import { isApiResponse, resetToSkills, navToCourses } from "@sl/helpers";
-import RNRestart from "react-native-restart";
-import { deleteAccessToken } from "@sl/services/api/access";
-import { LoginManager, AccessToken } from "react-native-fbsdk";
-import { NavigationActions } from "react-navigation";
-import { Analytics } from "@sl/config/firebase";
-import { logError } from "@sl/helpers";
+} from '@sl/services/api/actions';
+import { ISagasFunctions } from '@sl/services/sagas';
+import { getActiveCourse } from '@sl/services/selectors';
+import {
+  logError,
+  isApiResponse,
+  resetToSkills,
+  navToCourses
+} from '@sl/helpers';
+import RNRestart from 'react-native-restart';
+import { deleteAccessToken } from '@sl/services/api/access';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
+import { NavigationActions } from 'react-navigation';
+import { Analytics } from '@sl/config/firebase';
 
 function* captureBadRequest(response, errors): IterableIterator<any> {
-  // logError(JSON.stringify(response));
+  logError(JSON.stringify(response));
 
   if (response.status === 400) {
-    if (typeof response.data === "object") {
+    if (typeof response.data === 'object') {
       if (
-        Array.isArray(response.data["email"]) &&
-        response.data["email"].indexOf("already exists") !== -1
+        Array.isArray(response.data['email']) &&
+        response.data['email'].indexOf('already exists') !== -1
       ) {
-        errors["email"] = "emailAlreadyExists";
+        errors['email'] = 'emailAlreadyExists';
       }
       if (
-        Array.isArray(response.data["facebook_id"]) &&
-        response.data["facebook_id"].indexOf("already exists") !== -1
+        Array.isArray(response.data['facebook_id']) &&
+        response.data['facebook_id'].indexOf('already exists') !== -1
       ) {
-        errors["facebook"] = "facebookAlreadyConnected";
+        errors['facebook'] = 'facebookAlreadyConnected';
       }
     }
     yield put(signon.actions.setErrors(errors));
@@ -54,8 +58,8 @@ export function* submitSignon(
     ...(yield select((state: IInitialState) => state.signon.item))
   };
 
-  if (action.signon === "signin") {
-    delete fields["name"];
+  if (action.signon === 'signin') {
+    delete fields['name'];
   }
 
   const errors: signon.ISignonFormErrors = validateSigon(fields);
@@ -65,7 +69,7 @@ export function* submitSignon(
     let profileData = yield select((state: IInitialState) => state.profile);
 
     try {
-      if (action.signon === "signin") {
+      if (action.signon === 'signin') {
         profileData = yield call(signon.api.signin, fields);
         yield put(profile.actions.saveProfileAndAccessToken(profileData));
       } else {
@@ -101,24 +105,26 @@ export function* submitSignon(
 export function* connectViaFacebook(
   actions: signon.ISignonFormAction
 ): IterableIterator<any> {
-  Analytics.logEvent("connect_via_facebook", {
+  debugger;
+  Analytics.logEvent('connect_via_facebook', {
     SignonType: actions.signon,
     Started: true
   });
 
   try {
-    const result = yield call(LoginManager.logInWithReadPermissions, [
-      "public_profile",
-      "email"
+    logError(JSON.stringify(actions));
+    const result = yield call(LoginManager.logInWithPermissions, [
+      'public_profile',
+      'email'
     ]);
     if (result.isCancelled) {
-      Analytics.logEvent("connect_via_facebook", {
+      Analytics.logEvent('connect_via_facebook', {
         SignonType: actions.signon,
         Cancelled: true
       });
     } else {
       const { accessToken } = yield call(AccessToken.getCurrentAccessToken);
-      Analytics.logEvent("connect_via_facebook", {
+      Analytics.logEvent('connect_via_facebook', {
         SignonType: actions.signon,
         Successful: true
       });
@@ -137,7 +143,7 @@ export function* connectViaFacebook(
         (state: IInitialState) => state.profile
       );
 
-      if (actions.signon === "connect") {
+      if (actions.signon === 'connect') {
         const profileData = yield call(
           profile.api.updateProfile(currentProfile.id),
           payload
@@ -159,7 +165,7 @@ export function* connectViaFacebook(
     } else {
       logError(JSON.stringify(error));
       yield put(
-        signon.actions.setErrors({ facebook: "failedToLoginViaFacebook" })
+        signon.actions.setErrors({ facebook: 'failedToLoginViaFacebook' })
       );
     }
   }
@@ -172,11 +178,11 @@ export function* recoverPassword(
   yield put(setLoadingOn());
   try {
     yield call(signon.api.recoverPassword, action.email);
-    yield put(setSuccessMessage("passwordRecoverySuccess", true));
+    yield put(setSuccessMessage('passwordRecoverySuccess', true));
   } catch (error) {
     if (isApiResponse(error)) {
       if (error.response.status === 422) {
-        yield put(setFailureMessage("passwordRecoveryFailure", true));
+        yield put(setFailureMessage('passwordRecoveryFailure', true));
       }
     }
   }
@@ -185,7 +191,7 @@ export function* recoverPassword(
 }
 
 export function* signout(): IterableIterator<any> {
-  yield put(NavigationActions.navigate({ routeName: "DrawerClose" }));
+  yield put(NavigationActions.navigate({ routeName: 'DrawerClose' }));
   yield put(setLoadingOn());
   yield delay(500);
   yield put(profile.actions.resetProfile());
@@ -193,7 +199,7 @@ export function* signout(): IterableIterator<any> {
   yield put(skills.actions.resetSkills());
   yield put(courses.actions.resetCourses());
   yield call(deleteAccessToken);
-  Analytics.logEvent("signout_clicked", {});
+  Analytics.logEvent('signout_clicked', {});
   yield delay(500);
   yield put(setLoadingOff());
 
