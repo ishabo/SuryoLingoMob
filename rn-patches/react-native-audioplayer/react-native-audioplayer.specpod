@@ -1,0 +1,15 @@
+require 'json'
+package = JSON.parse(File.read('package.json'))
+
+Pod::Spec.new do |s|
+  s.name                  = package["name"]
+  s.version               = package["version"]
+  s.summary               = package["description"]
+  s.homepage              = "https://github.com/andreaskeller/react-native-audioplayer"
+  s.license               = package["license"]
+  s.source                = { path: '.' }
+  s.ios.deployment_target = '9.0'
+  s.authors               = { 'Andreas Keller' => andreas.keller@gmx.ch' }
+  s.source_files          = 'lib/ios/{LNInterpolation/*,RCTCustomInputController/*}.{h,m,mm}'
+  s.dependency 'React'
+end 

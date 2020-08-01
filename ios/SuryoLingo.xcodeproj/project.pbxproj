@@ -12,6 +12,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2B7A3F3E24D6224B00FDC050 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A3F3D24D6224B00FDC050 /* File.swift */; };
 		2BEC978F234A6F1B0088469E /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC978C234A6F1B0088469E /* HelveticaNeue.ttf */; };
 		2BEC9790234A6F1B0088469E /* Serto Urhoy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC978D234A6F1B0088469E /* Serto Urhoy.ttf */; };
 		2BEC9791234A6F1B0088469E /* Al-Jazeera-Arabic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC978E234A6F1B0088469E /* Al-Jazeera-Arabic-Regular.ttf */; };
@@ -75,6 +76,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SuryoLingo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SuryoLingo/main.m; sourceTree = "<group>"; };
 		29FF1CF5AF508D46D0FA43F0 /* Pods-SuryoLingo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuryoLingo.release.xcconfig"; path = "Target Support Files/Pods-SuryoLingo/Pods-SuryoLingo.release.xcconfig"; sourceTree = "<group>"; };
+		2B7A3F3C24D6224B00FDC050 /* SuryoLingo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuryoLingo-Bridging-Header.h"; sourceTree = "<group>"; };
+		2B7A3F3D24D6224B00FDC050 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		2BEC978C234A6F1B0088469E /* HelveticaNeue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = HelveticaNeue.ttf; path = ../src/assets/fonts/HelveticaNeue.ttf; sourceTree = "<group>"; };
 		2BEC978D234A6F1B0088469E /* Serto Urhoy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Serto Urhoy.ttf"; path = "../src/assets/fonts/Serto Urhoy.ttf"; sourceTree = "<group>"; };
 		2BEC978E234A6F1B0088469E /* Al-Jazeera-Arabic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Al-Jazeera-Arabic-Regular.ttf"; path = "../src/assets/fonts/Al-Jazeera-Arabic-Regular.ttf"; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2B7A3F3D24D6224B00FDC050 /* File.swift */,
 				2BEC979C234A70810088469E /* AntDesign.ttf */,
 				2BEC97A0234A70810088469E /* Entypo.ttf */,
 				2BEC9797234A70810088469E /* EvilIcons.ttf */,
@@ -230,6 +234,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				F6D4169EA60C51B4AA0548E5 /* Pods */,
+				2B7A3F3C24D6224B00FDC050 /* SuryoLingo-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 6T8VM8ZYK4;
+						LastSwiftMigration = 1150;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -595,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				2B7A3F3E24D6224B00FDC050 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,6 +655,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C21F4CE1F661808F6FB47B5F /* Pods-SuryoLingoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -670,6 +678,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0EBFA02562BADFAB816D3783 /* Pods-SuryoLingoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = SuryoLingoTests/Info.plist;
@@ -690,6 +699,7 @@
 			baseConfigurationReference = 45C9C15E4767277BD7B8AE8D /* Pods-SuryoLingo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 6T8VM8ZYK4;
@@ -702,6 +712,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suryolingo.iphone;
 				PRODUCT_NAME = SuryoLingo;
+				SWIFT_OBJC_BRIDGING_HEADER = "SuryoLingo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -711,6 +724,7 @@
 			baseConfigurationReference = 29FF1CF5AF508D46D0FA43F0 /* Pods-SuryoLingo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6T8VM8ZYK4;
 				INFOPLIST_FILE = SuryoLingo/Info.plist;
@@ -722,6 +736,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suryolingo.iphone;
 				PRODUCT_NAME = SuryoLingo;
+				SWIFT_OBJC_BRIDGING_HEADER = "SuryoLingo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
