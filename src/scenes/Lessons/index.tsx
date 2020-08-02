@@ -7,14 +7,23 @@ import Carousel from 'react-native-snap-carousel';
 import { ISkill, ILesson } from '@sl/services/skills';
 import { enterLesson } from '@sl/services/progress/actions';
 import { IInitialState } from '@sl/services/reducers';
-import { getSkillLessons, getSourceLanguage, getTargetLanguage } from '@sl/services/selectors';
+import {
+  getSkillLessons,
+  getSourceLanguage,
+  getTargetLanguage,
+} from '@sl/services/selectors';
 import { SkillIcon } from '../Skills/components';
 import { NavigationScreenProp } from 'react-navigation';
 import { GSCustomText } from '@sl/styles/text';
 import { IProfile } from '@sl/services/profile';
 import { overviewLesson } from '@sl/services/progress/actions';
-import { GSContainer, GSAnimatable, GSLessonIcon, GSLessonInstruction } from './index.styles';
-import { Analytics } from '@sl/config/firebase';
+import {
+  GSContainer,
+  GSAnimatable,
+  GSLessonIcon,
+  GSLessonInstruction,
+} from './index.styles';
+import analytics from '@react-native-firebase/analytics';
 import I18n from '@sl/i18n';
 
 interface IProps {
@@ -34,27 +43,31 @@ interface IState {
 
 class Lessons extends React.Component<IProps, IState> {
   state = {
-    snapped: false
+    snapped: false,
   };
 
   private carousal;
   private cards;
 
   static navigationOptions = ({ navigation }) => ({
-    title: I18n.t('lessons.title', { skill: navigation.state.params.skill.name }),
-    headerBackTitle: ''
+    title: I18n.t('lessons.title', {
+      skill: navigation.state.params.skill.name,
+    }),
+    headerBackTitle: '',
   });
 
   private getNumOfActiveLessons = (): number => this.getFinishedLesson().length;
 
   private getFinishedLesson = (): ILesson[] =>
-    this.props.getLessons(this.getSkill().id).filter((lesson: ILesson) => lesson.finished);
+    this.props
+      .getLessons(this.getSkill().id)
+      .filter((lesson: ILesson) => lesson.finished);
 
   private getSkill = () => this.props.navigation.state.params.skill;
   private totalLessons = () => this.getSkill().lessons.length;
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
     Keyboard.dismiss();
 
     if (this.state.snapped === false) {
@@ -77,7 +90,9 @@ class Lessons extends React.Component<IProps, IState> {
     if (this.carousal) {
       this.setState({ snapped: true }, () => {
         const itemIndex =
-          this.getNumOfActiveLessons() === this.totalLessons() ? this.totalLessons() - 1 : this.getNumOfActiveLessons();
+          this.getNumOfActiveLessons() === this.totalLessons()
+            ? this.totalLessons() - 1
+            : this.getNumOfActiveLessons();
 
         this.carousal.snapToItem(itemIndex);
       });
@@ -91,7 +106,9 @@ class Lessons extends React.Component<IProps, IState> {
     if (lesson.finished || lesson.order === 1) {
       return true;
     } else {
-      const previousOrder = this.getFinishedLesson().find((l: ILesson) => l.order === lesson.order - 1);
+      const previousOrder = this.getFinishedLesson().find(
+        (l: ILesson) => l.order === lesson.order - 1
+      );
       return previousOrder && previousOrder.finished;
     }
   };
@@ -116,10 +133,16 @@ class Lessons extends React.Component<IProps, IState> {
     return (
       <GSContainer>
         <GSLessonIcon>
-          <SkillIcon icon={this.props.navigation.state.params.skill.icon} state="unlocked" size="xxxhdpi" />
+          <SkillIcon
+            icon={this.props.navigation.state.params.skill.icon}
+            state="unlocked"
+            size="xxxhdpi"
+          />
         </GSLessonIcon>
         <GSLessonInstruction>
-          <GSCustomText lang={this.props.sourceLanguage}>{I18n.t('lessons.instruction')}</GSCustomText>
+          <GSCustomText lang={this.props.sourceLanguage}>
+            {I18n.t('lessons.instruction')}
+          </GSCustomText>
         </GSLessonInstruction>
         <GSAnimatable innerRef={(c: Lessons) => (this.cards = c)}>
           <Carousel
@@ -142,15 +165,12 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   targetLanguage: getTargetLanguage(state),
   getLessons: (skillId: string) => getSkillLessons(skillId)(state),
   profile: state.profile,
-  loading: state.api.loading
+  loading: state.api.loading,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   enterLesson: (lessonId: string) => dispatch(enterLesson(lessonId)),
-  previewLesson: (lessonId: string) => dispatch(overviewLesson(lessonId))
+  previewLesson: (lessonId: string) => dispatch(overviewLesson(lessonId)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Lessons);
+export default connect(mapStateToProps, mapDispatchToProps)(Lessons);

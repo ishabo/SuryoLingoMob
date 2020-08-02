@@ -11,7 +11,7 @@ import { IAssets } from '@sl/services/assets';
 import { IInitialState } from '@sl/services/reducers';
 import { AnimatableAnimationMethods } from 'react-native-animatable';
 import { DrawerItem, WhenReady } from '@sl/components';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
 
@@ -28,11 +28,11 @@ class Courses extends React.Component<IProps> {
   static navigationOptions = {
     title: I18n.t('courses.title'),
     header: null,
-    drawerLabel: <DrawerItem label={I18n.t('courses.title')} icon="courses" />
+    drawerLabel: <DrawerItem label={I18n.t('courses.title')} icon="courses" />,
   };
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
     this.cards.fadeInUp();
   }
 
@@ -40,8 +40,8 @@ class Courses extends React.Component<IProps> {
     if (!course.comingSoon) {
       this.props.switchCourse(course.id);
     } else {
-      Analytics.logEvent('coming_soon_course_clicked', {
-        CourseName: course.name
+      analytics().logEvent('coming_soon_course_clicked', {
+        CourseName: course.name,
       });
 
       Alert.alert(
@@ -65,11 +65,12 @@ class Courses extends React.Component<IProps> {
         key={course.id}
         onPress={() => {
           this.switchCourse(course);
-        }}>
+        }}
+      >
         <AnimatedCachedImage
           style={{ width, height }}
           source={{
-            uri: this.props.courseImages[imageName]
+            uri: this.props.courseImages[imageName],
           }}
         />
       </GSCourse>
@@ -88,8 +89,9 @@ class Courses extends React.Component<IProps> {
             contentContainerStyle={{
               flex: 1,
               alignSelf: 'stretch',
-              alignContent: 'center'
-            }}>
+              alignContent: 'center',
+            }}
+          >
             <ImageCacheProvider
               headers={{}}
               ttl={2}
@@ -100,9 +102,11 @@ class Courses extends React.Component<IProps> {
               urlsToPreload={Object.values(this.props.courseImages)}
               onPreloadComplete={() =>
                 console.log(JSON.stringify(this.props.courseImages))
-              }>
+              }
+            >
               <GSAnimatable
-                innerRef={(c: AnimatableAnimationMethods) => (this.cards = c)}>
+                innerRef={(c: AnimatableAnimationMethods) => (this.cards = c)}
+              >
                 <WhenReady>{this.renderCourses()}</WhenReady>
               </GSAnimatable>
             </ImageCacheProvider>
@@ -118,10 +122,7 @@ const mapDispatchToProps = { switchCourse };
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   courses: state.courses,
   courseImages: state.assets.courseImages,
-  deviceId: state.profile.deviceId
+  deviceId: state.profile.deviceId,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Courses);
+export default connect(mapStateToProps, mapDispatchToProps)(Courses);

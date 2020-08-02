@@ -1,11 +1,20 @@
 import * as React from 'react';
-import { ScrollView, BackHandler, Keyboard, RefreshControl } from 'react-native';
+import {
+  ScrollView,
+  BackHandler,
+  Keyboard,
+  RefreshControl,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { Skill } from './components';
 import { mapValues, groupBy } from 'lodash';
 import { ISkill } from '@sl/services/skills';
 import { fetchSkills } from '@sl/services/skills/actions';
-import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from '@sl/services/selectors';
+import {
+  getActiveCourse,
+  getPublishedSkills,
+  getComingSoonSkills,
+} from '@sl/services/selectors';
 import { IInitialState } from '@sl/services/reducers';
 import { NavigationScreenProp } from 'react-navigation';
 import { exitApp, displayInterstitialAd } from '@sl/helpers';
@@ -15,7 +24,7 @@ import { IProfile } from '@sl/services/profile';
 import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
 import I18n from '@sl/i18n';
 import shortid from 'shortid';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 import { ILoadingProps } from '@sl/components/Loading/connect';
 
 interface IProps extends ILoadingProps {
@@ -33,11 +42,11 @@ class Skills extends React.Component<IProps> {
     title: I18n.t(`skills.title`),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     headerRight: null,
-    drawerLabel: <DrawerItem label={I18n.t('skills.title')} icon="skills" />
+    drawerLabel: <DrawerItem label={I18n.t('skills.title')} icon="skills" />,
   });
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
 
     if (!this.props.activeCourse) {
       this.goToCourses();
@@ -70,7 +79,9 @@ class Skills extends React.Component<IProps> {
   };
 
   private renderUnits(published: boolean) {
-    const filteredSkills = published ? this.props.publishedSkills : this.props.comingSoonSkills;
+    const filteredSkills = published
+      ? this.props.publishedSkills
+      : this.props.comingSoonSkills;
     if (filteredSkills.length === 0) {
       return null;
     }
@@ -80,22 +91,33 @@ class Skills extends React.Component<IProps> {
     const mappedUnits: any[] = [];
 
     units.forEach((unit: string | number) => {
-      mappedUnits.push(<GUnit key={shortid.generate()}>{this.renderSkills(skills[unit], published)}</GUnit>);
+      mappedUnits.push(
+        <GUnit key={shortid.generate()}>
+          {this.renderSkills(skills[unit], published)}
+        </GUnit>
+      );
     });
 
     return (
       <>
-        {published || <GComingSoonSeparator>{I18n.t(`skills.comingSoon`)}</GComingSoonSeparator>}
+        {published || (
+          <GComingSoonSeparator>
+            {I18n.t(`skills.comingSoon`)}
+          </GComingSoonSeparator>
+        )}
         {mappedUnits}
       </>
     );
   }
 
   private enterSkill = (skill: ISkill) => {
-    this.isSkillActive(skill) ? this.goToLessons(skill) : alert(I18n.t('skills.skillInactive'));
+    this.isSkillActive(skill)
+      ? this.goToLessons(skill)
+      : alert(I18n.t('skills.skillInactive'));
   };
 
-  private isSkillActive = (skill: ISkill): boolean => skill.active || this.props.profile.isTester;
+  private isSkillActive = (skill: ISkill): boolean =>
+    skill.active || this.props.profile.isTester;
 
   private renderSkills(skills: ISkill[], published: boolean) {
     return skills.map((skill: ISkill) => (
@@ -106,7 +128,11 @@ class Skills extends React.Component<IProps> {
         inactive={skill.isComingSoon}
         progress={skill.progress && published ? skill.progress : 0}
         unlocked={published && this.isSkillActive(skill)}
-        onSkillsClick={() => (published ? this.enterSkill(skill) : alert(I18n.t('skills.skillInactive')))}
+        onSkillsClick={() =>
+          published
+            ? this.enterSkill(skill)
+            : alert(I18n.t('skills.skillInactive'))
+        }
       />
     ));
   }
@@ -117,7 +143,12 @@ class Skills extends React.Component<IProps> {
         <WhenReady>
           <ScrollView
             style={{ flexDirection: 'column' }}
-            refreshControl={<RefreshControl refreshing={this.props.loading} onRefresh={this.props.fetchSkills} />}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.props.loading}
+                onRefresh={this.props.fetchSkills}
+              />
+            }
           >
             {this.renderUnits(true)}
             {this.renderUnits(false)}
@@ -134,14 +165,11 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   loading: state.api.loading,
   activeCourse: getActiveCourse(state),
   publishedSkills: getPublishedSkills(state),
-  comingSoonSkills: getComingSoonSkills(state)
+  comingSoonSkills: getComingSoonSkills(state),
 });
 
 const mapDispatchToProps = {
-  fetchSkills
+  fetchSkills,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Skills);
+export default connect(mapStateToProps, mapDispatchToProps)(Skills);

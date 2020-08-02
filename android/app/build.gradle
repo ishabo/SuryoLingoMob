@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
-apply plugin: 'io.fabric'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 import com.android.build.OutputFile
 
@@ -77,9 +78,8 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    entryFile: "index.js"
-    enableHermes: false,  // clean and rebuild if changing
-
+    entryFile: "index.js",
+    enableHermes: false, // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -172,9 +172,14 @@ android {
         }
 
         release {
+            // Caution! In production, you need to generate your own keystore file.
+            // see https://facebook.github.io/react-native/docs/signed-apk-android.
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+            }
         }
     }
     // applicationVariants are e.g. debug, release
@@ -190,47 +195,29 @@ android {
             }
         }
     }
+
+    packagingOptions {
+        pickFirst '**/armeabi-v7a/libc++_shared.so'
+        pickFirst '**/x86/libc++_shared.so'
+        pickFirst '**/arm64-v8a/libc++_shared.so'
+        pickFirst '**/x86_64/libc++_shared.so'
+        pickFirst '**/x86/libjsc.so'
+        pickFirst '**/armeabi-v7a/libjsc.so'
+    }
 }
 
 dependencies {
-    // implementation project(':react-native-firebase')
-    // implementation project(':react-native-fbsdk')
-    // implementation project(':react-native-version-check')
-    // implementation project(':react-native-admob')
-    // implementation project(':react-native-version-number')
-    // implementation project(':react-native-exit-app')
-    // implementation project(':react-native-restart')
-    // implementation project(':react-native-audioplayer')
-    // implementation project(':react-native-device-info')
-    // implementation project(':react-native-fs')
-    // implementation project(':react-native-linear-gradient')
-    // implementation project(':react-native-sensitive-info')
-    // implementation project(':react-native-sound')
-    // implementation project(':react-native-i18n')
-    // implementation project(':react-native-fetch-blob')
-    // implementation project(":reactnativekeyboardinput")
-    
-    // implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation project(':react-native-fetch-blob')
+    implementation project(':@react-native-firebase_crashlytics')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.facebook.react:react-native:+"  // From node_modules
 
-    // implementation 'com.facebook.android:facebook-android-sdk:5.0.0'
-
-    // implementation "com.google.android.gms:play-services-base:16.0.1"
-    // implementation "com.google.android.gms:play-services-ads:17.0.0"
-    // implementation "com.google.firebase:firebase-core:17.2.0"
-    // implementation "com.google.firebase:firebase-messaging:20.0.0"
-
-    // implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
-
-    // implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
-   implementation fileTree(dir: "libs", include: ["*.jar"])
-   implementation "com.facebook.react:react-native:+"  // From node_modules
-
-   if (enableHermes) {
-        def hermesPath = "../../node_modules/hermes-engine/android/";
-        debugImplementation files(hermesPath + "hermes-debug.aar")
-        releaseImplementation files(hermesPath + "hermes-release.aar")
+    if (enableHermes) {
+      def hermesPath = "../../node_modules/hermesvm/android/";
+      debugImplementation files(hermesPath + "hermes-debug.aar")
+      releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
-        implementation jscFlavor
+      implementation jscFlavor
     }
 }
 
@@ -241,7 +228,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
-apply plugin: 'com.google.gms.google-services'
+
 googleServices { disableVersionCheck = true }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

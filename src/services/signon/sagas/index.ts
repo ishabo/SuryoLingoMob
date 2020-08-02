@@ -12,7 +12,7 @@ import {
   setLoadingOn,
   setLoadingOff,
   setFailureMessage,
-  setSuccessMessage
+  setSuccessMessage,
 } from '@sl/services/api/actions';
 import { ISagasFunctions } from '@sl/services/sagas';
 import { getActiveCourse } from '@sl/services/selectors';
@@ -20,13 +20,13 @@ import {
   logError,
   isApiResponse,
   resetToSkills,
-  navToCourses
+  navToCourses,
 } from '@sl/helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from '@sl/services/api/access';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { NavigationActions } from 'react-navigation';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 
 function* captureBadRequest(response, errors): IterableIterator<any> {
   logError(JSON.stringify(response));
@@ -55,7 +55,7 @@ export function* submitSignon(
 ): IterableIterator<any> {
   yield put(setLoadingOn());
   const fields = {
-    ...(yield select((state: IInitialState) => state.signon.item))
+    ...(yield select((state: IInitialState) => state.signon.item)),
   };
 
   if (action.signon === 'signin') {
@@ -106,27 +106,27 @@ export function* connectViaFacebook(
   actions: signon.ISignonFormAction
 ): IterableIterator<any> {
   debugger;
-  Analytics.logEvent('connect_via_facebook', {
+  analytics().logEvent('connect_via_facebook', {
     SignonType: actions.signon,
-    Started: true
+    Started: true,
   });
 
   try {
     logError(JSON.stringify(actions));
     const result = yield call(LoginManager.logInWithPermissions, [
       'public_profile',
-      'email'
+      'email',
     ]);
     if (result.isCancelled) {
-      Analytics.logEvent('connect_via_facebook', {
+      analytics().logEvent('connect_via_facebook', {
         SignonType: actions.signon,
-        Cancelled: true
+        Cancelled: true,
       });
     } else {
       const { accessToken } = yield call(AccessToken.getCurrentAccessToken);
-      Analytics.logEvent('connect_via_facebook', {
+      analytics().logEvent('connect_via_facebook', {
         SignonType: actions.signon,
-        Successful: true
+        Successful: true,
       });
 
       const facebookProfileData = yield call(
@@ -136,7 +136,7 @@ export function* connectViaFacebook(
 
       const payload = {
         password: accessToken,
-        viaFacebook: true
+        viaFacebook: true,
       };
 
       const currentProfile = yield select(
@@ -199,7 +199,7 @@ export function* signout(): IterableIterator<any> {
   yield put(skills.actions.resetSkills());
   yield put(courses.actions.resetCourses());
   yield call(deleteAccessToken);
-  Analytics.logEvent('signout_clicked', {});
+  analytics().logEvent('signout_clicked', {});
   yield delay(500);
   yield put(setLoadingOff());
 
@@ -212,6 +212,6 @@ export const functions = (): ISagasFunctions[] => [
   { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
   {
     action: signon.actions.types.CONNECT_VIA_FACEBOOK,
-    func: connectViaFacebook
-  }
+    func: connectViaFacebook,
+  },
 ];

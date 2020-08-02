@@ -1,9 +1,9 @@
-import { Crashlytics } from '@sl/config/firebase';
+import crashlytics from '@react-native-firebase/crashlytics';
 
-export const logError = error => {
+export const logError = (error: string) => {
   console.warn('-->', error);
   try {
-    return Crashlytics.recordError(500, error);
+    return crashlytics().recordError(new Error(error));
     // return console.warn;
   } catch (e) {
     return console.warn;

@@ -13,7 +13,7 @@ import { IApiStatus } from '@sl/services/api/reducers';
 import { Item } from 'native-base';
 import { NavigationScreenProp } from 'react-navigation';
 import { GSSeparator } from '@sl/styles/layouts';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 
 export interface IProps {
   recoverPassword: (email: string) => void;
@@ -27,15 +27,15 @@ export interface IState {
 
 class PasswordRecovery extends React.Component<IProps, IState> {
   state = {
-    email: ''
+    email: '',
   };
 
   static navigationOptions = {
-    title: I18n.t('passwordRecovery.title')
+    title: I18n.t('passwordRecovery.title'),
   };
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
@@ -46,11 +46,11 @@ class PasswordRecovery extends React.Component<IProps, IState> {
   handleBackPress = () => {
     this.props.navigation.goBack();
     return true;
-  }
+  };
 
   setEmail = (email: string) => {
     this.setState({ email: email.trim().toLocaleLowerCase() });
-  }
+  };
 
   static getDerivedStateFromProps(props) {
     if (props.apiStatus.success) {
@@ -64,7 +64,9 @@ class PasswordRecovery extends React.Component<IProps, IState> {
       <GSForm>
         <GSTitle lang={'cl-ara'}>{I18n.t('passwordRecovery.title')}</GSTitle>
         <Item fixedLabel>
-          <GSCustomText>{I18n.t('passwordRecovery.form.fields.email')}</GSCustomText>
+          <GSCustomText>
+            {I18n.t('passwordRecovery.form.fields.email')}
+          </GSCustomText>
           <GSInput
             dir="ltr"
             autoCapitalize="none"
@@ -90,7 +92,9 @@ class PasswordRecovery extends React.Component<IProps, IState> {
       <GSContainer>
         {message && (
           <GSAlert success={success} lang={'cl-ara'}>
-            {I18n.t(`passwordRecovery.result.${success ? 'success' : 'failure'}`)}
+            {I18n.t(
+              `passwordRecovery.result.${success ? 'success' : 'failure'}`
+            )}
           </GSAlert>
         )}
         {this.props.apiStatus.success || this.renderForm()}
@@ -100,14 +104,12 @@ class PasswordRecovery extends React.Component<IProps, IState> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  recoverPassword: (email: string) => dispatch(signon.actions.recoverPassword(email))
+  recoverPassword: (email: string) =>
+    dispatch(signon.actions.recoverPassword(email)),
 });
 
 const mapStateToProps = (state: IInitialState) => ({
-  apiStatus: state.api
+  apiStatus: state.api,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PasswordRecovery);
+export default connect(mapStateToProps, mapDispatchToProps)(PasswordRecovery);

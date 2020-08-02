@@ -2,11 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { IInitialState } from '@sl/services/reducers';
 import { isRegistered, getSourceLanguage } from '@sl/services/selectors';
-import { NavigationActions, NavigationResetActionPayload } from 'react-navigation';
+import {
+  NavigationActions,
+  NavigationResetActionPayload,
+} from 'react-navigation';
 import { Dispatch } from 'redux';
 import { resetToSignon } from '@sl/helpers/navigation';
 import * as signon from '@sl/services/signon';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 import I18n from '@sl/i18n';
 import { GSCustomText, ICustomText } from '@sl/styles/text';
 import glamor from 'glamorous-native';
@@ -22,7 +25,7 @@ interface IProps {
   noStyle?: boolean;
 }
 
-const areYouSure = func => {
+const areYouSure = (func) => {
   Alert.alert(
     I18n.t('signon.alerts.signOut.title'),
     I18n.t('signon.alerts.signOut.description'),
@@ -30,19 +33,29 @@ const areYouSure = func => {
       {
         text: I18n.t('signon.alerts.signOut.cancel'),
         onPress: () => {
-          Analytics.logEvent('signout_cancelled');
+          analytics().logEvent('signout_cancelled');
         },
-        style: 'cancel'
+        style: 'cancel',
       },
-      { text: I18n.t('signon.alerts.signOut.ok'), onPress: func }
+      { text: I18n.t('signon.alerts.signOut.ok'), onPress: func },
     ],
     { cancelable: false }
   );
 };
 
-const SignInOrOut = ({ isLoggedIn, navigationReset, sourceLanguage, signOut, noStyle }: IProps) => {
-  const onPress = isLoggedIn ? () => areYouSure(signOut) : () => navigationReset(resetToSignon());
-  const text = isLoggedIn ? I18n.t('signon.form.signOut') : I18n.t('signon.form.signonToSave');
+const SignInOrOut = ({
+  isLoggedIn,
+  navigationReset,
+  sourceLanguage,
+  signOut,
+  noStyle,
+}: IProps) => {
+  const onPress = isLoggedIn
+    ? () => areYouSure(signOut)
+    : () => navigationReset(resetToSignon());
+  const text = isLoggedIn
+    ? I18n.t('signon.form.signOut')
+    : I18n.t('signon.form.signonToSave');
   return (
     (noStyle && <Text onPress={onPress}>{text}</Text>) || (
       <GSText onPress={onPress} lang={sourceLanguage}>
@@ -54,12 +67,13 @@ const SignInOrOut = ({ isLoggedIn, navigationReset, sourceLanguage, signOut, noS
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   isLoggedIn: isRegistered(state),
-  sourceLanguage: getSourceLanguage(state)
+  sourceLanguage: getSourceLanguage(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
-  navigationReset: (reset: NavigationResetActionPayload) => dispatch(NavigationActions.reset(reset)),
-  signOut: () => dispatch(signon.actions.signout())
+  navigationReset: (reset: NavigationResetActionPayload) =>
+    dispatch(NavigationActions.reset(reset)),
+  signOut: () => dispatch(signon.actions.signout()),
 });
 
 const GSText = glamor(GSCustomText)<ICustomText>({
@@ -67,10 +81,7 @@ const GSText = glamor(GSCustomText)<ICustomText>({
   marginHorizontal: 10,
   fontWeight: '600',
   color: Colors.darkBlue,
-  alignSelf: 'center'
+  alignSelf: 'center',
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignInOrOut);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInOrOut);

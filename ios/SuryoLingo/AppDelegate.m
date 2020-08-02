@@ -13,14 +13,16 @@
 #import <React/RCTI18nUtil.h>
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-@import Firebase;
+#import <Firebase.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-  [FIRApp configure];
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
 
   for (NSString* family in [UIFont familyNames])
   {

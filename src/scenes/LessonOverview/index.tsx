@@ -6,8 +6,13 @@ import { IQuestion, IPhrase } from '@sl/services/questions';
 import { getPhrases } from '@sl/services/selectors';
 import { StudyPhrase } from '@sl/components';
 import shortid from 'shortid';
-import { Analytics } from '@sl/config/firebase';
-import { GSContainer, GSOverview, GSPhrase, GSTranslation } from './index.styles';
+import analytics from '@react-native-firebase/analytics';
+import {
+  GSContainer,
+  GSOverview,
+  GSPhrase,
+  GSTranslation,
+} from './index.styles';
 interface IProps {
   phrases: IPhrase[];
   questions: IQuestion;
@@ -16,7 +21,7 @@ interface IProps {
 
 class LessonOverview extends React.Component<IProps> {
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
   }
 
   render() {
@@ -45,10 +50,7 @@ class LessonOverview extends React.Component<IProps> {
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   phrases: getPhrases(state),
-  isAdmin: state.profile.isTester
+  isAdmin: state.profile.isTester,
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(LessonOverview);
+export default connect(mapStateToProps, null)(LessonOverview);

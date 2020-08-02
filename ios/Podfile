@@ -37,8 +37,6 @@ target 'SuryoLingo' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'Google-Mobile-Ads-SDK'
-  pod 'Firebase/Core'
-  pod 'Firebase/Messaging'
 
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
   # /*   post_install do |installer| */
@@ -48,6 +46,8 @@ target 'SuryoLingo' do
 # /*       end */
 # /*     end */
 # /*   end */
+
+  pod 'RNFBCrashlytics', :path => '../node_modules/@react-native-firebase/crashlytics'
 
   target 'SuryoLingoTests' do
     inherit! :search_paths

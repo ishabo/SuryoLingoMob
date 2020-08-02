@@ -7,7 +7,7 @@ import * as profile from '@sl/services/profile';
 import * as leaderboard from '@sl/services/leaderboard';
 import { isUserInLeaderboard } from '@sl/services/selectors';
 import images from '@sl/assets/images';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 
 import { NavigationScreenProp } from 'react-navigation';
 import {
@@ -47,10 +47,10 @@ class Leaderboard extends React.Component<IProps> {
       <DrawerItem label={I18n.t('leaderboard.title')} icon="leaderboard" />
     ),
     headerRight: null,
-  })
+  });
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
     this.props.fetchLeaderboard();
   }
 
@@ -75,14 +75,14 @@ class Leaderboard extends React.Component<IProps> {
         <GSUserXP>{user.userXp}</GSUserXP>
       </GSUserDetails>
     </GSTopUser>
-  )
+  );
 
   renderProfilePicture = (profilePic: string) => {
     return profilePic ? { uri: profilePic } : images.profile.default;
-  }
+  };
 
   renderLeaderboard = () =>
-    this.props.topUsers.map((user, index) => this.renderUser(user, index + 1))
+    this.props.topUsers.map((user, index) => this.renderUser(user, index + 1));
 
   renderUserPosition = () => {
     const { profile } = this.props;
@@ -90,9 +90,9 @@ class Leaderboard extends React.Component<IProps> {
     const ratio = this.props.currentUserCourseXpRatio;
     return this.renderUser(
       { id, name, userXp, ratio },
-      this.props.currentUserPosition,
+      this.props.currentUserPosition
     );
-  }
+  };
 
   render() {
     return (
@@ -132,7 +132,4 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   profile: state.profile,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Leaderboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Leaderboard);

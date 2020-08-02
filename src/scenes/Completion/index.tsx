@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import {
   NavigationActions,
-  NavigationResetActionPayload
+  NavigationResetActionPayload,
 } from 'react-navigation';
 import I18n from '@sl/i18n';
 import { ILesson, ISkill, ILessonHistory } from '@sl/services/skills';
@@ -10,14 +10,14 @@ import {
   GSContainer,
   GSCongratMessage,
   GSXPGain,
-  GSNextButton
+  GSNextButton,
 } from './index.styles';
 import { IInitialState } from '@sl/services/reducers';
 import {
   getLessonInProgress,
   getSkillInProgress,
   isRegistered,
-  getSourceLanguage
+  getSourceLanguage,
 } from '@sl/services/selectors';
 import config from '@sl/config/';
 import { resetToLessons, resetToSkills } from '@sl/helpers/navigation';
@@ -25,7 +25,7 @@ import { NextButton, SignOnOrOut } from '@sl/components/';
 import { IProfile } from '@sl/services/profile';
 import { Dispatch } from 'redux';
 // import { displayInterstitialAd } from '@sl/helpers';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void;
@@ -44,15 +44,15 @@ interface IState {
 class Completion extends React.Component<IProps, IState> {
   state = {
     timeToSkipAd: 0,
-    lessonXp: config.lessonXP
+    lessonXp: config.lessonXP,
   };
 
   static navigationOptions = {
-    header: null
+    header: null,
   };
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
 
     const lastAccomplishment: ILessonHistory = this.props.lessonInProgress.lessonHistory.slice(
       -1
@@ -104,7 +104,7 @@ class Completion extends React.Component<IProps, IState> {
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   navigationReset: (reset: NavigationResetActionPayload) =>
-    dispatch(NavigationActions.reset(reset))
+    dispatch(NavigationActions.reset(reset)),
 });
 
 const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
@@ -112,10 +112,7 @@ const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
   profile: state.profile,
   lessonInProgress: getLessonInProgress(state),
   skillInProgress: getSkillInProgress(state),
-  isRegistered: isRegistered(state)
+  isRegistered: isRegistered(state),
 });
 
-export default connect(
-  mapStateToDispatch,
-  mapDispatchToProps
-)(Completion);
+export default connect(mapStateToDispatch, mapDispatchToProps)(Completion);

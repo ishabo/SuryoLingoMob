@@ -10,10 +10,13 @@ import {
   cleanAnswer,
   getWindowWidth,
   getLangConfig,
-  isShortDevice
+  isShortDevice,
 } from '@sl/helpers';
 import { connect } from 'react-redux';
-import { nextQuestionOrFinish, TQuestionType } from '@sl/services/questions/actions';
+import {
+  nextQuestionOrFinish,
+  TQuestionType,
+} from '@sl/services/questions/actions';
 import {
   getActiveCourse,
   calcProress,
@@ -21,12 +24,17 @@ import {
   allCorrectAnswers,
   getSkillInProgress,
   getTargetLanguage,
-  getSourceLanguage
+  getSourceLanguage,
 } from '@sl/services/selectors';
 import { GSCustomStudyText } from '@sl/styles/text';
 import Colors from '@sl/styles/colors';
 import I18n from '@sl/i18n';
-import { GSIcon, GSProgress, GSFooterAndBody, GSContainer } from './index.styles';
+import {
+  GSIcon,
+  GSProgress,
+  GSFooterAndBody,
+  GSContainer,
+} from './index.styles';
 import { GSHeader, GSBody, GSFooter } from '@sl/styles/layouts';
 import { IProps, IState, TAnswer } from './index.types';
 import { NavigationActions } from 'react-navigation';
@@ -35,7 +43,7 @@ import { Dispatch } from 'redux';
 import { IInitialState } from '@sl/services/reducers';
 import QuestionBody from './components/QuestionBody';
 import { KeyboardUtils } from 'react-native-keyboard-input';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 
 class Questions extends React.Component<IProps, IState> {
   public state = {
@@ -44,7 +52,7 @@ class Questions extends React.Component<IProps, IState> {
     answerCorrect: null,
     modalOn: false,
     movingNext: false,
-    keyboardIsOn: false
+    keyboardIsOn: false,
   };
 
   private keyboardDidShowListener;
@@ -57,8 +65,8 @@ class Questions extends React.Component<IProps, IState> {
     cardStack: {
       transition: (previousRoute: any) => {
         console.warn(previousRoute);
-      }
-    }
+      },
+    },
   };
 
   collectAnswer = (answer: TAnswer) => {
@@ -73,20 +81,27 @@ class Questions extends React.Component<IProps, IState> {
     if (!this.userHasAnswered() && cleannedAnswer.length > length) {
       this.setState({ answer: cleannedAnswer });
     }
-  }
+  };
 
   submitDisallowed = () => isEmpty(this.state.answer) && this.actionNeeded();
 
-  actionNeeded = () => this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE';
+  actionNeeded = () =>
+    this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE';
 
   needsEvaluation = () => this.actionNeeded() && !this.userHasAnswered();
 
   componentDidMount() {
     this.setState({ progress: this.props.calcProress });
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+    this.keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      this.keyboardDidShow
+    );
+    this.keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this.keyboardDidHide
+    );
   }
 
   componentWillUnmount() {
@@ -97,16 +112,16 @@ class Questions extends React.Component<IProps, IState> {
 
   private keyboardDidShow = () => {
     this.setState({ keyboardIsOn: true });
-  }
+  };
 
   private keyboardDidHide = () => {
     this.setState({ keyboardIsOn: false });
-  }
+  };
 
   handleBackPress = () => {
     this.existQuestions();
     return true;
-  }
+  };
 
   evaluateOrNext = () => {
     if (this.submitDisallowed() || this.state.movingNext) {
@@ -121,7 +136,7 @@ class Questions extends React.Component<IProps, IState> {
     } else {
       this.nextQuestionOrComplete();
     }
-  }
+  };
 
   evaluate = () => {
     const targetLangConfig = getLangConfig(this.props.targetLanguage);
@@ -129,7 +144,10 @@ class Questions extends React.Component<IProps, IState> {
 
     const evaluationOptions = {
       allowedLetters: targetLangConfig.letters.concat(sourceLangConfig.letters),
-      overlookLetters: { ...targetLangConfig.overlookLetters, ...sourceLangConfig.overlookLetters }
+      overlookLetters: {
+        ...targetLangConfig.overlookLetters,
+        ...sourceLangConfig.overlookLetters,
+      },
     };
 
     const answerCorrect = evalAgainstAllAnswers(
@@ -141,12 +159,13 @@ class Questions extends React.Component<IProps, IState> {
     const { id: questionId, questionType } = this.props.currentQuestion;
 
     if (!answerCorrect) {
-      Analytics.logEvent('incorrect_answer', { questionId, questionType });
+      analytics().logEvent('incorrect_answer', { questionId, questionType });
     }
     this.setState({ answerCorrect });
-  }
+  };
 
-  answeredCorrectly = () => !isEmpty(this.state.answer) && this.state.answerCorrect === true;
+  answeredCorrectly = () =>
+    !isEmpty(this.state.answer) && this.state.answerCorrect === true;
 
   nextQuestionOrComplete = () => {
     this.setState({ movingNext: true }, () => {
@@ -157,7 +176,7 @@ class Questions extends React.Component<IProps, IState> {
       }
       this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
     });
-  }
+  };
 
   private backToSkills = () => {
     Keyboard.dismiss();
@@ -165,10 +184,10 @@ class Questions extends React.Component<IProps, IState> {
     const resetAction = NavigationActions.reset({
       index: 0,
       key: null,
-      actions: [navToSkills()]
+      actions: [navToSkills()],
     });
     this.props.navigation.dispatch(resetAction);
-  }
+  };
 
   existQuestions = () => {
     Keyboard.dismiss();
@@ -181,29 +200,50 @@ class Questions extends React.Component<IProps, IState> {
           onPress: () => {
             console.log('Cancelled exist');
           },
-          style: 'cancel'
+          style: 'cancel',
         },
         {
           text: I18n.t('questions.exist.ok'),
           onPress: () => {
-            const { id: questionId, questionType, lessonId } = this.props.currentQuestion;
+            const {
+              id: questionId,
+              questionType,
+              lessonId,
+            } = this.props.currentQuestion;
             const totalRemainingQuestions = this.props.pending.length;
-            Analytics.logEvent('exist_', { lessonId, questionId, questionType, totalRemainingQuestions });
+            analytics().logEvent('exist_', {
+              lessonId,
+              questionId,
+              questionType,
+              totalRemainingQuestions,
+            });
             this.backToSkills();
-          }
-        }
+          },
+        },
       ],
       { cancelable: false }
     );
-  }
+  };
 
   renderEvaluationBanner() {
-    const { questionType, phrase, translation, otherCorrectAnswers = [] } = this.props.currentQuestion;
-    const correctAnswers = [...otherCorrectAnswers, isReverseQuestion(questionType) ? phrase : translation];
+    const {
+      questionType,
+      phrase,
+      translation,
+      otherCorrectAnswers = [],
+    } = this.props.currentQuestion;
+    const correctAnswers = [
+      ...otherCorrectAnswers,
+      isReverseQuestion(questionType) ? phrase : translation,
+    ];
     const correctAnswer = (
       <GSCustomStudyText
         style={{ fontSize: 16 }}
-        lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.sourceLanguage}
+        lang={
+          isReverseQuestion(questionType)
+            ? this.props.targetLanguage
+            : this.props.sourceLanguage
+        }
       >
         {correctAnswers.join(I18n.t('general.comma') + ' ')}
       </GSCustomStudyText>
@@ -248,23 +288,39 @@ class Questions extends React.Component<IProps, IState> {
       collectAnswer={this.collectAnswer}
       userHasAnswered={this.userHasAnswered()}
       hints={this.props.dictionaries}
-      renderNextButtonSmall={this.showSmallButton() ? this.renderNextQuestionSmall() : <View />}
+      renderNextButtonSmall={
+        this.showSmallButton() ? this.renderNextQuestionSmall() : <View />
+      }
       renderNextButton={this.renderNextQuestion()}
       onSubmit={this.evaluateOrNext}
     />
   );
 
   showSmallButton = () =>
-    !this.submitDisallowed() && !this.state.movingNext && this.state.keyboardIsOn && isShortDevice(500);
+    !this.submitDisallowed() &&
+    !this.state.movingNext &&
+    this.state.keyboardIsOn &&
+    isShortDevice(500);
 
   renderNextQuestionSmall = () => {
-    let text = this.needsEvaluation() ? I18n.t('questions.submit') : I18n.t('questions.continue');
+    let text = this.needsEvaluation()
+      ? I18n.t('questions.submit')
+      : I18n.t('questions.continue');
 
-    return <SwitchButton onPress={this.evaluateOrNext} lang={this.props.sourceLanguage} success text={text} />;
+    return (
+      <SwitchButton
+        onPress={this.evaluateOrNext}
+        lang={this.props.sourceLanguage}
+        success
+        text={text}
+      />
+    );
   };
 
   renderNextQuestion = () => {
-    let text = this.needsEvaluation() ? I18n.t('questions.submit') : I18n.t('questions.continue');
+    let text = this.needsEvaluation()
+      ? I18n.t('questions.submit')
+      : I18n.t('questions.continue');
 
     return (
       <NextButton
@@ -285,7 +341,8 @@ class Questions extends React.Component<IProps, IState> {
           keyboardVerticalOffset={Platform.select({ android: 0, ios: 75 })}
           enabled
         >
-          {(this.state.keyboardIsOn && isShortDevice(500) && <View />) || this.renderNextQuestion()}
+          {(this.state.keyboardIsOn && isShortDevice(500) && <View />) ||
+            this.renderNextQuestion()}
         </GSFooter>
       </GSFooterAndBody>
     );
@@ -306,7 +363,7 @@ class Questions extends React.Component<IProps, IState> {
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   nextQuestionOrFinish: (questionId: string, status: TQuestionType) =>
-    dispatch(nextQuestionOrFinish(questionId, status))
+    dispatch(nextQuestionOrFinish(questionId, status)),
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
@@ -318,12 +375,10 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   currentQuestion: getCurrentQuestion(state),
   skillInProgress: getSkillInProgress(state),
   dictionaries: state.dictionaries,
-  allCorrectAnswers: (questionId: string) => allCorrectAnswers(state, questionId),
+  allCorrectAnswers: (questionId: string) =>
+    allCorrectAnswers(state, questionId),
   targetLanguage: getTargetLanguage(state),
-  sourceLanguage: getSourceLanguage(state)
+  sourceLanguage: getSourceLanguage(state),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);

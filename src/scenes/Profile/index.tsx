@@ -9,7 +9,7 @@ import {
   Hamburger,
   FBLoginButton,
   DrawerItem,
-  SignOnOrOut,
+  SignOnOrOut
 } from '@sl/components';
 import {
   GSContainer,
@@ -18,7 +18,7 @@ import {
   GSProfileDetailsItem,
   GSProfilePicture,
   GSPersonalDetails,
-  GSBottom,
+  GSBottom
 } from './index.styles';
 import * as profile from '@sl/services/profile';
 import * as courses from '@sl/services/courses';
@@ -29,7 +29,7 @@ import { GSCustomText } from '@sl/styles/text';
 import { NavigationScreenProp } from 'react-navigation';
 import VersionNumber from 'react-native-version-number';
 import Images from '@sl/assets/images';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 import { showAlert } from '@sl/helpers';
 
 export interface IProps {
@@ -51,11 +51,11 @@ class Profile extends React.Component<IProps> {
     title: I18n.t('profile.title'),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     drawerLabel: <DrawerItem label={I18n.t('profile.title')} icon="profile" />,
-    headerRight: null,
-  })
+    headerRight: null
+  });
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
     if (!this.props.isRegistered) {
       this.props.navigation.navigate('Signon');
     } else {
@@ -82,7 +82,7 @@ class Profile extends React.Component<IProps> {
         <GSCustomText>{course.courseXp}</GSCustomText>
       </GSProfileDetails>
     ));
-  }
+  };
 
   renderProfile = () => {
     const { profilePic } = this.props.profile;
@@ -130,7 +130,7 @@ class Profile extends React.Component<IProps> {
         </>
       </GSProfile>
     );
-  }
+  };
 
   render() {
     return (
@@ -145,7 +145,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   signout: () => dispatch(signon.actions.signout()),
   fetchLeaderboard: () => dispatch(leaderboard.actions.fetchLeaderboard()),
   fetchProfile: () => dispatch(profile.actions.fetchProfile()),
-  fetchCourses: () => dispatch(courses.actions.fetchCourses()),
+  fetchCourses: () => dispatch(courses.actions.fetchCourses())
 });
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
@@ -154,10 +154,10 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   courses: state.courses,
   isRegistered: isRegistered(state),
   signon: state.signon,
-  currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio,
+  currentUserCourseXpRatio: state.leaderboard.currentUserCourseXpRatio
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Profile);

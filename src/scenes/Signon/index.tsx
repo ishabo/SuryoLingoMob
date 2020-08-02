@@ -24,7 +24,7 @@ import {
   GSErrorText,
   GSSeparator,
   GSSeperatorText,
-  GSSeperatorLine
+  GSSeperatorLine,
 } from './index.styles';
 
 import { GSCustomText } from '@sl/styles/text';
@@ -35,7 +35,7 @@ import { getActiveCourse } from '@sl/services/selectors';
 import { ICourse } from '@sl/services/courses';
 import { exitApp, TAlertSubject, showAlert } from '@sl/helpers';
 import { Dispatch } from 'redux';
-import { Analytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
 
 interface IState {
   signUpOrIn: signon.TSignonType;
@@ -61,14 +61,14 @@ class Signon extends React.Component<IProps, IState> {
   static navigationOptions = {
     title: I18n.t('signon.title'),
     header: null,
-    drawerLabel: <DrawerItem label={I18n.t('signon.title')} icon="signon" />
+    drawerLabel: <DrawerItem label={I18n.t('signon.title')} icon="signon" />,
   };
 
   state = {
     signUpOrIn: 'signup',
     focusOn: null,
     keyboardOn: false,
-    showPassword: false
+    showPassword: false,
   };
 
   handleBackPress() {
@@ -85,7 +85,7 @@ class Signon extends React.Component<IProps, IState> {
   };
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name);
     this.keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       this.keyboardDidShow
@@ -194,7 +194,7 @@ class Signon extends React.Component<IProps, IState> {
           </GSCustomText>
         </GSLebel>
         <GSInput
-          ref={c => (this[name] = c)}
+          ref={(c) => (this[name] = c)}
           dir="ltr"
           autoCapitalize={name === 'name' ? 'words' : 'none'}
           autoFocus={this.state.focusOn === name}
@@ -227,7 +227,7 @@ class Signon extends React.Component<IProps, IState> {
           {
             defaultValue: this.props.signon.item.name,
             onSubmitEditing: this.focusOn('email'),
-            returnKeyType: 'next'
+            returnKeyType: 'next',
           },
           this.renderBulb('signupName')
         )}
@@ -237,7 +237,7 @@ class Signon extends React.Component<IProps, IState> {
         {
           defaultValue: this.props.signon.item.email,
           onSubmitEditing: this.focusOn('password'),
-          returnKeyType: 'next'
+          returnKeyType: 'next',
         },
         this.renderBulb(this.isSignin ? 'signinEmail' : 'signupEmail')
       )}
@@ -247,7 +247,7 @@ class Signon extends React.Component<IProps, IState> {
         {
           secureTextEntry: !this.showPassword(),
           onSubmitEditing: this.submitSignon,
-          returnKeyType: 'go'
+          returnKeyType: 'go',
         },
         this.renderShowPasswordIcon()
       )}
@@ -336,16 +336,13 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   captureSignon: (data: signon.ISignonFormData) =>
     dispatch(signon.actions.captureSignon(data)),
   setError: (errors: signon.ISignonFormErrors) =>
-    dispatch(signon.actions.setErrors(errors))
+    dispatch(signon.actions.setErrors(errors)),
 });
 
 const mapStateToDispatch = (state: IInitialState): Partial<IProps> => ({
   signon: state.signon,
   profile: state.profile,
-  activeCourse: getActiveCourse(state)
+  activeCourse: getActiveCourse(state),
 });
 
-export default connect(
-  mapStateToDispatch,
-  mapDispatchToProps
-)(Signon);
+export default connect(mapStateToDispatch, mapDispatchToProps)(Signon);

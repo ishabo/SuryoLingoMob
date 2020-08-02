@@ -5,9 +5,12 @@ import { IInitialState } from '@sl/services/reducers';
 import { ISagasFunctions } from '@sl/services/sagas';
 import { setAccessToken } from '@sl/services/api/access';
 import { isRegistered } from '@sl/services/selectors';
-import { Analytics, Crashlytics } from '@sl/config/firebase';
+import analytics from '@react-native-firebase/analytics';
+import crashlytics from '@react-native-firebase/crashlytics';
 
-export function* createProfileIfNeeded(action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfileIfNeeded(
+  action: profile.IProfileAction
+): IterableIterator<any> {
   const profileState = yield select((state: IInitialState) => state.profile);
 
   if (isEmpty(profileState)) {
@@ -17,7 +20,9 @@ export function* createProfileIfNeeded(action: profile.IProfileAction): Iterable
   }
 }
 
-export function* createProfile(action: profile.IProfileAction): IterableIterator<any> {
+export function* createProfile(
+  action: profile.IProfileAction
+): IterableIterator<any> {
   try {
     const profileData = yield call(profile.api.createProfile, action.payload);
     yield put(profile.actions.saveProfileAndAccessToken(profileData));
@@ -26,9 +31,14 @@ export function* createProfile(action: profile.IProfileAction): IterableIterator
   }
 }
 
-export function* updateProfile(action: profile.IProfileAction): IterableIterator<any> {
+export function* updateProfile(
+  action: profile.IProfileAction
+): IterableIterator<any> {
   const currentProfile = yield select((state: IInitialState) => state.profile);
-  const profileData = yield call(profile.api.updateProfile(currentProfile.id), action.payload);
+  const profileData = yield call(
+    profile.api.updateProfile(currentProfile.id),
+    action.payload
+  );
   yield put(profile.actions.saveProfileAndAccessToken(profileData));
 }
 
@@ -44,7 +54,9 @@ export function* fetchProfile(): IterableIterator<any> {
   }
 }
 
-export function* saveProfileAndAccessToken(action: profile.IProfileAction): IterableIterator<any> {
+export function* saveProfileAndAccessToken(
+  action: profile.IProfileAction
+): IterableIterator<any> {
   try {
     const accessToken = action.profileData.apiKey;
     delete action.profileData.apiKey;
@@ -52,15 +64,15 @@ export function* saveProfileAndAccessToken(action: profile.IProfileAction): Iter
 
     const { id, userXp } = action.profileData;
 
-    Analytics.setUserId(id);
+    analytics().setUserId(id);
     if (userXp) {
-      Analytics.setUserProperty('userXp', String(userXp));
+      analytics().setUserProperty('userXp', String(userXp));
     }
 
-    Analytics.setUserId(action.profileData.id);
-    Crashlytics.setUserIdentifier(action.profileData.id);
-    Crashlytics.setStringValue('userName', action.profileData.name);
-    Crashlytics.setStringValue('userEmail', action.profileData.email);
+    analytics().setUserId(action.profileData.id);
+    crashlytics().setUserId(action.profileData.id);
+    crashlytics().setAttribute('userName', action.profileData.name);
+    crashlytics().setAttribute('userEmail', action.profileData.email);
 
     yield put(profile.actions.saveProfile(action.profileData));
   } catch (e) {
@@ -77,7 +89,7 @@ export const functions = (): ISagasFunctions[] => {
     { action: types.FETCH_PROFILE, func: fetchProfile },
     {
       action: types.SAVE_PROFILE_AND_ACCESS_TOKEN,
-      func: saveProfileAndAccessToken
-    }
+      func: saveProfileAndAccessToken,
+    },
   ];
 };
