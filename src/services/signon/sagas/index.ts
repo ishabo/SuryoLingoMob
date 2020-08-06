@@ -7,7 +7,7 @@ import * as skills from '@sl/services/skills';
 import * as courses from '@sl/services/courses';
 import { IInitialState } from '@sl/services/reducers';
 import { isEmpty } from 'lodash';
-import { validateSigon } from '../validation';
+import { validateSignOn } from '../validation';
 import {
   setLoadingOn,
   setLoadingOff,
@@ -62,7 +62,7 @@ export function* submitSignon(
     delete fields['name'];
   }
 
-  const errors: signon.ISignonFormErrors = validateSigon(fields);
+  const errors: signon.ISignonFormErrors = validateSignOn(fields);
   if (isEmpty(errors)) {
     yield put(setLoadingOn());
 

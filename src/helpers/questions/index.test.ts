@@ -1,6 +1,9 @@
-import * as h from './index';
+import * as h from '.';
+jest.mock('@sl/helpers/logging', () => ({
+  logError: jest.fn()
+}));
 
-describe('common', () => {
+describe('questions', () => {
   describe('hintify', () => {
     it('Breaks a sentence to an array of object with translations from provided dictionary', () => {
       const hintified = h.hintify(
@@ -38,23 +41,27 @@ describe('common', () => {
 
   describe('clearAnswer', () => {
     it('it trimps answer', () => {
-      expect(h.cleanAnswer(' this should be trimmed ')).toEqual('this should be trimmed');
+      expect(h.cleanAnswer(' this should be trimmed ')).toEqual(
+        'this should be trimmed'
+      );
     });
 
     it('it clears answers from commas and fullstops', () => {
-      expect(h.cleanAnswer('there should be no commans, and fullstops.')).toEqual(
-        'there should be no commans and fullstops'
-      );
+      expect(
+        h.cleanAnswer('there should be no commans, and fullstops.')
+      ).toEqual('there should be no commans and fullstops');
     });
 
     it('it clears answers from question or exclamation marks', () => {
-      expect(h.cleanAnswer('!does it have a question mark?؟')).toEqual('does it have a question mark');
+      expect(h.cleanAnswer('!does it have a question mark?؟')).toEqual(
+        'does it have a question mark'
+      );
     });
 
     it('it clears answers from special chars', () => {
-      expect(h.cleanAnswer('<th!is -is$_ gonna@ be clear from=: special chars/%;>')).toEqual(
-        'this is gonna be clear from special chars'
-      );
+      expect(
+        h.cleanAnswer('<th!is -is$_ gonna@ be clear from=: special chars/%;>')
+      ).toEqual('this is gonna be clear from special chars');
     });
   });
 });

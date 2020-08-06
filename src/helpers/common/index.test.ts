@@ -1,15 +1,18 @@
 import * as h from './index';
+jest.mock('@sl/helpers/logging', () => ({
+  logError: jest.fn()
+}));
 
 describe('common', () => {
   describe('changeCase', () => {
     const camelCaseObject = {
       object1: 'object 1 value',
-      thisIsAnotherObject: { object1: 1, objectTwo: 2 },
+      thisIsAnotherObject: { object1: 1, objectTwo: 2 }
     };
 
     const snakeCaseObject = {
       object_1: 'object 1 value',
-      this_is_another_object: { object_1: 1, object_two: 2 },
+      this_is_another_object: { object_1: 1, object_two: 2 }
     };
 
     it('changes an object of nested objects from camel to snake case', () => {
@@ -37,7 +40,9 @@ describe('common', () => {
     it('puts dashes instead of chars and ignores spaces', () => {
       expect(h.dashify('this is a test')).toEqual('---- -- - ----');
       expect(h.dashify('هذه مجرد تجربة')).toEqual('--- ---- -----');
-      expect(h.dashify('هَذه مًجَرَّي تَجْرِبَة')).toEqual('---- -------- ---------');
+      expect(h.dashify('هَذه مًجَرَّي تَجْرِبَة')).toEqual(
+        '---- -------- ---------'
+      );
     });
   });
 });

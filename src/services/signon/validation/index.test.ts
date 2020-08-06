@@ -4,7 +4,7 @@ describe('validation', () => {
   describe('when fields do not exist', () => {
     it('requires email', () => {
       expect(
-        validation.validateSigon({
+        validation.validateSignOn({
           password: 'password1!',
           name: 'name',
           email: '',
@@ -17,7 +17,7 @@ describe('validation', () => {
 
     it('requires name', () => {
       expect(
-        validation.validateSigon({
+        validation.validateSignOn({
           password: 'password1!',
           email: 'email@bla.com',
           name: '',
@@ -30,7 +30,7 @@ describe('validation', () => {
 
     it('requires password', () => {
       expect(
-        validation.validateSigon({
+        validation.validateSignOn({
           name: 'name',
           email: 'email@bla.com',
           password: '',
@@ -43,7 +43,7 @@ describe('validation', () => {
 
     it('requires all', () => {
       expect(
-        validation.validateSigon({
+        validation.validateSignOn({
           email: '',
           password: null,
           name: undefined,
@@ -70,7 +70,7 @@ describe('validation', () => {
       emailsToTest.forEach((email: string) => {
         it(`throws error for invalid email '${email}'`, () => {
           expect(
-            validation.validateSigon({
+            validation.validateSignOn({
               email,
               name: 'name',
               password: 'password1!',
@@ -94,7 +94,7 @@ describe('validation', () => {
       emailsToTest.forEach((email: string) => {
         it(`passes with valid email '${email}'`, () => {
           expect(
-            validation.validateSigon({
+            validation.validateSignOn({
               email,
               name: 'name',
               password: 'password1!',
@@ -116,9 +116,9 @@ describe('validation', () => {
       'Th1$I$TooLong!!!!!!' // more than 18
     ];
     passwordsToTest.forEach((password: string) => {
-      it(`throws error for invalid password '${password}'`, () => {
+      it(`returns passwordInvalid for '${password}'`, () => {
         expect(
-          validation.validateSigon({
+          validation.validateSignOn({
             password,
             email: 'correct@correct.com',
             name: 'name',
@@ -143,7 +143,7 @@ describe('validation', () => {
     passwordsToTest.forEach((password: string) => {
       it(`passes with valid password '${password}'`, () => {
         expect(
-          validation.validateSigon({
+          validation.validateSignOn({
             password,
             email: 'correct@correct.com',
             name: 'name',
@@ -168,7 +168,7 @@ describe('validation', () => {
     namesToTest.forEach((name: string) => {
       it(`throws error for invalid name '${name}'`, () => {
         expect(
-          validation.validateSigon({
+          validation.validateSignOn({
             name,
             email: 'correct@correct.com',
             password: 'password1!',
@@ -194,7 +194,7 @@ describe('validation', () => {
     namesToTest.forEach((name: string) => {
       it(`throws error for invalid name '${name}'`, () => {
         expect(
-          validation.validateSigon({
+          validation.validateSignOn({
             name,
             email: 'correct@correct.com',
             password: 'password1!',

@@ -14,7 +14,7 @@ const validateField = (
   }
 };
 
-export const validateSigon = (fields: ISignonFormData): ISignonFormErrors => {
+export const validateSignOn = (fields: ISignonFormData): ISignonFormErrors => {
   const errors = {};
 
   validateField(validateName, fields, 'name', errors);
@@ -43,4 +43,3 @@ const testWithPatterns = (patterns: RegExp[], str: string) => {
 
   return false;
 };
-
