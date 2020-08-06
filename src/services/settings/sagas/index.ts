@@ -5,7 +5,13 @@ import * as settings from '../';
 
 import { getSettings } from '@sl/services/settings/api';
 import { alertToUpdateApp, alertMaintenance } from '@sl/helpers';
-import { shouldUpdateApp, getDeviceSpecificSettings, isOnMaintenance } from '@sl/services/selectors';
+import {
+  shouldUpdateApp,
+  getDeviceSpecificSettings,
+  isOnMaintenance
+} from '@sl/services/selectors';
+import { IDeviceSettings } from '@sl/services/settings';
+import { IProfile } from '@sl/services/profile';
 
 export function* fetchSettings(): IterableIterator<any> {
   try {
@@ -15,16 +21,22 @@ export function* fetchSettings(): IterableIterator<any> {
 }
 
 export function* checkStatuses(): IterableIterator<any> {
-  const profile = yield select((state: IInitialState) => state.profile);
+  const profile: IProfile = yield select(
+    (state: IInitialState) => state.profile
+  );
   if (yield select(isOnMaintenance)) {
     const maintenanceSettings: settings.IMaintenance = yield select(
       (state: IInitialState) => state.settings.maintenance
     );
-    alertMaintenance(maintenanceSettings.showDefaultMessage, maintenanceSettings.message, profile.isTester !== null);
+    alertMaintenance(
+      maintenanceSettings.showDefaultMessage,
+      maintenanceSettings.message,
+      profile.isTester !== null
+    );
     return;
   }
 
-  const device = yield select(getDeviceSpecificSettings);
+  const device: IDeviceSettings = yield select(getDeviceSpecificSettings);
 
   if (device) {
     if (yield select(shouldUpdateApp)) {

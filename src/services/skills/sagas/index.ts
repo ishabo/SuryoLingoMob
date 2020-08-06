@@ -5,9 +5,10 @@ import * as exceptions from '@sl/services/exceptions';
 import { ISagasFunctions } from '@sl/services/sagas';
 import * as assets from '@sl/services/assets';
 import { setLoadingOn, setLoadingOff } from '@sl/services/api/actions';
+import { ICourse } from '@sl/services/courses';
 
 export function* fetchSkills(): IterableIterator<any> {
-  const activeCourse = yield select(getActiveCourse);
+  const activeCourse: ICourse = yield select(getActiveCourse);
 
   if (activeCourse) {
     yield put(setLoadingOn());
@@ -23,4 +24,6 @@ export function* fetchSkills(): IterableIterator<any> {
   }
 }
 
-export const functions = (): ISagasFunctions[] => [{ action: skills.actions.types.FETCH_SKILLS, func: fetchSkills }];
+export const functions = (): ISagasFunctions[] => [
+  { action: skills.actions.types.FETCH_SKILLS, func: fetchSkills }
+];

@@ -1,5 +1,4 @@
-import { call, put, select } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { call, put, select, delay } from 'redux-saga/effects';
 import * as questions from '../';
 import * as dictionaries from '@sl/services/dictionaries';
 import { NavigationActions } from 'react-navigation';
@@ -9,8 +8,11 @@ import { ISagasFunctions } from '@sl/services/sagas';
 import { downloadFile } from '@sl/helpers';
 import cloneDeep from 'clone-deep';
 import { finishLesson } from '@sl/services/progress/sagas';
+import { ILesson } from '@sl/services/skills';
 
-export function* fetchQuestions(action: questions.IQuestionsAction): IterableIterator<any> {
+export function* fetchQuestions(
+  action: questions.IQuestionsAction
+): IterableIterator<any> {
   let fetchedQuestions;
   yield put(setLoadingOn());
 
@@ -19,9 +21,12 @@ export function* fetchQuestions(action: questions.IQuestionsAction): IterableIte
 
     fetchedQuestions = yield call(questions.api.getQuestions, action.lessonId);
   } catch (error) {
-    const lessonInProgress = yield select(getLessonInProgress);
+    const lessonInProgress: ILesson = yield select(getLessonInProgress);
 
-    if (Array.isArray(lessonInProgress.questions) && lessonInProgress.questions.length) {
+    if (
+      Array.isArray(lessonInProgress.questions) &&
+      lessonInProgress.questions.length
+    ) {
       fetchedQuestions = cloneDeep(lessonInProgress.questions);
     }
   }
@@ -34,7 +39,10 @@ export function* fetchQuestions(action: questions.IQuestionsAction): IterableIte
   yield put(setLoadingOff());
 }
 
-function* saveQuestionsAndNavigate(data: questions.IQuestion[], routeName: questions.TDestination = 'Questions') {
+function* saveQuestionsAndNavigate(
+  data: questions.IQuestion[],
+  routeName: questions.TDestination = 'Questions'
+) {
   yield put(questions.actions.saveQuestions(data));
   const action = NavigationActions.navigate({ routeName });
   if (routeName === 'Questions') {
@@ -63,8 +71,12 @@ function* cacheAudioSounds(data: questions.IQuestion[]) {
   }
 }
 
-export function* nextQuestionOrFinish(action: questions.IQuestionsAction): IterableIterator<any> {
-  yield put(questions.actions.updateQuestionStatus(action.questionId, action.status));
+export function* nextQuestionOrFinish(
+  action: questions.IQuestionsAction
+): IterableIterator<any> {
+  yield put(
+    questions.actions.updateQuestionStatus(action.questionId, action.status)
+  );
   const pending: string[] = yield select(getPending);
   let routeName = 'Questions';
 
@@ -86,5 +98,8 @@ export function* nextQuestionOrFinish(action: questions.IQuestionsAction): Itera
 
 export const functions = (): ISagasFunctions[] => [
   { action: questions.actions.types.FETCH_QUESTIONS, func: fetchQuestions },
-  { action: questions.actions.types.NEXT_QUESTION_OR_FINISH, func: nextQuestionOrFinish }
+  {
+    action: questions.actions.types.NEXT_QUESTION_OR_FINISH,
+    func: nextQuestionOrFinish
+  }
 ];

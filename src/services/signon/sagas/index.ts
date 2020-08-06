@@ -1,5 +1,4 @@
-import { call, put, select } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { call, put, select, delay } from 'redux-saga/effects';
 import * as signon from '@sl/services/signon';
 import * as profile from '@sl/services/profile';
 import * as progress from '@sl/services/progress';
@@ -12,7 +11,7 @@ import {
   setLoadingOn,
   setLoadingOff,
   setFailureMessage,
-  setSuccessMessage,
+  setSuccessMessage
 } from '@sl/services/api/actions';
 import { ISagasFunctions } from '@sl/services/sagas';
 import { getActiveCourse } from '@sl/services/selectors';
@@ -20,11 +19,11 @@ import {
   logError,
   isApiResponse,
   resetToSkills,
-  navToCourses,
+  navToCourses
 } from '@sl/helpers';
 import RNRestart from 'react-native-restart';
 import { deleteAccessToken } from '@sl/services/api/access';
-import { LoginManager, AccessToken } from 'react-native-fbsdk';
+import { LoginManager, AccessToken, LoginResult } from 'react-native-fbsdk';
 import { NavigationActions } from 'react-navigation';
 import analytics from '@react-native-firebase/analytics';
 
@@ -54,12 +53,11 @@ export function* submitSignon(
   action: signon.ISignonFormAction
 ): IterableIterator<any> {
   yield put(setLoadingOn());
-  const fields = {
-    ...(yield select((state: IInitialState) => state.signon.item)),
-  };
+
+  const fields = yield select((state: IInitialState) => state.signon.item);
 
   if (action.signon === 'signin') {
-    delete fields['name'];
+    Reflect.deleteProperty(fields, 'name');
   }
 
   const errors: signon.ISignonFormErrors = validateSignOn(fields);
@@ -108,38 +106,40 @@ export function* connectViaFacebook(
   debugger;
   analytics().logEvent('connect_via_facebook', {
     SignonType: actions.signon,
-    Started: true,
+    Started: true
   });
 
   try {
     logError(JSON.stringify(actions));
-    const result = yield call(LoginManager.logInWithPermissions, [
+    const result: LoginResult = yield call(LoginManager.logInWithPermissions, [
       'public_profile',
-      'email',
+      'email'
     ]);
     if (result.isCancelled) {
       analytics().logEvent('connect_via_facebook', {
         SignonType: actions.signon,
-        Cancelled: true,
+        Cancelled: true
       });
     } else {
-      const { accessToken } = yield call(AccessToken.getCurrentAccessToken);
+      const { accessToken }: AccessToken = yield call(
+        AccessToken.getCurrentAccessToken
+      );
       analytics().logEvent('connect_via_facebook', {
         SignonType: actions.signon,
-        Successful: true,
+        Successful: true
       });
 
-      const facebookProfileData = yield call(
+      const facebookProfileData: { email: string; name: string } = yield call(
         signon.api.getFacebookProfile,
         accessToken
       );
 
       const payload = {
         password: accessToken,
-        viaFacebook: true,
+        viaFacebook: true
       };
 
-      const currentProfile = yield select(
+      const currentProfile: profile.IProfile = yield select(
         (state: IInitialState) => state.profile
       );
 
@@ -212,6 +212,6 @@ export const functions = (): ISagasFunctions[] => [
   { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
   {
     action: signon.actions.types.CONNECT_VIA_FACEBOOK,
-    func: connectViaFacebook,
-  },
+    func: connectViaFacebook
+  }
 ];

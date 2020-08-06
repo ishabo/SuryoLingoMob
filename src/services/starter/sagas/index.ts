@@ -1,6 +1,9 @@
-import { put, call, select } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
-import { getActiveCourse, isRegistered, canProceedToStudy } from '@sl/services/selectors';
+import { put, call, select, delay } from 'redux-saga/effects';
+import {
+  getActiveCourse,
+  isRegistered,
+  canProceedToStudy
+} from '@sl/services/selectors';
 import { setLoadingOff } from '@sl/services/api/actions';
 import { fetchCourses } from '@sl/services/courses/actions';
 import { syncFinishedLessons } from '@sl/services/progress/actions';
@@ -11,7 +14,12 @@ import { createProfileIfNeeded } from '@sl/services/profile/actions';
 import * as signon from '@sl/services/signon';
 import * as starter from '../';
 import * as exceptions from '@sl/services/exceptions';
-import { resetToCourses, logError, resetToSkills, navToSignon } from '@sl/helpers';
+import {
+  resetToCourses,
+  logError,
+  resetToSkills,
+  navToSignon
+} from '@sl/helpers';
 import { isEmpty } from 'lodash';
 import { IInitialState } from '@sl/services/reducers';
 
@@ -20,7 +28,9 @@ export function* onAppStart(): IterableIterator<any> {
   yield put(setLoadingOff());
 }
 
-export function* firstFetch(actions: starter.IStarterActions): IterableIterator<any> {
+export function* firstFetch(
+  actions: starter.IStarterActions
+): IterableIterator<any> {
   yield put(starter.actions.onAppStart());
 
   if (actions.checkSettings) {
@@ -38,7 +48,9 @@ export function* firstFetch(actions: starter.IStarterActions): IterableIterator<
       yield put(createProfileIfNeeded());
 
       yield delay(500);
-      const profileState = yield select((state: IInitialState) => state.profile);
+      const profileState = yield select(
+        (state: IInitialState) => state.profile
+      );
       if (isEmpty(profileState)) {
         yield call(firstFetch, { checkSettings: false });
         return;
@@ -76,5 +88,8 @@ export function* firstFetch(actions: starter.IStarterActions): IterableIterator<
 
 export const functions = (): ISagasFunctions[] => {
   const types = starter.actions.types;
-  return [{ action: types.FIRST_FETCH, func: firstFetch }, { action: types.ON_APP_START, func: onAppStart }];
+  return [
+    { action: types.FIRST_FETCH, func: firstFetch },
+    { action: types.ON_APP_START, func: onAppStart }
+  ];
 };

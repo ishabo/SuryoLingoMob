@@ -4,11 +4,14 @@ import { saveDictionaries } from '../actions';
 import * as dictionaries from '@sl/services/dictionaries';
 import { ISagasFunctions } from '@sl/services/sagas';
 import { getActiveCourse } from '@sl/services/selectors';
+import { ICourse } from '@sl/services/courses';
 
-export function* fetchDictionaries(action: dictionaries.IDictionaryAction): IterableIterator<any> {
+export function* fetchDictionaries(
+  action: dictionaries.IDictionaryAction
+): IterableIterator<any> {
   let activeCourseId = action.courseId;
   if (!activeCourseId) {
-    const activeCourse = yield select(getActiveCourse);
+    const activeCourse: ICourse = yield select(getActiveCourse);
     activeCourseId = activeCourse.id;
   }
 
@@ -21,5 +24,8 @@ export function* fetchDictionaries(action: dictionaries.IDictionaryAction): Iter
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: dictionaries.actions.types.FETCH_DICTIONARIES, func: fetchDictionaries }
+  {
+    action: dictionaries.actions.types.FETCH_DICTIONARIES,
+    func: fetchDictionaries
+  }
 ];

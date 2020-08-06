@@ -1,5 +1,4 @@
-import { call, put } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { call, put, delay } from 'redux-saga/effects';
 import * as courses from '@sl/services/courses';
 import * as skill from '@sl/services/skills';
 import * as assets from '@sl/services/assets';

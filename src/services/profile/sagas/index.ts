@@ -34,7 +34,9 @@ export function* createProfile(
 export function* updateProfile(
   action: profile.IProfileAction
 ): IterableIterator<any> {
-  const currentProfile = yield select((state: IInitialState) => state.profile);
+  const currentProfile: profile.IProfile = yield select(
+    (state: IInitialState) => state.profile
+  );
   const profileData = yield call(
     profile.api.updateProfile(currentProfile.id),
     action.payload
@@ -89,7 +91,7 @@ export const functions = (): ISagasFunctions[] => {
     { action: types.FETCH_PROFILE, func: fetchProfile },
     {
       action: types.SAVE_PROFILE_AND_ACCESS_TOKEN,
-      func: saveProfileAndAccessToken,
-    },
+      func: saveProfileAndAccessToken
+    }
   ];
 };
