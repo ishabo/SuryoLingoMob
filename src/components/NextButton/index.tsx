@@ -13,7 +13,7 @@ interface IProps {
   lang: TLangs
 }
 
-export default ({
+const NextButton = ({
   disabled = false,
   onPress,
   text,
@@ -60,7 +60,9 @@ const GSButtonText = glamor(GSCustomText)<IButtonText>(
   {
     alignSelf: 'center',
   },
-  (props) => ({
+  props => ({
     color: props.light ? Colors.lightBlack : Colors.white,
   }),
 )
+
+export default NextButton
