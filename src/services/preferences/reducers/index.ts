@@ -1,5 +1,5 @@
-import { types } from '../actions'
 import { IPreferencesAction, IPrefererences } from '@sl/services/preferences'
+import { types } from '../actions'
 
 export const initialState: IPrefererences = {
   customKeyboardEnabled: true,

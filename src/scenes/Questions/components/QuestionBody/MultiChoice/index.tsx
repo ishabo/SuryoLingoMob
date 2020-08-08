@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { IAnswerProps } from '../../../index.types'
 import I18n from '@sl/i18n'
 import shortid from 'shortid'
 import { ICourse } from '@sl/services/courses'
 import { TouchableOpacity, ScrollView } from 'react-native'
+import { shuffle } from 'lodash'
 import {
   GSChoice,
   GSContainer,
@@ -12,7 +12,7 @@ import {
   GSText,
   GSTitle,
 } from './index.styles'
-import { shuffle } from 'lodash'
+import { IAnswerProps } from '../../../index.types'
 
 interface IProps extends IAnswerProps {
   phrase: string

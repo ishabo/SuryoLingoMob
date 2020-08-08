@@ -1,17 +1,17 @@
-import { IInitialState } from './reducers'
 import cloneDeep from 'clone-deep'
 import { isEmpty, uniqBy } from 'lodash'
+import { Platform } from 'react-native'
+import { ILessonToSync } from '@sl/services/progress'
+import { hintify } from '@sl/helpers'
+import VersionNumber from 'react-native-version-number'
+import { IDeviceSettings } from '@sl/services/settings'
+import { IInitialState } from './reducers'
 import * as courses from './courses'
 import * as skills from './skills'
 import * as questions from './questions'
 import * as exceptions from './exceptions'
 import * as assets from './assets'
 import * as leaderboard from './leaderboard'
-import { Platform } from 'react-native'
-import { ILessonToSync } from '@sl/services/progress'
-import { hintify } from '@sl/helpers'
-import VersionNumber from 'react-native-version-number'
-import { IDeviceSettings } from '@sl/services/settings'
 
 const allLessons = (skills: skills.ISkill[]) =>
   [].concat.apply(
@@ -92,9 +92,8 @@ const orderLessonsByOrder = (lessons: skills.ILesson[]) => {
 
   if (Platform.OS === 'android') {
     return filteredLessons.reverse()
-  } else {
-    return filteredLessons
   }
+  return filteredLessons
 }
 
 export const getSkillLessons = (skillId: string) => (

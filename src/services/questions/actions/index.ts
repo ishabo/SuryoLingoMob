@@ -1,4 +1,4 @@
-import { IQuestion, TDestination } from '../'
+import { IQuestion, TDestination } from '..'
 
 const namespace = 'SuryoLingo/Questions'
 export type TQuestionType = string | 'passed' | 'failed'

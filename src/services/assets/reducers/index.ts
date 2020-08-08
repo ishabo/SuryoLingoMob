@@ -1,5 +1,5 @@
 import { types } from '../actions'
-import { IAssets, IAssetsAction } from '../'
+import { IAssets, IAssetsAction } from '..'
 
 export const initialState: IAssets = { skillIcons: {}, courseImages: {} }
 

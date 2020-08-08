@@ -11,15 +11,6 @@ import {
   DrawerItem,
   SignOnOrOut,
 } from '@sl/components'
-import {
-  GSContainer,
-  GSProfile,
-  GSProfileDetails,
-  GSProfileDetailsItem,
-  GSProfilePicture,
-  GSPersonalDetails,
-  GSBottom,
-} from './index.styles'
 import * as profile from '@sl/services/profile'
 import * as courses from '@sl/services/courses'
 import * as leaderboard from '@sl/services/leaderboard'
@@ -31,6 +22,15 @@ import VersionNumber from 'react-native-version-number'
 import Images from '@sl/assets/images'
 import analytics from '@react-native-firebase/analytics'
 import { showAlert } from '@sl/helpers'
+import {
+  GSContainer,
+  GSProfile,
+  GSProfileDetails,
+  GSProfileDetailsItem,
+  GSProfilePicture,
+  GSPersonalDetails,
+  GSBottom,
+} from './index.styles'
 
 export interface IProps {
   apiStatus: api.IApiStatus

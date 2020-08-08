@@ -3,6 +3,7 @@ import * as h from './index'
 describe('evaluation', () => {
   const correctAnswers = 'this 15 the answer'
   const options = {
+    overlookLetters: undefined,
     allowedLetters: [
       '5',
       '1',
@@ -110,7 +111,7 @@ describe('evaluation', () => {
     it('overlooks a hash of letters to ease the match of all answers', () => {
       const correctAnswers = ['this is some answer', 'this is an answer']
       const overlookLetters = { 1: 'i', 5: 's', '!': 'i' }
-      options['overlookLetters'] = overlookLetters
+      options.overlookLetters = overlookLetters
 
       expect(
         h.evalAgainstAllAnswers(

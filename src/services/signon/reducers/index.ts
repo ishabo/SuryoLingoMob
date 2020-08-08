@@ -1,5 +1,5 @@
 import { types } from '../actions'
-import { ISignonFormAction, ISignonState } from '../'
+import { ISignonFormAction, ISignonState } from '..'
 
 export const initialState: ISignonState = {
   item: { name: null, email: null, password: null, viaFacebook: false },

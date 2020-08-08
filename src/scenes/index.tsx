@@ -1,9 +1,6 @@
 import * as React from 'react'
 import { I18nManager } from 'react-native'
 import { Provider } from 'react-redux'
-import Navigation from './Navigation'
-import { setStore, setCrashReporter } from '../services/exceptions'
-import { setApiOrigin } from '../services/api'
 import RNRestart from 'react-native-restart'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import GlobalFont from 'react-native-global-font'
@@ -12,8 +9,12 @@ import config from '@sl/config'
 import { Alert } from '@sl/components'
 import { getFont } from '@sl/assets/fonts'
 import { logError } from '@sl/helpers'
+import { setApiOrigin } from '../services/api'
+import { setStore, setCrashReporter } from '../services/exceptions'
+import Navigation from './Navigation'
 import { getStoreInstance } from '../services/store'
 import '@react-native-firebase/crashlytics'
+// import '../ignoreYellowBox'
 
 setCrashReporter(logError)
 setApiOrigin(config.apiHost)

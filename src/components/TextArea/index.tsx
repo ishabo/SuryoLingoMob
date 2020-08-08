@@ -1,13 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Platform, View, NativeModules, Keyboard } from 'react-native'
-import {
-  GSContainer,
-  GSContent,
-  GSTextArea,
-  GSTextAreaContainer,
-  GSKeyboardToggleButton,
-} from './index.styles'
 import Colors from '@sl/styles/colors'
 import { isNarrowDevice } from '@sl/helpers'
 import {
@@ -22,6 +15,13 @@ import {
   toggleCustomKeyboard,
   setPreferences,
 } from '@sl/services/preferences/actions'
+import {
+  GSContainer,
+  GSContent,
+  GSTextArea,
+  GSTextAreaContainer,
+  GSKeyboardToggleButton,
+} from './index.styles'
 
 const iosScrollBehavior =
   Platform.OS === 'ios'
@@ -64,6 +64,7 @@ class TextArea extends React.Component<IProps, IState> {
   }
 
   keyboardDidShowListener
+
   keyboardDidHideListener
 
   componentDidMount() {
@@ -99,9 +100,8 @@ class TextArea extends React.Component<IProps, IState> {
   ) {
     if (!state.firstLoad && Platform.OS === 'android') {
       return { customKeyboardEnabled: props.customKeyboardEnabled }
-    } else {
-      return {}
     }
+    return {}
   }
 
   refreshCustomKeyboard = () => {

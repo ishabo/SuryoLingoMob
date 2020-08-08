@@ -1,5 +1,5 @@
-import connect, { ILoadingProps } from './connect'
 import glamor from 'glamorous-native'
+import connect, { ILoadingProps } from './connect'
 import Loading from './Loading'
 
 export interface IProps extends ILoadingProps {

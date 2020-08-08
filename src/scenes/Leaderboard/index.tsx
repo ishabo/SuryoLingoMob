@@ -10,6 +10,11 @@ import images from '@sl/assets/images'
 import analytics from '@react-native-firebase/analytics'
 
 import { NavigationScreenProp } from 'react-navigation'
+
+import { Dispatch } from 'redux'
+import { getWindowWidth } from '@sl/helpers'
+import { GSCustomText } from '@sl/styles/text'
+import { Text } from 'react-native-animatable'
 import {
   GSContainer,
   GSTopUsers,
@@ -22,11 +27,6 @@ import {
   GSGap,
   GSRank,
 } from './index.styles'
-
-import { Dispatch } from 'redux'
-import { getWindowWidth } from '@sl/helpers'
-import { GSCustomText } from '@sl/styles/text'
-import { Text } from 'react-native-animatable'
 
 export interface IProps {
   profile: profile.IProfile

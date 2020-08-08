@@ -10,11 +10,11 @@ export const detectLanguage = (text: string): TLangs => {
 
   if (isOfLanguage(syriac.letters, text)) {
     return syriac.langId
-  } else if (isOfLanguage(arabic.letters, text)) {
-    return arabic.langId
-  } else {
+  }
+  if (isOfLanguage(arabic.letters, text)) {
     return arabic.langId
   }
+  return arabic.langId
 }
 
 export const getLangConfig = (lang: TLangs): ILangConfig => language[lang]

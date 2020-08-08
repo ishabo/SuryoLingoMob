@@ -1,4 +1,4 @@
-import { IAssets } from '../'
+import { IAssets } from '..'
 
 const namespace = 'SuryoLingo/assets'
 

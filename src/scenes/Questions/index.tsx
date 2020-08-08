@@ -29,21 +29,21 @@ import {
 import { GSCustomStudyText } from '@sl/styles/text'
 import Colors from '@sl/styles/colors'
 import I18n from '@sl/i18n'
+import { GSHeader, GSBody, GSFooter } from '@sl/styles/layouts'
+import { NavigationActions } from 'react-navigation'
+import { NextButton, SwitchButton, EvaluationBanner } from '@sl/components'
+import { Dispatch } from 'redux'
+import { IInitialState } from '@sl/services/reducers'
+import { KeyboardUtils } from 'react-native-keyboard-input'
+import analytics from '@react-native-firebase/analytics'
+import QuestionBody from './components/QuestionBody'
+import { IProps, IState, TAnswer } from './index.types'
 import {
   GSIcon,
   GSProgress,
   GSFooterAndBody,
   GSContainer,
 } from './index.styles'
-import { GSHeader, GSBody, GSFooter } from '@sl/styles/layouts'
-import { IProps, IState, TAnswer } from './index.types'
-import { NavigationActions } from 'react-navigation'
-import { NextButton, SwitchButton, EvaluationBanner } from '@sl/components'
-import { Dispatch } from 'redux'
-import { IInitialState } from '@sl/services/reducers'
-import QuestionBody from './components/QuestionBody'
-import { KeyboardUtils } from 'react-native-keyboard-input'
-import analytics from '@react-native-firebase/analytics'
 
 class Questions extends React.Component<IProps, IState> {
   public state = {
@@ -56,6 +56,7 @@ class Questions extends React.Component<IProps, IState> {
   }
 
   private keyboardDidShowListener
+
   private keyboardDidHideListener
 
   private userHasAnswered = () => this.state.answerCorrect !== null
@@ -245,7 +246,7 @@ class Questions extends React.Component<IProps, IState> {
             : this.props.sourceLanguage
         }
       >
-        {correctAnswers.join(I18n.t('general.comma') + ' ')}
+        {correctAnswers.join(`${I18n.t('general.comma')} `)}
       </GSCustomStudyText>
     )
 
@@ -303,7 +304,7 @@ class Questions extends React.Component<IProps, IState> {
     isShortDevice(500)
 
   renderNextQuestionSmall = () => {
-    let text = this.needsEvaluation()
+    const text = this.needsEvaluation()
       ? I18n.t('questions.submit')
       : I18n.t('questions.continue')
 
@@ -318,7 +319,7 @@ class Questions extends React.Component<IProps, IState> {
   }
 
   renderNextQuestion = () => {
-    let text = this.needsEvaluation()
+    const text = this.needsEvaluation()
       ? I18n.t('questions.submit')
       : I18n.t('questions.continue')
 

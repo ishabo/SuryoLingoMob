@@ -109,7 +109,8 @@ export const GSProfilePictureFrame = glamor.view<{
         borderRadius: 70,
         marginVertical: 10,
       }
-    } else if (props.inner) {
+    }
+    if (props.inner) {
       return {
         width: 90,
         height: 90,
@@ -117,8 +118,7 @@ export const GSProfilePictureFrame = glamor.view<{
         borderRadius: 70,
         marginVertical: 10,
       }
-    } else {
-      return {}
     }
+    return {}
   },
 )

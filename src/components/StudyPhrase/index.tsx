@@ -35,7 +35,7 @@ export default (props: IProps) => {
   const renderPhrase = () => (
     <>
       <Phrase
-        key={lang + 'phrase'}
+        key={`${lang}phrase`}
         obscureText={!showSentence}
         sentence={sentence}
         lang={lang}

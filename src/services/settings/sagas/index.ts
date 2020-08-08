@@ -1,7 +1,6 @@
 import { put, call, select } from 'redux-saga/effects'
 import { ISagasFunctions } from '@sl/services/sagas'
 import { IInitialState } from '@sl/services/reducers'
-import * as settings from '../'
 
 import { getSettings } from '@sl/services/settings/api'
 import { alertToUpdateApp, alertMaintenance } from '@sl/helpers'
@@ -12,6 +11,7 @@ import {
 } from '@sl/services/selectors'
 import { IDeviceSettings } from '@sl/services/settings'
 import { IProfile } from '@sl/services/profile'
+import * as settings from '..'
 
 export function* fetchSettings(): IterableIterator<any> {
   try {
@@ -41,7 +41,6 @@ export function* checkStatuses(): IterableIterator<any> {
   if (device) {
     if (yield select(shouldUpdateApp)) {
       alertToUpdateApp(device.update.force)
-      return
     }
   }
 }

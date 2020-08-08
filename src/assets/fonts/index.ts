@@ -18,9 +18,9 @@ const fonts = {
 
 export const getFont = (lang: TLangs, fontType?: 'bold' | 'regular') => {
   try {
-    return fonts[lang][fontType ? fontType : 'regular']
+    return fonts[lang][fontType || 'regular']
   } catch (_) {
     console.warn(lang)
-    return fonts['cl-ara']['regular']
+    return fonts['cl-ara'].regular
   }
 }

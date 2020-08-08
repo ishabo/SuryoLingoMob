@@ -1,9 +1,9 @@
+import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as api from './api'
 import * as actions from './actions'
 import * as sagas from './sagas'
 import * as selectors from './selectors'
-import { IAction } from '@sl/services/sagas'
 
 export type TImageSizes = 'hdpi' | 'mdpi' | 'xhdpi' | 'xxhdpi' | 'xxxhdpi'
 

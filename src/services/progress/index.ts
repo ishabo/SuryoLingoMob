@@ -1,8 +1,8 @@
+import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as api from './api'
 import * as actions from './actions'
 import * as sagas from './sagas'
-import { IAction } from '@sl/services/sagas'
 
 export interface ILessonDoneParams {
   lessonId: string

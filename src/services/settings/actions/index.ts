@@ -1,4 +1,4 @@
-import { IAppSettings } from '../'
+import { IAppSettings } from '..'
 
 const namespace = 'SuryoLingo/settings'
 

@@ -1,9 +1,9 @@
-import { reducer as skillReducer } from './index'
-import { types } from '../actions'
 import { skills } from '@sl/data/dummy/skills'
 import cloneDeep from 'clone-deep'
 
 import MockDate from 'mockdate'
+import { types } from '../actions'
+import { reducer as skillReducer } from './index'
 
 describe('course reducer', () => {
   it('saves skills', () => {

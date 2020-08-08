@@ -12,7 +12,6 @@ import { ISagasFunctions } from '@sl/services/sagas'
 import { fetchSettings, checkStatus } from '@sl/services/settings/actions'
 import { createProfileIfNeeded } from '@sl/services/profile/actions'
 import * as signon from '@sl/services/signon'
-import * as starter from '../'
 import * as exceptions from '@sl/services/exceptions'
 import {
   resetToCourses,
@@ -22,6 +21,7 @@ import {
 } from '@sl/helpers'
 import { isEmpty } from 'lodash'
 import { IInitialState } from '@sl/services/reducers'
+import * as starter from '..'
 
 export function* onAppStart(): IterableIterator<any> {
   yield put(exceptions.actions.removeAll())
@@ -73,19 +73,17 @@ export function* firstFetch(
     yield put(syncFinishedLessons())
     yield put(fetchSkills())
     yield put(resetToSkills())
+  } else if (yield select(isRegistered)) {
+    yield put(resetToCourses())
   } else {
-    if (yield select(isRegistered)) {
-      yield put(resetToCourses())
-    } else {
-      yield put(navToSignon())
-    }
+    yield put(navToSignon())
   }
 
   yield put(setLoadingOff())
 }
 
 export const functions = (): ISagasFunctions[] => {
-  const types = starter.actions.types
+  const { types } = starter.actions
   return [
     { action: types.FIRST_FETCH, func: firstFetch },
     { action: types.ON_APP_START, func: onAppStart },

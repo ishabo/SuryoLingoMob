@@ -2,6 +2,7 @@ import * as React from 'react'
 import Colors from '@sl/styles/colors'
 import I18n from '@sl/i18n'
 import { Text } from 'react-native'
+import * as Animatable from 'react-native-animatable'
 import {
   GSBanner,
   GSBannerTail,
@@ -12,7 +13,6 @@ import {
   GSBannerText,
   GSBoldText,
 } from './index.styles'
-import * as Animatable from 'react-native-animatable'
 
 interface IProps {
   passed: boolean

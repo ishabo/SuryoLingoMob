@@ -42,7 +42,7 @@ export default connect(mapStateToProps)(
   }: ISkillIconProps) => (
     <GSIcon
       source={{
-        uri: 'data:image/png;base64,' + getSkillIcon(icon, size)[state],
+        uri: `data:image/png;base64,${getSkillIcon(icon, size)[state]}`,
       }}
       size={sizes[size]}
     />

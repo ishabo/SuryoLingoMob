@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { hasNetworkError, getActiveCourse } from '@sl/services/selectors'
 import images from '@sl/assets/images'
 import * as exceptions from '@sl/services/exceptions'
-import { GSContainer, GSLogo, GSVersion } from './index.styles'
 import { exitApp, alertConnection } from '@sl/helpers'
 import * as starter from '@sl/services/starter'
 import VersionNumber from 'react-native-version-number'
@@ -14,6 +13,7 @@ import { Dispatch } from 'redux'
 import { IInitialState } from '@sl/services/reducers'
 import { ICourse } from '@sl/services/courses'
 import config from '@sl/config'
+import { GSContainer, GSLogo, GSVersion } from './index.styles'
 
 const { isWorkingOffline } = config
 

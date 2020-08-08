@@ -2,6 +2,7 @@ import { Button, Container, Icon } from 'native-base'
 import glamor from 'glamorous-native'
 import Colors from '@sl/styles/colors'
 import { SafeAreaView, Platform } from 'react-native'
+
 export * from '@sl/styles/forms'
 export * from '@sl/styles/text'
 
@@ -100,7 +101,7 @@ export const GSSeparator = glamor.view<{ margin?: number }>(
     position: 'relative',
   },
   ({ margin }) => ({
-    marginVertical: margin ? margin : 40,
+    marginVertical: margin || 40,
   }),
 )
 GSSeparator.displayName = 'GSSeparator'

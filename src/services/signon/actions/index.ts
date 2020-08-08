@@ -1,4 +1,4 @@
-import { ISignonFormData, TSignonType, ISignonFormErrors } from '../'
+import { ISignonFormData, TSignonType, ISignonFormErrors } from '..'
 
 const namespace = 'SuryoLingo/signon'
 

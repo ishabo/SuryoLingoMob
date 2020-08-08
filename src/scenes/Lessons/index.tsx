@@ -1,30 +1,30 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import Lesson from './components/Lesson'
 import { BackHandler, Keyboard } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
-import { ISkill, ILesson } from '@sl/services/skills'
-import { enterLesson } from '@sl/services/progress/actions'
+import { ILesson } from '@sl/services/skills'
+import { enterLesson, overviewLesson } from '@sl/services/progress/actions'
 import { IInitialState } from '@sl/services/reducers'
 import {
   getSkillLessons,
   getSourceLanguage,
   getTargetLanguage,
 } from '@sl/services/selectors'
-import { SkillIcon } from '../Skills/components'
 import { NavigationScreenProp } from 'react-navigation'
 import { GSCustomText } from '@sl/styles/text'
 import { IProfile } from '@sl/services/profile'
-import { overviewLesson } from '@sl/services/progress/actions'
+
+import analytics from '@react-native-firebase/analytics'
+import I18n from '@sl/i18n'
+import { SkillIcon } from '../Skills/components'
 import {
   GSContainer,
   GSAnimatable,
   GSLessonIcon,
   GSLessonInstruction,
 } from './index.styles'
-import analytics from '@react-native-firebase/analytics'
-import I18n from '@sl/i18n'
+import Lesson from './components/Lesson'
 
 interface IProps {
   getLessons(skillId: string): ILesson[]
@@ -47,6 +47,7 @@ class Lessons extends React.Component<IProps, IState> {
   }
 
   private carousal
+
   private cards
 
   static navigationOptions = ({ navigation }) => ({
@@ -64,6 +65,7 @@ class Lessons extends React.Component<IProps, IState> {
       .filter((lesson: ILesson) => lesson.finished)
 
   private getSkill = () => this.props.navigation.state.params.skill
+
   private totalLessons = () => this.getSkill().lessons.length
 
   componentDidMount() {
@@ -105,12 +107,11 @@ class Lessons extends React.Component<IProps, IState> {
     }
     if (lesson.finished || lesson.order === 1) {
       return true
-    } else {
-      const previousOrder = this.getFinishedLesson().find(
-        (l: ILesson) => l.order === lesson.order - 1,
-      )
-      return previousOrder && previousOrder.finished
     }
+    const previousOrder = this.getFinishedLesson().find(
+      (l: ILesson) => l.order === lesson.order - 1,
+    )
+    return previousOrder && previousOrder.finished
   }
 
   private renderCards({ item: lesson }) {
@@ -129,7 +130,7 @@ class Lessons extends React.Component<IProps, IState> {
   }
 
   render() {
-    const skill: ISkill = this.props.navigation.state.params.skill
+    const { skill } = this.props.navigation.state.params
     return (
       <GSContainer>
         <GSLessonIcon>

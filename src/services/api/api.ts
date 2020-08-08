@@ -1,8 +1,8 @@
 import * as ApiSauce from 'apisauce'
-import * as Exceptions from '../exceptions'
 import { isEmpty } from 'lodash'
-import { THeaders, TMethod, IApiOptions } from './index'
 import { changeCase } from '@sl/helpers'
+import * as Exceptions from '../exceptions'
+import { THeaders, TMethod, IApiOptions } from './index'
 
 let userToken: string = null
 let origin: string = null
@@ -160,7 +160,7 @@ export const createApi = (options: IApiOptions) => {
       headers: THeaders = {},
       ...rest: any[]
     ): Promise<ApiSauce.ApiResponse<any>> {
-      if (headers['Authorization']) {
+      if (headers.Authorization) {
         request.setHeaders(<any>headers)
       }
 

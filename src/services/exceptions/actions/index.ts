@@ -1,4 +1,4 @@
-import { IExceptionPayload } from '../'
+import { IExceptionPayload } from '..'
 
 const namespace = 'SuryoLingo/exceptions'
 export const types = {

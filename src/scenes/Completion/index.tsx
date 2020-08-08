@@ -6,12 +6,6 @@ import {
 } from 'react-navigation'
 import I18n from '@sl/i18n'
 import { ILesson, ISkill, ILessonHistory } from '@sl/services/skills'
-import {
-  GSContainer,
-  GSCongratMessage,
-  GSXPGain,
-  GSNextButton,
-} from './index.styles'
 import { IInitialState } from '@sl/services/reducers'
 import {
   getLessonInProgress,
@@ -26,6 +20,12 @@ import { IProfile } from '@sl/services/profile'
 import { Dispatch } from 'redux'
 // import { displayInterstitialAd } from '@sl/helpers';
 import analytics from '@react-native-firebase/analytics'
+import {
+  GSContainer,
+  GSCongratMessage,
+  GSXPGain,
+  GSNextButton,
+} from './index.styles'
 
 interface IProps {
   navigationReset: (reset: NavigationResetActionPayload) => void

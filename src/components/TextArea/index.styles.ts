@@ -32,11 +32,12 @@ export const GSTextArea = glamor.textInput(
   },
   (props: any) => {
     const styles = {
+      writingDirection: undefined,
       fontFamily:
         props.lang === 'cl-ara' ? 'Arial' : getFont(props.lang, 'regular'),
     }
     if (props.rtl !== null) {
-      styles['writingDirection'] = 'rtl'
+      styles.writingDirection = 'rtl'
     }
     return styles
   },

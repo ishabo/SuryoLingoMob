@@ -1,4 +1,5 @@
 import { Dimensions, ScaledSize } from 'react-native'
+
 let windowDimentions: ScaledSize
 
 export const getWindowDimentions = () => {
@@ -24,4 +25,4 @@ export const calcWindowWidth = (percent: number) => {
 }
 
 export const scaleSize = (size: number, newSize?: number) =>
-  isSmallDevice() ? (newSize ? newSize : size - 2) : size
+  isSmallDevice() ? newSize || size - 2 : size

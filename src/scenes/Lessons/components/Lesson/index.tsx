@@ -2,7 +2,10 @@ import * as React from 'react'
 import SkillIcon from '@sl/scenes/Skills/components/SkillIcon'
 import { ILesson, ISkill } from '@sl/services/skills'
 import I18n from '@sl/i18n'
-import Badge from '../Badge'
+import { ProgressCircle } from '@sl/components'
+import { Icon } from 'native-base'
+import { ActivityIndicator } from 'react-native'
+import colors from '@sl/styles/colors'
 import {
   GSBadgePosition,
   GSButton,
@@ -13,10 +16,7 @@ import {
   GSButtonText,
   GSListButton,
 } from './index.styles'
-import { ProgressCircle } from '@sl/components'
-import { Icon } from 'native-base'
-import { ActivityIndicator } from 'react-native'
-import colors from '@sl/styles/colors'
+import Badge from '../Badge'
 
 interface IProps {
   lesson: ILesson

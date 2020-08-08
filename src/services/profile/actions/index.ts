@@ -1,4 +1,4 @@
-import { IProfile, IProfilePayload, IFetchedProfileData } from '../'
+import { IProfile, IProfilePayload, IFetchedProfileData } from '..'
 
 const namespace = 'SuryoLingo/profile'
 

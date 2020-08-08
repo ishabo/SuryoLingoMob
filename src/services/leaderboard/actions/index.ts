@@ -1,4 +1,4 @@
-import { ILeaderboard } from '../'
+import { ILeaderboard } from '..'
 
 const namespace = 'SuryoLingo/leaderboard'
 

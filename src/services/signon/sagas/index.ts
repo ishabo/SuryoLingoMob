@@ -6,7 +6,6 @@ import * as skills from '@sl/services/skills'
 import * as courses from '@sl/services/courses'
 import { IInitialState } from '@sl/services/reducers'
 import { isEmpty } from 'lodash'
-import { validateSignOn } from '../validation'
 import {
   setLoadingOn,
   setLoadingOff,
@@ -26,6 +25,7 @@ import { deleteAccessToken } from '@sl/services/api/access'
 import { LoginManager, AccessToken, LoginResult } from 'react-native-fbsdk'
 import { NavigationActions } from 'react-navigation'
 import analytics from '@react-native-firebase/analytics'
+import { validateSignOn } from '../validation'
 
 function* captureBadRequest(response, errors): IterableIterator<any> {
   logError(JSON.stringify(response))
@@ -33,16 +33,16 @@ function* captureBadRequest(response, errors): IterableIterator<any> {
   if (response.status === 400) {
     if (typeof response.data === 'object') {
       if (
-        Array.isArray(response.data['email']) &&
-        response.data['email'].indexOf('already exists') !== -1
+        Array.isArray(response.data.email) &&
+        response.data.email.indexOf('already exists') !== -1
       ) {
-        errors['email'] = 'emailAlreadyExists'
+        errors.email = 'emailAlreadyExists'
       }
       if (
-        Array.isArray(response.data['facebook_id']) &&
-        response.data['facebook_id'].indexOf('already exists') !== -1
+        Array.isArray(response.data.facebook_id) &&
+        response.data.facebook_id.indexOf('already exists') !== -1
       ) {
-        errors['facebook'] = 'facebookAlreadyConnected'
+        errors.facebook = 'facebookAlreadyConnected'
       }
     }
     yield put(signon.actions.setErrors(errors))

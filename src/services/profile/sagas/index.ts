@@ -83,7 +83,7 @@ export function* saveProfileAndAccessToken(
 }
 
 export const functions = (): ISagasFunctions[] => {
-  const types = profile.actions.types
+  const { types } = profile.actions
   return [
     { action: types.CREATE_PROFILE_IF_NEEDED, func: createProfileIfNeeded },
     { action: types.CREATE_PROFILE, func: createProfile },

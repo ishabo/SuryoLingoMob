@@ -1,6 +1,6 @@
 import React from 'react'
-import KeyboardLayout from './KeyboardLayout'
 import language from '@sl/config/language'
+import KeyboardLayout from './KeyboardLayout'
 
 const syriac = language['cl-syr'].keyboardKeys
 const arabic = language['cl-ara'].keyboardKeys

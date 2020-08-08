@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { dashify } from '@sl/helpers'
-import PopoverTooltip from 'react-native-popover-tooltip'
 import { Keyboard, View } from 'react-native'
+import * as PopoverTooltip from 'react-native-popover-tooltip'
+import { dashify } from '@sl/helpers'
 import { IWordHint } from '@sl/services/dictionaries'
 import { ISentence } from '@sl/services/questions'
 import { detectLanguage } from '@sl/helpers/language'
@@ -21,11 +21,19 @@ interface IHint {
 }
 
 const splitTranslations = (translations: string) =>
-  (translations ? translations : '').split('|')
+  (translations || '').split('|')
 
 const Phrase: React.FC<IProps> = ({ sentence, obscureText, style }) => {
   const [keyboardOpen, setKeyboardOpen] = useState(false)
   const tooltipRefs = useRef(new Map())
+
+  const keyboardDidShow = () => {
+    setKeyboardOpen(true)
+  }
+
+  const keyboardDidHide = () => {
+    setKeyboardOpen(false)
+  }
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -41,14 +49,6 @@ const Phrase: React.FC<IProps> = ({ sentence, obscureText, style }) => {
       keyboardDidHideListener.remove()
     }
   }, [])
-
-  const keyboardDidShow = () => {
-    setKeyboardOpen(true)
-  }
-
-  const keyboardDidHide = () => {
-    setKeyboardOpen(false), []
-  }
 
   const getObscureText = (text: string): string =>
     obscureText ? dashify(text) : text

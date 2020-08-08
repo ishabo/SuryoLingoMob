@@ -1,4 +1,4 @@
-import { IDictionary } from '../'
+import { IDictionary } from '..'
 
 const namespace = 'SuryoLingo/dictinoaries'
 

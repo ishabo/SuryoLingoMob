@@ -1,17 +1,17 @@
 import { call, put, select, delay } from 'redux-saga/effects'
-import * as questions from '../'
 import * as dictionaries from '@sl/services/dictionaries'
 import { NavigationActions } from 'react-navigation'
-import { getPending, getLessonInProgress } from '../../selectors'
 import { setLoadingOn, setLoadingOff } from '@sl/services/api/actions'
 import { ISagasFunctions } from '@sl/services/sagas'
 import { downloadFile } from '@sl/helpers'
 import cloneDeep from 'clone-deep'
 import { finishLesson } from '@sl/services/progress/sagas'
 import { ILesson } from '@sl/services/skills'
+import { getPending, getLessonInProgress } from '../../selectors'
+import { actions, api, IQuestionsAction, IQuestion, TDestination } from '..'
 
 export function* fetchQuestions(
-  action: questions.IQuestionsAction,
+  action: IQuestionsAction,
 ): IterableIterator<any> {
   let fetchedQuestions
   yield put(setLoadingOn())
@@ -19,7 +19,7 @@ export function* fetchQuestions(
   try {
     yield put(dictionaries.actions.fetchDictionaries())
 
-    fetchedQuestions = yield call(questions.api.getQuestions, action.lessonId)
+    fetchedQuestions = yield call(api.getQuestions, action.lessonId)
   } catch (error) {
     const lessonInProgress: ILesson = yield select(getLessonInProgress)
 
@@ -40,10 +40,10 @@ export function* fetchQuestions(
 }
 
 function* saveQuestionsAndNavigate(
-  data: questions.IQuestion[],
-  routeName: questions.TDestination = 'Questions',
+  data: IQuestion[],
+  routeName: TDestination = 'Questions',
 ) {
-  yield put(questions.actions.saveQuestions(data))
+  yield put(actions.saveQuestions(data))
   const action = NavigationActions.navigate({ routeName })
   if (routeName === 'Questions') {
     yield put(
@@ -57,9 +57,9 @@ function* saveQuestionsAndNavigate(
   }
 }
 
-function* cacheAudioSounds(data: questions.IQuestion[]) {
+function* cacheAudioSounds(data: IQuestion[]) {
   try {
-    let question: questions.IQuestion
+    let question: IQuestion
 
     for (question of data) {
       if (question.soundFiles.length) {
@@ -72,11 +72,9 @@ function* cacheAudioSounds(data: questions.IQuestion[]) {
 }
 
 export function* nextQuestionOrFinish(
-  action: questions.IQuestionsAction,
+  action: IQuestionsAction,
 ): IterableIterator<any> {
-  yield put(
-    questions.actions.updateQuestionStatus(action.questionId, action.status),
-  )
+  yield put(actions.updateQuestionStatus(action.questionId, action.status))
   const pending: string[] = yield select(getPending)
   let routeName = 'Questions'
 
@@ -97,9 +95,9 @@ export function* nextQuestionOrFinish(
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: questions.actions.types.FETCH_QUESTIONS, func: fetchQuestions },
+  { action: actions.types.FETCH_QUESTIONS, func: fetchQuestions },
   {
-    action: questions.actions.types.NEXT_QUESTION_OR_FINISH,
+    action: actions.types.NEXT_QUESTION_OR_FINISH,
     func: nextQuestionOrFinish,
   },
 ]

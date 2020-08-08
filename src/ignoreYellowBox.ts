@@ -1,0 +1,1 @@
+console.ignoredYellowBox = ['Warning: componentWillUpdate']

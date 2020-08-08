@@ -60,7 +60,7 @@ const GSButtonText = glamor(GSCustomText)<IButtonText>(
   {
     alignSelf: 'center',
   },
-  props => ({
+  (props) => ({
     color: props.light ? Colors.lightBlack : Colors.white,
   }),
 )

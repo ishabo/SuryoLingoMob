@@ -1,14 +1,14 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
-import rootSagas from './sagas'
 import { composeWithDevTools } from 'remote-redux-devtools'
-import rootReducer from './reducers'
 import { persistStore, persistReducer } from 'redux-persist'
 import { Platform } from 'react-native'
 import storage from 'redux-persist/es/storage'
 
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers'
+import rootReducer from './reducers'
+import rootSagas from './sagas'
 
 let storeInstance
 
@@ -41,6 +41,7 @@ const hasDevTools = (
 
 export default class Store {
   private store: any
+
   private sagaMiddleware = createSagaMiddleware()
 
   constructor() {

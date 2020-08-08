@@ -1,5 +1,5 @@
 import { types, TQuestionType } from '../actions'
-import { IQuestions, IQuestion, IQuestionsAction } from '../'
+import { IQuestions, IQuestion, IQuestionsAction } from '..'
 
 export const initialState: IQuestions = {
   all: [],

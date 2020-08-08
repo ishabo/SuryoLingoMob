@@ -1,10 +1,10 @@
+import { IWordHint } from '@sl/services/dictionaries'
+import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as actions from './actions'
 import * as selectors from './selectors'
 import * as sagas from './sagas'
 import * as api from './api'
-import { IWordHint } from '@sl/services/dictionaries'
-import { IAction } from '@sl/services/sagas'
 
 export type TQuestionType =
   | string

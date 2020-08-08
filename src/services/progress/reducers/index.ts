@@ -1,5 +1,5 @@
 import { types } from '../actions'
-import { IProgress, IProgressAction } from '../'
+import { IProgress, IProgressAction } from '..'
 
 export const initialState: IProgress = {
   lessonInProgress: null,

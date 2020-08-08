@@ -6,6 +6,7 @@ import {
   GSBadgeRibbonCircle,
   GSBadgeRubbonNeg140,
 } from './index.styles'
+
 interface IProps {
   style?: StyleProp<ViewStyle>
   children: React.ReactChildren | React.ReactChild

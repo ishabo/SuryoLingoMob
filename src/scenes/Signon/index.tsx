@@ -8,6 +8,15 @@ import { IInitialState } from '@sl/services/reducers'
 import * as signon from '@sl/services/signon'
 import * as profile from '@sl/services/profile'
 
+import { GSCustomText } from '@sl/styles/text'
+import { FBLoginButton, NextButton, DrawerItem, Loading } from '@sl/components'
+import { isEmpty } from 'lodash'
+import { NavigationScreenProp } from 'react-navigation'
+import { getActiveCourse } from '@sl/services/selectors'
+import { ICourse } from '@sl/services/courses'
+import { exitApp, TAlertSubject, showAlert } from '@sl/helpers'
+import { Dispatch } from 'redux'
+import analytics from '@react-native-firebase/analytics'
 import {
   GSContainer,
   GSTabs,
@@ -26,16 +35,6 @@ import {
   GSSeperatorText,
   GSSeperatorLine,
 } from './index.styles'
-
-import { GSCustomText } from '@sl/styles/text'
-import { FBLoginButton, NextButton, DrawerItem, Loading } from '@sl/components'
-import { isEmpty } from 'lodash'
-import { NavigationScreenProp } from 'react-navigation'
-import { getActiveCourse } from '@sl/services/selectors'
-import { ICourse } from '@sl/services/courses'
-import { exitApp, TAlertSubject, showAlert } from '@sl/helpers'
-import { Dispatch } from 'redux'
-import analytics from '@react-native-firebase/analytics'
 
 interface IState {
   signUpOrIn: signon.TSignonType
@@ -56,6 +55,7 @@ interface IProps {
 
 class Signon extends React.Component<IProps, IState> {
   private keyboardDidShowListener
+
   private keyboardDidHideListener
 
   static navigationOptions = {
@@ -124,6 +124,7 @@ class Signon extends React.Component<IProps, IState> {
   }
 
   private isSignin = () => this.state.signUpOrIn === 'signin'
+
   private isSignup = () => this.state.signUpOrIn === 'signup'
 
   private setField = (field: string) => (value: string) => {
@@ -179,6 +180,7 @@ class Signon extends React.Component<IProps, IState> {
   )
 
   private hasError = (name: string): boolean => !isEmpty(this.getError(name))
+
   private getError = (name: string): string => this.props.signon.errors[name]
 
   private renderInput = (

@@ -1,4 +1,4 @@
-import * as validation from './'
+import * as validation from '.'
 
 describe('validation', () => {
   describe('when fields do not exist', () => {

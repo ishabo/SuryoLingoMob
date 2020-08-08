@@ -4,7 +4,6 @@ import { ICourse } from '@sl/services/courses'
 import { connect } from 'react-redux'
 import { switchCourse } from '@sl/services/courses/actions'
 import I18n from '@sl/i18n'
-import { GSContainer, GSTitle, GSCourse, GSAnimatable } from './index.styles'
 import { snakeToCamel, getWindowWidth } from '@sl/helpers'
 import { CachedImage, ImageCacheProvider } from 'react-native-cached-image'
 import { IAssets } from '@sl/services/assets'
@@ -12,6 +11,7 @@ import { IInitialState } from '@sl/services/reducers'
 import { AnimatableAnimationMethods } from 'react-native-animatable'
 import { DrawerItem, WhenReady } from '@sl/components'
 import analytics from '@react-native-firebase/analytics'
+import { GSContainer, GSTitle, GSCourse, GSAnimatable } from './index.styles'
 
 const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage)
 

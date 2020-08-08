@@ -3,8 +3,8 @@ import { Container } from 'native-base'
 import I18n from '@sl/i18n'
 import { TextArea } from '@sl/components'
 import { ICourse } from '@sl/services/courses'
-import { IAnswerProps } from '../../../index.types'
 import glamor from 'glamorous-native'
+import { IAnswerProps } from '../../../index.types'
 
 interface IProps extends IAnswerProps {
   course: ICourse

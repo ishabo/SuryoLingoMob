@@ -1,4 +1,5 @@
 import * as h from './index'
+
 jest.mock('@sl/helpers/logging', () => ({
   logError: jest.fn(),
 }))

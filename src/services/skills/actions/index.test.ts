@@ -1,5 +1,5 @@
-import * as skills from '../actions'
 import { skills as payload } from '@sl/data/dummy/skills'
+import * as skills from '.'
 
 describe('courses actions', () => {
   const { types } = skills

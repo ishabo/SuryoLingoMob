@@ -1,6 +1,6 @@
+import courses from '@sl/data/dummy/courses'
 import { reducer as courseReducer } from './index'
 import { types } from '../actions'
-import courses from '@sl/data/dummy/courses'
 
 describe('course reducer', () => {
   it('saves courses', () => {

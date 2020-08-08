@@ -1,5 +1,6 @@
+import { ILessonToSync } from '..'
+
 const namespace = 'SuryoLingo/progress'
-import { ILessonToSync } from '../'
 
 export const types = {
   SET_LESSON_DONE: `${namespace}/SET_LESSON_DONE`,

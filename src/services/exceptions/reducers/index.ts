@@ -1,4 +1,4 @@
-import { IException, IExceptionAction } from '../'
+import { IException, IExceptionAction } from '..'
 import { types } from '../actions'
 
 export const initialState: IException[] = []

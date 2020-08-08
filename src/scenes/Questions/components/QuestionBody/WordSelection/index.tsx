@@ -1,6 +1,11 @@
 import * as React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Container } from 'native-base'
+import { shuffle, remove } from 'lodash'
+import shortid from 'shortid'
+import I18n from '@sl/i18n'
+import { ICourse } from '@sl/services/courses'
+import { IAnswerProps } from '../../../index.types'
 import {
   GSAnswerBox,
   GSSelectionBox,
@@ -8,11 +13,6 @@ import {
   GSWordText,
   GSTitle,
 } from './index.styles'
-import { shuffle, remove } from 'lodash'
-import { IAnswerProps } from '../../../index.types'
-import shortid from 'shortid'
-import I18n from '@sl/i18n'
-import { ICourse } from '@sl/services/courses'
 
 export interface IWord {
   id: string
@@ -38,9 +38,8 @@ const ensureShuffeled = (words: string[]) => {
   const shuffledWords = shuffle(shuffle(words))
   if (shuffledWords === words) {
     return ensureShuffeled(words)
-  } else {
-    return shuffledWords
   }
+  return shuffledWords
 }
 
 export default class WordSelection extends React.Component<IProps, IState> {
@@ -69,7 +68,7 @@ export default class WordSelection extends React.Component<IProps, IState> {
   }
 
   private updateShuffledWords = (updatedRecord: IWord) => {
-    const shuffledWords = this.state.shuffledWords
+    const { shuffledWords } = this.state
     const newShuffledWords = shuffledWords.map((word: IWord) =>
       word.id !== updatedRecord.id ? word : updatedRecord,
     )

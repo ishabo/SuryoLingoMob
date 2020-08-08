@@ -1,5 +1,5 @@
-import * as course from '../actions'
 import courses from '@sl/data/dummy/courses'
+import * as course from '.'
 
 describe('courses actions', () => {
   const { types } = course

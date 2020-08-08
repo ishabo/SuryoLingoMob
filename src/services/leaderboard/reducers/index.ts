@@ -1,5 +1,5 @@
 import { types } from '../actions'
-import { ILeaderboard, ILeaderboardAction } from '../'
+import { ILeaderboard, ILeaderboardAction } from '..'
 
 export const initialState = {
   topUsers: [],

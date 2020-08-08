@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { ScrollView, BackHandler, Keyboard, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
-import { Skill } from './components'
 import { mapValues, groupBy } from 'lodash'
 import { ISkill } from '@sl/services/skills'
 import { fetchSkills } from '@sl/services/skills/actions'
@@ -16,11 +15,12 @@ import { exitApp, displayInterstitialAd } from '@sl/helpers'
 import { Hamburger, DrawerItem, WhenReady } from '@sl/components'
 import { ICourse } from '@sl/services/courses'
 import { IProfile } from '@sl/services/profile'
-import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles'
 import I18n from '@sl/i18n'
 import shortid from 'shortid'
 import analytics from '@react-native-firebase/analytics'
 import { ILoadingProps } from '@sl/components/Loading/connect'
+import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles'
+import { Skill } from './components'
 
 interface IProps extends ILoadingProps {
   activeCourse: ICourse

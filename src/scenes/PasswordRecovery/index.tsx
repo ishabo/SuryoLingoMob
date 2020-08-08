@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { BackHandler } from 'react-native'
 import { connect } from 'react-redux'
-import { GSContainer } from './index.styles'
 import { Dispatch } from 'redux'
 import I18n from '@sl/i18n'
 import * as signon from '@sl/services/signon'
@@ -14,6 +13,7 @@ import { Item } from 'native-base'
 import { NavigationScreenProp } from 'react-navigation'
 import { GSSeparator } from '@sl/styles/layouts'
 import analytics from '@react-native-firebase/analytics'
+import { GSContainer } from './index.styles'
 
 export interface IProps {
   recoverPassword: (email: string) => void
@@ -86,6 +86,7 @@ class PasswordRecovery extends React.Component<IProps, IState> {
       </GSForm>
     )
   }
+
   render() {
     const { success, message } = this.props.apiStatus
     return (

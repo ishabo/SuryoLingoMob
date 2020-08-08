@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 
+import { NavigationState } from 'react-navigation'
 import * as skill from './skills'
 import * as course from './courses'
 import * as profile from './profile'
@@ -14,8 +15,6 @@ import * as assets from './assets'
 import * as preferences from './preferences'
 import * as settings from './settings'
 import * as leaderboard from './leaderboard'
-
-import { NavigationState } from 'react-navigation'
 
 export interface IInitialState {
   nav: NavigationState

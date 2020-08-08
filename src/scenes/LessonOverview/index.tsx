@@ -13,6 +13,7 @@ import {
   GSPhrase,
   GSTranslation,
 } from './index.styles'
+
 interface IProps {
   phrases: IPhrase[]
   questions: IQuestion

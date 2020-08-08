@@ -1,6 +1,6 @@
 import * as skill from '@sl/services/skills'
-import { types } from '../actions'
 import cloneDeep from 'clone-deep'
+import { types } from '../actions'
 
 export const initialState: skill.ISkill[] = []
 

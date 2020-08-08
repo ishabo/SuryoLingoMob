@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { TouchableOpacity } from 'react-native'
 import images from '@sl/assets/images'
-import SkillIcon from '../SkillIcon'
-import { GSBackground, GSSkill, GSSkillTitle } from './index.styles'
 import { ProgressCircle } from '@sl/components'
 import Colors from '@sl/styles/colors'
+import SkillIcon from '../SkillIcon'
+import { GSBackground, GSSkill, GSSkillTitle } from './index.styles'
 
 export interface IProps {
   onSkillsClick: () => void

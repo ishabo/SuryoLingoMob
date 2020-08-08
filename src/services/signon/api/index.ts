@@ -1,6 +1,6 @@
 import { create } from '@sl/services/api'
-import { ISignonFormData } from '../'
 import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk'
+import { ISignonFormData } from '..'
 import { logError } from '../../../helpers/logging'
 
 export const signin = (payload: ISignonFormData) => {

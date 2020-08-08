@@ -1,4 +1,4 @@
-import { ICourse } from '../'
+import { ICourse } from '..'
 
 const namespace = 'SuryoLingo/courses'
 

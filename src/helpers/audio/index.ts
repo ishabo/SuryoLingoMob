@@ -45,7 +45,7 @@ export const downloadFile = async (
         fromUrl: soundTrack,
         toFile: localSoundTrackPath,
       })
-      console.log('Downloaded file at ' + localSoundTrackPath)
+      console.log(`Downloaded file at ${localSoundTrackPath}`)
     } catch (error) {
       logError(`Could not download file ${JSON.stringify(error)}`)
     }

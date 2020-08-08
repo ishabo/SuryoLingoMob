@@ -1,5 +1,5 @@
 import { types } from '../actions'
-import { IProfile, IProfileAction } from '../'
+import { IProfile, IProfileAction } from '..'
 
 export const initialState: IProfile = {}
 

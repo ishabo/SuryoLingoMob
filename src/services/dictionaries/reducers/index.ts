@@ -1,5 +1,5 @@
 import { types } from '../actions'
-import { IDictionary, IDictionaryAction } from '../'
+import { IDictionary, IDictionaryAction } from '..'
 
 export const initialState = []
 

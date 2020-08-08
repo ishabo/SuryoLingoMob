@@ -1,6 +1,6 @@
-import { types } from '../actions'
 import cloneDeep from 'clone-deep'
-import { ICourse, ICourseAction } from '../'
+import { types } from '../actions'
+import { ICourse, ICourseAction } from '..'
 
 export const initialState: ICourse[] = []
 

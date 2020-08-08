@@ -10,7 +10,7 @@ export interface ICustomText {
 }
 
 export const GSCustomText = glamor.text<ICustomText>({}, ({ lang }) => ({
-  fontFamily: getFont(lang ? lang : 'cl-ara', 'bold'),
+  fontFamily: getFont(lang || 'cl-ara', 'bold'),
   fontSize:
     lang === 'cl-ara' && Platform.OS === 'android'
       ? scaleSize(20, 16)

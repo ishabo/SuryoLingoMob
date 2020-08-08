@@ -1,5 +1,5 @@
-import { saveQuestions, types } from '../actions'
 import payload from '@sl/data/dummy/questions'
+import { saveQuestions, types } from '.'
 
 describe('questions actions', () => {
   describe('saveQuestions', () => {

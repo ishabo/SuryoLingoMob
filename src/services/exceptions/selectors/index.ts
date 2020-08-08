@@ -1,4 +1,4 @@
-import { IException } from '../'
+import { IException } from '..'
 
 export const getApplicationExceptions = (state: IException[]) =>
   state.filter((exception: IException) => {

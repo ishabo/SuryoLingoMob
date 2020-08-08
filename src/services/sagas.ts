@@ -2,6 +2,8 @@ import { all, call, takeLatest, select, put } from 'redux-saga/effects'
 import { TOKEN as defaultToken } from 'react-native-dotenv'
 import { getAccessToken } from '@sl/services/api/access'
 
+import { IInitialState } from '@sl/services/reducers'
+import { setUserToken } from '@sl/services/api'
 import * as skills from './skills'
 import * as starter from './starter'
 import * as progress from './progress'
@@ -14,9 +16,6 @@ import * as signon from './signon'
 import * as exceptions from './exceptions'
 import * as settings from './settings'
 import * as assets from './assets'
-
-import { IInitialState } from '@sl/services/reducers'
-import { setUserToken } from '@sl/services/api'
 
 const preSagas = (saga) =>
   function* (action) {

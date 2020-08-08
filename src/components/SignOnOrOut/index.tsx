@@ -14,8 +14,7 @@ import I18n from '@sl/i18n'
 import { GSCustomText, ICustomText } from '@sl/styles/text'
 import glamor from 'glamorous-native'
 import Colors from '@sl/styles/colors'
-import { Text } from 'react-native'
-import { Alert } from 'react-native'
+import { Text, Alert } from 'react-native'
 
 interface IProps {
   isLoggedIn: boolean
