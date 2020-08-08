@@ -30,7 +30,11 @@ const bgColor = (passed: boolean) =>
 const passTitle = (passed: boolean) =>
   I18n.t(`questions.evaluation.${passed ? 'passed' : 'failed'}`)
 
-export default ({ passed, correctAnswer, multipleAnswers }: IProps) => {
+const EvaluationBanner = ({
+  passed,
+  correctAnswer,
+  multipleAnswers,
+}: IProps) => {
   const showCorrectAnswer = correctAnswer && (
     <GSBannerText lang={'cl-ara'}>
       <GSBoldText fontType='bold' lang='cl-ara'>
@@ -71,3 +75,5 @@ export default ({ passed, correctAnswer, multipleAnswers }: IProps) => {
     </AnimatedEvaluationBanner>
   )
 }
+
+export default EvaluationBanner

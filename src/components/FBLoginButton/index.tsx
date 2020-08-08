@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import glamor from 'glamorous-native'
 import I18n from '@sl/i18n'
@@ -30,23 +30,12 @@ interface IProps {
   connectViaFacebook: (signon) => void
 }
 
-class FBLoginButton extends Component<IProps> {
-  render() {
-    const connectViaFacebookText = `${this.props.signon}ViaFacebook`
-    return (
-      <GSButton
-        iconLeft
-        rounded
-        onPress={() => this.props.connectViaFacebook(this.props.signon)}
-      >
-        <GSButtonText>
-          {I18n.t(`signon.form.${connectViaFacebookText}`)}
-        </GSButtonText>
-        <Icon name='facebook' type='Entypo' />
-      </GSButton>
-    )
-  }
-}
+const FBLoginButton: React.FC<IProps> = ({ signon }) => (
+  <GSButton iconLeft rounded onPress={() => connectViaFacebook(signon)}>
+    <GSButtonText>{I18n.t(`signon.form.${signon}ViaFacebook`)}</GSButtonText>
+    <Icon name='facebook' type='Entypo' />
+  </GSButton>
+)
 
 const mapDispatchToProps = {
   connectViaFacebook,
