@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { Text, Icon } from 'native-base';
-import glamor from 'glamorous-native';
+import * as React from 'react'
+import { Text, Icon } from 'native-base'
+import glamor from 'glamorous-native'
 
 interface ITitleProps {
-  title?: string;
-  navigate(): boolean;
+  title?: string
+  navigate(): boolean
 }
 
 const GSTouchable = glamor.touchableOpacity({
@@ -12,13 +12,13 @@ const GSTouchable = glamor.touchableOpacity({
   height: 40,
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'space-around'
-});
+  justifyContent: 'space-around',
+})
 
 export default ({ title, navigate }: ITitleProps) =>
   (title && (
     <GSTouchable onPress={() => navigate()}>
-      <Icon name="list" />
+      <Icon name='list' />
       <Text>{title}</Text>
     </GSTouchable>
-  )) || <Text />;
+  )) || <Text />

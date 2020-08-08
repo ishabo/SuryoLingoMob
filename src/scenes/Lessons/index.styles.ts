@@ -1,32 +1,32 @@
-import * as Animatable from 'react-native-animatable';
-import glamor from 'glamorous-native';
-import colors from '@sl/styles/colors';
+import * as Animatable from 'react-native-animatable'
+import glamor from 'glamorous-native'
+import colors from '@sl/styles/colors'
 
 export const GSContainer = glamor.view({
   alignItems: 'center',
   alignSelf: 'stretch',
   justifyContent: 'space-between',
-  backgroundColor: colors.whiteSmoke
-});
-GSContainer.displayName = 'GSContainer';
+  backgroundColor: colors.whiteSmoke,
+})
+GSContainer.displayName = 'GSContainer'
 
 export const GSLessonIcon = glamor.view({
   position: 'absolute',
   top: 10,
-  width: 150
-});
-GSLessonIcon.displayName = 'GSLessonIcon';
+  width: 150,
+})
+GSLessonIcon.displayName = 'GSLessonIcon'
 
 export const GSLessonInstruction = glamor.view({
   justifyContent: 'center',
   alignSelf: 'center',
   marginTop: 150,
-  marginBottom: 20
-});
-GSLessonInstruction.displayName = 'GSLessonInstruction';
+  marginBottom: 20,
+})
+GSLessonInstruction.displayName = 'GSLessonInstruction'
 
 export const GSAnimatable = glamor(Animatable.View as any)({
   alignSelf: 'center',
-  justifyContent: 'center'
-});
-GSAnimatable.displayName = 'GSAnimatable';
+  justifyContent: 'center',
+})
+GSAnimatable.displayName = 'GSAnimatable'

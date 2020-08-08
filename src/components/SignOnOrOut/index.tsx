@@ -1,28 +1,28 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { IInitialState } from '@sl/services/reducers';
-import { isRegistered, getSourceLanguage } from '@sl/services/selectors';
+import * as React from 'react'
+import { connect } from 'react-redux'
+import { IInitialState } from '@sl/services/reducers'
+import { isRegistered, getSourceLanguage } from '@sl/services/selectors'
 import {
   NavigationActions,
   NavigationResetActionPayload,
-} from 'react-navigation';
-import { Dispatch } from 'redux';
-import { resetToSignon } from '@sl/helpers/navigation';
-import * as signon from '@sl/services/signon';
-import analytics from '@react-native-firebase/analytics';
-import I18n from '@sl/i18n';
-import { GSCustomText, ICustomText } from '@sl/styles/text';
-import glamor from 'glamorous-native';
-import Colors from '@sl/styles/colors';
-import { Text } from 'react-native';
-import { Alert } from 'react-native';
+} from 'react-navigation'
+import { Dispatch } from 'redux'
+import { resetToSignon } from '@sl/helpers/navigation'
+import * as signon from '@sl/services/signon'
+import analytics from '@react-native-firebase/analytics'
+import I18n from '@sl/i18n'
+import { GSCustomText, ICustomText } from '@sl/styles/text'
+import glamor from 'glamorous-native'
+import Colors from '@sl/styles/colors'
+import { Text } from 'react-native'
+import { Alert } from 'react-native'
 
 interface IProps {
-  isLoggedIn: boolean;
-  navigationReset: (reset: NavigationResetActionPayload) => void;
-  sourceLanguage: TLangs;
-  signOut(): void;
-  noStyle?: boolean;
+  isLoggedIn: boolean
+  navigationReset: (reset: NavigationResetActionPayload) => void
+  sourceLanguage: TLangs
+  signOut(): void
+  noStyle?: boolean
 }
 
 const areYouSure = (func) => {
@@ -33,15 +33,15 @@ const areYouSure = (func) => {
       {
         text: I18n.t('signon.alerts.signOut.cancel'),
         onPress: () => {
-          analytics().logEvent('signout_cancelled');
+          analytics().logEvent('signout_cancelled')
         },
         style: 'cancel',
       },
       { text: I18n.t('signon.alerts.signOut.ok'), onPress: func },
     ],
-    { cancelable: false }
-  );
-};
+    { cancelable: false },
+  )
+}
 
 const SignInOrOut = ({
   isLoggedIn,
@@ -52,29 +52,29 @@ const SignInOrOut = ({
 }: IProps) => {
   const onPress = isLoggedIn
     ? () => areYouSure(signOut)
-    : () => navigationReset(resetToSignon());
+    : () => navigationReset(resetToSignon())
   const text = isLoggedIn
     ? I18n.t('signon.form.signOut')
-    : I18n.t('signon.form.signonToSave');
+    : I18n.t('signon.form.signonToSave')
   return (
     (noStyle && <Text onPress={onPress}>{text}</Text>) || (
       <GSText onPress={onPress} lang={sourceLanguage}>
         {text}
       </GSText>
     )
-  );
-};
+  )
+}
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   isLoggedIn: isRegistered(state),
   sourceLanguage: getSourceLanguage(state),
-});
+})
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   navigationReset: (reset: NavigationResetActionPayload) =>
     dispatch(NavigationActions.reset(reset)),
   signOut: () => dispatch(signon.actions.signout()),
-});
+})
 
 const GSText = glamor(GSCustomText)<ICustomText>({
   fontSize: 14,
@@ -82,6 +82,6 @@ const GSText = glamor(GSCustomText)<ICustomText>({
   fontWeight: '600',
   color: Colors.darkBlue,
   alignSelf: 'center',
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInOrOut);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInOrOut)

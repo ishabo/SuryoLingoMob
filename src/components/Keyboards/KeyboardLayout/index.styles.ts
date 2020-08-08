@@ -1,24 +1,24 @@
-import glamor from 'glamorous-native';
-import Colors from '@sl/styles/colors';
-import { Icon } from 'native-base';
-import { GSCustomText, ICustomText } from '@sl/styles/text';
-import { isNarrowDevice } from '@sl/helpers';
+import glamor from 'glamorous-native'
+import Colors from '@sl/styles/colors'
+import { Icon } from 'native-base'
+import { GSCustomText, ICustomText } from '@sl/styles/text'
+import { isNarrowDevice } from '@sl/helpers'
 
 export const GSContainer = glamor.view({
   marginTop: 20,
   backgroundColor: 'white',
-});
+})
 
 const textStyle = {
   textAlign: 'center',
   alignSelf: 'center',
   fontSize: 20,
-};
+}
 
 export const GSKeyText = glamor(GSCustomText)<ICustomText>({
   ...textStyle,
   color: Colors.white,
-} as any);
+} as any)
 
 export const GSIcon = glamor(Icon)({
   ...textStyle,
@@ -27,20 +27,20 @@ export const GSIcon = glamor(Icon)({
   marginLeft: 10,
   fontSize: 25,
   width: 40,
-  transform: [{ rotate: '180deg' }]
-});
+  transform: [{ rotate: '180deg' }],
+})
 
 export const GSContent = glamor.view<{ spread?: boolean }>(
   {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   ({ spread }) => ({
     justifyContent: spread ? 'space-between' : 'flex-start',
-    alignSelf: spread ? 'stretch' : 'center'
-  })
-);
+    alignSelf: spread ? 'stretch' : 'center',
+  }),
+)
 
 export const GSButton = glamor.touchableOpacity<{ onPress: () => void }>({
   width: 78,
@@ -55,21 +55,21 @@ export const GSButton = glamor.touchableOpacity<{ onPress: () => void }>({
   shadowOffset: { width: -2, height: 3 },
   shadowOpacity: 0.6,
   shadowRadius: 2,
-  elevation: 2
-});
+  elevation: 2,
+})
 
-export const GSReturnKey = glamor(GSButton)({});
+export const GSReturnKey = glamor(GSButton)({})
 
 export const GSKey = glamor(GSButton)({
-  width: isNarrowDevice() ? 23 : 26
-});
+  width: isNarrowDevice() ? 23 : 26,
+})
 
 export const GSBackSpaceKey = glamor(GSButton)({
   width: 54,
-  alignItems: 'center'
-});
+  alignItems: 'center',
+})
 
 export const GSSpaceKey = glamor(GSButton)({
   width: 220,
-  alignSelf: 'center'
-});
+  alignSelf: 'center',
+})

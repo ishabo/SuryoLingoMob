@@ -1,12 +1,12 @@
-import { connect } from 'react-redux';
-import { IInitialState } from '@sl/services/reducers';
+import { connect } from 'react-redux'
+import { IInitialState } from '@sl/services/reducers'
 
 export interface ILoadingProps {
-  loading: boolean;
+  loading: boolean
 }
 
 const mapStateToDispatch = (state: IInitialState): ILoadingProps => ({
-  loading: state.api.loading
-});
+  loading: state.api.loading,
+})
 
-export default connect(mapStateToDispatch);
+export default connect(mapStateToDispatch)

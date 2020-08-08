@@ -1,4 +1,4 @@
-import { ICourse } from '@sl/services/courses';
+import { ICourse } from '@sl/services/courses'
 
 const courses: ICourse[] = [
   {
@@ -35,6 +35,6 @@ const courses: ICourse[] = [
       fullName: 'Classical Arabic',
     },
   },
-];
+]
 
-export default courses;
+export default courses

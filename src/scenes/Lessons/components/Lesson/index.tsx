@@ -1,8 +1,8 @@
-import * as React from 'react';
-import SkillIcon from '@sl/scenes/Skills/components/SkillIcon';
-import { ILesson, ISkill } from '@sl/services/skills';
-import I18n from '@sl/i18n';
-import Badge from '../Badge';
+import * as React from 'react'
+import SkillIcon from '@sl/scenes/Skills/components/SkillIcon'
+import { ILesson, ISkill } from '@sl/services/skills'
+import I18n from '@sl/i18n'
+import Badge from '../Badge'
 import {
   GSBadgePosition,
   GSButton,
@@ -12,21 +12,21 @@ import {
   GSLessonTitle,
   GSButtonText,
   GSListButton,
-} from './index.styles';
-import { ProgressCircle } from '@sl/components';
-import { Icon } from 'native-base';
-import { ActivityIndicator } from 'react-native';
-import colors from '@sl/styles/colors';
+} from './index.styles'
+import { ProgressCircle } from '@sl/components'
+import { Icon } from 'native-base'
+import { ActivityIndicator } from 'react-native'
+import colors from '@sl/styles/colors'
 
 interface IProps {
-  lesson: ILesson;
-  loading: boolean;
-  skill: ISkill;
-  active: boolean;
-  targetLanguage: TLangs;
-  sourceLanguage: TLangs;
-  enterLesson(lessonId: string): void;
-  previewLesson(lessonId: string): void;
+  lesson: ILesson
+  loading: boolean
+  skill: ISkill
+  active: boolean
+  targetLanguage: TLangs
+  sourceLanguage: TLangs
+  enterLesson(lessonId: string): void
+  previewLesson(lessonId: string): void
 }
 
 export default ({
@@ -39,44 +39,44 @@ export default ({
   sourceLanguage,
   loading,
 }: IProps) => {
-  const { lessons } = skill;
+  const { lessons } = skill
 
   const lessonTitle = I18n.t('lessons.lesson.title', {
     lessonOrder: lesson.order,
     totalLessons: lessons.length,
-  });
+  })
 
-  const lessonProgress = lesson.order / lessons.length;
+  const lessonProgress = lesson.order / lessons.length
 
   const renderBadge = () => (
     <GSBadgePosition>
       <Badge>
-        <ProgressCircle size="small" progress={lessonProgress}>
-          <SkillIcon size="xhdpi" icon={skill.icon} state="unlocked" />
+        <ProgressCircle size='small' progress={lessonProgress}>
+          <SkillIcon size='xhdpi' icon={skill.icon} state='unlocked' />
         </ProgressCircle>
       </Badge>
     </GSBadgePosition>
-  );
+  )
 
   const renderListButton = () => (
     <GSListButton
       light
       onPress={() => {
-        previewLesson(lesson.id);
+        previewLesson(lesson.id)
       }}
     >
       <Icon
-        type="FontAwesome"
-        name="bars"
+        type='FontAwesome'
+        name='bars'
         style={{ color: 'black', fontSize: 20 }}
       />
     </GSListButton>
-  );
+  )
 
-  const buttonProps = { rounded: true };
-  buttonProps[active ? 'primary' : 'light'] = true;
-  const buttonActionText = lesson.finished ? 'retakeLesson' : 'startLesson';
-  const buttonText = I18n.t(`lessons.${active ? buttonActionText : 'locked'}`);
+  const buttonProps = { rounded: true }
+  buttonProps[active ? 'primary' : 'light'] = true
+  const buttonActionText = lesson.finished ? 'retakeLesson' : 'startLesson'
+  const buttonText = I18n.t(`lessons.${active ? buttonActionText : 'locked'}`)
 
   return (
     <GSLesson>
@@ -90,7 +90,7 @@ export default ({
           {...buttonProps}
         >
           {loading ? (
-            <ActivityIndicator size="large" color={colors.lightGray} />
+            <ActivityIndicator size='large' color={colors.lightGray} />
           ) : (
             <GSButtonText active={active}>{buttonText}</GSButtonText>
           )}
@@ -99,5 +99,5 @@ export default ({
       {lesson.finished && renderListButton()}
       {lesson.finished && renderBadge()}
     </GSLesson>
-  );
-};
+  )
+}

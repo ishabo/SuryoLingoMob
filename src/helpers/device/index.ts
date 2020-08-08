@@ -1,5 +1,5 @@
-import DeviceInfo from 'react-native-device-info';
-import messaging from '@react-native-firebase/messaging';
+import DeviceInfo from 'react-native-device-info'
+import messaging from '@react-native-firebase/messaging'
 
 const deviceDetails = async () => ({
   fcmToken: await messaging().getToken(),
@@ -16,9 +16,9 @@ const deviceDetails = async () => ({
     : null,
   firstInstallTime: DeviceInfo.getFirstInstallTime(),
   lastUpdateTime: DeviceInfo.getFirstInstallTime(),
-});
+})
 
 export const injectDeviceInfo = async (payload = {}) => ({
   ...payload,
   deviceInfo: await deviceDetails(),
-});
+})

@@ -38,7 +38,7 @@ const colors = {
   yellow: '#edc549',
 
   // orange
-  orange: '#D15A00'
+  orange: '#D15A00',
 
   // white: '#ffffff',
   // snow: '#fffafa',
@@ -187,6 +187,6 @@ const colors = {
   // yellow: '#ffff00',
   // yellowgreen: '#9acd32',
   // black: '#000000'
-};
+}
 
-export default colors;
+export default colors

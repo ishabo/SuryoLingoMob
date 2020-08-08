@@ -1,4 +1,4 @@
-import * as validation from './';
+import * as validation from './'
 
 describe('validation', () => {
   describe('when fields do not exist', () => {
@@ -8,12 +8,12 @@ describe('validation', () => {
           password: 'password1!',
           name: 'name',
           email: '',
-          viaFacebook: false
-        })
-      ).toEqual({
-        email: 'emailRequired'
-      });
-    });
+          viaFacebook: false,
+        }),
+      ).toStrictEqual({
+        email: 'emailRequired',
+      })
+    })
 
     it('requires name', () => {
       expect(
@@ -21,12 +21,12 @@ describe('validation', () => {
           password: 'password1!',
           email: 'email@bla.com',
           name: '',
-          viaFacebook: false
-        })
-      ).toEqual({
-        name: 'nameRequired'
-      });
-    });
+          viaFacebook: false,
+        }),
+      ).toStrictEqual({
+        name: 'nameRequired',
+      })
+    })
 
     it('requires password', () => {
       expect(
@@ -34,12 +34,12 @@ describe('validation', () => {
           name: 'name',
           email: 'email@bla.com',
           password: '',
-          viaFacebook: false
-        })
-      ).toEqual({
-        password: 'passwordRequired'
-      });
-    });
+          viaFacebook: false,
+        }),
+      ).toStrictEqual({
+        password: 'passwordRequired',
+      })
+    })
 
     it('requires all', () => {
       expect(
@@ -47,15 +47,15 @@ describe('validation', () => {
           email: '',
           password: null,
           name: undefined,
-          viaFacebook: false
-        })
-      ).toEqual({
+          viaFacebook: false,
+        }),
+      ).toStrictEqual({
         name: 'nameRequired',
         email: 'emailRequired',
-        password: 'passwordRequired'
-      });
-    });
-  });
+        password: 'passwordRequired',
+      })
+    })
+  })
 
   describe('validate fields by pattern', () => {
     describe('test invalid emails', () => {
@@ -65,8 +65,8 @@ describe('validation', () => {
         'has space@email.com',
         '!!!!!@!!!!.com',
         '43243@344343com',
-        'hasOneCharTDL@gmail.c'
-      ];
+        'hasOneCharTDL@gmail.c',
+      ]
       emailsToTest.forEach((email: string) => {
         it(`throws error for invalid email '${email}'`, () => {
           expect(
@@ -74,14 +74,14 @@ describe('validation', () => {
               email,
               name: 'name',
               password: 'password1!',
-              viaFacebook: false
-            })
-          ).toEqual({
-            email: 'emailInvalid'
-          });
-        });
-      });
-    });
+              viaFacebook: false,
+            }),
+          ).toStrictEqual({
+            email: 'emailInvalid',
+          })
+        })
+      })
+    })
 
     describe('test valid emails', () => {
       const emailsToTest = [
@@ -89,8 +89,8 @@ describe('validation', () => {
         'hasCountrySpecificDomain@mail.co.uk',
         'has_underscore@email.com',
         'has-dashes@gmail.com',
-        'has.dots@gmail.com'
-      ];
+        'has.dots@gmail.com',
+      ]
       emailsToTest.forEach((email: string) => {
         it(`passes with valid email '${email}'`, () => {
           expect(
@@ -98,13 +98,13 @@ describe('validation', () => {
               email,
               name: 'name',
               password: 'password1!',
-              viaFacebook: false
-            })
-          ).toEqual({});
-        });
-      });
-    });
-  });
+              viaFacebook: false,
+            }),
+          ).toStrictEqual({})
+        })
+      })
+    })
+  })
 
   describe('test incorrect passwords', () => {
     const passwordsToTest = [
@@ -113,8 +113,8 @@ describe('validation', () => {
       'qwerty', // contains no numbers
       '123456', // contains no letters
       '!!!!!', // contains no numbers or letters
-      'Th1$I$TooLong!!!!!!' // more than 18
-    ];
+      'Th1$I$TooLong!!!!!!', // more than 18
+    ]
     passwordsToTest.forEach((password: string) => {
       it(`returns passwordInvalid for '${password}'`, () => {
         expect(
@@ -122,14 +122,14 @@ describe('validation', () => {
             password,
             email: 'correct@correct.com',
             name: 'name',
-            viaFacebook: false
-          })
-        ).toEqual({
-          password: 'passwordInvalid'
-        });
-      });
-    });
-  });
+            viaFacebook: false,
+          }),
+        ).toStrictEqual({
+          password: 'passwordInvalid',
+        })
+      })
+    })
+  })
 
   describe('test correct passwords', () => {
     const passwordsToTest = [
@@ -137,8 +137,8 @@ describe('validation', () => {
       'Th1$I$TheMaxLength', // exactly 18
       'th1$i$themaxlength', // no need for capitals
       'ܡܠܬܳܐ1!', // psasword in Syriac
-      'كلمة1!'
-    ];
+      'كلمة1!',
+    ]
 
     passwordsToTest.forEach((password: string) => {
       it(`passes with valid password '${password}'`, () => {
@@ -147,12 +147,12 @@ describe('validation', () => {
             password,
             email: 'correct@correct.com',
             name: 'name',
-            viaFacebook: false
-          })
-        ).toEqual({});
-      });
-    });
-  });
+            viaFacebook: false,
+          }),
+        ).toStrictEqual({})
+      })
+    })
+  })
 
   describe('test invalid names', () => {
     const namesToTest = [
@@ -163,8 +163,8 @@ describe('validation', () => {
       'a',
       'sh',
       'asdشسي', // Mixing two languages
-      'Thisis tooooooo looooooooong'
-    ];
+      'Thisis tooooooo looooooooong',
+    ]
     namesToTest.forEach((name: string) => {
       it(`throws error for invalid name '${name}'`, () => {
         expect(
@@ -172,14 +172,14 @@ describe('validation', () => {
             name,
             email: 'correct@correct.com',
             password: 'password1!',
-            viaFacebook: false
-          })
-        ).toEqual({
-          name: 'nameInvalid'
-        });
-      });
-    });
-  });
+            viaFacebook: false,
+          }),
+        ).toStrictEqual({
+          name: 'nameInvalid',
+        })
+      })
+    })
+  })
 
   describe('test valid names', () => {
     const namesToTest = [
@@ -189,8 +189,8 @@ describe('validation', () => {
       'عمر', // minimum arabic chars
       'Dan', // minimum latin chars
       'عبد المسيح القرهباشي', // maximum arabic chars
-      'Abd Almasih Qrabashi' // maximum latin chars
-    ];
+      'Abd Almasih Qrabashi', // maximum latin chars
+    ]
     namesToTest.forEach((name: string) => {
       it(`throws error for invalid name '${name}'`, () => {
         expect(
@@ -198,10 +198,10 @@ describe('validation', () => {
             name,
             email: 'correct@correct.com',
             password: 'password1!',
-            viaFacebook: false
-          })
-        ).toEqual({});
-      });
-    });
-  });
-});
+            viaFacebook: false,
+          }),
+        ).toStrictEqual({})
+      })
+    })
+  })
+})

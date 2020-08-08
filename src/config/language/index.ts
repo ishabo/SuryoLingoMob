@@ -24,24 +24,27 @@ const language = {
       'ܩ',
       'ܪ',
       'ܫ',
-      'ܬ'
+      'ܬ',
     ],
     vowels: {
       fto7o: 'ܰ',
       zqofo: 'ܳ',
       '7boso': 'ܺ',
       '3soso': 'ܶ',
-      rboso: 'ܽ'
+      rboso: 'ܽ',
     },
     overlookLetters: {
-      ܔ: 'ܓ'
+      ܔ: 'ܓ',
     },
     keyboardKeys: [
       ['ܦ', 'ܥ', 'ܝ', 'ܪ', 'ܘ', 'ܩ'],
       ['ܠ', 'ܟ', 'ܛ', 'ܬ', 'ܗ', 'ܓ', 'ܕ', 'ܣ'],
-      ['ܚ', 'ܡ', 'ܢ', 'ܒ', 'ܫ', 'ܨ', 'ܙ', 'ܐ']
+      ['ܚ', 'ܡ', 'ܢ', 'ܒ', 'ܫ', 'ܨ', 'ܙ', 'ܐ'],
     ],
-    hintPatterns: [{ pattern: /^(.{1})[̥̊]{0,2}(.+)/, replace: '$1$2' }, { pattern: /[؟ ? , ، .]/g, replace: '' }]
+    hintPatterns: [
+      { pattern: /^(.{1})[̥̊]{0,2}(.+)/, replace: '$1$2' },
+      { pattern: /[؟ ? , ، .]/g, replace: '' },
+    ],
   },
 
   arabic: {
@@ -82,7 +85,7 @@ const language = {
       'ؤ‎',
       'ئ‎',
       'ء‎',
-      'ة'
+      'ة',
     ],
     vowels: {
       fat7a: 'َ',
@@ -91,33 +94,33 @@ const language = {
       sukoun: 'ْ',
       tanweenFat7: 'ً',
       tanweenDam: 'ٌ',
-      tanweenKasr: 'ٍ'
+      tanweenKasr: 'ٍ',
     },
     overlookLetters: {
       أ: 'ا',
       إ: 'ا',
       آ: 'ا',
-      ة: 'ه'
+      ة: 'ه',
     },
     keyboardKeys: [
       ['ج', 'ح', 'خ', 'ه', 'ع', 'غ', 'ف', 'ق', 'ث', 'ص', 'ض'],
       ['ط', 'ك', 'م', 'ن', 'ت', 'ا', 'ل', 'ب', 'ي', 'س', 'ش'],
-      ['د', 'ظ', 'ز', 'و', 'ة', 'ى', 'ر', 'ؤ', 'ء', 'ئ', 'ذ']
+      ['د', 'ظ', 'ز', 'و', 'ة', 'ى', 'ر', 'ؤ', 'ء', 'ئ', 'ذ'],
     ],
-    hintPatterns: []
-  }
-};
+    hintPatterns: [],
+  },
+}
 
 export interface IReplacePattern {
-  pattern: RegExp;
-  replace: string;
+  pattern: RegExp
+  replace: string
 }
 export interface ILangConfig {
-  keyboardKeys: string[][];
-  letters: string[];
-  vowels: string[];
-  overlookLetters: IDictionary<string>;
-  hintPatterns: IReplacePattern[];
+  keyboardKeys: string[][]
+  letters: string[]
+  vowels: string[]
+  overlookLetters: IDictionary<string>
+  hintPatterns: IReplacePattern[]
 }
 
 language['cl-syr'] = language['tur-syr'] = {
@@ -125,15 +128,15 @@ language['cl-syr'] = language['tur-syr'] = {
   vowels: language.syriac.vowels,
   overlookLetters: language.syriac.overlookLetters,
   keyboardKeys: language.syriac.keyboardKeys,
-  hintPatterns: language.syriac.hintPatterns
-};
+  hintPatterns: language.syriac.hintPatterns,
+}
 
 language['cl-ara'] = {
   letters: language.arabic.letters,
   vowels: language.arabic.vowels,
   overlookLetters: language.arabic.overlookLetters,
   keyboardKeys: language.arabic.keyboardKeys,
-  hintPatterns: language.arabic.hintPatterns
-};
+  hintPatterns: language.arabic.hintPatterns,
+}
 
-export default language;
+export default language

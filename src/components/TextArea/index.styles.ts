@@ -1,17 +1,17 @@
-import { Container, Button } from 'native-base';
-import glamor from 'glamorous-native';
-import Colors from '@sl/styles/colors';
-import { isShortDevice } from '@sl/helpers';
-import { getFont } from '@sl/assets/fonts';
+import { Container, Button } from 'native-base'
+import glamor from 'glamorous-native'
+import Colors from '@sl/styles/colors'
+import { isShortDevice } from '@sl/helpers'
+import { getFont } from '@sl/assets/fonts'
 
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch',
-});
+})
 
 export const GSContent = glamor.view({
   justifyContent: 'flex-start',
   flex: 1,
-});
+})
 
 export const GSTextAreaContainer = glamor.view({
   height: isShortDevice() ? 80 : 80,
@@ -20,7 +20,7 @@ export const GSTextAreaContainer = glamor.view({
   borderColor: Colors.white,
   padding: 3,
   position: 'relative',
-});
+})
 
 export const GSTextArea = glamor.textInput(
   {
@@ -34,26 +34,26 @@ export const GSTextArea = glamor.textInput(
     const styles = {
       fontFamily:
         props.lang === 'cl-ara' ? 'Arial' : getFont(props.lang, 'regular'),
-    };
-    if (props.rtl !== null) {
-      styles['writingDirection'] = 'rtl';
     }
-    return styles;
+    if (props.rtl !== null) {
+      styles['writingDirection'] = 'rtl'
+    }
+    return styles
   },
-) as any;
+) as any
 
 export const GSKeyboardToolBar = glamor.view({
   justifyContent: 'flex-end',
   backgroundColor: 'white',
   padding: 4,
   flexDirection: 'row',
-});
+})
 
 export const GSKeyboardCloseButton = glamor(Button)({
   width: 30,
   height: 34,
   margin: 2,
-});
+})
 
 export const GSKeyboardToggleButton = glamor.touchableOpacity({
   flexDirection: 'row-reverse',
@@ -61,4 +61,4 @@ export const GSKeyboardToggleButton = glamor.touchableOpacity({
   position: 'absolute',
   bottom: 0,
   right: 5,
-});
+})

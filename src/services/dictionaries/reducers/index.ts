@@ -1,15 +1,17 @@
-import { types } from '../actions';
-import { IDictionary, IDictionaryAction } from '../';
+import { types } from '../actions'
+import { IDictionary, IDictionaryAction } from '../'
 
-export const initialState = [];
+export const initialState = []
 
-export const reducer = (state: IDictionary[] = initialState, action: IDictionaryAction) => {
+export const reducer = (
+  state: IDictionary[] = initialState,
+  action: IDictionaryAction,
+) => {
   switch (action.type) {
     case types.SAVE_DICTIONARIES:
-      return action.dictionaries;
+      return action.dictionaries
 
     default:
-      return state;
+      return state
   }
-};
-
+}

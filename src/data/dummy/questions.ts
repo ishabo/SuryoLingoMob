@@ -41,6 +41,9 @@ export default [
     phrase: 'phrase 5',
     soundFiles: ['sound-id5.mp3'],
     translation: 'translation of phrase 5',
-    incorrectChoices: ['wrong translation of phrase 5', 'another wrong translation of phrase 5'],
+    incorrectChoices: [
+      'wrong translation of phrase 5',
+      'another wrong translation of phrase 5',
+    ],
   },
-];
+]

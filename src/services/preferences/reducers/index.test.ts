@@ -1,23 +1,23 @@
-import { reducer as preferencesReducer } from './index';
-import { types } from '../actions';
+import { reducer as preferencesReducer } from './index'
+import { types } from '../actions'
 
 describe('preferences reducer', () => {
   it('should set lesson in progress', () => {
     const initialState = {
-      customKeyboardEnabled: true
-    };
+      customKeyboardEnabled: true,
+    }
 
     const actions = {
       type: types.SET_PREFERENCES,
       preferences: {
-        customKeyboardEnabled: false
-      }
-    };
+        customKeyboardEnabled: false,
+      },
+    }
 
-    const newState = preferencesReducer(initialState, actions);
+    const newState = preferencesReducer(initialState, actions)
 
-    expect(newState).toEqual({
-      customKeyboardEnabled: false
-    });
-  });
-});
+    expect(newState).toStrictEqual({
+      customKeyboardEnabled: false,
+    })
+  })
+})

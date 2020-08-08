@@ -1,17 +1,17 @@
-import { ISkill, ILesson } from '@sl/services/skills';
+import { ISkill, ILesson } from '@sl/services/skills'
 
 const lessons: ILesson[] = [
   {
     id: '11',
     order: 1,
-    newWords: ['ܐܪܝܐ', 'ܨܦܪܟ', 'ܐܚܘܢ', 'ܛܘܒ', 'ܡܢܐ'].join('|')
+    newWords: ['ܐܪܝܐ', 'ܨܦܪܟ', 'ܐܚܘܢ', 'ܛܘܒ', 'ܡܢܐ'].join('|'),
   },
   {
     id: '12',
     order: 2,
-    newWords: ['ܥܒܕ', 'ܫܠܝܡ', 'ܐܝܬ', 'ܒܝܬܐ', 'ܠܚܡܐ'].join('|')
-  }
-];
+    newWords: ['ܥܒܕ', 'ܫܠܝܡ', 'ܐܝܬ', 'ܒܝܬܐ', 'ܠܚܡܐ'].join('|'),
+  },
+]
 
 export const skills: ISkill[] = [
   {
@@ -21,7 +21,7 @@ export const skills: ISkill[] = [
     description: '',
     icon: 'letters1',
     name: 'letters1',
-    isComingSoon: true
+    isComingSoon: true,
   },
   {
     lessons,
@@ -30,7 +30,7 @@ export const skills: ISkill[] = [
     description: '',
     icon: 'letters2',
     name: 'letters2',
-    isComingSoon: true
+    isComingSoon: true,
   },
   {
     lessons,
@@ -39,7 +39,7 @@ export const skills: ISkill[] = [
     description: '',
     icon: 'vowels',
     name: 'vowels',
-    isComingSoon: true
+    isComingSoon: true,
   },
   {
     lessons,
@@ -48,6 +48,6 @@ export const skills: ISkill[] = [
     description: '',
     icon: 'basics',
     name: 'basics',
-    isComingSoon: true
-  }
-];
+    isComingSoon: true,
+  },
+]

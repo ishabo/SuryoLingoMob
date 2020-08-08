@@ -1,19 +1,19 @@
-import * as React from 'react';
-import Images from '@sl/assets/images';
-import { Thumbnail } from 'native-base';
-import { TouchableOpacity } from 'react-native';
-import { downloadAndPlayAudio } from '@sl/helpers/audio';
+import * as React from 'react'
+import Images from '@sl/assets/images'
+import { Thumbnail } from 'native-base'
+import { TouchableOpacity } from 'react-native'
+import { downloadAndPlayAudio } from '@sl/helpers/audio'
 
 interface IProps {
-  soundTrack?: string;
-  size: { large?: boolean; small?: boolean };
-  disabled?: boolean;
+  soundTrack?: string
+  size: { large?: boolean; small?: boolean }
+  disabled?: boolean
 }
 
 const SoundButton = ({ soundTrack, size, disabled }: IProps) => (
   <TouchableOpacity
     onPress={async () => {
-      await downloadAndPlayAudio(soundTrack);
+      await downloadAndPlayAudio(soundTrack)
     }}
   >
     <Thumbnail
@@ -21,6 +21,6 @@ const SoundButton = ({ soundTrack, size, disabled }: IProps) => (
       source={disabled ? Images.icons.noSpeaker : Images.icons.speaker}
     />
   </TouchableOpacity>
-);
+)
 
-export default SoundButton;
+export default SoundButton

@@ -1,36 +1,40 @@
-import { ISkill } from '@sl/services/skills';
+import { ISkill } from '@sl/services/skills'
 
-const namespace = 'SuryoLingo/Skills';
+const namespace = 'SuryoLingo/Skills'
 
 export const types = {
   SAVE_SKILLS: `${namespace}/SAVE_SKILLS`,
   FETCH_SKILLS: `${namespace}/FETCH_SKILLS`,
   ACTIVATE_UNIT: `${namespace}/ACTIVATE_UNIT`,
   MARK_LESSON_FINISHED: `${namespace}/MARK_LESSON_FINISHED`,
-  RESET_SKILLS: `${namespace}/RESET_SKILLS`
-};
+  RESET_SKILLS: `${namespace}/RESET_SKILLS`,
+}
 
 export const saveSkills = (payload: ISkill[]) => ({
   payload,
-  type: types.SAVE_SKILLS
-});
+  type: types.SAVE_SKILLS,
+})
 
 export const fetchSkills = () => ({
-  type: types.FETCH_SKILLS
-});
+  type: types.FETCH_SKILLS,
+})
 
 export const activateUnit = (unit: number) => ({
   unit,
-  type: types.ACTIVATE_UNIT
-});
+  type: types.ACTIVATE_UNIT,
+})
 
-export const markLessonFinished = (lessonId: string, lessonXP: number, timestamp: Date) => ({
+export const markLessonFinished = (
+  lessonId: string,
+  lessonXP: number,
+  timestamp: Date,
+) => ({
   lessonId,
   lessonXP,
   timestamp,
-  type: types.MARK_LESSON_FINISHED
-});
+  type: types.MARK_LESSON_FINISHED,
+})
 
 export const resetSkills = () => ({
-  type: types.RESET_SKILLS
-});
+  type: types.RESET_SKILLS,
+})

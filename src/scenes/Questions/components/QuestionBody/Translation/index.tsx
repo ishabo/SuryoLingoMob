@@ -1,21 +1,23 @@
-import * as React from 'react';
-import { Container } from 'native-base';
-import I18n from '@sl/i18n';
-import { TextArea } from '@sl/components';
-import { ICourse } from '@sl/services/courses';
-import { IAnswerProps } from '../../../index.types';
-import glamor from 'glamorous-native';
+import * as React from 'react'
+import { Container } from 'native-base'
+import I18n from '@sl/i18n'
+import { TextArea } from '@sl/components'
+import { ICourse } from '@sl/services/courses'
+import { IAnswerProps } from '../../../index.types'
+import glamor from 'glamorous-native'
 
 interface IProps extends IAnswerProps {
-  course: ICourse;
-  reverse: boolean;
+  course: ICourse
+  reverse: boolean
 }
 
 export default class Translation extends React.Component<IProps> {
   render() {
-    const { course, userHasAnswered, reverse, collectAnswer } = this.props;
-    const translateTo: string = reverse ? 'targetLanguage' : 'sourceLanguage';
-    const placeholder = I18n.t(`questions.translateTo.${course[translateTo].shortName}`);
+    const { course, userHasAnswered, reverse, collectAnswer } = this.props
+    const translateTo: string = reverse ? 'targetLanguage' : 'sourceLanguage'
+    const placeholder = I18n.t(
+      `questions.translateTo.${course[translateTo].shortName}`,
+    )
     return (
       <GSContainer>
         <TextArea
@@ -29,12 +31,12 @@ export default class Translation extends React.Component<IProps> {
           renderNextButton={this.props.renderNextButton}
         />
       </GSContainer>
-    );
+    )
   }
 }
 
 const GSContainer = glamor(Container)({
-  alignSelf: 'stretch'
-});
+  alignSelf: 'stretch',
+})
 
-GSContainer.displayName = 'GSContainer';
+GSContainer.displayName = 'GSContainer'

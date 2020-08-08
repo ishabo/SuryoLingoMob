@@ -1,2 +1,2 @@
-export { default as Skill } from './Skill';
-export { default as SkillIcon } from './SkillIcon';
+export { default as Skill } from './Skill'
+export { default as SkillIcon } from './SkillIcon'

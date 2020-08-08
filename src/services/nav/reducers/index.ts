@@ -1,16 +1,16 @@
-import { AppNavigator } from '@sl/routes/index';
+import { AppNavigator } from '@sl/routes/index'
 
 export const initialState = AppNavigator
   ? AppNavigator.router.getStateForAction(
       AppNavigator.router.getActionForPathAndParams('Splash'),
       null,
     )
-  : null;
+  : null
 
 export const reducer = (state = initialState, action) => {
   const nextState = AppNavigator
     ? AppNavigator.router.getStateForAction(action, state)
-    : null;
+    : null
 
-  return nextState || state;
-};
+  return nextState || state
+}

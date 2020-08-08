@@ -1,20 +1,20 @@
-import { API_DOMAIN, LAMBDA_HOST, WORK_OFFLINE } from 'react-native-dotenv';
-import { Platform } from 'react-native';
+import { API_DOMAIN, LAMBDA_HOST, WORK_OFFLINE } from 'react-native-dotenv'
+import { Platform } from 'react-native'
 
 const website = () => {
-  let domain = API_DOMAIN;
+  let domain = API_DOMAIN
 
   if (domain && domain.match(/localhost/) && Platform.OS === 'android') {
-    domain = domain.replace(/localhost/, '10.0.2.2');
+    domain = domain.replace(/localhost/, '10.0.2.2')
   }
 
-  return domain;
-};
+  return domain
+}
 
-const apiHost = `${website()}/api/v2`;
-const adminHost = `${website()}/idara`;
-const lambdaHost = LAMBDA_HOST;
-const isWorkingOffline = Boolean(WORK_OFFLINE);
+const apiHost = `${website()}/api/v2`
+const adminHost = `${website()}/idara`
+const lambdaHost = LAMBDA_HOST
+const isWorkingOffline = Boolean(WORK_OFFLINE)
 
 export default {
   apiHost,
@@ -25,44 +25,44 @@ export default {
   isWorkingOffline,
   sInfoOptions: {
     keychainService: 'SuryoLingoKeyChain',
-    sharedPreferencesName: 'SuryoLingoKeyPrefs'
+    sharedPreferencesName: 'SuryoLingoKeyPrefs',
   },
   validation: {
     emailPatterns: [/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i],
     namePatterns: [
       /^[\u0600-\u06FF\s]{3,20}$/i,
       /^[A-Z\s]{3,20}$/i,
-      /^[\u0710-\u0742\s]{3,20}$/i
+      /^[\u0710-\u0742\s]{3,20}$/i,
     ],
-    passwordPatterns: [/^(?=.*[\D])(?=.*\d)[\D\d]{6,18}$/i]
+    passwordPatterns: [/^(?=.*[\D])(?=.*\d)[\D\d]{6,18}$/i],
   },
   alerts: {
     NETWORK_ERROR: {
-      alertType: 'error'
+      alertType: 'error',
     },
     UNKNOWN_ERROR: {
-      alertType: 'error'
+      alertType: 'error',
     },
     INTERNAL_SERVER_ERROR: {
-      alertType: 'error'
+      alertType: 'error',
     },
     TIMEOUT_ERROR: {
-      alertType: 'error'
+      alertType: 'error',
     },
     NOT_FOUND: {
-      alertType: 'error'
+      alertType: 'error',
     },
     BAD_REQUEST: {
-      alertType: 'warning'
+      alertType: 'warning',
     },
     INVALID_TOKEN: {
-      alertType: 'warning'
+      alertType: 'warning',
     },
     INVALID_AUTH: {
-      alertType: 'warning'
+      alertType: 'warning',
     },
     INVALID_APPLICATION: {
-      alertType: 'warning'
-    }
-  }
-};
+      alertType: 'warning',
+    },
+  },
+}

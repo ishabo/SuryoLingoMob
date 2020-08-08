@@ -1,37 +1,37 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import * as skill from './skills';
-import * as course from './courses';
-import * as profile from './profile';
-import * as progress from './progress';
-import * as navigation from './nav/reducers';
-import * as questions from './questions';
-import * as dictionaries from './dictionaries';
-import * as api from './api/reducers';
-import * as exceptions from './exceptions';
-import * as signon from './signon';
-import * as assets from './assets';
-import * as preferences from './preferences';
-import * as settings from './settings';
-import * as leaderboard from './leaderboard';
+import * as skill from './skills'
+import * as course from './courses'
+import * as profile from './profile'
+import * as progress from './progress'
+import * as navigation from './nav/reducers'
+import * as questions from './questions'
+import * as dictionaries from './dictionaries'
+import * as api from './api/reducers'
+import * as exceptions from './exceptions'
+import * as signon from './signon'
+import * as assets from './assets'
+import * as preferences from './preferences'
+import * as settings from './settings'
+import * as leaderboard from './leaderboard'
 
-import { NavigationState } from 'react-navigation';
+import { NavigationState } from 'react-navigation'
 
 export interface IInitialState {
-  nav: NavigationState;
-  api: api.IApiStatus;
-  signon: signon.ISignonState;
-  skills: skill.ISkill[];
-  assets: assets.IAssets;
-  courses: course.ICourse[];
-  profile: profile.IProfile;
-  progress: progress.IProgress;
-  questions: questions.IQuestions;
-  dictionaries: dictionaries.IDictionary[];
-  leaderboard: leaderboard.ILeaderboard;
-  preferences: preferences.IPrefererences;
-  settings: settings.IAppSettings;
-  exceptions: exceptions.IException[];
+  nav: NavigationState
+  api: api.IApiStatus
+  signon: signon.ISignonState
+  skills: skill.ISkill[]
+  assets: assets.IAssets
+  courses: course.ICourse[]
+  profile: profile.IProfile
+  progress: progress.IProgress
+  questions: questions.IQuestions
+  dictionaries: dictionaries.IDictionary[]
+  leaderboard: leaderboard.ILeaderboard
+  preferences: preferences.IPrefererences
+  settings: settings.IAppSettings
+  exceptions: exceptions.IException[]
 }
 
 export const initialState: IInitialState = {
@@ -48,8 +48,8 @@ export const initialState: IInitialState = {
   preferences: preferences.reducers.initialState,
   leaderboard: leaderboard.reducers.initialState,
   settings: settings.reducers.initialState,
-  exceptions: exceptions.reducers.initialState
-};
+  exceptions: exceptions.reducers.initialState,
+}
 
 export default combineReducers({
   nav: navigation.reducer,
@@ -65,5 +65,5 @@ export default combineReducers({
   preferences: preferences.reducers.reducer,
   leaderboard: leaderboard.reducers.reducer,
   settings: settings.reducers.reducer,
-  exceptions: exceptions.reducers.reducer
-});
+  exceptions: exceptions.reducers.reducer,
+})

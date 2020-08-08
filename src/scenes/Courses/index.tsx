@@ -1,70 +1,71 @@
-import * as React from 'react';
-import { ScrollView, Alert, Animated, SafeAreaView } from 'react-native';
-import { ICourse } from '@sl/services/courses';
-import { connect } from 'react-redux';
-import { switchCourse } from '@sl/services/courses/actions';
-import I18n from '@sl/i18n';
-import { GSContainer, GSTitle, GSCourse, GSAnimatable } from './index.styles';
-import { snakeToCamel, getWindowWidth } from '@sl/helpers';
-import { CachedImage, ImageCacheProvider } from 'react-native-cached-image';
-import { IAssets } from '@sl/services/assets';
-import { IInitialState } from '@sl/services/reducers';
-import { AnimatableAnimationMethods } from 'react-native-animatable';
-import { DrawerItem, WhenReady } from '@sl/components';
-import analytics from '@react-native-firebase/analytics';
+import * as React from 'react'
+import { ScrollView, Alert, Animated, SafeAreaView } from 'react-native'
+import { ICourse } from '@sl/services/courses'
+import { connect } from 'react-redux'
+import { switchCourse } from '@sl/services/courses/actions'
+import I18n from '@sl/i18n'
+import { GSContainer, GSTitle, GSCourse, GSAnimatable } from './index.styles'
+import { snakeToCamel, getWindowWidth } from '@sl/helpers'
+import { CachedImage, ImageCacheProvider } from 'react-native-cached-image'
+import { IAssets } from '@sl/services/assets'
+import { IInitialState } from '@sl/services/reducers'
+import { AnimatableAnimationMethods } from 'react-native-animatable'
+import { DrawerItem, WhenReady } from '@sl/components'
+import analytics from '@react-native-firebase/analytics'
 
-const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage);
+const AnimatedCachedImage = Animated.createAnimatedComponent(CachedImage)
 
 interface IProps {
-  courseImages: IAssets['courseImages'];
-  courses: ICourse[];
-  switchCourse(courseId: string): void;
-  deviceId: string;
+  courseImages: IAssets['courseImages']
+  courses: ICourse[]
+  switchCourse(courseId: string): void
+  deviceId: string
 }
 
 class Courses extends React.Component<IProps> {
-  private cards: AnimatableAnimationMethods;
+  private cards: AnimatableAnimationMethods
 
   static navigationOptions = {
     title: I18n.t('courses.title'),
     header: null,
-    drawerLabel: <DrawerItem label={I18n.t('courses.title')} icon="courses" />,
-  };
+    drawerLabel: <DrawerItem label={I18n.t('courses.title')} icon='courses' />,
+  }
 
   componentDidMount() {
-    analytics().setCurrentScreen(this.constructor.name);
-    this.cards.fadeInUp();
+    analytics().setCurrentScreen(this.constructor.name)
+    this.cards.fadeInUp()
   }
 
   private switchCourse = (course: ICourse) => {
     if (!course.comingSoon) {
-      this.props.switchCourse(course.id);
+      this.props.switchCourse(course.id)
     } else {
       analytics().logEvent('coming_soon_course_clicked', {
         CourseName: course.name,
-      });
+      })
 
       Alert.alert(
         I18n.t('courses.alerts.commingSoon.title'),
         I18n.t('courses.alerts.commingSoon.description'),
-        [{ text: I18n.t('courses.alerts.commingSoon.ok'), onPress: () => {} }]
-      );
+        [{ text: I18n.t('courses.alerts.commingSoon.ok'), onPress: () => {} }],
+      )
     }
-  };
+  }
 
   private renderCourseCard = (course: ICourse) => {
+    const { id: courseId, targetLanguage, sourceLanguage } = course
     const imageName = snakeToCamel(
-      course.targetLanguage.shortName + '_' + course.sourceLanguage.shortName
-    );
+      `${targetLanguage.shortName}_${sourceLanguage.shortName}`,
+    )
 
-    const width = getWindowWidth() - 20;
-    const height = width * (67 / 100);
+    const width = getWindowWidth() - 20
+    const height = width * (67 / 100)
 
     return (
       <GSCourse
-        key={course.id}
+        key={courseId}
         onPress={() => {
-          this.switchCourse(course);
+          this.switchCourse(course)
         }}
       >
         <AnimatedCachedImage
@@ -74,11 +75,11 @@ class Courses extends React.Component<IProps> {
           }}
         />
       </GSCourse>
-    );
-  };
+    )
+  }
 
   private renderCourses = () =>
-    this.props.courses.map((course: ICourse) => this.renderCourseCard(course));
+    this.props.courses.map((course: ICourse) => this.renderCourseCard(course))
 
   render() {
     return (
@@ -113,16 +114,16 @@ class Courses extends React.Component<IProps> {
           </ScrollView>
         </SafeAreaView>
       </GSContainer>
-    );
+    )
   }
 }
 
-const mapDispatchToProps = { switchCourse };
+const mapDispatchToProps = { switchCourse }
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   courses: state.courses,
   courseImages: state.assets.courseImages,
   deviceId: state.profile.deviceId,
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Courses);
+export default connect(mapStateToProps, mapDispatchToProps)(Courses)

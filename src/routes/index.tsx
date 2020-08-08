@@ -1,20 +1,20 @@
-import React from 'react';
-import Splash from '@sl/scenes/Splash';
-import Signon from '@sl/scenes/Signon';
-import Courses from '@sl/scenes/Courses';
-import Skills from '@sl/scenes/Skills';
-import Lessons from '@sl/scenes/Lessons';
-import LessonOverview from '@sl/scenes/LessonOverview';
-import Questions from '@sl/scenes/Questions';
-import Completion from '@sl/scenes/Completion';
-import Leaderboard from '@sl/scenes/Leaderboard';
-import Profile from '@sl/scenes/Profile';
-import Drawer from '@sl/scenes/Drawer';
-import PasswordRecovery from '@sl/scenes/PasswordRecovery';
+import React from 'react'
+import Splash from '@sl/scenes/Splash'
+import Signon from '@sl/scenes/Signon'
+import Courses from '@sl/scenes/Courses'
+import Skills from '@sl/scenes/Skills'
+import Lessons from '@sl/scenes/Lessons'
+import LessonOverview from '@sl/scenes/LessonOverview'
+import Questions from '@sl/scenes/Questions'
+import Completion from '@sl/scenes/Completion'
+import Leaderboard from '@sl/scenes/Leaderboard'
+import Profile from '@sl/scenes/Profile'
+import Drawer from '@sl/scenes/Drawer'
+import PasswordRecovery from '@sl/scenes/PasswordRecovery'
 
-import { StackNavigator, DrawerNavigator } from 'react-navigation';
-import { Platform } from 'react-native';
-import colors from '@sl/styles/colors';
+import { StackNavigator, DrawerNavigator } from 'react-navigation'
+import { Platform } from 'react-native'
+import colors from '@sl/styles/colors'
 
 const DrawerNav = DrawerNavigator(
   {
@@ -25,11 +25,11 @@ const DrawerNav = DrawerNavigator(
     Signon: { screen: Signon },
   },
   {
-    contentComponent: props => <Drawer {...props} />,
+    contentComponent: (props) => <Drawer {...props} />,
     initialRouteName: 'Course',
     drawerPosition: Platform.OS === 'android' ? 'right' : 'left',
   },
-);
+)
 
 export const AppNavigator = StackNavigator(
   {
@@ -59,4 +59,4 @@ export const AppNavigator = StackNavigator(
       headerStyle: { backgroundColor: colors.snow },
     },
   },
-);
+)

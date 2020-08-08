@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import glamor from 'glamorous-native';
-import I18n from '@sl/i18n';
-import { Button, Icon } from 'native-base';
-import { connectViaFacebook } from '@sl/services/signon/actions';
-import { calcWindowWidth } from '@sl/helpers';
-import Colors from '@sl/styles/colors';
-import { GSCustomText } from '@sl/styles/text';
-import { TSignonType } from '@sl/services/profile';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import glamor from 'glamorous-native'
+import I18n from '@sl/i18n'
+import { Button, Icon } from 'native-base'
+import { connectViaFacebook } from '@sl/services/signon/actions'
+import { calcWindowWidth } from '@sl/helpers'
+import Colors from '@sl/styles/colors'
+import { GSCustomText } from '@sl/styles/text'
+import { TSignonType } from '@sl/services/profile'
 
 const GSButtonText = glamor(GSCustomText)({
   alignSelf: 'center',
@@ -15,38 +15,41 @@ const GSButtonText = glamor(GSCustomText)({
   textAlign: 'center',
   flexDirection: 'row',
   fontSize: 14,
-  marginLeft: 5
-});
+  marginLeft: 5,
+})
 
 const GSButton = glamor(Button)({
   width: calcWindowWidth(10),
   alignSelf: 'center',
   justifyContent: 'center',
-  backgroundColor: Colors.facebook
-});
+  backgroundColor: Colors.facebook,
+})
 
 interface IProps {
-  signon: TSignonType;
-  connectViaFacebook: (signon) => void;
+  signon: TSignonType
+  connectViaFacebook: (signon) => void
 }
 
 class FBLoginButton extends Component<IProps> {
   render() {
-    const connectViaFacebookText = `${this.props.signon}ViaFacebook`;
+    const connectViaFacebookText = `${this.props.signon}ViaFacebook`
     return (
-      <GSButton iconLeft rounded onPress={() => this.props.connectViaFacebook(this.props.signon)}>
-        <GSButtonText>{I18n.t(`signon.form.${connectViaFacebookText}`)}</GSButtonText>
-        <Icon name="facebook" type="Entypo" />
+      <GSButton
+        iconLeft
+        rounded
+        onPress={() => this.props.connectViaFacebook(this.props.signon)}
+      >
+        <GSButtonText>
+          {I18n.t(`signon.form.${connectViaFacebookText}`)}
+        </GSButtonText>
+        <Icon name='facebook' type='Entypo' />
       </GSButton>
-    );
+    )
   }
 }
 
 const mapDispatchToProps = {
-  connectViaFacebook
-};
+  connectViaFacebook,
+}
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(FBLoginButton);
+export default connect(null, mapDispatchToProps)(FBLoginButton)

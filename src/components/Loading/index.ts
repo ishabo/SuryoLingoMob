@@ -1,16 +1,16 @@
-import connect, { ILoadingProps } from './connect';
-import glamor from 'glamorous-native';
-import Loading from './Loading';
+import connect, { ILoadingProps } from './connect'
+import glamor from 'glamorous-native'
+import Loading from './Loading'
 
 export interface IProps extends ILoadingProps {
-  noModal?: boolean;
+  noModal?: boolean
 }
 
 export const GSLoading = glamor.view({
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
-  alignSelf: 'stretch'
-});
+  alignSelf: 'stretch',
+})
 
-export default connect(Loading);
+export default connect(Loading)
