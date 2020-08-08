@@ -1,12 +1,12 @@
-import * as React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { dashify } from '@sl/helpers'
-import { GSHintedSentence, GSSentence } from './index.styles'
 import PopoverTooltip from 'react-native-popover-tooltip'
 import { Keyboard, View } from 'react-native'
 import { IWordHint } from '@sl/services/dictionaries'
 import { ISentence } from '@sl/services/questions'
 import { detectLanguage } from '@sl/helpers/language'
 import { KeyboardUtils } from 'react-native-keyboard-input'
+import { GSHintedSentence, GSSentence } from './index.styles'
 
 export interface IProps {
   sentence: ISentence
@@ -20,123 +20,109 @@ interface IHint {
   onPress: () => void
 }
 
-interface IState {
-  keyboardOpen: boolean
-}
-
 const splitTranslations = (translations: string) =>
   (translations ? translations : '').split('|')
 
-export default class Phrase extends React.Component<IProps, IState> {
-  state = {
-    keyboardOpen: false,
-  }
+const Phrase: React.FC<IProps> = ({ sentence, obscureText, style }) => {
+  const [keyboardOpen, setKeyboardOpen] = useState(false)
+  const tooltipRefs = useRef(new Map())
 
-  keyboardDidShowListener
-  keyboardDidHideListener
-
-  componentDidMount() {
-    this.keyboardDidShowListener = Keyboard.addListener(
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
-      this.keyboardDidShow,
+      keyboardDidShow,
     )
-    this.keyboardDidHideListener = Keyboard.addListener(
+    const keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
-      this.keyboardDidHide,
+      keyboardDidHide,
     )
+    return () => {
+      keyboardDidShowListener.remove()
+      keyboardDidHideListener.remove()
+    }
+  }, [])
+
+  const keyboardDidShow = () => {
+    setKeyboardOpen(true)
   }
 
-  componentWillUnmount() {
-    this.keyboardDidShowListener.remove()
-    this.keyboardDidHideListener.remove()
+  const keyboardDidHide = () => {
+    setKeyboardOpen(false), []
   }
 
-  private keyboardDidShow = () => {
-    this.setState({ keyboardOpen: true })
-  }
+  const getObscureText = (text: string): string =>
+    obscureText ? dashify(text) : text
 
-  private keyboardDidHide = () => {
-    this.setState({ keyboardOpen: false })
-  }
-
-  private obscureText = (text: string) =>
-    this.props.obscureText ? dashify(text) : text
-
-  private renderText = (
+  const renderText = (
     text: string,
     hasTooltip: boolean = false,
     onPress: () => void = () => {},
-    style: object = {},
+    defaultStyle: object = {},
   ) => (
     <GSSentence
       onPress={onPress}
       hasTooltip={hasTooltip}
-      style={this.props.style || { ...style }}
+      style={style || { ...defaultStyle }}
       lang={detectLanguage(text)}
     >
-      {this.obscureText(text)}
+      {getObscureText(text)}
     </GSSentence>
   )
 
-  private renderHint = (translations: string): IHint[] =>
+  const renderHint = (translations: string): IHint[] =>
     splitTranslations(translations).map((label: string) => ({
       label,
       onPress: () => {},
     }))
 
-  private toggleOnPress = (tooltip) => () => {
+  const toggleOnPress = (index: number) => () => {
     let time = 0
-    if (this.state.keyboardOpen) {
+    if (keyboardOpen) {
       Keyboard.dismiss()
       KeyboardUtils.dismiss()
-
-      time = 100
+      time = 600
     }
-    setTimeout(this[tooltip].toggle, time)
+    setTimeout(() => {
+      tooltipRefs.current.get(index).toggle()
+    }, time)
   }
 
-  private renderHintifiedWord = (hintifiedWord: IWordHint, index: number) => {
-    const style = { marginRight: 5, marginTop: 2 }
-    const tooltip = `tooltip${index}`
+  const setPopoverTooltipRef = (index: number) => (el: PopoverTooltip) =>
+    tooltipRefs.current.set(index, el)
+
+  const renderHintifiedWord = (hintifiedWord: IWordHint, index: number) => {
     const { key, word, translations } = hintifiedWord
 
     if (translations && translations.length > 0) {
-      const buttonCompoent = this.renderText(
-        word,
-        true,
-        this.toggleOnPress(tooltip),
-      )
-      const items = this.renderHint(translations)
-      const ref = (c: Phrase) => (this[tooltip] = c)
+      const buttonCompoent = renderText(word, true, toggleOnPress(index))
+      const items = renderHint(translations)
+      // https://stackoverflow.com/questions/54633690/how-can-i-use-multiple-refs-for-an-array-of-elements-with-hooks
       return (
         <PopoverTooltip
-          ref={ref}
+          ref={setPopoverTooltipRef(index)}
           items={items}
           key={key}
           animationType='spring'
-          componentWrapperStyle={style}
+          componentWrapperStyle={{ marginRight: 5, marginTop: 2 }}
           labelStyle={{ fontFamily: 'Arial' }}
           buttonComponent={buttonCompoent}
         />
       )
-    } else {
-      return (
-        <View key={key} style={style}>
-          {this.renderText(word, false)}
-        </View>
-      )
     }
-  }
-
-  render() {
-    const { sentence } = this.props
-
     return (
-      <GSHintedSentence>
-        {sentence.hintified === null
-          ? this.renderText(sentence.raw, false, () => {}, { marginRight: 10 })
-          : sentence.hintified.map(this.renderHintifiedWord)}
-      </GSHintedSentence>
+      <View key={key} style={{ marginRight: 5, marginTop: 2 }}>
+        {renderText(word, false)}
+      </View>
     )
   }
+
+  return (
+    <GSHintedSentence>
+      {sentence.hintified === null
+        ? renderText(sentence.raw, false, () => {}, { marginRight: 10 })
+        : sentence.hintified.map(renderHintifiedWord)}
+    </GSHintedSentence>
+  )
 }
+
+export default Phrase
