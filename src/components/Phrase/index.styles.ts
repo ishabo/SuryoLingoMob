@@ -13,6 +13,7 @@ export const GSHints = glamor.view({
   width: 150,
   height: 200,
 })
+GSHints.displayName = 'GSHints'
 
 export const GSHintBlock = glamor.view<{ last: boolean }>(
   {
@@ -21,7 +22,7 @@ export const GSHintBlock = glamor.view<{ last: boolean }>(
     paddingHorizontal: 20,
     borderColor: Colors.lightBlack,
   },
-  (props) =>
+  props =>
     !props.last
       ? {
           borderBottomColor: Colors.lightGray,
@@ -34,6 +35,7 @@ export const GSHintText = glamor.text({
   textAlign: 'center',
   alignSelf: 'stretch',
 })
+GSHintText.displayName = 'GSHintText'
 
 export const GSHintedSentence = glamor.view({
   flexDirection: 'row',
@@ -42,10 +44,10 @@ export const GSHintedSentence = glamor.view({
   marginLeft: 10,
   marginTop: 0,
 })
+GSHintedSentence.displayName = 'GSHintedSentence'
 
 interface IGSSentence extends ICustomText {
   hasTooltip: boolean
-  onPress: () => void
   style: StyleProp<TextStyle>
 }
 
@@ -54,7 +56,7 @@ export const GSSentence = glamor(GSCustomStudyText)<IGSSentence>(
     paddingVertical: 3,
     flexWrap: 'wrap',
   },
-  (props) => {
+  props => {
     let style = {}
 
     style = props.hasTooltip
@@ -69,3 +71,4 @@ export const GSSentence = glamor(GSCustomStudyText)<IGSSentence>(
     return style
   },
 )
+GSSentence.displayName = 'GSSentence'
