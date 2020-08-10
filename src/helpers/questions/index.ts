@@ -1,10 +1,10 @@
-import { TQuestionType } from '@sl/services/questions/actions/index'
+import { TQuestionType } from '@sl/services/questions/actions'
 import { IDictionary, IWordHint } from '@sl/services/dictionaries'
 import shortid from 'shortid'
 import { openUrl } from '@sl/helpers/common'
 import { TTargetLangs } from '@sl/services/courses'
 import { ignoreByPattern, getLangConfig } from '@sl/helpers/language'
-import config from '../../config'
+import config from '@sl/config'
 
 export const isReverseQuestion = (questionType: TQuestionType) =>
   /_REVERSE$/.test(questionType) || questionType === 'DICTATION'

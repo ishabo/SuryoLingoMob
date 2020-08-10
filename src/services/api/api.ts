@@ -1,8 +1,9 @@
 import * as ApiSauce from 'apisauce'
 import { isEmpty } from 'lodash'
-import { changeCase } from '@sl/helpers'
+
+import { changeCase } from '@sl/helpers/common'
 import * as Exceptions from '../exceptions'
-import { THeaders, TMethod, IApiOptions } from './index'
+import { THeaders, TMethod, IApiOptions } from './types'
 
 let userToken: string = null
 let origin: string = null

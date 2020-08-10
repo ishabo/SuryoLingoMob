@@ -1,5 +1,6 @@
 import { call, put, select } from 'redux-saga/effects'
 import * as profile from '@sl/services/profile'
+import { types } from '@sl/services/profile/actions'
 import { isEmpty } from 'lodash'
 import { IInitialState } from '@sl/services/reducers'
 import { ISagasFunctions } from '@sl/services/sagas'
@@ -82,16 +83,13 @@ export function* saveProfileAndAccessToken(
   }
 }
 
-export const functions = (): ISagasFunctions[] => {
-  const { types } = profile.actions
-  return [
-    { action: types.CREATE_PROFILE_IF_NEEDED, func: createProfileIfNeeded },
-    { action: types.CREATE_PROFILE, func: createProfile },
-    { action: types.UPDATE_PROFILE, func: updateProfile },
-    { action: types.FETCH_PROFILE, func: fetchProfile },
-    {
-      action: types.SAVE_PROFILE_AND_ACCESS_TOKEN,
-      func: saveProfileAndAccessToken,
-    },
-  ]
-}
+export const functions = (): ISagasFunctions[] => [
+  { action: types.CREATE_PROFILE_IF_NEEDED, func: createProfileIfNeeded },
+  { action: types.CREATE_PROFILE, func: createProfile },
+  { action: types.UPDATE_PROFILE, func: updateProfile },
+  { action: types.FETCH_PROFILE, func: fetchProfile },
+  {
+    action: types.SAVE_PROFILE_AND_ACCESS_TOKEN,
+    func: saveProfileAndAccessToken,
+  },
+]

@@ -1,5 +1,6 @@
 import { call, put, select, delay } from 'redux-saga/effects'
 import * as signon from '@sl/services/signon'
+import { types } from '@sl/services/signon/actions'
 import * as profile from '@sl/services/profile'
 import * as progress from '@sl/services/progress'
 import * as skills from '@sl/services/skills'
@@ -53,12 +54,14 @@ export function* submitSignon(
   action: signon.ISignonFormAction,
 ): IterableIterator<any> {
   yield put(setLoadingOn())
-
-  const fields = yield select((state: IInitialState) => state.signon.item)
+  const fields = yield select((state: IInitialState) => ({
+    ...state.signon.item,
+  }))
 
   if (action.signon === 'signin') {
     Reflect.deleteProperty(fields, 'name')
   }
+  debugger
 
   const errors: signon.ISignonFormErrors = validateSignOn(fields)
   if (isEmpty(errors)) {
@@ -103,7 +106,6 @@ export function* submitSignon(
 export function* connectViaFacebook(
   actions: signon.ISignonFormAction,
 ): IterableIterator<any> {
-  debugger
   analytics().logEvent('connect_via_facebook', {
     SignonType: actions.signon,
     Started: true,
@@ -207,11 +209,11 @@ export function* signout(): IterableIterator<any> {
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: signon.actions.types.SUBMIT_SIGNON, func: submitSignon },
-  { action: signon.actions.types.SIGNOUT, func: signout },
-  { action: signon.actions.types.RECOVER_PASSWORD, func: recoverPassword },
+  { action: types.SUBMIT_SIGNON, func: submitSignon },
+  { action: types.SIGNOUT, func: signout },
+  { action: types.RECOVER_PASSWORD, func: recoverPassword },
   {
-    action: signon.actions.types.CONNECT_VIA_FACEBOOK,
+    action: types.CONNECT_VIA_FACEBOOK,
     func: connectViaFacebook,
   },
 ]

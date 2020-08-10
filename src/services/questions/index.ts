@@ -3,7 +3,6 @@ import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as actions from './actions'
 import * as selectors from './selectors'
-import * as sagas from './sagas'
 import * as api from './api'
 
 export type TQuestionType =
@@ -59,4 +58,4 @@ export interface IQuestions {
   failed: string[]
 }
 
-export { api, actions, reducers, selectors, sagas }
+export { api, actions, reducers, selectors }

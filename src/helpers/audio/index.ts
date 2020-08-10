@@ -3,7 +3,7 @@ import parseUrl from 'url-parse'
 import RNFS from 'react-native-fs'
 import { Platform } from 'react-native'
 // import SoundPlayer from 'react-native-sound-player';
-import { logError } from '@sl/helpers'
+import { logError } from '@sl/helpers/logging'
 
 let audio
 
@@ -67,7 +67,7 @@ export const downloadAndPlayAudio = async (
 export const playAudio = (fullSoundPath: string) => {
   // const soundPath = RNFSDir(location).replace(/\/$/, '');
   // const fullSoundPath = soundPath + '/' + soundTrack;
-  audio = new Sound(fullSoundPath, '', (error) => {
+  audio = new Sound(fullSoundPath, '', error => {
     if (error) {
       logError(`Failed to load the sound ${JSON.stringify(error)}`)
     } else {
@@ -81,7 +81,7 @@ const stopAndPlayAudio = () => {
     audio.stop(() => {
       Sound.setCategory('Playback', false)
 
-      audio.play((success) => {
+      audio.play(success => {
         if (success) {
           console.log('successfully finished playing')
         } else {

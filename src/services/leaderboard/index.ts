@@ -1,7 +1,6 @@
 import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as actions from './actions'
-import * as sagas from './sagas'
 
 export interface ILeaderboardUser {
   id: string
@@ -20,4 +19,4 @@ export interface ILeaderboardAction extends IAction {
   leaderboard: ILeaderboard
 }
 
-export { actions, reducers, sagas }
+export { actions, reducers }

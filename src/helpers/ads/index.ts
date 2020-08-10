@@ -1,6 +1,6 @@
 import { AdMobInterstitial } from 'react-native-admob'
 import vars from '@sl/config/vars'
-import { logError } from '@sl/helpers'
+import { logError } from '@sl/helpers/logging'
 
 export type TScenes = 'skills' | 'completion'
 
@@ -13,7 +13,7 @@ export const displayInterstitialAd = (scene: TScenes) => {
     ])
     AdMobInterstitial.requestAd()
       .then(() => AdMobInterstitial.showAd())
-      .catch((error) => logError(JSON.stringify(error)))
+      .catch(error => logError(JSON.stringify(error)))
   } catch (e) {
     logError(JSON.stringify(e))
   }

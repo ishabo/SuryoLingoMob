@@ -2,7 +2,6 @@ import { IAction } from '@sl/services/sagas'
 import { ICourse } from '@sl/services/courses'
 import * as reducers from './reducers'
 import * as actions from './actions'
-import * as sagas from './sagas'
 import * as api from './api'
 
 export type TSignonType = 'connect' | 'signup' | 'signin'
@@ -64,4 +63,4 @@ export interface IFetchedProfileData extends IProfile {
   apiKey?: string
 }
 
-export { api, sagas, actions, reducers }
+export { api, actions, reducers }

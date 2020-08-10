@@ -5,6 +5,7 @@ import * as assets from '@sl/services/assets'
 import * as dictionaries from '@sl/services/dictionaries'
 import { ISagasFunctions } from '@sl/services/sagas'
 import { resetToSkills } from '@sl/helpers'
+import { types } from '../actions'
 
 export function* fetchCourses(): IterableIterator<any> {
   try {
@@ -28,6 +29,6 @@ export function* switchCourse(
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: courses.actions.types.FETCH_COURSES, func: fetchCourses },
-  { action: courses.actions.types.SWITCH_COURSE, func: switchCourse },
+  { action: types.FETCH_COURSES, func: fetchCourses },
+  { action: types.SWITCH_COURSE, func: switchCourse },
 ]

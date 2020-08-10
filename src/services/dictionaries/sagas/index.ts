@@ -5,6 +5,7 @@ import { getActiveCourse } from '@sl/services/selectors'
 import { ICourse } from '@sl/services/courses'
 import { saveDictionaries } from '../actions'
 import { getDictionaries } from '../api'
+import { types } from '../actions'
 
 export function* fetchDictionaries(
   action: dictionaries.IDictionaryAction,
@@ -25,7 +26,7 @@ export function* fetchDictionaries(
 
 export const functions = (): ISagasFunctions[] => [
   {
-    action: dictionaries.actions.types.FETCH_DICTIONARIES,
+    action: types.FETCH_DICTIONARIES,
     func: fetchDictionaries,
   },
 ]

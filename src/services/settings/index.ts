@@ -1,6 +1,5 @@
 import { IAction } from '@sl/services/sagas'
 import * as api from './api'
-import * as sagas from './sagas'
 import * as actions from './actions'
 import * as reducers from './reducers'
 
@@ -30,4 +29,4 @@ export interface IAppSettingsAction extends IAction {
   settings?: IAppSettings
 }
 
-export { api, sagas, actions, reducers }
+export { api, actions, reducers }

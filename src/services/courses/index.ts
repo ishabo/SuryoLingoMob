@@ -3,7 +3,6 @@ import * as reducers from './reducers'
 import * as api from './api'
 import * as actions from './actions'
 import * as selectors from './selectors'
-import * as sagas from './sagas'
 
 export type TTargetLangs = string | 'cl-syc' | 'tur-syr'
 export type TLearnerLangs = string | 'cl-ara' | 'eng'
@@ -31,4 +30,4 @@ export interface ICourseAction extends IAction {
   courses?: ICourse[]
 }
 
-export { api, actions, reducers, selectors, sagas }
+export { api, actions, reducers, selectors }

@@ -4,7 +4,6 @@ import * as api from './api'
 import * as reducers from './reducers'
 import * as actions from './actions'
 import * as selectors from './selectors'
-import * as sagas from './sagas'
 
 export interface ILessonHistory {
   timestamp: Date
@@ -43,4 +42,4 @@ export interface ISkillsAction extends IAction {
   timestamp?: Date
 }
 
-export { api, actions, reducers, selectors, sagas }
+export { api, actions, reducers, selectors }

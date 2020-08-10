@@ -4,6 +4,8 @@ import {
   isRegistered,
   canProceedToStudy,
 } from '@sl/services/selectors'
+import { IStarterActions } from '..'
+import { types, onAppStart as onAppStartAction } from '../actions'
 import { setLoadingOff } from '@sl/services/api/actions'
 import { fetchCourses } from '@sl/services/courses/actions'
 import { syncFinishedLessons } from '@sl/services/progress/actions'
@@ -21,17 +23,14 @@ import {
 } from '@sl/helpers'
 import { isEmpty } from 'lodash'
 import { IInitialState } from '@sl/services/reducers'
-import * as starter from '..'
 
 export function* onAppStart(): IterableIterator<any> {
   yield put(exceptions.actions.removeAll())
   yield put(setLoadingOff())
 }
 
-export function* firstFetch(
-  actions: starter.IStarterActions,
-): IterableIterator<any> {
-  yield put(starter.actions.onAppStart())
+export function* firstFetch(actions: IStarterActions): IterableIterator<any> {
+  yield put(onAppStartAction())
 
   if (actions.checkSettings) {
     yield put(fetchSettings())
@@ -83,7 +82,6 @@ export function* firstFetch(
 }
 
 export const functions = (): ISagasFunctions[] => {
-  const { types } = starter.actions
   return [
     { action: types.FIRST_FETCH, func: firstFetch },
     { action: types.ON_APP_START, func: onAppStart },

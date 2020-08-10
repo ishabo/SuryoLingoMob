@@ -1,5 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 import * as assets from '@sl/services/assets'
+import { types } from '../actions'
 import { ISagasFunctions } from '@sl/services/sagas'
 
 export function* fetchSkillIcons(): IterableIterator<any> {
@@ -13,6 +14,6 @@ export function* fetchCourseImages(): IterableIterator<any> {
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: assets.actions.types.FETCH_SKILL_ICONS, func: fetchSkillIcons },
-  { action: assets.actions.types.FETCH_COURSE_IMAGES, func: fetchCourseImages },
+  { action: types.FETCH_SKILL_ICONS, func: fetchSkillIcons },
+  { action: types.FETCH_COURSE_IMAGES, func: fetchCourseImages },
 ]

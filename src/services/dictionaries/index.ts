@@ -1,7 +1,6 @@
 import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as actions from './actions'
-import * as sagas from './sagas'
 
 export interface IWordHint {
   word: string
@@ -20,4 +19,4 @@ export interface IDictionaryAction extends IAction {
   dictionaries: IDictionary[]
 }
 
-export { actions, reducers, sagas }
+export { actions, reducers }

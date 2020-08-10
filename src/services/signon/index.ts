@@ -1,7 +1,6 @@
 import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as actions from './actions'
-import * as sagas from './sagas'
 import * as api from './api'
 
 export type TSignonType = string | 'signup' | 'signin'
@@ -36,4 +35,4 @@ export interface ISignonFormAction extends IAction {
   email?: string
 }
 
-export { api, sagas, actions, reducers }
+export { api, actions, reducers }

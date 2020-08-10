@@ -10,6 +10,7 @@ import {
   isOnMaintenance,
 } from '@sl/services/selectors'
 import { IDeviceSettings } from '@sl/services/settings'
+import { types } from '@sl/services/settings/actions'
 import { IProfile } from '@sl/services/profile'
 import * as settings from '..'
 
@@ -46,9 +47,9 @@ export function* checkStatuses(): IterableIterator<any> {
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: settings.actions.types.FETCH_SETTINGS, func: fetchSettings },
+  { action: types.FETCH_SETTINGS, func: fetchSettings },
   {
-    action: settings.actions.types.CHECK_STATUS,
+    action: types.CHECK_STATUS,
     func: checkStatuses,
   },
 ]

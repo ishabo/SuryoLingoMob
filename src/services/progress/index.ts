@@ -2,7 +2,6 @@ import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as api from './api'
 import * as actions from './actions'
-import * as sagas from './sagas'
 
 export interface ILessonDoneParams {
   lessonId: string
@@ -29,4 +28,4 @@ export interface IProgress {
   lessonsToSync: ILessonToSync[]
 }
 
-export { api, actions, reducers, sagas }
+export { api, actions, reducers }

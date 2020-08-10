@@ -1,5 +1,6 @@
 import { put, select, call, delay } from 'redux-saga/effects'
 import * as progress from '@sl/services/progress'
+import { types } from '@sl/services/progress/actions'
 import * as questions from '@sl/services/questions'
 import {
   getLessonInProgress,
@@ -121,11 +122,11 @@ const isUnitFinished = (skills: ISkill[]): boolean => {
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: progress.actions.types.ENTER_LESSON, func: enterLesson },
-  { action: progress.actions.types.FINISH_LESSON, func: finishLesson },
+  { action: types.ENTER_LESSON, func: enterLesson },
+  { action: types.FINISH_LESSON, func: finishLesson },
   {
-    action: progress.actions.types.SYNC_FINISHED_LESSONS,
+    action: types.SYNC_FINISHED_LESSONS,
     func: syncFinishedLessons,
   },
-  { action: progress.actions.types.OVERVIEW_LESSON, func: overviewLesson },
+  { action: types.OVERVIEW_LESSON, func: overviewLesson },
 ]

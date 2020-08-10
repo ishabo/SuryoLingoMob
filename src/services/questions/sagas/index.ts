@@ -8,10 +8,11 @@ import cloneDeep from 'clone-deep'
 import { finishLesson } from '@sl/services/progress/sagas'
 import { ILesson } from '@sl/services/skills'
 import { getPending, getLessonInProgress } from '../../selectors'
-import { actions, api, IQuestionsAction, IQuestion, TDestination } from '..'
+import * as questions from '../index'
+import { types } from '@sl/services/questions/actions'
 
 export function* fetchQuestions(
-  action: IQuestionsAction,
+  action: questions.IQuestionsAction,
 ): IterableIterator<any> {
   let fetchedQuestions
   yield put(setLoadingOn())
@@ -19,7 +20,7 @@ export function* fetchQuestions(
   try {
     yield put(dictionaries.actions.fetchDictionaries())
 
-    fetchedQuestions = yield call(api.getQuestions, action.lessonId)
+    fetchedQuestions = yield call(questions.api.getQuestions, action.lessonId)
   } catch (error) {
     const lessonInProgress: ILesson = yield select(getLessonInProgress)
 
@@ -40,10 +41,10 @@ export function* fetchQuestions(
 }
 
 function* saveQuestionsAndNavigate(
-  data: IQuestion[],
-  routeName: TDestination = 'Questions',
+  data: questions.IQuestion[],
+  routeName: questions.TDestination = 'Questions',
 ) {
-  yield put(actions.saveQuestions(data))
+  yield put(questions.actions.saveQuestions(data))
   const action = NavigationActions.navigate({ routeName })
   if (routeName === 'Questions') {
     yield put(
@@ -57,9 +58,9 @@ function* saveQuestionsAndNavigate(
   }
 }
 
-function* cacheAudioSounds(data: IQuestion[]) {
+function* cacheAudioSounds(data: questions.IQuestion[]) {
   try {
-    let question: IQuestion
+    let question: questions.IQuestion
 
     for (question of data) {
       if (question.soundFiles.length) {
@@ -72,9 +73,11 @@ function* cacheAudioSounds(data: IQuestion[]) {
 }
 
 export function* nextQuestionOrFinish(
-  action: IQuestionsAction,
+  action: questions.IQuestionsAction,
 ): IterableIterator<any> {
-  yield put(actions.updateQuestionStatus(action.questionId, action.status))
+  yield put(
+    questions.actions.updateQuestionStatus(action.questionId, action.status),
+  )
   const pending: string[] = yield select(getPending)
   let routeName = 'Questions'
 
@@ -94,10 +97,12 @@ export function* nextQuestionOrFinish(
   )
 }
 
-export const functions = (): ISagasFunctions[] => [
-  { action: actions.types.FETCH_QUESTIONS, func: fetchQuestions },
-  {
-    action: actions.types.NEXT_QUESTION_OR_FINISH,
-    func: nextQuestionOrFinish,
-  },
-]
+export const functions = (): ISagasFunctions[] => {
+  return [
+    { action: types.FETCH_QUESTIONS, func: fetchQuestions },
+    {
+      action: types.NEXT_QUESTION_OR_FINISH,
+      func: nextQuestionOrFinish,
+    },
+  ]
+}

@@ -1,25 +1,7 @@
-import { changeCase } from '@sl/helpers'
+import { changeCase } from '@sl/helpers/common'
 import { createApi, getUserToken } from './api'
-
 export { setApiOrigin, setUserToken } from './api'
-
-export type TErrors = IIndex<string>
-export type THeaders = IDictionary<string>
-export type TMethod = 'get' | 'post' | 'put'
-
-export interface IApiOptions {
-  headers?: THeaders
-  errors?: TErrors
-  baseURL?: string
-}
-
-export interface IApiInstance {
-  api: any
-  call: (method: TMethod, url: string, ...args: any[]) => Promise<any>
-  get: (...args: any[]) => Promise<any>
-  post: (...args: any[]) => Promise<any>
-  put: (...args: any[]) => Promise<any>
-}
+import { IApiInstance, IApiOptions } from './types'
 
 export const create = (options: IApiOptions = {}): IApiInstance => {
   const { baseURL, errors, headers } = options

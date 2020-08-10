@@ -2,7 +2,6 @@ import { IAction } from '@sl/services/sagas'
 import * as reducers from './reducers'
 import * as api from './api'
 import * as actions from './actions'
-import * as sagas from './sagas'
 import * as selectors from './selectors'
 
 export type TImageSizes = 'hdpi' | 'mdpi' | 'xhdpi' | 'xxhdpi' | 'xxxhdpi'
@@ -26,4 +25,4 @@ export interface IAssetsAction extends IAction {
   courseImages: IAssets['courseImages']
 }
 
-export { api, actions, reducers, selectors, sagas }
+export { api, actions, reducers, selectors }

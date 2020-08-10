@@ -1,5 +1,6 @@
 import { call, put, select } from 'redux-saga/effects'
 import * as skills from '@sl/services/skills'
+import { types } from '@sl/services/skills/actions'
 import { getActiveCourse } from '@sl/services/selectors'
 import * as exceptions from '@sl/services/exceptions'
 import { ISagasFunctions } from '@sl/services/sagas'
@@ -25,5 +26,5 @@ export function* fetchSkills(): IterableIterator<any> {
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: skills.actions.types.FETCH_SKILLS, func: fetchSkills },
+  { action: types.FETCH_SKILLS, func: fetchSkills },
 ]
