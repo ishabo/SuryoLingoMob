@@ -11,7 +11,7 @@ import {
 } from '@sl/services/selectors'
 import { IInitialState } from '@sl/services/reducers'
 import { NavigationScreenProp } from 'react-navigation'
-import { exitApp, displayInterstitialAd } from '@sl/helpers'
+import { exitApp } from '@sl/helpers'
 import { Hamburger, DrawerItem, WhenReady } from '@sl/components'
 import { ICourse } from '@sl/services/courses'
 import { IProfile } from '@sl/services/profile'
@@ -49,9 +49,6 @@ class Skills extends React.Component<IProps> {
 
     Keyboard.dismiss()
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
-    setTimeout(() => {
-      displayInterstitialAd('skills')
-    }, 1000)
   }
 
   componentWillUnmount() {

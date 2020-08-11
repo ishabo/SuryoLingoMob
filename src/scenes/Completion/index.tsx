@@ -18,7 +18,6 @@ import { resetToLessons, resetToSkills } from '@sl/helpers/navigation'
 import { NextButton, SignOnOrOut } from '@sl/components/'
 import { IProfile } from '@sl/services/profile'
 import { Dispatch } from 'redux'
-// import { displayInterstitialAd } from '@sl/helpers';
 import analytics from '@react-native-firebase/analytics'
 import {
   GSContainer,
@@ -61,8 +60,6 @@ class Completion extends React.Component<IProps, IState> {
     if (lastAccomplishment) {
       this.setState({ lessonXp: lastAccomplishment.thisLessonXp })
     }
-
-    // displayInterstitialAd('completion');
   }
 
   navBackToLessons = () => {

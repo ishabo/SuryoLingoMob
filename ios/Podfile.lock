@@ -294,8 +294,6 @@ PODS:
     - React-cxxreact (= 0.61.1)
     - React-jsi (= 0.61.1)
   - React-jsinspector (0.61.1)
-  - react-native-admob (2.0.0-beta.6):
-    - React
   - react-native-fbsdk (2.0.0):
     - React
     - react-native-fbsdk/Core (= 2.0.0)
@@ -383,7 +381,7 @@ PODS:
     - Firebase/Messaging (~> 6.27.0)
     - React
     - RNFBApp
-  - RNFS (2.9.7):
+  - RNFS (2.16.6):
     - React
   - RNI18n (2.0.15):
     - React
@@ -414,7 +412,6 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
-  - react-native-admob (from `../node_modules/react-native-admob`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
   - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - react-native-keyboard-input (from `../node_modules/react-native-keyboard-input`)
@@ -502,8 +499,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
-  react-native-admob:
-    :path: "../node_modules/react-native-admob"
   react-native-fbsdk:
     :path: "../node_modules/react-native-fbsdk"
   react-native-fetch-blob:
@@ -600,7 +595,6 @@ SPEC CHECKSUMS:
   React-jsi: 61ff417c95e6c3af50fb96399037e80752fb5ce7
   React-jsiexecutor: ee45274419eb95614bbbadb98e20684c5f29996e
   React-jsinspector: 574d597112f9ea3d1b717f6fb62aef764c70dd6f
-  react-native-admob: cb7f9e5e7d6f1e68bfbf1df8f72b2e23963bc7db
   react-native-fbsdk: 00c15d138bba6d4efa628670886fc58cec858c19
   react-native-fetch-blob: 3f0d54364576de40dc0b7dc4057ceea554d4a7ae
   react-native-keyboard-input: 60da273da7ceb326b4d4b10cda07adcc20985045
@@ -626,7 +620,7 @@ SPEC CHECKSUMS:
   RNFBApp: 6fd8a7e757135d4168bf033a8812c241af7363a0
   RNFBCrashlytics: 88de72c2476b5868a892d9523b89b86c527c540e
   RNFBMessaging: 3e457bb1889607510ad80575c2afaf8080744703
-  RNFS: c44a045cb06c6a496a27f37bd1b50f2c36422cf3
+  RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: d8c572ddec8d05b7dba08e4e5f1924004a177078

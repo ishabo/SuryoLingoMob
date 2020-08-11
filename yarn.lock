@@ -2893,12 +2893,12 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native-fs@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@types/react-native-fs/-/react-native-fs-2.8.0.tgz#dd7d996b4645fae57b446ed5b477054832abd7a7"
-  integrity sha512-zLuda4pjjcQlszX33GrVlfmYDM76hYwdxTzTomJVbXgU93qd6Mtp7IsnV749cq16Zrm2RwD9wFbUhAWS7g6rUg==
+"@types/react-native-fs@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-fs/-/react-native-fs-2.13.0.tgz#0e918e7638dbc77aa00562a17591b4d316af65e1"
+  integrity sha512-wLBx3J8p1jy9QYavdRzPVIB+2yd83v1VV/jT7xvVZgeeWHHPcY7y9AVre4TibVWR8aq8KNHkU/iXDmARrF3tYg==
   dependencies:
-    "@types/react-native" "*"
+    react-native-fs "*"
 
 "@types/react-native@*":
   version "0.57.25"
@@ -10328,13 +10328,6 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.2:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-admob@^2.0.0-beta.6:
-  version "2.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/react-native-admob/-/react-native-admob-2.0.0-beta.6.tgz#ef6f8986a13f323d076fd4fcb9a617fe3809331e"
-  integrity sha512-Tzk1N5c6so/Dj58q51uqWkd5i/X5a/cgLNYczng78hRGroRxU6Av2lMlwxZK2RFFtFxUhfpg2xNN2bhEqCydDA==
-  dependencies:
-    prop-types "^15.5.10"
-
 react-native-animatable@^1.2.3, react-native-animatable@^1.3.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.1.tgz#f004a7e9de6838d0fbf210d642593cff7affd9ef"
@@ -10459,13 +10452,13 @@ react-native-flash-message@^0.1.15:
     prop-types "^15.7.2"
     react-native-iphone-x-helper "^1.2.1"
 
-react-native-fs@2.9.7:
-  version "2.9.7"
-  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.9.7.tgz#29ac2d4728270cec4df63f1c4beb1140f8246049"
-  integrity sha512-lx8d4Tgl7ysouyDwo2EBphOqmdOHRfxnypB8OboK8jv+jsrE5Zy0DTj4Yl7k6VB7hZXn8sE0AEzLHzTVA3OSZA==
+react-native-fs@*, react-native-fs@^2.16.2:
+  version "2.16.6"
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.16.6.tgz#2901789a43210a35a0ef0a098019bbef3af395fd"
+  integrity sha512-ZWOooD1AuFoAGY3HS2GY7Qx2LZo4oIg6AK0wbC68detxwvX75R/q9lRqThXNKP6vIo2VHWa0fYUo/SrLw80E8w==
   dependencies:
     base-64 "^0.1.0"
-    utf8 "^2.1.1"
+    utf8 "^3.0.0"
 
 react-native-global-font@^1.0.2:
   version "1.0.2"
@@ -12814,10 +12807,10 @@ use@^3.1.0:
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
 
-utf8@^2.1.1:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/utf8/-/utf8-2.1.2.tgz#1fa0d9270e9be850d9b05027f63519bf46457d96"
-  integrity sha1-H6DZJw6b6FDZsFAn9jUZv0ZFfZY=
+utf8@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/utf8/-/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
+  integrity sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==
 
 util-deprecate@~1.0.1:
   version "1.0.2"
