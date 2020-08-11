@@ -208,6 +208,7 @@ android {
 
 dependencies {
     implementation project(':react-native-fetch-blob')
+    implementation project(':reactnativekeyboardinput')
     implementation project(':@react-native-firebase_crashlytics')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules

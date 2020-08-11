@@ -7,11 +7,13 @@ import { getFont } from '@sl/assets/fonts'
 export const GSContainer = glamor(Container)({
   alignSelf: 'stretch',
 })
+GSContainer.displayName = 'GSContainer'
 
 export const GSContent = glamor.view({
   justifyContent: 'flex-start',
   flex: 1,
 })
+GSContent.displayName = 'GSContent'
 
 export const GSTextAreaContainer = glamor.view({
   height: isShortDevice() ? 80 : 80,
@@ -21,6 +23,7 @@ export const GSTextAreaContainer = glamor.view({
   padding: 3,
   position: 'relative',
 })
+GSTextAreaContainer.displayName = 'GSTextAreaContainer'
 
 export const GSTextArea = glamor.textInput(
   {
@@ -42,6 +45,7 @@ export const GSTextArea = glamor.textInput(
     return styles
   },
 ) as any
+GSTextArea.displayName = 'GSTextArea'
 
 export const GSKeyboardToolBar = glamor.view({
   justifyContent: 'flex-end',
@@ -49,12 +53,14 @@ export const GSKeyboardToolBar = glamor.view({
   padding: 4,
   flexDirection: 'row',
 })
+GSKeyboardToolBar.displayName = 'GSKeyboardToolBar'
 
 export const GSKeyboardCloseButton = glamor(Button)({
   width: 30,
   height: 34,
   margin: 2,
 })
+GSKeyboardCloseButton.displayName = 'GSKeyboardCloseButton'
 
 export const GSKeyboardToggleButton = glamor.touchableOpacity({
   flexDirection: 'row-reverse',
@@ -63,3 +69,4 @@ export const GSKeyboardToggleButton = glamor.touchableOpacity({
   bottom: 0,
   right: 5,
 })
+GSKeyboardToggleButton.displayName = 'GSKeyboardToggleButton'
