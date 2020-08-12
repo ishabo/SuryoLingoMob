@@ -84,7 +84,7 @@ class Questions extends React.Component<IProps, IState> {
     }
   }
 
-  submitDisallowed = () => isEmpty(this.state.answer) && this.actionNeeded()
+  isSubmitNotAllowed = () => isEmpty(this.state.answer) && this.actionNeeded()
 
   actionNeeded = () =>
     this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE'
@@ -124,8 +124,8 @@ class Questions extends React.Component<IProps, IState> {
     return true
   }
 
-  evaluateOrNext = () => {
-    if (this.submitDisallowed() || this.state.movingNext) {
+  evaluateOrProceed = () => {
+    if (this.isSubmitNotAllowed() || this.state.movingNext) {
       return
     }
 
@@ -293,12 +293,12 @@ class Questions extends React.Component<IProps, IState> {
         this.showSmallButton() ? this.renderNextQuestionSmall() : <View />
       }
       renderNextButton={this.renderNextQuestion()}
-      onSubmit={this.evaluateOrNext}
+      onSubmit={this.evaluateOrProceed}
     />
   )
 
   showSmallButton = () =>
-    !this.submitDisallowed() &&
+    !this.isSubmitNotAllowed() &&
     !this.state.movingNext &&
     this.state.keyboardIsOn &&
     isShortDevice(500)
@@ -310,7 +310,7 @@ class Questions extends React.Component<IProps, IState> {
 
     return (
       <SwitchButton
-        onPress={this.evaluateOrNext}
+        onPress={this.evaluateOrProceed}
         lang={this.props.sourceLanguage}
         success
         text={text}
@@ -323,10 +323,11 @@ class Questions extends React.Component<IProps, IState> {
       ? I18n.t('questions.submit')
       : I18n.t('questions.continue')
 
+    console.log(this.isSubmitNotAllowed())
     return (
       <NextButton
-        onPress={this.evaluateOrNext}
-        disabled={this.submitDisallowed() || this.state.movingNext}
+        onPress={this.evaluateOrProceed}
+        disabled={this.isSubmitNotAllowed() || this.state.movingNext}
         lang={this.props.sourceLanguage}
         text={text}
       />
@@ -340,7 +341,6 @@ class Questions extends React.Component<IProps, IState> {
         <GSFooter
           behavior={Platform.select({ android: 'height', ios: 'padding' })}
           keyboardVerticalOffset={Platform.select({ android: 0, ios: 75 })}
-          enabled
         >
           {(this.state.keyboardIsOn && isShortDevice(500) && <View />) ||
             this.renderNextQuestion()}

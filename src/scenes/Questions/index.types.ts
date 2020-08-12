@@ -24,10 +24,10 @@ export interface IAnswerProps {
 }
 
 export interface IProps {
+  navigation: NavigationScreenProp<{}>
   profile: IProfile
   course: ICourse
   pending: string[]
-  navigation: NavigationScreenProp<any, any>
   questions: IQuestion[]
   dictionaries: IDictionary[]
   calcProress: number

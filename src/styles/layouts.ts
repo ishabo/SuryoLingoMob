@@ -21,11 +21,11 @@ GSBody.displayName = 'GSBody'
 export const GSFooter = glamor(KeyboardAvoidingView as any)({
   backgroundColor: 'transparent',
   justifyContent: 'flex-end',
-  marginBottom: 20,
-  position: 'absolute',
-  bottom: 0,
-  alignSelf: 'center',
-  zIndex: 200,
+  // marginBottom: 20,
+  // position: 'absolute',
+  // bottom: 0,
+  // alignSelf: 'center',
+  zIndex: 3000,
 }) as any
 GSFooter.displayName = 'GSFooter'
 
