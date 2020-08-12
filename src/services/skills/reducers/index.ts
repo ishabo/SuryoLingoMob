@@ -1,83 +1,82 @@
-import * as skill from 'services/skills';
-import { types } from '../actions';
-import cloneDeep from 'clone-deep';
+import * as skill from '@sl/services/skills'
+import cloneDeep from 'clone-deep'
+import { types } from '../actions'
 
-export const initialState: skill.ISkill[] = [];
+export const initialState: skill.ISkill[] = []
 
-export const reducer = (state: skill.ISkill[] = initialState, action: skill.ISkillsAction) => {
+export const reducer = (
+  state: skill.ISkill[] = initialState,
+  action: skill.ISkillsAction,
+) => {
   switch (action.type) {
-
-    /** Save skills from API result 
+    /** Save skills from API result
      * It also sets the first unit as active
      */
     case types.SAVE_SKILLS:
       const skills = [...action.payload].map((skill: skill.ISkill) => {
         if (skill.unit === 1) {
-          skill.active = true;
+          skill.active = true
         }
-        return skill;
-      });
-      return skills;
+        return skill
+      })
+      return skills
 
     case types.ACTIVATE_UNIT:
       return [...state].map((skill: skill.ISkill) => {
-        const updatedSkill = { ...skill };
+        const updatedSkill = { ...skill }
         if (updatedSkill.unit === action.unit) {
-          updatedSkill.active = true;
+          updatedSkill.active = true
         }
-        return updatedSkill;
-      });
+        return updatedSkill
+      })
 
     case types.MARK_LESSON_FINISHED:
-      const { lessonXP: thisLessonXp, lessonId, timestamp } = action;
-      const newState = cloneDeep(state);
+      const { lessonXP: thisLessonXp, lessonId, timestamp } = action
+      const newState = cloneDeep(state)
       newState.map((skill: skill.ISkill) => {
-
-        let totalSkillXp: number = 0;
-        let totalFinishedLessons: number = 0;
+        let totalSkillXp: number = 0
+        let totalFinishedLessons: number = 0
         skill.lessons = skill.lessons.map((lesson: skill.ILesson) => {
-
           if (lesson.id === lessonId) {
-            lesson.finished = true;
+            lesson.finished = true
 
             if (!lesson.lessonHistory) {
-              lesson.lessonHistory = [];
+              lesson.lessonHistory = []
             }
 
             const accomplishment: skill.ILessonHistory = {
               thisLessonXp,
               timestamp,
-            };
+            }
 
-            lesson.lessonHistory.push(accomplishment);
+            lesson.lessonHistory.push(accomplishment)
             lesson.totalLessonXp = lesson.lessonHistory.reduce(
               (totalLessonXp: number, history: skill.ILessonHistory) =>
                 totalLessonXp + history.thisLessonXp,
               0,
-            );
+            )
           }
 
           if (Number.isInteger(lesson.totalLessonXp)) {
-            totalSkillXp += lesson.totalLessonXp;
+            totalSkillXp += lesson.totalLessonXp
           }
 
           if (lesson.finished) {
-            totalFinishedLessons += 1;
+            totalFinishedLessons += 1
           }
-          return lesson;
-        });
+          return lesson
+        })
 
-        skill.totalSkillXp = totalSkillXp;
-        skill.progress = totalFinishedLessons / skill.lessons.length;
-        return skill;
-      });
-      return newState;
+        skill.totalSkillXp = totalSkillXp
+        skill.progress = totalFinishedLessons / skill.lessons.length
+        return skill
+      })
+      return newState
 
     case types.RESET_SKILLS:
-      return initialState;
+      return initialState
 
     default:
-      return state;
+      return state
   }
-};
-
+}

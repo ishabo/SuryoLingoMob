@@ -1,15 +1,15 @@
-import React from 'react';
-import glamor from 'glamorous-native';
-import Images from 'assets/images';
-import { GSCustomText, ICustomText } from 'styles/text';
-import colors from 'styles/colors';
+import React from 'react'
+import glamor from 'glamorous-native'
+import Images from '@sl/assets/images'
+import { GSCustomText, ICustomText } from '@sl/styles/text'
+import colors from '@sl/styles/colors'
 
 export const GSDrawerLabel = glamor.view({
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
-  paddingHorizontal: 20
-});
+  paddingHorizontal: 20,
+})
 
 export const GSDrawerLabelText = glamor(GSCustomText)<ICustomText>({
   fontSize: 18,
@@ -17,17 +17,17 @@ export const GSDrawerLabelText = glamor(GSCustomText)<ICustomText>({
   margin: 10,
   padding: 10,
   flexDirection: 'row-reverse',
-  justifyContent: 'space-between'
-});
+  justifyContent: 'space-between',
+})
 
 const GSImage = glamor.image({
   width: 40,
-  height: 40
-});
+  height: 40,
+})
 
 export interface IProps {
-  label: string;
-  icon: string;
+  label: string
+  icon: string
 }
 
 export default ({ label, icon }: IProps) => (
@@ -35,4 +35,4 @@ export default ({ label, icon }: IProps) => (
     <GSImage source={Images.icons[icon]} />
     <GSDrawerLabelText>{label}</GSDrawerLabelText>
   </GSDrawerLabel>
-);
+)

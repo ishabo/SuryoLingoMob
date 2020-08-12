@@ -1,21 +1,24 @@
-import { call, put, select } from 'redux-saga/effects';
-import { getLeaderboard } from '../api';
-import { saveLeaderboard } from '../actions';
-import * as exceptions from 'services/exceptions';
-import * as leaderboard from 'services/leaderboard';
-import { ISagasFunctions } from 'services/sagas';
-import { getActiveCourse } from 'services/selectors';
+import { call, put, select } from 'redux-saga/effects'
+import { getLeaderboard } from '@sl/services/leaderboard/api'
+import { types, saveLeaderboard } from '@sl/services/leaderboard/actions'
+import * as exceptions from '@sl/services/exceptions'
+import { ISagasFunctions } from '@sl/services/sagas'
+import { getActiveCourse } from '@sl/services/selectors'
+import { ICourse } from '@sl/services/courses'
 
 export function* fetchLeaderboard(): IterableIterator<any> {
   try {
-    const activeCourse = yield select(getActiveCourse);
-    const response = yield call(getLeaderboard, activeCourse.id);
-    yield put(saveLeaderboard(response));
+    const activeCourse: ICourse = yield select(getActiveCourse)
+    const response = yield call(getLeaderboard, activeCourse.id)
+    yield put(saveLeaderboard(response))
   } catch (error) {
-    yield put(exceptions.actions.add(error));
+    yield put(exceptions.actions.add(error))
   }
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: leaderboard.actions.types.FETCH_LEADERBOARD, func: fetchLeaderboard }
-];
+  {
+    action: types.FETCH_LEADERBOARD,
+    func: fetchLeaderboard,
+  },
+]

@@ -1,10 +1,9 @@
-import DeviceInfo from 'react-native-device-info';
-import AppCenter from 'appcenter';
-import { Messaging } from 'config/firebase';
+import DeviceInfo from 'react-native-device-info'
+import messaging from '@react-native-firebase/messaging'
 
 const deviceDetails = async () => ({
-  fcmToken: await Messaging.getToken(),
-  installId: await AppCenter.getInstallId(),
+  fcmToken: await messaging().getToken(),
+  installId: '',
   deviceId: DeviceInfo.getDeviceId(),
   deviceName: DeviceInfo.getDeviceName(),
   appVersion: DeviceInfo.getVersion(),
@@ -12,12 +11,14 @@ const deviceDetails = async () => ({
   deviceLocale: DeviceInfo.getDeviceLocale(),
   deviceCountry: DeviceInfo.getDeviceCountry(),
   timeZone: DeviceInfo.getTimezone(),
-  apiLevel: Number.isInteger(DeviceInfo.getAPILevel()) ? DeviceInfo.getAPILevel() : null,
+  apiLevel: Number.isInteger(DeviceInfo.getAPILevel())
+    ? DeviceInfo.getAPILevel()
+    : null,
   firstInstallTime: DeviceInfo.getFirstInstallTime(),
-  lastUpdateTime: DeviceInfo.getFirstInstallTime()
-});
+  lastUpdateTime: DeviceInfo.getFirstInstallTime(),
+})
 
 export const injectDeviceInfo = async (payload = {}) => ({
   ...payload,
-  deviceInfo: await deviceDetails()
-});
+  deviceInfo: await deviceDetails(),
+})

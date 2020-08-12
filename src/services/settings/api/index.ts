@@ -1,10 +1,10 @@
-import { create } from 'services/api';
-import config from 'config';
+import { create } from '@sl/services/api'
+import config from '@sl/config'
 
 export const getSettings = () => {
   const api = create({
-    baseURL: config.lambdaHost
-  });
+    baseURL: config.lambdaHost,
+  })
 
-  return api.get('/app/settings');
-};
+  return api.get('/app/settings')
+}

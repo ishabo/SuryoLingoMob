@@ -1,9 +1,4 @@
-import * as sagas from './sagas';
-import * as actions from './actions';
+import * as actions from './actions'
+export * from './types'
 
-export interface IStarterActions {
-  type: string;
-  checkSettings: boolean;
-}
-
-export { sagas, actions };
+export { actions }

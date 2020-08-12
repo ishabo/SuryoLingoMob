@@ -1,12 +1,11 @@
-import { Platform } from 'react-native';
-import Fabric from 'react-native-fabric';
-const { Crashlytics } = Fabric;
+import crashlytics from '@react-native-firebase/crashlytics'
 
-export const logError = error => {
-  console.warn('-->', error);
+export const logError = (error: string) => {
+  console.warn('-->', error)
   try {
-    return Platform.OS === 'android' ? Crashlytics.logException(error) : Crashlytics.recordError(error);
+    return crashlytics().recordError(new Error(error))
+    // return console.warn;
   } catch (e) {
-    return console.warn;
+    return console.warn
   }
-};
+}

@@ -1,19 +1,19 @@
-import { Container } from 'native-base';
-import glamor from 'glamorous-native';
-import colors from 'styles/colors';
-import { getWindowWidth } from 'helpers';
+import { Container } from 'native-base'
+import glamor from 'glamorous-native'
+import colors from '@sl/styles/colors'
+import { getWindowWidth } from '@sl/helpers'
 
 export const GSContainer = glamor(Container)({
   flex: 1,
   justifyContent: 'center',
-  alignItems: 'center'
-});
+  alignItems: 'center',
+})
 
 export const GSTopUsers = glamor.scrollView({
-  alignContent: 'stretch'
-});
+  alignContent: 'stretch',
+})
 
-export const GSCurrentUserPosition = glamor.view({});
+export const GSCurrentUserPosition = glamor.view({})
 
 export const GSGap = glamor.view({
   height: 80,
@@ -23,8 +23,8 @@ export const GSGap = glamor.view({
   borderBottomWidth: 1,
   borderBottomColor: colors.lightGray,
   flex: 1,
-  width: getWindowWidth()
-});
+  width: getWindowWidth(),
+})
 
 export const GSTopUser = glamor.view<{ highlight?: boolean; header?: boolean }>(
   {
@@ -33,87 +33,92 @@ export const GSTopUser = glamor.view<{ highlight?: boolean; header?: boolean }>(
     justifyContent: 'space-between',
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: colors.lightGray
+    borderBottomColor: colors.lightGray,
   },
   ({ highlight, header }) =>
     header
       ? { backgroundColor: colors.lightBlue }
       : {
-          backgroundColor: highlight ? colors.lemonChiffon : 'transparent'
-        }
-);
+          backgroundColor: highlight ? colors.lemonChiffon : 'transparent',
+        },
+)
 
 export const GSRank = glamor.view({
   padding: 20,
   borderLeftWidth: 1,
   alignItems: 'center',
   justifyContent: 'center',
-  borderColor: colors.lightGray
-});
+  borderColor: colors.lightGray,
+})
 
-export const GSUserDetails = glamor.view<{ align: 'left' | 'right' | 'center' | 'stretch' }>(
+export const GSUserDetails = glamor.view<{
+  align: 'left' | 'right' | 'center' | 'stretch'
+}>(
   {
     justifyContent: 'center',
-    flex: 1
+    flex: 1,
   },
   ({ align }) => {
     switch (align) {
       case 'stretch':
-        return { alignItems: 'stretch', alignSelf: 'stretch' };
+        return { alignItems: 'stretch', alignSelf: 'stretch' }
       case 'center':
-        return { alignItems: 'center' };
+        return { alignItems: 'center' }
       case 'left':
-        return { alignItems: 'flex-end' };
+        return { alignItems: 'flex-end' }
       case 'right':
-        return { alignItems: 'flex-start' };
+        return { alignItems: 'flex-start' }
       default:
-        return {};
+        return {}
     }
-  }
-);
+  },
+)
 
 export const GSUserName = glamor.text({
-  writingDirection: 'rtl'
-});
+  writingDirection: 'rtl',
+})
 
 export const GSUserXP = glamor.text({
   fontWeight: '900',
   fontSize: 16,
-  fontFamily: 'Arial'
-});
+  fontFamily: 'Arial',
+})
 
 export const GSUserProfilePicture = glamor.image({
   width: 70,
   height: 70,
   alignSelf: 'center',
-  borderRadius: 35
-});
+  borderRadius: 35,
+})
 
-export const GSProfilePictureFrame = glamor.view<{ inner?: boolean; outer?: boolean }>(
+export const GSProfilePictureFrame = glamor.view<{
+  inner?: boolean
+  outer?: boolean
+}>(
   {
     justifyContent: 'center',
     alignSelf: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  props => {
+  (props) => {
     if (props.outer) {
       return {
         width: 100,
         height: 100,
         backgroundColor: colors.white,
         borderRadius: 70,
-        marginVertical: 10
-      };
-    } else if (props.inner) {
+        marginVertical: 10,
+      }
+    }
+    if (props.inner) {
       return {
         width: 90,
         height: 90,
         backgroundColor: colors.lightBlue,
         borderRadius: 70,
-        marginVertical: 10
-      };
-    } else {
-      return {};
+        marginVertical: 10,
+      }
     }
-  }
-);
+    return {}
+  },
+)

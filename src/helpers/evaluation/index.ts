@@ -1,67 +1,84 @@
-// import { playAudio } from 'helpers/audio';
-// import audioFiles from 'assets/audio';
+// import { playAudio } from '@sl/helpers/audio';
+// import audioFiles from '@sl/assets/audio';
 
 const stringToCharArray = (str: string, allowedLetters: string[]): string[] => {
   try {
-    const stringArr = str.split('');
+    const stringArr = str.split('')
 
-    const rex = new RegExp(`${allowedLetters.join('|')}`);
-    return stringArr.filter(rex.test.bind(rex));
+    const rex = new RegExp(`${allowedLetters.join('|')}`)
+    return stringArr.filter(rex.test.bind(rex))
   } catch (error) {
-    console.warn(str);
+    console.warn(str)
   }
-  return [];
-};
+  return []
+}
 
 interface IEvalOptions {
-  allowedLetters: string[];
-  overlookLetters?: IDictionary<string>;
+  allowedLetters: string[]
+  overlookLetters?: IDictionary<string>
 }
 export const evalAgainstAllAnswers = (
   answer: string | string[],
   correctAnswers: string[],
-  options: IEvalOptions
+  options: IEvalOptions,
 ): boolean => {
   if (Array.isArray(answer)) {
-    return matchAllAnswers(answer, correctAnswers, options);
-  } else {
-    return matchOneOfTheCorrectAnswers(answer, correctAnswers, options);
+    return matchAllAnswers(answer, correctAnswers, options)
   }
-};
+  return matchOneOfTheCorrectAnswers(answer, correctAnswers, options)
+}
 
-const matchAllAnswers = (answers: string[], correctAnswers: string[], options) => {
+const matchAllAnswers = (
+  answers: string[],
+  correctAnswers: string[],
+  options,
+) => {
   if (answers.length === correctAnswers.length) {
-    const evaluations = answers.map((answer: string) => matchOneOfTheCorrectAnswers(answer, correctAnswers, options));
-    return evaluations.indexOf(false) === -1;
+    const evaluations = answers.map((answer: string) =>
+      matchOneOfTheCorrectAnswers(answer, correctAnswers, options),
+    )
+    return evaluations.indexOf(false) === -1
   }
-  return false;
-};
+  return false
+}
 
-const matchOneOfTheCorrectAnswers = (answer: string, correctAnswers: string[], options) => {
-  for (let correctAnswer of correctAnswers) {
+const matchOneOfTheCorrectAnswers = (
+  answer: string,
+  correctAnswers: string[],
+  options,
+) => {
+  for (const correctAnswer of correctAnswers) {
     if (evaluateAnswer(answer, correctAnswer, options)) {
-      return true;
+      return true
     }
   }
-  return false;
-};
+  return false
+}
 
-export const overlook = (letter, letters: IDictionary<string> = {}) => (letters[letter] ? letters[letter] : letter);
+export const overlook = (letter, letters: IDictionary<string> = {}) =>
+  letters[letter] ? letters[letter] : letter
 
-export const evaluateAnswer = (answer: string, correctAnswer: string, options: IEvalOptions): boolean => {
-  const { allowedLetters, overlookLetters } = options;
-  const answerArr = stringToCharArray(answer, allowedLetters);
-  const correctAnswerArr = stringToCharArray(correctAnswer, allowedLetters);
+export const evaluateAnswer = (
+  answer: string,
+  correctAnswer: string,
+  options: IEvalOptions,
+): boolean => {
+  const { allowedLetters, overlookLetters } = options
+  const answerArr = stringToCharArray(answer, allowedLetters)
+  const correctAnswerArr = stringToCharArray(correctAnswer, allowedLetters)
 
-  let i;
+  let i
 
   for (i in correctAnswerArr) {
-    if (overlook(answerArr[i], overlookLetters) !== overlook(correctAnswerArr[i], overlookLetters)) {
-      return false;
+    if (
+      overlook(answerArr[i], overlookLetters) !==
+      overlook(correctAnswerArr[i], overlookLetters)
+    ) {
+      return false
     }
   }
 
   // playAudio(audioFiles.questionPassSound, null);
 
-  return true;
-};
+  return true
+}

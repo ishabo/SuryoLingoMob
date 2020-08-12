@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { BackHandler, Keyboard, Platform, Alert, View } from 'react-native';
-import { Bar as ProgressBar } from 'react-native-progress';
-import { Container } from 'native-base';
-import { isEmpty } from 'lodash';
+import * as React from 'react'
+import { BackHandler, Keyboard, Platform, Alert, View } from 'react-native'
+import { Bar as ProgressBar } from 'react-native-progress'
+import { Container } from 'native-base'
+import { isEmpty } from 'lodash'
 import {
   navToSkills,
   evalAgainstAllAnswers,
@@ -10,10 +10,13 @@ import {
   cleanAnswer,
   getWindowWidth,
   getLangConfig,
-  isShortDevice
-} from 'helpers';
-import { connect } from 'react-redux';
-import { nextQuestionOrFinish, TQuestionType } from 'services/questions/actions';
+  isShortDevice,
+} from '@sl/helpers'
+import { connect } from 'react-redux'
+import {
+  nextQuestionOrFinish,
+  TQuestionType,
+} from '@sl/services/questions/actions'
 import {
   getActiveCourse,
   calcProress,
@@ -21,21 +24,26 @@ import {
   allCorrectAnswers,
   getSkillInProgress,
   getTargetLanguage,
-  getSourceLanguage
-} from 'services/selectors';
-import { GSCustomStudyText } from 'styles/text';
-import Colors from 'styles/colors';
-import I18n from 'I18n';
-import { GSIcon, GSProgress, GSFooterAndBody, GSContainer } from './index.styles';
-import { GSHeader, GSBody, GSFooter } from 'styles/layouts';
-import { IProps, IState, TAnswer } from './index.types';
-import { NavigationActions } from 'react-navigation';
-import { NextButton, SwitchButton, EvaluationBanner } from 'components';
-import { Dispatch } from 'redux';
-import { IInitialState } from 'services/reducers';
-import QuestionBody from './components/QuestionBody';
-import { KeyboardUtils } from 'react-native-keyboard-input';
-import { Analytics } from 'config/firebase';
+  getSourceLanguage,
+} from '@sl/services/selectors'
+import { GSCustomStudyText } from '@sl/styles/text'
+import Colors from '@sl/styles/colors'
+import I18n from '@sl/i18n'
+import { GSHeader, GSBody, GSFooter } from '@sl/styles/layouts'
+import { NavigationActions } from 'react-navigation'
+import { NextButton, SwitchButton, EvaluationBanner } from '@sl/components'
+import { Dispatch } from 'redux'
+import { IInitialState } from '@sl/services/reducers'
+import { KeyboardUtils } from 'react-native-keyboard-input'
+import analytics from '@react-native-firebase/analytics'
+import QuestionBody from './components/QuestionBody'
+import { IProps, IState, TAnswer } from './index.types'
+import {
+  GSIcon,
+  GSProgress,
+  GSFooterAndBody,
+  GSContainer,
+} from './index.styles'
 
 class Questions extends React.Component<IProps, IState> {
   public state = {
@@ -44,137 +52,146 @@ class Questions extends React.Component<IProps, IState> {
     answerCorrect: null,
     modalOn: false,
     movingNext: false,
-    keyboardIsOn: false
-  };
+    keyboardIsOn: false,
+  }
 
-  private keyboardDidShowListener;
-  private keyboardDidHideListener;
+  private keyboardDidShowListener
 
-  private userHasAnswered = () => this.state.answerCorrect !== null;
+  private keyboardDidHideListener
+
+  private userHasAnswered = () => this.state.answerCorrect !== null
 
   static navigationOptions = {
     header: null,
     cardStack: {
       transition: (previousRoute: any) => {
-        console.warn(previousRoute);
-      }
-    }
-  };
+        console.warn(previousRoute)
+      },
+    },
+  }
 
   collectAnswer = (answer: TAnswer) => {
-    let cleannedAnswer = answer;
-    let length = 0;
+    let cleannedAnswer = answer
+    let length = 0
 
     if (typeof answer === 'string') {
-      cleannedAnswer = cleanAnswer(answer);
-      length = 1;
+      cleannedAnswer = cleanAnswer(answer)
+      length = 1
     }
 
     if (!this.userHasAnswered() && cleannedAnswer.length > length) {
-      this.setState({ answer: cleannedAnswer });
+      this.setState({ answer: cleannedAnswer })
     }
-  };
-
-  submitDisallowed = () => isEmpty(this.state.answer) && this.actionNeeded();
-
-  actionNeeded = () => this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE';
-
-  needsEvaluation = () => this.actionNeeded() && !this.userHasAnswered();
-
-  componentWillMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
-    this.setState({ progress: this.props.calcProress });
   }
 
+  isSubmitNotAllowed = () => isEmpty(this.state.answer) && this.actionNeeded()
+
+  actionNeeded = () =>
+    this.props.currentQuestion.questionType !== 'NEW_WORD_OR_PHRASE'
+
+  needsEvaluation = () => this.actionNeeded() && !this.userHasAnswered()
+
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+    this.setState({ progress: this.props.calcProress })
+    analytics().setCurrentScreen(this.constructor.name)
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
+    this.keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      this.keyboardDidShow,
+    )
+    this.keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this.keyboardDidHide,
+    )
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    this.keyboardDidShowListener.remove();
-    this.keyboardDidHideListener.remove();
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress)
+    this.keyboardDidShowListener.remove()
+    this.keyboardDidHideListener.remove()
   }
 
   private keyboardDidShow = () => {
-    this.setState({ keyboardIsOn: true });
-  };
+    this.setState({ keyboardIsOn: true })
+  }
 
   private keyboardDidHide = () => {
-    this.setState({ keyboardIsOn: false });
-  };
+    this.setState({ keyboardIsOn: false })
+  }
 
   handleBackPress = () => {
-    this.existQuestions();
-    return true;
-  };
+    this.existQuestions()
+    return true
+  }
 
-  evaluateOrNext = () => {
-    if (this.submitDisallowed() || this.state.movingNext) {
-      return;
+  evaluateOrProceed = () => {
+    if (this.isSubmitNotAllowed() || this.state.movingNext) {
+      return
     }
 
-    KeyboardUtils.dismiss();
-    Keyboard.dismiss();
+    KeyboardUtils.dismiss()
+    Keyboard.dismiss()
 
     if (this.needsEvaluation()) {
-      this.evaluate();
+      this.evaluate()
     } else {
-      this.nextQuestionOrComplete();
+      this.nextQuestionOrComplete()
     }
-  };
+  }
 
   evaluate = () => {
-    const targetLangConfig = getLangConfig(this.props.targetLanguage);
-    const sourceLangConfig = getLangConfig(this.props.sourceLanguage);
+    const targetLangConfig = getLangConfig(this.props.targetLanguage)
+    const sourceLangConfig = getLangConfig(this.props.sourceLanguage)
 
     const evaluationOptions = {
       allowedLetters: targetLangConfig.letters.concat(sourceLangConfig.letters),
-      overlookLetters: { ...targetLangConfig.overlookLetters, ...sourceLangConfig.overlookLetters }
-    };
+      overlookLetters: {
+        ...targetLangConfig.overlookLetters,
+        ...sourceLangConfig.overlookLetters,
+      },
+    }
 
     const answerCorrect = evalAgainstAllAnswers(
       this.state.answer,
       this.props.allCorrectAnswers(this.props.currentQuestion.id),
-      evaluationOptions
-    );
+      evaluationOptions,
+    )
 
-    const { id: questionId, questionType } = this.props.currentQuestion;
+    const { id: questionId, questionType } = this.props.currentQuestion
 
     if (!answerCorrect) {
-      Analytics.logEvent('incorrect_answer', { questionId, questionType });
+      analytics().logEvent('incorrect_answer', { questionId, questionType })
     }
-    this.setState({ answerCorrect });
-  };
+    this.setState({ answerCorrect })
+  }
 
-  answeredCorrectly = () => !isEmpty(this.state.answer) && this.state.answerCorrect === true;
+  answeredCorrectly = () =>
+    !isEmpty(this.state.answer) && this.state.answerCorrect === true
 
   nextQuestionOrComplete = () => {
     this.setState({ movingNext: true }, () => {
-      let status = this.answeredCorrectly() ? 'passed' : 'failed';
+      let status = this.answeredCorrectly() ? 'passed' : 'failed'
 
       if (!this.actionNeeded()) {
-        status = 'passed';
+        status = 'passed'
       }
-      this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status);
-    });
-  };
+      this.props.nextQuestionOrFinish(this.props.currentQuestion.id, status)
+    })
+  }
 
   private backToSkills = () => {
-    Keyboard.dismiss();
+    Keyboard.dismiss()
 
     const resetAction = NavigationActions.reset({
       index: 0,
       key: null,
-      actions: [navToSkills()]
-    });
-    this.props.navigation.dispatch(resetAction);
-  };
+      actions: [navToSkills()],
+    })
+    this.props.navigation.dispatch(resetAction)
+  }
 
   existQuestions = () => {
-    Keyboard.dismiss();
+    Keyboard.dismiss()
     Alert.alert(
       I18n.t('questions.exist.areYouSure'),
       I18n.t('questions.exist.caviat'),
@@ -182,35 +199,56 @@ class Questions extends React.Component<IProps, IState> {
         {
           text: I18n.t('questions.exist.cancel'),
           onPress: () => {
-            console.log('Cancelled exist');
+            console.log('Cancelled exist')
           },
-          style: 'cancel'
+          style: 'cancel',
         },
         {
           text: I18n.t('questions.exist.ok'),
           onPress: () => {
-            const { id: questionId, questionType, lessonId } = this.props.currentQuestion;
-            const totalRemainingQuestions = this.props.pending.length;
-            Analytics.logEvent('exist_', { lessonId, questionId, questionType, totalRemainingQuestions });
-            this.backToSkills();
-          }
-        }
+            const {
+              id: questionId,
+              questionType,
+              lessonId,
+            } = this.props.currentQuestion
+            const totalRemainingQuestions = this.props.pending.length
+            analytics().logEvent('exist_', {
+              lessonId,
+              questionId,
+              questionType,
+              totalRemainingQuestions,
+            })
+            this.backToSkills()
+          },
+        },
       ],
-      { cancelable: false }
-    );
-  };
+      { cancelable: false },
+    )
+  }
 
   renderEvaluationBanner() {
-    const { questionType, phrase, translation, otherCorrectAnswers = [] } = this.props.currentQuestion;
-    const correctAnswers = [...otherCorrectAnswers, isReverseQuestion(questionType) ? phrase : translation];
+    const {
+      questionType,
+      phrase,
+      translation,
+      otherCorrectAnswers = [],
+    } = this.props.currentQuestion
+    const correctAnswers = [
+      ...otherCorrectAnswers,
+      isReverseQuestion(questionType) ? phrase : translation,
+    ]
     const correctAnswer = (
       <GSCustomStudyText
         style={{ fontSize: 16 }}
-        lang={isReverseQuestion(questionType) ? this.props.targetLanguage : this.props.sourceLanguage}
+        lang={
+          isReverseQuestion(questionType)
+            ? this.props.targetLanguage
+            : this.props.sourceLanguage
+        }
       >
-        {correctAnswers.join(I18n.t('general.comma') + ' ')}
+        {correctAnswers.join(`${I18n.t('general.comma')} `)}
       </GSCustomStudyText>
-    );
+    )
 
     return (
       this.userHasAnswered() && (
@@ -221,12 +259,12 @@ class Questions extends React.Component<IProps, IState> {
           multipleAnswers={correctAnswers.length > 1}
         />
       )
-    );
+    )
   }
 
   renderProgressBar = () => (
     <GSHeader>
-      <GSIcon name="close" onPress={this.existQuestions} />
+      <GSIcon name='close' onPress={this.existQuestions} />
       <GSProgress>
         <ProgressBar
           progress={this.state.progress}
@@ -234,13 +272,13 @@ class Questions extends React.Component<IProps, IState> {
           width={getWindowWidth() - 70}
           borderColor={Colors.lightGray}
           color={Colors.darkGreen}
-          unfilledColor="#d3d3d3"
+          unfilledColor='#d3d3d3'
           animated
           style={{ marginLeft: 10 }}
         />
       </GSProgress>
     </GSHeader>
-  );
+  )
 
   renderQuestionBody = () => (
     <QuestionBody
@@ -251,33 +289,50 @@ class Questions extends React.Component<IProps, IState> {
       collectAnswer={this.collectAnswer}
       userHasAnswered={this.userHasAnswered()}
       hints={this.props.dictionaries}
-      renderNextButtonSmall={this.showSmallButton() ? this.renderNextQuestionSmall() : <View />}
+      renderNextButtonSmall={
+        this.showSmallButton() ? this.renderNextQuestionSmall() : <View />
+      }
       renderNextButton={this.renderNextQuestion()}
-      onSubmit={this.evaluateOrNext}
+      onSubmit={this.evaluateOrProceed}
     />
-  );
+  )
 
   showSmallButton = () =>
-    !this.submitDisallowed() && !this.state.movingNext && this.state.keyboardIsOn && isShortDevice(500);
+    !this.isSubmitNotAllowed() &&
+    !this.state.movingNext &&
+    this.state.keyboardIsOn &&
+    isShortDevice(500)
 
   renderNextQuestionSmall = () => {
-    let text = this.needsEvaluation() ? I18n.t('questions.submit') : I18n.t('questions.continue');
-
-    return <SwitchButton onPress={this.evaluateOrNext} lang={this.props.sourceLanguage} success text={text} />;
-  };
-
-  renderNextQuestion = () => {
-    let text = this.needsEvaluation() ? I18n.t('questions.submit') : I18n.t('questions.continue');
+    const text = this.needsEvaluation()
+      ? I18n.t('questions.submit')
+      : I18n.t('questions.continue')
 
     return (
+      <SwitchButton
+        onPress={this.evaluateOrProceed}
+        lang={this.props.sourceLanguage}
+        success
+        text={text}
+      />
+    )
+  }
+
+  renderNextQuestion = () => {
+    const text = this.needsEvaluation()
+      ? I18n.t('questions.submit')
+      : I18n.t('questions.continue')
+
+    console.log(this.isSubmitNotAllowed())
+    return (
       <NextButton
-        onPress={this.evaluateOrNext}
-        disabled={this.submitDisallowed() || this.state.movingNext}
+        onPress={this.evaluateOrProceed}
+        disabled={this.isSubmitNotAllowed() || this.state.movingNext}
         lang={this.props.sourceLanguage}
         text={text}
       />
-    );
-  };
+    )
+  }
 
   renderBodyAndFooter() {
     return (
@@ -286,12 +341,12 @@ class Questions extends React.Component<IProps, IState> {
         <GSFooter
           behavior={Platform.select({ android: 'height', ios: 'padding' })}
           keyboardVerticalOffset={Platform.select({ android: 0, ios: 75 })}
-          enabled
         >
-          {(this.state.keyboardIsOn && isShortDevice(500) && <View />) || this.renderNextQuestion()}
+          {(this.state.keyboardIsOn && isShortDevice(500) && <View />) ||
+            this.renderNextQuestion()}
         </GSFooter>
       </GSFooterAndBody>
-    );
+    )
   }
 
   render() {
@@ -303,14 +358,14 @@ class Questions extends React.Component<IProps, IState> {
           {this.state.movingNext || this.renderEvaluationBanner()}
         </GSContainer>
       )) || <Container />
-    );
+    )
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): Partial<IProps> => ({
   nextQuestionOrFinish: (questionId: string, status: TQuestionType) =>
-    dispatch(nextQuestionOrFinish(questionId, status))
-});
+    dispatch(nextQuestionOrFinish(questionId, status)),
+})
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   profile: state.profile,
@@ -321,12 +376,10 @@ const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   currentQuestion: getCurrentQuestion(state),
   skillInProgress: getSkillInProgress(state),
   dictionaries: state.dictionaries,
-  allCorrectAnswers: (questionId: string) => allCorrectAnswers(state, questionId),
+  allCorrectAnswers: (questionId: string) =>
+    allCorrectAnswers(state, questionId),
   targetLanguage: getTargetLanguage(state),
-  sourceLanguage: getSourceLanguage(state)
-});
+  sourceLanguage: getSourceLanguage(state),
+})
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(Questions)

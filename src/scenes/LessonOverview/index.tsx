@@ -1,38 +1,28 @@
-import React from 'react';
-import glamor from 'glamorous-native';
-import { Container } from 'native-base';
-import { ScrollView } from 'react-native';
-import { connect } from 'react-redux';
-import { IInitialState } from 'services/reducers';
-import { IQuestion, IPhrase } from 'services/questions';
-import { getPhrases } from 'services/selectors';
-import { StudyPhrase } from 'components';
-import shortid from 'shortid';
-import { Analytics } from 'config/firebase';
+import React from 'react'
+import { ScrollView } from 'react-native'
+import { connect } from 'react-redux'
+import { IInitialState } from '@sl/services/reducers'
+import { IQuestion, IPhrase } from '@sl/services/questions'
+import { getPhrases } from '@sl/services/selectors'
+import { StudyPhrase } from '@sl/components'
+import shortid from 'shortid'
+import analytics from '@react-native-firebase/analytics'
+import {
+  GSContainer,
+  GSOverview,
+  GSPhrase,
+  GSTranslation,
+} from './index.styles'
 
 interface IProps {
-  phrases: IPhrase[];
-  questions: IQuestion;
-  isAdmin: boolean;
+  phrases: IPhrase[]
+  questions: IQuestion
+  isAdmin: boolean
 }
-
-export const GSContainer = glamor(Container)({
-  padding: 16
-});
-
-export const GSOverview = glamor.view({
-  paddingVertical: 20
-});
-
-export const GSPhrase = glamor.view({});
-
-export const GSTranslation = glamor.text({
-  textAlign: 'right'
-});
 
 class LessonOverview extends React.Component<IProps> {
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name)
   }
 
   render() {
@@ -47,7 +37,7 @@ class LessonOverview extends React.Component<IProps> {
                   showSentence
                   sound={{ soundTrack: phrase.sound }}
                   sentence={phrase.sentence}
-                  lang="cl-syr"
+                  lang='cl-syr'
                 />
               </GSPhrase>
               <GSTranslation>{phrase.translation}</GSTranslation>
@@ -55,16 +45,13 @@ class LessonOverview extends React.Component<IProps> {
           ))}
         </ScrollView>
       </GSContainer>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   phrases: getPhrases(state),
-  isAdmin: state.profile.isTester
-});
+  isAdmin: state.profile.isTester,
+})
 
-export default connect(
-  mapStateToProps,
-  null
-)(LessonOverview);
+export default connect(mapStateToProps, null)(LessonOverview)

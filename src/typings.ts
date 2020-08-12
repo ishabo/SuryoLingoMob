@@ -1,13 +1,13 @@
 interface IDictionary<T extends number | string> {
-  [k: string]: T;
+  [k: string]: T
 }
 
 interface IIndex<T extends number | string> {
-  [k: number]: T;
+  [k: number]: T
 }
 
 declare interface ObjectConstructor {
-  values(target: any, ...sources: any[]): any;
+  values(target: any, ...sources: any[]): any
 }
 
-type TLangs = string | 'cl-ara' | 'cl-syr' | 'tur-syr';
+type TLangs = string | 'cl-ara' | 'cl-syr' | 'tur-syr'

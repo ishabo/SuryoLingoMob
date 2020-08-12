@@ -1,9 +1,9 @@
-import { reducer as settingsReducer } from './index';
-import { types } from '../actions';
+import { reducer as settingsReducer } from './index'
+import { types } from '../actions'
 
 describe('settings reducer', () => {
   it('should set lesson in progress', () => {
-    const initialState = {};
+    const initialState = {}
 
     const actions = {
       type: types.SAVE_SETTINGS,
@@ -13,28 +13,28 @@ describe('settings reducer', () => {
           showDefaultMessage: false,
           message: {
             'cl-ara':
-              'السرفر قيد الصيانة ولذلك قد لا يكون متاحاً في بعض أو كل الأوقات. الرجاء الصبر ومعاودة دراستك في وقت لاحق.'
-          }
+              'السرفر قيد الصيانة ولذلك قد لا يكون متاحاً في بعض أو كل الأوقات. الرجاء الصبر ومعاودة دراستك في وقت لاحق.',
+          },
         },
         android: {
           version: '0.2.3',
           update: {
             force: true,
-            since: '0.2.0'
-          }
+            since: '0.2.0',
+          },
         },
         ios: {
           version: '0.2.2',
           update: {
             force: false,
-            since: '0.2.2'
-          }
-        }
-      }
-    };
+            since: '0.2.2',
+          },
+        },
+      },
+    }
 
-    const newState = settingsReducer(initialState, actions);
+    const newState = settingsReducer(initialState, actions)
 
-    expect(newState).toEqual(actions.settings);
-  });
-});
+    expect(newState).toStrictEqual(actions.settings)
+  })
+})

@@ -1,15 +1,18 @@
-import glamor from 'glamorous-native';
-import colors from 'styles/colors';
-import { getWindowWidth } from 'helpers';
+import glamor from 'glamorous-native'
+import colors from '@sl/styles/colors'
+import { getWindowWidth } from '@sl/helpers'
 
 export const GSContainer = glamor.view({
-  backgroundColor: colors.whiteSmoke
-});
+  backgroundColor: colors.whiteSmoke,
+})
+
+GSContainer.displayName = 'GSContainer'
 
 export const GUnit = glamor.view({
   justifyContent: 'space-around',
-  flexDirection: 'row'
-});
+  flexDirection: 'row',
+})
+GUnit.displayName = 'GUnit'
 
 export const GComingSoonSeparator = glamor.text({
   padding: 4,
@@ -22,5 +25,6 @@ export const GComingSoonSeparator = glamor.text({
   justifyContent: 'center',
   width: getWindowWidth(),
   shadowOffset: { width: 2, height: 2 },
-  backgroundColor: colors.lightGray
-});
+  backgroundColor: colors.lightGray,
+})
+GComingSoonSeparator.displayName = 'GComingSoonSeparator'

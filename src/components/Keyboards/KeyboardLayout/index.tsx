@@ -1,78 +1,89 @@
-import * as React from 'react';
+import * as React from 'react'
+import { View } from 'react-native'
+import shortid from 'shortid'
+import { KeyboardRegistry } from 'react-native-keyboard-input'
 
-import { View } from 'react-native';
-import shortid from 'shortid';
-import { GSBackSpaceKey, GSContainer, GSContent, GSKey, GSIcon, GSKeyText, GSSpaceKey } from './index.styles';
-import { KeyboardRegistry } from 'react-native-keyboard-input';
-import { IKeyboardActions } from 'components/Keyboards';
+import { IKeyboardActions } from '@sl/components/Keyboards'
+import {
+  GSBackSpaceKey,
+  GSContainer,
+  GSContent,
+  GSKey,
+  GSIcon,
+  GSKeyText,
+  GSSpaceKey,
+} from './index.styles'
 
 interface IProps {
-  layoutName: string;
-  letters: string[][];
-  lang: TLangs;
-  wide?: boolean;
-  renderContent?: () => React.ReactElement<any>;
+  layoutName: string
+  letters: string[][]
+  lang: TLangs
+  wide?: boolean
+  renderContent?: () => React.ReactElement<any>
 }
 
-class KeyboardLayout extends React.Component<IProps> {
-  private listKeys = (
+const KeyboardLayout: React.FC<IProps> = ({ lang, layoutName, letters }) => {
+  const onKeyPress = (value: string) => {
+    onItemSelected({
+      value,
+      action: 'addChar',
+    })
+  }
+
+  const onPress = (pressFunction: () => void) => () => {
+    pressFunction()
+  }
+
+  const listKeys = (
     keys: string[],
-    style: { fontSize: number; paddingTop?: number } = { fontSize: 14, paddingTop: -23 }
+    style: { fontSize: number; paddingTop?: number } = {
+      fontSize: 14,
+      paddingTop: -23,
+    },
   ) =>
     keys &&
     keys.map((key: string) => (
       <GSKey
         key={shortid.generate()}
-        onPress={this.onPress(() => {
-          this.onKeyPress(key);
+        onPress={onPress(() => {
+          onKeyPress(key)
         })}
       >
-        <GSKeyText lang={this.props.lang} style={{ ...style }}>
+        <GSKeyText lang={lang} style={{ ...style }}>
           {key}
         </GSKeyText>
       </GSKey>
-    ));
+    ))
 
-  private onPress = (pressFunction: () => void) => () => {
-    pressFunction();
-  };
-
-  private onKeyPress = (value: string) => {
-    this.onItemSelected({
-      value,
-      action: 'addChar'
-    });
-  };
-
-  private onBackSpacePress = () => {
-    this.onItemSelected({
+  const onBackSpacePress = () => {
+    onItemSelected({
       value: null,
-      action: 'removeChar'
-    });
-  };
-
-  private onItemSelected = (params: IKeyboardActions) => {
-    KeyboardRegistry.onItemSelected(this.props.layoutName, params);
-  };
-
-  private listRows = (letters: string[][]) =>
-    letters.map((row: string[]) => <GSContent key={shortid.generate()}>{this.listKeys(row)}</GSContent>);
-
-  render() {
-    return (
-      <GSContainer>
-        <>{this.listRows(this.props.letters)}</>
-        <GSContent>
-          <GSBackSpaceKey onPress={this.onPress(this.onBackSpacePress)}>
-            <GSIcon name="backspace" />
-          </GSBackSpaceKey>
-          <GSSpaceKey onPress={this.onPress(() => this.onKeyPress(' '))}>
-            <View />
-          </GSSpaceKey>
-        </GSContent>
-      </GSContainer>
-    );
+      action: 'removeChar',
+    })
   }
+
+  const onItemSelected = (params: IKeyboardActions) => {
+    KeyboardRegistry.onItemSelected(layoutName, params)
+  }
+
+  const listRows = (letters: string[][]) =>
+    letters.map((row: string[]) => (
+      <GSContent key={shortid.generate()}>{listKeys(row)}</GSContent>
+    ))
+
+  return (
+    <GSContainer>
+      <>{listRows(letters)}</>
+      <GSContent>
+        <GSBackSpaceKey onPress={onPress(onBackSpacePress)}>
+          <GSIcon name='backspace' />
+        </GSBackSpaceKey>
+        <GSSpaceKey onPress={onPress(() => onKeyPress(' '))}>
+          <View />
+        </GSSpaceKey>
+      </GSContent>
+    </GSContainer>
+  )
 }
 
-export default KeyboardLayout;
+export default KeyboardLayout

@@ -1,19 +1,32 @@
-import { call, put } from 'redux-saga/effects';
-import { getDictionaries } from '../api';
-import { saveDictionaries } from '../actions';
-import * as exceptions from 'services/exceptions';
-import * as dictionaries from 'services/dictionaries';
-import { ISagasFunctions } from 'services/sagas';
+import { call, put, select } from 'redux-saga/effects'
+import * as dictionaries from '@sl/services/dictionaries'
+import { ISagasFunctions } from '@sl/services/sagas'
+import { getActiveCourse } from '@sl/services/selectors'
+import { ICourse } from '@sl/services/courses'
+import { saveDictionaries } from '../actions'
+import { getDictionaries } from '../api'
+import { types } from '../actions'
 
-export function* fetchDictionaries(action: dictionaries.IDictionaryAction): IterableIterator<any> {
+export function* fetchDictionaries(
+  action: dictionaries.IDictionaryAction,
+): IterableIterator<any> {
+  let activeCourseId = action.courseId
+  if (!activeCourseId) {
+    const activeCourse: ICourse = yield select(getActiveCourse)
+    activeCourseId = activeCourse.id
+  }
+
   try {
-    const response = yield call(getDictionaries, action.courseId);
-    yield put(saveDictionaries(response));
-  } catch (error) {
-    yield put(exceptions.actions.add(error));
+    const response = yield call(getDictionaries, activeCourseId)
+    yield put(saveDictionaries(response))
+  } catch (e) {
+    console.warn(e)
   }
 }
 
 export const functions = (): ISagasFunctions[] => [
-  { action: dictionaries.actions.types.FETCH_DICTIONARIES, func: fetchDictionaries }
-];
+  {
+    action: types.FETCH_DICTIONARIES,
+    func: fetchDictionaries,
+  },
+]

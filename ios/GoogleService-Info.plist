@@ -2,14 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
 	<string>964006513680-8lv66en1rph1tem81823kapi7pp6f01e.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.964006513680-8lv66en1rph1tem81823kapi7pp6f01e</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>964006513680-846q8u30jdam8f0i79rv05g0pjc08mp4.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyB6aiYDbp88gaE5BIJCVOIiyM58d1nWQTU</string>
 	<key>GCM_SENDER_ID</key>
@@ -23,7 +21,7 @@
 	<key>STORAGE_BUCKET</key>
 	<string>suryolingo-ltd.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
@@ -36,5 +34,7 @@
 	<string>1:964006513680:ios:4309c91f70c0c7db</string>
 	<key>DATABASE_URL</key>
 	<string>https://suryolingo-ltd.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-8869715274661120~8496603516</string>
 </dict>
 </plist>

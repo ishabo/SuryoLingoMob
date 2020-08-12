@@ -1,28 +1,35 @@
-import * as React from 'react';
-import { ScrollView, BackHandler, Keyboard } from 'react-native';
-import { connect } from 'react-redux';
-import { Skill } from './components';
-import { mapValues, groupBy } from 'lodash';
-import { ISkill } from 'services/skills';
-import { getActiveCourse, getPublishedSkills, getComingSoonSkills } from 'services/selectors';
-import { IInitialState } from 'services/reducers';
-import { NavigationScreenProp } from 'react-navigation';
-import { exitApp, displayInterstitialAd } from 'helpers';
-import { Hamburger, DrawerItem } from 'components';
-import { ICourse } from 'services/courses';
-import { IProfile } from 'services/profile';
-import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles';
-import I18n from 'I18n';
-import shortid from 'shortid';
-import { Analytics } from 'config/firebase';
+import * as React from 'react'
+import { ScrollView, BackHandler, Keyboard, RefreshControl } from 'react-native'
+import { connect } from 'react-redux'
+import { mapValues, groupBy } from 'lodash'
+import { ISkill } from '@sl/services/skills'
+import { fetchSkills } from '@sl/services/skills/actions'
+import {
+  getActiveCourse,
+  getPublishedSkills,
+  getComingSoonSkills,
+} from '@sl/services/selectors'
+import { IInitialState } from '@sl/services/reducers'
+import { NavigationScreenProp } from 'react-navigation'
+import { exitApp } from '@sl/helpers'
+import { Hamburger, DrawerItem, WhenReady } from '@sl/components'
+import { ICourse } from '@sl/services/courses'
+import { IProfile } from '@sl/services/profile'
+import I18n from '@sl/i18n'
+import shortid from 'shortid'
+import analytics from '@react-native-firebase/analytics'
+import { ILoadingProps } from '@sl/components/Loading/connect'
+import { GSContainer, GUnit, GComingSoonSeparator } from './index.styles'
+import { Skill } from './components'
 
-interface IProps {
-  activeCourse: ICourse;
-  navigation: NavigationScreenProp<any>;
-  skills: ISkill[];
-  profile: IProfile;
-  publishedSkills: ISkill[];
-  comingSoonSkills: ISkill[];
+interface IProps extends ILoadingProps {
+  activeCourse: ICourse
+  navigation: NavigationScreenProp<any>
+  skills: ISkill[]
+  profile: IProfile
+  publishedSkills: ISkill[]
+  comingSoonSkills: ISkill[]
+  fetchSkills: () => void
 }
 
 class Skills extends React.Component<IProps> {
@@ -30,68 +37,79 @@ class Skills extends React.Component<IProps> {
     title: I18n.t(`skills.title`),
     headerLeft: <Hamburger onPress={() => navigate('DrawerOpen')} />,
     headerRight: null,
-    drawerLabel: <DrawerItem label={I18n.t('skills.title')} icon="skills" />
-  });
+    drawerLabel: <DrawerItem label={I18n.t('skills.title')} icon='skills' />,
+  })
 
   componentDidMount() {
-    Analytics.setCurrentScreen(this.constructor.name);
+    analytics().setCurrentScreen(this.constructor.name)
 
     if (!this.props.activeCourse) {
-      this.goToCourses();
+      this.goToCourses()
     }
 
-    Keyboard.dismiss();
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-
-    displayInterstitialAd('skills');
+    Keyboard.dismiss()
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress)
   }
 
   handleBackPress = () => {
-    exitApp();
-    return false;
-  };
+    exitApp()
+    return false
+  }
 
   goToCourses = () => {
-    const { navigate } = this.props.navigation;
-    navigate('Courses');
-  };
+    const { navigate } = this.props.navigation
+    navigate('Courses')
+  }
 
   private goToLessons = (skill: ISkill) => {
-    const { navigate } = this.props.navigation;
-    navigate('Lessons', { skill });
-  };
+    const { navigate } = this.props.navigation
+    navigate('Lessons', { skill })
+  }
 
   private renderUnits(published: boolean) {
-    const filteredSkills = published ? this.props.publishedSkills : this.props.comingSoonSkills;
+    const filteredSkills = published
+      ? this.props.publishedSkills
+      : this.props.comingSoonSkills
     if (filteredSkills.length === 0) {
-      return null;
+      return null
     }
-    const skills = mapValues(groupBy(filteredSkills, 'unit'));
-    const units = Object.keys(skills);
+    const skills = mapValues(groupBy(filteredSkills, 'unit'))
+    const units = Object.keys(skills)
 
-    const mappedUnits: any[] = [];
+    const mappedUnits: any[] = []
 
     units.forEach((unit: string | number) => {
-      mappedUnits.push(<GUnit key={shortid.generate()}>{this.renderSkills(skills[unit], published)}</GUnit>);
-    });
+      mappedUnits.push(
+        <GUnit key={shortid.generate()}>
+          {this.renderSkills(skills[unit], published)}
+        </GUnit>,
+      )
+    })
 
     return (
       <>
-        {published || <GComingSoonSeparator>{I18n.t(`skills.comingSoon`)}</GComingSoonSeparator>}
+        {published || (
+          <GComingSoonSeparator>
+            {I18n.t(`skills.comingSoon`)}
+          </GComingSoonSeparator>
+        )}
         {mappedUnits}
       </>
-    );
+    )
   }
 
   private enterSkill = (skill: ISkill) => {
-    this.isSkillActive(skill) ? this.goToLessons(skill) : alert(I18n.t('skills.skillInactive'));
-  };
+    this.isSkillActive(skill)
+      ? this.goToLessons(skill)
+      : alert(I18n.t('skills.skillInactive'))
+  }
 
-  private isSkillActive = (skill: ISkill): boolean => skill.active || this.props.profile.isTester;
+  private isSkillActive = (skill: ISkill): boolean =>
+    skill.active || this.props.profile.isTester
 
   private renderSkills(skills: ISkill[], published: boolean) {
     return skills.map((skill: ISkill) => (
@@ -102,29 +120,48 @@ class Skills extends React.Component<IProps> {
         inactive={skill.isComingSoon}
         progress={skill.progress && published ? skill.progress : 0}
         unlocked={published && this.isSkillActive(skill)}
-        onSkillsClick={() => (published ? this.enterSkill(skill) : alert(I18n.t('skills.skillInactive')))}
+        onSkillsClick={() =>
+          published
+            ? this.enterSkill(skill)
+            : alert(I18n.t('skills.skillInactive'))
+        }
       />
-    ));
+    ))
   }
 
   render() {
     return (
       <GSContainer>
-        <ScrollView style={{ flexDirection: 'column' }}>
-          {this.renderUnits(true)}
-          {this.renderUnits(false)}
-        </ScrollView>
+        <WhenReady>
+          <ScrollView
+            style={{ flexDirection: 'column' }}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.props.loading}
+                onRefresh={this.props.fetchSkills}
+              />
+            }
+          >
+            {this.renderUnits(true)}
+            {this.renderUnits(false)}
+          </ScrollView>
+        </WhenReady>
       </GSContainer>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state: IInitialState): Partial<IProps> => ({
   profile: state.profile,
   skills: state.skills,
+  loading: state.api.loading,
   activeCourse: getActiveCourse(state),
   publishedSkills: getPublishedSkills(state),
-  comingSoonSkills: getComingSoonSkills(state)
-});
+  comingSoonSkills: getComingSoonSkills(state),
+})
 
-export default connect(mapStateToProps)(Skills);
+const mapDispatchToProps = {
+  fetchSkills,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Skills)
